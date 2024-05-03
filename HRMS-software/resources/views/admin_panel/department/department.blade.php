@@ -1,13 +1,13 @@
-@include('admin.include.header_include')
+@include('admin_panel.include.header_include')
 <!--**********************************
         Main wrapper start
     ***********************************-->
 <div id="main-wrapper">
 
-    @include('admin.include.navbar_include')
+    @include('admin_panel.include.navbar_include')
 
    
-    @include('admin.include.sidebar_include')
+    @include('admin_panel.include.sidebar_include')
     <!--**********************************
             Content body start
         ***********************************-->
@@ -45,6 +45,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($all_department as $department)
                                         <tr>
                                             <td>
                                                 <div class="custom-control custom-checkbox">
@@ -52,136 +53,22 @@
                                                     <label class="custom-control-label" for="customCheckBox2"></label>
                                                 </div>
                                             </td>
-                                            <td>1</td>
-                                            <td>Web Development</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $department->department }}</td>
                                             <td>
                                                 <div class="button--group">
                                                     <button type="button"
-                                                        class="btn btn-primary" data-toggle="modal"
+                                                        class="btn btn-primary editdepartmentBtn" data-toggle="modal"
                                                         data-modal_title="Edit Department" data-has_status="1"
-                                                        data-target="#editbrand">
+                                                        data-target="#editdepartment" data-department-id="{{ $department->id }}" data-department-name="{{ $department->department }}">
                                                         <i class="la la-pencil"></i>Edit </button>
-    
-                                                    <button type="button"
+                                                    {{-- <button type="button"
                                                     class="btn btn-danger" data-question="Are you sure to delete this Department?">
-                                                        <i class="la la-trash"></i>Delete </button>
+                                                        <i class="la la-trash"></i>Delete </button> --}}
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox3" required="">
-                                                    <label class="custom-control-label" for="customCheckBox3"></label>
-                                                </div>
-                                            </td>
-                                            <td>2</td>
-                                            <td>Application Development</td>
-                                            <td>
-                                                <div class="button--group">
-                                                    <button type="button"
-                                                        class="btn btn-primary" data-toggle="modal"
-                                                        data-modal_title="Edit Department" data-has_status="1"
-                                                        data-target="#editbrand">
-                                                        <i class="la la-pencil"></i>Edit </button>
-    
-                                                    <button type="button"
-                                                    class="btn btn-danger" data-question="Are you sure to delete this Department?">
-                                                        <i class="la la-trash"></i>Delete </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox4" required="">
-                                                    <label class="custom-control-label" for="customCheckBox4"></label>
-                                                </div>
-                                            </td>
-                                            <td>3</td>
-                                            <td>Support Management</td>
-                                            <td>
-                                                <div class="button--group">
-                                                    <button type="button"
-                                                        class="btn btn-primary" data-toggle="modal"
-                                                        data-modal_title="Edit Department" data-has_status="1"
-                                                        data-target="#editbrand">
-                                                        <i class="la la-pencil"></i>Edit </button>
-    
-                                                    <button type="button"
-                                                    class="btn btn-danger" data-question="Are you sure to delete this Department?">
-                                                        <i class="la la-trash"></i>Delete </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox5" required="">
-                                                    <label class="custom-control-label" for="customCheckBox5"></label>
-                                                </div>
-                                            </td>
-                                            <td>4</td>
-                                            <td>Marketing</td>
-                                            <td>
-                                                <div class="button--group">
-                                                    <button type="button"
-                                                        class="btn btn-primary" data-toggle="modal"
-                                                        data-modal_title="Edit Department" data-has_status="1"
-                                                        data-target="#editbrand">
-                                                        <i class="la la-pencil"></i>Edit </button>
-    
-                                                    <button type="button"
-                                                    class="btn btn-danger" data-question="Are you sure to delete this Department?">
-                                                        <i class="la la-trash"></i>Delete </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox6" required="">
-                                                    <label class="custom-control-label" for="customCheckBox6"></label>
-                                                </div>
-                                            </td>
-                                            <td>5</td>
-                                            <td>IT Management</td>
-                                            <td>
-                                                <div class="button--group">
-                                                    <button type="button"
-                                                        class="btn btn-primary" data-toggle="modal"
-                                                        data-modal_title="Edit Department" data-has_status="1"
-                                                        data-target="#editbrand">
-                                                        <i class="la la-pencil"></i>Edit </button>
-    
-                                                    <button type="button"
-                                                    class="btn btn-danger" data-question="Are you sure to delete this Department?">
-                                                        <i class="la la-trash"></i>Delete </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox8" required="">
-                                                    <label class="custom-control-label" for="customCheckBox8"></label>
-                                                </div>
-                                            </td>
-                                            <td>6</td>
-                                            <td>Accounts Management</td>
-                                            <td>
-                                                <div class="button--group">
-                                                    <button type="button"
-                                                        class="btn btn-primary" data-toggle="modal"
-                                                        data-modal_title="Edit Department" data-has_status="1"
-                                                        data-target="#editbrand">
-                                                        <i class="la la-pencil"></i>Edit </button>
-    
-                                                    <button type="button"
-                                                    class="btn btn-danger" data-question="Are you sure to delete this Department?">
-                                                        <i class="la la-trash"></i>Delete </button>
-                                                </div>
-                                            </td>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -202,16 +89,44 @@
                                 <i class="las la-times"></i>
                             </button>
                         </div>
-                        <form action="" method="POST">
+                        <form action="{{ route('store-department') }}" method="POST">
                             @csrf
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label>Department</label>
-                                    <input type="text" name="brand" class="form-control" required>
+                                    <input type="text" name="department" class="form-control" required>
+                                </div>
+                            </div> 
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--Edit Modal -->
+            <div  id="editbrand" class="modal fade" tabindex="-1" aria-labelledby="editdepartmentLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editdepartmentLabel"><span class="type"></span> <span>Edit Department</span></h5>
+                            <!-- Adjusted close button with custom styling -->
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 1rem; border:none;">
+                                <i class="las la-times"></i>
+                            </button>
+                        </div>
+                        <form action="{{ route('update-department') }}" method="POST">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    <input type="hidden" id="editdepartmentId" name="department_id" class="form-control" required>
+                                    <input type="text" id="editdepartmentName" name="department_name" class="form-control" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
                     </div>
@@ -241,7 +156,7 @@
         Main wrapper end
     ***********************************-->
 
-@include('admin.include.footer_include')
+@include('admin_panel.include.footer_include')
 <script>
     // JavaScript/jQuery code to trigger modal
     $(document).ready(function(){
@@ -250,3 +165,19 @@
         });
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+    // Edit category button click event
+    $('.editdepartmentBtn').click(function() {
+        // Extract department ID and name from data attributes
+        var departmentId = $(this).data('department-id');
+        var departmentName = $(this).data('department-name');
+        // Set the extracted values in the modal fields
+        $('#editdepartmentId').val(departmentId);
+        $('#editdepartmentName').val(departmentName);
+    });
+});
+</script>
+
+

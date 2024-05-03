@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +29,20 @@ Route::get('/', function () {
 
 Route::get('/home', [HomeController::class, 'home'])->middleware(['auth'])->name('home');
 Route::get('/admin-dashboard', [HomeController::class, 'adminpage'])->middleware(['auth','admin'])->name('admin-dashboard');
+
+//DEpartment
+Route::get('/department', [DepartmentController::class, 'department'])->middleware(['auth','admin'])->name('department');
+Route::post('/store-department', [DepartmentController::class, 'store_department'])->name('store-department');
+Route::post('/update-department', [DepartmentController::class, 'update_department'])->name('update-department');
+
+
+//designation
+Route::get('/designation', [DesignationController::class, 'designation'])->name('designation');
+
+//Employees
+Route::get('/all-employee', [EmployeeController::class, 'all_employee'])->name('all-employee');
+Route::get('/add-employee', [EmployeeController::class, 'add_employee'])->name('add-employee');
+
 
 
 

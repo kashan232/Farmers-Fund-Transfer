@@ -1,13 +1,13 @@
-@include('admin.include.header_include')
+@include('admin_panel.include.header_include')
 <!--**********************************
         Main wrapper start
     ***********************************-->
 <div id="main-wrapper">
 
-    @include('admin.include.navbar_include')
+    @include('admin_panel.include.navbar_include')
 
    
-    @include('admin.include.sidebar_include')
+    @include('admin_panel.include.sidebar_include')
     <!--**********************************
             Content body start
         ***********************************-->
@@ -209,4 +209,4 @@
         Main wrapper end
     ***********************************-->
 
-@include('admin.include.footer_include')
+@include('admin_panel.include.footer_include')

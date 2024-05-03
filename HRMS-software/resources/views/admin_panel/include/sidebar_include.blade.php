@@ -10,7 +10,7 @@
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <li><a href="#"aria-expanded="false">
+                    <li><a href="{{ route('department') }}"aria-expanded="false">
                         {{-- <i class="flaticon-381-controls-3"></i> --}}
                         <i class="fa-solid fa-building-user"></i>
                         <span class="nav-text">Department</span>
@@ -20,7 +20,7 @@
                         <li><a href="chart-morris.html">List</a></li>
                     </ul> --}}
                 </li>
-                <li><a href="#" aria-expanded="false">
+                <li><a href="{{ route('designation') }}" aria-expanded="false">
                     {{-- <i class="flaticon-381-controls-3"></i> --}}
                     <i class="fa-solid fa-building-columns"></i>
                     <span class="nav-text">Designation</span>
@@ -36,8 +36,8 @@
                             <span class="nav-text">Employee</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="#"">Add</a></li>
-                            <li><a href="#"">List</a></li>
+                            <li><a href="{{ route('all-employee') }}">Add</a></li>
+                            <li><a href="{{ route('add-employee') }}">List</a></li>
                         </ul>
                     </li>
                    

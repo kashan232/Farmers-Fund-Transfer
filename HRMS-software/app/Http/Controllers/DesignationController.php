@@ -8,6 +8,6 @@ class DesignationController extends Controller
 {
     public function designation()
     {
-        return view('admin.designation.designation');
+        return view('admin_panel.designation.designation');
     }
 }
