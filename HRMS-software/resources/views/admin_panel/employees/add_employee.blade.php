@@ -22,59 +22,40 @@
                             </div>
                             <div class="card-body">
                                 <div class="basic-form">
-                                    <form>
+                                    <form action="{{ route('store-employee') }}" method="post"> 
+                                        @csrf
                                         <div class="row">
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">First Name</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" name="first_name" class="form-control">
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Last Name</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" name="last_name" class="form-control">
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Email</label>
-                                                <input type="email" class="form-control">
-                                            </div>
-                                            <div class="mb-3 col-md-6">
-                                                <label>Employee ID</label>
-                                                <input type="text" class="form-control">
+                                                <input type="email" name="email" class="form-control">
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label>Joining Date</label>
-                                                <input type="date" class="form-control">
+                                                <input type="date" name="joining_date" class="form-control">
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label>Phone</label>
-                                                <input type="number" class="form-control">
-                                            </div>
-                                            <div class="mb-3 col-md-6">
-                                                <label>Company</label>
-                                                <input type="text" class="form-control">
+                                                <input type="number" name="phone" class="form-control">
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label>Department</label>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">Web Development</option>
-                                                    <option value="">Support Management</option>
-                                                    <option value="">Application Development</option>
-                                                    <option value="">Accounts Management</option>
-                                                    <option value="">IT Management</option>
-                                                    <option value="">Marketing</option>
-                                                    <option value="">Web Development</option>
-                                                    <option value="">Web Development</option>
+                                                <select name="department" class="form-control">
+                                                    <option value="Web Development">Web Development</option>
                                                 </select>
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label>Designation</label>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">Web Designer</option>
-                                                    <option value="">Web Developer</option>
-                                                    <option value="">Android Developer</option>
-                                                    <option value="">IOS Developer</option>
-                                                    <option value="">UI Designer</option>
-                                                    <option value="">UX Designer</option>
-                                                    <option value="">IT Technician</option>
+                                                <select name="designation" class="form-control">
+                                                    <option value="Web Designer">Web Designer</option>
+                                                    <option value="Web Developer">Web Developer</option>
                                                 </select>
                                             </div>
                                         </div>
