@@ -36,8 +36,8 @@
                             <span class="nav-text">Employee</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ route('all-employee') }}">Add</a></li>
-                            <li><a href="{{ route('add-employee') }}">List</a></li>
+                            <li><a href="{{ route('add-employee') }}">Add</a></li>
+                            <li><a href="{{ route('all-employee') }}">List</a></li>
                         </ul>
                     </li>
                    

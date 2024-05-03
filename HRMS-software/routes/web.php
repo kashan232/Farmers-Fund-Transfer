@@ -43,6 +43,7 @@ Route::get('/designation', [DesignationController::class, 'designation'])->name(
 Route::get('/all-employee', [EmployeeController::class, 'all_employee'])->name('all-employee');
 Route::get('/add-employee', [EmployeeController::class, 'add_employee'])->name('add-employee');
 
+Route::post('/store-employee', [EmployeeController::class, 'store_employee'])->name('store-employee');
 
 
 
