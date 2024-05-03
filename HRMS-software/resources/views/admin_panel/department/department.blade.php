@@ -106,7 +106,7 @@
             </div>
 
             <!--Edit Modal -->
-            <div  id="editbrand" class="modal fade" tabindex="-1" aria-labelledby="editdepartmentLabel" aria-hidden="true">
+            <div  id="editbtn" class="modal fade" tabindex="-1" aria-labelledby="editdepartmentLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -162,6 +162,15 @@
     $(document).ready(function(){
         $('#addNewButton').click(function(){
             $('#cuModal').modal('show');
+        });
+    });
+</script>
+
+<script>
+    // JavaScript/jQuery code to trigger modal
+    $(document).ready(function(){
+        $('#editdepartmentBtn').click(function(){
+            $('#editbtn').modal('show');
         });
     });
 </script>

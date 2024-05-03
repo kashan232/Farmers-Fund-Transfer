@@ -6,7 +6,7 @@
 
     @include('admin_panel.include.navbar_include')
 
-   
+
     @include('admin_panel.include.sidebar_include')
     <!--**********************************
             Content body start
@@ -14,7 +14,7 @@
     <div class="content-body ">
         <!-- row -->
         <div class="container">
-           
+
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -23,19 +23,20 @@
                             <div>
                                 <button id="addNewButton" type="button" class="btn btn-primary"
                                     data-modal_title="Add New designation">
-                                    <i class="las la-plus"></i>Add New 
+                                    <i class="las la-plus"></i>Add New
                                 </button>
                             </div>
                         </div>
                         <div class="card-body">
-                            
+
                             <div class="table-responsive">
                                 <table id="example5" class="display table-responsive-lg">
                                     <thead>
                                         <tr>
                                             <th>
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="checkAll" required="">
+                                                    <input type="checkbox" class="custom-control-input" id="checkAll"
+                                                        required="">
                                                     <label class="custom-control-label" for="checkAll"></label>
                                                 </div>
                                             </th>
@@ -46,216 +47,112 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($all_designation as $designation)
                                         <tr>
                                             <td>
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox2" required="">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        id="customCheckBox2" required="">
                                                     <label class="custom-control-label" for="customCheckBox2"></label>
                                                 </div>
                                             </td>
-                                            <td>1</td>
-                                            <td>Web Designer</td>
-                                            <td>Web Development</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $designation->designation }}</td>
+                                            <td>{{ $designation->department }}</td>
                                             <td>
                                                 <div class="button--group">
-                                                    <button type="button"
-                                                        class="btn btn-primary" data-toggle="modal"
-                                                        data-modal_title="Edit designation" data-has_status="1"
-                                                        data-target="#editbrand">
+                                                    <button type="button" class="btn btn-primary editdesignationBtn" data-toggle="modal"
+                                                    data-modal_title="Edit designation" data-has_status="1"
+                                                    data-target="#editdesignation" data-designation-id="{{ $designation->id }}" data-designation-name="{{ $designation->designation }}">
                                                         <i class="la la-pencil"></i>Edit </button>
-    
-                                                    <button type="button"
-                                                    class="btn btn-danger" data-question="Are you sure to delete this designation?">
-                                                        <i class="la la-trash"></i>Delete </button>
+                                                    {{-- <button type="button" class="btn btn-danger"
+                                                        data-question="Are you sure to delete this designation?">
+                                                        <i class="la la-trash"></i>Delete </button> --}}
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox3" required="">
-                                                    <label class="custom-control-label" for="customCheckBox3"></label>
-                                                </div>
-                                            </td>
-                                            <td>2</td>
-                                            <td>Web Developer</td>
-                                            <td>Web Development</td>
-                                            <td>
-                                                <div class="button--group">
-                                                    <button type="button"
-                                                        class="btn btn-primary" data-toggle="modal"
-                                                        data-modal_title="Edit designation" data-has_status="1"
-                                                        data-target="#editbrand">
-                                                        <i class="la la-pencil"></i>Edit </button>
-    
-                                                    <button type="button"
-                                                    class="btn btn-danger" data-question="Are you sure to delete this designation?">
-                                                        <i class="la la-trash"></i>Delete </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox4" required="">
-                                                    <label class="custom-control-label" for="customCheckBox4"></label>
-                                                </div>
-                                            </td>
-                                            <td>3</td>
-                                            <td>Android Developer</td>
-                                            <td>Application Development</td>
-                                            <td>
-                                                <div class="button--group">
-                                                    <button type="button"
-                                                        class="btn btn-primary" data-toggle="modal"
-                                                        data-modal_title="Edit designation" data-has_status="1"
-                                                        data-target="#editbrand">
-                                                        <i class="la la-pencil"></i>Edit </button>
-    
-                                                    <button type="button"
-                                                    class="btn btn-danger" data-question="Are you sure to delete this designation?">
-                                                        <i class="la la-trash"></i>Delete </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox5" required="">
-                                                    <label class="custom-control-label" for="customCheckBox5"></label>
-                                                </div>
-                                            </td>
-                                            <td>4</td>
-                                            <td>IOS Developer</td>
-                                            <td>Application Development</td>
-                                            <td>
-                                                <div class="button--group">
-                                                    <button type="button"
-                                                        class="btn btn-primary" data-toggle="modal"
-                                                        data-modal_title="Edit designation" data-has_status="1"
-                                                        data-target="#editbrand">
-                                                        <i class="la la-pencil"></i>Edit </button>
-    
-                                                    <button type="button"
-                                                    class="btn btn-danger" data-question="Are you sure to delete this designation?">
-                                                        <i class="la la-trash"></i>Delete </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox6" required="">
-                                                    <label class="custom-control-label" for="customCheckBox6"></label>
-                                                </div>
-                                            </td>
-                                            <td>5</td>
-                                            <td>UI Designer</td>
-                                            <td>Application Development</td>
-                                            <td>
-                                                <div class="button--group">
-                                                    <button type="button"
-                                                        class="btn btn-primary" data-toggle="modal"
-                                                        data-modal_title="Edit designation" data-has_status="1"
-                                                        data-target="#editbrand">
-                                                        <i class="la la-pencil"></i>Edit </button>
-    
-                                                    <button type="button"
-                                                    class="btn btn-danger" data-question="Are you sure to delete this designation?">
-                                                        <i class="la la-trash"></i>Delete </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox7" required="">
-                                                    <label class="custom-control-label" for="customCheckBox7"></label>
-                                                </div>
-                                            </td>
-                                            <td>6</td>
-                                            <td>UX Designer</td>
-                                            <td>Application Development</td>
-                                            <td>
-                                                <div class="button--group">
-                                                    <button type="button"
-                                                        class="btn btn-primary" data-toggle="modal"
-                                                        data-modal_title="Edit designation" data-has_status="1"
-                                                        data-target="#editbrand">
-                                                        <i class="la la-pencil"></i>Edit </button>
-    
-                                                    <button type="button"
-                                                    class="btn btn-danger" data-question="Are you sure to delete this designation?">
-                                                        <i class="la la-trash"></i>Delete </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox8" required="">
-                                                    <label class="custom-control-label" for="customCheckBox8"></label>
-                                                </div>
-                                            </td>
-                                            <td>7</td>
-                                            <td>IT Technician</td>
-                                            <td>Application Development</td>
-                                            <td>
-                                                <div class="button--group">
-                                                    <button type="button"
-                                                        class="btn btn-primary" data-toggle="modal"
-                                                        data-modal_title="Edit designation" data-has_status="1"
-                                                        data-target="#editbrand">
-                                                        <i class="la la-pencil"></i>Edit </button>
-    
-                                                    <button type="button"
-                                                    class="btn btn-danger" data-question="Are you sure to delete this designation?">
-                                                        <i class="la la-trash"></i>Delete </button>
-                                                </div>
-                                            </td>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
-             <!--Create Modal -->
-             <div id="cuModal" class="modal fade" tabindex="-1" role="dialog">
+            <!--Create Modal -->
+            <div id="cuModal" class="modal fade" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title"><span class="type"></span> <span>Add Designation</span></h5>
                             <!-- Adjusted close button with custom styling -->
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 1rem; border:none;">
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"
+                                style="font-size: 1rem; border:none;">
                                 <i class="las la-times"></i>
                             </button>
                         </div>
-                        <form action="" method="POST">
+                        <form action="{{ route('store-designation') }}" method="POST">
                             @csrf
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label>Department</label>
-                                    <select name="" id="" class="form-control">
-                                        <option value="">Web Development</option>
-                                        <option value="">Support Management</option>
-                                        <option value="">Application Development</option>
-                                        <option value="">Accounts Management</option>
-                                        <option value="">IT Management</option>
-                                        <option value="">Marketing</option>
-                                        <option value="">Web Development</option>
-                                        <option value="">Web Development</option>
+                                    <select name="department" id="" class="form-control">
+                                        <option value="" selected disabled>Select One</option>
+                                        @foreach ($all_department as $department)
+                                            <option value="{{ $department->department }}">
+                                                {{ $department->department }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Designation</label>
-                                    <input type="text" name="brand" class="form-control" required>
+                                    <input type="text" name="designation" class="form-control" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+             <!--Edit Modal -->
+             <div  id="editdesignation" class="modal fade" tabindex="-1" aria-labelledby="editdesignationLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editdesignationLabel"><span class="type"></span> <span>Edit Department</span></h5>
+                            <!-- Adjusted close button with custom styling -->
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 1rem; border:none;">
+                                <i class="las la-times"></i>
+                            </button>
+                        </div>
+                        <form action="{{ route('update-designation') }}" method="POST">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="hidden" id="editdesignationId" name="designation_id" class="form-control" required>
+                                    <label>Department</label>
+                                    <select name="department" id="" class="form-control">
+                                        <option value="" selected disabled>Select One</option>
+                                        @foreach ($all_department as $department)
+                                            <option value="{{ $department->department }}">
+                                                {{ $department->department }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Designation</label>
+                                    <input type="text" name="designation" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
                     </div>
@@ -275,7 +172,7 @@
                 2024</p>
         </div>
     </div> <!--********************************** --}}
-            {{-- Footer end
+    {{-- Footer end
         ***********************************--> --}}
 
 
@@ -287,9 +184,45 @@
 @include('admin_panel.include.footer_include')
 <script>
     // JavaScript/jQuery code to trigger modal
-    $(document).ready(function(){
-        $('#addNewButton').click(function(){
+    $(document).ready(function() {
+        $('#addNewButton').click(function() {
             $('#cuModal').modal('show');
+        });
+    });
+</script>
+
+{{-- <script>
+    $(document).ready(function() {
+        // Event listener for the edit button
+        $('.editdesignationBtn').click(function() {
+            // Retrieve the designation ID and name
+            var designationId = $(this).data('designation-id');
+            var designationName = $(this).data('designation-name');
+
+            // Populate the modal fields with the retrieved data
+            $('#editdepartmentId').val(designationId);
+            $('#editdepartmentName').val(designationName);
+
+            // Show the edit modal
+            $('#editdesignation').modal('show');
+        });
+    });
+</script> --}}
+<script>
+    $(document).ready(function() {
+        // Event listener for the edit button
+        $('.editdesignationBtn').click(function() {
+            // Retrieve the designation ID and name
+            var designationId = $(this).data('designation-id');
+            var designationName = $(this).data('designation-name');
+
+            // Populate the modal fields with the retrieved data
+            $('#editdesignationId').val(designationId); // Set the designation ID
+            $('select[name="department"]').val('{{ $designation->department }}'); // Set the department value
+            $('input[name="designation"]').val(designationName); // Set the designation name
+
+            // Show the edit modal
+            $('#editdesignation').modal('show');
         });
     });
 </script>

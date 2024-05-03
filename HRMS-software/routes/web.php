@@ -38,6 +38,8 @@ Route::post('/update-department', [DepartmentController::class, 'update_departme
 
 //designation
 Route::get('/designation', [DesignationController::class, 'designation'])->name('designation');
+Route::post('/store-designation', [DesignationController::class, 'store_designation'])->name('store-designation');
+Route::post('/update-designation', [DesignationController::class, 'update_designation'])->name('update-designation');
 
 //Employees
 Route::get('/all-employee', [EmployeeController::class, 'all_employee'])->name('all-employee');

@@ -16,7 +16,7 @@ class DepartmentController extends Controller
             // dd($userId);
             $all_department = Department::where('admin_or_user_id', '=', $userId)->get();
             return view('admin_panel.department.department', [
-                'all_department' => $all_department
+                'all_department' => $all_department,
             ]);
         } else {
             return redirect()->back();
