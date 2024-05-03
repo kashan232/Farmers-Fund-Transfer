@@ -22,162 +22,74 @@
                             <div>
                                 <button id="addNewButton" type="button" class="btn btn-primary"
                                     data-modal_title="Add New designation">
-                                    <i class="las la-plus"></i>Add New 
+                                    <a href="{{ route('add-employee') }}" style="color: white;">
+                                    <i class="las la-plus"></i>Add New </a>
                                 </button>
                             </div>
                         </div>
                         <div class="card-body">
+                            @if (session()->has('delete-message'))
+                                <div class="alert alert-danger solid alert-square">
+                                    <strong>Success!</strong> {{ session('delete-message') }}.
+                                </div>
+                            @endif
+
+                            {{-- <div class="alert alert-dark solid alert-square"><strong>Error!</strong>
+                                 You successfully read this important alert message.</div> --}}
+
                             <div class="table-responsive">
                                 <table id="example5" class="display table-responsive-lg">
                                     <thead>
                                         <tr>
-                                            <th>
+                                            {{-- <th>
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox" class="custom-control-input" id="checkAll" required="">
                                                     <label class="custom-control-label" for="checkAll"></label>
                                                 </div>
-                                            </th>
-                                            <th>Order ID</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
+                                            </th> --}}
+                                            <th>ID</th>
+                                            <th>First Name <br> Last Name </th>
                                             <th>Email</th>
-                                            <th>Company</th>
-                                            <th>Department</th>
-                                            <th>Designation</th>
+                                            <th>Joining Date</th>
+                                            <th>Phone</th>
+                                            <th>Department <br> Designation</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($all_employee as $employee)
                                         <tr>
-                                            <td>
+                                            {{-- <td>
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox" class="custom-control-input" id="customCheckBox2" required="">
                                                     <label class="custom-control-label" for="customCheckBox2"></label>
                                                 </div>
-                                            </td>
-                                            <td>1</td>
-                                            <td>Ali</td>
-                                            <td>Khan</td>
-                                            <td>ali@gmail.com</td>
-                                            <td>xyz Technologies</td>
-                                            <td>Web Development</td>
-                                            <td>Web Designer</td>
+                                            </td> --}}
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $employee->first_name }} <br> {{ $employee->last_name }}</td>
+                                            <td>{{ $employee->email }}</td>
+                                            <td>{{ $employee->joining_date }}</td>
+                                            <td>{{ $employee->phone }}</td>
+                                            <td>{{ $employee->department }} <br> {{ $employee->designation }}</td>
                                             <td>
-                                                <div class="dropdown ms-auto text-end">
-                                                    <div class="btn-link" data-bs-toggle="dropdown">
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-                                                    </div>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">Edit</a>
-                                                        <a class="dropdown-item" href="#">Delete</a>
-                                                    </div>
+                                                <div class="button--group">
+                                                    <button type="button"
+                                                        class="btn btn-primary" >
+                                                        <i class="la la-pencil"></i>Edit </button>
+                                                    <button type="button" class="btn btn-danger">
+                                                        <a href="{{ route('delete-employee', ['id' => $employee->id]) }}"  style="color: white;">
+                                                        <i class="la la-trash"></i>Delete </a></button>
+
+
+                                                        {{-- <button type="button" class="btn btn-danger">
+                                                            <a href=""
+                                                                style="color: white"><i
+                                                                    class="fas fa-trash-alt"></i></a>
+                                                        </button> --}}
                                                 </div>
                                             </td>												
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox2" required="">
-                                                    <label class="custom-control-label" for="customCheckBox2"></label>
-                                                </div>
-                                            </td>
-                                            <td>2</td>
-                                            <td>Wahaj</td>
-                                            <td>soomro</td>
-                                            <td>Wahaj@gmail.com</td>
-                                            <td>xyz Technologies</td>
-                                            <td>Application Development</td>
-                                            <td>Android Developer</td>
-                                            <td>
-                                                <div class="dropdown ms-auto text-end">
-                                                    <div class="btn-link" data-bs-toggle="dropdown">
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-                                                    </div>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">Edit</a>
-                                                        <a class="dropdown-item" href="#">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>												
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox2" required="">
-                                                    <label class="custom-control-label" for="customCheckBox2"></label>
-                                                </div>
-                                            </td>
-                                            <td>3</td>
-                                            <td>Kashan</td>
-                                            <td>shaikh</td>
-                                            <td>Kashan@gmail.com</td>
-                                            <td>xyz Technologies</td>
-                                            <td>Web Development</td>
-                                            <td>Web Developer</td>
-                                            <td>
-                                                <div class="dropdown ms-auto text-end">
-                                                    <div class="btn-link" data-bs-toggle="dropdown">
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-                                                    </div>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">Edit</a>
-                                                        <a class="dropdown-item" href="#">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>												
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox2" required="">
-                                                    <label class="custom-control-label" for="customCheckBox2"></label>
-                                                </div>
-                                            </td>
-                                            <td>4</td>
-                                            <td>Iqra</td>
-                                            <td>shaikh</td>
-                                            <td>Iqra@gmail.com</td>
-                                            <td>xyz Technologies</td>
-                                            <td>Application Development</td>
-                                            <td>IOS Developer</td>
-                                            <td>
-                                                <div class="dropdown ms-auto text-end">
-                                                    <div class="btn-link" data-bs-toggle="dropdown">
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-                                                    </div>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">Edit</a>
-                                                        <a class="dropdown-item" href="#">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>												
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox2" required="">
-                                                    <label class="custom-control-label" for="customCheckBox2"></label>
-                                                </div>
-                                            </td>
-                                            <td>5</td>
-                                            <td>Majid</td>
-                                            <td>Khan</td>
-                                            <td>Majid@gmail.com</td>
-                                            <td>xyz Technologies</td>
-                                            <td>Application Development</td>
-                                            <td>UI Designer</td>
-                                            <td>
-                                                <div class="dropdown ms-auto text-end">
-                                                    <div class="btn-link" data-bs-toggle="dropdown">
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-                                                    </div>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">Edit</a>
-                                                        <a class="dropdown-item" href="#">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>												
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
