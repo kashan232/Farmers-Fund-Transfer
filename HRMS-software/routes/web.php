@@ -4,8 +4,10 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LeaveRequestController;
 use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\ProfileController;
+use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,7 +60,8 @@ Route::get('/get-designations', [EmployeeController::class, 'getDesignations'])-
 Route::get('/all-leavetype', [LeaveTypeController::class, 'all_leavetype'])->middleware(['auth','admin'])->name('all-leavetype');
 Route::post('/store-leavetype', [LeaveTypeController::class, 'store_leavetype'])->name('store-leavetype');
 Route::post('/update-leavetype', [LeaveTypeController::class, 'update_leavetype'])->name('update-leavetype');
-
+// LeaveRequest
+Route::get('/all-leaverequest', [LeaveRequestController::class, 'all_leaverequest'])->middleware(['auth','admin'])->name('all-leaverequest');
 
 
 Route::middleware('auth')->group(function () {
