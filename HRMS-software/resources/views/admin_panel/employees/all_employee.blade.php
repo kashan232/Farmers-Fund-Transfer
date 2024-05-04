@@ -6,7 +6,7 @@
 
     @include('admin_panel.include.navbar_include')
 
-   
+
     @include('admin_panel.include.sidebar_include')
     <!--**********************************
             Content body start
@@ -20,18 +20,17 @@
                         <div class="card-header">
                             <h4 class="card-title">Employees</h4>
                             <div>
-                                <button id="addNewButton" type="button" class="btn btn-primary"
-                                    data-modal_title="Add New designation">
+                                <button id="addNewButton" type="button" class="btn btn-primary" data-modal_title="Add New designation">
                                     <a href="{{ route('add-employee') }}" style="color: white;">
-                                    <i class="las la-plus"></i>Add New </a>
+                                        <i class="las la-plus"></i>Add New </a>
                                 </button>
                             </div>
                         </div>
                         <div class="card-body">
                             @if (session()->has('delete-message'))
-                                <div class="alert alert-danger solid alert-square">
-                                    <strong>Success!</strong> {{ session('delete-message') }}.
-                                </div>
+                            <div class="alert alert-danger solid alert-square">
+                                <strong>Success!</strong> {{ session('delete-message') }}.
+                            </div>
                             @endif
 
                             {{-- <div class="alert alert-dark solid alert-square"><strong>Error!</strong>
@@ -41,43 +40,27 @@
                                 <table id="example5" class="display table-responsive-lg">
                                     <thead>
                                         <tr>
-                                            {{-- <th>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                    <label class="custom-control-label" for="checkAll"></label>
-                                                </div>
-                                            </th> --}}
-                                            <th>ID</th>
-                                            <th>First Name <br> Last Name </th>
-                                            <th>Email</th>
-                                            <th>Joining Date</th>
+                                            <th>Sno#</th>
+                                            <th>Name | Email</th>
+                                            <th>Joined Date</th>
                                             <th>Phone</th>
-                                            <th>Department <br> Designation</th>
+                                            <th>Department | Designation</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($all_employee as $employee)
                                         <tr>
-                                            {{-- <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheckBox2" required="">
-                                                    <label class="custom-control-label" for="customCheckBox2"></label>
-                                                </div>
-                                            </td> --}}
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $employee->first_name }} <br> {{ $employee->last_name }}</td>
-                                            <td>{{ $employee->email }}</td>
+                                            <td>{{ $employee->first_name }} {{ $employee->last_name }} <br>{{ $employee->email }} </td>
                                             <td>{{ $employee->joining_date }}</td>
                                             <td>{{ $employee->phone }}</td>
                                             <td>{{ $employee->department }} <br> {{ $employee->designation }}</td>
                                             <td>
                                                 <div class="button--group">
-                                                    <button type="button" class="btn btn-primary" >
-                                                        <a href="{{ route('edit-employee',['id' => $employee->id ]) }}" style="color: white;">
-                                                            <i class="la la-pencil"></i>Edit </a></button>
-                                                        
-
+                                                    <button type="button"
+                                                        class="btn btn-primary" >
+                                                        <i class="la la-pencil"></i>Edit </button>
                                                     <button type="button" class="btn btn-danger">
                                                         <a href="{{ route('delete-employee', ['id' => $employee->id]) }}"  style="color: white;">
                                                         <i class="la la-trash"></i>Delete </a></button>
@@ -89,7 +72,7 @@
                                                                     class="fas fa-trash-alt"></i></a>
                                                         </button> --}}
                                                 </div>
-                                            </td>												
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -98,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
