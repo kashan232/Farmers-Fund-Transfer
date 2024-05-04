@@ -60,12 +60,6 @@ class EmployeeController extends Controller
             return redirect()->back();
         }
     }
-    // public function getDesignations(Request $request)
-    // {
-    //     $departmentId = $request->input('department_id');
-    //     $designations = Designation::where('department_id', $departmentId)->get(['id', 'designation']);
-    //     return response()->json($designations);
-    // }
     public function delete_employee(Request $request, $id)
     {
         $delete = Employee::find($id)->delete();
@@ -107,4 +101,25 @@ class EmployeeController extends Controller
             return redirect()->back();
         }
     }
+    public function deleted_employee_screen()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            // Retrieve all employees deleted by the admin
+            $deleted_employee = Employee::onlyTrashed()
+                ->where('admin_or_user_id', $userId)
+                ->get();
+            return view('admin_panel.employees.deleted_employee_screen', [
+                'deleted_employee' => $deleted_employee,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function getDesignations(Request $request)
+{
+    $department = $request->input('department');
+    $designations = Designation::where('department', $department)->pluck('designation')->toArray();
+    return response()->json($designations);
+}
 }

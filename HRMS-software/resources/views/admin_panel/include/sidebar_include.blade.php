@@ -36,8 +36,9 @@
                             <span class="nav-text">Employee</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ route('add-employee') }}">Add</a></li>
-                            <li><a href="{{ route('all-employee') }}">List</a></li>
+                            <li><a href="{{ route('add-employee') }}">Add Employee</a></li>
+                            <li><a href="{{ route('all-employee') }}">List Employee</a></li>
+                            <li><a href="{{ route('deleted-employee-screen') }}">Deleted Employee</a></li>
                         </ul>
                     </li>
                    

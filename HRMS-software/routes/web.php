@@ -44,12 +44,13 @@ Route::post('/update-designation', [DesignationController::class, 'update_design
 //Employees
 Route::get('/all-employee', [EmployeeController::class, 'all_employee'])->middleware(['auth','admin'])->name('all-employee');
 Route::get('/add-employee', [EmployeeController::class, 'add_employee'])->middleware(['auth','admin'])->name('add-employee');
-
 Route::post('/store-employee', [EmployeeController::class, 'store_employee'])->name('store-employee');
 Route::get('/delete-employee/{id}', [EmployeeController::class, 'delete_employee'])->middleware(['auth','admin'])->name('delete-employee');
-// Route::get('/get-designations', [EmployeeController::class, 'getDesignations'])->name('get-designations');
 Route::get('/edit-employee/{id}', [EmployeeController::class, 'edit_employee'])->middleware(['auth','admin'])->name('edit-employee');
 Route::post('/update-employee/{id}', [EmployeeController::class, 'update_employee'])->name('update-employee');
+Route::get('/deleted-employee-screen', [EmployeeController::class, 'deleted_employee_screen'])->middleware(['auth','admin'])->name('deleted-employee-screen');
+Route::get('/get-designations', [EmployeeController::class, 'getDesignations'])->name('get-designations');
+
 
 
 

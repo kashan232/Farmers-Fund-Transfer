@@ -52,7 +52,7 @@
                                             <label>Phone</label>
                                             <input type="number" name="phone" class="form-control">
                                         </div>
-                                        <div class="mb-3 col-md-6">
+                                        {{-- <div class="mb-3 col-md-6">
                                             <label>Department</label>
                                             <select name="department" id="" class="form-control">
                                                 <option value="" selected disabled>Select One</option>
@@ -62,13 +62,20 @@
                                                     </option>
                                                 @endforeach
                                             </select>
+                                        </div> --}}
+
+                                        <div class="mb-3 col-md-6">
+                                            <label>Department</label>
+                                            <select name="department" id="department" class="form-control">
+                                                <option value="" selected disabled>Select One</option>
+                                                @foreach ($all_department as $department)
+                                                    <option value="{{ $department->department }}">{{ $department->department }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label>Designation</label>
-                                            <select name="designation" class="form-control">
-                                                <option value="Web Designer">Web Designer</option>
-                                                <option value="Web Developer">Web Developer</option>
-                                            </select>
+                                            <select name="designation" id="designation" class="form-control"></select>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -104,33 +111,25 @@
     ***********************************-->
 
 @include('admin_panel.include.footer_include')
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#department').change(function() {
-            var departmentId = $(this).val();
-            if (departmentId) {
+        $('select[name="department"]').on('change', function() {
+            var department = $(this).val();
+            if (department) {
                 $.ajax({
-                    type: "GET",
-                    url: "{{ route('get-designations') }}",
-                    data: {
-                        department_id: departmentId
-                    },
+                    url: '{{ route("get-designations") }}',
+                    type: 'GET',
+                    data: { department: department },
                     success: function(data) {
-                        if (data) {
-                            $("#designation").empty();
-                            $("#designation").append('<option value="" selected disabled>Select Designation</option>');
-                            $.each(data, function(key, value) {
-                                $("#designation").append('<option value="' + value.id + '">' + value.designation + '</option>');
-                            });
-                        } else {
-                            $("#designation").empty();
-                        }
+                        $('select[name="designation"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="designation"]').append('<option value="' + value + '">' + value + '</option>');
+                        });
                     }
                 });
             } else {
-                $("#designation").empty();
+                $('select[name="designation"]').empty();
             }
         });
     });
-</script> --}}
+</script>
