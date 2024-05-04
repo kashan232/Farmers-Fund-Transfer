@@ -10,16 +10,16 @@
     <meta name="csrf-token" content="z4MguClEabqJVhkOUgcDdoT8to0engZwXCcwQg1l">
     <title>HRMS Software</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
 
-    <link href="vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="vendor/chartist/css/chartist.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/vendor/chartist/css/chartist.min.css" rel="stylesheet" type="text/css"/>
     <link href="../../../cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet" type="text/css"/>
-    <link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css"/>
-    <link href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
-    <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css"/>
+    <link href="/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body>

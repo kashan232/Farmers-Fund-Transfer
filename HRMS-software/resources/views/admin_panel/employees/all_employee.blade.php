@@ -73,9 +73,11 @@
                                             <td>{{ $employee->department }} <br> {{ $employee->designation }}</td>
                                             <td>
                                                 <div class="button--group">
-                                                    <button type="button"
-                                                        class="btn btn-primary" >
-                                                        <i class="la la-pencil"></i>Edit </button>
+                                                    <button type="button" class="btn btn-primary" >
+                                                        <a href="{{ route('edit-employee',['id' => $employee->id ]) }}" style="color: white;">
+                                                            <i class="la la-pencil"></i>Edit </a></button>
+                                                        
+
                                                     <button type="button" class="btn btn-danger">
                                                         <a href="{{ route('delete-employee', ['id' => $employee->id]) }}"  style="color: white;">
                                                         <i class="la la-trash"></i>Delete </a></button>

@@ -71,4 +71,40 @@ class EmployeeController extends Controller
         $delete = Employee::find($id)->delete();
         return redirect()->back()->with('delete-message', 'Employee Has Been Deleted Successsfully');
     }
+    public function edit_employee(Request $request, $id)
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            // dd($userId);
+            $all_department = Department::where('admin_or_user_id', '=', $userId)->get();
+            $employeedetails = Employee::findOrFail($id);
+            return view('admin_panel.employees.edit-employee', [
+                'all_department' => $all_department,
+                'employeedetails' => $employeedetails,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function update_employee(Request $request, $id)
+    {
+
+        if (Auth::id()) {
+            $usertype = Auth()->user()->usertype;
+            $userId = Auth::id();
+            Employee::where('id', $id)->update([
+                'first_name'          => $request->first_name,
+                'last_name'          => $request->last_name,
+                'email'          => $request->email,
+                'joining_date'          => $request->joining_date,
+                'phone'          => $request->phone,
+                'department'          => $request->department,
+                'designation'          => $request->designation,
+                'updated_at' => Carbon::now(),
+            ]);
+            return Redirect()->back()->with('success-message-updte', 'Employee Updated successfully!');
+        } else {
+            return redirect()->back();
+        }
+    }
 }

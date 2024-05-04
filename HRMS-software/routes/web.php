@@ -46,8 +46,10 @@ Route::get('/all-employee', [EmployeeController::class, 'all_employee'])->middle
 Route::get('/add-employee', [EmployeeController::class, 'add_employee'])->middleware(['auth','admin'])->name('add-employee');
 
 Route::post('/store-employee', [EmployeeController::class, 'store_employee'])->name('store-employee');
-Route::get('/delete-employee/{id}', [EmployeeController::class, 'delete_employee'])->name('delete-employee');
-Route::get('/get-designations', [EmployeeController::class, 'getDesignations'])->name('get-designations');
+Route::get('/delete-employee/{id}', [EmployeeController::class, 'delete_employee'])->middleware(['auth','admin'])->name('delete-employee');
+// Route::get('/get-designations', [EmployeeController::class, 'getDesignations'])->name('get-designations');
+Route::get('/edit-employee/{id}', [EmployeeController::class, 'edit_employee'])->middleware(['auth','admin'])->name('edit-employee');
+Route::post('/update-employee/{id}', [EmployeeController::class, 'update_employee'])->name('update-employee');
 
 
 

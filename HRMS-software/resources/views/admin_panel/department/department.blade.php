@@ -169,7 +169,7 @@
 <script>
     // JavaScript/jQuery code to trigger modal
     $(document).ready(function(){
-        $('#editdepartmentBtn').click(function(){
+        $('.editdepartmentBtn').click(function(){
             $('#editbtn').modal('show');
         });
     });
