@@ -63,7 +63,8 @@
                                                 <div class="button--group">
                                                     <button type="button" class="btn btn-primary editdesignationBtn" data-toggle="modal"
                                                     data-modal_title="Edit designation" data-has_status="1"
-                                                    data-target="#editdesignation" data-designation-id="{{ $designation->id }}" data-designation-name="{{ $designation->designation }}">
+                                                    data-target="#editdesignation" data-designation-id="{{ $designation->id }}" 
+                                                    data-designation-name="{{ $designation->designation }}" data-department-name="{{ $designation->department }}">
                                                         <i class="la la-pencil"></i>Edit </button>
                                                     {{-- <button type="button" class="btn btn-danger"
                                                         data-question="Are you sure to delete this designation?">
@@ -125,7 +126,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="editdesignationLabel"><span class="type"></span> <span>Edit Department</span></h5>
+                            <h5 class="modal-title" id="editdesignationLabel"><span class="type"></span> <span>Edit Designation</span></h5>
                             <!-- Adjusted close button with custom styling -->
                             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 1rem; border:none;">
                                 <i class="las la-times"></i>
@@ -135,9 +136,10 @@
                             @csrf
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <input type="hidden" id="editdesignationId" name="designation_id" class="form-control" required>
+                                    <input type="text" id="editdesignationId" name="designation_id" class="form-control" required>
+                                    
                                     <label>Department</label>
-                                    <select name="department" id="" class="form-control">
+                                    <select name="department" id="editDepartmentName" class="form-control">
                                         <option value="" selected disabled>Select One</option>
                                         @foreach ($all_department as $department)
                                             <option value="{{ $department->department }}">
@@ -148,7 +150,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Designation</label>
-                                    <input type="text" name="designation" class="form-control" required>
+                                    <input type="text" id="editdesignationName" name="designation" class="form-control" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -191,38 +193,28 @@
     });
 </script>
 
-{{-- <script>
-    $(document).ready(function() {
-        // Event listener for the edit button
-        $('.editdesignationBtn').click(function() {
-            // Retrieve the designation ID and name
-            var designationId = $(this).data('designation-id');
-            var designationName = $(this).data('designation-name');
-
-            // Populate the modal fields with the retrieved data
-            $('#editdepartmentId').val(designationId);
-            $('#editdepartmentName').val(designationName);
-
-            // Show the edit modal
-            $('#editdesignation').modal('show');
-        });
-    });
-</script> --}}
 <script>
-    $(document).ready(function() {
-        // Event listener for the edit button
-        $('.editdesignationBtn').click(function() {
-            // Retrieve the designation ID and name
-            var designationId = $(this).data('designation-id');
-            var designationName = $(this).data('designation-name');
-
-            // Populate the modal fields with the retrieved data
-            $('#editdesignationId').val(designationId); // Set the designation ID
-            $('select[name="department"]').val('{{ $designation->department }}'); // Set the department value
-            $('input[name="designation"]').val(designationName); // Set the designation name
-
-            // Show the edit modal
+    // JavaScript/jQuery code to trigger modal
+    $(document).ready(function(){
+        $('.editdesignationBtn').click(function(){
             $('#editdesignation').modal('show');
         });
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+    // Edit category button click event
+    $('.editdesignationBtn').click(function() {
+        // Extract department ID and name from data attributes
+        var designationId = $(this).data('designation-id');
+        var departmentName = $(this).data('department-name');
+        var designationName = $(this).data('designation-name');
+        // Set the extracted values in the modal fields
+        $('#editdesignationId').val(designationId);
+        $('#editDepartmentName').val(departmentName);
+        $('#editdesignationName').val(designationName);
+    });
+});
+</script>
+

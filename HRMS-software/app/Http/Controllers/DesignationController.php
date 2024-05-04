@@ -43,27 +43,25 @@ class DesignationController extends Controller
             return redirect()->back();
         }
     }
-    // public function update_designation(Request $request)
-    // {
-    //     if (Auth::id()) {
-    //         $usertype = Auth()->user()->usertype;
-    //         $userId = Auth::id();
-    //         // Retrieve the input values from the request
-    //         $update_id = $request->input('department_id');
-    //         $department = $request->input('department_name');
-    //         $designation = $request->input('designation_name');
+    public function update_designation(Request $request)
+    {
+        if (Auth::id()) {
+            $usertype = Auth()->user()->usertype;
+            $userId = Auth::id();
+            // dd($request);
+            $update_id = $request->input('designation_id');
+            $department = $request->input('department');
+            $designation = $request->input('designation');
 
-    //         // Update the designation record in the database
-    //         Designation::where('id', $update_id)->update([
-    //             'department'   => $department,
-    //             'designation'   => $designation,
-    //             'updated_at' => Carbon::now(),
-    //         ]);
-
-    //         // Redirect back to the page where the update was made
-    //         return redirect()->back()->with('designation-update', 'Designation updated successfully');
-    //     } else {
-    //         return redirect()->back();
-    //     }
-    // }
+            Designation::where('id', $update_id)->update([
+                'department'   => $department,
+                'designation'   => $designation,
+                'updated_at' => Carbon::now(),
+            ]);
+            return redirect()->back()->with('designation-update', 'Designation Updated Successfully');
+        } else {
+            return redirect()->back();
+        }
+    }
+   
 }

@@ -2,18 +2,18 @@
         Scripts
     ***********************************-->
 <!-- Required vendors -->
-<script src="vendor/global/global.min.js" type="text/javascript"></script>
-<script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
-<script src="vendor/chart.js/Chart.bundle.min.js" type="text/javascript"></script>
-<script src="vendor/owl-carousel/owl.carousel.js" type="text/javascript"></script>
-<script src="vendor/peity/jquery.peity.min.js" type="text/javascript"></script>
-<script src="js/dashboard/dashboard-1.js" type="text/javascript"></script>
-<script src="js/custom.min.js" type="text/javascript"></script>
-<script src="js/deznav-init.js" type="text/javascript"></script>
-<script src="js/demo.js" type="text/javascript"></script>
-<script src="js/styleSwitcher.js" type="text/javascript"></script>
-<script src="vendor/datatables/js/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="js/plugins-init/datatables.init.js" type="text/javascript"></script>
+<script src="/vendor/global/global.min.js" type="text/javascript"></script>
+<script src="/vendor/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
+<script src="/vendor/chart.js/Chart.bundle.min.js" type="text/javascript"></script>
+<script src="/vendor/owl-carousel/owl.carousel.js" type="text/javascript"></script>
+<script src="/vendor/peity/jquery.peity.min.js" type="text/javascript"></script>
+<script src="/js/dashboard/dashboard-1.js" type="text/javascript"></script>
+<script src="/js/custom.min.js" type="text/javascript"></script>
+<script src="/js/deznav-init.js" type="text/javascript"></script>
+<script src="/js/demo.js" type="text/javascript"></script>
+<script src="/js/styleSwitcher.js" type="text/javascript"></script>
+<script src="/vendor/datatables/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="/js/plugins-init/datatables.init.js" type="text/javascript"></script>
 <script>
     function carouselReview() {
         /*  testimonial one function by = owl.carousel.js */
