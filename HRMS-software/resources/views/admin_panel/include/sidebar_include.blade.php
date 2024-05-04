@@ -15,20 +15,12 @@
                         <i class="fa-solid fa-building-user"></i>
                         <span class="nav-text">Department</span>
                     </a>
-                    {{-- <ul aria-expanded="false">
-                        <li><a href="chart-flot.html">Add</a></li>
-                        <li><a href="chart-morris.html">List</a></li>
-                    </ul> --}}
                 </li>
                 <li><a href="{{ route('designation') }}" aria-expanded="false">
                     {{-- <i class="flaticon-381-controls-3"></i> --}}
                     <i class="fa-solid fa-building-columns"></i>
                     <span class="nav-text">Designation</span>
                 </a>
-                {{-- <ul aria-expanded="false">
-                    <li><a href="chart-flot.html">Add</a></li>
-                    <li><a href="chart-morris.html">List</a></li>
-                </ul> --}}
             </li>
                     <li class="has-menu"><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                             {{-- <i class="flaticon-381-controls-3"></i> --}}
@@ -36,8 +28,9 @@
                             <span class="nav-text">Employee</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ route('add-employee') }}">Add</a></li>
-                            <li><a href="{{ route('all-employee') }}">List</a></li>
+                            <li><a href="{{ route('add-employee') }}">Add Employee</a></li>
+                            <li><a href="{{ route('all-employee') }}">List Employee</a></li>
+                            <li><a href="{{ route('get-designations') }}">Deleted Employee</a></li>
                         </ul>
                     </li>
                    
