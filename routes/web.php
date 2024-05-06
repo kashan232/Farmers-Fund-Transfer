@@ -26,6 +26,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// funds_transfer_gitmove
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
