@@ -39,31 +39,6 @@ Route::post('/store-department', [DepartmentController::class, 'store_department
 Route::post('/update-department', [DepartmentController::class, 'update_department'])->name('update-department');
 
 
-//designation
-Route::get('/designation', [DesignationController::class, 'designation'])->middleware(['auth','admin'])->name('designation');
-Route::post('/store-designation', [DesignationController::class, 'store_designation'])->name('store-designation');
-Route::post('/update-designation', [DesignationController::class, 'update_designation'])->name('update-designation');
-
-//Employees
-Route::get('/all-employee', [EmployeeController::class, 'all_employee'])->middleware(['auth','admin'])->name('all-employee');
-Route::get('/add-employee', [EmployeeController::class, 'add_employee'])->middleware(['auth','admin'])->name('add-employee');
-Route::post('/store-employee', [EmployeeController::class, 'store_employee'])->name('store-employee');
-Route::get('/delete-employee/{id}', [EmployeeController::class, 'delete_employee'])->middleware(['auth','admin'])->name('delete-employee');
-Route::get('/edit-employee/{id}', [EmployeeController::class, 'edit_employee'])->middleware(['auth','admin'])->name('edit-employee');
-Route::post('/update-employee/{id}', [EmployeeController::class, 'update_employee'])->name('update-employee');
-Route::get('/deleted-employee-screen', [EmployeeController::class, 'deleted_employee_screen'])->middleware(['auth','admin'])->name('deleted-employee-screen');
-Route::get('/get-designations', [EmployeeController::class, 'getDesignations'])->name('get-designations');
-
-
-
-//LeaveType
-Route::get('/all-leavetype', [LeaveTypeController::class, 'all_leavetype'])->middleware(['auth','admin'])->name('all-leavetype');
-Route::post('/store-leavetype', [LeaveTypeController::class, 'store_leavetype'])->name('store-leavetype');
-Route::post('/update-leavetype', [LeaveTypeController::class, 'update_leavetype'])->name('update-leavetype');
-// LeaveRequest
-Route::get('/all-leaverequest', [LeaveRequestController::class, 'all_leaverequest'])->middleware(['auth','admin'])->name('all-leaverequest');
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
