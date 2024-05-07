@@ -1,111 +1,367 @@
+
+
 (function($) {
     /* "use strict" */
-
-
- var dzChartlist = function(){
-	let draw = Chart.controllers.line.__super__.draw; //draw shadow
-	var screenWidth = $(window).width();
 	
-	var donutChart = function(){
-		$("span.donut").peity("donut", {
-			width: "75",
-			height: "75"
-		});
-	}
-	var lineChart = function(){
-		//dual line chart
-		if(jQuery('#lineChart').length > 0 ){
-			const lineChart = document.getElementById("lineChart").getContext('2d');
-			//generate gradient
-			const lineChart_3gradientStroke1 = lineChart.createLinearGradient(500, 0, 100, 0);
-			lineChart_3gradientStroke1.addColorStop(0, "rgba(100, 24, 195, 1)");
-			lineChart_3gradientStroke1.addColorStop(1, "rgba(100, 24, 195, 0.5)");
-
-			const lineChart_3gradientStroke2 = lineChart.createLinearGradient(500, 0, 100, 0);
-			lineChart_3gradientStroke2.addColorStop(0, "rgba(27, 208, 132, 1)");
-			lineChart_3gradientStroke2.addColorStop(1, "rgba(27, 208, 132, 1)");
-
-			Chart.controllers.line = Chart.controllers.line.extend({
-				draw: function () {
-					draw.apply(this, arguments);
-					let nk = this.chart.chart.ctx;
-					let _stroke = nk.stroke;
-					nk.stroke = function () {
-						nk.save();
-						nk.shadowColor = 'rgba(78, 54, 226, .5)';
-						nk.shadowBlur = 10;
-						nk.shadowOffsetX = 0;
-						nk.shadowOffsetY = 0;
-						_stroke.apply(this, arguments)
-						nk.restore();
-					}
-				}
-			});
+ var dlabChartlist = function(){
+	
+	var screenWidth = $(window).width();	
+	
+	var chartBar = function(){
+		
+		var options = {
+			  series: [
+				{
+					name: 'Income',
+					data: [50, 18, 70, 40],
+					//radius: 12,	
+				}, 
+				{
+				  name: 'Outcome',
+				  data: [80, 40, 55, 20]
+				}, 
 				
-			lineChart.height = 20;
+			],
+				chart: {
+				type: 'bar',
+				height: 200,
+				
+				toolbar: {
+					show: false,
+				},
+				
+			},
+			plotOptions: {
+			  bar: {
+				horizontal: false,
+				columnWidth: '57%',
+				borderRadius:12
+			  },
+			  
+			},
+			states: {
+			  hover: {
+				filter: 'none',
+			  }
+			},
+			colors:['#80ec67', '#fe7d65'],
+			dataLabels: {
+			  enabled: false,
+			},
+			markers: {
+		shape: "circle",
+		},
+		
+		
+			legend: {
+				position: 'top',
+				horizontalAlign: 'right', 
+				show: false,
+				fontSize: '12px',
+				labels: {
+					colors: '#000000',
+					
+					},
+				markers: {
+				width: 18,
+				height: 18,
+				strokeWidth: 0,
+				strokeColor: '#fff',
+				fillColors: undefined,
+				radius: 12,	
+				}
+			},
+			stroke: {
+			  show: true,
+			  width: 4,
+			  colors: ['transparent']
+			},
+			grid: {
+				borderColor: '#eee',
+			},
+			xaxis: {
+				
+			  categories: ['Sun', 'Mon', 'Tue', 'Wed'],
+			  labels: {
+			   style: {
+				  colors: '#3e4954',
+				  fontSize: '13px',
+				  fontFamily: 'poppins',
+				  fontWeight: 400,
+				  cssClass: 'apexcharts-xaxis-label',
+				},
+			  },
+			  crosshairs: {
+			  show: false,
+			  }
+			},
+			yaxis: {
+				labels: {
+					offsetX:-16,
+				   style: {
+					  colors: '#3e4954',
+					  fontSize: '13px',
+					   fontFamily: 'poppins',
+					  fontWeight: 400,
+					  cssClass: 'apexcharts-xaxis-label',
+				  },
+			  },
+			},
+			fill: {
+			  opacity: 1,
+			  colors:['#80ec67', '#fe7d65'],
+			},
+			tooltip: {
+			  y: {
+				formatter: function (val) {
+				  return "$ " + val + " thousands"
+				}
+			  }
+			},
+			responsive: [{
+				breakpoint: 1600,
+				options: {
+					chart: {
+						height: 400,
+					}
+				},
+			},
+			{
+				breakpoint: 575,
+				options: {
+					chart: {
+						height: 250,
+					}
+				},
+			}]
+			};
 
-			new Chart(lineChart, {
-				type: 'line',
+			var chartBar1 = new ApexCharts(document.querySelector("#chartBar"), options);
+			chartBar1.render();
+	}	
+	
+	var chartBar2 = function(){
+		
+		var options = {
+			  series: [
+				{
+					name: 'Income',
+					data: [50, 18, 70, 40, 90, 50],
+					//radius: 12,	
+				}, 
+				{
+				  name: 'Outcome',
+				  data: [80, 40, 55, 20, 50, 70]
+				}, 
+				
+			],
+				chart: {
+				type: 'bar',
+				height: 400,
+				
+				toolbar: {
+					show: false,
+				},
+				
+			},
+			plotOptions: {
+			  bar: {
+				horizontal: false,
+				columnWidth: '70%',
+				borderRadius:10
+			  },
+			  
+			},
+			states: {
+			  hover: {
+				filter: 'none',
+			  }
+			},
+			colors:['#80ec67', '#fe7d65'],
+			dataLabels: {
+			  enabled: false,
+			},
+			markers: {
+		shape: "circle",
+		},
+		
+		
+			legend: {
+				position: 'top',
+				horizontalAlign: 'right', 
+				show: false,
+				fontSize: '12px',
+				labels: {
+					colors: '#000000',
+					
+					},
+				markers: {
+				width: 18,
+				height: 18,
+				strokeWidth: 0,
+				strokeColor: '#fff',
+				fillColors: undefined,
+				radius: 12,	
+				}
+			},
+			stroke: {
+			  show: true,
+			  width: 5,
+			  colors: ['transparent']
+			},
+			grid: {
+				borderColor: '#eee',
+			},
+			xaxis: {
+				
+			  categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+			  labels: {
+			   style: {
+				  colors: '#3e4954',
+				  fontSize: '13px',
+				  fontFamily: 'poppins',
+				  fontWeight: 400,
+				  cssClass: 'apexcharts-xaxis-label',
+				},
+			  },
+			  crosshairs: {
+			  show: false,
+			  }
+			},
+			yaxis: {
+				labels: {
+					offsetX:-16,
+				   style: {
+					  colors: '#3e4954',
+					  fontSize: '13px',
+					   fontFamily: 'poppins',
+					  fontWeight: 400,
+					  cssClass: 'apexcharts-xaxis-label',
+				  },
+			  },
+			},
+			fill: {
+			  opacity: 1,
+			  colors:['#80ec67', '#fe7d65'],
+			},
+			tooltip: {
+			  y: {
+				formatter: function (val) {
+				  return "$ " + val + " thousands"
+				}
+			  }
+			},
+			responsive: [{
+				breakpoint: 575,
+				options: {
+					chart: {
+						height: 250,
+					}
+				},
+			}]
+			};
+
+			var chartBar1 = new ApexCharts(document.querySelector("#chartBar2"), options);
+			chartBar1.render();
+	}
+
+	var polarChart = function(){
+		 var ctx = document.getElementById("polarChart").getContext('2d');
+			//Chart.defaults.global.legend.display = false;
+			//ctx.height(500);
+			var myChart = new Chart(ctx, {
+				type: 'polarArea',
 				data: {
-					defaultFontFamily: 'Poppins',
-					labels: ["Week 01", "Week 02", "Week 03", "Week 04", "Week 05", "Week 06", "Week 07", "Week 08", "Week 09", "Week 10"],
-					datasets: [
-						{
-							label: "My First dataset",
-							data: [78, 80, 20, 40, 75, 75, 25, 40, 10, 30],
-							borderColor: 'rgba(78, 54, 226, 1)',
-							borderWidth: "5",
-							pointHoverRadius:10,
-							backgroundColor: 'transparent', 
-							pointBackgroundColor: 'rgba(78, 54, 226, 1)',
-						}, {
-							label: "My First dataset",
-							data: [30, 50, 30, 40, 30, 40, 20, 10, 10, 10],
-							borderColor: lineChart_3gradientStroke2,
-							borderWidth: "5",
-							backgroundColor: 'transparent', 
-							pointHoverRadius:10,
-							pointBorderWidth:5,
-							pointBorderColor:'rgba(255, 255, 255, 1)',
-							pointBackgroundColor: 'rgba(27, 208, 132, 1)'
-						}
-					]
+					labels: ["Mon", "Tue", "Wed", "Thu"],
+					datasets: [{
+						backgroundColor: [
+							"#496ecc",
+							"#68e365",
+							"#ffa755",
+							"#c8c8c8"
+						],
+						 
+						data: [40, 35, 30, 20]
+					}]
 				},
 				options: {
-					legend: false, 
-					tooltips: {
-						mode: 'index',
-						intersect: false,
+					plugins:{
+						legend:false,
+						
 					},
-					hover: {
-						mode: 'nearest',
-						intersect: true
-					},
+					maintainAspectRatio: false,
 					scales: {
-						yAxes: [{
+						r:{
 							ticks: {
-								beginAtZero: true, 
-								max: 100, 
-								min: 0, 
-								stepSize: 20, 
-								padding: 10
-							}
-						}],
-						xAxes: [{ 
-							ticks: {
-								padding: 5
-							}
-						}]
-					},
-					elements: {
-						point: {
-							radius: 0
-						}
+								display: false,
+							},
+							grid: {
+								display: false,
+							},
+						},
+                        
+                    },
+					tooltips:{
+						enabled:false,
 					}
 				}
 			});
+	}	
+	
+	var handleCard = function(){
+		
+		// Vars
+		var reloadButton  = document.querySelector( '.change-btn' );
+		var reloadIcon     = document.querySelector( '.reload' );
+		var reloadEnabled = true;
+		var rotation      = 0;
+		// Events
+		reloadButton.addEventListener('click', function() { reloadClick() });
+		// Functions
+		function reloadClick() {
+		  reloadEnabled = false;
+		  rotation += 360;
+		  // Eh, this works.
+		  reloadIcon.style.webkitTransform = 'translateZ(0px) rotateZ( ' + rotation + 'deg )';
+		  reloadIcon.style.MozTransform  = 'translateZ(0px) rotateZ( ' + rotation + 'deg )';
+		  reloadIcon.style.transform  = 'translateZ(0px) rotateZ( ' + rotation + 'deg )';
 		}
+		// Show button.
+		setTimeout(function() {
+		  reloadButton.classList.add('active');
+		}, 1);
+		
+		//Number formatting
+		var sliderFormat = document.getElementById('slider-format');
+		noUiSlider.create(sliderFormat, {
+			start: [20000],
+			step: 1000,
+			connect: [true, false],
+			range: {
+				'min': [20000],
+				'max': [80000]
+			},
+			ariaFormat: wNumb({
+				decimals: 3
+			}),
+			format: wNumb({
+				decimals: 3,
+				thousand: '.',
+				//suffix: ' (US $)'
+			})
+		});
+
+		var inputFormat = document.getElementById('input-format');
+		sliderFormat.noUiSlider.on('update', function (values, handle) {
+			inputFormat.value = values[handle];
+		});
+
+		inputFormat.addEventListener('change', function () {
+			sliderFormat.noUiSlider.set(this.value);
+		});
+		//Number formatting ^
 	}
+ 
 	/* Function ============ */
 		return {
 			init:function(){
@@ -113,30 +369,28 @@
 			
 			
 			load:function(){
-				donutChart();
-				lineChart();
+				
+				chartBar();
+				chartBar2();
+				polarChart();
+				handleCard();
 			},
 			
 			resize:function(){
-				
 			}
 		}
 	
 	}();
 
-	jQuery(document).ready(function(){
-	});
+	
 		
 	jQuery(window).on('load',function(){
 		setTimeout(function(){
-			dzChartlist.load();
+			dlabChartlist.load();
 		}, 1000); 
 		
 	});
 
-	jQuery(window).on('resize',function(){
-		
-		
-	});     
+     
 
 })(jQuery);

@@ -2,16 +2,18 @@
 
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LeaveRequestController;
 use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TehsilController;
 use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
-// ap naraz he?? Aiman Here
+ap naraz he?? Aiman Here
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -35,10 +37,15 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'home'])->middleware(['auth'])->name('home');
 Route::get('/admin-dashboard', [HomeController::class, 'adminpage'])->middleware(['auth','admin'])->name('admin-dashboard');
 
-//DEpartment
-Route::get('/department', [DepartmentController::class, 'department'])->middleware(['auth','admin'])->name('department');
-Route::post('/store-department', [DepartmentController::class, 'store_department'])->name('store-department');
-Route::post('/update-department', [DepartmentController::class, 'update_department'])->name('update-department');
+//District
+Route::get('/add-district', [DistrictController::class, 'add_district'])->middleware(['auth','admin'])->name('add-district');
+Route::get('/all-district', [DistrictController::class, 'all_district'])->middleware(['auth','admin'])->name('all-district');
+// Route::post('/store-department', [DepartmentController::class, 'store_department'])->name('store-department');
+ //Route::post('/update-department', [DepartmentController::class, 'update_department'])->name('update-department');
+
+ //tehsil
+ Route::get('/add-tehsil', [TehsilController::class, 'add_tehsil'])->middleware(['auth','admin'])->name('add-tehsil');
+ Route::get('/all-tehsil', [TehsilController::class, 'all_tehsil'])->middleware(['auth','admin'])->name('all-tehsil');
 
 
 Route::middleware('auth')->group(function () {

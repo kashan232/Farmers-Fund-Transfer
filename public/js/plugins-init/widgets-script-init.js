@@ -1,7 +1,7 @@
 (function($) {
-    /* "use strict" */
+    "use strict" 
 
- var dzChartlist = function(){
+ var dlabChartlist = function(){
 	
 	var screenWidth = $(window).width();
 	
@@ -10,13 +10,13 @@
 		var activity = document.getElementById("activity");
 		if (activity !== null) {
 			var activityData = [{
-					first: [35, 18, 15, 35, 40, 20, 30, 25, 22, 20, 45, 35]
+					first: [35, 48, 25, 35, 40, 24, 30, 25, 22, 20, 45, 35]
 				},
 				{
-					first: [50, 35, 10, 45, 40, 50, 60, 80, 10, 50, 34, 35]
+					first: [50, 35, 35, 45, 40, 50, 60, 80, 25, 50, 34, 35]
 				},
 				{
-					first: [20, 35, 60, 45, 40, 70, 30, 80, 65, 70, 60, 20]
+					first: [20, 35, 60, 45, 40, 70, 30, 80, 65, 70, 60, 35]
 				},
 				{
 					first: [25, 88, 25, 50, 70, 70, 60, 70, 50, 60, 50, 70]
@@ -44,10 +44,10 @@
 					datasets: [
 						{
 							label: "My First dataset",
-							data:  [35, 18, 15, 35, 40, 20, 30, 25, 22, 20, 45, 35],
-							borderColor: 'rgba(26, 51, 213, 1)',
+							data:  [35, 18, 30, 35, 40, 20, 30, 25, 22, 20, 45, 35],
+							borderColor: 'rgba(91, 207, 197, 1)',
 							borderWidth: "0",
-							backgroundColor: 'rgba(72, 169, 248, 1)'
+							backgroundColor: 'rgba(91, 207, 197, 1)'
 							
 						}
 					]
@@ -56,21 +56,37 @@
 					responsive: true,
 					maintainAspectRatio: false,
 					
-					legend: {
-						display: false
+					plugins:{
+						legend:false,
+						tooltip: {
+							mode: "index",
+							intersect: false,
+							titleFontColor: "#888",
+							bodyFontColor: "#555",
+							titleFontSize: 12,
+							bodyFontSize: 15,
+							backgroundColor: "rgba(256,256,256,0.95)",
+							displayColors: true,
+							xPadding: 10,
+							yPadding: 7,
+							borderColor: "rgba(220, 220, 220, 0.9)",
+							borderWidth: 2,
+							caretSize: 6,
+							caretPadding: 10
+						}
 					},
 					scales: {
-						yAxes: [{
-							gridLines: {
+						y:{
+							grid: {
 								color: "rgba(89, 59, 219,0.1)",
 								drawBorder: true
 							},
 							ticks: {
 								fontColor: "#999",
 							},
-						}],
-						xAxes: [{
-							gridLines: {
+						},
+						x: {
+							grid: {
 								display: false,
 								zeroLineColor: "transparent"
 							},
@@ -79,24 +95,9 @@
 								fontColor: "#999",
 								fontFamily: "Nunito, sans-serif"
 							}
-						}]
+						}
 					},
-					tooltips: {
-						mode: "index",
-						intersect: false,
-						titleFontColor: "#888",
-						bodyFontColor: "#555",
-						titleFontSize: 12,
-						bodyFontSize: 15,
-						backgroundColor: "rgba(256,256,256,0.95)",
-						displayColors: true,
-						xPadding: 10,
-						yPadding: 7,
-						borderColor: "rgba(220, 220, 220, 0.9)",
-						borderWidth: 2,
-						caretSize: 6,
-						caretPadding: 10
-					}
+					
 				}
 			};
 
@@ -118,12 +119,12 @@
 				labels: ["0", "1", "2", "3", "4", "5", "6", "0", "1", "2", "3", "4", "5", "6"],
 				datasets: [{
 					label: "My First dataset",
-					backgroundColor: "rgba(105,255,147,1)",
-					strokeColor: "rgba(105,255,147,1)",
+					backgroundColor: "rgba(58,223,174,1)",
+					strokeColor: "rgba(58,223,174,1)",
 					pointColor: "rgba(0,0,0,0)",
-					pointStrokeColor: "rgba(105,255,147,1)",
-					pointHighlightFill: "rgba(105,255,147,1)",
-					pointHighlightStroke: "rgba(105,255,147,1)",
+					pointStrokeColor: "rgba(58,223,174,1)",
+					pointHighlightFill: "rgba(58,223,174,1)",
+					pointHighlightStroke: "rgba(58,223,174,1)",
 					data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56, 55, 40]
 				}]
 			};
@@ -135,36 +136,34 @@
 				options: {
 					responsive: !0,
 					maintainAspectRatio: false,
-					legend: {
-						display: !1
-					},
-					tooltips: {
-						enabled: false
+					plugins:{
+						legend:false,
+						
 					},
 					scales: {
-						xAxes: [{
+						x:{
 							display: !1,
-							gridLines: {
+							grid: {
 								display: !1
 							},
 							barPercentage: 1,
 							categoryPercentage: 0.5
-						}],
-						yAxes: [{
+						},
+						y:{
 							display: !1,
+							max: 100,
+							min: 0,
 							ticks: {
 								padding: 10,
 								stepSize: 20,
-								max: 100,
-								min: 0
 							},
-							gridLines: {
+							grid: {
 								display: !0,
 								drawBorder: !1,
 								lineWidth: 1,
 								zeroLineColor: "#48f3c0"
 							}
-						}]
+						}
 					}
 				}
 			});
@@ -207,35 +206,38 @@
 					]
 				},
 				options: {
-					legend: false,
+					plugins:{
+						legend:false,
+						
+					},
 					responsive: true, 
 					maintainAspectRatio: false,  
 					scales: {
-						yAxes: [{
+						y:{
 							display: false, 
+							max: 100, 
+							min: 0, 
 							ticks: {
 								beginAtZero: true, 
 								display: false, 
-								max: 100, 
-								min: 0, 
 								stepSize: 10
 							}, 
-							gridLines: {
+							grid: {
 								display: false, 
 								drawBorder: false
 							}
-						}],
-						xAxes: [{
+						},
+						x:{
 							display: false, 
 							barPercentage: 0.5, 
-							gridLines: {
+							grid: {
 								display: false, 
 								drawBorder: false
 							}, 
 							ticks: {
 								display: false
 							}
-						}]
+						}
 					}
 				}
 			});
@@ -248,8 +250,8 @@
 			const chart_widget_2 = document.getElementById("chart_widget_2").getContext('2d');
 			//generate gradient
 			const chart_widget_2gradientStroke = chart_widget_2.createLinearGradient(0, 0, 0, 250);
-			chart_widget_2gradientStroke.addColorStop(0, "#2f4cdd");
-			chart_widget_2gradientStroke.addColorStop(1, "#7c8fee");
+			chart_widget_2gradientStroke.addColorStop(0, "#430b58");
+			chart_widget_2gradientStroke.addColorStop(1, "#6c2586");
 
 			// chart_widget_2.attr('height', '100');
 
@@ -270,35 +272,38 @@
 					]
 				},
 				options: {
-					legend: false,
+					plugins:{
+						legend:false,
+						
+					},
 					responsive: true, 
 					maintainAspectRatio: false,  
 					scales: {
-						yAxes: [{
+						y:{
 							display: false, 
+							max: 100, 
+							min: 0, 
 							ticks: {
 								beginAtZero: true, 
 								display: false, 
-								max: 100, 
-								min: 0, 
 								stepSize: 10
 							}, 
-							gridLines: {
+							grid: {
 								display: false, 
 								drawBorder: false
 							}
-						}],
-						xAxes: [{
+						},
+						x:{
 							display: false, 
 							barPercentage: 0.1, 
-							gridLines: {
+							grid: {
 								display: false, 
 								drawBorder: false
 							}, 
 							ticks: {
 								display: false
 							}
-						}]
+						}
 					}
 				}
 			});
@@ -318,7 +323,7 @@
 			labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 			datasets: [{
 				label: 'Expense',
-				backgroundColor: '#5514a4',
+				backgroundColor: '#ff2c53',
 				hoverBackgroundColor: '#ff5777', 
 				data: [
 					'20',
@@ -360,42 +365,43 @@
 			type: 'bar',
 			data: barChartData,
 			options: {
-				legend: {
-					display: false
-				}, 
+				plugins:{
+					legend:false,
+					tooltip: {
+						mode: 'index',
+						intersect: false
+					},
+				},
 				title: {
 					display: false
 				},
-				tooltips: {
-					mode: 'index',
-					intersect: false
-				},
+				
 				responsive: true,
 				maintainAspectRatio: false, 
 				scales: {
-					xAxes: [{
+					x: {
 						display: false, 
 						stacked: true,
 						barPercentage: .2, 
 						ticks: {
 							display: false
 						}, 
-						gridLines: {
+						grid: {
 							display: false, 
 							drawBorder: false
 						}
-					}],
-					yAxes: [{
+					},
+					y:{
 						display: false, 
 						stacked: true, 
-						gridLines: {
+						grid: {
 							display: false, 
 							drawBorder: false
 						}, 
 						ticks: {
 							display: false
 						}
-					}]
+					}
 				}
 			}
 		});
@@ -416,7 +422,7 @@
 			labels: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'forteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'],
 			datasets: [{
 				label: 'Expense',
-				backgroundColor: '#2f4cdd',
+				backgroundColor: '#430b58',
 				hoverBackgroundColor: '#6c2586', 
 				data: [
 					'20',
@@ -474,20 +480,21 @@
 			type: 'bar',
 			data: barChartData2,
 			options: {
-				legend: {
-					display: false
-				}, 
+				plugins:{
+					legend:false,
+					tooltip: {
+						mode: 'index',
+						intersect: false
+					},
+				},
 				title: {
 					display: false
 				},
-				tooltips: {
-					mode: 'index',
-					intersect: false
-				},
+				
 				responsive: true,
 				maintainAspectRatio: false, 
 				scales: {
-					xAxes: [{
+					x: {
 						display: false, 
 						stacked: true,
 						barPercentage: 1, 
@@ -495,24 +502,24 @@
 						ticks: {
 							display: false
 						}, 
-						gridLines: {
+						grid: {
 							display: false, 
 							drawBorder: false
 						}
-					}],
-					yAxes: [{
+					},
+					y:{
 						display: false, 
 						stacked: true, 
-						gridLines: {
+						grid: {
 							display: false, 
 							drawBorder: false
 						}, 
+								max: 100, 
+								min: 0,
 						ticks: {
 							display: false, 
-							max: 100, 
-							min: 0
 						}
-					}]
+					}
 				}
 			}
 		});
@@ -520,8 +527,12 @@
 		}
 	}
 	var chartWidget5 = function(){
+		
+		
+		
 		//#chart_widget_5
 		if(jQuery('#chart_widget_5').length > 0 ){
+				chartReinitialize('#chart_widget_5');
 				
 			new Chartist.Line("#chart_widget_5", {
 				labels: ["1", "2", "3", "4", "5", "6", "7", "8"],
@@ -592,14 +603,17 @@
 	}
 
 	var chartWidget7 = function(){
+		
+		
+		
 		//#chart_widget_7
 		if(jQuery('#chart_widget_7').length > 0 ){
-
+			chartReinitialize('#chart_widget_7');
 		const chart_widget_7 = document.getElementById("chart_widget_7").getContext('2d');
 		//generate gradient
 		const chart_widget_7gradientStroke = chart_widget_7.createLinearGradient(0, 0, 0, 250);
-		chart_widget_7gradientStroke.addColorStop(0, "#5514a4");
-		chart_widget_7gradientStroke.addColorStop(1, "#5514a4");
+		chart_widget_7gradientStroke.addColorStop(0, "#ff2c53");
+		chart_widget_7gradientStroke.addColorStop(1, "#ff2c53");
 
 			// chart_widget_7.attr('height', '100');
 
@@ -620,35 +634,38 @@
 					]
 				},
 				options: {
-					legend: false,
+					plugins:{
+						
+						legend:false,
+					},
 					responsive: true, 
 					maintainAspectRatio: false,  
 					scales: {
-						yAxes: [{
+						y: {
 							display: false, 
+							max: 100, 
+							min: 0, 
 							ticks: {
 								beginAtZero: true, 
 								display: false, 
-								max: 100, 
-								min: 0, 
 								stepSize: 10
 							}, 
-							gridLines: {
+							grid: {
 								display: false, 
 								drawBorder: false
 							}
-						}],
-						xAxes: [{
+						},
+						x: {
 							display: false, 
 							barPercentage: 0.6, 
-							gridLines: {
+							grid: {
 								display: false, 
 								drawBorder: false
 							}, 
 							ticks: {
 								display: false
 							}
-						}]
+						}
 					}
 				}
 			});
@@ -707,22 +724,24 @@
 					pointBorderColor: '#2780d4',
 					pointHoverBackgroundColor: '#2780d4',
 					pointHoverBorderColor: '#2780d4',
-					data: [20, 10, 18, 15, 32, 18, 15, 22, 8, 6, 12, 13, 10, 18, 14, 24, 16, 12, 19, 21, 16, 14, 24, 21, 13, 15, 27, 29, 21, 11, 14, 19, 21, 17]
+					data: [20, 10, 18, 15, 32, 18, 15, 22, 8, 6, 12, 13, 10, 18, 14, 24, 16, 12, 19, 21, 16, 14, 24, 21, 13, 15, 27, 29, 21, 11, 14, 19, 21, 17],
+					fill:true,
 				}]
 			},
 			options: {
 				title: {
 					display: !1
 				},
-				tooltips: {
-					intersect: !1,
-					mode: "nearest",
-					xPadding: 10,
-					yPadding: 10,
-					caretPadding: 10
-				},
-				legend: {
-					display: !1
+				
+				plugins:{
+					legend:false,
+					tooltip: {
+						intersect: !1,
+						mode: "nearest",
+						xPadding: 10,
+						yPadding: 10,
+						caretPadding: 10
+					},
 				},
 				responsive: !0,
 				maintainAspectRatio: !1,
@@ -730,17 +749,17 @@
 					mode: "index"
 				},
 				scales: {
-					xAxes: [{
+					x: {
 						display: !1,
-						gridLines: !1,
+						grid: !1,
 						scaleLabel: {
 							display: !0,
 							labelString: "Month"
 						}
-					}],
-					yAxes: [{
+					},
+					y:{
 						display: !1,
-						gridLines: !1,
+						grid: !1,
 						scaleLabel: {
 							display: !0,
 							labelString: "Value"
@@ -748,7 +767,7 @@
 						ticks: {
 							beginAtZero: !0
 						}
-					}]
+					}
 				},
 				elements: {
 					line: {
@@ -785,29 +804,31 @@
 				labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
 				datasets: [{
 					label: "Sales Stats",
-					backgroundColor: "#5514a4",
-					borderColor: '#5514a4',
-					pointBackgroundColor: '#5514a4',
-					pointBorderColor: '#5514a4',
-					pointHoverBackgroundColor: '#5514a4',
-					pointHoverBorderColor: '#5514a4',
+					backgroundColor: "#2780d4",
+					borderColor: '#2780d4',
+					pointBackgroundColor: '#2780d4',
+					pointBorderColor: '#2780d4',
+					pointHoverBackgroundColor: '#2780d4',
+					pointHoverBorderColor: '#2780d4',
 					borderWidth: 0, 
-					data: [20, 10, 18, 10, 32, 15, 15, 22, 18, 6, 12, 13]
+					data: [20, 10, 18, 10, 32, 15, 15, 22, 18, 6, 12, 13],
+					fill:true,
 				}]
 			},
 			options: {
 				title: {
 					display: !1
 				},
-				tooltips: {
-					intersect: !1,
-					mode: "nearest",
-					xPadding: 10,
-					yPadding: 10,
-					caretPadding: 10
-				},
-				legend: {
-					display: !1
+				plugins:{
+					legend:false,
+					tooltip: {
+						intersect: !1,
+						mode: "nearest",
+						xPadding: 10,
+						yPadding: 10,
+						caretPadding: 10
+					},					
+					
 				},
 				responsive: !0,
 				maintainAspectRatio: !1,
@@ -815,17 +836,17 @@
 					mode: "index"
 				},
 				scales: {
-					xAxes: [{
+					x:{
 						display: !1,
-						gridLines: !1,
+						grid: !1,
 						scaleLabel: {
 							display: !0,
 							labelString: "Month"
 						}
-					}],
-					yAxes: [{
+					},
+					y: {
 						display: !1,
-						gridLines: !1,
+						grid: !1,
 						scaleLabel: {
 							display: !0,
 							labelString: "Value"
@@ -833,7 +854,7 @@
 						ticks: {
 							beginAtZero: !0
 						}
-					}]
+					}
 				},
 				elements: {
 					line: {
@@ -868,12 +889,13 @@
 				labels: ["January", "February", "March", "April", "May", "June"],
 				datasets: [{
 					label: "Sales Stats",
-					backgroundColor: "rgba(85, 20, 164, .5)",
-					borderColor: '#5514a4',
-					pointBackgroundColor: '#5514a4',
-					pointBorderColor: '#5514a4',
-					pointHoverBackgroundColor: '#5514a4',
-					pointHoverBorderColor: '#5514a4',
+					backgroundColor: "rgba(112, 159, 186, .5)",
+					borderColor: '#709fba',
+					pointBackgroundColor: '#709fba',
+					pointBorderColor: '#709fba',
+					pointHoverBackgroundColor: '#709fba',
+					pointHoverBorderColor: '#709fba',
+					fill:true,
 					data: [0, 18, 14, 24, 16, 30]
 				}]
 			},
@@ -881,15 +903,16 @@
 				title: {
 					display: !1
 				},
-				tooltips: {
-					intersect: !1,
-					mode: "nearest",
-					xPadding: 5,
-					yPadding: 5,
-					caretPadding: 5
-				},
-				legend: {
-					display: !1
+				plugins:{
+					legend:false,
+					tooltip: {
+						intersect: !1,
+						mode: "nearest",
+						xPadding: 5,
+						yPadding: 5,
+						caretPadding: 5
+					},
+					
 				},
 				responsive: !0,
 				maintainAspectRatio: !1,
@@ -897,9 +920,9 @@
 					mode: "index"
 				},
 				scales: {
-					xAxes: [{
+					x:{
 						display: !1,
-						gridLines: !1,
+						grid: !1,
 						scaleLabel: {
 							display: !0,
 							labelString: "Month"
@@ -908,10 +931,10 @@
 							max: 30, 
 							min: 0
 						}
-					}],
-					yAxes: [{
+					},
+					y:{
 						display: !1,
-						gridLines: !1,
+						grid: !1,
 						scaleLabel: {
 							display: !0,
 							labelString: "Value"
@@ -919,7 +942,7 @@
 						ticks: {
 							beginAtZero: !0
 						}
-					}]
+					}
 				},
 				elements: {
 					line: {
@@ -957,45 +980,50 @@
 					{
 						label: "My First dataset",
 						data: [55, 30, 90, 41, 86, 45, 80],
-						borderColor: '#8bc740',
+						borderColor: '#3693FF',
 						borderWidth: "2",
 						backgroundColor: 'transparent',  
-						pointBackgroundColor: '#8bc740', 
-						pointRadius: 0
+						pointBackgroundColor: '#3693FF', 
+						pointRadius: 0,
+						tension:0.5,
 					}
 				]
 			},
 			options: {
-				legend: false, 
+				plugins:{
+					legend: false
+					
+				},
+				 
 				responsive: true, 
 				maintainAspectRatio: false, 
 				scales: {
-					yAxes: [{
+					y: {
 						display: false, 
+						max: 100, 
+						min: 0, 
 						ticks: {
 							beginAtZero: true, 
-							max: 100, 
-							min: 0, 
 							stepSize: 20, 
 							padding: 0, 
 							display: false, 
 						}, 
-						gridLines: {
+						grid: {
 							drawBorder: false, 
 							display: false
 						}
-					}],
-					xAxes: [{
+					},
+					x:{
 						display: false, 
 						ticks: {
 							padding: 0, 
 							display: false
 						}, 
-						gridLines: {
+						grid: {
 							display: false, 
 							drawBorder: false
 						}
-					}]
+					}
 				}
 			}
 		});
@@ -1017,45 +1045,49 @@
 					{
 						label: "My First dataset",
 						data: [25, 60, 30, 71, 26, 85, 50],
-						borderColor: '#5514a4',
+						borderColor: '#2780d4',
 						borderWidth: "2",
 						backgroundColor: 'transparent',  
-						pointBackgroundColor: '#5514a4', 
-						pointRadius: 0
+						pointBackgroundColor: '#2780d4', 
+						pointRadius: 0,
+						tension:0.5,
 					}
 				]
 			},
 			options: {
-				legend: false, 
+				plugins:{
+					legend:false,
+					
+				},
 				responsive: true, 
 				maintainAspectRatio: false, 
 				scales: {
-					yAxes: [{
+					y: {
 						display: false, 
-						ticks: {
-							beginAtZero: true, 
 							max: 100, 
 							min: 0, 
+						ticks: {
+							beginAtZero: true, 
 							stepSize: 20, 
 							padding: 0, 
 							display: false, 
 						}, 
-						gridLines: {
+						grid: {
 							drawBorder: false, 
 							display: false
 						}
-					}],
-					xAxes: [{
+					},
+					x:{
 						display: false, 
 						ticks: {
 							padding: 0, 
 							display: false
 						}, 
-						gridLines: {
+						grid: {
 							display: false, 
 							drawBorder: false
 						}
-					}]
+					}
 				}
 			}
 		});
@@ -1079,53 +1111,57 @@
 						{
 							label: "My First dataset",
 							data: [25, 60, 30, 71, 26, 85, 50],
-							borderColor: 'rgba(72, 169, 248, 1)',
+							borderColor: 'rgba(91, 207, 197, 1)',
 							borderWidth: "2",
-							backgroundColor: 'rgba(72, 169, 248, 1)',  
-							pointBackgroundColor: 'rgba(72, 169, 248, 1)', 
+							backgroundColor: 'rgba(91, 207, 197, 1)',  
+							pointBackgroundColor: 'rgba(91, 207, 197, 1)', 
+							fill:true,
 							pointRadius: 0
 						}
 					]
 				},
 				options: {
-					legend: false, 
+					plugins:{
+						legend:false,
+						tooltip: {
+							intersect: !1,
+							mode: "nearest",
+							xPadding: 10,
+							yPadding: 10,
+							caretPadding: 10
+						},
+					},
 					responsive: true, 
 					maintainAspectRatio: false,
-					tooltips: {
-						intersect: !1,
-						mode: "nearest",
-						xPadding: 10,
-						yPadding: 10,
-						caretPadding: 10
-					}, 
+					 
 					scales: {
-						yAxes: [{
+						y: {
 							display: false, 
+							max: 100, 
+							min: 0, 
 							ticks: {
 								beginAtZero: true, 
-								max: 100, 
-								min: 0, 
 								stepSize: 20, 
 								padding: 0, 
 								display: false, 
 							}, 
-							gridLines: {
+							grid: {
 								drawBorder: false, 
 								display: false
 							}
-						}],
-						xAxes: [{
+						},
+						x: {
 							display: false, 
 							ticks: {
 								padding: 0, 
 								display: false, 
 								beginAtZero: true
 							}, 
-							gridLines: {
+							grid: {
 								display: false, 
 								drawBorder: false
 							}
-						}]
+						}
 					}
 				}
 			});
@@ -1156,7 +1192,8 @@
 				for (let i = 0; i < data.length; ++i) {
 					res.push([i, data[i]])
 				}
-				return res;
+				return res; 
+				
 			}
 
 			// Set up the control widget
@@ -1164,49 +1201,181 @@
 
 				if(jQuery('#chart_widget_17').length > 0 ){
 			
-			const chart = $.plot('#chart_widget_17', [getRandomData()], {
-				colors: ['#2f4cdd'],
-				series: {
-					lines: {
-						show: true,
-						lineWidth: 0,
-						fill: 0.9
+				 const chart = jQuery.plot('#chart_widget_17', [getRandomData()], {
+					colors: ['#430b58'],
+					series: {
+						lines: {
+							show: true,
+							lineWidth: 0,
+							fill: 0.9
+						},
+						shadowSize: 0	// Drawing is faster without shadows
 					},
-					shadowSize: 0	// Drawing is faster without shadows
-				},
-				grid: {
-					borderColor: 'transparent',
-					borderWidth: 0,
-					labelMargin: 0
-				},
-				xaxis: {
-					color: 'transparent',
-					font: {
-						size: 10,
-						color: '#fff'
+					grid: {
+						borderColor: 'transparent',
+						borderWidth: 0,
+						labelMargin: 0
+					},
+					xaxis: {
+						color: 'transparent',
+						font: {
+							size: 10,
+							color: '#fff'
+						}
+					},
+					yaxis: {
+						min: 0,
+						max: 100,
+						color: 'transparent',
+						font: {
+							size: 10,
+							color: '#fff'
+						}
 					}
-				},
-				yaxis: {
-					min: 0,
-					max: 100,
-					color: 'transparent',
-					font: {
-						size: 10,
-						color: '#fff'
-					}
-				}
-			});
+				}); 
 
 				function update_chart() {
-				chart.setData([getRandomData()]);
-				chart.draw();
-				setTimeout(update_chart, updateInterval);
+					chart.setData([getRandomData()]);
+					chart.draw();
+					setTimeout(update_chart, updateInterval);
 				}
 			
 				update_chart();
 				
 			}
 		}
+	}
+	var chartBar = function(){
+		
+		var options = {
+			  series: [
+				{
+					name: 'Income',
+					data: [50, 18, 70, 40],
+					//radius: 12,	
+				}, 
+				{
+				  name: 'Outcome',
+				  data: [80, 40, 55, 20]
+				}, 
+				
+			],
+				chart: {
+				type: 'bar',
+				height: 300,
+				
+				toolbar: {
+					show: false,
+				},
+				
+			},
+			plotOptions: {
+			  bar: {
+				horizontal: false,
+				columnWidth: '57%',
+				borderRadius:12
+			  },
+			  
+			},
+			states: {
+			  hover: {
+				filter: 'none',
+			  }
+			},
+			colors:['#80ec67', '#fe7d65'],
+			dataLabels: {
+			  enabled: false,
+			},
+			markers: {
+		shape: "circle",
+		},
+		
+		
+			legend: {
+				position: 'top',
+				horizontalAlign: 'right', 
+				show: false,
+				fontSize: '12px',
+				labels: {
+					colors: '#000000',
+					
+					},
+				markers: {
+				width: 18,
+				height: 18,
+				strokeWidth: 0,
+				strokeColor: '#fff',
+				fillColors: undefined,
+				radius: 12,	
+				}
+			},
+			stroke: {
+			  show: true,
+			  width: 4,
+			  colors: ['transparent']
+			},
+			grid: {
+				borderColor: '#eee',
+			},
+			xaxis: {
+				
+			  categories: ['Sun', 'Mon', 'Tue', 'Wed'],
+			  labels: {
+			   style: {
+				  colors: '#3e4954',
+				  fontSize: '13px',
+				  fontFamily: 'poppins',
+				  fontWeight: 400,
+				  cssClass: 'apexcharts-xaxis-label',
+				},
+			  },
+			  crosshairs: {
+			  show: false,
+			  }
+			},
+			yaxis: {
+				labels: {
+					offsetX:-16,
+				   style: {
+					  colors: '#3e4954',
+					  fontSize: '13px',
+					   fontFamily: 'poppins',
+					  fontWeight: 400,
+					  cssClass: 'apexcharts-xaxis-label',
+				  },
+			  },
+			},
+			fill: {
+			  opacity: 1,
+			  colors:['#80ec67', '#fe7d65'],
+			},
+			tooltip: {
+			  y: {
+				formatter: function (val) {
+				  return "$ " + val + " thousands"
+				}
+			  }
+			},
+			responsive: [{
+				breakpoint: 1600,
+				options: {
+					chart: {
+						height: 400,
+					}
+				},
+			},
+			{
+				breakpoint: 575,
+				options: {
+					chart: {
+						height: 250,
+					}
+				},
+			}]
+			};
+
+			var chartBar1 = new ApexCharts(document.querySelector("#chartBar"), options);
+			chartBar1.render();
 	}
 	
 	var widgetSparkLinedash = function(){
@@ -1276,6 +1445,23 @@
 				width: '100%'
 			});
 		}	
+	}
+
+	var chartReinitialize = function(selector, notInList = []){
+		jQuery(selector).empty();
+		jQuery(selector).each(function() {
+		  var attributes = $.map(this.attributes, function(item) {
+			return item.name;
+		  });
+
+		  var thisObj = $(this);
+		  $.each(attributes, function(i, item) {
+			if(item != 'id' && (notInList.length === 0 || jQuery.inArray(item, notInList) === -1 )){
+				thisObj.removeAttr(item);
+			}
+		  });
+		});
+		
 	}	
 	
 	/* Function ============ */
@@ -1285,8 +1471,9 @@
 			
 			
 			load:function(){
-				activityChart();	
+				 activityChart();	
 				activeUser();
+				chartBar();
 				chartWidget1();	
 				chartWidget2();	
 				chartWidget3();		
@@ -1294,7 +1481,7 @@
 				chartWidget5();
 				chartWidget6();
 				chartWidget7();
-				chartWidget8();
+				chartWidget8(); 
 				chartWidget9();
 				chartWidget10();
 				chartWidget11();
@@ -1302,7 +1489,7 @@
 				chartWidget15();
 				chartWidget16();
 				chartWidget17();
-				widgetSparkLinedash();
+				widgetSparkLinedash(); 
 				widgetSparkBar();
 				widgetStackedBarChart();
 				widgetTristate();
@@ -1310,28 +1497,10 @@
 			},
 			
 			resize:function(){
-				activityChart();	
-				activeUser();
-				chartWidget1();	
-				chartWidget2();	
-				chartWidget3();		
-				chartWidget4();
 				chartWidget5();
 				chartWidget6();
 				chartWidget7();
 				chartWidget8();
-				chartWidget9();
-				chartWidget10();
-				chartWidget11();
-				chartWidget14();
-				chartWidget15();
-				chartWidget16();
-				chartWidget17();
-				widgetSparkLinedash();
-				widgetSparkBar();
-				widgetStackedBarChart();
-				widgetTristate();
-				widgetCompositeBar();
 			}
 		}
 	
@@ -1341,11 +1510,14 @@
 	});
 		
 	jQuery(window).on('load',function(){
-		dzChartlist.load();
+		dlabChartlist.load();
 	});
 
 	jQuery(window).on('resize',function(){
-		dzChartlist.resize();
+		setTimeout(function(){
+			dlabChartlist.resize();	
+		}, 500);
+		
 	});     
 
 })(jQuery);

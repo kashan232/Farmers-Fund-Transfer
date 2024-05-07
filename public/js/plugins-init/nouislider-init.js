@@ -964,6 +964,10 @@
     });
     //slider range vertical bottom to top ^
 
+
+    
+
+
     //pip position
     var pipsPositions = document.getElementById('pips-positions');
     noUiSlider.create(pipsPositions, {
