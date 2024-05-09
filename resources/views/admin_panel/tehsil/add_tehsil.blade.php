@@ -33,13 +33,13 @@
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Add District</h4>
+                            <h4 class="card-title">Add Tehsil</h4>
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
                                 <form>
                                     <div class="row">
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-12 col-md-12">
                                             {{-- <label class="form-label">Select District</label>
                                             <select name="project_name" id="editprojectName" class="form-control">
                                                 <option value="" selected disabled>Select One</option>
@@ -49,18 +49,19 @@
                                                     </option>
                                                 @endforeach
                                             </select> --}}
-                                            <label class="form-label">Select District</label>
-                                            <select name="" id="">
-                                                <option value=""></option>
-                                                <option value=""></option>
-                                                <option value=""></option>
-                                                <option value=""></option>
-                                                <option value=""></option>
+                                            <label class="form-label" class="form-control">Select District</label>
+                                            <select name="" id=""class="form-control">
+                                                <option value="">Hyderabad</option>
+                                                <option value="">punjab</option>
+                                                <option value="">Larkana</option>
+                                                <option value="">jamshoro</option>
+                                                <option value="">Matiari</option>
+                                                <option value="">Mirpur Khas</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-12 col-md-12">
                                             <label class="form-label">Tehsil</label>
                                             <input type="text" class="form-control">
                                         </div>

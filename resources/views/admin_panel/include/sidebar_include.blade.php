@@ -25,8 +25,8 @@
                     <span class="nav-text">Tehsil</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="content.html">Add</a></li>
-                    <li><a href="menu.html">List</a></li>
+                    <li><a href="{{ route('add-tehsil') }}">Add</a></li>
+                    <li><a href="{{ route('all-tehsil') }}">List</a></li>
                 </ul>
 
             </li>
