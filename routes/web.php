@@ -63,12 +63,18 @@ Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('s
  
  //tappa
  Route::get('/add-tappa', [TappaController::class, 'add_tappa'])->middleware(['auth','admin'])->name('add-tappa');
+ Route::post('/store-tappa', [TappaController::class, 'store_tappa'])->name('store-tappa');
  Route::get('/all-tappa', [TappaController::class, 'all_tappa'])->middleware(['auth','admin'])->name('all-tappa');
+ Route::post('/get-tehsils', [TappaController::class, 'get_tehsils'])->name('get-tehsils');
+
+ //Land Revenue Department
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
 });
 
 require __DIR__.'/auth.php';

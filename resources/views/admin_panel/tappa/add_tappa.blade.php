@@ -37,11 +37,12 @@
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form>
+                                <form action="{{ route('store-tappa') }}" method="POST">
+                                    @csrf
                                     <div class="row">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select District</label>
-                                            <select name="district" id="editprojectName" class="form-control">
+                                            <select name="district" id="district" class="form-control">
                                                 <option value="" selected disabled>Select One</option>
                                                 @foreach ($all_district as $district)
                                                     <option value="{{ $district->district }}">
@@ -49,32 +50,28 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-
-                                            <label class="form-label mt-2">Select Tehsil</label>
-                                            <select name="tehsil" id="editprojectName" class="form-control">
-                                                <option value="" selected disabled>Select One</option>
-                                                @foreach ($all_tehsil as $tehsil)
-                                                    <option value="{{ $tehsil->tehsil }}">
-                                                        {{ $tehsil->tehsil }}
-                                                    </option>
-                                                @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="mb-12 col-md-12">
+                                            <label class="form-label">Select Tehsil</label>
+                                            <select name="tehsil" id="tehsil" class="form-control">
+                                                <option value="" selected disabled>Select District First</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Tappa Name</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="tappa" class="form-control">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-5">Submit</button>
                                 </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -95,6 +92,28 @@
 
 @include('admin_panel.include.footer_include')
 
+<script>
+    $(document).ready(function() {
+        $('#district').on('change', function() {
+            var district = $(this).val();
+            if (district) {
+                $.ajax({
+                    url: '{{ route("get-tehsils") }}',
+                    type: 'POST',
+                    data: { district: district, _token: '{{ csrf_token() }}' },
+                    success: function(data) {
+                        var tehsilSelect = $('#tehsil');
+                        tehsilSelect.empty();
+                        $.each(data, function(key, value) {
+                            tehsilSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#tehsil').empty();
+            }
+        });
+    });
+</script>
 </body>
-
 </html>

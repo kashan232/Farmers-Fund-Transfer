@@ -52,6 +52,17 @@
                 </ul>
 
             </li>
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa-solid fa-gear fw-bold"></i>
+                    <span class="nav-text">Land Revenue Department</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('add-tappa') }}">Verify Land Ownership</a></li>
+                    <li><a href="{{ route('all-tappa') }}">List</a></li>
+                </ul>
+
+            </li>
         </ul>
     </div>
 </div>
