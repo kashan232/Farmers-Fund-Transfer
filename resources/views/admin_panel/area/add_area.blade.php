@@ -32,35 +32,22 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
+                        @if (session()->has('area-added'))
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <strong>Success!</strong> {{ session('area-added') }}.
+                        </div>
+                        @endif
                         <div class="card-header">
-                            <h4 class="card-title">Add Tehsil</h4>
+                            <h4 class="card-title">Add Area</h4>
                         </div>
                         <div class="card-body">
-                            @if (session()->has('tehsil-added'))
-                                <div class="alert alert-success alert-dismissible fade show">
-                                    <strong>Success!</strong> {{ session('tehsil-added') }}.
-                                </div>
-                            @endif
                             <div class="basic-form">
-                                <form action="{{ route('store-tehsil') }}" method="POST">
+                                <form action="{{ route('store-area') }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="mb-12 col-md-12">
-                                            <label class="form-label">Select District</label>
-                                            <select name="district" id="editprojectName" class="form-control">
-                                                <option value="" selected disabled>Select One</option>
-                                                @foreach ($all_district as $district)
-                                                    <option value="{{ $district->district }}">
-                                                        {{ $district->district }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="mb-12 col-md-12">
-                                            <label class="form-label">Tehsil</label>
-                                            <input type="text" name="tehsil" class="form-control">
+                                            <label class="form-label">Area Name</label>
+                                            <input type="text" name="area" class="form-control">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-5">Submit</button>

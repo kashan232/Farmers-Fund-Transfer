@@ -53,6 +53,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ( $all_tehsil as $tehsil )
                                         <tr>
                                             <td>
                                                 <div class="form-check custom-checkbox checkbox-success check-lg me-3">
@@ -60,16 +61,17 @@
                                                     <label class="form-check-label" for="customCheckBox2"></label>
                                                 </div>
                                             </td>
-                                            <td><strong>1</strong></td>
-                                            <td>Mirpur Khas</td>
-                                            <td>HUSSAIN BUX MARI</td>
+                                            <td><strong>{{ $loop->iteration }}</strong></td>
+                                            <td>{{ $tehsil->district }}</td>
+                                            <td>{{ $tehsil->tehsil }}</td>
                                             <td class="text-end">
                                                 <div class="d-flex justify-content-end">
-                                                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                    <a href="{{ route('edit-tehsil', ['id' => $tehsil->id]) }}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                                    {{-- <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a> --}}
                                                 </div>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

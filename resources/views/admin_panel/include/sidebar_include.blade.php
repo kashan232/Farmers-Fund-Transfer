@@ -2,7 +2,7 @@
     <div class="dlabnav-scroll">
         <ul class="metismenu" id="menu">
             <li>
-                <a class="" href="javascript:void()" aria-expanded="false">
+                <a class="" href="{{ route('home') }}" aria-expanded="false">
                     <i class="fa-solid fa-gear fw-bold"></i>
                     <span class="nav-text">Dasboard</span>
                 </a>
@@ -36,8 +36,8 @@
                     <span class="nav-text">Area</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="content.html">Add</a></li>
-                    <li><a href="menu.html">List</a></li>
+                    <li><a href="{{ route('add-area') }}">Add</a></li>
+                    <li><a href="{{ route('all-area') }}">List</a></li>
                 </ul>
 
             </li>
@@ -47,8 +47,8 @@
                     <span class="nav-text">Tappa</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="content.html">Add</a></li>
-                    <li><a href="menu.html">List</a></li>
+                    <li><a href="{{ route('add-tappa') }}">Add</a></li>
+                    <li><a href="{{ route('all-tappa') }}">List</a></li>
                 </ul>
 
             </li>

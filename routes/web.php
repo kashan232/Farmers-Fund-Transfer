@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AreaController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\DistrictController;
@@ -8,7 +9,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LeaveRequestController;
 use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TappaController;
 use App\Http\Controllers\TehsilController;
+use App\Models\District;
 use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -39,14 +42,28 @@ Route::get('/admin-dashboard', [HomeController::class, 'adminpage'])->middleware
 
 //District
 Route::get('/add-district', [DistrictController::class, 'add_district'])->middleware(['auth','admin'])->name('add-district');
+Route::post('/store-district', [DistrictController::class, 'store_district'])->name('store-district');
 Route::get('/all-district', [DistrictController::class, 'all_district'])->middleware(['auth','admin'])->name('all-district');
-// Route::post('/store-department', [DepartmentController::class, 'store_department'])->name('store-department');
- //Route::post('/update-department', [DepartmentController::class, 'update_department'])->name('update-department');
+Route::get('/edit-district/{id}', [DistrictController::class, 'edit_district'])->middleware(['auth','admin'])->name('edit-district');
+Route::post('/update-district/{id}', [DistrictController::class, 'update_district'])->name('update-district');
 
  //tehsil
  Route::get('/add-tehsil', [TehsilController::class, 'add_tehsil'])->middleware(['auth','admin'])->name('add-tehsil');
+Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('store-tehsil');
  Route::get('/all-tehsil', [TehsilController::class, 'all_tehsil'])->middleware(['auth','admin'])->name('all-tehsil');
+ Route::get('/edit-tehsil/{id}', [TehsilController::class, 'edit_tehsil'])->middleware(['auth','admin'])->name('edit-tehsil');
+ Route::post('/update-tehsil/{id}', [TehsilController::class, 'update_tehsil'])->name('update-tehsil');
 
+ //area
+ Route::get('/add-area', [AreaController::class, 'add_area'])->middleware(['auth','admin'])->name('add-area');
+ Route::post('/store-area', [AreaController::class, 'store_area'])->name('store-area');
+ Route::get('/all-area', [AreaController::class, 'all_area'])->middleware(['auth','admin'])->name('all-area');
+ Route::get('/edit-area/{id}', [AreaController::class, 'edit_area'])->middleware(['auth','admin'])->name('edit-area');
+ Route::post('/update-area/{id}', [AreaController::class, 'update_area'])->name('update-area');
+ 
+ //tappa
+ Route::get('/add-tappa', [TappaController::class, 'add_tappa'])->middleware(['auth','admin'])->name('add-tappa');
+ Route::get('/all-tappa', [TappaController::class, 'all_tappa'])->middleware(['auth','admin'])->name('all-tappa');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

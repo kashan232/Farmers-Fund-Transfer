@@ -20,14 +20,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
 
 	<!-- Page Title Here -->
 	<title>Farmer Funds Transfer</title>
-	<link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-	<link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
+	<link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+	<link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
 	<!-- Style css -->
-     <link href="css/style.css" rel="stylesheet">
+     <link href="/css/style.css" rel="stylesheet">
 	
 </head>
 <body>

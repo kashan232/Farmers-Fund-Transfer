@@ -33,7 +33,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">All District</h4>
+                            <h4 class="card-title">All Tappa</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -47,12 +47,13 @@
                                                 </div>
                                             </th>
                                             <th><strong>Sno</strong></th>
-                                            <th><strong>District</strong></th>
+                                            <th><strong>District Name</strong></th>
+                                            <th><strong>Tehsil</strong></th>
+                                            <th><strong>Tappa</strong></th>
                                             <th class="text-end"><strong>Action</strong></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($all_district as $district )
                                         <tr>
                                             <td>
                                                 <div class="form-check custom-checkbox checkbox-success check-lg me-3">
@@ -60,16 +61,17 @@
                                                     <label class="form-check-label" for="customCheckBox2"></label>
                                                 </div>
                                             </td>
-                                            <td><strong>{{ $loop->iteration }}</strong></td>
-                                            <td>{{ $district->district }}</td>
+                                            <td><strong>1</strong></td>
+                                            <td>Mirpur Khas</td>
+                                            <td>HUSSAIN BUX MARI</td>
+                                            <td>HUSSAIN BUX MARI</td>
                                             <td class="text-end">
                                                 <div class="d-flex justify-content-end">
-                                                    <a href="{{ route('edit-district', ['id' => $district->id]) }}" class="btn btn-primary shadow btn-s sharp me-1"><i class="fas fa-pencil-alt"> Edit</i></a>
-                                                    {{-- <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a> --}}
+                                                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
-                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

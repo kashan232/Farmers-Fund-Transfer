@@ -33,16 +33,16 @@
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Add Tehsil</h4>
+                            <h4 class="card-title">Edit Tehsil</h4>
                         </div>
                         <div class="card-body">
-                            @if (session()->has('tehsil-added'))
+                            @if (session()->has('success-message-updte'))
                                 <div class="alert alert-success alert-dismissible fade show">
-                                    <strong>Success!</strong> {{ session('tehsil-added') }}.
+                                    <strong>Success!</strong> {{ session('success-message-updte') }}.
                                 </div>
                             @endif
                             <div class="basic-form">
-                                <form action="{{ route('store-tehsil') }}" method="POST">
+                                <form action="{{ route('update-tehsil',['id'=> $tehsildetails->id ]) }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="mb-12 col-md-12">
@@ -60,7 +60,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Tehsil</label>
-                                            <input type="text" name="tehsil" class="form-control">
+                                            <input type="text" name="tehsil" class="form-control" value="{{ $tehsildetails->tehsil }}">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-5">Submit</button>

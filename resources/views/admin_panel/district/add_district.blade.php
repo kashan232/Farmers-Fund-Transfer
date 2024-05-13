@@ -36,15 +36,21 @@
                             <h4 class="card-title">Add District</h4>
                         </div>
                         <div class="card-body">
+                            @if (session()->has('district-added'))
+                            <div class="alert alert-success alert-dismissible fade show">
+                                <strong>Success!</strong> {{ session('district-added') }}.
+                            </div>
+                            @endif
                             <div class="basic-form">
-                                <form>
+                                <form action="{{ route('store-district') }}" method="POST">
+                                    @csrf
                                     <div class="row">
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-12 col-md-12">
                                             <label class="form-label">District</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="district" class="form-control">
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary mt-5">Submit</button>
                                 </form>
                             </div>
                         </div>
