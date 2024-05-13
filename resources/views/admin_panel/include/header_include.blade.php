@@ -28,6 +28,11 @@
 	<link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
 	<!-- Style css -->
      <link href="/css/style.css" rel="stylesheet">
+	  <!-- Datatable -->
+	  <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+	<link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+	 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 	
 </head>
 <body>

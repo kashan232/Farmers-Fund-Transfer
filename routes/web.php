@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgricultureOfficerController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
@@ -68,6 +69,9 @@ Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('s
  Route::post('/get-tehsils', [TappaController::class, 'get_tehsils'])->name('get-tehsils');
 
  //Land Revenue Department
+
+ Route::get('/agri-officer-create', [AgricultureOfficerController::class, 'agri_officer_create'])->middleware(['auth','admin'])->name('agri-officer-create');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
