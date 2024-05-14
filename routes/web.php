@@ -7,6 +7,7 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LandRevenueController;
 use App\Http\Controllers\LeaveRequestController;
 use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\ProfileController;
@@ -67,11 +68,18 @@ Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('s
  Route::post('/store-tappa', [TappaController::class, 'store_tappa'])->name('store-tappa');
  Route::get('/all-tappa', [TappaController::class, 'all_tappa'])->middleware(['auth','admin'])->name('all-tappa');
  Route::post('/get-tehsils', [TappaController::class, 'get_tehsils'])->name('get-tehsils');
+ Route::get('/edit-tappa/{id}', [TappaController::class, 'edit_tappa'])->middleware(['auth','admin'])->name('edit-tappa');
+ Route::post('/update-tappa/{id}', [TappaController::class, 'update_tappa'])->name('update-tappa');
+
+ //Agriculture Department
+
+ Route::get('/add-agri-officer', [AgricultureOfficerController::class, 'add_agri_officer'])->middleware(['auth','admin'])->name('add-agri-officer');
+ Route::get('/all-agri-officer', [AgricultureOfficerController::class, 'all_agri_officer'])->middleware(['auth','admin'])->name('all-agri-officer');
 
  //Land Revenue Department
 
- Route::get('/agri-officer-create', [AgricultureOfficerController::class, 'agri_officer_create'])->middleware(['auth','admin'])->name('agri-officer-create');
-
+ Route::get('/add-revenue-officer', [LandRevenueController::class, 'add_revenue_officer'])->middleware(['auth','admin'])->name('add-revenue-officer');
+ Route::get('/all-revenue-officer', [LandRevenueController::class, 'all_revenue_officer'])->middleware(['auth','admin'])->name('all-revenue-officer');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
