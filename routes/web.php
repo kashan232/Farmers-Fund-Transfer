@@ -7,6 +7,7 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LandRevenueController;
 use App\Http\Controllers\LeaveRequestController;
 use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\ProfileController;
@@ -64,16 +65,18 @@ Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('s
  
  //tappa
  Route::get('/add-tappa', [TappaController::class, 'add_tappa'])->middleware(['auth','admin'])->name('add-tappa');
+ Route::post('/store-tappa', [TappaController::class, 'store_tappa'])->name('store-tappa');
  Route::get('/all-tappa', [TappaController::class, 'all_tappa'])->middleware(['auth','admin'])->name('all-tappa');
 
  Route::get('/agri-officer-create', [AgricultureOfficerController::class, 'agri_officer_create'])->middleware(['auth','admin'])->name('agri-officer-create');
- Route::post('/store-agri-officer', [AgricultureOfficerController::class, 'store_agri_officer'])->name('store-agri-officer');
 
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
 });
 
 require __DIR__.'/auth.php';

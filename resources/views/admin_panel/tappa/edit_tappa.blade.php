@@ -33,11 +33,11 @@
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Add Tappa</h4>
+                            <h4 class="card-title">Edit Tappa</h4>
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form action="{{ route('store-tappa') }}" method="POST">
+                                <form action="{{ route('update-tappa',['id'=> $tappdetails->id ]) }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="mb-12 col-md-12">
@@ -63,7 +63,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Tappa Name</label>
-                                            <input type="text" name="tappa" class="form-control">
+                                            <input type="text" name="tappa" class="form-control" value="{{ $tappdetails->tappa }}">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-5">Submit</button>

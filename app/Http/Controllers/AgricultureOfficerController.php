@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AgricultureOfficerController extends Controller
 {
-
+    
     public function agri_officer_create()
     {
         if (Auth::id()) {
@@ -20,7 +20,7 @@ class AgricultureOfficerController extends Controller
             // dd($userId);
             $all_district = District::where('admin_or_user_id', '=', $userId)->get();
             $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
-            return view('admin_panel.agriculture_officer.agriculture_officer', [
+            return view('admin_panel.agriculture_officer.add_agri_officer', [
                 'all_district' => $all_district,
                 'all_tehsil' => $all_tehsil,
             ]);
