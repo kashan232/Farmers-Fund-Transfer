@@ -37,7 +37,8 @@
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form>
+                                <form action="{{ route('store-agri-officer') }}" method="post">
+                                    @csrf
                                     <div class="row">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Full Name</label>
@@ -86,12 +87,6 @@
                                                 </option>
                                                 @endforeach
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="mb-12 col-md-12">
-                                            <label class="form-label">Tappa Name</label>
-                                            <input type="text" class="form-control" name="tappa_name">
                                         </div>
                                     </div>
                                     <div class="row mt-2">

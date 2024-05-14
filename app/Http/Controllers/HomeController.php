@@ -21,7 +21,12 @@ class HomeController extends Controller
             {
                 return view('admin_panel.admin_dashboard');
             }
+            else if($usertype=='Agriculture_Officer')
+            {
+                return view('agriculture_officer.agriculture_dashboard');
+            }
         }
+
         else
         {
             // return redirect()->back();
