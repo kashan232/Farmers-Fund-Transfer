@@ -58,7 +58,17 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ route('agri-officer-create') }}">Create Officer</a></li>
-                    <li><a href="#">All Officer</a></li>
+                    <li><a href="{{ route('all-agri-officer') }}">All Officer</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fas fa-user-plus"></i>
+                    <span class="nav-text">Land Revenue Department</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('add-revenue-officer') }}">Create Officer</a></li>
+                    <li><a href="{{ route('all-revenue-officer') }}">All Officer</a></li>
                 </ul>
             </li>
         </ul>

@@ -33,11 +33,12 @@
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Create Agriculture Extension Field Officer</h4>
+                            <h4 class="card-title">Create Land Revenue Department</h4>
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form>
+                                <form action="{{ route('store-revenue-officer') }}" method="post">
+                                    @csrf
                                     <div class="row">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Full Name</label>
@@ -86,12 +87,6 @@
                                                 </option>
                                                 @endforeach
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="mb-12 col-md-12">
-                                            <label class="form-label">Tappa Name</label>
-                                            <input type="text" class="form-control" name="tappa_name">
                                         </div>
                                     </div>
                                     <div class="row mt-2">
