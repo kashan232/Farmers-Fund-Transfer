@@ -1,4 +1,4 @@
-@include('agriculture_officer.include.header_include')
+@include('land_revenue_panel.include.header_include')
 
 <!--**********************************
         Main wrapper start
@@ -8,7 +8,7 @@
     <!--**********************************
             Nav header start
         ***********************************-->
-    @include('agriculture_officer.include.navbar_include')
+    @include('land_revenue_panel.include.navbar_include')
 
     <!--**********************************
             Nav header end
@@ -17,7 +17,7 @@
     <!--**********************************
             Sidebar start
         ***********************************-->
-    @include('agriculture_officer.include.sidebar_include')
+    @include('land_revenue_panel.include.sidebar_include')
 
     <!--**********************************
             Sidebar end
@@ -885,7 +885,7 @@
     <!--**********************************
             Footer start
         ***********************************-->
-   @include('agriculture_officer.include.footer_copyright_include')
+   @include('land_revenue_panel.include.footer_copyright_include')
     <!--**********************************
             Footer end
         ***********************************-->
@@ -894,7 +894,7 @@
         Main wrapper end
     ***********************************-->
 
-@include('agriculture_officer.include.footer_include')
+@include('land_revenue_panel.include.footer_include')
 
 </body>
 </html>
