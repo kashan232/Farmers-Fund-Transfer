@@ -33,45 +33,42 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">All Tappa</h4>
+                            <h4 class="card-title">All Revenue Officer</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-responsive-md">
                                     <thead>
                                         <tr>
-                                            <th style="width:50px;">
-                                                <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                                                    <input type="checkbox" class="form-check-input" id="checkAll" required="">
-                                                    <label class="form-check-label" for="checkAll"></label>
-                                                </div>
-                                            </th>
                                             <th><strong>Sno</strong></th>
-                                            <th><strong>District Name</strong></th>
-                                            <th><strong>Tehsil</strong></th>
-                                            <th><strong>Tappa</strong></th>
+                                            <th><strong>Full Name</strong></th>
+                                            <th><strong>Contact Number</strong></th>
+                                            <th><strong>Address</strong></th>
+                                            <th><strong>Email Address</strong></th>
+                                            <th><strong>District <br> Tehsil</strong></th>
+                                            <th><strong>Username</strong></th>
+                                            <th><strong>Lock</strong></th>
                                             <th class="text-end"><strong>Action</strong></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($all_revenue as $revenue)
                                         <tr>
-                                            <td>
-                                                <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckBox2" required="">
-                                                    <label class="form-check-label" for="customCheckBox2"></label>
-                                                </div>
-                                            </td>
-                                            <td><strong>1</strong></td>
-                                            <td>Mirpur Khas</td>
-                                            <td>HUSSAIN BUX MARI</td>
-                                            <td>HUSSAIN BUX MARI</td>
+                                            <td><strong>{{ $loop->iteration }}</strong></td>
+                                            <td>{{ $revenue->full_name }}</td>
+                                            <td>{{ $revenue->contact_number }}</td>
+                                            <td>{{ $revenue->address }}</td>
+                                            <td>{{ $revenue->email_address }}</td>
+                                            <td>{{ $revenue->district }} <br> {{ $revenue->tehsil }} </td>
+                                            <td>{{ $revenue->username }}</td>
+                                            <td>LOCK</td>
                                             <td class="text-end">
                                                 <div class="d-flex justify-content-end">
                                                     <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

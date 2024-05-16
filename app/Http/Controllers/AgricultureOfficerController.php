@@ -64,4 +64,17 @@ class AgricultureOfficerController extends Controller
             return redirect()->back();
         }
     }
+    public function all_agri_officer()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            // dd($userId);
+            $all_agri = AgricultureOfficer::where('admin_or_user_id', '=', $userId)->get();
+            return view('admin_panel.agriculture_officer.all_agri_officer', [
+                'all_agri' => $all_agri,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
 }

@@ -23,10 +23,13 @@ class HomeController extends Controller
             }
             else if($usertype=='Agriculture_Officer')
             {
-                return view('agriculture_officer.agriculture_dashboard');
+                return view('agriculture_officer_panel.agriculture_dashboard');
+            }
+            else if($usertype=='Land_Revenue_Officer')
+            {
+                return view('land_revenue_panel.land_revenue_dashboard');
             }
         }
-
         else
         {
             // return redirect()->back();
