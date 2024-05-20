@@ -43,38 +43,35 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/home', [HomeController::class, 'home'])->middleware(['auth'])->name('home');
-Route::get('/admin-dashboard', [HomeController::class, 'adminpage'])->middleware(['auth','admin'])->name('admin-dashboard');
+Route::get('/admin-dashboard', [HomeController::class, 'adminpage'])->name('admin-dashboard');
 
 //District
-Route::get('/add-district', [DistrictController::class, 'add_district'])->middleware(['auth','admin'])->name('add-district');
+Route::get('/add-district', [DistrictController::class, 'add_district'])->name('add-district');
 Route::post('/store-district', [DistrictController::class, 'store_district'])->name('store-district');
-Route::get('/all-district', [DistrictController::class, 'all_district'])->middleware(['auth','admin'])->name('all-district');
-Route::get('/edit-district/{id}', [DistrictController::class, 'edit_district'])->middleware(['auth','admin'])->name('edit-district');
+Route::get('/all-district', [DistrictController::class, 'all_district'])->name('all-district');
+Route::get('/edit-district/{id}', [DistrictController::class, 'edit_district'])->name('edit-district');
 Route::post('/update-district/{id}', [DistrictController::class, 'update_district'])->name('update-district');
 
  //tehsil
- Route::get('/add-tehsil', [TehsilController::class, 'add_tehsil'])->middleware(['auth','admin'])->name('add-tehsil');
+ Route::get('/add-tehsil', [TehsilController::class, 'add_tehsil'])->name('add-tehsil');
 Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('store-tehsil');
- Route::get('/all-tehsil', [TehsilController::class, 'all_tehsil'])->middleware(['auth','admin'])->name('all-tehsil');
- Route::get('/edit-tehsil/{id}', [TehsilController::class, 'edit_tehsil'])->middleware(['auth','admin'])->name('edit-tehsil');
+ Route::get('/all-tehsil', [TehsilController::class, 'all_tehsil'])->name('all-tehsil');
+ Route::get('/edit-tehsil/{id}', [TehsilController::class, 'edit_tehsil'])->name('edit-tehsil');
  Route::post('/update-tehsil/{id}', [TehsilController::class, 'update_tehsil'])->name('update-tehsil');
-
  //area
- Route::get('/add-area', [AreaController::class, 'add_area'])->middleware(['auth','admin'])->name('add-area');
+ Route::get('/add-area', [AreaController::class, 'add_area'])->name('add-area');
  Route::post('/store-area', [AreaController::class, 'store_area'])->name('store-area');
- Route::get('/all-area', [AreaController::class, 'all_area'])->middleware(['auth','admin'])->name('all-area');
- Route::get('/edit-area/{id}', [AreaController::class, 'edit_area'])->middleware(['auth','admin'])->name('edit-area');
+ Route::get('/all-area', [AreaController::class, 'all_area'])->name('all-area');
+ Route::get('/edit-area/{id}', [AreaController::class, 'edit_area'])->name('edit-area');
  Route::post('/update-area/{id}', [AreaController::class, 'update_area'])->name('update-area');
  
  //tappa
- Route::get('/add-tappa', [TappaController::class, 'add_tappa'])->middleware(['auth','admin'])->name('add-tappa');
+ Route::get('/add-tappa', [TappaController::class, 'add_tappa'])->name('add-tappa');
  Route::post('/store-tappa', [TappaController::class, 'store_tappa'])->name('store-tappa');
- Route::get('/all-tappa', [TappaController::class, 'all_tappa'])->middleware(['auth','admin'])->name('all-tappa');
+ Route::get('/all-tappa', [TappaController::class, 'all_tappa'])->name('all-tappa');
 
- //Agriculture office
  Route::get('/agri-officer-create', [AgricultureOfficerController::class, 'agri_officer_create'])->middleware(['auth','admin'])->name('agri-officer-create');
- Route::post('/store-agri-officer', [AgricultureOfficerController::class, 'store_agri_officer'])->name('store-agri-officer');
- Route::get('/all-agri-officer', [AgricultureOfficerController::class, 'all_agri_officer'])->middleware(['auth','admin'])->name('all-agri-officer');
+ Route::get('/store-agri-officer', [AgricultureOfficerController::class, 'store_agri_officer'])->name('store-agri-officer');
 
  //Land Revenue Department
  Route::get('/add-revenue-officer', [LandRevenueController::class, 'add_revenue_officer'])->name('add-revenue-officer');
