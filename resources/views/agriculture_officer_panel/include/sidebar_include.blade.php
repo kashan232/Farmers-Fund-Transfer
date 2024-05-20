@@ -8,6 +8,15 @@
                 </a>
 
             </li>
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <span class="nav-text">Farmers Registration</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('add-agri-farmers') }}">Add Farmers</a></li>
+                        <li><a href="{{ route('all-agri-farmers') }}">All Farmers</a></li>
+                </ul>
+            </li>
            
 
             <li>
