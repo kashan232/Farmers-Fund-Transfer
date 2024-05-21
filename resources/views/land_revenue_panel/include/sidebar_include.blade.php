@@ -11,7 +11,7 @@
             <li>
                 <a class="" href="{{ route('home') }}" aria-expanded="false">
                     <i class="fa-solid fa-gear fw-bold"></i>
-                    <span class="nav-text">hello</span>
+                    <span class="nav-text">Land Approve Listing</span>
                 </a>
             </li>
             <li>
