@@ -33,11 +33,11 @@
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Add Tappa</h4>
+                            <h4 class="card-title">Edit Tappa</h4>
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form action="{{ route('store-tappa') }}" method="POST">
+                                <form action="{{ route('update-tappa',['id'=> $tappdetails->id ]) }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="mb-12 col-md-12">
@@ -63,7 +63,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Tappa Name</label>
-                                            <input type="text" name="tappa" class="form-control">
+                                            <input type="text" name="tappa" class="form-control" value="{{ $tappdetails->tappa }}">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-5">Submit</button>
@@ -92,5 +92,28 @@
 
 @include('admin_panel.include.footer_include')
 
+<script>
+    $(document).ready(function() {
+        $('#district').on('change', function() {
+            var district = $(this).val();
+            if (district) {
+                $.ajax({
+                    url: '{{ route("get-tehsils") }}',
+                    type: 'POST',
+                    data: { district: district, _token: '{{ csrf_token() }}' },
+                    success: function(data) {
+                        var tehsilSelect = $('#tehsil');
+                        tehsilSelect.empty();
+                        $.each(data, function(key, value) {
+                            tehsilSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#tehsil').empty();
+            }
+        });
+    });
+</script>
 </body>
 </html>
