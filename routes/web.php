@@ -87,8 +87,8 @@ Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('s
  Route::get('/all-agri-farmers', [AgricultureFarmerRegistrationController::class, 'all_agri_farmers'])->name('all-agri-farmers');
 
 
- //Lad Revenue PAnel
- 
+ //Land Revenue PAnel
+
 
 
 Route::middleware('auth')->group(function () {
