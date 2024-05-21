@@ -92,4 +92,37 @@ class AgricultureFarmerRegistrationController extends Controller
             return redirect()->back();
         }
     }
+
+    public function Agriculture_Farmers()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            return view('admin_panel.screen.Agriculture_Farmers', [
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function Land_Revenue_Farmers()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            return view('admin_panel.screen.Land_Revenue_Farmers', [
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function Online_Farmers()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            return view('admin_panel.screen.Online_Farmers', [
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
 }
