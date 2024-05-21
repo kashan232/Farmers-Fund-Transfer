@@ -64,13 +64,26 @@
             <li>
                 <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fas fa-user-plus"></i>
-                    <span class="nav-text">Land Revenue Department</span>
+                    <span class="nav-text">Land Revenue</span>
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ route('add-revenue-officer') }}">Create Officer</a></li>
                     <li><a href="{{ route('all-revenue-officer') }}">All Officer</a></li>
                 </ul>
             </li>
+
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fas fa-user-plus"></i>
+                    <span class="nav-text">Farmers</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('Agriculture-Farmers') }}">Agriculture Farmers</a></li>
+                    <li><a href="{{ route('Land-Revenue-Farmers') }}">Land Revenue Farmers</a></li>
+                    <li><a href="{{ route('Online-Farmers') }}">Online Farmers</a></li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>
