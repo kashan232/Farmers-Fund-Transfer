@@ -86,6 +86,11 @@ Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('s
  Route::post('/store-agri-farmers', [AgricultureFarmerRegistrationController::class, 'store_agri_farmers'])->name('store-agri-farmers');
  Route::get('/all-agri-farmers', [AgricultureFarmerRegistrationController::class, 'all_agri_farmers'])->name('all-agri-farmers');
 
+ 
+Route::get('/Agriculture-Farmers', [AgricultureFarmerRegistrationController::class, 'Agriculture_Farmers'])->name('Agriculture-Farmers');
+Route::get('/Land-Revenue-Farmers', [AgricultureFarmerRegistrationController::class, 'Land_Revenue_Farmers'])->name('Land-Revenue-Farmers');
+Route::get('/Online-Farmers', [AgricultureFarmerRegistrationController::class, 'Online_Farmers'])->name('Online-Farmers');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
