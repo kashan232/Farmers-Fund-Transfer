@@ -32,7 +32,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Land Approve Listing</h4>
+                        <h4 class="card-title">UnVerify Listing</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -55,19 +55,7 @@
                                     <tr>
                                         <td>101</td>
                                         <td>Shams</td>
-                                        <td>Latifabad unit 10</td>
-                                        <td>Mr. Raza <br> 031777777</td>
-                                        <td>Hyderabad <br> Latifabad</td>
-                                        <td>1Acres <br> Agricultural Land:</td>
-                                        <td>50LAc</td>
-                                        <td>Kindly Approve</td>
-                                        <td><button class="btn btn-success">Verify</button></td>
-                                        <td>21-5-2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>Shams</td>
-                                        <td>Latifabad unit 10</td>
+                                        <td>Latifabad Hyderabad</td>
                                         <td>Mr. Raza <br> 031777777</td>
                                         <td>Hyderabad <br> Latifabad</td>
                                         <td>1Acres <br> Agricultural Land:</td>
@@ -79,19 +67,7 @@
                                     <tr>
                                         <td>101</td>
                                         <td>Shams</td>
-                                        <td>Latifabad unit 10</td>
-                                        <td>Mr. Raza <br> 031777777</td>
-                                        <td>Hyderabad <br> Latifabad</td>
-                                        <td>1Acres <br> Agricultural Land:</td>
-                                        <td>50LAc</td>
-                                        <td>Kindly Approve</td>
-                                        <td><button class="btn btn-success">Verify</button></td>
-                                        <td>21-5-2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>Shams</td>
-                                        <td>Latifabad unit 10</td>
+                                        <td>Latifabad Hyderabad</td>
                                         <td>Mr. Raza <br> 031777777</td>
                                         <td>Hyderabad <br> Latifabad</td>
                                         <td>1Acres <br> Agricultural Land:</td>
@@ -103,19 +79,7 @@
                                     <tr>
                                         <td>101</td>
                                         <td>Shams</td>
-                                        <td>Latifabad unit 10</td>
-                                        <td>Mr. Raza <br> 031777777</td>
-                                        <td>Hyderabad <br> Latifabad</td>
-                                        <td>1Acres <br> Agricultural Land:</td>
-                                        <td>50LAc</td>
-                                        <td>Kindly Approve</td>
-                                        <td><button class="btn btn-success">Verify</button></td>
-                                        <td>21-5-2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>Shams</td>
-                                        <td>Latifabad unit 10</td>
+                                        <td>Latifabad Hyderabad</td>
                                         <td>Mr. Raza <br> 031777777</td>
                                         <td>Hyderabad <br> Latifabad</td>
                                         <td>1Acres <br> Agricultural Land:</td>
@@ -127,19 +91,7 @@
                                     <tr>
                                         <td>101</td>
                                         <td>Shams</td>
-                                        <td>Latifabad unit 10</td>
-                                        <td>Mr. Raza <br> 031777777</td>
-                                        <td>Hyderabad <br> Latifabad</td>
-                                        <td>1Acres <br> Agricultural Land:</td>
-                                        <td>50LAc</td>
-                                        <td>Kindly Approve</td>
-                                        <td><button class="btn btn-success">Verify</button></td>
-                                        <td>21-5-2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>Shams</td>
-                                        <td>Latifabad unit 10</td>
+                                        <td>Latifabad Hyderabad</td>
                                         <td>Mr. Raza <br> 031777777</td>
                                         <td>Hyderabad <br> Latifabad</td>
                                         <td>1Acres <br> Agricultural Land:</td>

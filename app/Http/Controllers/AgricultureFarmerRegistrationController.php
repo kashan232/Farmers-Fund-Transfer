@@ -125,4 +125,44 @@ class AgricultureFarmerRegistrationController extends Controller
             return redirect()->back();
         }
     }
+    public function land_approve_listing()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            return view('land_revenue_panel.land_approve_listing.land_approve_listing', [
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function verify_listing()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            return view('land_revenue_panel.land_approve_listing.verify_listing', [
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function unverify_listing()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            return view('land_revenue_panel.land_approve_listing.unverify_listing', [
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function Verify_screen()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            return view('land_revenue_panel.land_approve_listing.Verify_screen', [
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
 }

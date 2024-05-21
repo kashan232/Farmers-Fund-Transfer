@@ -92,6 +92,10 @@ Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('s
  Route::get('/Agriculture-Farmers', [AgricultureFarmerRegistrationController::class, 'Agriculture_Farmers'])->name('Agriculture-Farmers');
  Route::get('/Land-Revenue-Farmers', [AgricultureFarmerRegistrationController::class, 'Land_Revenue_Farmers'])->name('Land-Revenue-Farmers');
  Route::get('/Online-Farmers', [AgricultureFarmerRegistrationController::class, 'Online_Farmers'])->name('Online-Farmers');
+ Route::get('/land-approve-listing', [AgricultureFarmerRegistrationController::class, 'land_approve_listing'])->name('land-approve-listing');
+ Route::get('/verify-listing', [AgricultureFarmerRegistrationController::class, 'verify_listing'])->name('verify-listing');
+ Route::get('/unverify-listing', [AgricultureFarmerRegistrationController::class, 'unverify_listing'])->name('unverify-listing');
+ Route::get('/Verify-screen', [AgricultureFarmerRegistrationController::class, 'Verify_screen'])->name('Verify-screen');
 
 
 Route::middleware('auth')->group(function () {
