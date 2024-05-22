@@ -165,4 +165,14 @@ class AgricultureFarmerRegistrationController extends Controller
             return redirect()->back();
         }
     }
+    public function report()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            return view('land_revenue_panel.land_approve_listing.report', [
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
 }

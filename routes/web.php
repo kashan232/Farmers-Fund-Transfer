@@ -87,7 +87,7 @@ Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('s
  Route::get('/all-agri-farmers', [AgricultureFarmerRegistrationController::class, 'all_agri_farmers'])->name('all-agri-farmers');
 
 
- //Land Revenue PAnel
+//Land Revenue PAnel
 //  All Screens
  Route::get('/Agriculture-Farmers', [AgricultureFarmerRegistrationController::class, 'Agriculture_Farmers'])->name('Agriculture-Farmers');
  Route::get('/Land-Revenue-Farmers', [AgricultureFarmerRegistrationController::class, 'Land_Revenue_Farmers'])->name('Land-Revenue-Farmers');
@@ -96,6 +96,7 @@ Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('s
  Route::get('/verify-listing', [AgricultureFarmerRegistrationController::class, 'verify_listing'])->name('verify-listing');
  Route::get('/unverify-listing', [AgricultureFarmerRegistrationController::class, 'unverify_listing'])->name('unverify-listing');
  Route::get('/Verify-screen', [AgricultureFarmerRegistrationController::class, 'Verify_screen'])->name('Verify-screen');
+ Route::get('/report', [AgricultureFarmerRegistrationController::class, 'report'])->name('report');
 
 
 Route::middleware('auth')->group(function () {
