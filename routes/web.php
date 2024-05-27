@@ -97,6 +97,7 @@ Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('s
  Route::get('/unverify-listing', [AgricultureFarmerRegistrationController::class, 'unverify_listing'])->name('unverify-listing');
  Route::get('/Verify-screen', [AgricultureFarmerRegistrationController::class, 'Verify_screen'])->name('Verify-screen');
  Route::get('/report', [AgricultureFarmerRegistrationController::class, 'report'])->name('report');
+ Route::get('/bank-screen', [AgricultureFarmerRegistrationController::class, 'bank_screen'])->name('bank-screen');
 
 
 Route::middleware('auth')->group(function () {

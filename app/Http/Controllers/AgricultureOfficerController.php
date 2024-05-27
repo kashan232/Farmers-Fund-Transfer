@@ -35,7 +35,7 @@ class AgricultureOfficerController extends Controller
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
-            AgricultureOfficer::create([
+            $AgricultureOfficer = AgricultureOfficer::create([
                 'admin_or_user_id'    => $userId,
                 'full_name'          => $request->full_name,
                 'contact_number'          => $request->contact_number,
@@ -48,10 +48,10 @@ class AgricultureOfficerController extends Controller
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ]);
-
             // Create a user record with the same credentials and usertype 'employee'
             $user = User::create([
                 'name' => $request->full_name,
+                'user_id' => $AgricultureOfficer->id,
                 'email' => $request->email_address,
                 'district' => $request->district,
                 'tehsil' => $request->tehsil,

@@ -33,7 +33,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">All District</h4>
+                            <h4 class="card-title">All Tappa</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
