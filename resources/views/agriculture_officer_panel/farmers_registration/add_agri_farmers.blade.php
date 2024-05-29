@@ -94,6 +94,10 @@
                                         <span class="step-indicator step-indicator-2" onclick="nextStep(2)">Step 2</span>
                                         <span class="connector"></span>
                                         <span class="step-indicator step-indicator-3" onclick="nextStep(3)">Step 3</span>
+                                        <span class="connector"></span>
+                                        <span class="step-indicator step-indicator-4" onclick="nextStep(4)">Step 4</span>
+                                        <span class="connector"></span>
+                                        <span class="step-indicator step-indicator-5" onclick="nextStep(5)">Step 5</span>
                                     </div>
                                 </div>
 
@@ -142,6 +146,13 @@
                                                 <label class="form-label">Tappa</label>
                                                 <input type="text" name="tappa" class="form-control">
                                             </div>
+                                        </div>
+                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(2)">Next</button>
+                                    </div>
+
+                                    <div class="step step-2" style="display: none;">
+                                        <div class="row mt-2">
+                                            <h4 class="card-title">Contact Details</h4>
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label">Area</label>
                                                 <input type="text" name="area" class="form-control">
@@ -174,7 +185,15 @@
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label">Is Distributed</label>
                                                 <input type="text" name="is_distributed" class="form-control">
-                                            </div> 
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(1)">Previous</button>
+                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(3)">Next</button>
+                                    </div>
+
+                                    <div class="step step-3" style="display: none;">
+                                        <div class="row mt-2">
+                                            <h4 class="card-title">Cheque Details</h4>
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label">Cheque Amount</label>
                                                 <input type="text" name="cheque_amount" class="form-control">
@@ -224,10 +243,11 @@
                                                 <input type="text" name="total_area" class="form-control">
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(2)">Next</button>
+                                        <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(2)">Previous</button>
+                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(4)">Next</button>
                                     </div>
 
-                                    <div class="step step-2" style="display: none;">
+                                    <div class="step step-4" style="display: none;">
                                         <div class="row mt-2">
                                             <h4 class="card-title">Seed Information</h4>
                                             <div class="mb-6 col-md-6">
@@ -259,11 +279,11 @@
                                                 <input type="text" name="is_sent_bisp" class="form-control">
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(1)">Previous</button>
-                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(3)">Next</button>
+                                        <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
+                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(5)">Next</button>
                                     </div>
 
-                                    <div class="step step-3" style="display: none;">
+                                    <div class="step step-5" style="display: none;">
                                         <div class="row mt-2">
                                             <h4 class="card-title">Bank & Account Details</h4>
                                             <div class="mb-6 col-md-6">
@@ -279,7 +299,7 @@
                                                 <input type="text" name="bank_account_number" class="form-control">
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(2)">Previous</button>
+                                        <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
                                         <button type="submit" class="btn btn-primary mt-5">Submit</button>
                                     </div>
                                 </form>
@@ -330,5 +350,3 @@
 
 </body>
 </html>
-
-
