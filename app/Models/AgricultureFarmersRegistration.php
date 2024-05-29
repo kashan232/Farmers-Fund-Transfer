@@ -49,8 +49,17 @@ class AgricultureFarmersRegistration extends Model
         'seed_given_by',
         'seed_given_date',
         'is_sent_bisp',
-        'bank_id',
+        'bank_branch_name',
+        'bank_branch_code',
         'bank_account_title',
         'bank_account_number',
+        'latitude',
+        'longitude',
+        'front_id_card',
+        'back_id_card',
+        'upload_land_proof',
+        'upload_other_attach',
+        'upload_farmer_pic',
+        'upload_cheque_pic',
     ];
 }

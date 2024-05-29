@@ -146,13 +146,6 @@
                                                 <label class="form-label">Tappa</label>
                                                 <input type="text" name="tappa" class="form-control">
                                             </div>
-                                        </div>
-                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(2)">Next</button>
-                                    </div>
-
-                                    <div class="step step-2" style="display: none;">
-                                        <div class="row mt-2">
-                                            <h4 class="card-title">Contact Details</h4>
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label">Area</label>
                                                 <input type="text" name="area" class="form-control">
@@ -186,14 +179,6 @@
                                                 <label class="form-label">Is Distributed</label>
                                                 <input type="text" name="is_distributed" class="form-control">
                                             </div>
-                                        </div>
-                                        <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(1)">Previous</button>
-                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(3)">Next</button>
-                                    </div>
-
-                                    <div class="step step-3" style="display: none;">
-                                        <div class="row mt-2">
-                                            <h4 class="card-title">Cheque Details</h4>
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label">Cheque Amount</label>
                                                 <input type="text" name="cheque_amount" class="form-control">
@@ -243,11 +228,10 @@
                                                 <input type="text" name="total_area" class="form-control">
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(2)">Previous</button>
-                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(4)">Next</button>
+                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(2)">Next</button>
                                     </div>
 
-                                    <div class="step step-4" style="display: none;">
+                                    <div class="step step-2" style="display: none;">
                                         <div class="row mt-2">
                                             <h4 class="card-title">Seed Information</h4>
                                             <div class="mb-6 col-md-6">
@@ -278,17 +262,22 @@
                                                 <label class="form-label">Is Sent To Bisp</label>
                                                 <input type="text" name="is_sent_bisp" class="form-control">
                                             </div>
+                                            
                                         </div>
-                                        <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
-                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(5)">Next</button>
+                                        <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(1)">Previous</button>
+                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(3)">Next</button>
                                     </div>
 
-                                    <div class="step step-5" style="display: none;">
+                                    <div class="step step-3" style="display: none;">
                                         <div class="row mt-2">
                                             <h4 class="card-title">Bank & Account Details</h4>
                                             <div class="mb-6 col-md-6">
-                                                <label class="form-label">Bank ID</label>
-                                                <input type="text" name="bank_id" class="form-control">
+                                                <label class="form-label">Bank Branch Name</label>
+                                                <input type="text" name="bank_branch_name" class="form-control">
+                                            </div>
+                                            <div class="mb-6 col-md-6">
+                                                <label class="form-label">Bank Branch Code</label>
+                                                <input type="text" name="bank_branch_code" class="form-control">
                                             </div>
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label">Bank Account Title</label>
@@ -297,6 +286,54 @@
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label">Bank Account Number</label>
                                                 <input type="text" name="bank_account_number" class="form-control">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(2)">Previous</button>
+                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(4)">Next</button>
+                                    </div>
+
+                                    <div class="step step-4" style="display: none;">
+                                        <div class="row mt-2">
+                                            <h4 class="card-title">GPS Location</h4>
+                                            <div class="mb-6 col-md-6">
+                                                <label class="form-label">latitude</label>
+                                                <input type="text" name="latitude" class="form-control">
+                                            </div>
+                                            <div class="mb-6 col-md-6">
+                                                <label class="form-label">longitude</label>
+                                                <input type="text" name="longitude" class="form-control">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
+                                        <button type="button" class="btn btn-primary mt-5" onclick="nextStep(5)">Next</button>
+                                    </div>
+
+                                    <div class="step step-5" style="display: none;">
+                                        <div class="row mt-2">
+                                            <h4 class="card-title">Uploaded Documents</h4>
+                                            <div class="mb-6 col-md-6 mt-3">
+                                                <label class="form-label">Upload Front ID Card Img "jpg/png/jpeg"</label>
+                                                <input type="file" name="front_id_card" class="form-control">
+                                            </div>
+                                            <div class="mb-6 col-md-6 mt-3">
+                                                <label class="form-label">Upload Back ID Card Img "jpg/png/jpeg"</label>
+                                                <input type="file" name="back_id_card" class="form-control">
+                                            </div>
+                                            <div class="mb-6 col-md-6 mt-3">
+                                                <label class="form-label">Upload Land Proof Pic Img "jpg/png/jpeg"</label>
+                                                <input type="file" name="upload_land_proof" class="form-control">
+                                            </div>
+                                            <div class="mb-6 col-md-6 mt-3">
+                                                <label class="form-label">Upload Other Attachments Img "jpg/png/jpeg"</label>
+                                                <input type="file" name="upload_other_attach" class="form-control">
+                                            </div>
+                                            <div class="mb-6 col-md-6 mt-3">
+                                                <label class="form-label">Upload Farmer Picture Img "jpg/png/jpeg"</label>
+                                                <input type="file" name="upload_farmer_pic" class="form-control">
+                                            </div>
+                                            <div class="mb-6 col-md-6 mt-3">
+                                                <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label>
+                                                <input type="file" name="upload_cheque_pic" class="form-control">
                                             </div>
                                         </div>
                                         <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
