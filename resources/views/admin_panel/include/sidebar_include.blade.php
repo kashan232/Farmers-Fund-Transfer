@@ -83,6 +83,19 @@
                     <li><a href="{{ route('Online-Farmers') }}">Online Farmers</a></li>
                 </ul>
             </li>
+            {{-- <li>
+                <a href="{{ route('bank-screen') }}" aria-expanded="false">
+                    <i class="fas fa-boxes"></i>
+                    <span class="nav-text">Bank</span>
+                </a>
+            </li> --}}
+            <li>
+                <a class="" href="{{ route('bank-screen') }}" aria-expanded="false">
+                    <i class="fa-solid fa-gear fw-bold"></i>
+                    <span class="nav-text">Bank</span>
+                </a>
+
+            </li>
 
             <li>
                 <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
