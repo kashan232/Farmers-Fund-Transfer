@@ -54,7 +54,7 @@
             <li>
                 <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fas fa-user-plus"></i>
-                    <span class="nav-text">Agriculture Officer</span>
+                    <span class="nav-text">Agriculture</span>
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ route('agri-officer-create') }}">Create Officer</a></li>
@@ -96,18 +96,25 @@
                 </a>
 
             </li>
-            <li>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();"
-                        aria-expanded="false">
-                        <i class="fas fa-user-plus"></i>
-                        <span class="nav-text">{{ __('Log Out') }}</span>
-                    </a>
-                </form>
 
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fas fa-user-plus"></i>
+                    <span class="nav-text">Bankscreen</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('Agriculture-Farmers') }}">Agriculture Farmers</a></li>
+                    <li><a href="{{ route('Land-Revenue-Farmers') }}">Land Revenue Farmers</a></li>
+                    <li><a href="{{ route('Online-Farmers') }}">Online Farmers</a></li>
+                </ul>
             </li>
 
+            <li>
+                <a href="{{ route('report') }}" aria-expanded="false">
+                    <i class="fas fa-globe-europe"></i>
+                    <span class="nav-text">Reports</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
