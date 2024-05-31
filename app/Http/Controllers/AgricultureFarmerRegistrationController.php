@@ -67,9 +67,18 @@ class AgricultureFarmerRegistrationController extends Controller
                 'seed_given_by'          => $request->seed_given_by,
                 'seed_given_date'          => $request->seed_given_date,
                 'is_sent_bisp'          => $request->is_sent_bisp,
-                'bank_id'          => $request->bank_id,
+                'bank_branch_name'          => $request->bank_branch_name,
+                'bank_branch_code'          => $request->bank_branch_code,
                 'bank_account_title'          => $request->bank_account_title,
                 'bank_account_number'          => $request->bank_account_number,
+                'latitude'          => $request->latitude,
+                'longitude'          => $request->longitude,
+                'front_id_card'          => $request->front_id_card,
+                'back_id_card'          => $request->back_id_card,
+                'upload_land_proof'          => $request->upload_land_proof,
+                'upload_other_attach'          => $request->upload_other_attach,
+                'upload_farmer_pic'          => $request->upload_farmer_pic,
+                'upload_cheque_pic'          => $request->upload_cheque_pic,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ]);
@@ -97,8 +106,7 @@ class AgricultureFarmerRegistrationController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            return view('admin_panel.screen.Agriculture_Farmers', [
-            ]);
+            return view('admin_panel.screen.Agriculture_Farmers', []);
         } else {
             return redirect()->back();
         }
@@ -108,8 +116,7 @@ class AgricultureFarmerRegistrationController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            return view('admin_panel.screen.Land_Revenue_Farmers', [
-            ]);
+            return view('admin_panel.screen.Land_Revenue_Farmers', []);
         } else {
             return redirect()->back();
         }
@@ -119,8 +126,7 @@ class AgricultureFarmerRegistrationController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            return view('admin_panel.screen.Online_Farmers', [
-            ]);
+            return view('admin_panel.screen.Online_Farmers', []);
         } else {
             return redirect()->back();
         }
@@ -129,8 +135,7 @@ class AgricultureFarmerRegistrationController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            return view('land_revenue_panel.land_approve_listing.land_approve_listing', [
-            ]);
+            return view('land_revenue_panel.land_approve_listing.land_approve_listing', []);
         } else {
             return redirect()->back();
         }
@@ -139,8 +144,7 @@ class AgricultureFarmerRegistrationController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            return view('land_revenue_panel.land_approve_listing.verify_listing', [
-            ]);
+            return view('land_revenue_panel.land_approve_listing.verify_listing', []);
         } else {
             return redirect()->back();
         }
@@ -149,8 +153,7 @@ class AgricultureFarmerRegistrationController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            return view('land_revenue_panel.land_approve_listing.unverify_listing', [
-            ]);
+            return view('land_revenue_panel.land_approve_listing.unverify_listing', []);
         } else {
             return redirect()->back();
         }
@@ -159,8 +162,7 @@ class AgricultureFarmerRegistrationController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            return view('land_revenue_panel.land_approve_listing.Verify_screen', [
-            ]);
+            return view('land_revenue_panel.land_approve_listing.Verify_screen', []);
         } else {
             return redirect()->back();
         }
@@ -169,8 +171,7 @@ class AgricultureFarmerRegistrationController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            return view('land_revenue_panel.land_approve_listing.report', [
-            ]);
+            return view('land_revenue_panel.land_approve_listing.report', []);
         } else {
             return redirect()->back();
         }
@@ -179,8 +180,7 @@ class AgricultureFarmerRegistrationController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            return view('land_revenue_panel.land_approve_listing.bank_screen', [
-            ]);
+            return view('land_revenue_panel.land_approve_listing.bank_screen', []);
         } else {
             return redirect()->back();
         }
