@@ -10,6 +10,16 @@
             <li>
                 <a class="has-arrow ai-icon" href="#" aria-expanded="false">
                     <i class="fas fa-globe-europe"></i>
+                    <span class="nav-text">Agriculture Farmers</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('unverify-agri-farmers-by-land') }}">Unverify Farmers</a></li>
+                    <li><a href="{{ route('verify-agri-farmers-by-land') }}">Verify Farmers</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="has-arrow ai-icon" href="#" aria-expanded="false">
+                    <i class="fas fa-globe-europe"></i>
                     <span class="nav-text">Land Approved</span>
                 </a>
                 <ul aria-expanded="false">

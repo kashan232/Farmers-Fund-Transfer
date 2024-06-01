@@ -46,9 +46,10 @@
 							</li>
 							
 							
-                            <li class="nav-item">
-								<a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none"><i class="fas fa-power-off"></i></a>
-							</li>
+                            <form method="POST" action="{{ route('logout') }}">
+								@csrf
+								<a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="btn btn-primary d-sm-inline-block d-none"><i class="fas fa-power-off"></i></a>
+							</form>
                         </ul>
                     </div>
 				</nav>

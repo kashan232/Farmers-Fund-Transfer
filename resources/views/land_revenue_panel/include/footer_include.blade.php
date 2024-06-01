@@ -2,7 +2,7 @@
         Scripts
     ***********************************-->
 <!-- Required vendors -->
-<script src="/vendor/global/global.min.js"></script>
+<script src="/vendor/global/"></script>
 <script src="/vendor/chart-js/chart.bundle.min.js"></script>
 <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 

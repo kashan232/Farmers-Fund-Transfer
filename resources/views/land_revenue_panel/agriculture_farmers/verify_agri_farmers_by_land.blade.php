@@ -1,0 +1,99 @@
+@include('land_revenue_panel.include.header_include')
+
+<!--**********************************
+        Main wrapper start
+    ***********************************-->
+<div id="main-wrapper">
+
+    <!--**********************************
+            Nav header start
+        ***********************************-->
+    @include('land_revenue_panel.include.navbar_include')
+
+    <!--**********************************
+            Nav header end
+        ***********************************-->
+
+    <!--**********************************
+            Sidebar start
+        ***********************************-->
+    @include('land_revenue_panel.include.sidebar_include')
+
+    <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+    <!--**********************************
+            Content body start
+        ***********************************-->
+    <div class="content-body">
+        <!-- row -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">All Agriculture Officer</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-responsive-md">
+                                    <thead>
+                                        <tr>
+                                            <th><strong>Sno</strong></th>
+                                            <th><strong>Full Name</strong></th>
+                                            <th><strong>Contact Number</strong></th>
+                                            <th><strong>Address</strong></th>
+                                            <th><strong>Email Address</strong></th>
+                                            <th><strong>District <br> Tehsil</strong></th>
+                                            <th><strong>Username</strong></th>
+                                            <th><strong>Lock</strong></th>
+                                            <th class="text-end"><strong>Action</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($all_agri as $agri)
+                                        <tr>
+                                            <td><strong>{{ $loop->iteration }}</strong></td>
+                                            <td>{{ $agri->full_name }}</td>
+                                            <td>{{ $agri->contact_number }}</td>
+                                            <td>{{ $agri->address }}</td>
+                                            <td>{{ $agri->email_address }}</td>
+                                            <td>{{ $agri->district }} <br> {{ $agri->tehsil }}</td>
+                                            <td>{{ $agri->username }}</td>
+                                            <td>LOCK</td>
+                                            <td class="text-end">
+                                                <div class="d-flex justify-content-end">
+                                                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--**********************************
+            Content body end
+        ***********************************-->
+    <!--**********************************
+            Footer start
+        ***********************************-->
+   @include('land_revenue_panel.include.footer_copyright_include')
+    <!--**********************************
+            Footer end
+        ***********************************-->
+</div>
+<!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+@include('land_revenue_panel.include.footer_include')
+
+</body>
+</html>

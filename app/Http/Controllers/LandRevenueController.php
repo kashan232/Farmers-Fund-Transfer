@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AgricultureFarmersRegistration;
 use App\Models\District;
 use App\Models\LandRevenueDepartment;
 use App\Models\Tehsil;
@@ -75,5 +76,35 @@ class LandRevenueController extends Controller
             return redirect()->back();
         }
     }
+
+    public function unverify_agri_farmers_by_land()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            // dd($userId);
+            $all_agriculture_farmers = AgricultureFarmersRegistration::where('verification_status', '=', 'Not Verified')->get();
+            return view('land_revenue_panel.agriculture_farmers.unverify_agri_farmers_by_land', [
+                'all_agriculture_farmers' => $all_agriculture_farmers,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function verify_agri_farmers_by_land()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            // dd($userId);
+            $all_revenue = LandRevenueDepartment::where('admin_or_user_id', '=', $userId)->get();
+            return view('land_revenue_panel.agriculture_farmers.verify_agri_farmers_by_land', [
+                'all_revenue' => $all_revenue,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+
 
 }

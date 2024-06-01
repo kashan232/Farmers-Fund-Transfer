@@ -28,9 +28,13 @@ class AgricultureFarmerRegistrationController extends Controller
     {
         if (Auth::id()) {
             $usertype = Auth()->user()->usertype;
+            $user_id = Auth()->user()->user_id;
+            $user_name = Auth()->user()->name;
             $userId = Auth::id();
             AgricultureFarmersRegistration::create([
                 'admin_or_user_id'    => $userId,
+                'agri_emp_id'    => $user_id,
+                'agri_emp_name'    => $user_name,
                 'name'          => $request->name,
                 'father_name'          => $request->father_name,
                 'gender'          => $request->gender,
@@ -79,6 +83,7 @@ class AgricultureFarmerRegistrationController extends Controller
                 'upload_other_attach'          => $request->upload_other_attach,
                 'upload_farmer_pic'          => $request->upload_farmer_pic,
                 'upload_cheque_pic'          => $request->upload_cheque_pic,
+                'verification_status'          => 'Not Verified',
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ]);
@@ -92,45 +97,19 @@ class AgricultureFarmerRegistrationController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            // dd($userId);
-            // $all_revenue = LandRevenueDepartment::where('admin_or_user_id', '=', $userId)->get();
+            $user_id = Auth()->user()->user_id;
+            $user_name = Auth()->user()->name;
+            $all_agriculture_farmers = AgricultureFarmersRegistration::where('agri_emp_id', '=', $user_id)->where('agri_emp_name', '=', $user_name)->get();
+            // dd($all_agriculture_farmers);
             return view('agriculture_officer_panel.farmers_registration.all_agri_farmers', [
-                // 'all_revenue' => $all_revenue,
+                'all_agriculture_farmers' => $all_agriculture_farmers,
             ]);
         } else {
             return redirect()->back();
         }
     }
 
-    public function Agriculture_Farmers()
-    {
-        if (Auth::id()) {
-            $userId = Auth::id();
-            return view('admin_panel.screen.Agriculture_Farmers', []);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function Land_Revenue_Farmers()
-    {
-        if (Auth::id()) {
-            $userId = Auth::id();
-            return view('admin_panel.screen.Land_Revenue_Farmers', []);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function Online_Farmers()
-    {
-        if (Auth::id()) {
-            $userId = Auth::id();
-            return view('admin_panel.screen.Online_Farmers', []);
-        } else {
-            return redirect()->back();
-        }
-    }
+    
     public function land_approve_listing()
     {
         if (Auth::id()) {
@@ -167,22 +146,6 @@ class AgricultureFarmerRegistrationController extends Controller
             return redirect()->back();
         }
     }
-    public function report()
-    {
-        if (Auth::id()) {
-            $userId = Auth::id();
-            return view('land_revenue_panel.land_approve_listing.report', []);
-        } else {
-            return redirect()->back();
-        }
-    }
-    public function bank_screen()
-    {
-        if (Auth::id()) {
-            $userId = Auth::id();
-            return view('land_revenue_panel.land_approve_listing.bank_screen', []);
-        } else {
-            return redirect()->back();
-        }
-    }
+   
+   
 }

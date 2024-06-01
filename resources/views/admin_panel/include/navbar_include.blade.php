@@ -1,63 +1,445 @@
-<div class="nav-header">
-    <a href="index.html" class="brand-logo">
-        
-        <svg class="logo-abbr" width="53" height="53" viewBox="0 0 53 53">
-            <path d="M21.6348 8.04782C21.6348 5.1939 23.9566 2.87204 26.8105 2.87204H28.6018L28.0614 1.37003C27.7576 0.525342 26.9616 0 26.1132 0C25.8781 0 25.639 0.0403711 25.4052 0.125461L7.3052 6.7133C6.22916 7.105 5.67535 8.29574 6.06933 9.37096L7.02571 11.9814H21.6348V8.04782Z" fill="#759DD9"/>
-            <path d="M26.8105 5.97754C25.6671 5.97754 24.7402 6.90442 24.7402 8.04786V11.9815H42.8555V8.04786C42.8555 6.90442 41.9286 5.97754 40.7852 5.97754H26.8105Z" fill="#F8A961"/>
-            <path class="svg-logo-primary-path" d="M48.3418 41.8457H41.0957C36.8148 41.8457 33.332 38.3629 33.332 34.082C33.332 29.8011 36.8148 26.3184 41.0957 26.3184H48.3418V19.2275C48.3418 16.9408 46.4879 15.0869 44.2012 15.0869H4.14062C1.85386 15.0869 0 16.9408 0 19.2275V48.8594C0 51.1462 1.85386 53 4.14062 53H44.2012C46.4879 53 48.3418 51.1462 48.3418 48.8594V41.8457Z" fill="#5BCFC5"/>
-            <path class="svg-logo-primary-path" d="M51.4473 29.4238H41.0957C38.5272 29.4238 36.4375 31.5135 36.4375 34.082C36.4375 36.6506 38.5272 38.7402 41.0957 38.7402H51.4473C52.3034 38.7402 53 38.0437 53 37.1875V30.9766C53 30.1204 52.3034 29.4238 51.4473 29.4238ZM41.0957 35.6348C40.2382 35.6348 39.543 34.9396 39.543 34.082C39.543 33.2245 40.2382 32.5293 41.0957 32.5293C41.9532 32.5293 42.6484 33.2245 42.6484 34.082C42.6484 34.9396 41.9532 35.6348 41.0957 35.6348Z" fill="#5BCFC5"/>
-        </svg>&nbsp;
-        <h4 style="font-size: 32px; color: black; font-weight:bold;color:#fff;" class="mt-3">SWAT</h4>
-    </a>
-    <div class="nav-control">
-        <div class="hamburger">
-            <span class="line"></span><span class="line"></span><span class="line"></span>
-        </div>
-    </div>
-</div>
+<div class="header-wrapper"> <!-- [Mobile Media Block] start -->
+            <div class="me-auto pc-mob-drp">
+                <ul class="list-unstyled">
+                    <!-- ======= Menu collapse Icon ===== -->
+                    <li class="pc-h-item pc-sidebar-collapse">
+                        <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
+                            <i class="ti ti-menu-2"></i>
+                        </a>
+                    </li>
+                    <li class="pc-h-item pc-sidebar-popup">
+                        <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
+                            <i class="ti ti-menu-2"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown pc-h-item d-inline-flex d-md-none">
+                        <a class="pc-head-link dropdown-toggle arrow-none m-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="ph-duotone ph-magnifying-glass"></i>
+                        </a>
+                        <div class="dropdown-menu pc-h-dropdown drp-search">
+                            <form class="px-3">
+                                <div class="mb-0 d-flex align-items-center">
+                                    <input type="search" class="form-control border-0 shadow-none" placeholder="Search..." />
+                                    <button class="btn btn-light-secondary btn-search">Search</button>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <li class="pc-h-item d-none d-md-inline-flex">
+                        <form class="form-search">
+                            <i class="ph-duotone ph-magnifying-glass icon-search"></i>
+                            <input type="search" class="form-control" placeholder="Search..." />
 
-{{-- //Navbar End --}}
-
-<!--**********************************
-            Header start
-        ***********************************-->
-        <div class="header">
-            <div class="header-content">
-                <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-							<div class="dashboard_bar">
-                                Dashboard 
+                            <button class="btn btn-search" style="padding: 0"><kbd>ctrl+k</kbd></button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <!-- [Mobile Media Block end] -->
+            <div class="ms-auto">
+                <ul class="list-unstyled">
+                    <li class="dropdown pc-h-item d-none d-md-inline-flex">
+                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="ph-duotone ph-circles-four"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-qta dropdown-menu-end pc-h-dropdown">
+                            <div class="overflow-hidden">
+                                <div class="qta-links m-n1">
+                                    <a href="#!" class="dropdown-item">
+                                        <i class="ph-duotone ph-shopping-cart"></i>
+                                        <span>E-commerce</span>
+                                    </a>
+                                    <a href="#!" class="dropdown-item">
+                                        <i class="ph-duotone ph-lifebuoy"></i>
+                                        <span>Helpdesk</span>
+                                    </a>
+                                    <a href="#!" class="dropdown-item">
+                                        <i class="ph-duotone ph-scroll"></i>
+                                        <span>Invoice</span>
+                                    </a>
+                                    <a href="#!" class="dropdown-item">
+                                        <i class="ph-duotone ph-books"></i>
+                                        <span>Online Courses</span>
+                                    </a>
+                                    <a href="#!" class="dropdown-item">
+                                        <i class="ph-duotone ph-envelope-open"></i>
+                                        <span>Mail</span>
+                                    </a>
+                                    <a href="#!" class="dropdown-item">
+                                        <i class="ph-duotone ph-identification-badge"></i>
+                                        <span>Membership</span>
+                                    </a>
+                                    <a href="#!" class="dropdown-item">
+                                        <i class="ph-duotone ph-chats-circle"></i>
+                                        <span>Chat</span>
+                                    </a>
+                                    <a href="#!" class="dropdown-item">
+                                        <i class="ph-duotone ph-currency-circle-dollar"></i>
+                                        <span>Plans</span>
+                                    </a>
+                                    <a href="#!" class="dropdown-item">
+                                        <i class="ph-duotone ph-user-circle"></i>
+                                        <span>Users</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <ul class="navbar-nav header-right">
-							<li class="nav-item">
-								<div class="input-group search-area">
-									<input type="text" class="form-control" placeholder="Search here...">
-									<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
-								</div>
-							</li>
-							<li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link bell dz-theme-mode p-0" href="javascript:void(0);">
-									<i id="icon-light" class="fas fa-sun"></i>
-                                    <i id="icon-dark" class="fas fa-moon"></i>
-									
-                                </a>
-							</li>
-							
-							
-                            <li class="nav-item">
-
-							<form method="POST" action="{{ route('logout') }}">
-								@csrf
-								<a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="btn btn-primary d-sm-inline-block d-none"><i class="fas fa-power-off"></i></a>
-							</form>
-							</li>
-                        </ul>
-                    </div>
-				</nav>
-			</div>
-		</div>
-        <!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
+                    </li>
+                    <li class="dropdown pc-h-item">
+                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="ph-duotone ph-sun-dim"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
+                            <a href="#!" class="dropdown-item" onclick="layout_change('dark')">
+                                <i class="ph-duotone ph-moon"></i>
+                                <span>Dark</span>
+                            </a>
+                            <a href="#!" class="dropdown-item" onclick="layout_change('light')">
+                                <i class="ph-duotone ph-sun-dim"></i>
+                                <span>Light</span>
+                            </a>
+                            <a href="#!" class="dropdown-item" onclick="layout_change_default()">
+                                <i class="ph-duotone ph-cpu"></i>
+                                <span>Default</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="pc-h-item">
+                        <a class="pc-head-link pct-c-btn" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_pc_layout">
+                            <i class="ph-duotone ph-gear-six"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown pc-h-item">
+                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="ph-duotone ph-diamonds-four"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
+                            <a href="#!" class="dropdown-item">
+                                <i class="ph-duotone ph-user"></i>
+                                <span>My Account</span>
+                            </a>
+                            <a href="#!" class="dropdown-item">
+                                <i class="ph-duotone ph-gear"></i>
+                                <span>Settings</span>
+                            </a>
+                            <a href="#!" class="dropdown-item">
+                                <i class="ph-duotone ph-lifebuoy"></i>
+                                <span>Support</span>
+                            </a>
+                            <a href="#!" class="dropdown-item">
+                                <i class="ph-duotone ph-lock-key"></i>
+                                <span>Lock Screen</span>
+                            </a>
+                            <a href="#!" class="dropdown-item">
+                                <i class="ph-duotone ph-power"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="dropdown pc-h-item">
+                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="ph-duotone ph-bell"></i>
+                            <span class="badge bg-success pc-h-badge">3</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
+                            <div class="dropdown-header d-flex align-items-center justify-content-between">
+                                <h5 class="m-0">Notifications</h5>
+                                <ul class="list-inline ms-auto mb-0">
+                                    <li class="list-inline-item">
+                                        <a href="https://html.phoenixcoded.net/light-able/bootstrap/application/mail.html" class="avtar avtar-s btn-link-hover-primary">
+                                            <i class="ti ti-link f-18"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-body text-wrap header-notification-scroll position-relative" style="max-height: calc(100vh - 235px)">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <p class="text-span">Today</p>
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar avtar avtar-s" />
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1 me-3 position-relative">
+                                                        <h6 class="mb-0 text-truncate">Keefe Bond added new tags to 💪 Design system</h6>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <span class="text-sm">2 min ago</span>
+                                                    </div>
+                                                </div>
+                                                <p class="position-relative mt-1 mb-2"><br /><span class="text-truncate">Lorem Ipsum has been the
+                                                        industry's standard dummy text ever since the 1500s.</span></p>
+                                                <span class="badge bg-light-primary border border-primary me-1 mt-1">web design</span>
+                                                <span class="badge bg-light-warning border border-warning me-1 mt-1">Dashobard</span>
+                                                <span class="badge bg-light-success border border-success me-1 mt-1">Design System</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <div class="avtar avtar-s bg-light-primary">
+                                                    <i class="ph-duotone ph-chats-teardrop f-18"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1 me-3 position-relative">
+                                                        <h6 class="mb-0 text-truncate">Message</h6>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <span class="text-sm">1 hour ago</span>
+                                                    </div>
+                                                </div>
+                                                <p class="position-relative mt-1 mb-2"><br /><span class="text-truncate">Lorem Ipsum has been the
+                                                        industry's standard dummy text ever since the 1500s.</span></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <p class="text-span">Yesterday</p>
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <div class="avtar avtar-s bg-light-danger">
+                                                    <i class="ph-duotone ph-user f-18"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1 me-3 position-relative">
+                                                        <h6 class="mb-0 text-truncate">Challenge invitation</h6>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <span class="text-sm">12 hour ago</span>
+                                                    </div>
+                                                </div>
+                                                <p class="position-relative mt-1 mb-2"><br /><span class="text-truncate"><strong> Jonny aber </strong>
+                                                        invites to join the challenge</span></p>
+                                                <button class="btn btn-sm rounded-pill btn-outline-secondary me-2">Decline</button>
+                                                <button class="btn btn-sm rounded-pill btn-primary">Accept</button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <div class="avtar avtar-s bg-light-info">
+                                                    <i class="ph-duotone ph-notebook f-18"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1 me-3 position-relative">
+                                                        <h6 class="mb-0 text-truncate">Forms</h6>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <span class="text-sm">2 hour ago</span>
+                                                    </div>
+                                                </div>
+                                                <p class="position-relative mt-1 mb-2">Lorem Ipsum is simply dummy text of the printing and
+                                                    typesetting industry. Lorem Ipsum has been the industry's standard
+                                                    dummy text ever since the 1500s.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar avtar avtar-s" />
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1 me-3 position-relative">
+                                                        <h6 class="mb-0 text-truncate">Keefe Bond added new tags to 💪 Design system</h6>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <span class="text-sm">2 min ago</span>
+                                                    </div>
+                                                </div>
+                                                <p class="position-relative mt-1 mb-2"><br /><span class="text-truncate">Lorem Ipsum has been the
+                                                        industry's standard dummy text ever since the 1500s.</span></p>
+                                                <button class="btn btn-sm rounded-pill btn-outline-secondary me-2">Decline</button>
+                                                <button class="btn btn-sm rounded-pill btn-primary">Accept</button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <div class="avtar avtar-s bg-light-success">
+                                                    <i class="ph-duotone ph-shield-checkered f-18"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1 me-3 position-relative">
+                                                        <h6 class="mb-0 text-truncate">Security</h6>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <span class="text-sm">5 hour ago</span>
+                                                    </div>
+                                                </div>
+                                                <p class="position-relative mt-1 mb-2">Lorem Ipsum is simply dummy text of the printing and
+                                                    typesetting industry. Lorem Ipsum has been the industry's standard
+                                                    dummy text ever since the 1500s.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-footer">
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <div class="d-grid"><button class="btn btn-primary">Archive all</button></div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="d-grid"><button class="btn btn-outline-secondary">Mark all as read</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown pc-h-item header-user-profile">
+                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
+                            <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar" />
+                        </a>
+                        <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
+                            <div class="dropdown-header d-flex align-items-center justify-content-between">
+                                <h5 class="m-0">Profile</h5>
+                            </div>
+                            <div class="dropdown-body">
+                                <div class="profile-notification-scroll position-relative" style="max-height: calc(100vh - 225px)">
+                                    <ul class="list-group list-group-flush w-100">
+                                        <li class="list-group-item">
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="wid-50 rounded-circle" />
+                                                </div>
+                                                <div class="flex-grow-1 mx-3">
+                                                    <h5 class="mb-0">Carson Darrin</h5>
+                                                    <a class="link-primary" href="mailto:carson.darrin@company.io">carson.darrin@company.io</a>
+                                                </div>
+                                                <span class="badge bg-primary">PRO</span>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-key"></i>
+                                                    <span>Change password</span>
+                                                </span>
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-envelope-simple"></i>
+                                                    <span>Recently mail</span>
+                                                </span>
+                                                <div class="user-group">
+                                                    <img src="../assets/images/user/avatar-1.jpg" alt="user-image" class="avtar" />
+                                                    <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="avtar" />
+                                                    <img src="../assets/images/user/avatar-3.jpg" alt="user-image" class="avtar" />
+                                                </div>
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-calendar-blank"></i>
+                                                    <span>Schedule meetings</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-heart"></i>
+                                                    <span>Favorite</span>
+                                                </span>
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-arrow-circle-down"></i>
+                                                    <span>Download</span>
+                                                </span>
+                                                <span class="avtar avtar-xs rounded-circle bg-danger text-white">10</span>
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-globe-hemisphere-west"></i>
+                                                    <span>Languages</span>
+                                                </span>
+                                                <span class="flex-shrink-0">
+                                                    <select class="form-select bg-transparent form-select-sm border-0 shadow-none">
+                                                        <option value="1">English</option>
+                                                        <option value="2">Spain</option>
+                                                        <option value="3">Arbic</option>
+                                                    </select>
+                                                </span>
+                                            </div>
+                                            <a href="#" class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-flag"></i>
+                                                    <span>Country</span>
+                                                </span>
+                                            </a>
+                                            <div class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-moon"></i>
+                                                    <span>Dark mode</span>
+                                                </span>
+                                                <div class="form-check form-switch form-check-reverse m-0">
+                                                    <input class="form-check-input f-18" id="dark-mode" type="checkbox" onclick="dark_mode()" role="switch" />
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-user-circle"></i>
+                                                    <span>Edit profile</span>
+                                                </span>
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-star text-warning"></i>
+                                                    <span>Upgrade account</span>
+                                                    <span class="badge bg-light-success border border-success ms-2">NEW</span>
+                                                </span>
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-bell"></i>
+                                                    <span>Notifications</span>
+                                                </span>
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-gear-six"></i>
+                                                    <span>Settings</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="#" class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-plus-circle"></i>
+                                                    <span>Add account</span>
+                                                </span>
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <span class="d-flex align-items-center">
+                                                    <i class="ph-duotone ph-power"></i>
+                                                    <span>Logout</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>

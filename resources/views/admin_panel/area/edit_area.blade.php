@@ -1,81 +1,74 @@
 @include('admin_panel.include.header_include')
-
-<!--**********************************
-        Main wrapper start
-    ***********************************-->
-<div id="main-wrapper">
-
-    <!--**********************************
-            Nav header start
-        ***********************************-->
-    @include('admin_panel.include.navbar_include')
-
-    <!--**********************************
-            Nav header end
-        ***********************************-->
-
-    <!--**********************************
-            Sidebar start
-        ***********************************-->
+<!-- [ Pre-loader ] End -->
+<!-- [ Sidebar Menu ] start -->
+<nav class="pc-sidebar">
     @include('admin_panel.include.sidebar_include')
+</nav>
 
-    <!--**********************************
-            Sidebar end
-        ***********************************-->
+<!-- [ Sidebar Menu ] end -->
+<!-- [ Header Topbar ] start -->
+<header class="pc-header">
+    @include('admin_panel.include.navbar_include')
+</header>
+<!-- [ Header ] end -->
 
-    <!--**********************************
-            Content body start
-        ***********************************-->
-    <div class="content-body">
-        <!-- row -->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-12 col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Edit Area</h4>
+
+
+<!-- [ Main Content ] start -->
+<div class="pc-container">
+    <div class="pc-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h2 class="mb-0">Edit Area</h2>
                         </div>
-                        <div class="card-body">
-                            @if (session()->has('success-message-updte'))
-                            <div class="alert alert-success alert-dismissible fade show">
-                                <strong>Success!</strong> {{ session('success-message-updte') }}.
-                            </div>
-                            @endif
-                            <div class="basic-form">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Edit Area</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (session()->has('success-message-updte'))
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <strong>Success!</strong> {{ session('success-message-updte') }}.
+                        </div>
+                        @endif
+                        <div class="row">
+                            <div class="col-md-12">
                                 <form action="{{ route('update-area',['id'=> $areadetails->id ]) }}" method="POST">
                                     @csrf
-                                    <div class="row">
-                                        <div class="mb-12 col-md-12">
-                                            <label class="form-label">Area Name</label>
-                                            <input type="text" name="area" class="form-control" value="{{ $areadetails->area }}">
-                                        </div>
+                                    <div class="mb-12 col-md-12">
+                                        <label class="form-label">Area Name</label>
+                                        <input type="text" name="area" class="form-control" value="{{ $areadetails->area }}">
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                                    <button type="submit" class="btn btn-primary mb-5 mt-2">Submit</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
+        <!-- [ Main Content ] end -->
     </div>
-    <!--**********************************
-            Content body end
-        ***********************************-->
-    <!--**********************************
-            Footer start
-        ***********************************-->
-   @include('admin_panel.include.footer_copyright_include')
-    <!--**********************************
-            Footer end
-        ***********************************-->
 </div>
-<!--**********************************
-        Main wrapper end
-    ***********************************-->
+<!-- [ Main Content ] end -->
+<footer class="pc-footer">
+    @include('admin_panel.include.footer_copyright_include')
+</footer>
 
 @include('admin_panel.include.footer_include')
 
 </body>
+
 </html>

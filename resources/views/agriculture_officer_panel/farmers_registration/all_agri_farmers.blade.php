@@ -47,18 +47,21 @@
                                             <th>UC</th>
                                             <th>Area</th>
                                             <th>Mobile</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($all_agriculture_farmers as $all_agriculture_farmer)
                                         <tr>
-                                            <td>imtaz ali</td>
-                                            <td>4540354554275</td>
-                                            <td>SHAHEED BENAZIRABAD</td>
-                                            <td>SAKRAND</td>
-                                            <td>marvi</td>
-                                            <td>10</td>
-                                            <td>03033215424	</td>
+                                            <td>{{ $all_agriculture_farmer->name }}</td>
+                                            <td>{{ $all_agriculture_farmer->cnic }}</td>
+                                            <td>{{ $all_agriculture_farmer->district }}</td>
+                                            <td>{{ $all_agriculture_farmer->tehsil }}</td>
+                                            <td>{{ $all_agriculture_farmer->uc }}</td>
+                                            <td>{{ $all_agriculture_farmer->area }}</td>
+                                            <td>{{ $all_agriculture_farmer->mobile }}</td>
+                                            <td>{{ $all_agriculture_farmer->verification_status }}</td>
                                                 <td>
                                                     <div class="d-flex">
                                                         <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa-solid fa-eye"></i></a>
@@ -68,176 +71,7 @@
                                                 </td>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>imtaz ali</td>
-                                            <td>4540354554275</td>
-                                            <td>SHAHEED BENAZIRABAD</td>
-                                            <td>SAKRAND</td>
-                                            <td>marvi</td>
-                                            <td>10</td>
-                                            <td>03033215424	</td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa-solid fa-eye"></i></a>
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa-solid fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>imtaz ali</td>
-                                            <td>4540354554275</td>
-                                            <td>SHAHEED BENAZIRABAD</td>
-                                            <td>SAKRAND</td>
-                                            <td>marvi</td>
-                                            <td>10</td>
-                                            <td>03033215424	</td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa-solid fa-eye"></i></a>
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa-solid fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>imtaz ali</td>
-                                            <td>4540354554275</td>
-                                            <td>SHAHEED BENAZIRABAD</td>
-                                            <td>SAKRAND</td>
-                                            <td>marvi</td>
-                                            <td>10</td>
-                                            <td>03033215424	</td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa-solid fa-eye"></i></a>
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa-solid fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>imtaz ali</td>
-                                            <td>4540354554275</td>
-                                            <td>SHAHEED BENAZIRABAD</td>
-                                            <td>SAKRAND</td>
-                                            <td>marvi</td>
-                                            <td>10</td>
-                                            <td>03033215424	</td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa-solid fa-eye"></i></a>
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa-solid fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>imtaz ali</td>
-                                            <td>4540354554275</td>
-                                            <td>SHAHEED BENAZIRABAD</td>
-                                            <td>SAKRAND</td>
-                                            <td>marvi</td>
-                                            <td>10</td>
-                                            <td>03033215424	</td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa-solid fa-eye"></i></a>
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa-solid fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>imtaz ali</td>
-                                            <td>4540354554275</td>
-                                            <td>SHAHEED BENAZIRABAD</td>
-                                            <td>SAKRAND</td>
-                                            <td>marvi</td>
-                                            <td>10</td>
-                                            <td>03033215424	</td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa-solid fa-eye"></i></a>
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa-solid fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>imtaz ali</td>
-                                            <td>4540354554275</td>
-                                            <td>SHAHEED BENAZIRABAD</td>
-                                            <td>SAKRAND</td>
-                                            <td>marvi</td>
-                                            <td>10</td>
-                                            <td>03033215424	</td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa-solid fa-eye"></i></a>
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa-solid fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>imtaz ali</td>
-                                            <td>4540354554275</td>
-                                            <td>SHAHEED BENAZIRABAD</td>
-                                            <td>SAKRAND</td>
-                                            <td>marvi</td>
-                                            <td>10</td>
-                                            <td>03033215424	</td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa-solid fa-eye"></i></a>
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa-solid fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>imtaz ali</td>
-                                            <td>4540354554275</td>
-                                            <td>SHAHEED BENAZIRABAD</td>
-                                            <td>SAKRAND</td>
-                                            <td>marvi</td>
-                                            <td>10</td>
-                                            <td>03033215424	</td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa-solid fa-eye"></i></a>
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa-solid fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>imtaz ali</td>
-                                            <td>4540354554275</td>
-                                            <td>SHAHEED BENAZIRABAD</td>
-                                            <td>SAKRAND</td>
-                                            <td>marvi</td>
-                                            <td>10</td>
-                                            <td>03033215424	</td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa-solid fa-eye"></i></a>
-                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa-solid fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
