@@ -1,23 +1,32 @@
-<!--**********************************
-        Scripts
-    ***********************************-->
-<!-- Required vendors -->
-<script src="/vendor/global/"></script>
-<script src="/vendor/chart-js/chart.bundle.min.js"></script>
-<script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+<script src="../assets/js/plugins/apexcharts.min.js"></script>
+<script src="../assets/js/plugins/jsvectormap.min.js"></script>
+<script src="../assets/js/plugins/world.js"></script>
+<script src="../assets/js/plugins/world-merc.js"></script>
+<script src="../assets/js/pages/dashboard-default.js"></script>
+<script src="../assets/js/plugins/popper.min.js"></script>
+<script src="../assets/js/plugins/simplebar.min.js"></script>
+<script src="../assets/js/plugins/bootstrap.min.js"></script>
+<script src="../assets/js/fonts/custom-font.js"></script>
+<script src="../assets/js/pcoded.js"></script>
+<script src="../assets/js/plugins/feather.min.js"></script>
+<script src="../assets/js/plugins/dataTables.min.js"></script>
+    <script src="../assets/js/plugins/dataTables.bootstrap5.min.js"></script>
+<script>
+    layout_change('light');
+</script>
+<script>
+    layout_sidebar_change('light');
+</script>
+<script>
+    change_box_container('false');
+</script>
+<script>
+    layout_caption_change('true');
+</script>
+<script>
+    layout_rtl_change('false');
+</script>
+<script>
+    preset_change("preset-1");
+</script>
 
-<!-- Apex Chart -->
-<script src="/vendor/apexchart/apexchart.js"></script>
-<script src="/vendor/nouislider/nouislider.min.js"></script>
-<script src="/vendor/wnumb/wNumb.js"></script>
-
-<!-- Dashboard 1 -->
-<script src="/js/dashboard/dashboard-1.js"></script>
-
-<script src="/js/custom.min.js"></script>
-<script src="/js/dlabnav-init.js"></script>
-<script src="/js/demo.js"></script>
-<script src="/js/styleSwitcher.js"></script>
-<!-- Datatable -->
-<script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="js/plugins-init/datatables.init.js"></script>

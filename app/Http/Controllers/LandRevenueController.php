@@ -77,12 +77,26 @@ class LandRevenueController extends Controller
         }
     }
 
+    public function all_agri_farmers_by_land()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            // dd($userId);
+            $all_agriculture_farmers = AgricultureFarmersRegistration::all();
+            return view('land_revenue_panel.agriculture_farmers.all_agri_farmers_by_land', [
+                'all_agriculture_farmers' => $all_agriculture_farmers,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
     public function unverify_agri_farmers_by_land()
     {
         if (Auth::id()) {
             $userId = Auth::id();
             // dd($userId);
-            $all_agriculture_farmers = AgricultureFarmersRegistration::where('verification_status', '=', 'Not Verified')->get();
+            $all_agriculture_farmers = AgricultureFarmersRegistration::where('verification_status', '=', 'Unverified')->get();
             return view('land_revenue_panel.agriculture_farmers.unverify_agri_farmers_by_land', [
                 'all_agriculture_farmers' => $all_agriculture_farmers,
             ]);
@@ -96,15 +110,35 @@ class LandRevenueController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             // dd($userId);
-            $all_revenue = LandRevenueDepartment::where('admin_or_user_id', '=', $userId)->get();
+            $all_agriculture_farmers = AgricultureFarmersRegistration::where('verification_status', '=', 'Verified')->get();
             return view('land_revenue_panel.agriculture_farmers.verify_agri_farmers_by_land', [
-                'all_revenue' => $all_revenue,
+                'all_agriculture_farmers' => $all_agriculture_farmers,
             ]);
         } else {
             return redirect()->back();
         }
     }
 
+    public function verify_unverify_agri_farmers_by_land(Request $request)
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $farmers_id = $request->farmers_id;
+            $verification_status = $request->verification_status; // Ensure this matches the form field name
+            $declined_reason = $request->declined_reason; // Ensure this matches the form field name
 
+            $user_name = Auth::user()->name;
 
+            AgricultureFarmersRegistration::where('id', $farmers_id)->update([
+                'verification_status' => $verification_status,
+                'declined_reason' => $verification_status === 'Unverified' ? $declined_reason : null,
+                'verification_by' => $user_name,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            return redirect()->back()->with('farmer-updated', 'Farmer verification status updated successfully');
+        } else {
+            return redirect()->back();
+        }
+    }
 }

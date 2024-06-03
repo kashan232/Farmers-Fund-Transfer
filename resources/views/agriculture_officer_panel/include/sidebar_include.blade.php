@@ -1,23 +1,41 @@
-<div class="dlabnav">
-    <div class="dlabnav-scroll">
-        <ul class="metismenu" id="menu">
-            <li>
-                <a class="" href="{{ route('home') }}" aria-expanded="false">
-                    <i class="fa-solid fa-gear fw-bold"></i>
-                    <span class="nav-text">Dasboard</span>
+        <div class="navbar-wrapper">
+            <div class="m-header">
+                <a href="index.html" class="b-brand text-primary">
+                    <img src="../assets/images/logo-dark.svg" alt="logo image" class="logo-lg" />
                 </a>
+            </div>
+            <div class="navbar-content">
+                <ul class="pc-navbar">
+                    <li class="pc-item pc-hasmenu">
+                        <a href="{{ route('home') }}" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph-duotone ph-gauge"></i>
+                            </span>
+                            <span class="pc-mtext">Dashboard</span>
+                        </a>
+                    </li>
 
-            </li>
-            <li>
-                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <span class="nav-text">Farmers Registration</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{ route('add-agri-farmers') }}">Add Farmers</a></li>
-                        <li><a href="{{ route('all-agri-farmers') }}">All Farmers</a></li>
+                   
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph-duotone ph-globe"></i>
+                            </span>
+                            <span class="pc-mtext">Farmers Registration</span>
+                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                        </a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('add-agri-farmers') }}">Add Farmers</a>
+                            </li>
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('all-agri-farmers') }}">All Farmers</a>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
-            </li>
 
-        </ul>
-    </div>
-</div>
+            </div>
+
+        </div>

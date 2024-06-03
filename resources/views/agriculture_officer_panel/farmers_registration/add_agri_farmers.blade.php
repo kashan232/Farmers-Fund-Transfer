@@ -1,3 +1,4 @@
+@include('agriculture_officer_panel.include.header_include')
 <style>
     .progress-indicator {
     display: flex;
@@ -47,44 +48,45 @@
 }
 
 </style>
-@include('agriculture_officer_panel.include.header_include')
-
-<!--**********************************
-        Main wrapper start
-    ***********************************-->
-<div id="main-wrapper">
-
-    <!--**********************************
-            Nav header start
-        ***********************************-->
-    @include('agriculture_officer_panel.include.navbar_include')
-
-    <!--**********************************
-            Nav header end
-        ***********************************-->
-
-    <!--**********************************
-            Sidebar start
-        ***********************************-->
+<!-- [ Pre-loader ] End -->
+<!-- [ Sidebar Menu ] start -->
+<nav class="pc-sidebar">
     @include('agriculture_officer_panel.include.sidebar_include')
+</nav>
 
-    <!--**********************************
-            Sidebar end
-        ***********************************-->
+<!-- [ Sidebar Menu ] end -->
+<!-- [ Header Topbar ] start -->
+<header class="pc-header">
+    @include('agriculture_officer_panel.include.navbar_include')
+</header>
+<!-- [ Header ] end -->
 
-    <!--**********************************
-            Content body start
-        ***********************************-->
-    <div class="content-body">
-        <!-- row -->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-12 col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Farmers Registration</h4>
+
+
+<!-- [ Main Content ] start -->
+<div class="pc-container">
+    <div class="pc-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h2 class="mb-0">Create District</h2>
                         </div>
-                        <div class="card-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>District</h5>
+                    </div>
+                    <div class="card-body">
                             <div class="basic-form">
                                 <!-- Progress Indicator -->
                                 <div class="progress-indicator mb-4">
@@ -342,28 +344,19 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
+        <!-- [ Main Content ] end -->
     </div>
-    <!--**********************************
-            Content body end
-        ***********************************-->
-    <!--**********************************
-            Footer start
-        ***********************************-->
-    @include('agriculture_officer_panel.include.footer_copyright_include')
-    <!--**********************************
-            Footer end
-        ***********************************-->
 </div>
-<!--**********************************
-        Main wrapper end
-    ***********************************-->
+<!-- [ Main Content ] end -->
+<footer class="pc-footer">
+    @include('agriculture_officer_panel.include.footer_copyright_include')
+</footer>
 
 @include('agriculture_officer_panel.include.footer_include')
-
+<script src="jquery-3.7.1.min.js"></script>
 <script>
     function nextStep(step) {
         $('.step').hide();
@@ -384,6 +377,5 @@
         }
     }
 </script>
-
 </body>
 </html>

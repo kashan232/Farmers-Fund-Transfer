@@ -1,60 +1,106 @@
-<div class="nav-header">
-    <a href="index.html" class="brand-logo">
-        
-        <svg class="logo-abbr" width="53" height="53" viewBox="0 0 53 53">
-            <path d="M21.6348 8.04782C21.6348 5.1939 23.9566 2.87204 26.8105 2.87204H28.6018L28.0614 1.37003C27.7576 0.525342 26.9616 0 26.1132 0C25.8781 0 25.639 0.0403711 25.4052 0.125461L7.3052 6.7133C6.22916 7.105 5.67535 8.29574 6.06933 9.37096L7.02571 11.9814H21.6348V8.04782Z" fill="#759DD9"/>
-            <path d="M26.8105 5.97754C25.6671 5.97754 24.7402 6.90442 24.7402 8.04786V11.9815H42.8555V8.04786C42.8555 6.90442 41.9286 5.97754 40.7852 5.97754H26.8105Z" fill="#F8A961"/>
-            <path class="svg-logo-primary-path" d="M48.3418 41.8457H41.0957C36.8148 41.8457 33.332 38.3629 33.332 34.082C33.332 29.8011 36.8148 26.3184 41.0957 26.3184H48.3418V19.2275C48.3418 16.9408 46.4879 15.0869 44.2012 15.0869H4.14062C1.85386 15.0869 0 16.9408 0 19.2275V48.8594C0 51.1462 1.85386 53 4.14062 53H44.2012C46.4879 53 48.3418 51.1462 48.3418 48.8594V41.8457Z" fill="#5BCFC5"/>
-            <path class="svg-logo-primary-path" d="M51.4473 29.4238H41.0957C38.5272 29.4238 36.4375 31.5135 36.4375 34.082C36.4375 36.6506 38.5272 38.7402 41.0957 38.7402H51.4473C52.3034 38.7402 53 38.0437 53 37.1875V30.9766C53 30.1204 52.3034 29.4238 51.4473 29.4238ZM41.0957 35.6348C40.2382 35.6348 39.543 34.9396 39.543 34.082C39.543 33.2245 40.2382 32.5293 41.0957 32.5293C41.9532 32.5293 42.6484 33.2245 42.6484 34.082C42.6484 34.9396 41.9532 35.6348 41.0957 35.6348Z" fill="#5BCFC5"/>
-        </svg>
-        <h4 style="font-size: 35px; color: white;" class="mt-3">Swat</h4>
-    </a>
-    <div class="nav-control">
-        <div class="hamburger">
-            <span class="line"></span><span class="line"></span><span class="line"></span>
-        </div>
+<div class="header-wrapper"> <!-- [Mobile Media Block] start -->
+    <div class="me-auto pc-mob-drp">
+        <ul class="list-unstyled">
+            <!-- ======= Menu collapse Icon ===== -->
+            <li class="pc-h-item pc-sidebar-collapse">
+                <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
+                    <i class="ti ti-menu-2"></i>
+                </a>
+            </li>
+            <li class="pc-h-item pc-sidebar-popup">
+                <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
+                    <i class="ti ti-menu-2"></i>
+                </a>
+            </li>
+            <li class="dropdown pc-h-item d-inline-flex d-md-none">
+                <a class="pc-head-link dropdown-toggle arrow-none m-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <i class="ph-duotone ph-magnifying-glass"></i>
+                </a>
+                <div class="dropdown-menu pc-h-dropdown drp-search">
+                    <form class="px-3">
+                        <div class="mb-0 d-flex align-items-center">
+                            <input type="search" class="form-control border-0 shadow-none" placeholder="Search..." />
+                            <button class="btn btn-light-secondary btn-search">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <li class="pc-h-item d-none d-md-inline-flex">
+                <form class="form-search">
+                    <i class="ph-duotone ph-magnifying-glass icon-search"></i>
+                    <input type="search" class="form-control" placeholder="Search..." />
+
+                    <button class="btn btn-search" style="padding: 0"><kbd>ctrl+k</kbd></button>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <!-- [Mobile Media Block end] -->
+    <div class="ms-auto">
+        <ul class="list-unstyled">
+            <li class="dropdown pc-h-item">
+                <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <i class="ph-duotone ph-sun-dim"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
+                    <a href="#!" class="dropdown-item" onclick="layout_change('dark')">
+                        <i class="ph-duotone ph-moon"></i>
+                        <span>Dark</span>
+                    </a>
+                    <a href="#!" class="dropdown-item" onclick="layout_change('light')">
+                        <i class="ph-duotone ph-sun-dim"></i>
+                        <span>Light</span>
+                    </a>
+                    <a href="#!" class="dropdown-item" onclick="layout_change_default()">
+                        <i class="ph-duotone ph-cpu"></i>
+                        <span>Default</span>
+                    </a>
+                </div>
+            </li>
+            <li class="dropdown pc-h-item header-user-profile">
+                <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
+                    <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar" />
+                </a>
+                <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
+                    <div class="dropdown-header d-flex align-items-center justify-content-between">
+                        <h5 class="m-0">Profile</h5>
+                    </div>
+                    <div class="dropdown-body">
+                        <div class="profile-notification-scroll position-relative" style="max-height: calc(100vh - 225px)">
+                            <ul class="list-group list-group-flush w-100">
+                                <li class="list-group-item">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="wid-50 rounded-circle" />
+                                        </div>
+                                        <div class="flex-grow-1 mx-3">
+                                            <h5 class="mb-0">Carson Darrin</h5>
+                                            <a class="link-primary" href="mailto:carson.darrin@company.io">carson.darrin@company.io</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#" class="dropdown-item">
+                                        <span class="d-flex align-items-center">
+                                            <i class="ph-duotone ph-key"></i>
+                                            <span>Change password</span>
+                                        </span>
+                                    </a>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item">
+                                            <span class="d-flex align-items-center">
+                                                <i class="ph-duotone ph-power"></i>
+                                                <span>Logout</span>
+                                            </span>
+                                        </a>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
-
-{{-- //Navbar End --}}
-
-<!--**********************************
-            Header start
-        ***********************************-->
-        <div class="header">
-            <div class="header-content">
-                <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-							<div class="dashboard_bar">
-                               Agriculture Dashboard 
-                            </div>
-                        </div>
-                        <ul class="navbar-nav header-right">
-							<li class="nav-item">
-								<div class="input-group search-area">
-									<input type="text" class="form-control" placeholder="Search here...">
-									<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
-								</div>
-							</li>
-							<li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link bell dz-theme-mode p-0" href="javascript:void(0);">
-									<i id="icon-light" class="fas fa-sun"></i>
-                                    <i id="icon-dark" class="fas fa-moon"></i>
-									
-                                </a>
-							</li>
-							
-							
-                            <form method="POST" action="{{ route('logout') }}">
-								@csrf
-								<a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="btn btn-primary d-sm-inline-block d-none"><i class="fas fa-power-off"></i></a>
-							</form>
-                        </ul>
-                    </div>
-				</nav>
-			</div>
-		</div>
-        <!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
