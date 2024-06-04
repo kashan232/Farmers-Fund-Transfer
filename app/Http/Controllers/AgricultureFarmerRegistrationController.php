@@ -109,7 +109,33 @@ class AgricultureFarmerRegistrationController extends Controller
         }
     }
 
-    
+    public function agri_unverify_farmers()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            // dd($userId);
+            $all_agriculture_farmers = AgricultureFarmersRegistration::where('admin_or_user_id', '=', $userId)->where('verification_status', '=', 'Unverified')->get();
+            return view('agriculture_officer_panel.farmers_verifications.unverify_agri_farmers_by_land', [
+                'all_agriculture_farmers' => $all_agriculture_farmers,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function agri_verify_farmers()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            // dd($userId);
+            $all_agriculture_farmers = AgricultureFarmersRegistration::where('admin_or_user_id', '=', $userId)->where('verification_status', '=', 'Verified')->get();
+            return view('agriculture_officer_panel.farmers_verifications.verify_agri_farmers_by_land', [
+                'all_agriculture_farmers' => $all_agriculture_farmers,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
   
    
 }
