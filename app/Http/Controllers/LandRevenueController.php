@@ -34,7 +34,7 @@ class LandRevenueController extends Controller
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
-            LandRevenueDepartment::create([
+            $landrevenue = LandRevenueDepartment::create([
                 'admin_or_user_id'    => $userId,
                 'full_name'          => $request->full_name,
                 'contact_number'          => $request->contact_number,
@@ -48,8 +48,11 @@ class LandRevenueController extends Controller
                 'updated_at'        => Carbon::now(),
             ]);
 
+             // Create a user record with the same credentials and usertype 'employee'
+            
             // Create a user record with the same credentials and usertype 'employee'
             $user = User::create([
+                'user_id' => $landrevenue->id,
                 'name' => $request->full_name,
                 'email' => $request->email_address,
                 'district' => $request->district,

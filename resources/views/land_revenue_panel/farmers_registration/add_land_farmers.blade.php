@@ -1,4 +1,4 @@
-@include('agriculture_officer_panel.include.header_include')
+@include('land_revenue_panel.include.header_include')
 <style>
     .progress-indicator {
         display: flex;
@@ -54,13 +54,13 @@
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
 <nav class="pc-sidebar">
-    @include('agriculture_officer_panel.include.sidebar_include')
+    @include('land_revenue_panel.include.sidebar_include')
 </nav>
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
 <header class="pc-header">
-    @include('agriculture_officer_panel.include.navbar_include')
+    @include('land_revenue_panel.include.navbar_include')
 </header>
 <!-- [ Header ] end -->
 
@@ -75,7 +75,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Agriculture Farmers </h2>
+                            <h2 class="mb-0">Land Revenue Farmers </h2>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                                 </div>
                             </div>
 
-                            <form id="registrationForm" action="{{ route('store-agri-farmers') }}" method="POST">
+                            <form id="registrationForm" action="{{ route('store-land-farmers') }}" method="POST">
                                 @csrf
                                 <div class="step step-1">
                                     <div class="row mt-2">
@@ -355,10 +355,10 @@
 </div>
 <!-- [ Main Content ] end -->
 <footer class="pc-footer">
-    @include('agriculture_officer_panel.include.footer_copyright_include')
+    @include('land_revenue_panel.include.footer_copyright_include')
 </footer>
 
-@include('agriculture_officer_panel.include.footer_include')
+@include('land_revenue_panel.include.footer_include')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     function nextStep(step) {

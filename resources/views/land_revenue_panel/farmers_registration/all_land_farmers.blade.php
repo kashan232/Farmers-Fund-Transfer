@@ -1,14 +1,14 @@
-@include('agriculture_officer_panel.include.header_include')
+@include('land_revenue_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
 <nav class="pc-sidebar">
-    @include('agriculture_officer_panel.include.sidebar_include')
+    @include('land_revenue_panel.include.sidebar_include')
 </nav>
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
 <header class="pc-header">
-    @include('agriculture_officer_panel.include.navbar_include')
+    @include('land_revenue_panel.include.navbar_include')
 </header>
 <!-- [ Header ] end -->
 
@@ -23,7 +23,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Agriculture Farmers</h2>
+                            <h2 class="mb-0">List Farmers</h2>
                         </div>
                     </div>
                 </div>
@@ -69,18 +69,18 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($all_agriculture_farmers as $all_agriculture_farmer)
+                                                    @foreach($all_land_farmers as $all_land_farmer)
 
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $all_agriculture_farmer->name }}</td>
-                                                        <td>{{ $all_agriculture_farmer->cnic }}</td>
-                                                        <td>{{ $all_agriculture_farmer->district }}</td>
-                                                        <td>{{ $all_agriculture_farmer->tehsil }}</td>
-                                                        <td>{{ $all_agriculture_farmer->uc }}</td>
-                                                        <td>{{ $all_agriculture_farmer->area }}</td>
-                                                        <td>{{ $all_agriculture_farmer->mobile }}</td>
-                                                        <td>{{ $all_agriculture_farmer->verification_status }}</td>
+                                                        <td>{{ $all_land_farmer->name }}</td>
+                                                        <td>{{ $all_land_farmer->cnic }}</td>
+                                                        <td>{{ $all_land_farmer->district }}</td>
+                                                        <td>{{ $all_land_farmer->tehsil }}</td>
+                                                        <td>{{ $all_land_farmer->uc }}</td>
+                                                        <td>{{ $all_land_farmer->area }}</td>
+                                                        <td>{{ $all_land_farmer->mobile }}</td>
+                                                        <td>{{ $all_land_farmer->verification_status }}</td>
                                                         <td>
                                                             <div class="d-flex">
                                                                 <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
@@ -122,10 +122,10 @@
 </div>
 <!-- [ Main Content ] end -->
 <footer class="pc-footer">
-    @include('agriculture_officer_panel.include.footer_copyright_include')
+    @include('land_revenue_panel.include.footer_copyright_include')
 </footer>
 
-@include('agriculture_officer_panel.include.footer_include')
+@include('land_revenue_panel.include.footer_include')
 
 </body>
 
