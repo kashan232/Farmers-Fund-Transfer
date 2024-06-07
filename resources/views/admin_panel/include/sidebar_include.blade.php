@@ -53,6 +53,16 @@
             </li>
             <li>
                 <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fas fa-boxes"></i>
+                    <span class="nav-text">UC</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('add-uc') }}">Add</a></li>
+                    <li><a href="{{ route('all-uc') }}">List</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fas fa-user-plus"></i>
                     <span class="nav-text">Agriculture</span>
                 </a>
