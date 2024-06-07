@@ -53,16 +53,6 @@
             </li>
             <li>
                 <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="fas fa-boxes"></i>
-                    <span class="nav-text">UC</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{ route('add-uc') }}">Add</a></li>
-                    <li><a href="{{ route('all-uc') }}">List</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fas fa-user-plus"></i>
                     <span class="nav-text">Agriculture</span>
                 </a>
@@ -82,49 +72,73 @@
                 </ul>
             </li>
 
-            <li>
-                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="fas fa-user-plus"></i>
-                    <span class="nav-text">Farmers</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{ route('Agriculture-Farmers') }}">Agriculture Farmers</a></li>
-                    <li><a href="{{ route('Land-Revenue-Farmers') }}">Land Revenue Farmers</a></li>
-                    <li><a href="{{ route('Online-Farmers') }}">Online Farmers</a></li>
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link">
+                        <span class="pc-micon">
+                                <i class="ph-duotone ph-buildings"></i>
+                            </span>
+                            <span class="pc-mtext">Tappa</span>
+                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                        </a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('add-tappa') }}">Add</a>
+                            </li>
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('all-tappa') }}">List</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph-duotone ph-user-plus"></i>
+                            </span>
+                            <span class="pc-mtext">Agriculture</span>
+                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                        </a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('agri-officer-create') }}">Create Officer</a>
+                            </li>
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('all-agri-officer') }}">All Officer</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph-duotone ph-user-plus"></i>
+                            </span>
+                            <span class="pc-mtext">Land Revenue</span>
+                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                        </a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('add-revenue-officer') }}">Create Officer</a>
+                            </li>
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('all-revenue-officer') }}">All Officer</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    
+                    <li class="pc-item">
+                        <a href="#" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph-duotone ph-globe"></i>
+                            </span>
+                            <span class="pc-mtext">Reports</span>
+                        </a>
+                    </li>
+
+
                 </ul>
-            </li>
-            {{-- <li>
-                <a href="{{ route('bank-screen') }}" aria-expanded="false">
-                    <i class="fas fa-boxes"></i>
-                    <span class="nav-text">Bank</span>
-                </a>
-            </li> --}}
-            <li>
-                <a class="" href="{{ route('bank-screen') }}" aria-expanded="false">
-                    <i class="fa-solid fa-gear fw-bold"></i>
-                    <span class="nav-text">Bank</span>
-                </a>
 
-            </li>
+            </div>
 
-            <li>
-                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="fas fa-user-plus"></i>
-                    <span class="nav-text">Bankscreen</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{ route('Agriculture-Farmers') }}">Agriculture Farmers</a></li>
-                    <li><a href="{{ route('Land-Revenue-Farmers') }}">Land Revenue Farmers</a></li>
-                    <li><a href="{{ route('Online-Farmers') }}">Online Farmers</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="{{ route('report') }}" aria-expanded="false">
-                    <i class="fas fa-globe-europe"></i>
-                    <span class="nav-text">Reports</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+        </div>

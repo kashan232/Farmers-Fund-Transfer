@@ -13,6 +13,8 @@ class AgricultureFarmersRegistration extends Model
 
     protected $fillable = [
         'admin_or_user_id',
+        'agri_emp_id',
+        'agri_emp_name',
         'name',
         'father_name',
         'gender',
@@ -61,5 +63,6 @@ class AgricultureFarmersRegistration extends Model
         'upload_other_attach',
         'upload_farmer_pic',
         'upload_cheque_pic',
+        'verification_status',
     ];
 }
