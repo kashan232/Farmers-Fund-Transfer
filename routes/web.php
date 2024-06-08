@@ -54,65 +54,65 @@ Route::get('/all-district', [DistrictController::class, 'all_district'])->name('
 Route::get('/edit-district/{id}', [DistrictController::class, 'edit_district'])->name('edit-district');
 Route::post('/update-district/{id}', [DistrictController::class, 'update_district'])->name('update-district');
 
- //tehsil
- Route::get('/add-tehsil', [TehsilController::class, 'add_tehsil'])->name('add-tehsil');
+//tehsil
+Route::get('/add-tehsil', [TehsilController::class, 'add_tehsil'])->name('add-tehsil');
 Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('store-tehsil');
- Route::get('/all-tehsil', [TehsilController::class, 'all_tehsil'])->name('all-tehsil');
- Route::get('/edit-tehsil/{id}', [TehsilController::class, 'edit_tehsil'])->name('edit-tehsil');
- Route::post('/update-tehsil/{id}', [TehsilController::class, 'update_tehsil'])->name('update-tehsil');
- //area
- Route::get('/add-area', [AreaController::class, 'add_area'])->name('add-area');
- Route::post('/store-area', [AreaController::class, 'store_area'])->name('store-area');
- Route::get('/all-area', [AreaController::class, 'all_area'])->name('all-area');
- Route::get('/edit-area/{id}', [AreaController::class, 'edit_area'])->name('edit-area');
- Route::post('/update-area/{id}', [AreaController::class, 'update_area'])->name('update-area');
- 
- //tappa
- Route::get('/add-tappa', [TappaController::class, 'add_tappa'])->name('add-tappa');
- Route::post('/store-tappa', [TappaController::class, 'store_tappa'])->name('store-tappa');
- Route::get('/all-tappa', [TappaController::class, 'all_tappa'])->name('all-tappa');
+Route::get('/all-tehsil', [TehsilController::class, 'all_tehsil'])->name('all-tehsil');
+Route::get('/edit-tehsil/{id}', [TehsilController::class, 'edit_tehsil'])->name('edit-tehsil');
+Route::post('/update-tehsil/{id}', [TehsilController::class, 'update_tehsil'])->name('update-tehsil');
+//area
+Route::get('/add-area', [AreaController::class, 'add_area'])->name('add-area');
+Route::post('/store-area', [AreaController::class, 'store_area'])->name('store-area');
+Route::get('/all-area', [AreaController::class, 'all_area'])->name('all-area');
+Route::get('/edit-area/{id}', [AreaController::class, 'edit_area'])->name('edit-area');
+Route::post('/update-area/{id}', [AreaController::class, 'update_area'])->name('update-area');
 
- //UC
- Route::get('/add-uc', [UCController::class, 'add_uc'])->name('add-uc');
- Route::post('/store-uc', [UCController::class, 'store_uc'])->name('store-uc');
- Route::get('/all-uc', [UCController::class, 'all_uc'])->name('all-uc');
+//tappa
+Route::get('/add-tappa', [TappaController::class, 'add_tappa'])->name('add-tappa');
+Route::post('/store-tappa', [TappaController::class, 'store_tappa'])->name('store-tappa');
+Route::get('/all-tappa', [TappaController::class, 'all_tappa'])->name('all-tappa');
 
- //Agriculture office
- 
- Route::get('/agri-officer-create', [AgricultureOfficerController::class, 'agri_officer_create'])->middleware(['auth','admin'])->name('agri-officer-create');
- Route::post('/store-agri-officer', [AgricultureOfficerController::class, 'store_agri_officer'])->name('store-agri-officer');
- Route::get('/all-agri-officer', [AgricultureOfficerController::class, 'all_agri_officer'])->middleware(['auth','admin'])->name('all-agri-officer');
+//UC
+Route::get('/add-uc', [UCController::class, 'add_uc'])->name('add-uc');
+Route::post('/store-uc', [UCController::class, 'store_uc'])->name('store-uc');
+Route::get('/all-uc', [UCController::class, 'all_uc'])->name('all-uc');
 
- //Land Revenue Department
- Route::get('/add-revenue-officer', [LandRevenueController::class, 'add_revenue_officer'])->name('add-revenue-officer');
- Route::post('/store-revenue-officer', [LandRevenueController::class, 'store_revenue_officer'])->name('store-revenue-officer');
- Route::get('/all-revenue-officer', [LandRevenueController::class, 'all_revenue_officer'])->middleware(['auth','admin'])->name('all-revenue-officer');
+//Agriculture office
 
-  //Land Revenue Department verify agriculture farmers
-  Route::get('/all-agri-farmers-by-land', [LandRevenueController::class, 'all_agri_farmers_by_land'])->name('all-agri-farmers-by-land');
-  Route::get('/unverify-agri-farmers-by-land', [LandRevenueController::class, 'unverify_agri_farmers_by_land'])->name('unverify-agri-farmers-by-land');
-  Route::get('/verify-agri-farmers-by-land', [LandRevenueController::class, 'verify_agri_farmers_by_land'])->name('verify-agri-farmers-by-land');
-  
-  Route::post('/verify-unverify-agri-farmers-by-land', [LandRevenueController::class, 'verify_unverify_agri_farmers_by_land'])->name('verify-unverify-agri-farmers-by-land');
+Route::get('/agri-officer-create', [AgricultureOfficerController::class, 'agri_officer_create'])->middleware(['auth', 'admin'])->name('agri-officer-create');
+Route::post('/store-agri-officer', [AgricultureOfficerController::class, 'store_agri_officer'])->name('store-agri-officer');
+Route::get('/all-agri-officer', [AgricultureOfficerController::class, 'all_agri_officer'])->middleware(['auth', 'admin'])->name('all-agri-officer');
 
-  Route::get('/add-land-farmers', [LandRevenueFarmerController::class, 'add_land_farmers'])->name('add-land-farmers');
- Route::post('/store-land-farmers', [LandRevenueFarmerController::class, 'store_land_farmers'])->name('store-land-farmers');
- Route::get('/all-land-farmers', [LandRevenueFarmerController::class, 'all_land_farmers'])->name('all-land-farmers');
+//Land Revenue Department
+Route::get('/add-revenue-officer', [LandRevenueController::class, 'add_revenue_officer'])->name('add-revenue-officer');
+Route::post('/store-revenue-officer', [LandRevenueController::class, 'store_revenue_officer'])->name('store-revenue-officer');
+Route::get('/all-revenue-officer', [LandRevenueController::class, 'all_revenue_officer'])->middleware(['auth', 'admin'])->name('all-revenue-officer');
 
- Route::get('/unverify-farmers-by-land', [LandRevenueController::class, 'unverify_farmers_by_land'])->name('unverify-farmers-by-land');
- Route::get('/verify-farmers-by-land', [LandRevenueController::class, 'verify_farmers_by_land'])->name('verify-farmers-by-land');
- 
- Route::post('/verify-unverify-land-farmers', [LandRevenueController::class, 'verify_unverify_land_farmers'])->name('verify-unverify-land-farmers');
+//Land Revenue Department verify agriculture farmers
+Route::get('/all-agri-farmers-by-land', [LandRevenueController::class, 'all_agri_farmers_by_land'])->name('all-agri-farmers-by-land');
+Route::get('/unverify-agri-farmers-by-land', [LandRevenueController::class, 'unverify_agri_farmers_by_land'])->name('unverify-agri-farmers-by-land');
+Route::get('/verify-agri-farmers-by-land', [LandRevenueController::class, 'verify_agri_farmers_by_land'])->name('verify-agri-farmers-by-land');
+
+Route::post('/verify-unverify-agri-farmers-by-land', [LandRevenueController::class, 'verify_unverify_agri_farmers_by_land'])->name('verify-unverify-agri-farmers-by-land');
+
+Route::get('/add-land-farmers', [LandRevenueFarmerController::class, 'add_land_farmers'])->name('add-land-farmers');
+Route::post('/store-land-farmers', [LandRevenueFarmerController::class, 'store_land_farmers'])->name('store-land-farmers');
+Route::get('/all-land-farmers', [LandRevenueFarmerController::class, 'all_land_farmers'])->name('all-land-farmers');
+
+Route::get('/unverify-farmers-by-land', [LandRevenueController::class, 'unverify_farmers_by_land'])->name('unverify-farmers-by-land');
+Route::get('/verify-farmers-by-land', [LandRevenueController::class, 'verify_farmers_by_land'])->name('verify-farmers-by-land');
+
+Route::post('/verify-unverify-land-farmers', [LandRevenueController::class, 'verify_unverify_land_farmers'])->name('verify-unverify-land-farmers');
 
 
- // agriculture department panel
- Route::get('/add-agri-farmers', [AgricultureFarmerRegistrationController::class, 'add_agri_farmers'])->name('add-agri-farmers');
- Route::post('/store-agri-farmers', [AgricultureFarmerRegistrationController::class, 'store_agri_farmers'])->name('store-agri-farmers');
- Route::get('/all-agri-farmers', [AgricultureFarmerRegistrationController::class, 'all_agri_farmers'])->name('all-agri-farmers');
+// agriculture department panel
+Route::get('/add-agri-farmers', [AgricultureFarmerRegistrationController::class, 'add_agri_farmers'])->name('add-agri-farmers');
+Route::post('/store-agri-farmers', [AgricultureFarmerRegistrationController::class, 'store_agri_farmers'])->name('store-agri-farmers');
+Route::get('/all-agri-farmers', [AgricultureFarmerRegistrationController::class, 'all_agri_farmers'])->name('all-agri-farmers');
 
- Route::get('/agri-unverify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_unverify_farmers'])->name('agri-unverify-farmers');
- Route::get('/agri-verify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_verify_farmers'])->name('agri-verify-farmers');
-  
+Route::get('/agri-unverify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_unverify_farmers'])->name('agri-unverify-farmers');
+Route::get('/agri-verify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_verify_farmers'])->name('agri-verify-farmers');
+
 
 //Land Revenue PAnel
 //  All Screens
@@ -121,8 +121,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
