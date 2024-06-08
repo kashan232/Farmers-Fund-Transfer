@@ -15,6 +15,7 @@ use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TappaController;
 use App\Http\Controllers\TehsilController;
+use App\Http\Controllers\UCController;
 use App\Models\District;
 use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Route;
@@ -70,6 +71,12 @@ Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('s
  Route::get('/add-tappa', [TappaController::class, 'add_tappa'])->name('add-tappa');
  Route::post('/store-tappa', [TappaController::class, 'store_tappa'])->name('store-tappa');
  Route::get('/all-tappa', [TappaController::class, 'all_tappa'])->name('all-tappa');
+
+ //UC
+ Route::get('/add-uc', [UCController::class, 'add_uc'])->name('add-uc');
+ Route::post('/store-uc', [UCController::class, 'store_uc'])->name('store-uc');
+ Route::get('/all-uc', [UCController::class, 'all_uc'])->name('all-uc');
+
  //Agriculture office
  
  Route::get('/agri-officer-create', [AgricultureOfficerController::class, 'agri_officer_create'])->middleware(['auth','admin'])->name('agri-officer-create');
