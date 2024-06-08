@@ -1,7 +1,7 @@
 <div class="navbar-wrapper">
             <div class="m-header">
-                <a href="index.html" class="b-brand text-primary">
-                    <img src="../assets/images/logo-dark.svg" alt="logo image" class="logo-lg" />
+                <a href="#" class="b-brand text-primary">
+                    <img src="../assets/images/logoswat.png" alt="logo image" class="logo-lg" style="width: 100px!important; height:100px!important;" />
                 </a>
             </div>
             <div class="navbar-content">
