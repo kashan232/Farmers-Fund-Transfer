@@ -13,8 +13,8 @@ class LandRevenueFarmerRegistation extends Model
 
     protected $fillable = [
         'admin_or_user_id',
-        'agri_emp_id',
-        'agri_emp_name',
+        'land_emp_id',
+        'land_emp_name',
         'name',
         'father_name',
         'gender',

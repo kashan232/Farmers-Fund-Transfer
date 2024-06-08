@@ -92,6 +92,11 @@ Route::post('/store-tehsil', [TehsilController::class, 'store_tehsil'])->name('s
  Route::post('/store-land-farmers', [LandRevenueFarmerController::class, 'store_land_farmers'])->name('store-land-farmers');
  Route::get('/all-land-farmers', [LandRevenueFarmerController::class, 'all_land_farmers'])->name('all-land-farmers');
 
+ Route::get('/unverify-farmers-by-land', [LandRevenueController::class, 'unverify_farmers_by_land'])->name('unverify-farmers-by-land');
+ Route::get('/verify-farmers-by-land', [LandRevenueController::class, 'verify_farmers_by_land'])->name('verify-farmers-by-land');
+ 
+ Route::post('/verify-unverify-land-farmers', [LandRevenueController::class, 'verify_unverify_land_farmers'])->name('verify-unverify-land-farmers');
+
 
  // agriculture department panel
  Route::get('/add-agri-farmers', [AgricultureFarmerRegistrationController::class, 'add_agri_farmers'])->name('add-agri-farmers');

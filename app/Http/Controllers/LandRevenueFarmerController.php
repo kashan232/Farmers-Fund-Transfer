@@ -34,8 +34,8 @@ class LandRevenueFarmerController extends Controller
             $userId = Auth::id();
             LandRevenueFarmerRegistation::create([
                 'admin_or_user_id'    => $userId,
-                'agri_emp_id'    => $user_id,
-                'agri_emp_name'    => $user_name,
+                'land_emp_id'    => $user_id,
+                'land_emp_name'    => $user_name,
                 'name'          => $request->name,
                 'father_name'          => $request->father_name,
                 'gender'          => $request->gender,
@@ -101,7 +101,7 @@ class LandRevenueFarmerController extends Controller
             $userId = Auth::id();
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
-            $all_land_farmers = LandRevenueFarmerRegistation::where('agri_emp_id', '=', $user_id)->where('agri_emp_name', '=', $user_name)->get();
+            $all_land_farmers = LandRevenueFarmerRegistation::where('land_emp_id', '=', $user_id)->where('land_emp_name', '=', $user_name)->get();
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
                 'all_land_farmers' => $all_land_farmers,
