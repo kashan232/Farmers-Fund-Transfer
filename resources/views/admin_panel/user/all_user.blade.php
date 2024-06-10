@@ -23,7 +23,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">List UC</h2>
+                            <h2 class="mb-0">List User</h2>
                         </div>
                     </div>
                 </div>
@@ -56,19 +56,25 @@
                                             <thead>
                                                 <tr role="row">
                                                     <th>Sno</th>
+                                                    <th>Name</th>
+                                                    <th>CNIC</th>
                                                     <th>District</th>
                                                     <th>Tehsil</th>
                                                     <th>UC</th>
+                                                    <th>Mobile No</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach ($all_uc as $uc )
+                                            @foreach ($all_user as $user )
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $uc->district }}</td>
-                                                    <td>{{ $uc->tehsil }}</td>
-                                                    <td>{{ $uc->uc }}</td>
+                                                    <td>{{ $user->user_name }}</td>
+                                                    <td>{{ $user->cnic }}</td>
+                                                    <td>{{ $user->district }}</td>
+                                                    <td>{{ $user->tehsil }}</td>
+                                                    <td>{{ $user->uc }}</td>
+                                                    <td>{{ $user->number }}</td>
                                                     <td>
                                                         <div class="d-flex">
                                                             <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
