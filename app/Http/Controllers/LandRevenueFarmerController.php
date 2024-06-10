@@ -163,4 +163,19 @@ class LandRevenueFarmerController extends Controller
         }
     }
 
+    public function view_land_farmers($id)
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $user_id = Auth()->user()->user_id;
+            $user_name = Auth()->user()->name;
+            $all_land_farmers = LandRevenueFarmerRegistation::where('id', '=', $id)->first();
+            // dd($all_agriculture_farmers);
+            return view('land_revenue_panel.farmers_registration.view_land_farmers', [
+                'all_land_farmers' => $all_land_farmers,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
 }
