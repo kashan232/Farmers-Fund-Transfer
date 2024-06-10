@@ -106,7 +106,7 @@
                                 </div>
                             </div>
 
-                            <form id="registrationForm" action="{{ route('store-agri-farmers') }}" method="POST">
+                            <form id="registrationForm" action="{{ route('store-agri-farmers') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="step step-1">
                                     <div class="row mt-2">
@@ -398,7 +398,5 @@
     // Initialize the first step
     nextStep(1);
 </script>
-
 </body>
-
 </html>
