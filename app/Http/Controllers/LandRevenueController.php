@@ -200,4 +200,19 @@ class LandRevenueController extends Controller
             return redirect()->back();
         }
     }
+
+    public function verifications_land_farmers()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $land_id = Auth()->user()->user_id;
+            // dd($land_id);
+            $all_land_farmers = LandRevenueFarmerRegistation::where('land_emp_id', $land_id)->get();
+            return view('land_revenue_panel.land_verifications.verifications_land_farmers', [
+                'all_land_farmers' => $all_land_farmers,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
 }

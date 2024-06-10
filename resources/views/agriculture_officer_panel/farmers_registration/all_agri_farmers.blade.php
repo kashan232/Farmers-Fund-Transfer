@@ -83,8 +83,9 @@
                                                         <td>{{ $all_agriculture_farmer->verification_status }}</td>
                                                         <td>
                                                             <div class="d-flex">
-                                                                <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                                                <a href="{{ route('view-agri-farmers', ['id' => $all_agriculture_farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp;
+                                                                <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>&nbsp;
+                                                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>&nbsp;
                                                             </div>
                                                         </td>
                                                     </tr>

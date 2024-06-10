@@ -10,7 +10,21 @@
 <script src="../assets/js/pcoded.js"></script>
 <script src="../assets/js/plugins/feather.min.js"></script>
 <script src="../assets/js/plugins/dataTables.min.js"></script>
-    <script src="../assets/js/plugins/dataTables.bootstrap5.min.js"></script>
+<script src="../assets/js/plugins/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ]
+        });
+    });
+</script>
 <script>
     layout_change('light');
 </script>
@@ -29,4 +43,3 @@
 <script>
     preset_change("preset-1");
 </script>
-

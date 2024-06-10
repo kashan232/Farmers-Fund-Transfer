@@ -106,7 +106,7 @@
                                 </div>
                             </div>
 
-                            <form id="registrationForm" action="{{ route('store-land-farmers') }}" method="POST">
+                            <form id="registrationForm" action="{{ route('store-land-farmers') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="step step-1">
                                     <div class="row mt-2">
