@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AgricultureFarmerRegistrationController;
 use App\Http\Controllers\AgricultureOfficerController;
+use App\Http\Controllers\AgriUserController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
@@ -76,6 +77,11 @@ Route::get('/all-tappa', [TappaController::class, 'all_tappa'])->name('all-tappa
 Route::get('/add-uc', [UCController::class, 'add_uc'])->name('add-uc');
 Route::post('/store-uc', [UCController::class, 'store_uc'])->name('store-uc');
 Route::get('/all-uc', [UCController::class, 'all_uc'])->name('all-uc');
+Route::get('/get-tehsils', [UCController::class, 'getTehsils'])->name('get-tehsils');
+//User
+Route::get('/add-user', [AgriUserController::class, 'add_user'])->name('add-user');
+Route::post('/store-user', [AgriUserController::class, 'store_user'])->name('store-user');
+Route::get('/all-user', [AgriUserController::class, 'all_user'])->name('all-user');
 
 //Agriculture office
 
