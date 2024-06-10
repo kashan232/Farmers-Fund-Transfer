@@ -15,7 +15,7 @@
                         </a>
                     </li>
 
-                   
+
                     <li class="pc-item pc-hasmenu">
                         <a href="#!" class="pc-link">
                             <span class="pc-micon">
@@ -65,6 +65,9 @@
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="pc-submenu">
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('verifications-land-farmers') }}">land Revenue Farmers</a>
+                            </li>
                             <li class="pc-item">
                                 <a class="pc-link" href="{{ route('unverify-farmers-by-land') }}">Unverify Farmers</a>
                             </li>

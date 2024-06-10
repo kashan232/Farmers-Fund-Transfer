@@ -13,39 +13,6 @@
 <!-- [ Header ] end -->
 
 
-<div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLiveLabel">Farmers Verification</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="row">
-                        <form id="verifyfarmers" action="{{ route('verify-unverify-land-farmers') }}" method="POST">
-                            @csrf
-                            <div class="form-group">
-                                <label for="statusSelect">Status</label>
-                                <input type="hidden" id="farmers_id" name="farmers_id" readonly>
-                                <select class="form-control" id="statusSelect" name="verification_status">
-                                    <option value="Verified">Verified</option>
-                                    <option value="Unverified">Unverified</option>
-                                </select>
-                            </div>
-                            <div class="form-group" id="reasonBox" style="display: none;">
-                                <label for="reasonTextarea">Reason</label>
-                                <textarea class="form-control" id="reasonTextarea" name="declined_reason" rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary mt-3">Save</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <!-- [ Main Content ] start -->
 <div class="pc-container">
@@ -56,7 +23,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Land Revenue Unverify Farmers</h2>
+                            <h2 class="mb-0">Land Revenue Farmers</h2>
                         </div>
                     </div>
                 </div>
@@ -97,7 +64,7 @@
                                                         <th>Area</th>
                                                         <th>Mobile</th>
                                                         <th>Status</th>
-                                                        <th>Verify</th>
+                                                        <th>Declined Reason</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -117,9 +84,16 @@
                                                             <span class="badge text-bg-danger">Unverified</span>
                                                             @endif
                                                         </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalLive" data-id="{{ $all_land_farmer->id }}">Verify</button>
-                                                        </td>
+                                                        @if ($all_land_farmer->verification_status === 'Unverified')
+                                                        @if (is_null($all_land_farmer->declined_reason))
+                                                        <td>-</td>
+                                                        @else
+                                                        <td>{{ $all_land_farmer->declined_reason }}</td>
+                                                        @endif
+                                                        @else
+                                                        <td>-</td>
+                                                        @endif
+
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
