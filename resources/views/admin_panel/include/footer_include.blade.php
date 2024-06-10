@@ -1,3 +1,4 @@
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> -->
 <script src="../assets/js/plugins/apexcharts.min.js"></script>
 <script src="../assets/js/plugins/jsvectormap.min.js"></script>
 <script src="../assets/js/plugins/world.js"></script>
@@ -11,6 +12,40 @@
 <script src="../assets/js/plugins/feather.min.js"></script>
 <script src="../assets/js/plugins/dataTables.min.js"></script>
     <script src="../assets/js/plugins/dataTables.bootstrap5.min.js"></script>
+    
+<script>
+      // [ DOM/jquery ]
+      var total, pageTotal;
+      var table = $('#dom-jqry').DataTable();
+      // [ column Rendering ]
+      $('#colum-render').DataTable({
+        columnDefs: [
+          {
+            render: function (data, type, row) {
+              return data + ' (' + row[3] + ')';
+            },
+            targets: 0
+          },
+          {
+            visible: false,
+            targets: [3]
+          }
+        ]
+      });
+      // [ Multiple Table Control Elements ]
+      $('#multi-table').DataTable({
+        dom: '<"top"iflp<"clear">>rt<"bottom"iflp<"clear">>'
+      });
+      // [ Complex Headers With Column Visibility ]
+      $('#complex-header').DataTable({
+        columnDefs: [
+          {
+            visible: false,
+            targets: -1
+          }
+        ]
+      });
+    </script>
 <script>
     layout_change('light');
 </script>

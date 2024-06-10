@@ -22,7 +22,6 @@ use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
-// ap naraz he?? Aiman Here
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
