@@ -59,7 +59,7 @@
                         </ul>
                     </li>
 
-                    <li class="pc-item pc-hasmenu">
+                    <!-- <li class="pc-item pc-hasmenu">
                         <a href="#!" class="pc-link">
                             <span class="pc-micon">
                                 <i class="ph-duotone ph-buildings"></i>
@@ -75,7 +75,7 @@
                                 <a class="pc-link" href="{{ route('all-area') }}">List</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <li class="pc-item pc-hasmenu">
                         <a href="#!" class="pc-link">

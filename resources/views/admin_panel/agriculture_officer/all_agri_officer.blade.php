@@ -49,6 +49,8 @@
                                                     <th><strong>Address</strong></th>
                                                     <th><strong>Email Address</strong></th>
                                                     <th><strong>District <br> Tehsil</strong></th>
+                                                    <th><strong>UC</strong></th>
+                                                    <th><strong>Tappa</strong></th>
                                                     <th><strong>Username</strong></th>
                                                     <th class="text-end"><strong>Action</strong></th>
                                                 </tr>
@@ -62,6 +64,26 @@
                                                     <td>{{ $agri->address }}</td>
                                                     <td>{{ $agri->email_address }}</td>
                                                     <td>{{ $agri->district }} <br> {{ $agri->tehsil }}</td>
+                                                    <td>
+                                                            @php
+                                                            $userUcArray = json_decode($agri->ucs);
+                                                            @endphp
+                                                            @if(is_array($userUcArray))
+                                                            @foreach($userUcArray as $uc)
+                                                            {{ $uc }}<br>
+                                                            @endforeach
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @php
+                                                            $usertappaArray = json_decode($agri->tappas);
+                                                            @endphp
+                                                            @if(is_array($usertappaArray))
+                                                            @foreach($usertappaArray as $tappa)
+                                                            {{ $tappa }}<br>
+                                                            @endforeach
+                                                            @endif
+                                                        </td>
                                                     <td>{{ $agri->username }}</td>
                                                     <td>
                                                         <div class="d-flex">

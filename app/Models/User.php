@@ -24,7 +24,9 @@ class User extends Authenticatable
         'password',
         'usertype',
         'district',
-        'tehsil'
+        'tehsil',
+        'ucs',
+        'tappas'
     ];
 
     /**

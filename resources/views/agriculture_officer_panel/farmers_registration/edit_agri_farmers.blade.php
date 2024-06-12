@@ -1,4 +1,4 @@
-@include('land_revenue_panel.include.header_include')
+@include('agriculture_officer_panel.include.header_include')
 <style>
     .progress-indicator {
         display: flex;
@@ -54,13 +54,13 @@
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
 <nav class="pc-sidebar">
-    @include('land_revenue_panel.include.sidebar_include')
+    @include('agriculture_officer_panel.include.sidebar_include')
 </nav>
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
 <header class="pc-header">
-    @include('land_revenue_panel.include.navbar_include')
+    @include('agriculture_officer_panel.include.navbar_include')
 </header>
 <!-- [ Header ] end -->
 
@@ -75,7 +75,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Update Land Revenue Farmer </h2>
+                            <h2 class="mb-0">Agriculture Farmers </h2>
                         </div>
                     </div>
                 </div>
@@ -106,18 +106,18 @@
                                 </div>
                             </div>
 
-                            <form id="registrationForm" action="{{ route('update-land-farmers',['id'=> $all_land_farmer->id ]) }}" method="POST" enctype="multipart/form-data">
+                            <form id="registrationForm" action="{{ route('update-agri-farmers',['id'=> $all_agriculture_farmer->id ]) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="step step-1">
                                     <div class="row mt-2">
                                         <h4 class="card-title">Personal Details</h4>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Name</label>
-                                            <input type="text" name="name" class="form-control" value="{{ $all_land_farmer->name }}">
+                                            <input type="text" name="name" class="form-control" value="{{ $all_agriculture_farmer->name }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Father Name</label>
-                                            <input type="text" name="father_name" class="form-control" value="{{ $all_land_farmer->father_name }}">
+                                            <input type="text" name="father_name" class="form-control" value="{{ $all_agriculture_farmer->father_name }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Gender</label>
@@ -129,108 +129,108 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">CNIC</label>
-                                            <input type="text" name="cnic" class="form-control" value="{{ $all_land_farmer->cnic }}">
+                                            <input type="text" name="cnic" class="form-control" value="{{ $all_agriculture_farmer->cnic }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Province</label>
-                                            <input type="text" name="province" class="form-control" value="{{ $all_land_farmer->province }}">
+                                            <input type="text" name="province" class="form-control" value="{{ $all_agriculture_farmer->province }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Dictrict</label>
-                                            <input type="text" name="district" class="form-control" value="{{ $all_land_farmer->district }}">
+                                            <input type="text" name="district" class="form-control" value="{{ $all_agriculture_farmer->district }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Tehsil</label>
-                                            <input type="text" name="tehsil" class="form-control" value="{{ $all_land_farmer->tehsil }}">
+                                            <input type="text" name="tehsil" class="form-control" value="{{ $all_agriculture_farmer->tehsil }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">UC</label>
-                                            <input type="text" name="uc" class="form-control" value="{{ $all_land_farmer->uc }}">
+                                            <input type="text" name="uc" class="form-control" value="{{ $all_agriculture_farmer->uc }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Tappa</label>
-                                            <input type="text" name="tappa" class="form-control" value="{{ $all_land_farmer->tappa }}">
+                                            <input type="text" name="tappa" class="form-control" value="{{ $all_agriculture_farmer->tappa }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Area</label>
-                                            <input type="text" name="area" class="form-control" value="{{ $all_land_farmer->area }}">
+                                            <input type="text" name="area" class="form-control" value="{{ $all_agriculture_farmer->area }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Chak Goth Killi</label>
-                                            <input type="text" name="chak_goth_killi" class="form-control" value="{{ $all_land_farmer->chak_goth_killi }}">
+                                            <input type="text" name="chak_goth_killi" class="form-control" value="{{ $all_agriculture_farmer->chak_goth_killi }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Khasra Survey No
                                             </label>
-                                            <input type="text" name="khasra_survey" class="form-control" value="{{ $all_land_farmer->khasra_survey }}">
+                                            <input type="text" name="khasra_survey" class="form-control" value="{{ $all_agriculture_farmer->khasra_survey }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Mobile</label>
-                                            <input type="text" name="mobile" class="form-control" value="{{ $all_land_farmer->mobile }}">
+                                            <input type="text" name="mobile" class="form-control" value="{{ $all_agriculture_farmer->mobile }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Area Category</label>
-                                            <input type="text" name="area_category" class="form-control" value="{{ $all_land_farmer->area_category }}">
+                                            <input type="text" name="area_category" class="form-control" value="{{ $all_agriculture_farmer->area_category }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Ownership</label>
-                                            <input type="text" name="ownership" class="form-control" value="{{ $all_land_farmer->ownership }}">
+                                            <input type="text" name="ownership" class="form-control" value="{{ $all_agriculture_farmer->ownership }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Aid Type</label>
-                                            <input type="text" name="aid_type" class="form-control" value="{{ $all_land_farmer->aid_type }}">
+                                            <input type="text" name="aid_type" class="form-control" value="{{ $all_agriculture_farmer->aid_type }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Is Distributed</label>
-                                            <input type="text" name="is_distributed" class="form-control" value="{{ $all_land_farmer->is_distributed }}">
+                                            <input type="text" name="is_distributed" class="form-control" value="{{ $all_agriculture_farmer->is_distributed }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Cheque Amount</label>
-                                            <input type="text" name="cheque_amount" class="form-control" value="{{ $all_land_farmer->cheque_amount }}">
+                                            <input type="text" name="cheque_amount" class="form-control" value="{{ $all_agriculture_farmer->cheque_amount }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Cheque Number</label>
-                                            <input type="text" name="cheque_number" class="form-control" value="{{ $all_land_farmer->cheque_number }}">
+                                            <input type="text" name="cheque_number" class="form-control" value="{{ $all_agriculture_farmer->cheque_number }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Created On</label>
-                                            <input type="text" name="created_on" class="form-control" value="{{ $all_land_farmer->created_on }}">
+                                            <input type="text" name="created_on" class="form-control" value="{{ $all_agriculture_farmer->created_on }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Created By</label>
-                                            <input type="text" name="created_by" class="form-control" value="{{ $all_land_farmer->created_by }}">
+                                            <input type="text" name="created_by" class="form-control" value="{{ $all_agriculture_farmer->created_by }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Is Verified</label>
-                                            <input type="text" name="is_verified" class="form-control" value="{{ $all_land_farmer->is_verified }}">
+                                            <input type="text" name="is_verified" class="form-control" value="{{ $all_agriculture_farmer->is_verified }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Rejection Reason</label>
-                                            <input type="text" name="rejection_reason" class="form-control" value="{{ $all_land_farmer->rejection_reason }}">
+                                            <input type="text" name="rejection_reason" class="form-control" value="{{ $all_agriculture_farmer->rejection_reason }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Verified By</label>
-                                            <input type="text" name="verified_by" class="form-control" value="{{ $all_land_farmer->verified_by }}">
+                                            <input type="text" name="verified_by" class="form-control" value="{{ $all_agriculture_farmer->verified_by }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Verified On</label>
-                                            <input type="text" name="verified_on" class="form-control" value="{{ $all_land_farmer->verified_on }}">
+                                            <input type="text" name="verified_on" class="form-control" value="{{ $all_agriculture_farmer->verified_on }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Registration SMS Date Time</label>
-                                            <input type="text" name="registration_sms_date_time" class="form-control" value="{{ $all_land_farmer->registration_sms_date_time }}">
+                                            <input type="text" name="registration_sms_date_time" class="form-control" value="{{ $all_agriculture_farmer->registration_sms_date_time }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Seed Given SMS Date Time</label>
-                                            <input type="text" name="seed_given_sms_date_time" class="form-control" value="{{ $all_land_farmer->seed_given_sms_date_time }}">
+                                            <input type="text" name="seed_given_sms_date_time" class="form-control" value="{{ $all_agriculture_farmer->seed_given_sms_date_time }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Receiver Mobile No</label>
-                                            <input type="text" name="receiver_mobile_no" class="form-control" value="{{ $all_land_farmer->receiver_mobile_no }}">
+                                            <input type="text" name="receiver_mobile_no" class="form-control" value="{{ $all_agriculture_farmer->receiver_mobile_no }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Total Area</label>
-                                            <input type="text" name="total_area" class="form-control" value="{{ $all_land_farmer->total_area }}">
+                                            <input type="text" name="total_area" class="form-control" value="{{ $all_agriculture_farmer->total_area }}">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-primary mt-5" onclick="nextStep(2)">Next</button>
@@ -241,31 +241,31 @@
                                         <h4 class="card-title">Seed Information</h4>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Seed Required Qty</label>
-                                            <input type="text" name="seed_required_qty" class="form-control" value="{{ $all_land_farmer->seed_required_qty }}">
+                                            <input type="text" name="seed_required_qty" class="form-control" value="{{ $all_agriculture_farmer->seed_required_qty }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Seed Variety</label>
-                                            <input type="text" name="seed_variety" class="form-control" value="{{ $all_land_farmer->seed_variety }}">
+                                            <input type="text" name="seed_variety" class="form-control" value="{{ $all_agriculture_farmer->seed_variety }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Seed Given Qty</label>
-                                            <input type="text" name="seed_given_qty" class="form-control" value="{{ $all_land_farmer->seed_given_qty }}">
+                                            <input type="text" name="seed_given_qty" class="form-control" value="{{ $all_agriculture_farmer->seed_given_qty }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Seed Variety Given</label>
-                                            <input type="text" name="seed_variety_given" class="form-control" value="{{ $all_land_farmer->seed_variety_given }}">
+                                            <input type="text" name="seed_variety_given" class="form-control" value="{{ $all_agriculture_farmer->seed_variety_given }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Seed Given By</label>
-                                            <input type="text" name="seed_given_by" class="form-control" value="{{ $all_land_farmer->seed_given_by }}">
+                                            <input type="text" name="seed_given_by" class="form-control" value="{{ $all_agriculture_farmer->seed_given_by }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Seed Given Date</label>
-                                            <input type="text" name="seed_given_date" class="form-control" value="{{ $all_land_farmer->seed_given_date }}">
+                                            <input type="text" name="seed_given_date" class="form-control" value="{{ $all_agriculture_farmer->seed_given_date }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Is Sent To Bisp</label>
-                                            <input type="text" name="is_sent_bisp" class="form-control" value="{{ $all_land_farmer->is_sent_bisp }}">
+                                            <input type="text" name="is_sent_bisp" class="form-control" value="{{ $all_agriculture_farmer->is_sent_bisp }}">
                                         </div>
 
                                     </div>
@@ -278,19 +278,19 @@
                                         <h4 class="card-title">Bank & Account Details</h4>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Branch Name</label>
-                                            <input type="text" name="bank_branch_name" class="form-control" value="{{ $all_land_farmer->bank_branch_name }}">
+                                            <input type="text" name="bank_branch_name" class="form-control" value="{{ $all_agriculture_farmer->bank_branch_name }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Branch Code</label>
-                                            <input type="text" name="bank_branch_code" class="form-control" value="{{ $all_land_farmer->bank_branch_code }}">
+                                            <input type="text" name="bank_branch_code" class="form-control" value="{{ $all_agriculture_farmer->bank_branch_code }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Account Title</label>
-                                            <input type="text" name="bank_account_title" class="form-control" value="{{ $all_land_farmer->bank_account_title }}">
+                                            <input type="text" name="bank_account_title" class="form-control" value="{{ $all_agriculture_farmer->bank_account_title }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Account Number</label>
-                                            <input type="text" name="bank_account_number" class="form-control" value="{{ $all_land_farmer->bank_account_number }}">
+                                            <input type="text" name="bank_account_number" class="form-control" value="{{ $all_agriculture_farmer->bank_account_number }}">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(2)">Previous</button>
@@ -302,11 +302,11 @@
                                         <h4 class="card-title">GPS Location</h4>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">latitude</label>
-                                            <input type="text" name="latitude" class="form-control" value="{{ $all_land_farmer->latitude }}">
+                                            <input type="text" name="latitude" class="form-control" value="{{ $all_agriculture_farmer->latitude }}">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">longitude</label>
-                                            <input type="text" name="longitude" class="form-control" value="{{ $all_land_farmer->longitude }}">
+                                            <input type="text" name="longitude" class="form-control" value="{{ $all_agriculture_farmer->longitude }}">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
@@ -355,10 +355,10 @@
 </div>
 <!-- [ Main Content ] end -->
 <footer class="pc-footer">
-    @include('land_revenue_panel.include.footer_copyright_include')
+    @include('agriculture_officer_panel.include.footer_copyright_include')
 </footer>
 
-@include('land_revenue_panel.include.footer_include')
+@include('agriculture_officer_panel.include.footer_include')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     function nextStep(step) {

@@ -19,6 +19,8 @@ class AgricultureOfficer extends Model
         'email_address',
         'district',
         'tehsil',
+        'ucs',
+        'tappas',
         'username',
         'password'
     ];

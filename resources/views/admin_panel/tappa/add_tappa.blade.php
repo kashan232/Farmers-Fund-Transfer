@@ -57,6 +57,7 @@
                                             </option>
                                             @endforeach
                                         </select>
+
                                     </div>
 
                                     <div class="mb-12 col-md-12">
@@ -91,6 +92,32 @@
 
 @include('admin_panel.include.footer_include')
 
-</body>
 
+<script>
+    $(document).ready(function() {
+        $('select[name="district"]').on('change', function() {
+            var district = $(this).val();
+            if (district) {
+                $.ajax({
+                    url: '{{ route('get-tehsils') }}',
+                    type: 'GET',
+                    data: {
+                        district: district
+                    },
+                    success: function(data) {
+                        $('select[name="tehsil"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="tehsil"]').append('<option value="' +
+                                value + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('select[name="tehsil"]').empty();
+            }
+        });
+    });
+</script>
+
+</body>
 </html>

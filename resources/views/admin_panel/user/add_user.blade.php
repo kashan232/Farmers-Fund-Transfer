@@ -73,7 +73,6 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Dictrict</label>
-                                            <label class="form-label">Select District</label>
                                             <select name="district" id="district" class="form-control">
                                                 <option value="" selected disabled>Select One</option>
                                                 @foreach ($all_district as $district)

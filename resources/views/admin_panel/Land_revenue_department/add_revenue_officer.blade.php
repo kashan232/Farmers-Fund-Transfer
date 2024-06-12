@@ -74,7 +74,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select District</label>
-                                            <select name="district" id="editprojectName" class="form-control">
+                                            <select name="district" id="district" class="form-control">
                                                 <option value="" selected disabled>Select One</option>
                                                 @foreach ($all_district as $district)
                                                 <option value="{{ $district->district }}">
@@ -87,13 +87,24 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select Tehsil</label>
-                                            <select name="tehsil" id="editprojectName" class="form-control">
-                                                <option value="" selected disabled>Select One</option>
-                                                @foreach ($all_tehsil as $tehsil)
-                                                <option value="{{ $tehsil->tehsil }}">
-                                                    {{ $tehsil->tehsil }}
-                                                </option>
-                                                @endforeach
+                                            <select name="tehsil" id="tehsil" class="form-control">
+                                                <option value="" selected disabled>Select District First</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <div class="mb-3 col-md-12">
+                                            <label>UC</label><br>
+                                            <select name="ucs[]" id="uc" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <div class="mb-3 col-md-12">
+                                            <label>Tappa</label><br>
+                                            <select name="tappa[]" id="tappa" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
                                             </select>
                                         </div>
                                     </div>
@@ -126,7 +137,68 @@
 </footer>
 
 @include('admin_panel.include.footer_include')
+<script>
+    $(document).ready(function() {
+        $('select[name="district"]').on('change', function() {
+            var district = $(this).val();
+            if (district) {
+                $.ajax({
+                    url: '{{ route('get-tehsils') }}',
+                    type: 'GET',
+                    data: {
+                        district: district
+                    },
+                    success: function(data) {
+                        $('select[name="tehsil"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="tehsil"]').append('<option value="' +
+                                value + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('select[name="tehsil"]').empty();
+            }
+        });
+
+        $('select[name="tehsil"]').on('change', function() {
+            var district = $('select[name="district"]').val();
+            var tehsil = $(this).val();
+
+            if (district && tehsil) {
+                $.ajax({
+                    url: '{{ route("get-ucs") }}',
+                    type: 'GET',
+                    data: {
+                        district: district,
+                        tehsil: tehsil
+                    },
+                    success: function(response) {
+                        // Populate UC dropdown
+                        var ucSelect = $('select[name="ucs[]"]');
+                        ucSelect.empty();
+                        $.each(response.ucs, function(index, value) {
+                            ucSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+
+                        // Populate Tappa dropdown
+                        var tappaSelect = $('select[name="tappa[]"]');
+                        tappaSelect.empty();
+                        $.each(response.Tappas, function(index, value) {
+                            tappaSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            } else {
+                $('select[name="uc"]').empty();
+                $('select[name="tappa"]').empty();
+            }
+        });
+    });
+</script>
 
 </body>
-
 </html>

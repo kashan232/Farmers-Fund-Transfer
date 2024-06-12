@@ -50,6 +50,19 @@ class UCController extends Controller
         $tehsils = Tehsil::where('district', $district)->pluck('tehsil')->toArray(); // Adjust according to your database schema
         return response()->json($tehsils);
     }
+    public function get_ucs(Request $request)
+    {
+        $district = $request->input('district');
+        $tehsil = $request->input('tehsil');
+
+        $ucs = UC::where('district', $district)->where('tehsil', $tehsil)->pluck('uc')->toArray(); // Adjust according to your database schema
+        $Tappas = Tappa::where('district', $district)->where('tehsil', $tehsil)->pluck('tappa')->toArray(); // Adjust according to your database schema
+
+        return response()->json([
+            'ucs' => $ucs,
+            'Tappas' => $Tappas,
+        ]);
+    }
     public function all_uc()
     {
         if (Auth::id()) {
@@ -63,5 +76,4 @@ class UCController extends Controller
             return redirect()->back();
         }
     }
-   
 }

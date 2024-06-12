@@ -77,6 +77,8 @@ Route::get('/add-uc', [UCController::class, 'add_uc'])->name('add-uc');
 Route::post('/store-uc', [UCController::class, 'store_uc'])->name('store-uc');
 Route::get('/all-uc', [UCController::class, 'all_uc'])->name('all-uc');
 Route::get('/get-tehsils', [UCController::class, 'getTehsils'])->name('get-tehsils');
+Route::get('/get-ucs', [UCController::class, 'get_ucs'])->name('get-ucs');
+
 //User
 Route::get('/add-user', [AgriUserController::class, 'add_user'])->name('add-user');
 Route::post('/store-user', [AgriUserController::class, 'store_user'])->name('store-user');
@@ -104,6 +106,8 @@ Route::get('/add-land-farmers', [LandRevenueFarmerController::class, 'add_land_f
 Route::post('/store-land-farmers', [LandRevenueFarmerController::class, 'store_land_farmers'])->name('store-land-farmers');
 Route::get('/all-land-farmers', [LandRevenueFarmerController::class, 'all_land_farmers'])->name('all-land-farmers');
 Route::get('/view-land-farmers/{id}', [LandRevenueFarmerController::class, 'view_land_farmers'])->name('view-land-farmers');
+Route::get('/edit-land-farmers/{id}', [LandRevenueFarmerController::class, 'edit_land_farmers'])->name('edit-land-farmers');
+Route::post('/update-land-farmers/{id}', [LandRevenueFarmerController::class, 'update_land_farmers'])->name('update-land-farmers');
 
 Route::get('/unverify-farmers-by-land', [LandRevenueController::class, 'unverify_farmers_by_land'])->name('unverify-farmers-by-land');
 Route::get('/verify-farmers-by-land', [LandRevenueController::class, 'verify_farmers_by_land'])->name('verify-farmers-by-land');
@@ -117,6 +121,8 @@ Route::get('/add-agri-farmers', [AgricultureFarmerRegistrationController::class,
 Route::post('/store-agri-farmers', [AgricultureFarmerRegistrationController::class, 'store_agri_farmers'])->name('store-agri-farmers');
 Route::get('/all-agri-farmers', [AgricultureFarmerRegistrationController::class, 'all_agri_farmers'])->name('all-agri-farmers');
 Route::get('/view-agri-farmers/{id}', [AgricultureFarmerRegistrationController::class, 'view_agri_farmers'])->name('view-agri-farmers');
+Route::get('/edit-agri-farmers/{id}', [AgricultureFarmerRegistrationController::class, 'edit_agri_farmers'])->name('edit-agri-farmers');
+Route::post('/update-agri-farmers/{id}', [AgricultureFarmerRegistrationController::class, 'update_agri_farmers'])->name('update-agri-farmers');
 
 Route::get('/agri-unverify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_unverify_farmers'])->name('agri-unverify-farmers');
 Route::get('/agri-verify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_verify_farmers'])->name('agri-verify-farmers');

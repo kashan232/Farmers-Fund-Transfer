@@ -1,4 +1,4 @@
-<!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="../assets/js/plugins/apexcharts.min.js"></script>
 <script src="../assets/js/plugins/jsvectormap.min.js"></script>
 <script src="../assets/js/plugins/world.js"></script>
@@ -10,9 +10,17 @@
 <script src="../assets/js/fonts/custom-font.js"></script>
 <script src="../assets/js/pcoded.js"></script>
 <script src="../assets/js/plugins/feather.min.js"></script>
-<script src="../assets/js/plugins/dataTables.min.js"></script>
+<script src="select2.min.js"></script>
+
+<!-- <script src="../assets/js/plugins/dataTables.min.js"></script>
     <script src="../assets/js/plugins/dataTables.bootstrap5.min.js"></script>
-    
+     -->
+
+<script>
+  $(document).ready(function() {
+      $('.js-example-basic-multiple').select2();
+  });
+</script>
 <script>
       // [ DOM/jquery ]
       var total, pageTotal;

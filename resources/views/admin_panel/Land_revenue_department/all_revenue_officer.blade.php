@@ -52,39 +52,64 @@
                                 </div>
                                 <div class="row mt-2 justify-content-md-center">
                                     <div class="col-12 ">
-                                        <table id="dom-jqry" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info" style="width: 100%;">
-                                            <thead>
-                                                <tr>
-                                                    <th><strong>Sno</strong></th>
-                                                    <th><strong>Full Name</strong></th>
-                                                    <th><strong>Contact Number</strong></th>
-                                                    <th><strong>Address</strong></th>
-                                                    <th><strong>Email Address</strong></th>
-                                                    <th><strong>District <br> Tehsil</strong></th>
-                                                    <th><strong>Username</strong></th>
-                                                    <th class="text-end"><strong>Action</strong></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($all_revenue as $revenue)
-                                                <tr>
-                                                    <td><strong>{{ $loop->iteration }}</strong></td>
-                                                    <td>{{ $revenue->full_name }}</td>
-                                                    <td>{{ $revenue->contact_number }}</td>
-                                                    <td>{{ $revenue->address }}</td>
-                                                    <td>{{ $revenue->email_address }}</td>
-                                                    <td>{{ $revenue->district }} <br> {{ $revenue->tehsil }} </td>
-                                                    <td>{{ $revenue->username }}</td>
-                                                    <td>
-                                                        <div class="d-flex">
-                                                            <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                                            <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                        <div class="table-responsive">
+                                            <table id="dom-jqry" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info" style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th><strong>Sno</strong></th>
+                                                        <th><strong>Full Name</strong></th>
+                                                        <th><strong>Contact Number</strong></th>
+                                                        <th><strong>Address</strong></th>
+                                                        <th><strong>Email Address</strong></th>
+                                                        <th><strong>District <br> Tehsil</strong></th>
+                                                        <th><strong>UC</strong></th>
+                                                        <th><strong>Tappa</strong></th>
+                                                        <th><strong>Username</strong></th>
+                                                        <th class="text-end"><strong>Action</strong></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($all_revenue as $revenue)
+                                                    <tr>
+                                                        <td><strong>{{ $loop->iteration }}</strong></td>
+                                                        <td>{{ $revenue->full_name }}</td>
+                                                        <td>{{ $revenue->contact_number }}</td>
+                                                        <td>{{ $revenue->address }}</td>
+                                                        <td>{{ $revenue->email_address }}</td>
+                                                        <td>{{ $revenue->district }} <br> {{ $revenue->tehsil }} </td>
+                                                        <td>
+                                                            @php
+                                                            $userUcArray = json_decode($revenue->ucs);
+                                                            @endphp
+                                                            @if(is_array($userUcArray))
+                                                            @foreach($userUcArray as $uc)
+                                                            {{ $uc }}<br>
+                                                            @endforeach
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @php
+                                                            $usertappaArray = json_decode($revenue->tappas);
+                                                            @endphp
+                                                            @if(is_array($usertappaArray))
+                                                            @foreach($usertappaArray as $tappa)
+                                                            {{ $tappa }}<br>
+                                                            @endforeach
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $revenue->username }}</td>
+                                                        <td>
+                                                            <div class="d-flex">
+                                                                <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="row mt-2 justify-content-between">

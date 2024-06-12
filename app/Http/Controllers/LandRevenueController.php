@@ -35,6 +35,9 @@ class LandRevenueController extends Controller
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
+            $ucs = json_encode($request->input('ucs'));
+            $tappa = json_encode($request->input('tappa'));
+
             $landrevenue = LandRevenueDepartment::create([
                 'admin_or_user_id'    => $userId,
                 'full_name'          => $request->full_name,
@@ -43,6 +46,8 @@ class LandRevenueController extends Controller
                 'email_address'          => $request->email_address,
                 'district'          => $request->district,
                 'tehsil'          => $request->tehsil,
+                'ucs'               => $ucs,
+                'tappas'          => $tappa,
                 'username'          => $request->username,
                 'password'          => $request->password,
                 'created_at'        => Carbon::now(),
@@ -58,6 +63,8 @@ class LandRevenueController extends Controller
                 'email' => $request->email_address,
                 'district' => $request->district,
                 'tehsil' => $request->tehsil,
+                'ucs'               => $ucs,
+                'tappas'          => $tappa,
                 'password' => bcrypt($request->password), // Make sure to hash the password
                 'usertype' => 'Land_Revenue_Officer', // Set the usertype to 'employee'
             ]);
