@@ -161,7 +161,7 @@
         }
     </style> 
     <div class="wrapper">
-        <h2>Admin Login</h2>
+        <h2>Login</h2>
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="input-box">

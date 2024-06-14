@@ -1,7 +1,8 @@
         <div class="navbar-wrapper">
             <div class="m-header">
                 <a href="index.html" class="b-brand text-primary">
-                    <img src="../assets/images/logo-dark.svg" alt="logo image" class="logo-lg" />
+                    <img src="../assets/images/swat-logo.png" alt="logo image" class="logo-lg" style="max-width:60px;" />
+                    
                 </a>
             </div>
             <div class="navbar-content">
