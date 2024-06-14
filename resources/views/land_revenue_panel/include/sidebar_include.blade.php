@@ -37,6 +37,27 @@
                         </ul>
                     </li>
 
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph-duotone ph-globe"></i>
+                            </span>
+                            <span class="pc-mtext">Agriculture User Farmers</span>
+                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                        </a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('all-agriuser-farmers-by-land') }}">Agriculture User Farmers</a>
+                            </li>
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('unverify-agriuser-farmers-by-land') }}">Unverify Farmers</a>
+                            </li>
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('verify-agriuser-farmers-by-land') }}">Verified Farmers</a>
+                            </li>
+                        </ul>
+                    </li>
+
 
                     <li class="pc-item pc-hasmenu">
                         <a href="#!" class="pc-link">

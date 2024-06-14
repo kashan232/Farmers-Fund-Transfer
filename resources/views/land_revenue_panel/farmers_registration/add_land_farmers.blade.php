@@ -88,6 +88,11 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Registration</h5>
+                        @if (session()->has('farmer-added'))
+                            <div class="alert alert-success alert-dismissible fade show mt-4">
+                                <strong>Success!</strong> {{ session('farmer-added') }}.
+                            </div>
+                        @endif
                     </div>
                     <div class="card-body">
                         <div class="basic-form">
@@ -137,20 +142,56 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Dictrict</label>
-                                            <input type="text" name="district" class="form-control">
+                                            <input type="text" name="district" class="form-control" value="{{ $district }}" readonly>
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Tehsil</label>
-                                            <input type="text" name="tehsil" class="form-control">
+                                            <input type="text" name="tehsil" class="form-control" value="{{ $tehsil }}" readonly>
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">UC</label>
-                                            <input type="text" name="uc" class="form-control">
+                                        @if(Auth::check())
+                                        @php
+                                        $userUcArray = json_decode(Auth::user()->ucs);
+                                        @endphp
+                                        @if(is_array($userUcArray))
+                                        <div class="mb-3 col-md-6">
+                                            <label for="uc">UC</label>
+                                            <select name="uc" id="uc" class="form-control">
+                                                @foreach($userUcArray as $uc)
+                                                <option value="{{ $uc }}">{{ $uc }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Tappa</label>
-                                            <input type="text" name="tappa" class="form-control">
+                                        @else
+                                        <div class="mb-3 col-md-6">
+                                            <label for="uc">UC</label>
+                                            <select name="uc" id="uc" class="form-control">
+                                                <option value="" selected disabled>No UCS Assigned</option>
+                                            </select>
                                         </div>
+                                        @endif
+                                        @endif
+                                        @if(Auth::check())
+                                        @php
+                                        $usertappasArray = json_decode(Auth::user()->tappas);
+                                        @endphp
+                                        @if(is_array($usertappasArray))
+                                        <div class="mb-3 col-md-6">
+                                            <label for="tappa">tappa</label>
+                                            <select name="tappa" id="tappa" class="form-control">
+                                                @foreach($usertappasArray as $tappa)
+                                                <option value="{{ $tappa }}">{{ $tappa }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @else
+                                        <div class="mb-3 col-md-6">
+                                            <label for="tappa">tappa</label>
+                                            <select name="tappa" id="tappa" class="form-control">
+                                                <option value="" selected disabled>No tappas Assigned</option>
+                                            </select>
+                                        </div>
+                                        @endif
+                                        @endif
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Area</label>
                                             <input type="text" name="area" class="form-control">

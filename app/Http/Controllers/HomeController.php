@@ -29,6 +29,10 @@ class HomeController extends Controller
             {
                 return view('land_revenue_panel.land_revenue_dashboard');
             }
+            else if($usertype=='Agriculture_User')
+            {
+                return view('agriculture_user_panel.agriculture_user_dashboard');
+            }
         }
         else
         {

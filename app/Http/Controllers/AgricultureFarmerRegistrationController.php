@@ -14,12 +14,15 @@ class AgricultureFarmerRegistrationController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
+            $district = Auth()->user()->district;
+            $tehsil = Auth()->user()->tehsil;
+           
             // dd($userId);
             // $all_district = District::where('admin_or_user_id', '=', $userId)->get();
             // $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
             return view('agriculture_officer_panel.farmers_registration.add_agri_farmers', [
-                // 'all_district' => $all_district,
-                // 'all_tehsil' => $all_tehsil,
+                'district' => $district,
+                'tehsil' => $tehsil,
             ]);
         } else {
             return redirect()->back();
@@ -139,7 +142,7 @@ class AgricultureFarmerRegistrationController extends Controller
                 'updated_at'              => Carbon::now(),
             ]);
 
-            return redirect()->back()->with('officer-added', 'Land Revenue Officer Created Successfully');
+            return redirect()->back()->with('farmer-added', 'Farmers is successfully registered');
         } else {
             return redirect()->back();
         }
@@ -299,7 +302,7 @@ class AgricultureFarmerRegistrationController extends Controller
                     'updated_at'              => Carbon::now(),
                 ]);
     
-                return redirect()->back()->with('farmer-update', 'Agriculture farmers updated successfully');
+                return redirect()->back()->with('farmer-update', 'Registered farmers updated successfully');
             } else {
                 return redirect()->back();
             }

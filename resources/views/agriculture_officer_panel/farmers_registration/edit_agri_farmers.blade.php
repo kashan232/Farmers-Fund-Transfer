@@ -88,6 +88,11 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Registration</h5>
+                        @if (session()->has('farmer-update'))
+                            <div class="alert alert-success alert-dismissible fade show mt-4">
+                                <strong>Success!</strong> {{ session('farmer-update') }}.
+                            </div>
+                        @endif
                     </div>
                     <div class="card-body">
                         <div class="basic-form">

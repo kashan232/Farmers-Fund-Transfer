@@ -11,6 +11,9 @@
     @include('admin_panel.include.navbar_include')
 </header>
 <!-- [ Header ] end -->
+
+
+
 <!-- [ Main Content ] start -->
 <div class="pc-container">
     <div class="pc-content">
@@ -32,98 +35,95 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Personal Details</h5>
+                        <h5>Agriculture User</h5>
                     </div>
                     <div class="card-body">
                         @if (session()->has('user-added'))
-                            <div class="alert alert-success alert-dismissible fade show">
-                                <strong>Success!</strong> {{ session('user-added') }}.
-                            </div>
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <strong>Success!</strong> {{ session('user-added') }}.
+                        </div>
                         @endif
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="{{ route('store-user') }}" method="POST">
+                                <form action="{{ route('store-user') }}" method="post">
                                     @csrf
-                                    <div class="row mt-2">
-                                        <div class="mb-6 col-md-6">
+                                    <div class="row">
+                                        <div class="mb-12 col-md-12">
                                             <label class="form-label">Name</label>
-                                            <input type="text" name="user_name" class="form-control">
+                                            <input type="text" class="form-control" name="user_name">
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Mobile Number</label>
-                                            <input type="text" name="number" class="form-control">
-                                        </div>
-
                                     </div>
                                     <div class="row mt-2">
-                                        <div class="mb-6 col-md-6">
+                                        <div class="mb-12 col-md-12">
+                                            <label class="form-label">Contact Number</label>
+                                            <input type="text" class="form-control" name="number">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="mb-12 col-md-12">
                                             <label class="form-label">Email</label>
-                                            <input type="text" name="email" class="form-control">
+                                            <input type="email" class="form-control" name="email">
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Address</label>
-                                            <input type="text" name="address" class="form-control">
-                                        </div>
-
                                     </div>
                                     <div class="row mt-2">
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">CNIC</label>
-                                            <input type="text" name="cnic" class="form-control">
+                                        <div class="mb-12 col-md-12">
+                                            <label class="form-label">Address</label>
+                                            <input type="text" class="form-control" name="address">
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Dictrict</label>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="mb-12 col-md-12">
+                                            <label class="form-label">CNIC</label>
+                                            <input type="text" class="form-control" name="cnic">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="mb-12 col-md-12">
+                                            <label class="form-label">Select District</label>
                                             <select name="district" id="district" class="form-control">
                                                 <option value="" selected disabled>Select One</option>
                                                 @foreach ($all_district as $district)
-                                                    <option value="{{ $district->district }}">
-                                                        {{ $district->district }}
-                                                    </option>
+                                                <option value="{{ $district->district }}">
+                                                    {{ $district->district }}
+                                                </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
-                                        <div class="mb-6 col-md-6">
+                                        <div class="mb-12 col-md-12">
                                             <label class="form-label">Select Tehsil</label>
                                             <select name="tehsil" id="tehsil" class="form-control">
                                                 <option value="" selected disabled>Select District First</option>
                                             </select>
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">UC</label>
-                                            <select name="uc" id="editprojectName" class="form-control"
-                                            onchange="populateEmployeeID()">
-                                            <option value="" selected disabled>Select One</option>
-                                            @foreach ($all_uc as $uc)
-                                                <option value="{{ $uc->uc }}">
-                                                    {{ $uc->uc }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        </div>
+                                    </div>
 
+                                    <div class="row mt-2">
+                                        <div class="mb-3 col-md-12">
+                                            <label>UC</label><br>
+                                            <select name="ucs[]" id="uc" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="card-header">
-                                        <h5>Login Details</h5>
+
+                                    <div class="row mt-2">
+                                        <div class="mb-3 col-md-12">
+                                            <label>Tappa</label><br>
+                                            <select name="tappa[]" id="tappa" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="row mt-2">
-                                                    <div class="mb-6 col-md-6">
-                                                        <label class="form-label">Password</label>
-                                                        <input type="password" name="password" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="row mt-2">
+                                        <div class="mb-12 col-md-12">
+                                            <label class="form-label">Password</label>
+                                            <input type="password" class="form-control" name="password">
                                         </div>
                                     </div>
                                     <div class="card-header">
                                         <h5>Uploaded Documents</h5>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row">
+                                    <div class="row">
                                             <div class="col-md-12">
                                                 <div class="row mt-2">
                                                     <div class="mb-6 col-md-6">
@@ -144,8 +144,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
                                 </form>
                             </div>
                         </div>
@@ -160,11 +159,9 @@
 <footer class="pc-footer">
     @include('admin_panel.include.footer_copyright_include')
 </footer>
+
 @include('admin_panel.include.footer_include')
-</body>
-</html>
-<!-- Add jQuery CDN if not already included -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $('select[name="district"]').on('change', function() {
@@ -188,21 +185,46 @@
                 $('select[name="tehsil"]').empty();
             }
         });
+
+        $('select[name="tehsil"]').on('change', function() {
+            var district = $('select[name="district"]').val();
+            var tehsil = $(this).val();
+
+            if (district && tehsil) {
+                $.ajax({
+                    url: '{{ route("get-ucs") }}',
+                    type: 'GET',
+                    data: {
+                        district: district,
+                        tehsil: tehsil
+                    },
+                    success: function(response) {
+                        // Populate UC dropdown
+                        var ucSelect = $('select[name="ucs[]"]');
+                        ucSelect.empty();
+                        $.each(response.ucs, function(index, value) {
+                            ucSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+
+                        // Populate Tappa dropdown
+                        var tappaSelect = $('select[name="tappa[]"]');
+                        tappaSelect.empty();
+                        $.each(response.Tappas, function(index, value) {
+                            tappaSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            } else {
+                $('select[name="uc"]').empty();
+                $('select[name="tappa"]').empty();
+            }
+        });
     });
 </script>
-<script>
-    function populateEmployeeID() {
-        // Get the selected employee's name
-        var uc = document.getElementById("editprojectName").value;
 
-        // Loop through all employees to find the matching one
-        @foreach ($all_uc as $uc)
-            var uc_name = "{{ $uc->uc }}";
-            if (uc_name === uc) {
-                // If the names match, populate the employee ID field
-                document.getElementById("emp_id").value = "{{ $uc->id }}";
-                break; // Stop the loop
-            }
-        @endforeach
-    }
-</script>
+</body>
+
+</html>

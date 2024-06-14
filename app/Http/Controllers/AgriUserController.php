@@ -42,7 +42,10 @@ class AgriUserController extends Controller
             $usertype = Auth()->user()->usertype;
             $emp_id = Auth::user()->emp_id;
             $userId = Auth::id();
-            AgriUser::create([
+            $ucs = json_encode($request->input('ucs'));
+            $tappa = json_encode($request->input('tappa'));
+
+            $agriuser = AgriUser::create([
                 'admin_or_user_id'    => $userId,
                 'emp_id'    => $emp_id,
                 'user_name'          => $request->user_name,
@@ -52,7 +55,8 @@ class AgriUserController extends Controller
                 'cnic'          => $request->cnic,
                 'district'          => $request->district,
                 'tehsil'          => $request->tehsil,
-                'uc'          => $request->uc,
+                'ucs'          => $ucs,
+                'tappas'          => $tappa,
                 'password'          => $request->password,
                 'img'          => $request->img,
                 'cnic_img'          => $request->cnic_img,
@@ -60,6 +64,20 @@ class AgriUserController extends Controller
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ]);
+
+            // Create a user record with the same credentials and usertype 'employee'
+            $user = User::create([
+                'name' => $request->user_name,
+                'user_id' => $agriuser->id,
+                'email' => $request->email,
+                'district' => $request->district,
+                'tehsil' => $request->tehsil,
+                'ucs'               => $ucs,
+                'tappas'          => $tappa,
+                'password' => bcrypt($request->password), // Make sure to hash the password
+                'usertype' => 'Agriculture_User', // Set the usertype to 'employee'
+            ]);
+
             return redirect()->back()->with('user-added', 'User Added Successfully');
         } else {
             return redirect()->back();

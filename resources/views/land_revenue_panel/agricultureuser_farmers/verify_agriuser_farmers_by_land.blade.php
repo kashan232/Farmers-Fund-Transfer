@@ -1,19 +1,16 @@
-@include('admin_panel.include.header_include')
+@include('land_revenue_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
 <nav class="pc-sidebar">
-    @include('admin_panel.include.sidebar_include')
+    @include('land_revenue_panel.include.sidebar_include')
 </nav>
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
 <header class="pc-header">
-    @include('admin_panel.include.navbar_include')
+    @include('land_revenue_panel.include.navbar_include')
 </header>
 <!-- [ Header ] end -->
-
-
-
 <!-- [ Main Content ] start -->
 <div class="pc-container">
     <div class="pc-content">
@@ -23,7 +20,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">List User</h2>
+                            <h2 class="mb-0">Agriculture User verified Farmers</h2>
                         </div>
                     </div>
                 </div>
@@ -51,60 +48,43 @@
                                     </div>
                                 </div>
                                 <div class="row mt-2 justify-content-md-center">
-                                    <div class="col-12 table-responsive">
-                                        <table id="dom-jqry" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info" style="width: 100%;">
-                                            <thead>
-                                                <tr role="row">
-                                                    <th>Sno</th>
-                                                    <th>Name</th>
-                                                    <th>CNIC</th>
-                                                    <th>District</th>
-                                                    <th>Tehsil</th>
-                                                    <th>UC</th>
-                                                    <th>Tappa</th>
-                                                    <th>Mobile No</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($all_user as $user )
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $user->user_name }}</td>
-                                                    <td>{{ $user->cnic }}</td>
-                                                    <td>{{ $user->district }}</td>
-                                                    <td>{{ $user->tehsil }}</td>
-                                                    <td>
-                                                        @php
-                                                        $userUcArray = json_decode($user->ucs);
-                                                        @endphp
-                                                        @if(is_array($userUcArray))
-                                                        @foreach($userUcArray as $uc)
-                                                        {{ $uc }}<br>
-                                                        @endforeach
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @php
-                                                        $usertappaArray = json_decode($user->tappas);
-                                                        @endphp
-                                                        @if(is_array($usertappaArray))
-                                                        @foreach($usertappaArray as $tappa)
-                                                        {{ $tappa }}<br>
-                                                        @endforeach
-                                                        @endif
-                                                    </td>
-                                                    <td>{{ $user->number }}</td>
-                                                    <td>
-                                                        <div class="d-flex">
-                                                            <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                                            <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                    <div class="col-12 ">
+                                        <div class="table-responsive">
+                                            <table id="dom-jqry" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info" style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>CNIC</th>
+                                                        <th>District</th>
+                                                        <th>Tehsil</th>
+                                                        <th>UC</th>
+                                                        <th>Area</th>
+                                                        <th>Mobile</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($all_agricultureuser_farmers as $all_agricultureuser_farmer)
+                                                    <tr>
+                                                        <td>{{ $all_agricultureuser_farmer->name }}</td>
+                                                        <td>{{ $all_agricultureuser_farmer->cnic }}</td>
+                                                        <td>{{ $all_agricultureuser_farmer->district }}</td>
+                                                        <td>{{ $all_agricultureuser_farmer->tehsil }}</td>
+                                                        <td>{{ $all_agricultureuser_farmer->uc }}</td>
+                                                        <td>{{ $all_agricultureuser_farmer->area }}</td>
+                                                        <td>{{ $all_agricultureuser_farmer->mobile }}</td>
+                                                        <td>
+                                                            @if ($all_agricultureuser_farmer->verification_status === 'Verified')
+                                                            <span class="badge text-bg-success">Verified</span>
+                                                            @else
+                                                            <span class="badge text-bg-danger">Unverified</span>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mt-2 justify-content-between">
@@ -135,10 +115,33 @@
 </div>
 <!-- [ Main Content ] end -->
 <footer class="pc-footer">
-    @include('admin_panel.include.footer_copyright_include')
+    @include('land_revenue_panel.include.footer_copyright_include')
 </footer>
 
-@include('admin_panel.include.footer_include')
+@include('land_revenue_panel.include.footer_include')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Event listener for opening the modal
+        var exampleModalLive = document.getElementById('exampleModalLive');
+        exampleModalLive.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget;
+            var farmerId = button.getAttribute('data-id');
+            var farmersIdInput = exampleModalLive.querySelector('#farmers_id');
+            farmersIdInput.value = farmerId;
+        });
+
+        // Event listener for changing the status
+        var statusSelect = document.getElementById('statusSelect');
+        statusSelect.addEventListener('change', function() {
+            var reasonBox = document.getElementById('reasonBox');
+            if (this.value === 'Unverified') {
+                reasonBox.style.display = 'block';
+            } else {
+                reasonBox.style.display = 'none';
+            }
+        });
+    });
+</script>
 
 </body>
 

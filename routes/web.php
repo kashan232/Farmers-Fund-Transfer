@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AgricultureFarmerRegistrationController;
 use App\Http\Controllers\AgricultureOfficerController;
+use App\Http\Controllers\AgricultureUserController;
+use App\Http\Controllers\AgricultureUserFarmersController;
 use App\Http\Controllers\AgriUserController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\DepartmentController;
@@ -17,6 +19,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TappaController;
 use App\Http\Controllers\TehsilController;
 use App\Http\Controllers\UCController;
+use App\Models\AgricultureOfficer;
 use App\Models\District;
 use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Route;
@@ -126,6 +129,20 @@ Route::post('/update-agri-farmers/{id}', [AgricultureFarmerRegistrationControlle
 
 Route::get('/agri-unverify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_unverify_farmers'])->name('agri-unverify-farmers');
 Route::get('/agri-verify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_verify_farmers'])->name('agri-verify-farmers');
+
+// AgricultureUser
+Route::get('/add-agriuser-farmers', [AgricultureUserFarmersController::class, 'add_agriuser_farmers'])->name('add-agriuser-farmers');
+Route::post('/store-agriuser-farmers', [AgricultureUserFarmersController::class, 'store_agriuser_farmers'])->name('store-agriuser-farmers');
+Route::get('/all-agriuser-farmers', [AgricultureUserFarmersController::class, 'all_agriuser_farmers'])->name('all-agriuser-farmers');
+Route::get('/view-agriuser-farmers/{id}', [AgricultureUserFarmersController::class, 'view_agriuser_farmers'])->name('view-agriuser-farmers');
+
+
+//Land Revenue Department verify agriculture farmers
+Route::get('/all-agriuser-farmers-by-land', [LandRevenueController::class, 'all_agriuser_farmers_by_land'])->name('all-agriuser-farmers-by-land');
+Route::get('/unverify-agriuser-farmers-by-land', [LandRevenueController::class, 'unverify_agriuser_farmers_by_land'])->name('unverify-agriuser-farmers-by-land');
+Route::get('/verify-agriuser-farmers-by-land', [LandRevenueController::class, 'verify_agriuser_farmers_by_land'])->name('verify-agriuser-farmers-by-land');
+
+Route::post('/verify-unverify-agriuser-farmers-by-land', [LandRevenueController::class, 'verify_unverify_agriuser_farmers_by_land'])->name('verify-unverify-agriuser-farmers-by-land');
 
 
 //Land Revenue PAnel
