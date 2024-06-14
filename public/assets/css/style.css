@@ -86,6 +86,116 @@ h2,
   width: 30px!important;
 }
 
+.dashboard {
+  /* // background: rgba(203,203,210,.15); */
+  .all-card {
+    padding: 30px;
+  }
+  
+  .card {
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,.05);
+      background-color: #fff;
+      margin-bottom: 30px;
+      box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
+      
+      .border-left-pink {
+        border-left: 4px solid #f5365c;
+      }
+      
+      .border-left-orange {
+        border-left: 4px solid #fb6340;
+      }
+      
+      .border-left-yellow {
+        border-left: 4px solid #ffd600;
+      }
+      
+      .border-left-blue {
+        border-left: 4px solid #11cdef;
+      }
+      .border-left-bluedark {
+        border-left: 4px solid #1155ef;
+      }
+      .border-left-green {
+        border-left: 4px solid #57a530;
+      }
+      
+      .text-title {
+        color: #8898aa;
+        font-weight: 500;
+        font-size: 14px;
+      }
+      
+      .text-amount {
+        font-weight: 600;
+      }
+      
+      .icon-shape {
+        border-radius: 50%;
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        box-shadow: 0 0 2rem 0 rgba(136,152,170,.15)!important;
+      }
+      
+      .icon-area {
+        background: #f5365c;
+      }
+      
+      .icon-pie {
+        background: #fb6340;
+      }
+      
+      .icon-yellow {
+        background: #ffd600;
+      }
+      
+      .icon-skyblue {
+        background: #11cdef;
+      }
+
+      .icon-blue {
+        background: #1155ef;
+      }
+
+      .icon-green {
+        background: #57a530;
+      }
+    }
+  
+  .chart {
+    padding: 30px;
+  }
+ }
+
+@media (min-width: 992px) and ( max-width: 1300px) {
+  .dashboard .card {
+    .text-title {
+      font-size: 12px;
+    }
+    .text-amount {
+      font-size: 18px;
+    }
+    
+    .icon-shape {
+      width: 35px;
+      height: 35px;
+      font-size: 20px;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .icon-shape {
+    display: none !important;
+  }
+}
+
 :root,
 [data-bs-theme=light] {
   --bs-blue: #04A9F5;
@@ -19931,7 +20041,7 @@ pre[class*=language-] > code {
   text-align: center;
 }
 .pc-sidebar .pc-micon i {
-  font-size: 20px;
+  font-size: 15px;
   vertical-align: middle;
 }
 .pc-sidebar .pc-micon i.material-icons-two-tone {

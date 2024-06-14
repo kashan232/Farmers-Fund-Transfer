@@ -38,7 +38,7 @@
     <!-- [Mobile Media Block end] -->
     <div class="ms-auto">
         <ul class="list-unstyled">
-            <li class="dropdown pc-h-item">
+            <!-- <li class="dropdown pc-h-item">
                 <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <i class="ph-duotone ph-sun-dim"></i>
                 </a>
@@ -56,7 +56,7 @@
                         <span>Default</span>
                     </a>
                 </div>
-            </li>
+            </li> -->
             <li class="dropdown pc-h-item header-user-profile">
                 <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
                     <img src="../assets/images/user/Admin.png" alt="user-image" class="user-avtar" />
