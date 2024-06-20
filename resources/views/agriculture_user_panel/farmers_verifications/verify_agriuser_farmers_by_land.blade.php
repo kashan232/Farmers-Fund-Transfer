@@ -1,14 +1,14 @@
-@include('agriculture_officer_panel.include.header_include')
+@include('agriculture_user_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
 <nav class="pc-sidebar">
-    @include('agriculture_officer_panel.include.sidebar_include')
+    @include('agriculture_user_panel.include.sidebar_include')
 </nav>
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
 <header class="pc-header">
-    @include('agriculture_officer_panel.include.navbar_include')
+    @include('agriculture_user_panel.include.navbar_include')
 </header>
 <!-- [ Header ] end -->
 <!-- [ Main Content ] start -->
@@ -20,7 +20,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Agriculture verified Farmers</h2>
+                            <h2 class="mb-0">Agriculture User verified Farmers</h2>
                         </div>
                     </div>
                 </div>
@@ -64,17 +64,17 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($all_agriculture_farmers as $all_agriculture_farmer)
+                                                    @foreach($all_agricultureuser_farmers as $all_agricultureuser_farmer)
                                                     <tr>
-                                                        <td>{{ $all_agriculture_farmer->name }}</td>
-                                                        <td>{{ $all_agriculture_farmer->cnic }}</td>
-                                                        <td>{{ $all_agriculture_farmer->district }}</td>
-                                                        <td>{{ $all_agriculture_farmer->tehsil }}</td>
-                                                        <td>{{ $all_agriculture_farmer->uc }}</td>
-                                                        <td>{{ $all_agriculture_farmer->area }}</td>
-                                                        <td>{{ $all_agriculture_farmer->mobile }}</td>
+                                                        <td>{{ $all_agricultureuser_farmer->name }}</td>
+                                                        <td>{{ $all_agricultureuser_farmer->cnic }}</td>
+                                                        <td>{{ $all_agricultureuser_farmer->district }}</td>
+                                                        <td>{{ $all_agricultureuser_farmer->tehsil }}</td>
+                                                        <td>{{ $all_agricultureuser_farmer->uc }}</td>
+                                                        <td>{{ $all_agricultureuser_farmer->area }}</td>
+                                                        <td>{{ $all_agricultureuser_farmer->mobile }}</td>
                                                         <td>
-                                                            @if ($all_agriculture_farmer->verification_status === 'Verified')
+                                                            @if ($all_agricultureuser_farmer->verification_status === 'Verified')
                                                             <span class="badge text-bg-success">Verified</span>
                                                             @else
                                                             <span class="badge text-bg-danger">Unverified</span>
@@ -115,10 +115,10 @@
 </div>
 <!-- [ Main Content ] end -->
 <footer class="pc-footer">
-    @include('agriculture_officer_panel.include.footer_copyright_include')
+    @include('agriculture_user_panel.include.footer_copyright_include')
 </footer>
 
-@include('agriculture_officer_panel.include.footer_include')
+@include('agriculture_user_panel.include.footer_include')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Event listener for opening the modal

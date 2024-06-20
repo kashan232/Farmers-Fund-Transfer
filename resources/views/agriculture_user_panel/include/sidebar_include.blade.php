@@ -9,7 +9,7 @@
                     <li class="pc-item pc-hasmenu">
                         <a href="{{ route('home') }}" class="pc-link">
                             <span class="pc-micon">
-                                <i class="ph-duotone ph-gauge"></i>
+                                <i class="fas fa-home"></i>
                             </span>
                             <span class="pc-mtext">Dashboard</span>
                         </a>
@@ -19,7 +19,7 @@
                     <li class="pc-item pc-hasmenu">
                         <a href="#!" class="pc-link">
                             <span class="pc-micon">
-                                <i class="ph-duotone ph-globe"></i>
+                                <i class="fas fa-user-plus"></i>
                             </span>
                             <span class="pc-mtext">Farmers Registration</span>
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
@@ -38,17 +38,17 @@
                     <li class="pc-item pc-hasmenu">
                         <a href="#" class="pc-link">
                             <span class="pc-micon">
-                                <i class="ph-duotone ph-globe"></i>
+                                <i class="fas fa-user-check"></i>
                             </span>
                             <span class="pc-mtext">Farmers Verification </span>
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="pc-submenu">
                             <li class="pc-item">
-                                <a class="pc-link" href="#">Unverify Farmers</a>
+                                <a class="pc-link" href="{{ route('agriuser-unverify-farmers') }}">Unverify Farmers</a>
                             </li>
                             <li class="pc-item">
-                                <a class="pc-link" href="#">Verified Farmers</a>
+                                <a class="pc-link" href="{{ route('agriuser-verify-farmers') }}">Verified Farmers</a>
                             </li>
                         </ul>
                     </li>
