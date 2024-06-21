@@ -70,7 +70,6 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach($all_agriuser_farmers as $all_agriuser_farmer)
-
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $all_agriuser_farmer->name }}</td>
