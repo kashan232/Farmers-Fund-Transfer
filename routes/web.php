@@ -159,8 +159,6 @@ Route::get('/verify-agriuser-farmers-by-land', [LandRevenueController::class, 'v
 
 Route::post('/verify-unverify-agriuser-farmers-by-land', [LandRevenueController::class, 'verify_unverify_agriuser_farmers_by_land'])->name('verify-unverify-agriuser-farmers-by-land');
 
-Route::get('/admin-reporting', [ReportingController::class, 'admin_reporting'])->name('admin-reporting');
-Route::get('/admin-reporting-seach', [ReportingController::class, 'admin_reporting_search'])->name('admin-reporting-seach');
 
 
 

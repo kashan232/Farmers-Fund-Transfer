@@ -8,19 +8,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="Light Able admin and dashboard template offer a variety of UI elements and pages, ensuring your admin panel is both fast and effective." />
     <meta name="author" content="phoenixcoded" />
-    
+
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel="icon" href="../assets/images/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="../assets/css/plugins/jsvectormap.min.css">
-    <link rel="stylesheet" href="../assets/css/plugins/dataTables.bootstrap5.min.css">
+    <link rel="icon" href="{{asset('')}}/assets/images/favicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="{{asset('')}}/assets/css/plugins/jsvectormap.min.css">
+    <link rel="stylesheet" href="{{asset('')}}/assets/css/plugins/dataTables.bootstrap5.min.css">
     <link href="../../../../fonts.googleapis.com/css23da6.css?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/fonts/tabler-icons.min.css">
-    <link rel="stylesheet" href="../assets/fonts/feather.css">
-    <link rel="stylesheet" href="../assets/fonts/fontawesome.css">
-    <link rel="stylesheet" href="../assets/fonts/material.css">
-    <link rel="stylesheet" href="../assets/css/style.css" id="main-style-link">
-    <link rel="stylesheet" href="../assets/css/style-preset.css">
-    <link rel="stylesheet" href="select2.min.css">
+    <link rel="stylesheet" href="{{asset('')}}/assets/fonts/tabler-icons.min.css">
+    <link rel="stylesheet" href="{{asset('')}}/assets/fonts/feather.css">
+    <link rel="stylesheet" href="{{asset('')}}/assets/fonts/fontawesome.css">
+    <link rel="stylesheet" href="{{asset('')}}/assets/fonts/material.css">
+    <link rel="stylesheet" href="{{asset('')}}/assets/css/style.css" id="main-style-link">
+    <link rel="stylesheet" href="{{asset('')}}/assets/css/style-preset.css">
+    <link rel="stylesheet" href="{{asset('vendor/select2/css/select2.min.css')}}">
     <script src="https://use.fontawesome.com/375744dddd.js"></script>
 
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&display=swap&subset=vietnamese" rel="stylesheet">
