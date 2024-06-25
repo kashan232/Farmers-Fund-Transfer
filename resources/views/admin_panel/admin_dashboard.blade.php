@@ -196,7 +196,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Verified Farmers</p>
-                                                <h2 class="card-text text-amount"></h2>
+                                                <h2 class="card-text text-amount">{{ $TotalVerifiedfarmers }}</h2>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape icon-blue">
