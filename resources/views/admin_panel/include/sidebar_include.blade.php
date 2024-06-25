@@ -168,7 +168,7 @@
 
 
             <li class="pc-item">
-                <a href="{{ route('admin-reporting') }}" class="pc-link">
+                <a href="{{ route('reporting') }}" class="pc-link">
                     <span class="pc-micon">
                         <i class="fas fa-chart-bar"></i>
                     </span>
