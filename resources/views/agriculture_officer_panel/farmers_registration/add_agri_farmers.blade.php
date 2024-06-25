@@ -142,11 +142,16 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Dictrict</label>
-                                            <input type="text" name="district" class="form-control" value="{{ $district }}" readonly>
+                                            <input type="text" name="district" id="district" class="form-control" value="{{ $district }}" readonly>
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Tehsil</label>
-                                            <input type="text" name="tehsil" class="form-control" value="{{ $tehsil }}" readonly>
+                                            <select name="tehsil" id="tehsil" class="form-control">
+                                                @foreach(json_decode($tehsil) as $tehsil)
+                                                <option value="{{ $tehsil }}">{{ $tehsil }}</option>
+                                                @endforeach
+                                            </select>
+
                                         </div>
                                         @if(Auth::check())
                                         @php
@@ -156,16 +161,16 @@
                                         <div class="mb-3 col-md-6">
                                             <label for="uc">UC</label>
                                             <select name="uc" id="uc" class="form-control">
-                                                @foreach($userUcArray as $uc)
+                                                {{-- @foreach($userUcArray as $uc)
                                                 <option value="{{ $uc }}">{{ $uc }}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </div>
                                         @else
                                         <div class="mb-3 col-md-6">
                                             <label for="uc">UC</label>
                                             <select name="uc" id="uc" class="form-control">
-                                                <option value="" selected disabled>No UCS Assigned</option>
+                                                {{-- <option value="" selected disabled>No UCS Assigned</option> --}}
                                             </select>
                                         </div>
                                         @endif
@@ -180,18 +185,18 @@
                                         <div class="mb-3 col-md-6">
                                             <label for="tappa">tappa</label>
                                             <select name="tappa" id="tappa" class="form-control">
-                                                @foreach($usertappasArray as $tappa)
+                                                {{-- @foreach($usertappasArray as $tappa)
                                                 <option value="{{ $tappa }}">{{ $tappa }}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </div>
                                         @else
-                                        <div class="mb-3 col-md-6">
+                                        {{-- <div class="mb-3 col-md-6">
                                             <label for="tappa">tappa</label>
                                             <select name="tappa" id="tappa" class="form-control">
                                                 <option value="" selected disabled>No tappas Assigned</option>
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         @endif
                                         @endif
                                         <div class="mb-6 col-md-6">
@@ -404,6 +409,47 @@
 @include('agriculture_officer_panel.include.footer_include')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+$('select[name="tehsil"]').on('change', function() {
+            var district = $('input[name="district"]').val();
+
+            var tehsil = [$(this).val()];
+
+            if (district && tehsil) {
+
+                $.ajax({
+                    url: '{{ route("get-ucs") }}',
+                    type: 'GET',
+                    data: {
+                        district: district,
+                        tehsil: tehsil
+                    },
+                    success: function(response) {
+                        // Populate UC dropdown
+                        var ucSelect = $('select[name="uc"]');
+                        ucSelect.empty();
+                        $.each(response.ucs, function(index, value) {
+                            ucSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+
+                        // Populate Tappa dropdown
+                        var tappaSelect = $('select[name="tappa"]');
+                        tappaSelect.empty();
+                        $.each(response.Tappas, function(index, value) {
+                            tappaSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            } else {
+                $('select[name="uc"]').empty();
+                $('select[name="tappa"]').empty();
+            }
+        });
+
+
     function nextStep(step) {
         // Hide all steps
         document.querySelectorAll('.step').forEach(function(stepElement) {
