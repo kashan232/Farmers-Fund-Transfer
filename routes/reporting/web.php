@@ -154,7 +154,6 @@ Route::post('/verify-unverify-agriuser-farmers-by-land', [LandRevenueController:
 
 Route::get('/Reporting', [ReportingController::class, 'index'])->name('reporting');
 Route::post('/Reports', [ReportingController::class, 'reports_generate'])->name('reports-generate');
-Route::get('/view-reports/{id}/{table}', [ReportingController::class, 'view'])->name('reports-view');
 
 
 
