@@ -128,7 +128,7 @@
                                                 <div class="row mt-2">
                                                     <div class="mb-6 col-md-6">
                                                         <label class="form-label">Upload Your pictures</label>
-                                                        <input type="file" name="img" class="form-control">
+                                                        <input type="file" name="userimg" class="form-control">
                                                     </div>
                                                     <div class="mb-6 col-md-6">
                                                         <label class="form-label">Upload Your CNIC</label>

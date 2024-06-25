@@ -45,6 +45,15 @@ class AgriUserController extends Controller
             $ucs = json_encode($request->input('ucs'));
             $tappa = json_encode($request->input('tappa'));
 
+            $userimgname = null;
+
+             // Handle front ID card image
+             if ($request->hasFile('userimg')) {
+                $userimgname = $request->file('userimg');
+                $userimg = time() . '_' . uniqid() . '.' . $userimgname->getClientOriginalExtension();
+                $userimgname->move(public_path('user_image'), $userimg);
+            }
+
             $agriuser = AgriUser::create([
                 'admin_or_user_id'    => $userId,
                 'emp_id'    => $emp_id,
@@ -58,9 +67,7 @@ class AgriUserController extends Controller
                 'ucs'          => $ucs,
                 'tappas'          => $tappa,
                 'password'          => $request->password,
-                'img'          => $request->img,
-                'cnic_img'          => $request->cnic_img,
-                'form_img'          => $request->form_img,
+                'img'          => $userimgname,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ]);

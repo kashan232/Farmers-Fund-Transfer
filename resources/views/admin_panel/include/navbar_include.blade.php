@@ -52,12 +52,12 @@
                                     </div>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="#" class="dropdown-item">
+                                    <!-- <a href="#" class="dropdown-item">
                                         <span class="d-flex align-items-center">
                                             <i class="ph-duotone ph-key"></i>
                                             <span>Change password</span>
                                         </span>
-                                    </a>
+                                    </a> -->
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item">

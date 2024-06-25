@@ -24,7 +24,5 @@ class AgriUser extends Model
         'tappas',
         'password',
         'img',
-        'cnic_img',
-        'form_img',
     ];
 }
