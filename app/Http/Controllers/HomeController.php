@@ -68,10 +68,17 @@ class HomeController extends Controller
                 $Unverifiedfarmerland = DB::table('land_revenue_farmer_registations')->where('verification_status', '=', 'Unverified')->count();
                 $Unverifiedfarmeronline = DB::table('online_farmer_registrations')->where('verification_status', '=', 'Unverified')->count();
 
-                
                 $TotalUnverifiedfarmer = $Unverifiedfarmeragiruser + $Unverifiedfarmeragioficr + $Unverifiedfarmerland + $Unverifiedfarmeronline;
 
-                // dd($totalEntries);
+                $Verifiedfarmeragiruser = DB::table('agriculture_user_farmer_registrations')->where('verification_status', '=', 'Verified')->count();
+                $Verifiedfarmeragioficr = DB::table('agriculture_farmers_registrations')->where('verification_status', '=', 'Verified')->count();
+                $Verifiedfarmerland = DB::table('land_revenue_farmer_registations')->where('verification_status', '=', 'Verified')->count();
+                $Verifiedfarmeronline = DB::table('online_farmer_registrations')->where('verification_status', '=', 'Verified')->count();
+
+                $TotalVerifiedfarmers = $Verifiedfarmeragiruser + $Verifiedfarmeragioficr + $Verifiedfarmerland + $Verifiedfarmeronline;
+                
+
+                // dd($TotalVerifiedfarmers);
                 $data = cache()->remember('data', $expirationInSeconds, function () {
                     return DB::table('districts')
                         ->leftJoin('agriculture_farmers_registrations', 'agriculture_farmers_registrations.district', '=', 'districts.district')
@@ -131,6 +138,7 @@ class HomeController extends Controller
                     'LandRevenueDepartment' => $LandRevenueDepartment,
                     'totalEntries' => $totalEntries,
                     'TotalUnverifiedfarmer' => $TotalUnverifiedfarmer,
+                    'TotalVerifiedfarmers' => $TotalVerifiedfarmers,
                     
                 ]);
             }
