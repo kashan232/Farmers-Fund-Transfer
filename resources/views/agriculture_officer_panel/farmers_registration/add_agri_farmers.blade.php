@@ -151,7 +151,6 @@
                                                 <option value="{{ $tehsil }}">{{ $tehsil }}</option>
                                                 @endforeach
                                             </select>
-
                                         </div>
                                         @if(Auth::check())
                                         @php

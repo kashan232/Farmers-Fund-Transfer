@@ -49,7 +49,7 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label">Select District</label>
-                                        <select name="district" id="district" class="form-control">
+                                        <select name="district" id="district" class="form-control" required>
                                             <option value="" selected disabled>Select One</option>
                                             @foreach ($all_district as $district)
                                             <option value="{{ $district->district }}">
@@ -62,7 +62,7 @@
 
                                     <div class="mb-12 col-md-12">
                                         <label class="form-label">Select Tehsil</label>
-                                        <select name="tehsil" id="tehsil" class="form-control">
+                                        <select name="tehsil" id="tehsil" class="form-control" required>
                                             <option value="" selected disabled>Select District First</option>
                                         </select>
                                     </div>
@@ -70,7 +70,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Tappa Name</label>
-                                            <input type="text" name="tappa" class="form-control">
+                                            <input type="text" name="tappa" class="form-control" required>
                                         </div>
                                     </div>
 

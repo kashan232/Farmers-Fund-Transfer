@@ -44,6 +44,7 @@ class AgriUserController extends Controller
             $userId = Auth::id();
             $ucs = json_encode($request->input('ucs'));
             $tappa = json_encode($request->input('tappa'));
+            $tehsil = json_encode($request->input('tehsil'));
 
             $agriuser = AgriUser::create([
                 'admin_or_user_id'    => $userId,
@@ -54,13 +55,11 @@ class AgriUserController extends Controller
                 'address'          => $request->address,
                 'cnic'          => $request->cnic,
                 'district'          => $request->district,
-                'tehsil'          => $request->tehsil,
+                'tehsil'          => $tehsil,
                 'ucs'          => $ucs,
                 'tappas'          => $tappa,
                 'password'          => $request->password,
                 'img'          => $request->img,
-                'cnic_img'          => $request->cnic_img,
-                'form_img'          => $request->form_img,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ]);
@@ -71,7 +70,7 @@ class AgriUserController extends Controller
                 'user_id' => $agriuser->id,
                 'email' => $request->email,
                 'district' => $request->district,
-                'tehsil' => $request->tehsil,
+                'tehsil' => $tehsil,
                 'ucs'               => $ucs,
                 'tappas'          => $tappa,
                 'password' => bcrypt($request->password), // Make sure to hash the password
@@ -88,7 +87,7 @@ class AgriUserController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             $all_user = AgriUser::where('admin_or_user_id', '=', $userId)->get();
-           
+
             return view('admin_panel.user.all_user', [
                 'all_user' => $all_user,
             ]);
