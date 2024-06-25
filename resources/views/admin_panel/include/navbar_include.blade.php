@@ -12,51 +12,16 @@
                     <i class="ti ti-menu-2"></i>
                 </a>
             </li>
-            <li class="dropdown pc-h-item d-inline-flex d-md-none">
-                <a class="pc-head-link dropdown-toggle arrow-none m-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <i class="ph-duotone ph-magnifying-glass"></i>
-                </a>
-                <div class="dropdown-menu pc-h-dropdown drp-search">
-                    <form class="px-3">
-                        <div class="mb-0 d-flex align-items-center">
-                            <input type="search" class="form-control border-0 shadow-none" placeholder="Search..." />
-                            <button class="btn btn-light-secondary btn-search">Search</button>
-                        </div>
-                    </form>
-                </div>
-            </li>
-            <li class="pc-h-item d-none d-md-inline-flex">
-                <form class="form-search">
-                    <i class="ph-duotone ph-magnifying-glass icon-search"></i>
-                    <input type="search" class="form-control" placeholder="Search..." />
-
-                    <button class="btn btn-search" style="padding: 0"><kbd>ctrl+k</kbd></button>
-                </form>
-            </li>
         </ul>
     </div>
     <!-- [Mobile Media Block end] -->
     <div class="ms-auto">
         <ul class="list-unstyled">
-            <!-- <li class="dropdown pc-h-item">
-                <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <i class="ph-duotone ph-sun-dim"></i>
+            <li class="dropdown pc-h-item">
+                <a class="text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    Super Admin
                 </a>
-                <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
-                    <a href="#!" class="dropdown-item" onclick="layout_change('dark')">
-                        <i class="ph-duotone ph-moon"></i>
-                        <span>Dark</span>
-                    </a>
-                    <a href="#!" class="dropdown-item" onclick="layout_change('light')">
-                        <i class="ph-duotone ph-sun-dim"></i>
-                        <span>Light</span>
-                    </a>
-                    <a href="#!" class="dropdown-item" onclick="layout_change_default()">
-                        <i class="ph-duotone ph-cpu"></i>
-                        <span>Default</span>
-                    </a>
-                </div>
-            </li> -->
+            </li>
             <li class="dropdown pc-h-item header-user-profile">
                 <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
                     <img src="../assets/images/user/Admin.png" alt="user-image" class="user-avtar" />
