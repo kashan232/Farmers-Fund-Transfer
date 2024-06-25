@@ -45,7 +45,7 @@
                         @endif
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="{{ route('store-user') }}" method="post">
+                                <form action="{{ route('store-user') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="mb-12 col-md-12">
