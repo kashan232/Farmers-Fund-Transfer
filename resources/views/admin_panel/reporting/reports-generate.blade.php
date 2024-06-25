@@ -64,8 +64,12 @@
                                     <td class="text-center">
                                         @if ($data->getTable() == 'agriculture_farmers_registrations')
                                         <a href="/view-reports/{{$data->id}}/AgricultureFarmersRegistration" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                                        @elseif ($data->getTable() == 'agriculture_farmers_registrations')
+                                        @elseif ($data->getTable() == 'land_revenue_farmer_registations')
+                                        <a href="/view-reports/{{$data->id}}/LandRevenueFarmerRegistation" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                                        @elseif ($data->getTable() == 'online_farmer_registrations')
+                                        <a href="/view-reports/{{$data->id}}/OnlineFarmerRegistration" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                                         @else
+                                        <a href="/view-reports/{{$data->id}}/AgricultureUserFarmerRegistration" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                                         @endif
                                     </td>
                                 </tr>
