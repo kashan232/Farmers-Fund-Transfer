@@ -101,6 +101,28 @@
                         </ul>
                     </li>
 
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="fas fa-user-check"></i>
+
+                            </span>
+                            <span class="pc-mtext">Online Farmer Verification</span>
+                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                        </a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('verifications-online-farmers') }}">Online Farmer Farmers</a>
+                            </li>
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('unverify-online-farmers-by-land') }}">Unverify Farmers</a>
+                            </li>
+                            <li class="pc-item">
+                                <a class="pc-link" href="{{ route('verify-online-farmers-by-land') }}">Verified Farmers</a>
+                            </li>
+                        </ul>
+                    </li>
+
 
                 </ul>
 

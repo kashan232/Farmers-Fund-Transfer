@@ -7,6 +7,7 @@ use App\Models\AgricultureUserFarmerRegistration;
 use App\Models\District;
 use App\Models\LandRevenueDepartment;
 use App\Models\LandRevenueFarmerRegistation;
+use App\Models\OnlineFarmerRegistration;
 use App\Models\Tehsil;
 use App\Models\User;
 use Carbon\Carbon;
@@ -277,6 +278,73 @@ class LandRevenueController extends Controller
             $user_name = Auth::user()->name;
 
             AgricultureUserFarmerRegistration::where('id', $farmers_id)->update([
+                'verification_status' => $verification_status,
+                'declined_reason' => $verification_status === 'Unverified' ? $declined_reason : null,
+                'verification_by' => $user_name,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            return redirect()->back()->with('farmer-updated', 'Farmer verification status updated successfully');
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function unverify_online_farmers_by_land()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            // dd($userId);               
+            $online_farmers = OnlineFarmerRegistration::where('verification_status', '=', 'Unverified')->get();
+            return view('land_revenue_panel.online_farmers_verifications.unverify_farmers_by_land', [
+                'online_farmers' => $online_farmers,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function verify_online_farmers_by_land()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $land_id = Auth()->user()->user_id;
+            // dd($userId);
+            $all_land_farmers = OnlineFarmerRegistration::where('verification_status', '=', 'Verified')->get();
+            return view('land_revenue_panel.online_farmers_verifications.verify_farmers_by_land', [
+                'all_land_farmers' => $all_land_farmers,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function verifications_online_farmers()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $land_id = Auth()->user()->user_id;
+            // dd($land_id);
+            $all_land_farmers = OnlineFarmerRegistration::get();
+            return view('land_revenue_panel.online_farmers_verifications.verifications_land_farmers', [
+                'all_land_farmers' => $all_land_farmers,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function verify_unverify_online_farmers(Request $request)
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $farmers_id = $request->farmers_id;
+            $verification_status = $request->verification_status; // Ensure this matches the form field name
+            $declined_reason = $request->declined_reason; // Ensure this matches the form field name
+
+            $user_name = Auth::user()->name;
+            
+            OnlineFarmerRegistration::where('id', $farmers_id)->update([
                 'verification_status' => $verification_status,
                 'declined_reason' => $verification_status === 'Unverified' ? $declined_reason : null,
                 'verification_by' => $user_name,
