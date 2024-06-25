@@ -16,7 +16,6 @@ use App\Http\Controllers\LandRevenueFarmerController;
 use App\Http\Controllers\LeaveRequestController;
 use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ReportingController;
 use App\Http\Controllers\TappaController;
 use App\Http\Controllers\TehsilController;
 use App\Http\Controllers\UCController;
@@ -37,12 +36,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // git connect
+// aiman
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Azhar connected
 
 // funds_transfer_gitmove
 // Route::get('/dashboard', function () {
@@ -121,16 +120,6 @@ Route::get('/verifications-land-farmers', [LandRevenueController::class, 'verifi
 Route::post('/verify-unverify-land-farmers', [LandRevenueController::class, 'verify_unverify_land_farmers'])->name('verify-unverify-land-farmers');
 
 
-
-Route::get('/unverify-online-farmers-by-land', [LandRevenueController::class, 'unverify_online_farmers_by_land'])->name('unverify-online-farmers-by-land');
-Route::get('/verify-online-farmers-by-land', [LandRevenueController::class, 'verify_online_farmers_by_land'])->name('verify-online-farmers-by-land');
-Route::get('/verifications-online-farmers', [LandRevenueController::class, 'verifications_online_farmers'])->name('verifications-online-farmers');
-
-Route::post('/verify-unverify-online-farmers', [LandRevenueController::class, 'verify_unverify_online_farmers'])->name('verify-unverify-online-farmers');
-
-
-
-
 // agriculture department panel
 Route::get('/add-agri-farmers', [AgricultureFarmerRegistrationController::class, 'add_agri_farmers'])->name('add-agri-farmers');
 Route::post('/store-agri-farmers', [AgricultureFarmerRegistrationController::class, 'store_agri_farmers'])->name('store-agri-farmers');
@@ -160,15 +149,11 @@ Route::get('/verify-agriuser-farmers-by-land', [LandRevenueController::class, 'v
 
 Route::post('/verify-unverify-agriuser-farmers-by-land', [LandRevenueController::class, 'verify_unverify_agriuser_farmers_by_land'])->name('verify-unverify-agriuser-farmers-by-land');
 
-Route::get('/admin-reporting', [ReportingController::class, 'admin_reporting'])->name('admin-reporting');
-Route::get('/admin-reporting-seach', [ReportingController::class, 'admin_reporting_search'])->name('admin-reporting-seach');
-
 
 
 
 Route::get('/Reporting', [ReportingController::class, 'index'])->name('reporting');
 Route::post('/Reports', [ReportingController::class, 'reports_generate'])->name('reports-generate');
-Route::get('/view-reports/{id}/{table}', [ReportingController::class, 'view'])->name('reports-view');
 
 
 
