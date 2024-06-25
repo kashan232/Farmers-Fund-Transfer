@@ -127,9 +127,6 @@ Route::get('/verifications-online-farmers', [LandRevenueController::class, 'veri
 
 Route::post('/verify-unverify-online-farmers', [LandRevenueController::class, 'verify_unverify_online_farmers'])->name('verify-unverify-online-farmers');
 
-
-
-
 // agriculture department panel
 Route::get('/add-agri-farmers', [AgricultureFarmerRegistrationController::class, 'add_agri_farmers'])->name('add-agri-farmers');
 Route::post('/store-agri-farmers', [AgricultureFarmerRegistrationController::class, 'store_agri_farmers'])->name('store-agri-farmers');
@@ -142,7 +139,6 @@ Route::get('/agri-unverify-farmers', [AgricultureFarmerRegistrationController::c
 Route::get('/agri-verify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_verify_farmers'])->name('agri-verify-farmers');
 
 // AgricultureUser
-
 
 Route::get('/add-agriuser-farmers', [AgricultureUserFarmersController::class, 'add_agriuser_farmers'])->name('add-agriuser-farmers');
 Route::post('/store-agriuser-farmers', [AgricultureUserFarmersController::class, 'store_agriuser_farmers'])->name('store-agriuser-farmers');
@@ -159,17 +155,9 @@ Route::get('/verify-agriuser-farmers-by-land', [LandRevenueController::class, 'v
 
 Route::post('/verify-unverify-agriuser-farmers-by-land', [LandRevenueController::class, 'verify_unverify_agriuser_farmers_by_land'])->name('verify-unverify-agriuser-farmers-by-land');
 
-
-
-
-
 Route::get('/Reporting', [ReportingController::class, 'index'])->name('reporting');
 Route::post('/Reports', [ReportingController::class, 'reports_generate'])->name('reports-generate');
 Route::get('/view-reports/{id}/{table}', [ReportingController::class, 'view'])->name('reports-view');
-
-
-
-
 
 //Land Revenue PAnel
 //  All Screens

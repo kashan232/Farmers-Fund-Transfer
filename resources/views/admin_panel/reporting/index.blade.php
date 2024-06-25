@@ -51,7 +51,7 @@
                                         <div class="col-6 mt-2">
                                             <div class="mb-12 col-md-12">
                                                 <label class="form-label">Select District</label>
-                                                <select name="district" id="district" class="form-control">
+                                                <select name="district" id="district" class="form-control" required>
                                                     <option value="" selected disabled>Select One</option>
                                                     @foreach ($all_district as $district)
                                                     <option value="{{ $district->district }}">
@@ -64,7 +64,7 @@
                                         <div class="col-6 mt-2">
                                             <div class="mb-12 col-md-12">
                                                 <label class="form-label">Select Tehsil</label>
-                                                <select name="tehsil[]" id="tehsil" class="col-12 form-control--input js-example-basic-multiple" multiple="multiple">
+                                                <select name="tehsil[]" id="tehsil" class="col-12 form-control--input js-example-basic-multiple" multiple="multiple" required>
 
                                                 </select>
                                             </div>
@@ -74,7 +74,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select Farmer Type</label>
-                                            <select name="farmer_type" id="farmer_type" class="form-control">
+                                            <select name="farmer_type" id="farmer_type" class="form-control" required>
                                                 <option value="" >Select Farmer Type</option>
                                                 <option value="agriculture_farmers" >Agriculture farmers</option>
                                                 <option value="land_farmers" >Land farmers</option>
@@ -87,7 +87,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Verify Status</label>
-                                            <select name="verify_status" id="verify_status" class="form-control">
+                                            <select name="verify_status" id="verify_status" class="form-control" required>
                                                 <option value="" >Select Verify Status</option>
                                                 <option value="Verified" >Verified</option>
                                                 <option value="Unverified" >Unverified</option>

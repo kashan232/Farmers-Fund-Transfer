@@ -54,7 +54,7 @@
                                 <tr>
 
                                     <td>{{$loop->index+1}}</td>
-                                    <td>{{$data->getTable()}}</td>
+                                    <td>{{$data->name}}</td>
                                     <td>{{$data->cnic}}</td>
                                     <td>{{$data->district}}</td>
                                     <td>{{$data->tehsil}}</td>

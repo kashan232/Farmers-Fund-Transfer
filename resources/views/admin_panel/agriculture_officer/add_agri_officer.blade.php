@@ -50,31 +50,31 @@
                                     <div class="row">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Full Name</label>
-                                            <input type="text" class="form-control" name="full_name">
+                                            <input type="text" class="form-control" name="full_name" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Contact Number</label>
-                                            <input type="text" class="form-control" name="contact_number">
+                                            <input type="text" class="form-control" name="contact_number" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Address</label>
-                                            <textarea class="form-control" name="address" rows="3"></textarea>
+                                            <textarea class="form-control" name="address" rows="3" required></textarea>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Email Address</label>
-                                            <input type="email" class="form-control" name="email_address">
+                                            <input type="email" class="form-control" name="email_address" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select District</label>
-                                            <select name="district" id="district" class="form-control">
+                                            <select name="district" id="district" class="form-control" required>
                                                 <option value="" selected disabled>Select One</option>
                                                 @foreach ($all_district as $district)
                                                 <option value="{{ $district->district }}">
@@ -87,7 +87,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>Select Tehsil</label><br>
-                                            <select name="tehsil[]" id="tehsil" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            <select name="tehsil[]" id="tehsil" required class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
                                             </select>
                                         </div>
                                     </div>
@@ -95,7 +95,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>UC</label><br>
-                                            <select name="ucs[]" id="uc" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            <select name="ucs[]" id="uc" required class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
                                             </select>
                                         </div>
                                     </div>
@@ -103,20 +103,20 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>Tappa</label><br>
-                                            <select name="tappa[]" id="tappa" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            <select name="tappa[]" id="tappa" required class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
                                             </select>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Username</label>
-                                            <input type="text" class="form-control" name="username">
+                                            <input type="text" class="form-control" required name="username">
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Password</label>
-                                            <input type="password" class="form-control" name="password">
+                                            <input type="password" class="form-control" required name="password">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
