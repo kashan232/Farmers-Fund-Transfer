@@ -37,12 +37,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // git connect
-// aiman
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Azhar connected
 
 // funds_transfer_gitmove
 // Route::get('/dashboard', function () {
