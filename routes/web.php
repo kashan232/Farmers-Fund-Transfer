@@ -20,7 +20,6 @@ use App\Http\Controllers\ReportingController;
 use App\Http\Controllers\TappaController;
 use App\Http\Controllers\TehsilController;
 use App\Http\Controllers\UCController;
-use App\Http\Controllers\ReportingController;
 use App\Models\AgricultureOfficer;
 use App\Models\District;
 use App\Models\LeaveRequest;
