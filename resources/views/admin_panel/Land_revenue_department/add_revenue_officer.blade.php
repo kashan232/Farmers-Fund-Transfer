@@ -87,8 +87,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select Tehsil</label>
-                                            <select name="tehsil" id="tehsil" class="form-control">
-                                                <option value="" selected disabled>Select District First</option>
+                                            <select name="tehsil[]" id="tehsil" class="col-12 form-control--input js-example-basic-multiple" multiple="multiple">
                                             </select>
                                         </div>
                                     </div>
@@ -149,9 +148,9 @@
                         district: district
                     },
                     success: function(data) {
-                        $('select[name="tehsil"]').empty();
+                        $('select[name="tehsil[]"]').empty();
                         $.each(data, function(key, value) {
-                            $('select[name="tehsil"]').append('<option value="' +
+                            $('select[name="tehsil[]"]').append('<option value="' +
                                 value + '">' + value + '</option>');
                         });
                     }
@@ -161,7 +160,7 @@
             }
         });
 
-        $('select[name="tehsil"]').on('change', function() {
+        $('select[name="tehsil[]"]').on('change', function() {
             var district = $('select[name="district"]').val();
             var tehsil = $(this).val();
 
