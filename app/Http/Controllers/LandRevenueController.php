@@ -37,6 +37,7 @@ class LandRevenueController extends Controller
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
+            $tehsil = json_encode($request->input('tehsil'));
             $ucs = json_encode($request->input('ucs'));
             $tappa = json_encode($request->input('tappa'));
 
@@ -47,7 +48,7 @@ class LandRevenueController extends Controller
                 'address'          => $request->address,
                 'email_address'          => $request->email_address,
                 'district'          => $request->district,
-                'tehsil'          => $request->tehsil,
+                'tehsil'          => $tehsil,
                 'ucs'               => $ucs,
                 'tappas'          => $tappa,
                 'username'          => $request->username,
@@ -64,7 +65,7 @@ class LandRevenueController extends Controller
                 'name' => $request->full_name,
                 'email' => $request->email_address,
                 'district' => $request->district,
-                'tehsil' => $request->tehsil,
+                'tehsil' => $tehsil,
                 'ucs'               => $ucs,
                 'tappas'          => $tappa,
                 'password' => bcrypt($request->password), // Make sure to hash the password

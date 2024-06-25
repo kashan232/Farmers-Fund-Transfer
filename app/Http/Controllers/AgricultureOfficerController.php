@@ -32,7 +32,7 @@ class AgricultureOfficerController extends Controller
     public function store_agri_officer(Request $request)
     {
         if (Auth::id()) {
-
+            
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
             $tehsil = json_encode($request->input('tehsil'));
