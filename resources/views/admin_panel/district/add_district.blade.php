@@ -49,7 +49,7 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label">District</label>
-                                        <input type="text" name="district" class="form-control" placeholder="Enter district">
+                                        <input type="text" name="district" class="form-control" required placeholder="Enter district">
                                     </div>
                                     <button type="submit" class="btn btn-primary mb-4">Submit</button>
                                 </form>

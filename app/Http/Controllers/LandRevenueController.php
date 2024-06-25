@@ -58,7 +58,7 @@ class LandRevenueController extends Controller
             ]);
 
              // Create a user record with the same credentials and usertype 'employee'
-            
+
             // Create a user record with the same credentials and usertype 'employee'
             $user = User::create([
                 'user_id' => $landrevenue->id,
@@ -160,10 +160,10 @@ class LandRevenueController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            // dd($userId);               
+            // dd($userId);
             $land_id = Auth()->user()->user_id;
             // dd($land_id);
-             
+
             $all_land_farmers = LandRevenueFarmerRegistation::where('land_emp_id', $land_id)->where('verification_status', '=', 'Unverified')->get();
             return view('land_revenue_panel.land_verifications.unverify_farmers_by_land', [
                 'all_land_farmers' => $all_land_farmers,
@@ -197,7 +197,7 @@ class LandRevenueController extends Controller
             $declined_reason = $request->declined_reason; // Ensure this matches the form field name
 
             $user_name = Auth::user()->name;
-            
+
             LandRevenueFarmerRegistation::where('id', $farmers_id)->update([
                 'verification_status' => $verification_status,
                 'declined_reason' => $verification_status === 'Unverified' ? $declined_reason : null,
@@ -295,7 +295,7 @@ class LandRevenueController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            // dd($userId);               
+            // dd($userId);
             $online_farmers = OnlineFarmerRegistration::where('verification_status', '=', 'Unverified')->get();
             return view('land_revenue_panel.online_farmers_verifications.unverify_farmers_by_land', [
                 'online_farmers' => $online_farmers,
@@ -344,7 +344,7 @@ class LandRevenueController extends Controller
             $declined_reason = $request->declined_reason; // Ensure this matches the form field name
 
             $user_name = Auth::user()->name;
-            
+
             OnlineFarmerRegistration::where('id', $farmers_id)->update([
                 'verification_status' => $verification_status,
                 'declined_reason' => $verification_status === 'Unverified' ? $declined_reason : null,

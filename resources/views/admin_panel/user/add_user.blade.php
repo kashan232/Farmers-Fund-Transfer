@@ -50,37 +50,37 @@
                                     <div class="row">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Name</label>
-                                            <input type="text" class="form-control" name="user_name">
+                                            <input type="text" class="form-control" name="user_name" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Contact Number</label>
-                                            <input type="text" class="form-control" name="number">
+                                            <input type="text" class="form-control" name="number" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Email</label>
-                                            <input type="email" class="form-control" name="email">
+                                            <input type="email" class="form-control" name="email" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Address</label>
-                                            <input type="text" class="form-control" name="address">
+                                            <input type="text" class="form-control" name="address" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">CNIC</label>
-                                            <input type="text" class="form-control" name="cnic">
+                                            <input type="text" class="form-control" name="cnic" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select District</label>
-                                            <select name="district" id="district" class="form-control">
+                                            <select name="district" id="district" class="form-control" required>
                                                 <option value="" selected disabled>Select One</option>
                                                 @foreach ($all_district as $district)
                                                 <option value="{{ $district->district }}">
@@ -93,8 +93,8 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select Tehsil</label>
-                                            <select name="tehsil" id="tehsil" class="form-control">
-                                                <option value="" selected disabled>Select District First</option>
+                                            <select name="tehsil[]" id="tehsil" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
+
                                             </select>
                                         </div>
                                     </div>
@@ -102,7 +102,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>UC</label><br>
-                                            <select name="ucs[]" id="uc" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            <select name="ucs[]" id="uc" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
                                             </select>
                                         </div>
                                     </div>
@@ -110,14 +110,14 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>Tappa</label><br>
-                                            <select name="tappa[]" id="tappa" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            <select name="tappa[]" id="tappa" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Password</label>
-                                            <input type="password" class="form-control" name="password">
+                                            <input type="password" class="form-control" name="password" required>
                                         </div>
                                     </div>
                                     <div class="card-header">
@@ -126,21 +126,19 @@
                                     <div class="row">
                                             <div class="col-md-12">
                                                 <div class="row mt-2">
-                                                    <div class="mb-6 col-md-6">
+                                                    <div class="mb-12 col-md-12">
                                                         <label class="form-label">Upload Your pictures</label>
                                                         <input type="file" name="userimg" class="form-control">
                                                     </div>
                                                     <div class="mb-6 col-md-6">
                                                         <label class="form-label">Upload Your CNIC</label>
                                                         <input type="file" name="cnic_img" class="form-control">
+                                                        <input type="file" name="img" class="form-control" required>
                                                     </div>
+
                                                 </div>
                                                 <div class="row mt-2">
-                                                    <div class="mb-6 col-md-6">
-                                                        <label class="form-label">Upload Your FORM VII / VIII
-                                                            /Affidavit</label>
-                                                        <input type="file" name="form_img" class="form-control">
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -174,21 +172,21 @@
                         district: district
                     },
                     success: function(data) {
-                        $('select[name="tehsil"]').empty();
+                        $('select[name="tehsil[]"]').empty();
                         $.each(data, function(key, value) {
-                            $('select[name="tehsil"]').append('<option value="' +
+                            $('select[name="tehsil[]"]').append('<option value="' +
                                 value + '">' + value + '</option>');
                         });
                     }
                 });
             } else {
-                $('select[name="tehsil"]').empty();
+                $('select[name="tehsil[]"]').empty();
             }
         });
 
-        $('select[name="tehsil"]').on('change', function() {
+        $('select[name="tehsil[]"]').on('change', function() {
             var district = $('select[name="district"]').val();
-            var tehsil = $(this).val();
+            var tehsil = [$(this).val()];
 
             if (district && tehsil) {
                 $.ajax({
