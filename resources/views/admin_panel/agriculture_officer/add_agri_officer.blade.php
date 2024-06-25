@@ -161,7 +161,7 @@
             }
         });
 
-        $('select[name="tehsil"]').on('change', function() {
+        $('select[name="tehsil[]"]').on('change', function() {
             var district = $('select[name="district"]').val();
             var tehsil = $(this).val();
 
