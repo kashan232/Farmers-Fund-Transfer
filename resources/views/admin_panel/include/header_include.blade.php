@@ -10,8 +10,8 @@
     <meta name="author" content="phoenixcoded" />
 
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel="icon" href="../assets/images/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="../assets/css/plugins/jsvectormap.min.css">
+    <link rel="icon" href="/../assets/images/favicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="/../assets/css/plugins/jsvectormap.min.css">
     <link rel="stylesheet" href="../assets/css/plugins/dataTables.bootstrap5.min.css">
     <link href="../../../../fonts.googleapis.com/css23da6.css?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/fonts/tabler-icons.min.css">
