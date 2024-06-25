@@ -12,7 +12,7 @@
 </header>
 <!-- [ Header ] end -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 
 
 <!-- [ Main Content ] start -->
@@ -46,15 +46,16 @@
                                 <th>UC</th>
                                 <th>Mobile</th>
                                 <th>Status</th>
+                                <th>Declined Reason</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $data)
-                                <tr>
+                            <tr>
 
                                     <td>{{$loop->index+1}}</td>
-                                    <td>{{$data->name}}</td>
+                                    <td>{{$data->getTable()}}</td>
                                     <td>{{$data->cnic}}</td>
                                     <td>{{$data->district}}</td>
                                     <td>{{$data->tehsil}}</td>
@@ -97,7 +98,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#reports-table').DataTable( {
+        $('#reports-table').DataTable({
             dom: 'Bfrtip',
             buttons: [
                 'copyHtml5',
@@ -109,4 +110,5 @@
     });
 </script>
 </body>
+
 </html>

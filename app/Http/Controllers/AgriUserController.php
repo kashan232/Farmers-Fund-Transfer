@@ -52,7 +52,7 @@ class AgriUserController extends Controller
              if ($request->hasFile('userimg')) {
                 $userimgname = $request->file('userimg');
                 $userimg = time() . '_' . uniqid() . '.' . $userimgname->getClientOriginalExtension();
-                $userimgname->move(public_path('user_image'), $userimg);
+                $userimgname->move(public_path('user_profile/user_image'), $userimg);
             }
 
             $agriuser = AgriUser::create([
@@ -68,7 +68,7 @@ class AgriUserController extends Controller
                 'ucs'          => $ucs,
                 'tappas'          => $tappa,
                 'password'          => $request->password,
-                'img'          => $userimgname,
+                'img'          => $userimg,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ]);

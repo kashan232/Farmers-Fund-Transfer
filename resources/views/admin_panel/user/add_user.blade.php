@@ -124,24 +124,15 @@
                                         <h5>Uploaded Documents</h5>
                                     </div>
                                     <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="row mt-2">
-                                                    <div class="mb-12 col-md-12">
-                                                        <label class="form-label">Upload Your pictures</label>
-                                                        <input type="file" name="userimg" class="form-control">
-                                                    </div>
-                                                    <div class="mb-6 col-md-6">
-                                                        <label class="form-label">Upload Your CNIC</label>
-                                                        <input type="file" name="cnic_img" class="form-control">
-                                                        <input type="file" name="img" class="form-control" required>
-                                                    </div>
-
-                                                </div>
-                                                <div class="row mt-2">
-
+                                        <div class="col-md-12">
+                                            <div class="row mt-2">
+                                                <div class="mb-12 col-md-12">
+                                                    <label class="form-label">Upload Your pictures</label>
+                                                    <input type="file" name="userimg" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                                 </form>
                             </div>
