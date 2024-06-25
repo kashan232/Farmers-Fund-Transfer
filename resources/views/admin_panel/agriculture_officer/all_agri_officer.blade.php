@@ -40,31 +40,31 @@
                                 <div class="row mt-2 justify-content-md-center">
                                     <div class="col-12">
                                         <div class="table-responsive">
-                                        <table id="dom-jqry" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info" style="width: 100%;">
-                                            <thead>
-                                                <tr>
-                                                    <th><strong>Sno</strong></th>
-                                                    <th><strong>Full Name</strong></th>
-                                                    <th><strong>Contact Number</strong></th>
-                                                    <th><strong>Address</strong></th>
-                                                    <th><strong>Email Address</strong></th>
-                                                    <th><strong>District <br> Tehsil</strong></th>
-                                                    <th><strong>UC</strong></th>
-                                                    <th><strong>Tappa</strong></th>
-                                                    <th><strong>Username</strong></th>
-                                                    <th class="text-end"><strong>Action</strong></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($all_agri as $agri)
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $agri->full_name }}</td>
-                                                    <td>{{ $agri->contact_number }}</td>
-                                                    <td>{{ $agri->address }}</td>
-                                                    <td>{{ $agri->email_address }}</td>
-                                                    <td>{{ $agri->district }} <br> {{ $agri->tehsil }}</td>
-                                                    <td>
+                                            <table id="dom-jqry" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info" style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th><strong>Sno</strong></th>
+                                                        <th><strong>Full Name</strong></th>
+                                                        <th><strong>Contact Number</strong></th>
+                                                        <th><strong>Address</strong></th>
+                                                        <th><strong>Email Address</strong></th>
+                                                        <th><strong>District <br> Tehsil</strong></th>
+                                                        <th><strong>UC</strong></th>
+                                                        <th><strong>Tappa</strong></th>
+                                                        <th><strong>Username</strong></th>
+                                                        <th class="text-end"><strong>Action</strong></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($all_agri as $agri)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $agri->full_name }}</td>
+                                                        <td>{{ $agri->contact_number }}</td>
+                                                        <td>{{ $agri->address }}</td>
+                                                        <td>{{ $agri->email_address }}</td>
+                                                        <td>{{ $agri->district }} <br> {{ $agri->tehsil }}</td>
+                                                        <td>
                                                             @php
                                                             $userUcArray = json_decode($agri->ucs);
                                                             @endphp
@@ -84,19 +84,19 @@
                                                             @endforeach
                                                             @endif
                                                         </td>
-                                                    <td>{{ $agri->username }}</td>
-                                                    <td>
-                                                        <div class="d-flex">
-                                                            <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                                            <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                                        <td>{{ $agri->username }}</td>
+                                                        <td>
+                                                            <div class="d-flex">
+                                                                <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
                                         </div>
-                                      
+
                                     </div>
                                 </div>
                             </div>
