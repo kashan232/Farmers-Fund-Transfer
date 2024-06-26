@@ -188,7 +188,7 @@ class AgricultureFarmerRegistrationController extends Controller
             $user_id = Auth()->user()->user_id;
             $district = Auth()->user()->district;
             $tehsil = Auth()->user()->tehsil;
-
+            //
             $user_name = Auth()->user()->name;
             $all_agriculture_farmer = AgricultureFarmersRegistration::where('id', '=', $id)->first();
 
