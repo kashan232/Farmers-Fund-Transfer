@@ -115,6 +115,29 @@ class HomeController extends Controller
             } else if ($usertype == 'Land_Revenue_Officer') {
                 return view('land_revenue_panel.land_revenue_dashboard');
             } else if ($usertype == 'Agriculture_User') {
+
+                $agriUserCount = DB::table('agriculture_user_farmer_registrations')->count();
+                $agricultureOfficerCount = DB::table('agriculture_farmers_registrations')->count();
+                $landRevenueDepartmentCount = DB::table('land_revenue_farmer_registations')->count();
+                $onlineFarmerRegistrationCount = DB::table('online_farmer_registrations')->count();
+
+                $totalEntries = $agriUserCount + $agricultureOfficerCount + $landRevenueDepartmentCount + $onlineFarmerRegistrationCount;
+
+                $Unverifiedfarmeragiruser = DB::table('agriculture_user_farmer_registrations')->where('verification_status', '=', 'Unverified')->count();
+                $Unverifiedfarmeragioficr = DB::table('agriculture_farmers_registrations')->where('verification_status', '=', 'Unverified')->count();
+                $Unverifiedfarmerland = DB::table('land_revenue_farmer_registations')->where('verification_status', '=', 'Unverified')->count();
+                $Unverifiedfarmeronline = DB::table('online_farmer_registrations')->where('verification_status', '=', 'Unverified')->count();
+
+                $TotalUnverifiedfarmer = $Unverifiedfarmeragiruser + $Unverifiedfarmeragioficr + $Unverifiedfarmerland + $Unverifiedfarmeronline;
+
+                $Verifiedfarmeragiruser = DB::table('agriculture_user_farmer_registrations')->where('verification_status', '=', 'Verified')->count();
+                $Verifiedfarmeragioficr = DB::table('agriculture_farmers_registrations')->where('verification_status', '=', 'Verified')->count();
+                $Verifiedfarmerland = DB::table('land_revenue_farmer_registations')->where('verification_status', '=', 'Verified')->count();
+                $Verifiedfarmeronline = DB::table('online_farmer_registrations')->where('verification_status', '=', 'Verified')->count();
+
+                $TotalVerifiedfarmers = $Verifiedfarmeragiruser + $Verifiedfarmeragioficr + $Verifiedfarmerland + $Verifiedfarmeronline;
+
+                
                 return view('agriculture_user_panel.agriculture_user_dashboard');
             }
         } else {
