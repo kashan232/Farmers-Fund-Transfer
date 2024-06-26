@@ -131,12 +131,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
-                                        <div class="mb-12 col-md-12">
-                                            <label class="form-label">Password</label>
-                                            <input type="password" class="form-control" name="password" required>
-                                        </div>
-                                    </div>
+
                                     <div class="card-header">
                                         <h5>Uploaded Documents</h5>
                                     </div>
@@ -193,9 +188,13 @@
         });
 
         $('select[name="tehsil[]"]').on('change', function() {
+
             var district = $('select[name="district"]').val();
             var tehsil = [$(this).val()];
-
+            var ucSelect = $('select[name="ucs[]"]');
+            var tappaSelect = $('select[name="tappa[]"]');
+            ucSelect.empty();
+            tappaSelect.empty();
             if (district && tehsil) {
                 $.ajax({
                     url: '{{ route("get-ucs") }}',
@@ -206,14 +205,14 @@
                     },
                     success: function(response) {
                         // Populate UC dropdown
-                        var ucSelect = $('select[name="ucs[]"]');
+
                         ucSelect.empty();
                         $.each(response.ucs, function(index, value) {
                             ucSelect.append('<option value="' + value + '">' + value + '</option>');
                         });
 
                         // Populate Tappa dropdown
-                        var tappaSelect = $('select[name="tappa[]"]');
+
                         tappaSelect.empty();
                         $.each(response.Tappas, function(index, value) {
                             tappaSelect.append('<option value="' + value + '">' + value + '</option>');

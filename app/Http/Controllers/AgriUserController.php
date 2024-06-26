@@ -71,7 +71,7 @@ class AgriUserController extends Controller
                 'tehsil'          => $tehsil,
                 'ucs'          => $ucs,
                 'tappas'          => $tappa,
-                'password'          => $request->password,
+
                 'img'          => $userimg,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),

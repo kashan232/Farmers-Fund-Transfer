@@ -52,7 +52,7 @@ class AgricultureOfficerController extends Controller
                     'ucs'               => $ucs,
                     'tappas'          => $tappa,
                     'username'          => $request->username,
-                    'password'          => $request->password,
+
                     'created_at'        => Carbon::now(),
                     'updated_at'        => Carbon::now(),
                 ]);
