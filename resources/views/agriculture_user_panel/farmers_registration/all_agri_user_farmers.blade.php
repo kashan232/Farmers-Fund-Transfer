@@ -83,7 +83,7 @@
                                                         <td>
                                                             <div class="d-flex">
                                                                 <a href="{{ route('view-agriuser-farmers', ['id' => $all_agriuser_farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp;
-                                                                <a href="{{ route('edit-agri-farmers', ['id' => $all_agriuser_farmer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>&nbsp;
+                                                                <a href="{{ route('edit-agriuser-farmers', ['id' => $all_agriuser_farmer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>&nbsp;
                                                                 <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>&nbsp;
                                                             </div>
                                                         </td>
