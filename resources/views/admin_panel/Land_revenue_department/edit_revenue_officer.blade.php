@@ -131,12 +131,7 @@
                                             <input type="text" required class="form-control" name="username" value="{{$data->username}}">
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
-                                        <div class="mb-12 col-md-12">
-                                            <label class="form-label">Password</label>
-                                            <input type="password" required class="form-control" name="password">
-                                        </div>
-                                    </div>
+
                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                                 </form>
                             </div>
@@ -213,7 +208,7 @@
                 $('select[name="uc"]').empty();
                 $('select[name="tappa"]').empty();
             }
-        }); 
+        });
     });
 </script>
 

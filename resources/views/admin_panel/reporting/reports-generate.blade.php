@@ -53,27 +53,35 @@
                         <tbody>
                             @foreach ($data as $data)
                             <tr>
-
-                                    <td>{{$loop->index+1}}</td>
-                                    <td>{{$data->getTable()}}</td>
-                                    <td>{{$data->cnic}}</td>
-                                    <td>{{$data->district}}</td>
-                                    <td>{{$data->tehsil}}</td>
-                                    <td>{{$data->uc}}</td>
-                                    <td>{{$data->mobile}}</td>
-                                    <td><span style="background: {{ ($data->verification_status == 'Unverified') ? 'red' : 'blue' }}" class="badge badge-info">{{$data->verification_status}}</span></td>
-                                    <td class="text-center">
-                                        @if ($data->getTable() == 'agriculture_farmers_registrations')
-                                        <a href="/view-reports/{{$data->id}}/AgricultureFarmersRegistration" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                                        @elseif ($data->getTable() == 'land_revenue_farmer_registations')
-                                        <a href="/view-reports/{{$data->id}}/LandRevenueFarmerRegistation" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                                        @elseif ($data->getTable() == 'online_farmer_registrations')
-                                        <a href="/view-reports/{{$data->id}}/OnlineFarmerRegistration" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                                        @else
-                                        <a href="/view-reports/{{$data->id}}/AgricultureUserFarmerRegistration" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                                        @endif
-                                    </td>
-                                </tr>
+                                <td>{{$loop->index+1}}</td>
+                                <td>{{$data->getTable()}}</td>
+                                <td>{{$data->cnic}}</td>
+                                <td>{{$data->district}}</td>
+                                <td>{{$data->tehsil}}</td>
+                                <td>{{$data->uc}}</td>
+                                <td>{{$data->mobile}}</td>
+                                <td><span style="background: {{ ($data->verification_status == 'Unverified') ? 'red' : 'blue' }}" class="badge badge-info">{{$data->verification_status}}</span></td>
+                                @if ($data->verification_status === 'Unverified')
+                                                        @if (is_null($data->declined_reason))
+                                                        <td>-</td>
+                                                        @else
+                                                        <td>{{ $data->declined_reason }}</td>
+                                                        @endif
+                                                        @else
+                                                        <td>-</td>
+                                                        @endif
+                                <td class="text-center">
+                                    @if ($data->getTable() == 'agriculture_farmers_registrations')
+                                    <a href="/view-reports/{{$data->id}}/AgricultureFarmersRegistration" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                                    @elseif ($data->getTable() == 'land_revenue_farmer_registations')
+                                    <a href="/view-reports/{{$data->id}}/LandRevenueFarmerRegistation" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                                    @elseif ($data->getTable() == 'online_farmer_registrations')
+                                    <a href="/view-reports/{{$data->id}}/OnlineFarmerRegistration" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                                    @else
+                                    <a href="/view-reports/{{$data->id}}/AgricultureUserFarmerRegistration" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                                    @endif
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

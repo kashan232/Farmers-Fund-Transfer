@@ -147,6 +147,7 @@
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Tehsil</label>
                                             <select name="tehsil" id="tehsil" class="form-control">
+                                                <option value="">Please Select Tehsil</option>
                                                 @foreach(json_decode($tehsil) as $tehsil)
                                                 <option value="{{ $tehsil }}">{{ $tehsil }}</option>
                                                 @endforeach

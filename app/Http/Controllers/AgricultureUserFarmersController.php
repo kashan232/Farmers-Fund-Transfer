@@ -42,42 +42,42 @@ class AgricultureUserFarmersController extends Controller
              $upload_other_attachimageName = null;
              $upload_farmer_picimageName = null;
              $upload_cheque_picimageName = null;
- 
+
              // Handle front ID card image
              if ($request->hasFile('front_id_card')) {
                  $front_id_cardimage = $request->file('front_id_card');
                  $front_id_cardimageName = time() . '_' . uniqid() . '.' . $front_id_cardimage->getClientOriginalExtension();
                  $front_id_cardimage->move(public_path('agri_user_farmers/front_id_card'), $front_id_cardimageName);
              }
- 
+
              // Handle back ID card image
              if ($request->hasFile('back_id_card')) {
                  $back_id_cardimage = $request->file('back_id_card');
                  $back_id_cardimageName = time() . '_' . uniqid() . '.' . $back_id_cardimage->getClientOriginalExtension();
                  $back_id_cardimage->move(public_path('agri_user_farmers/back_id_card'), $back_id_cardimageName);
              }
- 
+
              // Handle upload land proof image
              if ($request->hasFile('upload_land_proof')) {
                  $upload_land_proofimage = $request->file('upload_land_proof');
                  $upload_land_proofimageName = time() . '_' . uniqid() . '.' . $upload_land_proofimage->getClientOriginalExtension();
                  $upload_land_proofimage->move(public_path('agri_user_farmers/upload_land_proof'), $upload_land_proofimageName);
              }
- 
+
              // Handle other attachments image
              if ($request->hasFile('upload_other_attach')) {
                  $upload_other_attachimage = $request->file('upload_other_attach');
                  $upload_other_attachimageName = time() . '_' . uniqid() . '.' . $upload_other_attachimage->getClientOriginalExtension();
                  $upload_other_attachimage->move(public_path('agri_user_farmers/upload_other_attach'), $upload_other_attachimageName);
              }
- 
+
              // Handle farmer picture image
              if ($request->hasFile('upload_farmer_pic')) {
                  $upload_farmer_picimage = $request->file('upload_farmer_pic');
                  $upload_farmer_picimageName = time() . '_' . uniqid() . '.' . $upload_farmer_picimage->getClientOriginalExtension();
                  $upload_farmer_picimage->move(public_path('agri_user_farmers/upload_farmer_pic'), $upload_farmer_picimageName);
              }
- 
+
              // Handle cheque picture image
              if ($request->hasFile('upload_cheque_pic')) {
                  $upload_cheque_picimage = $request->file('upload_cheque_pic');
@@ -186,10 +186,14 @@ class AgricultureUserFarmersController extends Controller
             $userId = Auth::id();
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
+            $district = Auth()->user()->district;
+            $tehsil = Auth()->user()->tehsil;
             $all_agriculture_farmer = AgricultureUserFarmerRegistration::where('id', '=', $id)->first();
             // dd($all_agriculture_farmer);
             return view('agriculture_user_panel.farmers_registration.edit_agri_user_farmers', [
                 'all_agriculture_farmer' => $all_agriculture_farmer,
+                'district' => $district,
+                'tehsil' => $tehsil,
             ]);
         } else {
             return redirect()->back();
