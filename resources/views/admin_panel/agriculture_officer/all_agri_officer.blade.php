@@ -97,7 +97,6 @@
                                                         <td>
                                                             <div class="d-flex">
                                                                 <a href="/agri-officer-edit/{{$agri->id}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                                             </div>
                                                         </td>
                                                     </tr>

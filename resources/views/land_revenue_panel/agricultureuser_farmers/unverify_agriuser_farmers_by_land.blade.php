@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group" id="reasonBox" style="display: none;">
                                 <label for="reasonTextarea">Reason</label>
-                                <textarea class="form-control" id="reasonTextarea" name="declined_reason" rows="3"></textarea>
+                                <textarea class="form-control" id="reasonTextarea"  name="declined_reason" rows="3"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary mt-3">Save</button>
                         </form>
@@ -178,8 +178,10 @@
             var reasonBox = document.getElementById('reasonBox');
             if (this.value === 'Unverified') {
                 reasonBox.style.display = 'block';
+                document.getElementById('reasonTextarea').required = true;
             } else {
                 reasonBox.style.display = 'none';
+                document.getElementById('reasonTextarea').required = false;
             }
         });
     });

@@ -213,7 +213,7 @@
                 $('select[name="uc"]').empty();
                 $('select[name="tappa"]').empty();
             }
-        });
+        }); 
     });
 </script>
 
