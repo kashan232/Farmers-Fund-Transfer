@@ -43,7 +43,24 @@
                 <div class="dashboard">
                     <div class="all-card">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card">
+                                    <div class="card-body border-left-pink">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title">District / Tehsil</p>
+                                                <h2 class="card-text text-amount"> / </h2>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape icon-area">
+                                                    <i class="fas fa-city" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
                                 <div class="card">
                                     <div class="card-body border-left-orange">
                                         <div class="row">
@@ -60,7 +77,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-4 col-md-6">
                                 <div class="card">
                                     <div class="card-body border-left-yellow">
                                         <div class="row">
@@ -83,7 +100,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Total Farmers</p>
-                                                <h2 class="card-text text-amount">49</h2>
+                                                <h2 class="card-text text-amount">{{ $agriUserfarmersCount }}</h2>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape icon-skyblue">
@@ -100,7 +117,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Verified Farmers</p>
-                                                <h2 class="card-text text-amount">49</h2>
+                                                <h2 class="card-text text-amount">{{ $Verifiedfarmeragiruser }}</h2>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape icon-blue">
@@ -117,7 +134,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">UnVerified Farmers</p>
-                                                <h2 class="card-text text-amount">49</h2>
+                                                <h2 class="card-text text-amount">{{ $Unverifiedfarmeragiruser }}</h2>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape icon-green">
