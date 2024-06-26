@@ -49,7 +49,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">District / Tehsil</p>
-                                                <h2 class="card-text text-amount"> / </h2>
+                                                <h2 class="card-text text-amount"> {{ $districtCount }} / {{ $tehsilCount }} </h2>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape icon-area">
@@ -66,7 +66,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Tappa</p>
-                                                <h2 class="card-text text-amount">26</h2>
+                                                <h2 class="card-text text-amount">{{ $tappaCount }}</h2>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape icon-pie">
@@ -83,7 +83,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">UC</p>
-                                                <h2 class="card-text text-amount">94</h2>
+                                                <h2 class="card-text text-amount">{{ $ucCount }}</h2>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape icon-yellow">
