@@ -63,7 +63,16 @@
                                                     <td>{{ $agri->contact_number }}</td>
                                                     <td>{{ $agri->address }}</td>
                                                     <td>{{ $agri->email_address }}</td>
-                                                    <td>{{ $agri->district }} <br> {{ $agri->tehsil }}</td>
+                                                    <td>
+                                                        @php
+                                                        $tehsil = json_decode($agri->tehsil);
+                                                        @endphp
+                                                        @if(is_array($tehsil))
+                                                        @foreach($tehsil as $tehsil)
+                                                        {{ $tehsil }}<br>
+                                                        @endforeach
+                                                        @endif
+                                                    </td>
                                                     <td>
                                                             @php
                                                             $userUcArray = json_decode($agri->ucs);
@@ -87,8 +96,7 @@
                                                         <td>{{ $agri->username }}</td>
                                                         <td>
                                                             <div class="d-flex">
-                                                                <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                                                <a href="/agri-officer-edit/{{$agri->id}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                                             </div>
                                                         </td>
                                                     </tr>

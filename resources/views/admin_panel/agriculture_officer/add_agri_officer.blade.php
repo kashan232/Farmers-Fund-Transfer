@@ -38,9 +38,9 @@
                         <h5>Agriculture</h5>
                     </div>
                     <div class="card-body">
-                        @if (session()->has('district-added'))
+                        @if (session()->has('officer-added'))
                         <div class="alert alert-success alert-dismissible fade show">
-                            <strong>Success!</strong> {{ session('district-added') }}.
+                            <strong>Success!</strong> {{ session('officer-added') }}.
                         </div>
                         @endif
                         <div class="row">
