@@ -176,8 +176,10 @@
             var reasonBox = document.getElementById('reasonBox');
             if (this.value === 'Unverified') {
                 reasonBox.style.display = 'block';
+                document.getElementById('reasonTextarea').required = true;
             } else {
                 reasonBox.style.display = 'none';
+                document.getElementById('reasonTextarea').required = false;
             }
         });
     });
