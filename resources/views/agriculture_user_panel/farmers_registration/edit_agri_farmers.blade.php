@@ -137,20 +137,45 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Dictrict</label>
-                                            <input type="text" name="district" class="form-control" value="{{ $all_agriculture_farmer->district }}">
+                                            <input type="text" name="district" id="district" class="form-control" value="{{ $all_agriculture_farmer->district }}" readonly>
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Tehsil</label>
-                                            <input type="text" name="tehsil" class="form-control" value="{{ $all_agriculture_farmer->tehsil }}">
+                                            <select name="tehsil" id="tehsil" class="form-control">
+                                                @foreach(json_decode($tehsil) as $option)
+                                                    <option value="{{ $option }}" {{ ($all_agriculture_farmer->tehsil == $option) ? 'selected' : '' }}>
+                                                        {{ $option }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">UC</label>
-                                            <input type="text" name="uc" class="form-control" value="{{ $all_agriculture_farmer->uc }}">
+                                        @if(Auth::check())
+                                        @php
+                                        $userUcArray = json_decode(Auth::user()->ucs);
+                                        @endphp
+                                        @if(is_array($userUcArray))
+                                        <div class="mb-3 col-md-6">
+                                            <label for="uc">UC</label>
+                                            <select name="uc" id="uc" class="form-control">
+                                                <option  value="{{ $all_agriculture_farmer->uc }}" selected >{{ $all_agriculture_farmer->uc }}</option>
+                                            </select>
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Tappa</label>
-                                            <input type="text" name="tappa" class="form-control" value="{{ $all_agriculture_farmer->tappa }}">
+                                        @endif
+                                        @endif
+                                        @if(Auth::check())
+                                        @php
+                                        $usertappasArray = json_decode(Auth::user()->tappas);
+                                        @endphp
+                                        @if(is_array($usertappasArray))
+                                        <div class="mb-3 col-md-6">
+                                            <label for="tappa">tappa</label>
+                                            <select name="tappa" id="tappa" class="form-control">
+                                                <option  value="{{ $all_agriculture_farmer->tappa }}" selected >{{ $all_agriculture_farmer->tappa }}</option>
+                                            </select>
                                         </div>
+                                        @else
+                                        @endif
+                                        @endif
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Area</label>
                                             <input type="text" name="area" class="form-control" value="{{ $all_agriculture_farmer->area }}">
@@ -361,6 +386,44 @@
 @include('agriculture_officer_panel.include.footer_include')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    $('select[name="tehsil"]').on('change', function() {
+            var district = $('input[name="district"]').val();
+
+            var tehsil = [$(this).val()];
+
+            if (district && tehsil) {
+
+                $.ajax({
+                    url: '{{ route("get-ucs") }}',
+                    type: 'GET',
+                    data: {
+                        district: district,
+                        tehsil: tehsil
+                    },
+                    success: function(response) {
+                        // Populate UC dropdown
+                        var ucSelect = $('select[name="uc"]');
+                        ucSelect.empty();
+                        $.each(response.ucs, function(index, value) {
+                            ucSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+
+                        // Populate Tappa dropdown
+                        var tappaSelect = $('select[name="tappa"]');
+                        tappaSelect.empty();
+                        $.each(response.Tappas, function(index, value) {
+                            tappaSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            } else {
+                $('select[name="uc"]').empty();
+                $('select[name="tappa"]').empty();
+            }
+        });
     function nextStep(step) {
         // Hide all steps
         document.querySelectorAll('.step').forEach(function(stepElement) {

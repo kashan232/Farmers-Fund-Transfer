@@ -6,6 +6,8 @@ use App\Models\AgricultureFarmersRegistration;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\District;
+use App\Models\Tehsil;
 
 
 class AgricultureFarmerRegistrationController extends Controller
@@ -184,11 +186,16 @@ class AgricultureFarmerRegistrationController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             $user_id = Auth()->user()->user_id;
+            $district = Auth()->user()->district;
+            $tehsil = Auth()->user()->tehsil;
+
             $user_name = Auth()->user()->name;
             $all_agriculture_farmer = AgricultureFarmersRegistration::where('id', '=', $id)->first();
             // dd($all_agriculture_farmer);
             return view('agriculture_officer_panel.farmers_registration.edit_agri_farmers', [
                 'all_agriculture_farmer' => $all_agriculture_farmer,
+                'district' => $district,
+                'tehsil' => $tehsil,
             ]);
         } else {
             return redirect()->back();

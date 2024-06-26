@@ -188,10 +188,14 @@ class LandRevenueFarmerController extends Controller
             $userId = Auth::id();
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
+            $district = Auth()->user()->district;
+            $tehsil = Auth()->user()->tehsil;
             $all_land_farmer = LandRevenueFarmerRegistation::where('id', '=', $id)->first();
             // dd($all_land_farmer);
             return view('land_revenue_panel.farmers_registration.edit_land_farmers', [
                 'all_land_farmer' => $all_land_farmer,
+                'district' => $district,
+                'tehsil' => $tehsil,
             ]);
         } else {
             return redirect()->back();
