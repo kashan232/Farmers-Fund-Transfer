@@ -1,4 +1,4 @@
-@include('agriculture_officer_panel.include.header_include')
+@include('agriculture_user_panel.include.header_include')
 <style>
     .progress-indicator {
         display: flex;
@@ -54,13 +54,13 @@
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
 <nav class="pc-sidebar">
-    @include('agriculture_officer_panel.include.sidebar_include')
+    @include('agriculture_user_panel.include.sidebar_include')
 </nav>
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
 <header class="pc-header">
-    @include('agriculture_officer_panel.include.navbar_include')
+    @include('agriculture_user_panel.include.navbar_include')
 </header>
 <!-- [ Header ] end -->
 
@@ -106,7 +106,7 @@
                                 </div>
                             </div>
 
-                            <form id="registrationForm" action="{{ route('update-agri-farmers',['id'=> $all_agriculture_farmer->id ]) }}" method="POST" enctype="multipart/form-data">
+                            <form id="registrationForm" action="{{ route('update-agriuser-farmers',['id'=> $all_agriculture_farmer->id ]) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="step step-1">
                                     <div class="row mt-2">
@@ -380,10 +380,10 @@
 </div>
 <!-- [ Main Content ] end -->
 <footer class="pc-footer">
-    @include('agriculture_officer_panel.include.footer_copyright_include')
+    @include('agriculture_user_panel.include.footer_copyright_include')
 </footer>
 
-@include('agriculture_officer_panel.include.footer_include')
+@include('agriculture_user_panel.include.footer_include')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $('select[name="tehsil"]').on('change', function() {

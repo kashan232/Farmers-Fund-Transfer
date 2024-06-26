@@ -191,7 +191,7 @@ class AgricultureFarmerRegistrationController extends Controller
 
             $user_name = Auth()->user()->name;
             $all_agriculture_farmer = AgricultureFarmersRegistration::where('id', '=', $id)->first();
-            // dd($all_agriculture_farmer);
+            dd($all_agriculture_farmer);
             return view('agriculture_officer_panel.farmers_registration.edit_agri_farmers', [
                 'all_agriculture_farmer' => $all_agriculture_farmer,
                 'district' => $district,
