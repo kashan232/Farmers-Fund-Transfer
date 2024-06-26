@@ -23,7 +23,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Create Land Revenue Department</h2>
+                            <h2 class="mb-0">Agriculture Officer</h2>
                         </div>
                     </div>
                 </div>
@@ -35,59 +35,67 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>District</h5>
+                        <h5>Agriculture</h5>
                     </div>
                     <div class="card-body">
-                        @if (session()->has('officer-added'))
+                        @if (session()->has('district-added'))
                         <div class="alert alert-success alert-dismissible fade show">
-                            <strong>Success!</strong> {{ session('officer-added') }}.
+                            <strong>Success!</strong> {{ session('district-added') }}.
                         </div>
                         @endif
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="{{ route('store-revenue-officer') }}" method="post">
+                                <form action="{{ route('store-agri-officer') }}" method="post">
                                     @csrf
+                                    <input type="hidden" value="{{ $data->id }}" name="edit_id">
                                     <div class="row">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Full Name</label>
-                                            <input type="text" class="form-control" name="full_name" required>
+                                            <input type="text" class="form-control" name="full_name" value="{{$data->full_name}}" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Contact Number</label>
-                                            <input type="text" class="form-control" name="contact_number" required>
+                                            <input type="text" class="form-control" name="contact_number" value="{{$data->contact_number}}" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Address</label>
-                                            <textarea class="form-control" name="address" rows="3" required></textarea>
+                                            <textarea class="form-control" name="address" rows="3" required >{{$data->address}}</textarea>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Email Address</label>
-                                            <input type="email" class="form-control" name="email_address" required>
+                                            <input type="email" class="form-control" name="email_address" value="{{$data->email_address}}" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select District</label>
-                                            <select name="district" id="district" class="form-control" required>
+                                            <select name="district" id="district" class="form-control" required >
                                                 <option value="" selected disabled>Select One</option>
                                                 @foreach ($all_district as $district)
-                                                <option value="{{ $district->district }}">
+                                                <option value="{{ $district->district }}" {{($district->district == $data->district) ? 'selected':''}} >
                                                     {{ $district->district }}
                                                 </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
+
+
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select Tehsil</label>
-                                            <select name="tehsil[]" id="tehsil" required class="col-12 form-control--input js-example-basic-multiple" multiple="multiple">
+                                            <select name="tehsil[]" id="tehsil" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
+                                                @foreach (json_decode($data->tehsil) as $tehsil)
+                                                <option value="{{ $tehsil }}" selected>
+                                                    {{ $tehsil }}
+                                                </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -95,7 +103,12 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>UC</label><br>
-                                            <select name="ucs[]" id="uc" required class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            <select name="ucs[]" id="uc" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
+                                                @foreach (json_decode($data->ucs) as $ucs)
+                                                <option value="{{ $ucs }}" selected>
+                                                    {{ $ucs }}
+                                                </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -103,20 +116,25 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>Tappa</label><br>
-                                            <select name="tappa[]" required id="tappa" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            <select name="tappa[]" id="tappa" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
+                                                @foreach (json_decode($data->tappas) as $tappas)
+                                                <option value="{{ $tappas }}" selected>
+                                                    {{ $tappas }}
+                                                </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Username</label>
-                                            <input type="text" required class="form-control" name="username">
+                                            <input type="text" class="form-control" value="{{$data->username}}" required name="username">
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Password</label>
-                                            <input type="password" required class="form-control" name="password">
+                                            <input type="password" class="form-control" required name="password">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
@@ -136,6 +154,7 @@
 </footer>
 
 @include('admin_panel.include.footer_include')
+
 <script>
     $(document).ready(function() {
         $('select[name="district"]').on('change', function() {
@@ -200,4 +219,5 @@
 </script>
 
 </body>
+
 </html>

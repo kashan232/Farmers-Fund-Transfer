@@ -142,9 +142,11 @@
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Tehsil</label>
                                             <select name="tehsil" id="tehsil" class="form-control">
+
                                                 @foreach(json_decode($tehsil) as $tehsil)
                                                 <option value="{{ $tehsil }}">{{ $tehsil }}</option>
                                                 @endforeach
+
                                             </select>
                                         </div>
                                         @if(Auth::check())

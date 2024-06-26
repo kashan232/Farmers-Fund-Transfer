@@ -76,7 +76,16 @@
                                                         <td>{{ $revenue->contact_number }}</td>
                                                         <td>{{ $revenue->address }}</td>
                                                         <td>{{ $revenue->email_address }}</td>
-                                                        <td>{{ $revenue->district }} <br> {{ $revenue->tehsil }} </td>
+                                                        <td>
+                                                            @php
+                                                            $tehsil = json_decode($revenue->tehsil);
+                                                            @endphp
+                                                            @if(is_array($tehsil))
+                                                            @foreach($tehsil as $tehsil)
+                                                            {{ $tehsil }}<br>
+                                                            @endforeach
+                                                            @endif
+                                                        </td>
                                                         <td>
                                                             @php
                                                             $userUcArray = json_decode($revenue->ucs);
@@ -100,7 +109,7 @@
                                                         <td>{{ $revenue->username }}</td>
                                                         <td>
                                                             <div class="d-flex">
-                                                                <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                                                <a href="/edit-revenue-officer/{{$revenue->id}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                                                 <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                                             </div>
                                                         </td>

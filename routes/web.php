@@ -88,16 +88,22 @@ Route::get('/add-user', [AgriUserController::class, 'add_user'])->name('add-user
 Route::post('/store-user', [AgriUserController::class, 'store_user'])->name('store-user');
 Route::get('/all-user', [AgriUserController::class, 'all_user'])->name('all-user');
 
+Route::get('/edit-user/{id}', [AgriUserController::class, 'edit_user'])->name('edit-user');
+
 //Agriculture office
 
 Route::get('/agri-officer-create', [AgricultureOfficerController::class, 'agri_officer_create'])->middleware(['auth', 'admin'])->name('agri-officer-create');
 Route::post('/store-agri-officer', [AgricultureOfficerController::class, 'store_agri_officer'])->name('store-agri-officer');
 Route::get('/all-agri-officer', [AgricultureOfficerController::class, 'all_agri_officer'])->middleware(['auth', 'admin'])->name('all-agri-officer');
+Route::get('/agri-officer-edit/{id}', [AgricultureOfficerController::class, 'edit_agri_officer'])->middleware(['auth', 'admin'])->name('agri-officer-edit');
 
 //Land Revenue Department
 Route::get('/add-revenue-officer', [LandRevenueController::class, 'add_revenue_officer'])->name('add-revenue-officer');
 Route::post('/store-revenue-officer', [LandRevenueController::class, 'store_revenue_officer'])->name('store-revenue-officer');
 Route::get('/all-revenue-officer', [LandRevenueController::class, 'all_revenue_officer'])->middleware(['auth', 'admin'])->name('all-revenue-officer');
+Route::get('/edit-revenue-officer/{id}', [LandRevenueController::class, 'edit_revenue_officer'])->name('edit-revenue-officer');
+
+
 
 //Land Revenue Department verify agriculture farmers
 Route::get('/all-agri-farmers-by-land', [LandRevenueController::class, 'all_agri_farmers_by_land'])->name('all-agri-farmers-by-land');

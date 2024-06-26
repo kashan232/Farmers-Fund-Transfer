@@ -23,7 +23,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Create Land Revenue Department</h2>
+                            <h2 class="mb-0">Edit User</h2>
                         </div>
                     </div>
                 </div>
@@ -35,59 +35,73 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>District</h5>
+                        <h5>Agriculture User</h5>
                     </div>
                     <div class="card-body">
-                        @if (session()->has('officer-added'))
+                        @if (session()->has('user-added'))
                         <div class="alert alert-success alert-dismissible fade show">
-                            <strong>Success!</strong> {{ session('officer-added') }}.
+                            <strong>Success!</strong> {{ session('user-added') }}.
                         </div>
                         @endif
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="{{ route('store-revenue-officer') }}" method="post">
+                                <form action="{{ route('store-user') }}" method="post" enctype="multipart/form-data">
                                     @csrf
+                                    <input type="hidden" name="edit_id" value="{{$data->id}}">
                                     <div class="row">
                                         <div class="mb-12 col-md-12">
-                                            <label class="form-label">Full Name</label>
-                                            <input type="text" class="form-control" name="full_name" required>
+                                            <label class="form-label">Name</label>
+                                            <input type="text" class="form-control" value="{{$data->user_name}}" name="user_name" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Contact Number</label>
-                                            <input type="text" class="form-control" name="contact_number" required>
+                                            <input type="text" class="form-control" name="number" value="{{$data->number}}" required>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="mb-12 col-md-12">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" name="email" value="{{$data->email}}" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Address</label>
-                                            <textarea class="form-control" name="address" rows="3" required></textarea>
+                                            <input type="text" class="form-control" name="address" value="{{$data->address}}" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
-                                            <label class="form-label">Email Address</label>
-                                            <input type="email" class="form-control" name="email_address" required>
+                                            <label class="form-label">CNIC</label>
+                                            <input type="text" class="form-control" name="cnic" value="{{$data->cnic}}" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select District</label>
-                                            <select name="district" id="district" class="form-control" required>
+                                            <select name="district" id="district" class="form-control" required >
                                                 <option value="" selected disabled>Select One</option>
                                                 @foreach ($all_district as $district)
-                                                <option value="{{ $district->district }}">
+                                                <option value="{{ $district->district }}" {{($district->district == $data->district) ? 'selected':''}} >
                                                     {{ $district->district }}
                                                 </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
+
+
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select Tehsil</label>
-                                            <select name="tehsil[]" id="tehsil" required class="col-12 form-control--input js-example-basic-multiple" multiple="multiple">
+                                            <select name="tehsil[]" id="tehsil" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
+                                                @foreach (json_decode($data->tehsil) as $tehsil)
+                                                <option value="{{ $tehsil }}" selected>
+                                                    {{ $tehsil }}
+                                                </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -95,7 +109,12 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>UC</label><br>
-                                            <select name="ucs[]" id="uc" required class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            <select name="ucs[]" id="uc" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
+                                                @foreach (json_decode($data->ucs) as $ucs)
+                                                <option value="{{ $ucs }}" selected>
+                                                    {{ $ucs }}
+                                                </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -103,20 +122,32 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>Tappa</label><br>
-                                            <select name="tappa[]" required id="tappa" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            <select name="tappa[]" id="tappa" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
+                                                @foreach (json_decode($data->tappas) as $tappas)
+                                                <option value="{{ $tappas }}" selected>
+                                                    {{ $tappas }}
+                                                </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
-                                            <label class="form-label">Username</label>
-                                            <input type="text" required class="form-control" name="username">
+                                            <label class="form-label">Password</label>
+                                            <input type="password" class="form-control" name="password" required>
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
-                                        <div class="mb-12 col-md-12">
-                                            <label class="form-label">Password</label>
-                                            <input type="password" required class="form-control" name="password">
+                                    <div class="card-header">
+                                        <h5>Uploaded Documents</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row mt-2">
+                                                <div class="mb-12 col-md-12">
+                                                    <label class="form-label">Upload Your pictures</label>
+                                                    <input type="file" name="userimg" class="form-control" required>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
@@ -136,6 +167,7 @@
 </footer>
 
 @include('admin_panel.include.footer_include')
+
 <script>
     $(document).ready(function() {
         $('select[name="district"]').on('change', function() {
@@ -156,13 +188,13 @@
                     }
                 });
             } else {
-                $('select[name="tehsil"]').empty();
+                $('select[name="tehsil[]"]').empty();
             }
         });
 
         $('select[name="tehsil[]"]').on('change', function() {
             var district = $('select[name="district"]').val();
-            var tehsil = $(this).val();
+            var tehsil = [$(this).val()];
 
             if (district && tehsil) {
                 $.ajax({
@@ -200,4 +232,5 @@
 </script>
 
 </body>
+
 </html>
