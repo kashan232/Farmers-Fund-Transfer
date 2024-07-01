@@ -224,24 +224,24 @@
                                             <h6>Family Composition</h6>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Gender</h6>
-                                                <input type="text" value="Female" readonly name="" class="form-control">
+                                                <input type="text" value="Female" readonly name="family_composition_female" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Children < 16 </h6>
-                                                <input type="text" name="" class="form-control">
+                                                <input type="text" name="female_children_under16" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Adults > 16 </h6>
-                                                <input type="text" name="" class="form-control">
+                                                <input type="text" name="female_Adults_above16" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" value="Male" readonly name="" class="form-control">
+                                                <input type="text" value="Male" readonly name="family_composition_male" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" name="" class="form-control">
+                                                <input type="text" name="male_children_under16" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" name="" class="form-control">
+                                                <input type="text" name="male_Adults_above16" class="form-control">
                                             </div>
                                         </div>
 
@@ -282,10 +282,10 @@
                                                     </thead>
                                                     <tbody id="title_tableBody">
                                                         <tr>
-                                                            <td><input type="text" class="form-control"></td>
-                                                            <td><input type="text" class="form-control"></td>
-                                                            <td><input type="text" class="form-control"></td>
-                                                            <td><input type="text" class="form-control"></td>
+                                                            <td><input type="text" name="title_name" class="form-control"></td>
+                                                            <td><input type="text" name="title_cnic" class="form-control"></td>
+                                                            <td><input type="text" name="title_number" class="form-control"></td>
+                                                            <td><input type="text" name="title_area" class="form-control"></td>
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
                                                     </tbody>
@@ -310,9 +310,9 @@
                                                     </thead>
                                                     <tbody id="crop_tableBody">
                                                         <tr>
-                                                            <td><input type="text" class="form-control"></td>
-                                                            <td><input type="text" class="form-control"></td>
-                                                            <td><input type="text" class="form-control"></td>
+                                                            <td><input type="text" name="crops" class="form-control"></td>
+                                                            <td><input type="text" name="crop_area" class="form-control"></td>
+                                                            <td><input type="text" name="crop_average_yeild" class="form-control"></td>
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
                                                     </tbody>
@@ -365,8 +365,8 @@
                                                     </thead>
                                                     <tbody id="poultry_assets_tableBody">
                                                         <tr>
-                                                            <td><input type="text" class="form-control"></td>
-                                                            <td><input type="text" class="form-control"></td>
+                                                            <td><input type="text" name="animal_name" class="form-control"></td>
+                                                            <td><input type="text" name="animal_qty" class="form-control"></td>
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
                                                     </tbody>
@@ -387,7 +387,7 @@
                                         <div class="row" id="source_of_irrigation_section">
                                             <div class="mb-6 col-md-6" >
                                                 <label class="form-label">Source of irrigation</label>
-                                                <select name=""  class="form-control" id="source_of_irrigation">
+                                                <select name="source_of_irrigation"  class="form-control" id="source_of_irrigation">
                                                     <option value="canal_wall">Canal System</option>
                                                     <option value="tube_wall">Tube Wall</option>
                                                 </select>
@@ -498,10 +498,10 @@
     $('#add_title_row_Btn').click(function() {
         const newRow = `
             <tr>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
+                <td><input type="text" name="title_name" class="form-control"></td>
+                <td><input type="text" name="title_cnic" class="form-control"></td>
+                <td><input type="text" name="title_number" class="form-control"></td>
+                <td><input type="text" name="title_area" class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;
@@ -516,9 +516,10 @@
     $('#add_crop_row_Btn').click(function() {
         const newRow = `
             <tr>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
+            <td>
+                <td><input type="text" name="crops" class="form-control"></td>
+                <td><input type="text" name="crop_area" class="form-control"></td>
+                <td><input type="text" name="crop_average_yeild" class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;
@@ -534,8 +535,8 @@
     $('#add_poultry_assets_row_Btn').click(function() {
         const newRow = `
             <tr>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
+                <td><input type="text" name="animal_name" class="form-control"></td>
+                <td><input type="text" name="animal_qty"  class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;
@@ -578,11 +579,11 @@ $('#lined_unlined').change(function() {
             <div class="row">
             <div class="mb-6 col-md-6" >
                 <label class="form-label">Lined Length</label>
-                <input type="text" name="" class="form-control">
+                <input type="text" name="lined_length" class="form-control">
             </div>
             <div class="mb-6 col-md-6" >
                 <label class="form-label">Total Command Area</label>
-                <input type="text" name="" class="form-control">
+                <input type="text" name="total_command_area" class="form-control">
             </div>
             </div>
         </div>
