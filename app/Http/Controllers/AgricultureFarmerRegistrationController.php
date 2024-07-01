@@ -49,6 +49,18 @@ class AgricultureFarmerRegistrationController extends Controller
     }
     public function store_agri_farmers(Request $request)
     {
+
+
+        $data = $request->all();
+        $data['physical_asset_item'] = 'Actual Asset Item';
+        $data['admin_or_user_id'] = Auth::id();
+        $data['agri_emp_id'] = Auth()->user()->user_id;
+        $data['agri_emp_name'] = Auth()->user()->name;
+        AgricultureFarmersRegistration::create($data);
+
+
+
+
         // Check if the user is authenticated
         if (Auth::check()) {
             $userId = Auth::id();

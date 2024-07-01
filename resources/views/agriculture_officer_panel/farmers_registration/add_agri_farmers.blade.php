@@ -209,8 +209,8 @@
                                         <div class="mb-4 col-md-4 mt-3">
                                             <label class="form-label">House Type</label>
                                             <select name="house_type" id="house_type" class="form-control">
-                                                <option value="">Pakka House</option>
-                                                <option value="">Kacha House</option>
+                                                <option value="pakka_house">Pakka House</option>
+                                                <option value="kacha_house">Kacha House</option>
                                             </select>
                                         </div>
                                         <div class="mb-4 col-md-4 mt-3">
