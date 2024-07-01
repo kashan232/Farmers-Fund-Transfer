@@ -9,6 +9,7 @@ use App\Models\LandRevenueDepartment;
 use App\Models\Tappa;
 use App\Models\Tehsil;
 use App\Models\UC;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -111,34 +112,169 @@ class HomeController extends Controller
                     'TotalVerifiedfarmers' => $TotalVerifiedfarmers,
                 ]);
             } else if ($usertype == 'Agriculture_Officer') {
-                return view('agriculture_officer_panel.agriculture_dashboard');
+
+                $userId = Auth::id();
+                $user_id = Auth()->user()->user_id;
+                // dd($user_id);
+
+                // Retrieve the user's record
+                $user = User::find($userId);
+
+                // Initialize counts
+                $districtCount = 0;
+                $tehsilCount = 0;
+                $tappaCount = 0;
+                $ucCount = 0;
+
+                $district = Auth()->user()->district;
+                // Check if user record exists
+                if ($user) {
+                    // Count district (assuming it's a single value)
+                    if ($user->district) {
+                        $districtCount = 1; // Only one district
+                    }
+
+                    // Decode and count tehsils
+                    if ($user->tehsil) {
+                        $tehsils = json_decode($user->tehsil, true);
+                        $tehsilCount = count($tehsils);
+                    }
+
+                    // Decode and count tappas
+                    if ($user->tappas) {
+                        $tappas = json_decode($user->tappas, true);
+                        $tappaCount = count($tappas);
+                    }
+
+                    // Decode and count UCs
+                    if ($user->ucs) {
+                        $ucs = json_decode($user->ucs, true);
+                        $ucCount = count($ucs);
+                    }
+                }
+                $agriUserfarmersCount = DB::table('agriculture_farmers_registrations')->where('agri_emp_id', '=', $user_id)->count();
+                $Unverifiedfarmeragiruser = DB::table('agriculture_farmers_registrations')->where('agri_emp_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
+                $Verifiedfarmeragiruser = DB::table('agriculture_farmers_registrations')->where('agri_emp_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+
+                return view('agriculture_officer_panel.agriculture_dashboard', [
+                    'agriUserfarmersCount' => $agriUserfarmersCount,
+                    'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
+                    'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
+                    'districtCount' => $districtCount,
+                    'tehsilCount' => $tehsilCount,
+                    'tappaCount' => $tappaCount,
+                    'ucCount' => $ucCount,
+                ]);
+
             } else if ($usertype == 'Land_Revenue_Officer') {
-                return view('land_revenue_panel.land_revenue_dashboard');
+
+                $userId = Auth::id();
+                $user_id = Auth()->user()->user_id;
+                // dd($user_id);
+
+                // Retrieve the user's record
+                $user = User::find($userId);
+
+                // Initialize counts
+                $districtCount = 0;
+                $tehsilCount = 0;
+                $tappaCount = 0;
+                $ucCount = 0;
+
+                $district = Auth()->user()->district;
+                // Check if user record exists
+                if ($user) {
+                    // Count district (assuming it's a single value)
+                    if ($user->district) {
+                        $districtCount = 1; // Only one district
+                    }
+
+                    // Decode and count tehsils
+                    if ($user->tehsil) {
+                        $tehsils = json_decode($user->tehsil, true);
+                        $tehsilCount = count($tehsils);
+                    }
+
+                    // Decode and count tappas
+                    if ($user->tappas) {
+                        $tappas = json_decode($user->tappas, true);
+                        $tappaCount = count($tappas);
+                    }
+
+                    // Decode and count UCs
+                    if ($user->ucs) {
+                        $ucs = json_decode($user->ucs, true);
+                        $ucCount = count($ucs);
+                    }
+                }
+                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
+                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
+                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+
+                return view('land_revenue_panel.land_revenue_dashboard', [
+                    'agriUserfarmersCount' => $agriUserfarmersCount,
+                    'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
+                    'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
+                    'districtCount' => $districtCount,
+                    'tehsilCount' => $tehsilCount,
+                    'tappaCount' => $tappaCount,
+                    'ucCount' => $ucCount,
+                ]);
+
             } else if ($usertype == 'Agriculture_User') {
 
-                $agriUserCount = DB::table('agriculture_user_farmer_registrations')->count();
-                $agricultureOfficerCount = DB::table('agriculture_farmers_registrations')->count();
-                $landRevenueDepartmentCount = DB::table('land_revenue_farmer_registations')->count();
-                $onlineFarmerRegistrationCount = DB::table('online_farmer_registrations')->count();
+                $userId = Auth::id();
 
-                $totalEntries = $agriUserCount + $agricultureOfficerCount + $landRevenueDepartmentCount + $onlineFarmerRegistrationCount;
+                $user_id = Auth()->user()->user_id;
 
-                $Unverifiedfarmeragiruser = DB::table('agriculture_user_farmer_registrations')->where('verification_status', '=', 'Unverified')->count();
-                $Unverifiedfarmeragioficr = DB::table('agriculture_farmers_registrations')->where('verification_status', '=', 'Unverified')->count();
-                $Unverifiedfarmerland = DB::table('land_revenue_farmer_registations')->where('verification_status', '=', 'Unverified')->count();
-                $Unverifiedfarmeronline = DB::table('online_farmer_registrations')->where('verification_status', '=', 'Unverified')->count();
+                // Retrieve the user's record
+                $user = User::find($userId);
 
-                $TotalUnverifiedfarmer = $Unverifiedfarmeragiruser + $Unverifiedfarmeragioficr + $Unverifiedfarmerland + $Unverifiedfarmeronline;
+                // Initialize counts
+                $districtCount = 0;
+                $tehsilCount = 0;
+                $tappaCount = 0;
+                $ucCount = 0;
 
-                $Verifiedfarmeragiruser = DB::table('agriculture_user_farmer_registrations')->where('verification_status', '=', 'Verified')->count();
-                $Verifiedfarmeragioficr = DB::table('agriculture_farmers_registrations')->where('verification_status', '=', 'Verified')->count();
-                $Verifiedfarmerland = DB::table('land_revenue_farmer_registations')->where('verification_status', '=', 'Verified')->count();
-                $Verifiedfarmeronline = DB::table('online_farmer_registrations')->where('verification_status', '=', 'Verified')->count();
+                $district = Auth()->user()->district;
+                // Check if user record exists
+                if ($user) {
+                    // Count district (assuming it's a single value)
+                    if ($user->district) {
+                        $districtCount = 1; // Only one district
+                    }
 
-                $TotalVerifiedfarmers = $Verifiedfarmeragiruser + $Verifiedfarmeragioficr + $Verifiedfarmerland + $Verifiedfarmeronline;
+                    // Decode and count tehsils
+                    if ($user->tehsil) {
+                        $tehsils = json_decode($user->tehsil, true);
+                        $tehsilCount = count($tehsils);
+                    }
 
-                
-                return view('agriculture_user_panel.agriculture_user_dashboard');
+                    // Decode and count tappas
+                    if ($user->tappas) {
+                        $tappas = json_decode($user->tappas, true);
+                        $tappaCount = count($tappas);
+                    }
+
+                    // Decode and count UCs
+                    if ($user->ucs) {
+                        $ucs = json_decode($user->ucs, true);
+                        $ucCount = count($ucs);
+                    }
+                }
+                $agriUserfarmersCount = DB::table('agriculture_user_farmer_registrations')->where('agri_user_emp_id', '=', $user_id)->count();
+                $Unverifiedfarmeragiruser = DB::table('agriculture_user_farmer_registrations')->where('agri_user_emp_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
+                $Verifiedfarmeragiruser = DB::table('agriculture_user_farmer_registrations')->where('agri_user_emp_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+
+                return view('agriculture_user_panel.agriculture_user_dashboard', [
+                    'agriUserfarmersCount' => $agriUserfarmersCount,
+                    'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
+                    'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
+                    'districtCount' => $districtCount,
+                    'tehsilCount' => $tehsilCount,
+                    'tappaCount' => $tappaCount,
+                    'ucCount' => $ucCount,
+                ]);
             }
         } else {
             // return redirect()->back();
