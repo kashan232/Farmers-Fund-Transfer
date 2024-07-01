@@ -134,6 +134,7 @@ Route::get('/verifications-online-farmers', [LandRevenueController::class, 'veri
 Route::post('/verify-unverify-online-farmers', [LandRevenueController::class, 'verify_unverify_online_farmers'])->name('verify-unverify-online-farmers');
 
 // agriculture department panel
+// Route::get('/my-former-form', [AgricultureFarmerRegistrationController::class, 'my_form']);
 Route::get('/add-agri-farmers', [AgricultureFarmerRegistrationController::class, 'add_agri_farmers'])->name('add-agri-farmers');
 Route::post('/store-agri-farmers', [AgricultureFarmerRegistrationController::class, 'store_agri_farmers'])->name('store-agri-farmers');
 Route::get('/all-agri-farmers', [AgricultureFarmerRegistrationController::class, 'all_agri_farmers'])->name('all-agri-farmers');

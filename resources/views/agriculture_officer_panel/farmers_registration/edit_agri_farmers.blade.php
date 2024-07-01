@@ -33,9 +33,9 @@
     }
 
     .step-indicator.active {
-        background-color: #5bcfc5;
-        color: white;
-        border-color: #5bcfc5;
+        background-color: #5bcfc5 !important;
+        color: white !important;
+        border-color: #5bcfc5 !important;
     }
 
     .connector {
@@ -347,27 +347,39 @@
                                     <div class="row mt-2">
                                         <h4 class="card-title">Uploaded Documents</h4>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Front ID Card Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Front ID Card Img "jpg/png/jpeg"</label><br>
+                                            <img src="{{ ($all_agriculture_farmer->front_id_card != '') ? asset('agriculture_farmers/front_id_card/'.$all_agriculture_farmer->front_id_card) : asset('no-image-available.jpg') }}"
+                                            style="width: 20%; height: 90px; border-radius: 8px; margin: 2%;">
                                             <input type="file" name="front_id_card" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Back ID Card Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Back ID Card Img "jpg/png/jpeg"</label><br>
+                                            <img src="{{ ($all_agriculture_farmer->back_id_card != '') ? asset('agriculture_farmers/back_id_card/'.$all_agriculture_farmer->back_id_card) : asset('no-image-available.jpg') }}"
+                                            style="width: 20%; height: 90px; border-radius: 8px; margin: 2%;">
                                             <input type="file" name="back_id_card" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Land Proof Pic Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Land Proof Pic Img "jpg/png/jpeg"</label><br>
+                                            <img src="{{ ($all_agriculture_farmer->upload_land_proof != '') ? asset('agriculture_farmers/upload_land_proof/'.$all_agriculture_farmer->upload_land_proof) : asset('no-image-available.jpg') }}"
+                                            style="width: 20%; height: 90px; border-radius: 8px; margin: 2%;">
                                             <input type="file" name="upload_land_proof" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Other Attachments Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Other Attachments Img "jpg/png/jpeg"</label><br>
+                                            <img src="{{ ($all_agriculture_farmer->upload_other_attach != '') ? asset('agriculture_farmers/upload_other_attach/'.$all_agriculture_farmer->upload_other_attach) : asset('no-image-available.jpg') }}"
+                                            style="width: 20%; height: 90px; border-radius: 8px; margin: 2%;">
                                             <input type="file" name="upload_other_attach" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Farmer Picture Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Farmer Picture Img "jpg/png/jpeg"</label><br>
+                                            <img src="{{ ($all_agriculture_farmer->upload_farmer_pic != '') ? asset('agriculture_farmers/upload_farmer_pic/'.$all_agriculture_farmer->upload_farmer_pic) : asset('no-image-available.jpg') }}"
+                                            style="width: 20%; height: 90px; border-radius: 8px; margin: 2%;">
                                             <input type="file" name="upload_farmer_pic" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label><br>
+                                            <img src="{{ ($all_agriculture_farmer->upload_cheque_pic != '') ? asset('agriculture_farmers/upload_cheque_pic/'.$all_agriculture_farmer->upload_cheque_pic) : asset('no-image-available.jpg') }}"
+                                            style="width: 20%; height: 90px; border-radius: 8px; margin: 2%;">
                                             <input type="file" name="upload_cheque_pic" class="form-control">
                                         </div>
                                     </div>
@@ -457,6 +469,7 @@ $('select[name="tehsil"]').on('change', function() {
 
     function updateProgressIndicator(step) {
         document.querySelectorAll('.step-indicator').forEach(function(indicator, index) {
+
             if (index < step) {
                 indicator.classList.add('active');
             } else {

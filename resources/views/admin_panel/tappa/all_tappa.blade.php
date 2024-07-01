@@ -36,6 +36,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="dt-responsive">
+                            @if (session()->has('tappa-updated'))
+                            <div class="alert alert-success alert-dismissible fade show">
+                                <strong>Success!</strong> {{ session('tappa-updated') }}.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            @endif
                             <div id="dom-jqry_wrapper" class="dt-container dt-bootstrap5">
                                 <div class="row mt-2 justify-content-between">
                                     <div class="col-md-auto me-auto ">
@@ -71,8 +77,8 @@
                                                     <td>{{ $tappa->tappa }}</td>
                                                     <td>
                                                         <div class="d-flex">
-                                                            <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                                            <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                                            <a href="javascript:void(0);" id="edit_tappa"  data-data="{{ $tappa }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                                            <a href="#"  class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -105,6 +111,61 @@
             </div>
         </div>
         <!-- [ Main Content ] end -->
+        {{-- Modal for edit  --}}
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Tappa</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form class="row g-3" action="{{ route('store-tappa') }}" method="post">
+                            @csrf
+                            <input type="hidden" class="form-control" id="edit_id" name="edit_id" >
+                            <div class="col-md-12">
+                            <label class="form-label">Select District</label>
+                            <select name="district" id="district" class="form-control" required>
+                                <option value="" selected disabled>Select One</option>
+                                @foreach ($all_district as $district)
+                                <option value="{{ $district->district }}">
+                                    {{ $district->district }}
+                                </option>
+                                @endforeach
+                            </select>
+                            </div>
+                            <div class="col-md-12">
+                            <label class="form-label">Select Tehsil</label>
+                            <select name="tehsil" id="tehsil" class="form-control" required>
+                                <option value="" selected disabled>Select One</option>
+                                @foreach ($all_tehsil as $tehsil)
+                                <option value="{{ $tehsil->tehsil }}">
+                                    {{ $tehsil->tehsil }}
+                                </option>
+                                @endforeach
+                            </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="inputFirstName" class="form-label">Tappa<span class="text-danger">*</span></label>
+                                <input class="form-control"  id="tappa" name="tappa" value="" >
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+        {{-- Model end --}}
+
+
+
+
     </div>
 </div>
 <!-- [ Main Content ] end -->
@@ -115,5 +176,51 @@
 @include('admin_panel.include.footer_include')
 
 </body>
+<script>
+     $(document).ready(function() {
+        $('select[name="district"]').on('change', function() {
+            var district = $(this).val();
+            if (district) {
+                $.ajax({
+                    url: '{{ route('get-tehsils') }}',
+                    type: 'GET',
+                    data: {
+                        district: district
+                    },
+                    success: function(data) {
+                        $('select[name="tehsil"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="tehsil"]').append('<option value="' +
+                                value + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('select[name="tehsil"]').empty();
+            }
+        });
+    });
 
+     $(document).on('click','#edit_tappa',function(){
+        var data = $(this).data('data');
+        $.ajax({
+            url: '{{ route('get-tehsils') }}',
+            type: 'GET',
+            data: {
+                district: data.district
+            },
+            success: function(res) {
+                $('select[name="tehsil"]').empty();
+                $.each(res, function(key, value) {
+                    var selected = value === data.tehsil ? 'selected' : '';
+                    $('select[name="tehsil"]').append(`<option value="${value}" ${selected}>${value}</option>`);
+                });
+            }
+        });
+        $('#edit_id').val(data.id);
+        $('#district').val(data.district);
+        $('#tappa').val(data.tappa);
+        $('#exampleModal').modal('show');
+    })
+</script>
 </html>

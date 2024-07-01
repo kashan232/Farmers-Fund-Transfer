@@ -12,6 +12,24 @@ use App\Models\Tehsil;
 
 class AgricultureFarmerRegistrationController extends Controller
 {
+    public function my_form()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $district = Auth()->user()->district;
+            $tehsil = Auth()->user()->tehsil;
+
+            // dd($userId);
+            // $all_district = District::where('admin_or_user_id', '=', $userId)->get();
+            // $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
+            return view('agriculture_officer_panel.farmers_registration.my_form', [
+                'district' => $district,
+                'tehsil' => $tehsil,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
     public function add_agri_farmers()
     {
         if (Auth::id()) {

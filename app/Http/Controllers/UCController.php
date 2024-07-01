@@ -31,15 +31,31 @@ class UCController extends Controller
         if (Auth::id()) {
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
-            UC::create([
-                'admin_or_user_id'    => $userId,
-                'district'          => $request->district,
-                'tehsil'          => $request->tehsil,
-                'uc'          => $request->uc,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now(),
-            ]);
-            return redirect()->back()->with('uc-added', 'UC Added Successfully');
+            if($request->edit_id && $request->edit_id != '')
+            {
+                UC::where('id',$request->edit_id)->update([
+                    'admin_or_user_id'    => $userId,
+                    'district'          => $request->district,
+                    'tehsil'          => $request->tehsil,
+                    'uc'          => $request->uc,
+                    'created_at'        => Carbon::now(),
+                    'updated_at'        => Carbon::now(),
+                ]);
+                return redirect()->back()->with('uc-updated', 'UC Updated Successfully');
+            }
+            else
+            {
+                UC::create([
+                    'admin_or_user_id'    => $userId,
+                    'district'          => $request->district,
+                    'tehsil'          => $request->tehsil,
+                    'uc'          => $request->uc,
+                    'created_at'        => Carbon::now(),
+                    'updated_at'        => Carbon::now(),
+                ]);
+               return redirect()->back()->with('uc-added', 'UC Added Successfully');
+            }
+
         } else {
             return redirect()->back();
         }
@@ -68,9 +84,13 @@ class UCController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             // dd($userId);
+            $all_district = District::where('admin_or_user_id', '=', $userId)->get();
+            $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
             $all_uc = UC::where('admin_or_user_id', '=', $userId)->get();
             return view('admin_panel.UC.all_uc', [
                 'all_uc' => $all_uc,
+                'all_district' => $all_district,
+                'all_tehsil' => $all_tehsil,
             ]);
         } else {
             return redirect()->back();

@@ -27,13 +27,27 @@ class DistrictController extends Controller
         if (Auth::id()) {
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
-            District::create([
-                'admin_or_user_id'    => $userId,
-                'district'          => $request->district,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now(),
-            ]);
-            return redirect()->back()->with('district-added', 'District Added Successfully');
+            if($request->edit_id && $request->edit_id != '')
+            {
+                District::where('id',$request->edit_id)->update([
+                    'admin_or_user_id'    => $userId,
+                    'district'          => $request->district,
+                    'created_at'        => Carbon::now(),
+                    'updated_at'        => Carbon::now(),
+                ]);
+                return redirect()->back()->with('district-updated', 'District Updated Successfully');
+            }
+            else
+            {
+                District::create([
+                    'admin_or_user_id'    => $userId,
+                    'district'          => $request->district,
+                    'created_at'        => Carbon::now(),
+                    'updated_at'        => Carbon::now(),
+                ]);
+                return redirect()->back()->with('district-added', 'District Added Successfully');
+            }
+
         } else {
             return redirect()->back();
         }

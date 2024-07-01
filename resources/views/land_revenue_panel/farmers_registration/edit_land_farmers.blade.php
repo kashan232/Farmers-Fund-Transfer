@@ -33,9 +33,9 @@
     }
 
     .step-indicator.active {
-        background-color: #5bcfc5;
-        color: white;
-        border-color: #5bcfc5;
+        background-color: #5bcfc5 !important;
+        color: white !important;
+        border-color: #5bcfc5 !important;
     }
 
     .connector {

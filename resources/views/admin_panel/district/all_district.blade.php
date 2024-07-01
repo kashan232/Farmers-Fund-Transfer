@@ -36,6 +36,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="dt-responsive">
+                            @if (session()->has('district-updated'))
+                            <div class="alert alert-success alert-dismissible fade show">
+                                <strong>Success!</strong> {{ session('district-updated') }}.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            @endif
                             <div id="dom-jqry_wrapper" class="dt-container dt-bootstrap5">
                                 <div class="row mt-2 justify-content-between">
                                     <div class="col-md-auto me-auto ">
@@ -67,7 +73,7 @@
                                                     <td>{{ $district->district }}</td>
                                                     <td>
                                                         <div class="d-flex">
-                                                            <a href="{{ route('edit-district', ['id' => $district->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                                            <a href="javascript:void(0);" id="edit_district"  data-data="{{ $district }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                                             <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                                         </div>
                                                     </td>
@@ -101,6 +107,37 @@
             </div>
         </div>
         <!-- [ Main Content ] end -->
+
+        {{-- Modal for edit  --}}
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Tappa</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form class="row g-3" action="{{ route('store-district') }}" method="post">
+                            @csrf
+                            <input type="hidden" class="form-control" id="edit_id" name="edit_id" >
+
+                            <div class="col-md-12">
+                                <label for="inputFirstName" class="form-label">District<span class="text-danger">*</span></label>
+                                <input class="form-control"  id="district" name="district" value="" >
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+        {{-- Model end --}}
     </div>
 </div>
 <!-- [ Main Content ] end -->
@@ -111,5 +148,12 @@
 @include('admin_panel.include.footer_include')
 
 </body>
-
+<script>
+     $(document).on('click','#edit_district',function(){
+        var data = $(this).data('data');
+        $('#edit_id').val(data.id);
+        $('#district').val(data.district);
+        $('#exampleModal').modal('show');
+    })
+</script>
 </html>
