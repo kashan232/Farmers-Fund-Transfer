@@ -325,12 +325,28 @@
                                             <div class="row physical_asset-default-row" >
                                                 <div class="mb-8 col-md-8">
                                                     <label class="form-label">Items</label>
-                                                    <input type="text" name="physical_asset_item[]" class="form-control">
+                                                    <select name="a[]" id="" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
+                                                        <option value="car/jeep">Car/Jeep </option>
+                                                        <option value="pickup/loader">Pickup/loader</option>
+                                                        <option value="motorcycle">Motorcycle</option>
+                                                        <option value="bicycles">Bicycles</option>
+                                                        <option value="bullock_cart">Bullock Cart</option>
+                                                        <option value="Tractor(4wheels)">Tractor (4 wheels)</option>
+                                                        <option value="disk_harrow">Disk Harrow</option>
+                                                        <option value="cultivator">Cultivator</option>
+                                                        <option value="tractor_trolley">Tractor Trolley</option>
+                                                        <option value="plough">Plough (wood or metal)</option>
+                                                        <option value="thresher">Thresher</option>
+                                                        <option value="harvester">Harvester</option>
+                                                        <option value="rotavetor">Rotavetor</option>
+                                                        <option value="laser_lever">Laser lever</option>
+                                                    </select>
+                                                    {{-- <input type="text" name="physical_asset_item[]" class="form-control"> --}}
                                                 </div>
-                                                <div class="mb-2 col-md-2">
+                                                {{-- <div class="mb-2 col-md-2">
                                                     <label class="form-label" style="color:transparent">.</label>
                                                     <br><button class="btn btn-success" id="add_physical_assets_btn">ADD</button>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                         <div class="row py-2" id="poultry_assets_section">
@@ -467,7 +483,6 @@
 </footer>
 
 @include('agriculture_officer_panel.include.footer_include')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
 $('#source_of_irrigation').change(function() {
@@ -587,29 +602,29 @@ $(document).on('click', '.remove_no_title_row', function(e) {
 
 
 
-physical_assets_row_id=0;
-$('#add_physical_assets_btn').click(function(e) {
-    e.preventDefault();
-    $('.physical_asset-default-row').before(`
-    <div class="row " id="physical_assets_row${physical_assets_row_id}">
-        <div class="mb-8 col-md-8">
-            <label class="form-label">Items</label>
-            <input type="text" name="physical_asset_item[]" class="form-control">
-        </div>
-        <div class="mb-2 col-md-2">
-            <label class="form-label" style="color:transparent">.</label>
-            <br><button class="remove_physical_assets_row btn btn-danger" id="${physical_assets_row_id}">Delete</button>
-        </div>
-    </div>`);
-    physical_assets_row_id++;
-});
+// physical_assets_row_id=0;
+// $('#add_physical_assets_btn').click(function(e) {
+//     e.preventDefault();
+//     $('.physical_asset-default-row').before(`
+//     <div class="row " id="physical_assets_row${physical_assets_row_id}">
+//         <div class="mb-8 col-md-8">
+//             <label class="form-label">Items</label>
+//             <input type="text" name="physical_asset_item[]" class="form-control">
+//         </div>
+//         <div class="mb-2 col-md-2">
+//             <label class="form-label" style="color:transparent">.</label>
+//             <br><button class="remove_physical_assets_row btn btn-danger" id="${physical_assets_row_id}">Delete</button>
+//         </div>
+//     </div>`);
+//     physical_assets_row_id++;
+// });
 
-//Remove rows dynamically form
-$(document).on('click', '.remove_physical_assets_row', function(e) {
-    e.preventDefault();
-    var button_id = $(this).attr("id");
-    $('#physical_assets_row' + button_id + '').remove();
-});
+// //Remove rows dynamically form
+// $(document).on('click', '.remove_physical_assets_row', function(e) {
+//     e.preventDefault();
+//     var button_id = $(this).attr("id");
+//     $('#physical_assets_row' + button_id + '').remove();
+// });
 
 
 poultry_assets_row_id=0;

@@ -1,3 +1,4 @@
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="{{asset('')}}assets/js/plugins/apexcharts.min.js"></script>
 <script src="{{asset('')}}assets/js/plugins/jsvectormap.min.js"></script>
 <script src="{{asset('')}}assets/js/plugins/world.js"></script>
@@ -12,6 +13,11 @@
 <script src="{{asset('')}}assets/js/plugins/dataTables.min.js"></script>
     <script src="{{asset('')}}assets/js/plugins/dataTables.bootstrap5.min.js"></script>
     <script src="{{asset('select2.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+      </script>
 <script>
     layout_change('light');
 </script>
