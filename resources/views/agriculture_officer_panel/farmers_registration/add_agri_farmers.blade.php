@@ -395,27 +395,27 @@
                                         <h4 class="card-title">Bank & Account Details</h4>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Title of Account</label>
-                                            <input type="text" name="bank_branch_name" class="form-control">
+                                            <input type="text" name="account_title" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Account No</label>
-                                            <input type="text" name="bank_branch_code" class="form-control">
+                                            <input type="text" name="account_no" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Name</label>
-                                            <input type="text" name="bank_branch_name" class="form-control">
+                                            <input type="text" name="bank_name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Name</label>
-                                            <input type="text" name="bank_branch_code" class="form-control">
+                                            <input type="text" name="branch_name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">IBAN</label>
-                                            <input type="text" name="bank_account_title" class="form-control">
+                                            <input type="text" name="IBAN_number" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Code</label>
-                                            <input type="text" name="bank_account_number" class="form-control">
+                                            <input type="text" name="branch_code" class="form-control">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
