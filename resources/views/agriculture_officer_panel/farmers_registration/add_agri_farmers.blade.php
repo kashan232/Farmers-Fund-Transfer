@@ -209,46 +209,45 @@
                                         <div class="mb-4 col-md-4 mt-3">
                                             <label class="form-label">House Type</label>
                                             <select name="house_type" id="house_type" class="form-control">
-                                                <option value="Pakka House">Pakka House</option>
-                                                <option value="Kacha House">Kacha House</option>
+                                                <option value="">Pakka House</option>
+                                                <option value="">Kacha House</option>
                                             </select>
                                         </div>
                                         <div class="mb-4 col-md-4 mt-3">
                                             <label class="form-label">Owner Type</label>
-                                            <select name="owner_type" id="owner_type" class="form-control">
-                                                <option value="Owner">Owner</option>
-                                                <option value="Makandar">Makandar</option>
+                                            <select name="owner_type" id="" class="form-control">
+                                                <option value="Male">Owner</option>
+                                                <option value="Female">Makandar</option>
                                             </select>
                                         </div>
-                                        <hr>
                                         <div class="row mt-2">
-                                            <h5>Family Composition</h5>
+                                            <h6>Family Composition</h6>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Gender</h6>
-                                                <input type="text" value="Female" readonly name="family_composition_female" class="form-control">
+                                                <input type="text" value="Female" readonly name="" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Children < 16 </h6>
-                                                <input type="text" name="female_children_under16" class="form-control">
+                                                <input type="text" name="" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Adults > 16 </h6>
-                                                <input type="text" name="female_Adults_above16" class="form-control">
+                                                <input type="text" name="" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" value="Male" readonly name="family_composition_male" class="form-control">
+                                                <input type="text" value="Male" readonly name="" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" name="male_children_under16" class="form-control">
+                                                <input type="text" name="" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" name="male_Adults_above16" class="form-control">
+                                                <input type="text" name="" class="form-control">
                                             </div>
                                         </div>
-                                        <hr>
+
                                         <div class="row mt-3" id="">
-                                            <h5>Landholding & Cropping</h5>
-                                            <div class="row mt-3">
+                                            <h6>Landholding & Cropping</h6>
+                                            <div class="row" >
                                                 <div class="mb-3 col-md-3">
                                                     <label class="form-label">Total Landholding (Acre)</label>
                                                     <input type="text" name="total_landing_acre" class="form-control">
@@ -269,50 +268,58 @@
                                         </div>
 
                                         <div class="row " id="no_title_section">
-                                            <h6>Title</h6>
-                                            <div class="row no_title-default-row" >
-                                                <div class="mb-3 col-md-3">
-                                                    <label class="form-label">Name</label>
-                                                    <input type="text" name="title_name[]" class="form-control">
-                                                </div>
-                                                <div class="mb-3 col-md-3">
-                                                    <label class="form-label">CNIC Number </label>
-                                                    <input type="text" name="title_cnic[]" class="form-control">
-                                                </div>
-                                                <div class="mb-2 col-md-2">
-                                                    <label class="form-label">Contact Number</label>
-                                                    <input type="text" name="title_number[]" class="form-control">
-                                                </div>
-                                                <div class="mb-2 col-md-2">
-                                                    <label class="form-label">Total Area (Acre)</label>
-                                                    <input type="text" name="title_area[]" class="form-control">
-                                                </div>
-                                                <div class="mb-2 col-md-2">
-                                                    <label class="form-label" style="color:transparent">.</label>
-                                                    <br><button class="btn btn-success" id="add_no_title_btn">ADD</button>
-                                                </div>
+                                            <h6>Titleee</h6>
+                                            <div class="col-12">
+                                                <table id="title_table" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>CNIC Number</th>
+                                                            <th>Contact Number</th>
+                                                            <th>Total Area (Acre)</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="title_tableBody">
+                                                        <tr>
+                                                            <td><input type="text" class="form-control"></td>
+                                                            <td><input type="text" class="form-control"></td>
+                                                            <td><input type="text" class="form-control"></td>
+                                                            <td><input type="text" class="form-control"></td>
+                                                            <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-12" style="justify-content: right; display: flex;">
+                                                <button type="button"  class="btn btn-primary" id="add_title_row_Btn">Add More</button>
                                             </div>
                                         </div>
 
                                         <div class="row" id="crops_section">
                                             <h6>Crop Status</h6>
-                                            <div class="row crop-default-row" >
-                                                <div class="mb-4 col-md-4">
-                                                    <label class="form-label">Crops</label>
-                                                    <input type="text" name="crops[]" class="form-control">
-                                                </div>
-                                                <div class="mb-4 col-md-4">
-                                                    <label class="form-label">Area</label>
-                                                    <input type="text" name="crop_area[]" class="form-control">
-                                                </div>
-                                                <div class="mb-2 col-md-2">
-                                                    <label class="form-label">Average Yeild</label>
-                                                    <input type="text" name="crop_average_yeild[]" class="form-control">
-                                                </div>
-                                                <div class="mb-2 col-md-2">
-                                                    <label class="form-label" style="color:transparent">.</label>
-                                                    <br><button class="btn btn-success" id="add_crops_btn">ADD</button>
-                                                </div>
+                                            <div class="col-12">
+                                                <table id="crop_table" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Crops</th>
+                                                            <th>Area</th>
+                                                            <th>Average Yeild</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="crop_tableBody">
+                                                        <tr>
+                                                            <td><input type="text" class="form-control"></td>
+                                                            <td><input type="text" class="form-control"></td>
+                                                            <td><input type="text" class="form-control"></td>
+                                                            <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-12" style="justify-content: right; display: flex;">
+                                                <button type="button"  class="btn btn-primary" id="add_crop_row_Btn">Add More</button>
                                             </div>
                                         </div>
                                     </div>
@@ -352,19 +359,26 @@
                                         </div>
                                         <div class="row py-2" id="poultry_assets_section">
                                             <h6>Livestock and Poultry Assets Currently Owned</h6>
-                                            <div class="row poultry_asset-default-row" >
-                                                <div class="mb-4 col-md-4">
-                                                    <label class="form-label">Animal Name</label>
-                                                    <input type="text" name="animal_name[]" class="form-control">
-                                                </div>
-                                                <div class="mb-4 col-md-4">
-                                                    <label class="form-label">Numbers</label>
-                                                    <input type="text" name="animal_qty[]" class="form-control">
-                                                </div>
-                                                <div class="mb-2 col-md-2">
-                                                    <label class="form-label" style="color:transparent">.</label>
-                                                    <br><button class="btn btn-success" id="add_poultry_assets_btn">ADD</button>
-                                                </div>
+                                            <div class="col-12">
+                                                <table id="poultry_assets_table" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Animal</th>
+                                                            <th>Numbers</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="poultry_assets_tableBody">
+                                                        <tr>
+                                                            <td><input type="text" class="form-control"></td>
+                                                            <td><input type="text" class="form-control"></td>
+                                                            <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-12" style="justify-content: right; display: flex;">
+                                                <button type="button"  class="btn btn-primary" id="add_poultry_assets_row_Btn">Add More</button>
                                             </div>
                                         </div>
                                     </div>
@@ -378,7 +392,7 @@
                                         <div class="row" id="source_of_irrigation_section">
                                             <div class="mb-6 col-md-6" >
                                                 <label class="form-label">Source of irrigation</label>
-                                                <select name="source_of_irrigation"  class="form-control" id="source_of_irrigation">
+                                                <select name=""  class="form-control" id="source_of_irrigation">
                                                     <option value="canal_wall">Canal System</option>
                                                     <option value="tube_wall">Tube Wall</option>
                                                 </select>
@@ -390,12 +404,12 @@
                                         <div class="row" id="status_of_water_section">
                                             <div class="mb-3 col-md-3" >
                                                 <label class="form-label">Area length</label>
-                                                <input type="text" name="area_length" class="form-control">
+                                                <input type="text" name="" class="form-control">
                                             </div>
                                             <div class="mb-3 col-md-3" >
-                                                <label class="form-label">line Status</label>
-                                                <select class="form-control" aria-multiline="" name="line_status" id="line_status">
-                                                    <option>Select Lined/Unlined</option>
+                                                <label class="form-label">Area length</label>
+                                                <select class="form-control" id="lined_unlined">
+                                                    <option value="">Select Lined/Unlined</option>
                                                     <option value="lined">lined</option>
                                                     <option value="unlined">Unlind</option>
                                                 </select>
@@ -411,27 +425,27 @@
                                         <h4 class="card-title">Bank & Account Details</h4>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Title of Account</label>
-                                            <input type="text" name="account_title" class="form-control">
+                                            <input type="text" name="bank_branch_name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Account No</label>
-                                            <input type="text" name="account_no" class="form-control">
+                                            <input type="text" name="bank_branch_code" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Name</label>
-                                            <input type="text" name="bank_name" class="form-control">
+                                            <input type="text" name="bank_branch_name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Name</label>
-                                            <input type="text" name="branch_name" class="form-control">
+                                            <input type="text" name="bank_branch_code" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">IBAN</label>
-                                            <input type="text" name="IBAN_number" class="form-control">
+                                            <input type="text" name="bank_account_title" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Code</label>
-                                            <input type="text" name="branch_code" class="form-control">
+                                            <input type="text" name="bank_account_number" class="form-control">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
@@ -486,6 +500,62 @@
 @include('agriculture_officer_panel.include.footer_include')
 <script>
 
+    $('#add_title_row_Btn').click(function() {
+        const newRow = `
+            <tr>
+                <td><input type="text" class="form-control"></td>
+                <td><input type="text" class="form-control"></td>
+                <td><input type="text" class="form-control"></td>
+                <td><input type="text" class="form-control"></td>
+                <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+            </tr>
+        `;
+        $('#title_tableBody').append(newRow);
+    });
+
+    // Delete row on clicking "Delete" button
+    $('#title_tableBody').on('click', '.delete-row', function() {
+        $(this).closest('tr').remove();
+    });
+
+    $('#add_crop_row_Btn').click(function() {
+        const newRow = `
+            <tr>
+                <td><input type="text" class="form-control"></td>
+                <td><input type="text" class="form-control"></td>
+                <td><input type="text" class="form-control"></td>
+                <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+            </tr>
+        `;
+        $('#crop_tableBody').append(newRow);
+    });
+
+    // Delete row on clicking "Delete" button
+    $('#crop_tableBody').on('click', '.delete-row', function() {
+        $(this).closest('tr').remove();
+    });
+
+
+    $('#add_poultry_assets_row_Btn').click(function() {
+        const newRow = `
+            <tr>
+                <td><input type="text" class="form-control"></td>
+                <td><input type="text" class="form-control"></td>
+                <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+            </tr>
+        `;
+        $('#poultry_assets_tableBody').append(newRow);
+    });
+
+    // Delete row on clicking "Delete" button
+    $('#poultry_assets_tableBody').on('click', '.delete-row', function() {
+        $(this).closest('tr').remove();
+    });
+
+
+
+
+
 $('#source_of_irrigation').change(function() {
     if($(this).val() == 'tube_wall')
     {
@@ -528,133 +598,6 @@ $('#lined_unlined').change(function() {
     }
 });
 
-
-crop_row_id=0;
-$('#add_crops_btn').click(function(e) {
-    e.preventDefault();
-    $('.crop-default-row').before(`
-    <div class="row " id="crops_row${crop_row_id}">
-        <div class="mb-4 col-md-4">
-            <label class="form-label">Crops</label>
-            <input type="text" name="crops[]" class="form-control">
-        </div>
-        <div class="mb-4 col-md-4">
-            <label class="form-label">Area</label>
-            <input type="text" name="crop_area[]" class="form-control">
-        </div>
-        <div class="mb-2 col-md-2">
-            <label class="form-label">Average Yeild</label>
-            <input type="text" name="crop_average_yeild[]" class="form-control">
-        </div>
-        <div class="mb-2 col-md-2">
-            <label class="form-label" style="color:transparent">.</label>
-            <br><button class="remove_crop_row btn btn-danger" id="${crop_row_id}">Delete</button>
-        </div>
-    </div>`);
-    crop_row_id++;
-});
-
-//Remove rows dynamically form
-$(document).on('click', '.remove_crop_row', function(e) {
-    e.preventDefault();
-    var button_id = $(this).attr("id");
-    $('#crops_row' + button_id + '').remove();
-});
-
-
-
-no_title_row_id=0;
-$('#add_no_title_btn').click(function(e) {
-    e.preventDefault();
-    $('.no_title-default-row').before(`
-    <div class="row " id="no_title_row${no_title_row_id}">
-        <div class="mb-3 col-md-3">
-            <label class="form-label">Name</label>
-            <input type="text" name="" class="form-control">
-        </div>
-        <div class="mb-3 col-md-3">
-            <label class="form-label">CNIC Number </label>
-            <input type="text" name="" class="form-control">
-        </div>
-        <div class="mb-2 col-md-2">
-            <label class="form-label">Contact Number</label>
-            <input type="text" name="" class="form-control">
-        </div>
-        <div class="mb-2 col-md-2">
-            <label class="form-label">Total Area (Acre)</label>
-            <input type="text" name="" class="form-control">
-        </div>
-        <div class="mb-2 col-md-2">
-            <label class="form-label" style="color:transparent">.</label>
-            <br><button class="remove_no_title_row btn btn-danger" id="${no_title_row_id}">Delete</button>
-        </div>
-    </div>`);
-    no_title_row_id++;
-});
-
-//Remove rows dynamically form
-$(document).on('click', '.remove_no_title_row', function(e) {
-    e.preventDefault();
-    var button_id = $(this).attr("id");
-    $('#no_title_row' + button_id + '').remove();
-});
-
-
-
-
-
-// physical_assets_row_id=0;
-// $('#add_physical_assets_btn').click(function(e) {
-//     e.preventDefault();
-//     $('.physical_asset-default-row').before(`
-//     <div class="row " id="physical_assets_row${physical_assets_row_id}">
-//         <div class="mb-8 col-md-8">
-//             <label class="form-label">Items</label>
-//             <input type="text" name="physical_asset_item[]" class="form-control">
-//         </div>
-//         <div class="mb-2 col-md-2">
-//             <label class="form-label" style="color:transparent">.</label>
-//             <br><button class="remove_physical_assets_row btn btn-danger" id="${physical_assets_row_id}">Delete</button>
-//         </div>
-//     </div>`);
-//     physical_assets_row_id++;
-// });
-
-// //Remove rows dynamically form
-// $(document).on('click', '.remove_physical_assets_row', function(e) {
-//     e.preventDefault();
-//     var button_id = $(this).attr("id");
-//     $('#physical_assets_row' + button_id + '').remove();
-// });
-
-
-poultry_assets_row_id=0;
-$('#add_poultry_assets_btn').click(function(e) {
-    e.preventDefault();
-    $('.poultry_asset-default-row').before(`
-    <div class="row " id="poultry_assets_row${poultry_assets_row_id}">
-        <div class="mb-4 col-md-4">
-            <label class="form-label">Animal Name</label>
-            <input type="text" name="animal_name[]" class="form-control">
-        </div>
-        <div class="mb-4 col-md-4">
-            <label class="form-label">Numbers</label>
-            <input type="text" name="animal_qty[]" class="form-control">
-        </div>
-        <div class="mb-2 col-md-2">
-            <label class="form-label" style="color:transparent">.</label>
-            <br><button class="remove_poultry_assets_row btn btn-danger" id="${poultry_assets_row_id}">Delete</button>
-        </div>
-    </div>`);
-    poultry_assets_row_id++;
-});
-
-//Remove rows dynamically form
-$(document).on('click', '.remove_poultry_assets_row', function(e) {
-    e.preventDefault();
-    var button_id = $(this).attr("id");
-    $('#poultry_assets_row' + button_id + '').remove();
-});
 
 
 
