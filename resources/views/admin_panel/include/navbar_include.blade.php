@@ -17,6 +17,9 @@
     <!-- [Mobile Media Block end] -->
     <div class="ms-auto">
         <ul class="list-unstyled">
+            <li class="nav-item m-auto">
+                <a class="text-dark main--swrg" style="font-size: 25px; font-weight: bold; margin-left: 20px;"> DASHBOARD</a>
+            </li>
             <li class="dropdown pc-h-item">
                 <a class="text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     Super Admin
@@ -39,15 +42,15 @@
                                             <img src="../assets/images/user/Admin.png" alt="user-image" class="wid-50 rounded-circle" />
                                         </div>
                                         @if (Auth::check())
-                                            <div class="flex-grow-1 mx-3">
-                                                <h5 class="mb-0">{{ Auth::user()->name }}</h5>
-                                                <a class="link-primary">{{ Auth::user()->email }}</a>
-                                            </div>
+                                        <div class="flex-grow-1 mx-3">
+                                            <h5 class="mb-0">{{ Auth::user()->name }}</h5>
+                                            <a class="link-primary">{{ Auth::user()->email }}</a>
+                                        </div>
                                         @else
-                                            <div class="flex-grow-1 mx-3">
-                                                <h5 class="mb-0">Guest</h5>
-                                                <a class="link-primary">Please log in</a>
-                                            </div>
+                                        <div class="flex-grow-1 mx-3">
+                                            <h5 class="mb-0">Guest</h5>
+                                            <a class="link-primary">Please log in</a>
+                                        </div>
                                         @endif
                                     </div>
                                 </li>

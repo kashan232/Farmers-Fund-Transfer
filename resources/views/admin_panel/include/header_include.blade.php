@@ -27,7 +27,7 @@
 
 </head>
 
-<body data-pc-preset="preset-1" data-pc-sidebar-theme="light" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme="light">
+<body data-pc-preset="preset-1" data-pc-sidebar-theme="light" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme="light" style="background-color: #e7e3e0;">
     <div class="loader-bg">
         <div class="loader-track">
             <div class="loader-fill"></div>

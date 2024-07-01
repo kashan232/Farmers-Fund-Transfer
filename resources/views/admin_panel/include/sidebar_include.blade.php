@@ -1,30 +1,22 @@
 <div class="navbar-wrapper">
-    <div class="m-header">
+    <div class="m-header" style="justify-content: center;">
         <a href="#" class="b-brand text-primary">
-            <img src="../assets/images/swat-logo.png" alt="logo image" class="logo-lg" style="max-width:60px;" />
+            <img src="../assets/images/govtlogos.png" alt="logo image" class="logo-lg" style="max-width:120px;" />
+
         </a>
     </div>
     <div class="navbar-content">
-        <ul class="pc-navbar">
+        <ul class="pc-navbar custom-navbar">
             <li class="pc-item pc-hasmenu">
-                <a href="{{ route('home') }}" class="pc-link">
+                <a href="{{ route('home') }}" class="pc-link" style="color: #ebe5e5!important;">
                     <span class="pc-micon">
                         <i class="fas fa-home"></i>
                     </span>
                     <span class="pc-mtext">Dashboard</span>
                 </a>
             </li>
-
-            <!-- <li class="pc-item">
-                        <a href="#" class="pc-link">
-                            <span class="pc-micon">
-                                <i class="ph-duotone ph-chart-pie"></i>
-                            </span>
-                            <span class="pc-mtext">Chart</span>
-                        </a>
-                    </li> -->
             <li class="pc-item pc-hasmenu">
-                <a href="#!" class="pc-link">
+                <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
                     <span class="pc-micon">
                         <i class="fas fa-building"></i>
                     </span>
@@ -33,16 +25,16 @@
                 </a>
                 <ul class="pc-submenu">
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('add-district') }}">Add</a>
+                        <a class="pc-link" href="{{ route('add-district') }}" style="color: #ebe5e5!important;">Add</a>
                     </li>
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('all-district') }}">List</a>
+                        <a class="pc-link" href="{{ route('all-district') }}" style="color: #ebe5e5!important;">List</a>
                     </li>
                 </ul>
             </li>
 
             <li class="pc-item pc-hasmenu">
-                <a href="#!" class="pc-link">
+                <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
                     <span class="pc-micon">
                         <i class="fas fa-city"></i>
                     </span>
@@ -51,34 +43,17 @@
                 </a>
                 <ul class="pc-submenu">
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('add-tehsil') }}">Add</a>
+                        <a class="pc-link" href="{{ route('add-tehsil') }}" style="color: #ebe5e5!important;">Add</a>
                     </li>
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('all-tehsil') }}">List</a>
+                        <a class="pc-link" href="{{ route('all-tehsil') }}" style="color: #ebe5e5!important;">List</a>
                     </li>
                 </ul>
             </li>
 
-            <!-- <li class="pc-item pc-hasmenu">
-                        <a href="#!" class="pc-link">
-                            <span class="pc-micon">
-                                <i class="ph-duotone ph-buildings"></i>
-                            </span>
-                            <span class="pc-mtext">Area</span>
-                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                        </a>
-                        <ul class="pc-submenu">
-                            <li class="pc-item">
-                                <a class="pc-link" href="{{ route('add-area') }}">Add</a>
-                            </li>
-                            <li class="pc-item">
-                                <a class="pc-link" href="{{ route('all-area') }}">List</a>
-                            </li>
-                        </ul>
-                    </li> -->
 
             <li class="pc-item pc-hasmenu">
-                <a href="#!" class="pc-link">
+                <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
                     <span class="pc-micon">
                         <i class="fas fa-store-alt"></i>
                     </span>
@@ -87,16 +62,16 @@
                 </a>
                 <ul class="pc-submenu">
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('add-tappa') }}">Add</a>
+                        <a class="pc-link" href="{{ route('add-tappa') }}" style="color: #ebe5e5!important;">Add</a>
                     </li>
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('all-tappa') }}">List</a>
+                        <a class="pc-link" href="{{ route('all-tappa') }}" style="color: #ebe5e5!important;">List</a>
                     </li>
                 </ul>
             </li>
 
             <li class="pc-item pc-hasmenu">
-                <a href="#!" class="pc-link">
+                <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
                     <span class="pc-micon">
                         <i class="fas fa-warehouse"></i>
                     </span>
@@ -105,15 +80,15 @@
                 </a>
                 <ul class="pc-submenu">
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('add-uc') }}">Add</a>
+                        <a class="pc-link" href="{{ route('add-uc') }}" style="color: #ebe5e5!important;">Add</a>
                     </li>
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('all-uc') }}">List</a>
+                        <a class="pc-link" href="{{ route('all-uc') }}" style="color: #ebe5e5!important;">List</a>
                     </li>
                 </ul>
             </li>
             <li class="pc-item pc-hasmenu">
-                <a href="#!" class="pc-link">
+                <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
                     <span class="pc-micon">
                         <i class="fas fa-user"></i>
                     </span>
@@ -122,16 +97,16 @@
                 </a>
                 <ul class="pc-submenu">
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('add-user') }}">Add</a>
+                        <a class="pc-link" href="{{ route('add-user') }}" style="color: #ebe5e5!important;">Add</a>
                     </li>
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('all-user') }}">List</a>
+                        <a class="pc-link" href="{{ route('all-user') }}" style="color: #ebe5e5!important;">List</a>
                     </li>
                 </ul>
             </li>
 
             <li class="pc-item pc-hasmenu">
-                <a href="#!" class="pc-link">
+                <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
                     <span class="pc-micon">
                         <i class="fas fa-user-shield"></i>
                     </span>
@@ -140,16 +115,16 @@
                 </a>
                 <ul class="pc-submenu">
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('agri-officer-create') }}">Create Officer</a>
+                        <a class="pc-link" href="{{ route('agri-officer-create') }}" style="color: #ebe5e5!important;">Create Officer</a>
                     </li>
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('all-agri-officer') }}">All Officer</a>
+                        <a class="pc-link" href="{{ route('all-agri-officer') }}" style="color: #ebe5e5!important;">All Officer</a>
                     </li>
                 </ul>
             </li>
 
             <li class="pc-item pc-hasmenu">
-                <a href="#!" class="pc-link">
+                <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
                     <span class="pc-micon">
                         <i class="fas fa-user-tie"></i>
                     </span>
@@ -158,17 +133,17 @@
                 </a>
                 <ul class="pc-submenu">
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('add-revenue-officer') }}">Create Officer</a>
+                        <a class="pc-link" href="{{ route('add-revenue-officer') }}" style="color: #ebe5e5!important;">Create Officer</a>
                     </li>
                     <li class="pc-item">
-                        <a class="pc-link" href="{{ route('all-revenue-officer') }}">All Officer</a>
+                        <a class="pc-link" href="{{ route('all-revenue-officer') }}" style="color: #ebe5e5!important;">All Officer</a>
                     </li>
                 </ul>
             </li>
 
 
             <li class="pc-item">
-                <a href="{{ route('reporting') }}" class="pc-link">
+                <a href="{{ route('reporting') }}" class="pc-link" style="color: #ebe5e5!important;">
                     <span class="pc-micon">
                         <i class="fas fa-chart-bar"></i>
                     </span>

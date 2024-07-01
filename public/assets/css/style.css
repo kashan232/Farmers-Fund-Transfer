@@ -20399,7 +20399,7 @@ pre[class*=language-] > code {
 
 .layout-3 .pc-submenu-list-wrapper {
   padding: 0 25px;
-  background: var(--pc-header-background);
+  background: #ffffff!important;
   color: var(--pc-header-color);
   border-top: 1px solid var(--bs-border-radius);
   box-shadow: var(--pc-sidebar-shadow);

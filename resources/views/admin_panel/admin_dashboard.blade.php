@@ -1,7 +1,7 @@
 @include('admin_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-<nav class="pc-sidebar">
+<nav class="pc-sidebar" style="background:#033323;">
     @include('admin_panel.include.sidebar_include')
 </nav>
 <style>
@@ -35,7 +35,7 @@
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-<header class="pc-header">
+<header class="pc-header" style="background-color: #fff!important;">
     @include('admin_panel.include.navbar_include')
 </header>
 <!-- [ Header ] end -->
@@ -294,6 +294,13 @@
                 bar: {
                     borderRadius: 4,
                     horizontal: true,
+                    colors: {
+                        ranges: [{
+                            from: 0,
+                            to: Infinity,
+                            color: '#4ba064'
+                        }]
+                    }
                 }
             },
             xaxis: {
@@ -324,6 +331,13 @@
                 bar: {
                     borderRadius: 4,
                     horizontal: true,
+                    colors: {
+                        ranges: [{
+                            from: 0,
+                            to: Infinity,
+                            color: '#4ba064'
+                        }]
+                    }
                 }
             },
             xaxis: {
@@ -354,6 +368,13 @@
                 bar: {
                     borderRadius: 4,
                     horizontal: true,
+                    colors: {
+                        ranges: [{
+                            from: 0,
+                            to: Infinity,
+                            color: '#4ba064'
+                        }]
+                    }
                 }
             },
             xaxis: {

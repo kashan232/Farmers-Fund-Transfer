@@ -224,7 +224,7 @@
                                             <h6>Family Composition</h6>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Gender</h6>
-                                                <input type="text" value="Female" readonly name="family_composition_female" class="form-control">
+                                                <input type="text" name="family_composition_female" class="form-control" value="Female" readonly>
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Children < 16 </h6>
@@ -235,7 +235,7 @@
                                                 <input type="text" name="female_Adults_above16" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" value="Male" readonly name="family_composition_male" class="form-control">
+                                                <input type="text" name="family_composition_male" class="form-control" value="Male" readonly>
                                             </div>
                                             <div class="mb-4 col-md-4 ">
                                                 <input type="text" name="male_children_under16" class="form-control">
