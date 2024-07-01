@@ -209,45 +209,46 @@
                                         <div class="mb-4 col-md-4 mt-3">
                                             <label class="form-label">House Type</label>
                                             <select name="house_type" id="house_type" class="form-control">
-                                                <option value="">Pakka House</option>
-                                                <option value="">Kacha House</option>
+                                                <option value="Pakka House">Pakka House</option>
+                                                <option value="Kacha House">Kacha House</option>
                                             </select>
                                         </div>
                                         <div class="mb-4 col-md-4 mt-3">
                                             <label class="form-label">Owner Type</label>
-                                            <select name="owner_type" id="" class="form-control">
-                                                <option value="Male">Owner</option>
-                                                <option value="Female">Makandar</option>
+                                            <select name="owner_type" id="owner_type" class="form-control">
+                                                <option value="Owner">Owner</option>
+                                                <option value="Makandar">Makandar</option>
                                             </select>
                                         </div>
+                                        <hr>
                                         <div class="row mt-2">
-                                            <h6>Family Composition</h6>
+                                            <h5>Family Composition</h5>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Gender</h6>
-                                                <input type="text" value="Female" readonly name="" class="form-control">
+                                                <input type="text" value="Female" readonly name="family_composition_female" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Children < 16 </h6>
-                                                <input type="text" name="" class="form-control">
+                                                <input type="text" name="female_children_under16" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Adults > 16 </h6>
-                                                <input type="text" name="" class="form-control">
+                                                <input type="text" name="female_Adults_above16" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" value="Male" readonly name="" class="form-control">
+                                                <input type="text" value="Male" readonly name="family_composition_male" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" name="" class="form-control">
+                                                <input type="text" name="male_children_under16" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" name="" class="form-control">
+                                                <input type="text" name="male_Adults_above16" class="form-control">
                                             </div>
                                         </div>
-
+                                        <hr>
                                         <div class="row mt-3" id="">
-                                            <h6>Landholding & Cropping</h6>
-                                            <div class="row" >
+                                            <h5>Landholding & Cropping</h5>
+                                            <div class="row mt-3">
                                                 <div class="mb-3 col-md-3">
                                                     <label class="form-label">Total Landholding (Acre)</label>
                                                     <input type="text" name="total_landing_acre" class="form-control">
@@ -268,23 +269,23 @@
                                         </div>
 
                                         <div class="row " id="no_title_section">
-                                            <h6>Titleee</h6>
+                                            <h6>Title</h6>
                                             <div class="row no_title-default-row" >
                                                 <div class="mb-3 col-md-3">
                                                     <label class="form-label">Name</label>
-                                                    <input type="text" name="" class="form-control">
+                                                    <input type="text" name="title_name[]" class="form-control">
                                                 </div>
                                                 <div class="mb-3 col-md-3">
                                                     <label class="form-label">CNIC Number </label>
-                                                    <input type="text" name="" class="form-control">
+                                                    <input type="text" name="title_cnic[]" class="form-control">
                                                 </div>
                                                 <div class="mb-2 col-md-2">
                                                     <label class="form-label">Contact Number</label>
-                                                    <input type="text" name="" class="form-control">
+                                                    <input type="text" name="title_number[]" class="form-control">
                                                 </div>
                                                 <div class="mb-2 col-md-2">
                                                     <label class="form-label">Total Area (Acre)</label>
-                                                    <input type="text" name="" class="form-control">
+                                                    <input type="text" name="title_area[]" class="form-control">
                                                 </div>
                                                 <div class="mb-2 col-md-2">
                                                     <label class="form-label" style="color:transparent">.</label>
@@ -361,7 +362,7 @@
                                         <div class="row" id="source_of_irrigation_section">
                                             <div class="mb-6 col-md-6" >
                                                 <label class="form-label">Source of irrigation</label>
-                                                <select name=""  class="form-control" id="source_of_irrigation">
+                                                <select name="source_of_irrigation"  class="form-control" id="source_of_irrigation">
                                                     <option value="canal_wall">Canal System</option>
                                                     <option value="tube_wall">Tube Wall</option>
                                                 </select>
@@ -373,12 +374,12 @@
                                         <div class="row" id="status_of_water_section">
                                             <div class="mb-3 col-md-3" >
                                                 <label class="form-label">Area length</label>
-                                                <input type="text" name="" class="form-control">
+                                                <input type="text" name="area_length" class="form-control">
                                             </div>
                                             <div class="mb-3 col-md-3" >
-                                                <label class="form-label">Area length</label>
-                                                <select class="form-control" id="lined_unlined">
-                                                    <option value="">Select Lined/Unlined</option>
+                                                <label class="form-label">line Status</label>
+                                                <select class="form-control" aria-multiline="" name="line_status" id="line_status">
+                                                    <option>Select Lined/Unlined</option>
                                                     <option value="lined">lined</option>
                                                     <option value="unlined">Unlind</option>
                                                 </select>
