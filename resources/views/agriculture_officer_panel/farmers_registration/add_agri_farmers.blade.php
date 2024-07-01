@@ -326,7 +326,7 @@
                                             <div class="row physical_asset-default-row" >
                                                 <div class="mb-8 col-md-8">
                                                     <label class="form-label">Items</label>
-                                                    <select name="a[]" id="" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
+                                                    <select name="physical_asset_item[]" id="physical_asset_item" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
                                                         <option value="car/jeep">Car/Jeep </option>
                                                         <option value="pickup/loader">Pickup/loader</option>
                                                         <option value="motorcycle">Motorcycle</option>
@@ -342,12 +342,7 @@
                                                         <option value="rotavetor">Rotavetor</option>
                                                         <option value="laser_lever">Laser lever</option>
                                                     </select>
-                                                    {{-- <input type="text" name="physical_asset_item[]" class="form-control"> --}}
                                                 </div>
-                                                {{-- <div class="mb-2 col-md-2">
-                                                    <label class="form-label" style="color:transparent">.</label>
-                                                    <br><button class="btn btn-success" id="add_physical_assets_btn">ADD</button>
-                                                </div> --}}
                                             </div>
                                         </div>
                                         <div class="row py-2" id="poultry_assets_section">
@@ -492,10 +487,10 @@ $('#source_of_irrigation').change(function() {
          $('#source_of_irrigation_section').append(`
          <div class="mb-6 col-md-6" id="source_of_energy_section">
             <label class="form-label">Source of energy</label>
-            <select name=""  class="form-control" id="source_of_energy">
-                <option value="">Electricity</option>
-                <option value="">Solar</option>
-                <option value="">Fuel</option>
+            <select name="source_of_irrigation_engery"  class="form-control" id="source_of_energy">
+                <option value="Electricity">Electricity</option>
+                <option value="Solar">Solar</option>
+                <option value="Fuel">Fuel</option>
             </select>
             </div>
          `);
@@ -570,19 +565,19 @@ $('#add_no_title_btn').click(function(e) {
     <div class="row " id="no_title_row${no_title_row_id}">
         <div class="mb-3 col-md-3">
             <label class="form-label">Name</label>
-            <input type="text" name="" class="form-control">
+            <input type="text" name="title_name[]" class="form-control">
         </div>
         <div class="mb-3 col-md-3">
             <label class="form-label">CNIC Number </label>
-            <input type="text" name="" class="form-control">
+            <input type="text" name="title_cnic[]" class="form-control">
         </div>
         <div class="mb-2 col-md-2">
             <label class="form-label">Contact Number</label>
-            <input type="text" name="" class="form-control">
+            <input type="text" name="title_number[]" class="form-control">
         </div>
         <div class="mb-2 col-md-2">
             <label class="form-label">Total Area (Acre)</label>
-            <input type="text" name="" class="form-control">
+            <input type="text" name="title_area[]" class="form-control">
         </div>
         <div class="mb-2 col-md-2">
             <label class="form-label" style="color:transparent">.</label>
@@ -598,35 +593,6 @@ $(document).on('click', '.remove_no_title_row', function(e) {
     var button_id = $(this).attr("id");
     $('#no_title_row' + button_id + '').remove();
 });
-
-
-
-
-
-// physical_assets_row_id=0;
-// $('#add_physical_assets_btn').click(function(e) {
-//     e.preventDefault();
-//     $('.physical_asset-default-row').before(`
-//     <div class="row " id="physical_assets_row${physical_assets_row_id}">
-//         <div class="mb-8 col-md-8">
-//             <label class="form-label">Items</label>
-//             <input type="text" name="physical_asset_item[]" class="form-control">
-//         </div>
-//         <div class="mb-2 col-md-2">
-//             <label class="form-label" style="color:transparent">.</label>
-//             <br><button class="remove_physical_assets_row btn btn-danger" id="${physical_assets_row_id}">Delete</button>
-//         </div>
-//     </div>`);
-//     physical_assets_row_id++;
-// });
-
-// //Remove rows dynamically form
-// $(document).on('click', '.remove_physical_assets_row', function(e) {
-//     e.preventDefault();
-//     var button_id = $(this).attr("id");
-//     $('#physical_assets_row' + button_id + '').remove();
-// });
-
 
 poultry_assets_row_id=0;
 $('#add_poultry_assets_btn').click(function(e) {
