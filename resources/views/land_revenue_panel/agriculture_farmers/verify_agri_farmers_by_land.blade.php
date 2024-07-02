@@ -1,15 +1,11 @@
 @include('land_revenue_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-<nav class="pc-sidebar">
     @include('land_revenue_panel.include.sidebar_include')
-</nav>
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-<header class="pc-header">
     @include('land_revenue_panel.include.navbar_include')
-</header>
 <!-- [ Header ] end -->
 <!-- [ Main Content ] start -->
 <div class="pc-container">

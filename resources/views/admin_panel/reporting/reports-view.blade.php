@@ -1,15 +1,10 @@
 @include('admin_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-<nav class="pc-sidebar">
     @include('admin_panel.include.sidebar_include')
-</nav>
-
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-<header class="pc-header">
     @include('admin_panel.include.navbar_include')
-</header>
 <!-- [ Header ] end -->
 
 <!-- [ Main Content ] start -->

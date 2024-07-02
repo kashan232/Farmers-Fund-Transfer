@@ -1,3 +1,4 @@
+<header class="pc-header">
 <div class="header-wrapper"> <!-- [Mobile Media Block] start -->
     <div class="me-auto pc-mob-drp">
         <ul class="list-unstyled">
@@ -19,7 +20,7 @@
     <div class="ms-auto">
         <ul class="list-unstyled">
             <li class="dropdown pc-h-item">
-                <a class="text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <a class="text-dark pt-1" style="font-weight: 700;">
                     Land Revenue Department
                 </a>
             </li>
@@ -78,3 +79,4 @@
         </ul>
     </div>
 </div>
+</header>

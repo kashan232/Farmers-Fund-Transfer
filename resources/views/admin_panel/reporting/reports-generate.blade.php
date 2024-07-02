@@ -1,15 +1,11 @@
 @include('admin_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-<nav class="pc-sidebar">
     @include('admin_panel.include.sidebar_include')
-</nav>
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-<header class="pc-header">
     @include('admin_panel.include.navbar_include')
-</header>
 <!-- [ Header ] end -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">

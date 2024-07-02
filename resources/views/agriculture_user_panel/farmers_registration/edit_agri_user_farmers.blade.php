@@ -53,15 +53,11 @@
 </style>
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-<nav class="pc-sidebar">
     @include('agriculture_user_panel.include.sidebar_include')
-</nav>
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-<header class="pc-header">
     @include('agriculture_user_panel.include.navbar_include')
-</header>
 <!-- [ Header ] end -->
 
 

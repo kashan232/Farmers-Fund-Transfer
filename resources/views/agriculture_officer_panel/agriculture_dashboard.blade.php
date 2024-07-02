@@ -1,15 +1,11 @@
 @include('agriculture_officer_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-<nav class="pc-sidebar">
-    @include('agriculture_officer_panel.include.sidebar_include')
-</nav>
+@include('agriculture_officer_panel.include.sidebar_include')
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-<header class="pc-header">
-    @include('agriculture_officer_panel.include.navbar_include')
-</header>
+@include('agriculture_officer_panel.include.navbar_include')
 <!-- [ Header ] end -->
 
 

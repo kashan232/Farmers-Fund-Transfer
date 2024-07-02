@@ -23,7 +23,10 @@ body
 {
   background-color: #e7e3e0!important;
 }
-
+.custom-navbar li .nav-link-a:after
+{
+  background: #4ba064!important;
+}
 :root {
   --primary: #5bcfc5;
   --secondary: #709fba;

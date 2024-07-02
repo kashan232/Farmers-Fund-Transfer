@@ -40,55 +40,18 @@ class AgriUserController extends Controller
     {
         if (Auth::id()) {
 
-        $usertype = Auth()->user()->usertype;
-        $emp_id = Auth::user()->emp_id;
+            $usertype = Auth()->user()->usertype;
+            $emp_id = Auth::user()->emp_id;
 
-        $userId = Auth::id();
-        $ucs = json_encode($request->input('ucs'));
-        $tappa = json_encode($request->input('tappa'));
-        $tehsil = json_encode($request->input('tehsil'));
+            $userId = Auth::id();
+            $ucs = json_encode($request->input('ucs'));
+            $tappa = json_encode($request->input('tappa'));
+            $tehsil = json_encode($request->input('tehsil'));
 
-        $userimgname = null;
+            $userimgname = null;
 
-        if($request->edit_id && $request->edit_id != '')
-        {
-                 // Handle front ID card image
-             if ($request->hasFile('userimg')) {
-                $userimgname = $request->file('userimg');
-                $userimg = time() . '_' . uniqid() . '.' . $userimgname->getClientOriginalExtension();
-                $userimgname->move(public_path('user_profile/user_image'), $userimg);
-            }
-
-            $agriuser = AgriUser::where('id',$request->edit_id)->update([
-                'admin_or_user_id'    => $userId,
-
-                'user_name'          => $request->user_name,
-                'number'          => $request->number,
-                'email'          => $request->email,
-                'address'          => $request->address,
-                'cnic'          => $request->cnic,
-                'district'          => $request->district,
-                'tehsil'          => $tehsil,
-                'ucs'          => $ucs,
-                'tappas'          => $tappa,
-
-                'img'          => $userimg,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now(),
-            ]);
-
-
-
-            return redirect()->back()->with('user-added', 'User Updated Successfully');
-        }
-        else{
-
-
-
-
-
-             // Handle front ID card image
-             if ($request->hasFile('userimg')) {
+            // Handle front ID card image
+            if ($request->hasFile('userimg')) {
                 $userimgname = $request->file('userimg');
                 $userimg = time() . '_' . uniqid() . '.' . $userimgname->getClientOriginalExtension();
                 $userimgname->move(public_path('user_profile/user_image'), $userimg);
@@ -107,7 +70,7 @@ class AgriUserController extends Controller
                 'ucs'          => $ucs,
                 'tappas'          => $tappa,
                 'password'          => $request->password,
-                'img'          => $userimg,
+                // 'img'          => $userimg,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ]);
@@ -124,15 +87,9 @@ class AgriUserController extends Controller
                 'password' => bcrypt($request->password), // Make sure to hash the password
                 'usertype' => 'Agriculture_User', // Set the usertype to 'employee'
             ]);
-
-            return redirect()->back()->with('user-added', 'User Added Successfully');
+        } else {
+            return redirect()->back();
         }
-    }
-
-    else {
-        return redirect()->back();
-    }
-
     }
     public function all_user()
     {

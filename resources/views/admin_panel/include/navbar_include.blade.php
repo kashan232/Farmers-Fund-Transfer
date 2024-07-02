@@ -1,3 +1,5 @@
+
+<header class="pc-header" style="background-color: #fff!important;">
 <div class="header-wrapper"> <!-- [Mobile Media Block] start -->
     <div class="me-auto pc-mob-drp">
         <ul class="list-unstyled">
@@ -12,17 +14,17 @@
                     <i class="ti ti-menu-2"></i>
                 </a>
             </li>
+            <li class="pc-h-item d-none d-md-inline-flex">
+                <!-- <h4 style="color:#343a40;margin-top:6px;">Benazir Hari Card System</h4> -->
+            </li>
         </ul>
     </div>
     <!-- [Mobile Media Block end] -->
     <div class="ms-auto">
         <ul class="list-unstyled">
-            <li class="nav-item m-auto">
-                <a class="text-dark main--swrg" style="font-size: 25px; font-weight: bold; margin-left: 20px;"> DASHBOARD</a>
-            </li>
             <li class="dropdown pc-h-item">
-                <a class="text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    Super Admin
+                <a class="text-dark pt-1" style="font-weight: 700;">
+                    Admin
                 </a>
             </li>
             <li class="dropdown pc-h-item header-user-profile">
@@ -79,3 +81,4 @@
         </ul>
     </div>
 </div>
+</header>
