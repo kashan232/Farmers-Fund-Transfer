@@ -144,6 +144,18 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+                <div class="box--sec">
+                    <div class="top-heading">
+                        <div>
+                            <p> District : Badin</p>
+                        </div>
+                    </div>
+                    <div id="chart" style="width: 100%;"></div>
+                </div>
+            </div>
+
         </div>
         <!-- [ Main Content ] end -->
     </div>
@@ -155,6 +167,79 @@
 
 @include('agriculture_user_panel.include.footer_include')
 
+
+
+<script>
+    // Static data for demonstration
+    var data = [
+        {
+            tehsil: 'Khoski',
+            totalFarmers: 200,
+            verifiedFarmers: 150,
+            unverifiedFarmers: 50
+        },
+        {
+            tehsil: 'Matli',
+            totalFarmers: 50,
+            verifiedFarmers: 30,
+            unverifiedFarmers: 20
+        },
+        {
+            tehsil: 'Badin',
+            totalFarmers: 100,
+            verifiedFarmers: 90,
+            unverifiedFarmers: 10
+        }
+    ];
+
+    var options = {
+        series: [{
+            name: 'Total Farmers',
+            data: data.map(function(item) {
+                return item.totalFarmers;
+            })
+        }, {
+            name: 'Verified Farmers',
+            data: data.map(function(item) {
+                return item.verifiedFarmers;
+            })
+        }, {
+            name: 'Unverified Farmers',
+            data: data.map(function(item) {
+                return item.unverifiedFarmers;
+            })
+        }],
+        chart: {
+            type: 'bar',
+            height: 350
+        },
+        plotOptions: {
+            bar: {
+                horizontal: true,
+                dataLabels: {
+                    position: 'top'
+                }
+            }
+        },
+        colors: ['#4ba064', '#34a853', '#ea4335'],
+        dataLabels: {
+            enabled: true,
+            offsetX: -6,
+            style: {
+                fontSize: '12px',
+                colors: ['#fff']
+            }
+        },
+        xaxis: {
+            categories: data.map(function(item) {
+                return item.tehsil;
+            }),
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+</script>
 </body>
 
 </html>

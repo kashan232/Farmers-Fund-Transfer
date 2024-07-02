@@ -10,15 +10,14 @@
         left: 0;
     } */
 
-    .pc-sidebar .pc-navbar > .pc-item.active > .pc-link:after {
-        background: #4ba064!important;
+    .pc-sidebar .pc-navbar>.pc-item.active>.pc-link:after {
+        background: #4ba064 !important;
     }
 
 
-    .pc-sidebar .pc-navbar > .pc-item.active > .pc-link {
+    .pc-sidebar .pc-navbar>.pc-item.active>.pc-link {
         color: #fff;
     }
-
 </style>
 <nav class="pc-sidebar" style="background:#033323;">
     <div class="navbar-wrapper">
@@ -26,7 +25,7 @@
             <!-- <a href="#" class="b-brand text-primary">
                 <img src="../assets/images/govtlogos.png" alt="logo image" class="logo-lg" style="max-width:120px;" />
             </a> -->
-            <h4 class="text-white">Benazir Hari Card</h4>
+            <h3 class="mt-2" style="font-size: 13px;text-align:center;color:#e5e5e5;letter-spacing: 1px;"><span style="font-size: 24px;letter-spacing: 3px;line-height: 1.5;">Sindh</span> <br> Hari Card</h3>
         </div>
         <div class="navbar-content">
             <ul class="pc-navbar custom-navbar">
@@ -38,6 +37,71 @@
                         <span class="pc-mtext">Dashboard</span>
                     </a>
                 </li>
+                
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
+                        <span class="pc-micon">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <span class="pc-mtext">Agriculture  User</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('add-user') }}" style="color: #ebe5e5!important;">Add</a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('all-user') }}" style="color: #ebe5e5!important;">List</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
+                        <span class="pc-micon">
+                            <i class="fas fa-user-shield"></i>
+                        </span>
+                        <span class="pc-mtext">Agriculture Officer</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('agri-officer-create') }}" style="color: #ebe5e5!important;">Create Officer</a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('all-agri-officer') }}" style="color: #ebe5e5!important;">All Officer</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
+                        <span class="pc-micon">
+                            <i class="fas fa-user-tie"></i>
+                        </span>
+                        <span class="pc-mtext">Land Revenue</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('add-revenue-officer') }}" style="color: #ebe5e5!important;">Create Officer</a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('all-revenue-officer') }}" style="color: #ebe5e5!important;">All Officer</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="pc-item">
+                    <a href="{{ route('reporting') }}" class="pc-link" style="color: #ebe5e5!important;">
+                        <span class="pc-micon">
+                            <i class="fas fa-chart-bar"></i>
+                        </span>
+                        <span class="pc-mtext">Reports</span>
+                    </a>
+                </li>
+
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
                         <span class="pc-micon">
@@ -109,69 +173,6 @@
                             <a class="pc-link" href="{{ route('all-uc') }}" style="color: #ebe5e5!important;">List</a>
                         </li>
                     </ul>
-                </li>
-                <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
-                        <span class="pc-micon">
-                            <i class="fas fa-user"></i>
-                        </span>
-                        <span class="pc-mtext">User</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('add-user') }}" style="color: #ebe5e5!important;">Add</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-user') }}" style="color: #ebe5e5!important;">List</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
-                        <span class="pc-micon">
-                            <i class="fas fa-user-shield"></i>
-                        </span>
-                        <span class="pc-mtext">Agriculture</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('agri-officer-create') }}" style="color: #ebe5e5!important;">Create Officer</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-agri-officer') }}" style="color: #ebe5e5!important;">All Officer</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
-                        <span class="pc-micon">
-                            <i class="fas fa-user-tie"></i>
-                        </span>
-                        <span class="pc-mtext">Land Revenue</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('add-revenue-officer') }}" style="color: #ebe5e5!important;">Create Officer</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-revenue-officer') }}" style="color: #ebe5e5!important;">All Officer</a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <li class="pc-item">
-                    <a href="{{ route('reporting') }}" class="pc-link" style="color: #ebe5e5!important;">
-                        <span class="pc-micon">
-                            <i class="fas fa-chart-bar"></i>
-                        </span>
-                        <span class="pc-mtext">Reports</span>
-                    </a>
                 </li>
 
 

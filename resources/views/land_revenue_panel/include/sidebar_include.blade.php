@@ -25,7 +25,7 @@
             <!-- <a href="#" class="b-brand text-primary">
                 <img src="../assets/images/govtlogos.png" alt="logo image" class="logo-lg" style="max-width:120px;" />
             </a> -->
-            <h4 class="text-white">Benazir Hari Card</h4>
+            <h3 class="mt-2" style="font-size: 13px;text-align:center;color:#e5e5e5;letter-spacing: 1px;"><span style="font-size: 24px;letter-spacing: 3px;line-height: 1.5;">Sindh</span> <br> Hari Card</h3>
         </div>
         <div class="navbar-content">
             <ul class="pc-navbar">

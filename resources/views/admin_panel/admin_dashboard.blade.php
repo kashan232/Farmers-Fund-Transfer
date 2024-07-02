@@ -2,42 +2,9 @@
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
 @include('admin_panel.include.sidebar_include')
-<style>
-    .box--sec {
-        width: 100%;
-        box-shadow: 0px 0px 10px 0px #7777;
-        background-color: #fff;
-        border-radius: 8px;
-
-    }
-
-    .top-heading {
-        border-radius: 8px 8px 0 0;
-        border-bottom: 1px solid #eee;
-        background-color: #4ba0647d;
-        padding: 5px 0px;
-    }
-
-    .top-heading p {
-        color: #000;
-        padding-top: 10px !important;
-        padding: 0px 30px;
-        font-size: 20px;
-        font-weight: 600;
-    }
-
-    #myChart {
-        width: 100% !important;
-    }
-</style>
-
-<!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
 @include('admin_panel.include.navbar_include')
 <!-- [ Header ] end -->
-
-
-
 <!-- [ Main Content ] start -->
 <div class="pc-container">
     <div class="pc-content">
@@ -73,7 +40,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">District / Tehsil</p>
-                                                <h2 class="card-text text-amount">{{ $district_counts }} / {{ $tehsil_counts }}</h2>
+                                                <h2 class="card-text text-amount">32 / 168</h2>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape icon-area">
@@ -90,7 +57,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Tappa</p>
-                                                <h2 class="card-text text-amount">{{ $tappas_count }}</h2>
+                                                <h2 class="card-text text-amount">250</h2>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape icon-pie">
@@ -107,7 +74,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">UC</p>
-                                                <h2 class="card-text text-amount">{{ $ucs_counts }}</h2>
+                                                <h2 class="card-text text-amount">500</h2>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape icon-yellow">
@@ -123,8 +90,8 @@
                                     <div class="card-body border-left-blue">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">User</p>
-                                                <h2 class="card-text text-amount">{{ $AgriUser }}</h2>
+                                                <p class="card-title text-title">Agriculture User</p>
+                                                <h2 class="card-text text-amount">20</h2>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape icon-skyblue">
@@ -140,7 +107,7 @@
                                     <div class="card-body border-left-bluedark">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Agriculture</p>
+                                                <p class="card-title text-title">Agriculture Officer</p>
                                                 <h2 class="card-text text-amount">{{ $AgricultureOfficer }}</h2>
                                             </div>
                                             <div class="col-auto">
@@ -205,7 +172,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="card">
-                                    <div class="card-body" style="border-left: 4px solid #ad0202;">
+                                    <div class="card-body" style="border-left: 4px solid #cf0000;">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">UnVerified Farmers</p>

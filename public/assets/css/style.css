@@ -20397,6 +20397,33 @@ pre[class*=language-] > code {
   opacity: 0.3;
 }
 
+.box--sec {
+        width: 100%;
+        box-shadow: 0px 0px 10px 0px #7777;
+        background-color: #fff;
+        border-radius: 8px;
+
+    }
+
+    .top-heading {
+        border-radius: 8px 8px 0 0;
+        border-bottom: 1px solid #eee;
+        background-color: #4ba0647d;
+        padding: 5px 0px;
+    }
+
+    .top-heading p {
+        color: #000;
+        padding-top: 10px !important;
+        padding: 0px 30px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    #myChart {
+        width: 100% !important;
+    }
+    
 .layout-3 .pc-submenu-list-wrapper {
   padding: 0 25px;
   background: #ffffff!important;

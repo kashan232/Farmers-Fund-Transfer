@@ -145,6 +145,18 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+                <div class="box--sec">
+                    <div class="top-heading">
+                        <div>
+                            <p> District : Hyderabad</p>
+                        </div>
+                    </div>
+                    <div id="chart" style="width: 100%;"></div>
+                </div>
+            </div>
+
         </div>
         <!-- [ Main Content ] end -->
     </div>
@@ -155,6 +167,79 @@
 </footer>
 
 @include('land_revenue_panel.include.footer_include')
+
+
+<script>
+    // Static data for demonstration
+    var data = [
+        {
+            tehsil: 'Hyderabad City',
+            totalFarmers: 100,
+            verifiedFarmers: 70,
+            unverifiedFarmers: 30
+        },
+        {
+            tehsil: 'Qasimabad',
+            totalFarmers: 80,
+            verifiedFarmers: 50,
+            unverifiedFarmers: 30
+        },
+        {
+            tehsil: 'Latifabad',
+            totalFarmers: 60,
+            verifiedFarmers: 40,
+            unverifiedFarmers: 20
+        }
+    ];
+
+    var options = {
+        series: [{
+            name: 'Total Farmers',
+            data: data.map(function(item) {
+                return item.totalFarmers;
+            })
+        }, {
+            name: 'Verified Farmers',
+            data: data.map(function(item) {
+                return item.verifiedFarmers;
+            })
+        }, {
+            name: 'Unverified Farmers',
+            data: data.map(function(item) {
+                return item.unverifiedFarmers;
+            })
+        }],
+        chart: {
+            type: 'bar',
+            height: 350
+        },
+        plotOptions: {
+            bar: {
+                horizontal: true,
+                dataLabels: {
+                    position: 'top'
+                }
+            }
+        },
+        colors: ['#4ba064', '#34a853', '#ea4335'],
+        dataLabels: {
+            enabled: true,
+            offsetX: -6,
+            style: {
+                fontSize: '12px',
+                colors: ['#fff']
+            }
+        },
+        xaxis: {
+            categories: data.map(function(item) {
+                return item.tehsil;
+            }),
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+</script>
 
 </body>
 
