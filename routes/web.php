@@ -59,6 +59,7 @@ Route::get('/online-dashboard-logout', [OnlineFormController::class, 'logout'])-
 Route::get('/home', [HomeController::class, 'home'])->middleware(['online_user_auth'])->name('home');
 
 
+Route::post('/store-online-farmers-registration', [OnlineFormController::class, 'store_online_farmers_registration'])->name('store-online-farmers-registration');
 
 
 Route::get('/admin-dashboard', [HomeController::class, 'adminpage'])->name('admin-dashboard');
