@@ -594,6 +594,7 @@ $('#lined_unlined').change(function() {
 
 
 $('select[name="tehsil"]').on('change', function() {
+
             var district = $('input[name="district"]').val();
 
             var tehsil = [$(this).val()];

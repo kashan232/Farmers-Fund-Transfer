@@ -32,125 +32,211 @@
                     <div class="card-body">
                         <table class="table table-bordered" id="farmer-details-table">
                             <tr>
+                                <th colspan="6">GROWER INFORMATION</th>
+                            </tr>
+                            <tr>
                                 <th>Name</th>
                                 <td>{{ $all_agriuser_farmers->name }}</td>
-                            </tr>
-                            <tr>
                                 <th>Father's Name</th>
-                                <td>{{ $all_agriuser_farmers->father_name }}</td>
+                                <td colspan="3">{{ $all_agriuser_farmers->father_name }}</td>
                             </tr>
                             <tr>
-                                <th>Gender</th>
-                                <td>{{ $all_agriuser_farmers->gender }}</td>
-                            </tr>
-                            <tr>
+
                                 <th>CNIC</th>
                                 <td>{{ $all_agriuser_farmers->cnic }}</td>
-                            </tr>
-                            <tr>
-                                <th>Province</th>
-                                <td>{{ $all_agriuser_farmers->province }}</td>
+                                <th>Mobile</th>
+                                <td colspan="3">{{ $all_agriuser_farmers->mobile }}</td>
                             </tr>
                             <tr>
                                 <th>District</th>
                                 <td>{{ $all_agriuser_farmers->district }}</td>
-                            </tr>
-                            <tr>
                                 <th>Tehsil</th>
-                                <td>{{ $all_agriuser_farmers->tehsil }}</td>
+                                <td colspan="3">{{ $all_agriuser_farmers->tehsil }}</td>
                             </tr>
                             <tr>
                                 <th>UC</th>
                                 <td>{{ $all_agriuser_farmers->uc }}</td>
-                            </tr>
-                            <tr>
                                 <th>Tappa</th>
-                                <td>{{ $all_agriuser_farmers->tappa }}</td>
+                                <td colspan="3">{{ $all_agriuser_farmers->tappa }}</td>
                             </tr>
                             <tr>
+                                <th>DHA</th>
+                                <td>{{ $all_agriuser_farmers->dah }}</td>
+                                <th>Village</th>
+                                <td colspan="3">{{ $all_agriuser_farmers->village }}</td>
+                            </tr>
+                            <tr>
+                                <th>Gender</th>
+                                <td>{{ $all_agriuser_farmers->gender }}</td>
+
+                                <th>House Type</th>
+                                <td>{{ $all_agriuser_farmers->house_type }}</td>
+
+                                <th>Owner Type</th>
+                                <td>{{ $all_agriuser_farmers->owner_type }}</td>
+                            </tr>
+                            <tr>
+                                <th colspan="6">FAMILY COMPOSITION</th>
+                            </tr>
+                            <tr>
+                                <th>Gender</th>
+                                <th>Children < 16 years</th>
+                                <th colspan="4">Adults > 16 years</th>
+                            </tr>
+                            <tr>
+                                <td>Female</td>
+                                <td>{{ $all_agriuser_farmers->female_children_under16 }}</td>
+                                <td colspan="4">{{ $all_agriuser_farmers->female_Adults_above16 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Male</td>
+                                <td>{{ $all_agriuser_farmers->male_children_under16 }}</td>
+                                <td colspan="4">{{ $all_agriuser_farmers->male_Adults_above16 }}</td>
+                            </tr>
+                            <tr>
+                                <th colspan="6">LANDHOLDING & CROPPING</th>
+                            </tr>
+                            <tr>
+                                <th>Total Landing Acre</th>
+                                <td>{{ $all_agriuser_farmers->total_landing_acre }}</td>
+                                <th>Total Area With Hari</th>
+                                <td colspan="3">{{ $all_agriuser_farmers->total_area_with_hari }}</td>
+                            </tr>
+                            <tr>
+                                <th>Total Area Cultivated Land</th>
+                                <td>{{ $all_agriuser_farmers->total_area_cultivated_land }}</td>
+                                <th>Total Fallow Land</th>
+                                <td  colspan="3">{{ $all_agriuser_farmers->total_fallow_land }}</td>
+                            </tr>
+                            <tr>
+                                <th>Name</th>
+                                <th>Cnic Number</th>
+                                <th>Contact Number</th>
+                                <th colspan="3">Total Area (Acre)</th>
+                            </tr>
+                            @foreach (json_decode($all_agriuser_farmers->title_name) as $index => $title_names)
+                            <tr>
+                                <td>{{$title_names}}</td>
+                                <td>{{json_decode($all_agriuser_farmers->title_cnic)[$index]}}</td>
+                                <td>{{json_decode($all_agriuser_farmers->title_number)[$index]}}</td>
+                                <td colspan="3">{{json_decode($all_agriuser_farmers->title_area)[$index]}}</td>
+                            </tr>
+                            @endforeach
+
+
+                            <tr>
+                                <th colspan="6">CROP STATUS (Rabi Season)</th>
+                            </tr>
+                            <tr>
+                                <th>Crop</th>
                                 <th>Area</th>
-                                <td>{{ $all_agriuser_farmers->area }}</td>
+                                <th colspan="4">Average yield</th>
+                            </tr>
+                            @foreach (json_decode($all_agriuser_farmers->crops) as $index => $crops)
+                            <tr>
+                                <td>{{$crops}}</td>
+                                <td>{{json_decode($all_agriuser_farmers->crop_area)[$index]}}</td>
+                                <td colspan="4">{{json_decode($all_agriuser_farmers->crop_average_yeild)[$index]}}</td>
+                            </tr>
+                            @endforeach
+
+                            <tr>
+                                <th colspan="6">Physical Assets Currently Owned</th>
                             </tr>
                             <tr>
-                                <th>Chak/Goth/Killi</th>
-                                <td>{{ $all_agriuser_farmers->chak_goth_killi }}</td>
+                                <td colspan="6">
+                                    @foreach (json_decode($all_agriuser_farmers->physical_asset_item) as $physical_asset_item)
+                                    <span class="badge text-bg-dark">{{$physical_asset_item}}</span>
+                                    @endforeach
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th colspan="6">Livestock and Poultry Assets Currently Owned</th>
                             </tr>
                             <tr>
-                                <th>Khasra/Survey</th>
-                                <td>{{ $all_agriuser_farmers->khasra_survey }}</td>
+                                <th>Animal Name</th>
+                                <th colspan="6">Numbers</th>
+                            </tr>
+                            @foreach (json_decode($all_agriuser_farmers->animal_name) as $index => $animal_name)
+                            <tr>
+                                <td>{{$animal_name}}</td>
+                                <td colspan="6">{{json_decode($all_agriuser_farmers->animal_qty)[$index]}}</td>
+                            </tr>
+                            @endforeach
+                            <tr>
+                                <th>Source of irrigation</th>
+                                <th colspan="6">If Tube Wall</th>
                             </tr>
                             <tr>
-                                <th>Mobile</th>
-                                <td>{{ $all_agriuser_farmers->mobile }}</td>
+                                <td>{{$all_agriuser_farmers->source_of_irrigation }}</td>
+                                <td colspan="6">{{($all_agriuser_farmers->source_of_irrigation_energy == '') ? '-' : $all_agriuser_farmers->source_of_irrigation_energy }}</td>
                             </tr>
                             <tr>
-                                <th>Area Category</th>
-                                <td>{{ $all_agriuser_farmers->area_category }}</td>
+                                <th colspan="6">Status of water courses</th>
                             </tr>
                             <tr>
-                                <th>Ownership</th>
-                                <td>{{ $all_agriuser_farmers->ownership }}</td>
+                                <th>Total Length</th>
+                                <th >If Lined/Unlined</th>
+                                <th colspan="6">If Lined</th>
                             </tr>
                             <tr>
-                                <th>Aid Type</th>
-                                <td>{{ $all_agriuser_farmers->aid_type }}</td>
+                                <td>{{$all_agriuser_farmers->area_length }}</td>
+                                <td>{{$all_agriuser_farmers->line_status }}</td>
+                                <td>lined length: {{$all_agriuser_farmers->lined_length }}</td>
+                                <td colspan="4">Total Command Area:{{$all_agriuser_farmers->total_command_area }}</td>
+                            </tr>
+
+                            <tr>
+                                <th colspan="6">BANK & ACCOUNT DETAILS</th>
+                            </tr>
+
+                            <tr>
+                                <th>Account Title</th>
+                                <td>{{ $all_agriuser_farmers->account_title }}</td>
+                                <th>Account No</th>
+                                <td colspan="6">{{ $all_agriuser_farmers->account_no }}</td>
                             </tr>
                             <tr>
-                                <th>Cheque Amount</th>
-                                <td>{{ $all_agriuser_farmers->cheque_amount }}</td>
+                                <th>Bank Name</th>
+                                <td>{{ $all_agriuser_farmers->bank_name }}</td>
+                                <th>Branch Name</th>
+                                <td colspan="6">{{ $all_agriuser_farmers->branch_name }}</td>
                             </tr>
                             <tr>
-                                <th>Cheque Number</th>
-                                <td>{{ $all_agriuser_farmers->cheque_number }}</td>
+                                <th>IBAN Number</th>
+                                <td>{{ $all_agriuser_farmers->IBAN_number }}</td>
+                                <th>Branch Code</th>
+                                <td colspan="6">{{ $all_agriuser_farmers->branch_code }}</td>
                             </tr>
+
                             <tr>
-                                <th>Bank Branch Name</th>
-                                <td>{{ $all_agriuser_farmers->bank_branch_name }}</td>
+                                <th colspan="6">DOCUMENT UPLOADED/ COLLECTED</th>
                             </tr>
-                            <tr>
-                                <th>Bank Branch Code</th>
-                                <td>{{ $all_agriuser_farmers->bank_branch_code }}</td>
-                            </tr>
-                            <tr>
-                                <th>Bank Account Title</th>
-                                <td>{{ $all_agriuser_farmers->bank_account_title }}</td>
-                            </tr>
-                            <tr>
-                                <th>Bank Account Number</th>
-                                <td>{{ $all_agriuser_farmers->bank_account_number }}</td>
-                            </tr>
-                            <tr>
-                                <th>Latitude</th>
-                                <td>{{ $all_agriuser_farmers->latitude }}</td>
-                            </tr>
-                            <tr>
-                                <th>Longitude</th>
-                                <td>{{ $all_agriuser_farmers->longitude }}</td>
-                            </tr>
+
                             <tr>
                                 <th>Front ID Card</th>
                                 <td><img src="{{ asset('agri_user_farmers/front_id_card/' . $all_agriuser_farmers->front_id_card) }}" alt="Front ID Card" width="100"></td>
-                            </tr>
-                            <tr>
                                 <th>Back ID Card</th>
-                                <td><img src="{{ asset('agri_user_farmers/back_id_card/' . $all_agriuser_farmers->back_id_card) }}" alt="Back ID Card" width="100"></td>
+                                <td colspan="6"><img src="{{ asset('agri_user_farmers/back_id_card/' . $all_agriuser_farmers->back_id_card) }}" alt="Back ID Card" width="100"></td>
                             </tr>
                             <tr>
                                 <th>Upload Land Proof</th>
                                 <td><img src="{{ asset('agri_user_farmers/upload_land_proof/' . $all_agriuser_farmers->upload_land_proof) }}" alt="Upload Land Proof" width="100"></td>
-                            </tr>
-                            <tr>
                                 <th>Upload Other Attach</th>
-                                <td><img src="{{ asset('agri_user_farmers/upload_other_attach/' . $all_agriuser_farmers->upload_other_attach) }}" alt="Upload Other Attach" width="100"></td>
+                                <td colspan="6"><img src="{{ asset('agri_user_farmers/upload_other_attach/' . $all_agriuser_farmers->upload_other_attach) }}" alt="Upload Other Attach" width="100"></td>
                             </tr>
                             <tr>
                                 <th>Upload Farmer Pic</th>
                                 <td><img src="{{ asset('agri_user_farmers/upload_farmer_pic/' . $all_agriuser_farmers->upload_farmer_pic) }}" alt="Upload Farmer Pic" width="100"></td>
-                            </tr>
-                            <tr>
                                 <th>Upload Cheque Pic</th>
-                                <td><img src="{{ asset('agri_user_farmers/upload_cheque_pic/' . $all_agriuser_farmers->upload_cheque_pic) }}" alt="Upload Cheque Pic" width="100"></td>
+                                <td colspan="6"><img src="{{ asset('agri_user_farmers/upload_cheque_pic/' . $all_agriuser_farmers->upload_cheque_pic) }}" alt="Upload Cheque Pic" width="100"></td>
                             </tr>
+
+                            <tr>
+                                <th colspan="6">SURVEYOR / ENUMERATOR DETAILS</th>
+                            </tr>
+
                             <tr>
                                 <th>Verification Status</th>
                                 <td>
@@ -160,30 +246,25 @@
                                     <span class="badge text-bg-danger">Unverified</span>
                                     @endif
                                 </td>
-                            </tr>
-
-                            <tr>
                                 <th>Declined Reason</th>
                                 @if ($all_agriuser_farmers->verification_status === 'Unverified')
                                 @if (is_null($all_agriuser_farmers->declined_reason))
-                                <td>-</td>
+                                <td colspan="6">-</td>
                                 @else
-                                <td>{{ $all_agriuser_farmers->declined_reason }}</td>
+                                <td colspan="6">{{ $all_agriuser_farmers->declined_reason }}</td>
                                 @endif
                                 @else
-                                <td>-</td>
+                                <td colspan="6">-</td>
                                 @endif
                             </tr>
 
                             <tr>
                                 <th>Verification by</th>
                                 <td>{{ $all_agriuser_farmers->verification_by }}</td>
-                            </tr>
-                            <tr>
+
                                 <th>Created At</th>
                                 <td>{{ $all_agriuser_farmers->created_at->diffForHumans()}}</td>
-                            </tr>
-                            <tr>
+
                                 <th>Updated At</th>
                                 <td>{{ $all_agriuser_farmers->updated_at->diffForHumans() }}</td>
                             </tr>

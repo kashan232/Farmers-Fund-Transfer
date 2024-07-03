@@ -51,24 +51,27 @@
                                                     <tr>
                                                         <th>Name</th>
                                                         <th>CNIC</th>
+                                                        <th>Mobile</th>
                                                         <th>District</th>
                                                         <th>Tehsil</th>
                                                         <th>UC</th>
-                                                        <th>Area</th>
-                                                        <th>Mobile</th>
+                                                        <th>Tappa</th>
+                                                        <th>Village</th>
                                                         <th>Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+
                                                     @foreach($all_agriculture_farmers as $all_agriculture_farmer)
                                                     <tr>
                                                         <td>{{ $all_agriculture_farmer->name }}</td>
                                                         <td>{{ $all_agriculture_farmer->cnic }}</td>
+                                                        <td>{{ $all_agriculture_farmer->mobile }}</td>
                                                         <td>{{ $all_agriculture_farmer->district }}</td>
                                                         <td>{{ $all_agriculture_farmer->tehsil }}</td>
                                                         <td>{{ $all_agriculture_farmer->uc }}</td>
-                                                        <td>{{ $all_agriculture_farmer->area }}</td>
-                                                        <td>{{ $all_agriculture_farmer->mobile }}</td>
+                                                        <td>{{ $all_agriculture_farmer->tappa }}</td>
+                                                        <td>{{ $all_agriculture_farmer->village }}</td>
                                                         <td>
                                                             @if ($all_agriculture_farmer->verification_status === 'Verified')
                                                             <span class="badge text-bg-success">Verified</span>
