@@ -54,6 +54,7 @@
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
     @include('agriculture_officer_panel.include.sidebar_include')
+
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
     @include('agriculture_officer_panel.include.navbar_include')
@@ -70,7 +71,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Update Farmer Registration </h2>
+                            <h2 class="mb-0">Farmer Registration</h2>
                         </div>
                     </div>
                 </div>
@@ -83,9 +84,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Registration</h5>
-                        @if (session()->has('farmer-update'))
+                        @if (session()->has('farmer-added'))
                             <div class="alert alert-success alert-dismissible fade show mt-4">
-                                <strong>Success!</strong> {{ session('farmer-update') }}.
+                                <strong>Success!</strong> {{ session('farmer-added') }}.
                             </div>
                         @endif
                     </div>
@@ -106,44 +107,37 @@
                                 </div>
                             </div>
 
-                            <form id="registrationForm" action="{{ route('update-agri-farmers',['id'=> $all_agriculture_farmer->id ]) }}" method="POST" enctype="multipart/form-data">
+                            <form id="registrationForm" action="{{ route('store-agri-farmers') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" value="{{ $data->id }}" name="edit_id">
                                 <div class="step step-1">
                                     <div class="row mt-2">
                                         <h4 class="card-title">Personal Details</h4>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Name</label>
-                                            <input type="text" name="name" class="form-control" value="{{ $all_agriculture_farmer->name }}">
+                                            <input type="text" value="{{$data->name}}" name="name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Father Name</label>
-                                            <input type="text" name="father_name" class="form-control" value="{{ $all_agriculture_farmer->father_name }}">
+                                            <input type="text" value="{{$data->father_name}}"  name="father_name" class="form-control">
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Gender</label>
-                                            <select name="gender" id="gender" class="form-control">
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                                <option value="Custom">Custom</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-6 col-md-6">
+                                        <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">CNIC</label>
-                                            <input type="text" name="cnic" class="form-control" value="{{ $all_agriculture_farmer->cnic }}">
+                                            <input type="text" value="{{$data->cnic}}" name="cnic" class="form-control">
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Province</label>
-                                            <input type="text" name="province" class="form-control" value="{{ $all_agriculture_farmer->province }}">
+                                        <div class="mb-6 col-md-6 py-2">
+                                            <label class="form-label">Mobile</label>
+                                            <input type="text" value="{{$data->mobile}}" name="mobile" class="form-control">
                                         </div>
-                                        <div class="mb-6 col-md-6">
+                                        <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Dictrict</label>
-                                            <input type="text" name="district" id="district" class="form-control" value="{{ $all_agriculture_farmer->district }}" readonly>
+                                            <input type="text" name="district"  id="district" class="form-control" value="{{ $district }}" readonly>
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Tehsil</label>
                                             <select name="tehsil" id="tehsil" class="form-control">
                                                 @foreach(json_decode($tehsil) as $option)
-                                                    <option value="{{ $option }}" {{ ($all_agriculture_farmer->tehsil == $option) ? 'selected' : '' }}>
+                                                    <option value="{{ $option }}" {{ ($data->tehsil == $option) ? 'selected' : '' }}>
                                                         {{ $option }}
                                                     </option>
                                                 @endforeach
@@ -157,7 +151,7 @@
                                         <div class="mb-3 col-md-6">
                                             <label for="uc">UC</label>
                                             <select name="uc" id="uc" class="form-control">
-                                                <option  value="{{ $all_agriculture_farmer->uc }}" selected >{{ $all_agriculture_farmer->uc }}</option>
+                                                <option  value="{{ $data->uc }}" selected >{{ $data->uc }}</option>
                                             </select>
                                         </div>
                                         @endif
@@ -170,129 +164,208 @@
                                         <div class="mb-3 col-md-6">
                                             <label for="tappa">tappa</label>
                                             <select name="tappa" id="tappa" class="form-control">
-                                                <option  value="{{ $all_agriculture_farmer->tappa }}" selected >{{ $all_agriculture_farmer->tappa }}</option>
+                                                <option  value="{{ $data->tappa }}" selected >{{ $data->tappa }}</option>
                                             </select>
                                         </div>
                                         @else
                                         @endif
                                         @endif
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Area</label>
-                                            <input type="text" name="area" class="form-control" value="{{ $all_agriculture_farmer->area }}">
+
+
+
+                                        <div class="mb-6 col-md-6 py-2">
+                                            <label class="form-label">DAH</label>
+                                            <input type="text" value="{{$data->dah}}" name="dah" class="form-control">
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Chak Goth Killi</label>
-                                            <input type="text" name="chak_goth_killi" class="form-control" value="{{ $all_agriculture_farmer->chak_goth_killi }}">
+                                        <div class="mb-6 col-md-6 py-2">
+                                            <label class="form-label">Village</label>
+                                            <input type="text" value="{{$data->village}}" name="village" class="form-control">
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Khasra Survey No
-                                            </label>
-                                            <input type="text" name="khasra_survey" class="form-control" value="{{ $all_agriculture_farmer->khasra_survey }}">
+                                        <div class="mb-4 col-md-4 mt-3">
+                                            <label class="form-label">Gender</label>
+                                            <select name="gender" class="form-control">
+                                                <option value="female" {{($data->gender == 'female') ? 'selected':''}}>Female</option>
+                                                <option value="male" {{($data->gender == 'male') ? 'selected':''}} >Male</option>
+                                            </select>
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Mobile</label>
-                                            <input type="text" name="mobile" class="form-control" value="{{ $all_agriculture_farmer->mobile }}">
+                                        <div class="mb-4 col-md-4 mt-3">
+                                            <label class="form-label">House Type</label>
+                                            <select name="house_type" id="house_type" class="form-control">
+                                                <option value="pakka_house" {{($data->house_type == 'pakka_house') ? 'selected':''}}>Pakka House</option>
+                                                <option value="kacha_house" {{($data->house_type == 'kacha_house') ? 'selected':''}}>Kacha House</option>
+                                            </select>
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Area Category</label>
-                                            <input type="text" name="area_category" class="form-control" value="{{ $all_agriculture_farmer->area_category }}">
+                                        <div class="mb-4 col-md-4 mt-3">
+                                            <label class="form-label">Owner Type</label>
+                                            <select name="owner_type" id="" class="form-control">
+                                                <option value="owner" {{($data->owner_type == 'owner') ? 'selected':''}} >Owner</option>
+                                                <option value="makandar" {{($data->owner_type == 'makandar') ? 'selected':''}}>Makandar</option>
+                                            </select>
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Ownership</label>
-                                            <input type="text" name="ownership" class="form-control" value="{{ $all_agriculture_farmer->ownership }}">
+                                        <div class="row mt-2">
+                                            <h6>Family Composition</h6>
+                                            <div class="mb-4 col-md-4 mt-3">
+                                                <h6 class="text-center">Gender</h6>
+                                                <input type="text" value="Female" readonly  class="form-control">
+                                            </div>
+                                            <div class="mb-4 col-md-4 mt-3">
+                                                <h6 class="text-center">Children < 16 </h6>
+                                                <input type="text" name="female_children_under16" value="{{$data->female_children_under16}}" class="form-control">
+                                            </div>
+                                            <div class="mb-4 col-md-4 mt-3">
+                                                <h6 class="text-center">Adults > 16 </h6>
+                                                <input type="text" name="female_Adults_above16" value="{{$data->female_Adults_above16}}" class="form-control">
+                                            </div>
+                                            <div class="mb-4 col-md-4 ">
+                                                <input type="text" value="Male" readonly class="form-control">
+                                            </div>
+                                            <div class="mb-4 col-md-4 ">
+                                                <input type="text" name="male_children_under16" value="{{$data->male_children_under16}}" class="form-control">
+                                            </div>
+                                            <div class="mb-4 col-md-4 ">
+                                                <input type="text" name="male_Adults_above16" value="{{$data->male_Adults_above16}}" class="form-control">
+                                            </div>
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Aid Type</label>
-                                            <input type="text" name="aid_type" class="form-control" value="{{ $all_agriculture_farmer->aid_type }}">
+
+                                        <div class="row mt-3" id="">
+                                            <h6>Landholding & Cropping</h6>
+                                            <div class="row" >
+                                                <div class="mb-3 col-md-3">
+                                                    <label class="form-label">Total Landholding (Acre)</label>
+                                                    <input type="text" name="total_landing_acre" value="{{$data->total_landing_acre}}" class="form-control">
+                                                </div>
+                                                <div class="mb-3 col-md-3">
+                                                    <label class="form-label">Total Area with Hari(s)</label>
+                                                    <input type="text" name="total_area_with_hari" value="{{$data->total_area_with_hari}}" class="form-control">
+                                                </div>
+                                                <div class="mb-3 col-md-3">
+                                                    <label class="form-label">Total self cultivated land</label>
+                                                    <input type="text" name="total_area_cultivated_land" value="{{$data->total_area_cultivated_land}}" class="form-control">
+                                                </div>
+                                                <div class="mb-3 col-md-3">
+                                                    <label class="form-label">Total fallow land</label>
+                                                    <input type="text" name="total_fallow_land" value="{{$data->total_fallow_land}}" class="form-control">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Is Distributed</label>
-                                            <input type="text" name="is_distributed" class="form-control" value="{{ $all_agriculture_farmer->is_distributed }}">
+
+                                        <div class="row " id="no_title_section">
+                                            <h6>Titleee</h6>
+                                            <div class="col-12">
+                                                <table id="title_table" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>CNIC Number</th>
+                                                            <th>Contact Number</th>
+                                                            <th>Total Area (Acre)</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody id="title_tableBody">
+                                                        @foreach (json_decode($data->title_name) as $index => $title_name)
+                                                        <tr>
+                                                            <td><input type="text" name="title_name[]" value="{{$title_name}}" class="form-control"></td>
+                                                            <td><input type="text" name="title_cnic[]" value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
+                                                            <td><input type="text" name="title_number[]" value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
+                                                            <td><input type="text" name="title_area[]" value="{{json_decode($data->title_area)[$index]}}" class="form-control"></td>
+                                                            <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+                                                        </tr>
+                                                        @endforeach
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-12" style="justify-content: right; display: flex;">
+                                                <button type="button"  class="btn btn-primary" id="add_title_row_Btn">Add More</button>
+                                            </div>
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Cheque Amount</label>
-                                            <input type="text" name="cheque_amount" class="form-control" value="{{ $all_agriculture_farmer->cheque_amount }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Cheque Number</label>
-                                            <input type="text" name="cheque_number" class="form-control" value="{{ $all_agriculture_farmer->cheque_number }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Created On</label>
-                                            <input type="text" name="created_on" class="form-control" value="{{ $all_agriculture_farmer->created_on }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Created By</label>
-                                            <input type="text" name="created_by" class="form-control" value="{{ $all_agriculture_farmer->created_by }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Is Verified</label>
-                                            <input type="text" name="is_verified" class="form-control" value="{{ $all_agriculture_farmer->is_verified }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Rejection Reason</label>
-                                            <input type="text" name="rejection_reason" class="form-control" value="{{ $all_agriculture_farmer->rejection_reason }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Verified By</label>
-                                            <input type="text" name="verified_by" class="form-control" value="{{ $all_agriculture_farmer->verified_by }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Verified On</label>
-                                            <input type="text" name="verified_on" class="form-control" value="{{ $all_agriculture_farmer->verified_on }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Registration SMS Date Time</label>
-                                            <input type="text" name="registration_sms_date_time" class="form-control" value="{{ $all_agriculture_farmer->registration_sms_date_time }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Seed Given SMS Date Time</label>
-                                            <input type="text" name="seed_given_sms_date_time" class="form-control" value="{{ $all_agriculture_farmer->seed_given_sms_date_time }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Receiver Mobile No</label>
-                                            <input type="text" name="receiver_mobile_no" class="form-control" value="{{ $all_agriculture_farmer->receiver_mobile_no }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Total Area</label>
-                                            <input type="text" name="total_area" class="form-control" value="{{ $all_agriculture_farmer->total_area }}">
+
+                                        <div class="row" id="crops_section">
+                                            <h6>Crop Status</h6>
+                                            <div class="col-12">
+                                                <table id="crop_table" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Crops</th>
+                                                            <th>Area</th>
+                                                            <th>Average Yeild</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="crop_tableBody">
+                                                        @foreach (json_decode($data->crops) as $index => $crops)
+                                                        <tr>
+                                                            <td><input type="text" name="crops[]" value="{{$crops}}"  class="form-control"></td>
+                                                            <td><input type="text" name="crop_area[]" value="{{json_decode($data->crop_area)[$index]}}" class="form-control"></td>
+                                                            <td><input type="text" name="crop_average_yeild[]" value="{{json_decode($data->crop_average_yeild)[$index]}}" class="form-control"></td>
+                                                            <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-12" style="justify-content: right; display: flex;">
+                                                <button type="button"  class="btn btn-primary" id="add_crop_row_Btn">Add More</button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary mt-5" onclick="nextStep(2)">Next</button>
+                                    <button type="button" class="btn btn-primary mt-1" onclick="nextStep(2)">Next</button>
                                 </div>
 
                                 <div class="step step-2" style="display: none;">
                                     <div class="row mt-2">
-                                        <h4 class="card-title">Seed Information</h4>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Seed Required Qty</label>
-                                            <input type="text" name="seed_required_qty" class="form-control" value="{{ $all_agriculture_farmer->seed_required_qty }}">
+                                        <div class="row py-2" id="physical_assets_section">
+                                            <h6>Physical Assets Currently Owned </h6>
+                                            <div class="row physical_asset-default-row" >
+                                                <div class="mb-8 col-md-8">
+                                                    <label class="form-label">Items</label>
+                                                    <select name="physical_asset_item[]"  id="physical_asset_item" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
+                                                        <option value="car/jeep" {{ in_array('car/jeep', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Car/Jeep</option>
+                                                        <option value="pickup/loader" {{ in_array('pickup/loader', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Pickup/loader</option>
+                                                        <option value="motorcycle" {{ in_array('motorcycle', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Motorcycle</option>
+                                                        <option value="bicycles" {{ in_array('bicycles', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Bicycles</option>
+                                                        <option value="bullock_cart" {{ in_array('bullock_cart', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Bullock Cart</option>
+                                                        <option value="Tractor(4wheels)" {{ in_array('Tractor(4wheels)', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Tractor (4 wheels)</option>
+                                                        <option value="disk_harrow" {{ in_array('disk_harrow', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Disk Harrow</option>
+                                                        <option value="cultivator" {{ in_array('cultivator', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Cultivator</option>
+                                                        <option value="tractor_trolley" {{ in_array('tractor_trolley', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Tractor Trolley</option>
+                                                        <option value="plough" {{ in_array('plough', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Plough (wood or metal)</option>
+                                                        <option value="thresher" {{ in_array('thresher', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Thresher</option>
+                                                        <option value="harvester" {{ in_array('harvester', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Harvester</option>
+                                                        <option value="rotavetor" {{ in_array('rotavetor', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Rotavetor</option>
+                                                        <option value="laser_lever" {{ in_array('laser_lever', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Laser lever</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Seed Variety</label>
-                                            <input type="text" name="seed_variety" class="form-control" value="{{ $all_agriculture_farmer->seed_variety }}">
+                                        <div class="row py-2" id="poultry_assets_section">
+                                            <h6>Livestock and Poultry Assets Currently Owned</h6>
+                                            <div class="col-12">
+                                                <table id="poultry_assets_table" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Animal</th>
+                                                            <th>Numbers</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="poultry_assets_tableBody">
+                                                        @foreach (json_decode($data->animal_name) as $index => $animal_names)
+                                                        <tr>
+                                                            <td><input type="text" name="animal_name[]"  value="{{$animal_names}}" class="form-control"></td>
+                                                            <td><input type="text" name="animal_qty[]" value="{{json_decode($data->animal_qty)[$index]}}" class="form-control"></td>
+                                                            <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-12" style="justify-content: right; display: flex;">
+                                                <button type="button"  class="btn btn-primary" id="add_poultry_assets_row_Btn">Add More</button>
+                                            </div>
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Seed Given Qty</label>
-                                            <input type="text" name="seed_given_qty" class="form-control" value="{{ $all_agriculture_farmer->seed_given_qty }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Seed Variety Given</label>
-                                            <input type="text" name="seed_variety_given" class="form-control" value="{{ $all_agriculture_farmer->seed_variety_given }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Seed Given By</label>
-                                            <input type="text" name="seed_given_by" class="form-control" value="{{ $all_agriculture_farmer->seed_given_by }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Seed Given Date</label>
-                                            <input type="text" name="seed_given_date" class="form-control" value="{{ $all_agriculture_farmer->seed_given_date }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Is Sent To Bisp</label>
-                                            <input type="text" name="is_sent_bisp" class="form-control" value="{{ $all_agriculture_farmer->is_sent_bisp }}">
-                                        </div>
-
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(1)">Previous</button>
                                     <button type="button" class="btn btn-primary mt-5" onclick="nextStep(3)">Next</button>
@@ -300,23 +373,58 @@
 
                                 <div class="step step-3" style="display: none;">
                                     <div class="row mt-2">
-                                        <h4 class="card-title">Bank & Account Details</h4>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Bank Branch Name</label>
-                                            <input type="text" name="bank_branch_name" class="form-control" value="{{ $all_agriculture_farmer->bank_branch_name }}">
+                                        <h6>Source of irrigation</h6>
+                                        <div class="row" id="source_of_irrigation_section">
+                                            <div class="mb-6 col-md-6" >
+                                                <label class="form-label">Source of irrigation</label>
+                                                <select name="source_of_irrigation"  class="form-control" id="source_of_irrigation">
+                                                    <option value="canal_wall" {{($data->source_of_irrigation == 'canal_wall') ? 'selected':''}}>Canal System</option>
+                                                    <option value="tube_wall" {{($data->source_of_irrigation == 'tube_wall') ? 'selected':''}}>Tube Wall</option>
+                                                </select>
+                                            </div>
+                                            @if ($data->source_of_irrigation == 'tube_wall')
+                                            <div class="mb-6 col-md-6" id="source_of_energy_section">
+                                                <label class="form-label">Source of energy</label>
+                                                <select name="source_of_irrigation_engery"  class="form-control" id="source_of_energy">
+                                                    <option value="Electricity" {{($data->source_of_irrigation_engery == 'Electricity') ? 'selected':''}}>Electricity</option>
+                                                    <option value="Solar" {{($data->source_of_irrigation_engery == 'Solar') ? 'selected':''}}>Solar</option>
+                                                    <option value="Fuel" {{($data->source_of_irrigation_engery == 'Fuel') ? 'selected':''}}>Fuel</option>
+                                                </select>
+                                            </div>
+                                            @endif
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Bank Branch Code</label>
-                                            <input type="text" name="bank_branch_code" class="form-control" value="{{ $all_agriculture_farmer->bank_branch_code }}">
+                                    </div>
+                                    <div class="row mt-2">
+                                        <h6>Status of water</h6>
+                                        <div class="row" id="status_of_water_section">
+                                            <div class="mb-3 col-md-3" >
+                                                <label class="form-label">Area length</label>
+                                                <input type="text" name="area_length" value="{{$data->area_length}}" class="form-control">
+                                            </div>
+                                            <div class="mb-3 col-md-3" >
+                                                <label class="form-label">Area length</label>
+                                                <select class="form-control" id="lined_unlined" name="line_status">
+                                                    <option value="">Select Lined/Unlined</option>
+                                                    <option value="lined" {{($data->line_status == 'lined') ? 'selected':''}}>lined</option>
+                                                    <option value="unlined" {{($data->line_status == 'unlined') ? 'selected':''}}>Unlind</option>
+                                                </select>
+                                            </div>
+                                            @if ($data->line_status == 'lined')
+                                            <div class="mb-6 col-md-6" id="lined_section" >
+                                                <div class="row">
+                                                <div class="mb-6 col-md-6" >
+                                                    <label class="form-label">Lined Length</label>
+                                                    <input type="text" value="{{$data->lined_length}}" name="lined_length" class="form-control">
+                                                </div>
+                                                <div class="mb-6 col-md-6" >
+                                                    <label class="form-label">Total Command Area</label>
+                                                    <input type="text" value="{{$data->total_command_area}}" name="total_command_area" class="form-control">
+                                                </div>
+                                                </div>
+                                            </div>
+                                            @endif
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Bank Account Title</label>
-                                            <input type="text" name="bank_account_title" class="form-control" value="{{ $all_agriculture_farmer->bank_account_title }}">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Bank Account Number</label>
-                                            <input type="text" name="bank_account_number" class="form-control" value="{{ $all_agriculture_farmer->bank_account_number }}">
-                                        </div>
+
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(2)">Previous</button>
                                     <button type="button" class="btn btn-primary mt-5" onclick="nextStep(4)">Next</button>
@@ -324,14 +432,30 @@
 
                                 <div class="step step-4" style="display: none;">
                                     <div class="row mt-2">
-                                        <h4 class="card-title">GPS Location</h4>
+                                        <h4 class="card-title">Bank & Account Details</h4>
                                         <div class="mb-6 col-md-6">
-                                            <label class="form-label">latitude</label>
-                                            <input type="text" name="latitude" class="form-control" value="{{ $all_agriculture_farmer->latitude }}">
+                                            <label class="form-label">Title of Account</label>
+                                            <input type="text" value="{{$data->account_title}}"  name="account_title" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
-                                            <label class="form-label">longitude</label>
-                                            <input type="text" name="longitude" class="form-control" value="{{ $all_agriculture_farmer->longitude }}">
+                                            <label class="form-label">Account No</label>
+                                            <input type="text" value="{{$data->account_no}}" name="account_no" class="form-control">
+                                        </div>
+                                        <div class="mb-6 col-md-6">
+                                            <label class="form-label">Bank Name</label>
+                                            <input type="text" value="{{$data->bank_name}}" name="bank_name" class="form-control">
+                                        </div>
+                                        <div class="mb-6 col-md-6">
+                                            <label class="form-label">Branch Name</label>
+                                            <input type="text" value="{{$data->branch_name}}" name="branch_name" class="form-control">
+                                        </div>
+                                        <div class="mb-6 col-md-6">
+                                            <label class="form-label">IBAN</label>
+                                            <input type="text" value="{{$data->IBAN_number}}" name="IBAN_number" class="form-control">
+                                        </div>
+                                        <div class="mb-6 col-md-6">
+                                            <label class="form-label">Branch Code</label>
+                                            <input type="text" value="{{$data->branch_code}}" name="branch_code" class="form-control">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
@@ -342,39 +466,27 @@
                                     <div class="row mt-2">
                                         <h4 class="card-title">Uploaded Documents</h4>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Front ID Card Img "jpg/png/jpeg"</label><br>
-                                            <img src="{{ ($all_agriculture_farmer->front_id_card != '') ? asset('agriculture_farmers/front_id_card/'.$all_agriculture_farmer->front_id_card) : asset('no-image-available.jpg') }}"
-                                            style="width: 20%; height: 90px; border-radius: 8px; margin: 2%;">
+                                            <label class="form-label">Upload Front ID Card Img "jpg/png/jpeg"</label>
                                             <input type="file" name="front_id_card" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Back ID Card Img "jpg/png/jpeg"</label><br>
-                                            <img src="{{ ($all_agriculture_farmer->back_id_card != '') ? asset('agriculture_farmers/back_id_card/'.$all_agriculture_farmer->back_id_card) : asset('no-image-available.jpg') }}"
-                                            style="width: 20%; height: 90px; border-radius: 8px; margin: 2%;">
+                                            <label class="form-label">Upload Back ID Card Img "jpg/png/jpeg"</label>
                                             <input type="file" name="back_id_card" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Land Proof Pic Img "jpg/png/jpeg"</label><br>
-                                            <img src="{{ ($all_agriculture_farmer->upload_land_proof != '') ? asset('agriculture_farmers/upload_land_proof/'.$all_agriculture_farmer->upload_land_proof) : asset('no-image-available.jpg') }}"
-                                            style="width: 20%; height: 90px; border-radius: 8px; margin: 2%;">
+                                            <label class="form-label">Upload Land Proof Pic Img "jpg/png/jpeg"</label>
                                             <input type="file" name="upload_land_proof" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Other Attachments Img "jpg/png/jpeg"</label><br>
-                                            <img src="{{ ($all_agriculture_farmer->upload_other_attach != '') ? asset('agriculture_farmers/upload_other_attach/'.$all_agriculture_farmer->upload_other_attach) : asset('no-image-available.jpg') }}"
-                                            style="width: 20%; height: 90px; border-radius: 8px; margin: 2%;">
+                                            <label class="form-label">Upload Other Attachments Img "jpg/png/jpeg"</label>
                                             <input type="file" name="upload_other_attach" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Farmer Picture Img "jpg/png/jpeg"</label><br>
-                                            <img src="{{ ($all_agriculture_farmer->upload_farmer_pic != '') ? asset('agriculture_farmers/upload_farmer_pic/'.$all_agriculture_farmer->upload_farmer_pic) : asset('no-image-available.jpg') }}"
-                                            style="width: 20%; height: 90px; border-radius: 8px; margin: 2%;">
+                                            <label class="form-label">Upload Farmer Picture Img "jpg/png/jpeg"</label>
                                             <input type="file" name="upload_farmer_pic" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label><br>
-                                            <img src="{{ ($all_agriculture_farmer->upload_cheque_pic != '') ? asset('agriculture_farmers/upload_cheque_pic/'.$all_agriculture_farmer->upload_cheque_pic) : asset('no-image-available.jpg') }}"
-                                            style="width: 20%; height: 90px; border-radius: 8px; margin: 2%;">
+                                            <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label>
                                             <input type="file" name="upload_cheque_pic" class="form-control">
                                         </div>
                                     </div>
@@ -392,15 +504,116 @@
 </div>
 <!-- [ Main Content ] end -->
 <footer class="pc-footer">
-    @include('agriculture_officer_panel.include.footer_copyright_include')
+    @include('agriculture_user_panel.include.footer_copyright_include')
 </footer>
 
-@include('agriculture_officer_panel.include.footer_include')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@include('agriculture_user_panel.include.footer_include')
 <script>
+
+    $('#add_title_row_Btn').click(function() {
+        const newRow = `
+            <tr>
+                <td><input type="text" name="title_name[]" class="form-control"></td>
+                <td><input type="text" name="title_cnic[]" class="form-control"></td>
+                <td><input type="text" name="title_number[]" class="form-control"></td>
+                <td><input type="text" name="title_area[]" class="form-control"></td>
+                <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+            </tr>
+        `;
+        $('#title_tableBody').append(newRow);
+    });
+
+    // Delete row on clicking "Delete" button
+    $('#title_tableBody').on('click', '.delete-row', function() {
+        $(this).closest('tr').remove();
+    });
+
+    $('#add_crop_row_Btn').click(function() {
+        const newRow = `
+            <tr>
+                <td><input type="text" name="crops[]" class="form-control"></td>
+                <td><input type="text" name="crop_area[]" class="form-control"></td>
+                <td><input type="text" name="crop_average_yeild[]" class="form-control"></td>
+                <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+            </tr>
+        `;
+        $('#crop_tableBody').append(newRow);
+    });
+
+    // Delete row on clicking "Delete" button
+    $('#crop_tableBody').on('click', '.delete-row', function() {
+        $(this).closest('tr').remove();
+    });
+
+
+    $('#add_poultry_assets_row_Btn').click(function() {
+        const newRow = `
+            <tr>
+                <td><input type="text" name="animal_name[]" class="form-control"></td>
+                <td><input type="text" name="animal_qty[]"  class="form-control"></td>
+                <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+            </tr>
+        `;
+        $('#poultry_assets_tableBody').append(newRow);
+    });
+
+    // Delete row on clicking "Delete" button
+    $('#poultry_assets_tableBody').on('click', '.delete-row', function() {
+        $(this).closest('tr').remove();
+    });
+
+
+
+
+
+$('#source_of_irrigation').change(function() {
+    if($(this).val() == 'tube_wall')
+    {
+         $('#source_of_irrigation_section').append(`
+         <div class="mb-6 col-md-6" id="source_of_energy_section">
+            <label class="form-label">Source of energy</label>
+            <select name="source_of_irrigation_engery"  class="form-control" id="source_of_energy">
+                <option value="Electricity">Electricity</option>
+                <option value="Solar">Solar</option>
+                <option value="Fuel">Fuel</option>
+            </select>
+            </div>
+         `);
+    }
+    else{
+        $('#source_of_energy_section').remove();
+    }
+});
+
+$('#lined_unlined').change(function() {
+    if($(this).val() == 'lined')
+    {
+        $('#status_of_water_section').append(`
+        <div class="mb-6 col-md-6" id="lined_section" >
+            <div class="row">
+            <div class="mb-6 col-md-6" >
+                <label class="form-label">Lined Length</label>
+                <input type="text" name="lined_length" class="form-control">
+            </div>
+            <div class="mb-6 col-md-6" >
+                <label class="form-label">Total Command Area</label>
+                <input type="text" name="total_command_area" class="form-control">
+            </div>
+            </div>
+        </div>
+        `);
+    }
+    else{
+        $('#lined_section').remove();
+    }
+});
+
+
+
 
 
 $('select[name="tehsil"]').on('change', function() {
+
             var district = $('input[name="district"]').val();
 
             var tehsil = [$(this).val()];
@@ -438,6 +651,8 @@ $('select[name="tehsil"]').on('change', function() {
                 $('select[name="tappa"]').empty();
             }
         });
+
+
     function nextStep(step) {
         // Hide all steps
         document.querySelectorAll('.step').forEach(function(stepElement) {
@@ -464,7 +679,6 @@ $('select[name="tehsil"]').on('change', function() {
 
     function updateProgressIndicator(step) {
         document.querySelectorAll('.step-indicator').forEach(function(indicator, index) {
-
             if (index < step) {
                 indicator.classList.add('active');
             } else {
@@ -477,4 +691,5 @@ $('select[name="tehsil"]').on('change', function() {
     nextStep(1);
 </script>
 </body>
+
 </html>
