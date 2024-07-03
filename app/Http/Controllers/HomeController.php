@@ -22,9 +22,7 @@ class HomeController extends Controller
         if (Auth::id()) {
             $usertype = Auth()->user()->usertype;
 
-            if ($usertype == 'online_user') {
-                return view('dashboard');
-            } else if ($usertype == 'admin') {
+           if ($usertype == 'admin') {
                 // Fetching counts directly
                 $district_counts = District::count();
                 $tehsil_counts = Tehsil::count();
