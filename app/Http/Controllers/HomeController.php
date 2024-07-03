@@ -21,7 +21,7 @@ class HomeController extends Controller
         if (Auth::id()) {
             $usertype = Auth()->user()->usertype;
 
-            if ($usertype == 'user') {
+            if ($usertype == 'online_user') {
                 return view('dashboard');
             } else if ($usertype == 'admin') {
                 // Fetching counts directly
