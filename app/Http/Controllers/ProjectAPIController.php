@@ -49,7 +49,7 @@ class ProjectAPIController extends Controller
     }
 
 
-    public function store_online_farmers_registration(Request $request)
+    public function api_store_online_farmers_registration(Request $request)
     {
         // Initialize variables for file names
         $front_id_cardimageName = null;
