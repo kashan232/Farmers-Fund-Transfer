@@ -180,8 +180,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-
-                            <form id="registrationForm" action="{{ route('store-agri-farmers') }}" method="POST" enctype="multipart/form-data">
+                            <form id="registrationForm" action="{{ route('store-online-farmers-registration') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="step step-1">
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
