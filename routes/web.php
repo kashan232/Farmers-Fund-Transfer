@@ -55,8 +55,8 @@ Route::get('/', function () {
 
 Route::get('/online-login-form', [OnlineFormController::class, 'index'])->name('online-login-form');
 Route::post('/online-login', [OnlineFormController::class, 'authenticate'])->name('online-login');
-Route::get('/online-dashboard-logout', [OnlineFormController::class, 'logout'])->middleware(['online_user_auth'])->name('online-dashboard-logout');
-Route::get('/home', [HomeController::class, 'home'])->middleware(['online_user_auth'])->name('home');
+Route::get('/online-dashboard-logout', [OnlineFormController::class, 'logout'])->name('online-dashboard-logout');
+Route::get('/home', [HomeController::class, 'home'])->name('home');
 
 
 Route::post('/store-online-farmers-registration', [OnlineFormController::class, 'store_online_farmers_registration'])->name('store-online-farmers-registration');
