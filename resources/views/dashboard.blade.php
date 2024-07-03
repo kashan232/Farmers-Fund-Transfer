@@ -232,8 +232,8 @@
                                         <div class="mb-4 col-md-4">
                                             <label class="form-label">Owner Type</label>
                                             <select name="owner_type" id="" class="form-control">
-                                                <option value="Male">Owner</option>
-                                                <option value="Female">Makandar</option>
+                                                <option value="male">Owner</option>
+                                                <option value="female">Makandar</option>
                                             </select>
                                         </div>
                                     </div>
@@ -247,20 +247,20 @@
                                         </div>
                                         <div class="mb-4 col-md-4 mt-1">
                                             <h6 class="text-center">Children < 16 </h6>
-                                                    <input type="text" name="" class="form-control">
+                                            <input type="text" name="female_children_under16" class="form-control">
                                         </div>
                                         <div class="mb-4 col-md-4 mt-1">
                                             <h6 class="text-center">Adults > 16 </h6>
-                                            <input type="text" name="" class="form-control">
+                                            <input type="text" name="female_Adults_above16" class="form-control">
                                         </div>
                                         <div class="mb-4 col-md-4 ">
                                             <input type="text" value="Male" readonly name="" class="form-control">
                                         </div>
                                         <div class="mb-4 col-md-4 ">
-                                            <input type="text" name="" class="form-control">
+                                            <input type="text" name="male_children_under16" class="form-control">
                                         </div>
                                         <div class="mb-4 col-md-4 ">
-                                            <input type="text" name="" class="form-control">
+                                            <input type="text" name="male_Adults_above16" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row" id="">
@@ -301,10 +301,10 @@
                                                 </thead>
                                                 <tbody id="title_tableBody">
                                                     <tr>
-                                                        <td><input type="text" class="form-control"></td>
-                                                        <td><input type="text" class="form-control"></td>
-                                                        <td><input type="text" class="form-control"></td>
-                                                        <td><input type="text" class="form-control"></td>
+                                                        <td><input type="text" name="title_name[]" class="form-control"></td>
+                                                            <td><input type="text" name="title_cnic[]" class="form-control"></td>
+                                                            <td><input type="text" name="title_number[]" class="form-control"></td>
+                                                            <td><input type="text" name="title_area[]" class="form-control"></td>
                                                         <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                     </tr>
                                                 </tbody>
@@ -330,9 +330,9 @@
                                                 </thead>
                                                 <tbody id="crop_tableBody">
                                                     <tr>
-                                                        <td><input type="text" class="form-control"></td>
-                                                        <td><input type="text" class="form-control"></td>
-                                                        <td><input type="text" class="form-control"></td>
+                                                        <td><input type="text" name="crops[]" class="form-control"></td>
+                                                        <td><input type="text" name="crop_area[]" class="form-control"></td>
+                                                        <td><input type="text" name="crop_average_yeild[]" class="form-control"></td>
                                                         <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                     </tr>
                                                 </tbody>
@@ -352,7 +352,7 @@
                                         </div>
                                         <div class="mb-8 col-md-8">
                                             <label class="form-label">Items</label>
-                                            <select name="a[]" id="" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
+                                            <select name="physical_asset_item[]" id="" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
                                                 <option value="car/jeep">Car/Jeep </option>
                                                 <option value="pickup/loader">Pickup/loader</option>
                                                 <option value="motorcycle">Motorcycle</option>
@@ -385,8 +385,8 @@
                                                 </thead>
                                                 <tbody id="poultry_assets_tableBody">
                                                     <tr>
-                                                        <td><input type="text" class="form-control"></td>
-                                                        <td><input type="text" class="form-control"></td>
+                                                        <td><input type="text" name="animal_name[]" class="form-control"></td>
+                                                        <td><input type="text" name="animal_qty[]" class="form-control"></td>
                                                         <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                     </tr>
                                                 </tbody>
@@ -408,7 +408,7 @@
                                         <div class="row mb-12 col-md-12" id="source_of_irrigation_section">
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label">Source of irrigation</label>
-                                                <select name="" class="form-control" id="source_of_irrigation">
+                                                <select name="source_of_irrigation" class="form-control" id="source_of_irrigation">
                                                     <option value="canal_wall">Canal System</option>
                                                     <option value="tube_wall">Tube Wall</option>
                                                 </select>
@@ -422,11 +422,11 @@
                                         <div class="row mb-12 col-md-12" id="status_of_water_section">
                                             <div class="mb-3 col-md-3">
                                                 <label class="form-label">Area length</label>
-                                                <input type="text" name="" class="form-control">
+                                                <input type="text" name="area_length" class="form-control">
                                             </div>
                                             <div class="mb-3 col-md-3">
                                                 <label class="form-label">Area length</label>
-                                                <select class="form-control" id="lined_unlined">
+                                                <select class="form-control" id="lined_unlined" name="line_status">
                                                     <option value="">Select Lined/Unlined</option>
                                                     <option value="lined">lined</option>
                                                     <option value="unlined">Unlind</option>
@@ -445,27 +445,27 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Title of Account</label>
-                                            <input type="text" name="bank_branch_name" class="form-control">
+                                            <input type="text" name="account_title" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Account No</label>
-                                            <input type="text" name="bank_branch_code" class="form-control">
+                                            <input type="text" name="account_no" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Name</label>
-                                            <input type="text" name="bank_branch_name" class="form-control">
+                                            <input type="text" name="bank_name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Name</label>
-                                            <input type="text" name="bank_branch_code" class="form-control">
+                                            <input type="text" name="branch_name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">IBAN</label>
-                                            <input type="text" name="bank_account_title" class="form-control">
+                                            <input type="text" name="IBAN_number" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Code</label>
-                                            <input type="text" name="bank_account_number" class="form-control">
+                                            <input type="text" name="branch_code" class="form-control">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-3" onclick="prevStep(3)">Previous</button>

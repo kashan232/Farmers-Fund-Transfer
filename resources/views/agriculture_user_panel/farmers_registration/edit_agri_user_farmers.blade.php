@@ -109,6 +109,7 @@
 
                             <form id="registrationForm" action="{{ route('store-agriuser-farmers') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" value="{{ $data->id }}" name="edit_id">
                                 <div class="step step-1">
                                     <div class="row mt-2">
                                         <h4 class="card-title">Personal Details</h4>
