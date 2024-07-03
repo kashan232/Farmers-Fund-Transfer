@@ -55,11 +55,12 @@
                                                         <th>Sno</th>
                                                         <th>Name</th>
                                                         <th>CNIC</th>
+                                                        <th>Mobile</th>
                                                         <th>District</th>
                                                         <th>Tehsil</th>
                                                         <th>UC</th>
-                                                        <th>Area</th>
-                                                        <th>Mobile</th>
+                                                        <th>Tappa</th>
+                                                        <th>Village</th>
                                                         <th>Status</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -70,11 +71,12 @@
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $all_agriuser_farmer->name }}</td>
                                                         <td>{{ $all_agriuser_farmer->cnic }}</td>
+                                                        <td>{{ $all_agriuser_farmer->mobile }}</td>
                                                         <td>{{ $all_agriuser_farmer->district }}</td>
                                                         <td>{{ $all_agriuser_farmer->tehsil }}</td>
                                                         <td>{{ $all_agriuser_farmer->uc }}</td>
-                                                        <td>{{ $all_agriuser_farmer->area }}</td>
-                                                        <td>{{ $all_agriuser_farmer->mobile }}</td>
+                                                        <td>{{ $all_agriuser_farmer->tappa }}</td>
+                                                        <td>{{ $all_agriuser_farmer->village }}</td>
                                                         <td>{{ $all_agriuser_farmer->verification_status }}</td>
                                                         <td>
                                                             <div class="d-flex">
