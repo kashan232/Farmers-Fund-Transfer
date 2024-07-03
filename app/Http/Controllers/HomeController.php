@@ -18,6 +18,7 @@ class HomeController extends Controller
 {
     public function home()
     {
+
         if (Auth::id()) {
             $usertype = Auth()->user()->usertype;
 

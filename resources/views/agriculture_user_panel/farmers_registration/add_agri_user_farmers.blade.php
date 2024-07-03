@@ -198,8 +198,8 @@
                                         <div class="mb-4 col-md-4 mt-3">
                                             <label class="form-label">Gender</label>
                                             <select name="gender" class="form-control">
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
                                             </select>
                                         </div>
                                         <div class="mb-4 col-md-4 mt-3">
@@ -212,8 +212,8 @@
                                         <div class="mb-4 col-md-4 mt-3">
                                             <label class="form-label">Owner Type</label>
                                             <select name="owner_type" id="" class="form-control">
-                                                <option value="Male">Owner</option>
-                                                <option value="Female">Makandar</option>
+                                                <option value="owner">Owner</option>
+                                                <option value="makandar">Makandar</option>
                                             </select>
                                         </div>
                                         <div class="row mt-2">

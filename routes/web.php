@@ -20,6 +20,9 @@ use App\Http\Controllers\ReportingController;
 use App\Http\Controllers\TappaController;
 use App\Http\Controllers\TehsilController;
 use App\Http\Controllers\UCController;
+
+use App\Http\Controllers\OnlineFormController;
+
 use App\Models\AgricultureOfficer;
 use App\Models\District;
 use App\Models\LeaveRequest;
@@ -48,7 +51,16 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/home', [HomeController::class, 'home'])->middleware(['auth'])->name('home');
+
+
+Route::get('/online-login-form', [OnlineFormController::class, 'index'])->name('online-login-form');
+Route::post('/online-login', [OnlineFormController::class, 'authenticate'])->name('online-login');
+Route::get('/online-dashboard-logout', [OnlineFormController::class, 'logout'])->middleware(['online_user_auth'])->name('online-dashboard-logout');
+Route::get('/home', [HomeController::class, 'home'])->middleware(['online_user_auth'])->name('home');
+
+
+
+
 Route::get('/admin-dashboard', [HomeController::class, 'adminpage'])->name('admin-dashboard');
 
 //District

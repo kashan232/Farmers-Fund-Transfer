@@ -153,10 +153,10 @@ class AgricultureUserFarmersController extends Controller
             $user_name = Auth()->user()->name;
             $district = Auth()->user()->district;
             $tehsil = Auth()->user()->tehsil;
-            $all_agriculture_farmer = AgricultureUserFarmerRegistration::where('id', '=', $id)->first();
+            $data = AgricultureUserFarmerRegistration::where('id', '=', $id)->first();
             // dd($all_agriculture_farmer);
             return view('agriculture_user_panel.farmers_registration.edit_agri_user_farmers', [
-                'all_agriculture_farmer' => $all_agriculture_farmer,
+                'data' => $data,
                 'district' => $district,
                 'tehsil' => $tehsil,
             ]);

@@ -154,6 +154,9 @@
                 row-gap: 15px;
             }
         }
+        .text-danger{
+            color:red;
+        }
     </style>
 </head>
 
@@ -164,22 +167,34 @@
             @csrf
             <div class="input-box">
                 <x-input-label for="name" :value="__('CNIC')" />
-                <x-text-input id="CNIC" class="block mt-1 w-full" type="text" name="cnic" :value="old('CNIC')" required autofocus autocomplete="CNIC" placeholder="Enter Your CNIC" required />
+                <x-text-input id="CNIC" class="block mt-1 w-full" type="text" name="cnic" :value="old('CNIC')" required autofocus autocomplete="CNIC" placeholder="41503-1234567-0" required />
+                @error('cnic')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
             </div>
 
             <div class="input-box">
                 <label>Mobile Number</label>
                 <x-text-input id="Number" class="block mt-1 w-full" type="text" name="number" :value="old('Number')" required autofocus autocomplete="Number" placeholder="Enter Your Mobile Number" required />
+                @error('number')
+                    <span class="text-danger">{{$message}}</span>
+                @enderror
             </div>
 
             <div class="input-box">
                 <x-input-label for="password" :value="__('Password')" />
                 <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" placeholder="Enter Your Password" />
+                @error('password')
+                   <span class="text-danger">{{$message}}</span>
+                @enderror
             </div>
 
             <div class="input-box">
                 <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
                 <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Enter Confirm Password" />
+                @error('password.confirmed')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
             </div>
             <button type="submit">Submit</button>
         </form>

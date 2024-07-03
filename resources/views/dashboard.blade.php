@@ -126,7 +126,7 @@
             padding: 5rem !important;
         }
     </style>
-    
+
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <!-- <link rel="stylesheet" href="/online_farmers_assets/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="/online_farmers_assets/css/style.css">
@@ -167,12 +167,9 @@
                     <a href="javascript:void(0)"><span class="fa fa-sticky-note mr-3"></span> Upload Documents </a>
                 </li>
                 <li>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item">
-                            <span class="fa fa-door-open mr-3"></span> Logout
-                        </a>
-                    </form>
+                    <a href="{{route('online-dashboard-logout')}}"   class="dropdown-item">
+                        <span class="fa fa-door-open mr-3"></span> Logout
+                    </a>
                 </li>
 
             </ul>

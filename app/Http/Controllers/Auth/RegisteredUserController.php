@@ -31,9 +31,12 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'cnic' => ['required', 'string', 'max:255'],
-            'number' => ['required', 'max:255'],
+            'cnic' => 'required|string|max:255|unique:users',
+            'number' => ['required', 'max:11'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ],
+        [
+            'password.confirmed' => 'The password confirmation does not match.',
         ]);
 
         $user = User::create([
@@ -44,7 +47,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        Auth::guard('web')->login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }
