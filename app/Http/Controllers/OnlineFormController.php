@@ -43,10 +43,6 @@ class OnlineFormController extends Controller
     {
         if (Auth::check()) {
             $data = $request->all();
-            $data['admin_or_user_id'] = Auth::id();
-            $data['land_emp_id'] = Auth()->user()->user_id;
-            $data['land_emp_name'] = Auth()->user()->name;
-
             $data['title_name'] = json_encode($request->title_name);
             $data['title_cnic'] = json_encode($request->title_cnic);
             $data['title_number'] = json_encode($request->title_number);
