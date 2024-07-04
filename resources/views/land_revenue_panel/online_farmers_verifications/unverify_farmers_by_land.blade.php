@@ -87,11 +87,12 @@
                                                     <tr>
                                                         <th>Name</th>
                                                         <th>CNIC</th>
+                                                        <th>Mobile</th>
                                                         <th>District</th>
                                                         <th>Tehsil</th>
                                                         <th>UC</th>
-                                                        <th>Area</th>
-                                                        <th>Mobile</th>
+                                                        <th>Tappa</th>
+                                                        <th>Village</th>
                                                         <th>Status</th>
                                                         <th>Verify</th>
                                                     </tr>
@@ -101,11 +102,12 @@
                                                     <tr>
                                                         <td>{{ $online_farmer->name }}</td>
                                                         <td>{{ $online_farmer->cnic }}</td>
+                                                        <td>{{ $online_farmer->mobile }}</td>
                                                         <td>{{ $online_farmer->district }}</td>
                                                         <td>{{ $online_farmer->tehsil }}</td>
                                                         <td>{{ $online_farmer->uc }}</td>
-                                                        <td>{{ $online_farmer->area }}</td>
-                                                        <td>{{ $online_farmer->mobile }}</td>
+                                                        <td>{{ $online_farmer->tappa }}</td>
+                                                        <td>{{ $online_farmer->village }}</td>
                                                         <td>
                                                             @if ($online_farmer->verification_status === 'Verified')
                                                             <span class="badge text-bg-success">Verified</span>

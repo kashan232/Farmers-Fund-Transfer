@@ -67,7 +67,6 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach($all_agriculture_farmers as $all_agriculture_farmer)
-
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $all_agriculture_farmer->name }}</td>

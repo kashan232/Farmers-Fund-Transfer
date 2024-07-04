@@ -53,10 +53,10 @@ Route::get('/', function () {
 
 
 
-Route::get('/online-login-form', [OnlineFormController::class, 'index'])->name('online-login-form');
+Route::get('/online-login-form', [OnlineFormController::class, 'index'])->middleware(['guest'])->name('online-login-form');
 Route::post('/online-login', [OnlineFormController::class, 'authenticate'])->name('online-login');
 Route::get('/online-dashboard-logout', [OnlineFormController::class, 'logout'])->name('online-dashboard-logout');
-Route::get('/home', [HomeController::class, 'home'])->name('home');
+Route::get('/home', [HomeController::class, 'home'])->middleware(['auth'])->name('home');
 
 
 Route::post('/store-online-farmers-registration', [OnlineFormController::class, 'store_online_farmers_registration'])->name('store-online-farmers-registration');

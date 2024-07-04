@@ -179,6 +179,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
+                        @if (session()->has('farmers-registered'))
+                            <div class="alert alert-success alert-dismissible fade show mt-4">
+                                <strong>Success!</strong> {{ session('farmers-registered') }}.
+                            </div>
+                        @endif
                         <div class="card-body">
                             <form id="registrationForm" action="{{ route('store-online-farmers-registration') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -205,8 +210,33 @@
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Dictrict</label>
-                                            <input type="text" name="district" id="district" class="form-control">
+                                            <select id="district" name="district" class="form-control">
+                                                <option value="" selected disabled>Select District</option>
+                                                <!-- Options will be populated dynamically -->
+                                            </select>
                                         </div>
+                                        <div class="mb-6 col-md-6 py-2">
+                                            <label class="form-label">Tehsil</label>
+                                            <select id="tehsil" name="tehsil" class="form-control">
+                                                <option value="" selected disabled>Select Tehsil</option>
+                                                <!-- Options will be populated dynamically -->
+                                            </select>
+                                        </div>
+                                        <div class="mb-6 col-md-6 py-2">
+                                            <label class="form-label">UC</label>
+                                            <select id="uc" name="uc" class="form-control">
+                                                <option value="" selected disabled>Select UC</option>
+                                                <!-- Options will be populated dynamically -->
+                                            </select>
+                                        </div>
+                                        <div class="mb-6 col-md-6 py-2">
+                                            <label class="form-label">Tappa</label>
+                                            <select id="tappa" name="tappa" class="form-control">
+                                                <option value="" selected disabled>Select Tappa</option>
+                                                <!-- Options will be populated dynamically -->
+                                            </select>
+                                        </div>
+
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">DAH</label>
                                             <input type="text" name="dah" class="form-control">
@@ -218,22 +248,22 @@
                                         <div class="mb-4 col-md-4 mt-2">
                                             <label class="form-label">Gender</label>
                                             <select name="gender" class="form-control">
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
                                             </select>
                                         </div>
                                         <div class="mb-4 col-md-4">
                                             <label class="form-label">House Type</label>
                                             <select name="house_type" id="house_type" class="form-control">
-                                                <option value="">Pakka House</option>
-                                                <option value="">Kacha House</option>
+                                                <option value="pakka_house">Pakka House</option>
+                                                <option value="kacha_house">Kacha House</option>
                                             </select>
                                         </div>
                                         <div class="mb-4 col-md-4">
                                             <label class="form-label">Owner Type</label>
                                             <select name="owner_type" id="" class="form-control">
-                                                <option value="male">Owner</option>
-                                                <option value="female">Makandar</option>
+                                                <option value="owner">Owner</option>
+                                                <option value="makandar">Makandar</option>
                                             </select>
                                         </div>
                                     </div>
@@ -301,7 +331,7 @@
                                                 </thead>
                                                 <tbody id="title_tableBody">
                                                     <tr>
-                                                        <td><input type="text" name="title_name[]" class="form-control"></td>
+                                                            <td><input type="text" name="title_name[]" class="form-control"></td>
                                                             <td><input type="text" name="title_cnic[]" class="form-control"></td>
                                                             <td><input type="text" name="title_number[]" class="form-control"></td>
                                                             <td><input type="text" name="title_area[]" class="form-control"></td>
@@ -426,7 +456,7 @@
                                             </div>
                                             <div class="mb-3 col-md-3">
                                                 <label class="form-label">Area length</label>
-                                                <select class="form-control" id="lined_unlined" name="line_status">
+                                                <select class="form-control" id="lined_unlined"  name="line_status">
                                                     <option value="">Select Lined/Unlined</option>
                                                     <option value="lined">lined</option>
                                                     <option value="unlined">Unlind</option>
@@ -517,7 +547,101 @@
     <script src="/online_farmers_assets/js/bootstrap.min.js"></script>
     <script src="/online_farmers_assets/js/main.js"></script>
     <script src="/online_farmers_assets/js/select2.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        let allTehsils = [];
+        let allUcs = [];
+        let allTappas = [];
 
+        // Fetch districts from the API
+        fetch('http://127.0.0.1:8000/api/get-districts')
+            .then(response => response.json())
+            .then(data => {
+                const districtSelect = document.getElementById('district');
+                districtSelect.innerHTML = '<option value="" selected disabled>Select District</option>';
+                data.districts.forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district.district;
+                    option.textContent = district.district;
+                    districtSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching districts:', error));
+
+        // Fetch all tehsils from the API
+        fetch('http://127.0.0.1:8000/api/get-tehsil')
+            .then(response => response.json())
+            .then(data => {
+                allTehsils = data.tehsils;
+            })
+            .catch(error => console.error('Error fetching tehsils:', error));
+
+        // Fetch all UCs from the API
+        fetch('http://127.0.0.1:8000/api/get-uc')
+            .then(response => response.json())
+            .then(data => {
+                allUcs = data.Ucs;
+            })
+            .catch(error => console.error('Error fetching UCs:', error));
+
+        // Fetch all tappas from the API
+        fetch('http://127.0.0.1:8000/api/get-tappa')
+            .then(response => response.json())
+            .then(data => {
+                allTappas = data.tehsils;
+            })
+            .catch(error => console.error('Error fetching tappas:', error));
+
+        // Populate tehsils based on selected district
+        document.getElementById('district').addEventListener('change', function() {
+            const selectedDistrict = this.value;
+            const tehsilSelect = document.getElementById('tehsil');
+            tehsilSelect.innerHTML = '<option value="" selected disabled>Select Tehsil</option>';
+
+            const filteredTehsils = allTehsils.filter(tehsil => tehsil.district === selectedDistrict);
+            filteredTehsils.forEach(tehsil => {
+                const option = document.createElement('option');
+                option.value = tehsil.tehsil;
+                option.textContent = tehsil.tehsil;
+                tehsilSelect.appendChild(option);
+            });
+
+            // Clear UC and Tappa selects
+            document.getElementById('uc').innerHTML = '<option value="" selected disabled>Select UC</option>';
+            document.getElementById('tappa').innerHTML = '<option value="" selected disabled>Select Tappa</option>';
+        });
+
+        // Populate UCs and tappas based on selected tehsil and district
+        document.getElementById('tehsil').addEventListener('change', function() {
+            const selectedDistrict = document.getElementById('district').value;
+            const selectedTehsil = this.value;
+
+            // Populate UCs
+            const ucSelect = document.getElementById('uc');
+            ucSelect.innerHTML = '<option value="" selected disabled>Select UC</option>';
+            const filteredUcs = allUcs.filter(uc => uc.district === selectedDistrict && uc.tehsil === selectedTehsil);
+            filteredUcs.forEach(uc => {
+                const option = document.createElement('option');
+                option.value = uc.uc;
+                option.textContent = uc.uc;
+                ucSelect.appendChild(option);
+            });
+
+            // Populate tappas
+            const tappaSelect = document.getElementById('tappa');
+            tappaSelect.innerHTML = '<option value="" selected disabled>Select Tappa</option>';
+            const filteredTappas = allTappas.filter(tappa => tappa.district === selectedDistrict && tappa.tehsil === selectedTehsil);
+            filteredTappas.forEach(tappa => {
+                const option = document.createElement('option');
+                option.value = tappa.tappa;
+                option.textContent = tappa.tappa;
+                tappaSelect.appendChild(option);
+            });
+        });
+    });
+
+
+      </script>
     <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
@@ -526,13 +650,13 @@
         $('#source_of_irrigation').change(function() {
             if ($(this).val() == 'tube_wall') {
                 $('#source_of_irrigation_section').append(`
-         <div class="mb-6 col-md-6" id="source_of_energy_section">
-            <label class="form-label">Source of energy</label>
-            <select name=""  class="form-control" id="source_of_energy">
-                <option value="">Electricity</option>
-                <option value="">Solar</option>
-                <option value="">Fuel</option>
-            </select>
+            <div class="mb-6 col-md-6" id="source_of_energy_section">
+                <label class="form-label">Source of energy</label>
+                <select name="source_of_irrigation_engery"  class="form-control" id="source_of_energy">
+                    <option value="electricity">Electricity</option>
+                    <option value="solar">Solar</option>
+                    <option value="fuel">Fuel</option>
+                </select>
             </div>
          `);
             } else {
@@ -547,11 +671,11 @@
             <div class="row">
             <div class="mb-6 col-md-6" >
                 <label class="form-label">Lined Length</label>
-                <input type="text" name="" class="form-control">
+                <input type="text" name="lined_length" class="form-control">
             </div>
             <div class="mb-6 col-md-6" >
                 <label class="form-label">Total Command Area</label>
-                <input type="text" name="" class="form-control">
+                <input type="text" name="total_command_area" class="form-control">
             </div>
             </div>
         </div>
@@ -565,10 +689,10 @@
         $('#add_title_row_Btn').click(function() {
             const newRow = `
             <tr>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
+                <td><input type="text" name="title_name[]" class="form-control"></td>
+                <td><input type="text" name="title_cnic[]" class="form-control"></td>
+                <td><input type="text" name="title_number[]" class="form-control"></td>
+                <td><input type="text" name="title_area[]" class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;
@@ -583,9 +707,9 @@
         $('#add_crop_row_Btn').click(function() {
             const newRow = `
             <tr>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
+                <td><input type="text" name="crops[]" class="form-control"></td>
+                <td><input type="text" name="crop_area[]" class="form-control"></td>
+                <td><input type="text" name="crop_average_yeild[]" class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;
@@ -601,8 +725,8 @@
         $('#add_poultry_assets_row_Btn').click(function() {
             const newRow = `
             <tr>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
+                <td><input type="text" name="animal_name[]" class="form-control"></td>
+                <td><input type="text" name="animal_qty[]" class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;
