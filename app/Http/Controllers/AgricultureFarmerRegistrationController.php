@@ -234,10 +234,10 @@ class AgricultureFarmerRegistrationController extends Controller
             $userId = Auth::id();
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
-            $all_agriculture_farmers = AgricultureFarmersRegistration::where('id', '=', $id)->first();
-            // dd($all_agriculture_farmers);
+            $data = AgricultureFarmersRegistration::where('id', '=', $id)->first();
+            // dd($data);
             return view('agriculture_officer_panel.farmers_registration.view_agri_farmers', [
-                'all_agriculture_farmers' => $all_agriculture_farmers,
+                'data' => $data,
             ]);
         } else {
             return redirect()->back();

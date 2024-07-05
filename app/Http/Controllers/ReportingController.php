@@ -64,10 +64,10 @@ class ReportingController extends Controller
             $userId = Auth::id();
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
-            $all_agriuser_farmers = $modelClass::where('id', '=', $id)->first();
-            // dd($all_agriuser_farmers);
+            $data = $modelClass::where('id', '=', $id)->first();
+            // dd($data);
             return view('admin_panel.reporting.reports-view', [
-                'all_agriuser_farmers' => $all_agriuser_farmers,
+                'data' => $data,
             ]);
         }
     }
