@@ -20,6 +20,7 @@ use App\Http\Controllers\ReportingController;
 use App\Http\Controllers\TappaController;
 use App\Http\Controllers\TehsilController;
 use App\Http\Controllers\UCController;
+use App\Http\Controllers\DistrictOfficerController;
 
 use App\Http\Controllers\OnlineFormController;
 
@@ -115,6 +116,14 @@ Route::get('/add-revenue-officer', [LandRevenueController::class, 'add_revenue_o
 Route::post('/store-revenue-officer', [LandRevenueController::class, 'store_revenue_officer'])->name('store-revenue-officer');
 Route::get('/all-revenue-officer', [LandRevenueController::class, 'all_revenue_officer'])->middleware(['auth', 'admin'])->name('all-revenue-officer');
 Route::get('/edit-revenue-officer/{id}', [LandRevenueController::class, 'edit_revenue_officer'])->name('edit-revenue-officer');
+
+
+
+// DO Officer Department
+Route::get('/district-officer-create', [DistrictOfficerController::class, 'district_officer_create'])->middleware(['auth', 'admin'])->name('district-officer-create');
+Route::post('/store-district-officer', [DistrictOfficerController::class, 'store_district_officer'])->name('store-district-officer');
+Route::get('/all-district-officer', [DistrictOfficerController::class, 'all_district_officer'])->middleware(['auth', 'admin'])->name('all-district-officer');
+Route::get('/district-officer-edit/{id}', [DistrictOfficerController::class, 'edit_district_officer'])->middleware(['auth', 'admin'])->name('district-officer-edit');
 
 
 

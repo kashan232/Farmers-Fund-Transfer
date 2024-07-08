@@ -37,7 +37,7 @@
                         <span class="pc-mtext">Dashboard</span>
                     </a>
                 </li>
-                
+
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
                         <span class="pc-micon">
@@ -91,6 +91,26 @@
                         </li>
                     </ul>
                 </li>
+
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
+                        <span class="pc-micon">
+                            <i class="fas fa-user-tie"></i>
+                        </span>
+                        <span class="pc-mtext">District Officer</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('district-officer-create') }}" style="color: #ebe5e5!important;">Create Officer</a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('all-district-officer') }}" style="color: #ebe5e5!important;">All Officer</a>
+                        </li>
+                    </ul>
+                </li>
+
 
 
                 <li class="pc-item">
