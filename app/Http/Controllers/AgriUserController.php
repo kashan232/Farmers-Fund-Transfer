@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class AgriUserController extends Controller
 {
     public function add_user()
@@ -36,8 +37,21 @@ class AgriUserController extends Controller
         $tehsils = Tehsil::where('district', $district)->pluck('tehsil')->toArray(); // Adjust according to your database schema
         return response()->json($tehsils);
     }
+
+
+
+
+
+
+
+
+
+
+
     public function store_user(Request $request)
     {
+
+
         if (Auth::id()) {
 
             $usertype = Auth()->user()->usertype;
@@ -51,11 +65,13 @@ class AgriUserController extends Controller
             $userimgname = null;
 
             // Handle front ID card image
-            if ($request->hasFile('userimg')) {
-                $userimgname = $request->file('userimg');
-                $userimg = time() . '_' . uniqid() . '.' . $userimgname->getClientOriginalExtension();
-                $userimgname->move(public_path('user_profile/user_image'), $userimg);
-            }
+            // if ($request->hasFile('userimg')) {
+            //     $userimgname = $request->file('userimg');
+            //     $userimg = time() . '_' . uniqid() . '.' . $userimgname->getClientOriginalExtension();
+            //     $userimgname->move(public_path('user_profile/user_image'), $userimg);
+            // }
+
+           $image = resize_image_and_save($request->file('userimg'), 'final');
 
             $agriuser = AgriUser::create([
                 'admin_or_user_id'    => $userId,
@@ -70,7 +86,7 @@ class AgriUserController extends Controller
                 'ucs'          => $ucs,
                 'tappas'          => $tappa,
                 'password'          => $request->password,
-                // 'img'          => $userimg,
+                'img'          => $image,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ]);
@@ -88,7 +104,7 @@ class AgriUserController extends Controller
                 'usertype' => 'Agriculture_User', // Set the usertype to 'employee'
             ]);
         } else {
-            return redirect()->back();
+            return redirect()->back()->with();
         }
     }
     public function all_user()

@@ -59,6 +59,7 @@
                                                     <th>UC</th>
                                                     <th>Tappa</th>
                                                     <th>Mobile No</th>
+                                                    <th>Image</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -100,6 +101,7 @@
                                                         @endif
                                                     </td>
                                                     <td>{{ $user->number }}</td>
+                                                    <td><img src="{{asset($user->img)}}" alt="" width="50px" height="50px"></td>
                                                     <td>
                                                         <div class="d-flex">
                                                             <a href="/edit-user/{{$user->id}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>

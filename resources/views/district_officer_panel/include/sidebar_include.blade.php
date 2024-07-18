@@ -49,13 +49,10 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-agri-farmers-by-land') }}" style="color: #ebe5e5!important;">Agriculture Farmers</a>
+                            <a class="pc-link" href="{{ route('unverify-agri-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('unverify-agri-farmers-by-land') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verify-agri-farmers-by-land') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
+                            <a class="pc-link" href="{{ route('verify-agri-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
                         </li>
                     </ul>
                 </li>
@@ -71,32 +68,10 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-agriuser-farmers-by-land') }}" style="color: #ebe5e5!important;">Agriculture User Farmers</a>
+                            <a class="pc-link" href="{{ route('unverify-agriuser-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('unverify-agriuser-farmers-by-land') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verify-agriuser-farmers-by-land') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
-                        <span class="pc-micon">
-                            <i class="fas fa-user-plus"></i>
-                        </span>
-                        <span class="pc-mtext">Farmers Registration</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('add-land-farmers') }}" style="color: #ebe5e5!important;">Add Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-land-farmers') }}" style="color: #ebe5e5!important;">All Farmers</a>
+                            <a class="pc-link" href="{{ route('verify-agriuser-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
                         </li>
                     </ul>
                 </li>
@@ -111,14 +86,12 @@
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
+
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verifications-land-farmers') }}" style="color: #ebe5e5!important;">land Revenue Farmers</a>
+                            <a class="pc-link" href="{{ route('unverify-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('unverify-farmers-by-land') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verify-farmers-by-land') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
+                            <a class="pc-link" href="{{ route('verify-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
                         </li>
                     </ul>
                 </li>
@@ -129,26 +102,19 @@
                             <i class="fas fa-user-check"></i>
 
                         </span>
-                        <span class="pc-mtext">Online Farmer Verification</span>
+                        <span class="pc-mtext">Online Farmers</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verifications-online-farmers') }}" style="color: #ebe5e5!important;">Online Farmer Farmers</a>
+                            <a class="pc-link" href="{{ route('unverify-online-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('unverify-online-farmers-by-land') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verify-online-farmers-by-land') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
+                            <a class="pc-link" href="{{ route('verify-online-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
                         </li>
                     </ul>
                 </li>
-
-
             </ul>
-
         </div>
-
     </div>
 </nav>

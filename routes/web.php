@@ -24,6 +24,10 @@ use App\Http\Controllers\DistrictOfficerController;
 
 use App\Http\Controllers\OnlineFormController;
 
+use App\Http\Controllers\CallerUserController;
+use App\Http\Controllers\DistrictOfficerPanelController;
+
+
 use App\Models\AgricultureOfficer;
 use App\Models\District;
 use App\Models\LeaveRequest;
@@ -119,11 +123,36 @@ Route::get('/edit-revenue-officer/{id}', [LandRevenueController::class, 'edit_re
 
 
 
-// DO Officer Department
+// District Officer
 Route::get('/district-officer-create', [DistrictOfficerController::class, 'district_officer_create'])->middleware(['auth', 'admin'])->name('district-officer-create');
 Route::post('/store-district-officer', [DistrictOfficerController::class, 'store_district_officer'])->name('store-district-officer');
 Route::get('/all-district-officer', [DistrictOfficerController::class, 'all_district_officer'])->middleware(['auth', 'admin'])->name('all-district-officer');
 Route::get('/district-officer-edit/{id}', [DistrictOfficerController::class, 'edit_district_officer'])->middleware(['auth', 'admin'])->name('district-officer-edit');
+
+// District Officer Panel
+Route::get('/do/unverify-agri-farmers-by-land', [DistrictOfficerPanelController::class, 'unverify_agri_farmers_by_land'])->name('unverify-agri-farmers-by-land-do');
+Route::get('/do/verify-agri-farmers-by-land', [DistrictOfficerPanelController::class, 'verify_agri_farmers_by_land'])->name('verify-agri-farmers-by-land-do');
+
+Route::get('/do/unverify-agriuser-farmers-by-land', [DistrictOfficerPanelController::class, 'unverify_agriuser_farmers_by_land'])->name('unverify-agriuser-farmers-by-land-do');
+Route::get('/do/verify-agriuser-farmers-by-land', [DistrictOfficerPanelController::class, 'verify_agriuser_farmers_by_land'])->name('verify-agriuser-farmers-by-land-do');
+
+Route::get('/do/unverify-farmers-by-land', [DistrictOfficerPanelController::class, 'unverify_farmers_by_land'])->name('unverify-farmers-by-land-do');
+Route::get('/do/verify-farmers-by-land', [DistrictOfficerPanelController::class, 'verify_farmers_by_land'])->name('verify-farmers-by-land-do');
+
+Route::get('/do/unverify-online-farmers-by-land', [DistrictOfficerPanelController::class, 'unverify_online_farmers_by_land'])->name('unverify-online-farmers-by-land-do');
+Route::get('/do/verify-online-farmers-by-land', [DistrictOfficerPanelController::class, 'verify_online_farmers_by_land'])->name('verify-online-farmers-by-land-do');
+// End District Officer Panel
+
+
+
+
+
+// Caller User Department
+Route::get('/caller-user-create', [CallerUserController::class, 'caller_user_create'])->middleware(['auth', 'admin'])->name('caller-user-create');
+Route::post('/store-caller-user', [CallerUserController::class, 'store_caller_user'])->name('store-caller-user');
+Route::get('/all-caller-user', [CallerUserController::class, 'all_caller_user'])->middleware(['auth', 'admin'])->name('all-caller-user');
+Route::get('/caller-user-edit/{id}', [CallerUserController::class, 'edit_caller_user'])->middleware(['auth', 'admin'])->name('caller-user-edit');
+
 
 
 
