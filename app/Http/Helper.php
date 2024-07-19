@@ -2,6 +2,9 @@
 
 use Intervention\Image\Facades\Image;
 
+
+// Example : resize_image_and_save($request->file('userimg'), 'images');
+
 if (!function_exists('resize_image_and_save')) {
  function resize_image_and_save($file, $path ){
     $image = $file;
@@ -11,4 +14,6 @@ if (!function_exists('resize_image_and_save')) {
     return $path. '/'.$image_name;
 }
 }
+
+
 ?>

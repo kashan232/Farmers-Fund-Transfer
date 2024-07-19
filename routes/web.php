@@ -195,6 +195,11 @@ Route::post('/update-agri-farmers/{id}', [AgricultureFarmerRegistrationControlle
 Route::get('/agri-unverify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_unverify_farmers'])->name('agri-unverify-farmers');
 Route::get('/agri-verify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_verify_farmers'])->name('agri-verify-farmers');
 
+
+
+Route::get('/farmers-reporting', [AgricultureFarmerRegistrationController::class, 'farmers_reporting'])->name('agri-officer-reporting');
+
+
 // AgricultureUser
 
 Route::get('/add-agriuser-farmers', [AgricultureUserFarmersController::class, 'add_agriuser_farmers'])->name('add-agriuser-farmers');
@@ -229,3 +234,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+
+
+
+

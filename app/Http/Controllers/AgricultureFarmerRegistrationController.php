@@ -406,4 +406,16 @@ class AgricultureFarmerRegistrationController extends Controller
             return redirect()->back();
         }
     }
+
+
+
+    public function farmers_reporting(request $request){
+
+        $userId = Auth::id();
+        $all_agriculture_farmers = AgricultureFarmersRegistration::where('admin_or_user_id', '=', $userId)->get();
+
+        return view('agriculture_officer_panel.farmers_reporting.index', [
+            'all_agriculture_farmers' => $all_agriculture_farmers,
+        ]);
+    }
 }
