@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <!-- <div class="col-lg-4 col-md-6">
                                 <div class="card">
                                     <div class="card-body border-left-blue">
                                         <div class="row">
@@ -139,9 +139,15 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+                <div class="box--sec">
+                    <div id="chart2"></div>
                 </div>
             </div>
 
@@ -167,12 +173,108 @@
 
 @include('agriculture_user_panel.include.footer_include')
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var options = {
+            chart: {
+                type: 'bar',
+                height: 450,
+                stacked: true,
+                toolbar: {
+                    show: false
+                },
+                animations: {
+                    enabled: true,
+                    easing: 'easeinout',
+                    speed: 800,
+                    animateGradually: {
+                        enabled: true,
+                        delay: 150
+                    }
+                }
+            },
+            series: [{
+                name: 'Farmers Status',
+                data: [500, 300, 150]  // Example data: Total Farmers, Verified Farmers, Unverified Farmers
+            }],
+            xaxis: {
+                categories: ['Total Farmers', 'Verified Farmers', 'Unverified Farmers'],
+                title: {
+                    text: 'Categories',
+                    style: {
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        color: '#333'
+                    }
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Number of Farmers',
+                    style: {
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        color: '#333'
+                    }
+                },
+                labels: {
+                    formatter: function (val) {
+                        return val;
+                    }
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                    barHeight: '50%',
+                    distributed: true
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                formatter: function (val) {
+                    return val;
+                },
+                style: {
+                    fontSize: '12px',
+                    colors: ['#fff']
+                }
+            },
+            colors: ['#4CAF50', '#FFC107', '#F44336'],
+            grid: {
+                borderColor: '#e7e7e7',
+                row: {
+                    colors: ['#f9f9f9', 'transparent'], // alternating row colors
+                    opacity: 0.5
+                }
+            },
+            tooltip: {
+                theme: 'dark',
+                y: {
+                    formatter: function (val) {
+                        return val + " farmers";
+                    }
+                }
+            },
+            title: {
+                text: 'Farmers Status',
+                align: 'center',
+                style: {
+                    fontSize: '20px',
+                    color: '#333'
+                }
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart2"), options);
+        chart.render();
+    });
+</script>
 
 
 <script>
     // Static data for demonstration
-    var data = [
-        {
+    var data = [{
             tehsil: 'Khoski',
             totalFarmers: 200,
             verifiedFarmers: 150,
