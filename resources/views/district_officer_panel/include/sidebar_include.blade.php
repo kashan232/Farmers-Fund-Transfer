@@ -49,10 +49,10 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('unverify-agri-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
+                            <a class="pc-link" href="{{ route('unverify-agri-farmers-by-do') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verify-agri-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
+                            <a class="pc-link" href="{{ route('verify-agri-farmers-by-do') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
                         </li>
                     </ul>
                 </li>
@@ -68,30 +68,28 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('unverify-agriuser-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
+                            <a class="pc-link" href="{{ route('unverify-agriuser-farmers-by-do') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verify-agriuser-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
+                            <a class="pc-link" href="{{ route('verify-agriuser-farmers-by-do') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
                         </li>
                     </ul>
                 </li>
-
+{{--
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
                         <span class="pc-micon">
                             <i class="fas fa-user-check"></i>
-
                         </span>
                         <span class="pc-mtext">Land Verification</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
-
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('unverify-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
+                            <a class="pc-link" href="{{ route('unverify-farmers-by-do') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verify-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
+                            <a class="pc-link" href="{{ route('verify-farmers-by-do') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
                         </li>
                     </ul>
                 </li>
@@ -107,13 +105,13 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('unverify-online-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
+                            <a class="pc-link" href="{{ route('unverify-online-farmers-by-do') }}" style="color: #ebe5e5!important;">Unverify Farmers</a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verify-online-farmers-by-land-do') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
+                            <a class="pc-link" href="{{ route('verify-online-farmers-by-do') }}" style="color: #ebe5e5!important;">Verified Farmers</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

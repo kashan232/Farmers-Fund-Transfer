@@ -1,11 +1,11 @@
-@include('agriculture_officer_panel.include.header_include')
+@include('land_revenue_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-    @include('agriculture_officer_panel.include.sidebar_include')
+    @include('land_revenue_panel.include.sidebar_include')
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-    @include('agriculture_officer_panel.include.navbar_include')
+    @include('land_revenue_panel.include.navbar_include')
 <!-- [ Header ] end -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
@@ -71,21 +71,21 @@
                                                 </thead>
                                                 <tbody>
 
-                                                    @foreach($all_agriculture_farmers as $all_agriculture_farmer)
+                                                    @foreach($data as $data)
                                                     <tr>
-                                                        <td>{{ $all_agriculture_farmer->name }}</td>
-                                                        <td>{{ $all_agriculture_farmer->cnic }}</td>
-                                                        <td>{{ $all_agriculture_farmer->mobile }}</td>
-                                                        <td>{{ $all_agriculture_farmer->district }}</td>
-                                                        <td>{{ $all_agriculture_farmer->tehsil }}</td>
-                                                        <td>{{ $all_agriculture_farmer->uc }}</td>
-                                                        <td>{{ $all_agriculture_farmer->tappa }}</td>
-                                                        <td>{{ $all_agriculture_farmer->village }}</td>
+                                                        <td>{{ $data->name }}</td>
+                                                        <td>{{ $data->cnic }}</td>
+                                                        <td>{{ $data->mobile }}</td>
+                                                        <td>{{ $data->district }}</td>
+                                                        <td>{{ $data->tehsil }}</td>
+                                                        <td>{{ $data->uc }}</td>
+                                                        <td>{{ $data->tappa }}</td>
+                                                        <td>{{ $data->village }}</td>
                                                         <td>
-                                                            @if ($all_agriculture_farmer->verification_status === 'Verified')
-                                                            <span class="badge text-bg-success">{{$all_agriculture_farmer->verification_status}}</span>
+                                                            @if ($data->verification_status === 'Verified')
+                                                            <span class="badge text-bg-success">{{$data->verification_status}}</span>
                                                             @else
-                                                            <span class="badge text-bg-danger">{{$all_agriculture_farmer->verification_status}}</span>
+                                                            <span class="badge text-bg-danger">{{$data->verification_status}}</span>
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -107,10 +107,10 @@
 </div>
 <!-- [ Main Content ] end -->
 <footer class="pc-footer">
-    @include('agriculture_officer_panel.include.footer_copyright_include')
+    @include('land_revenue_panel.include.footer_copyright_include')
 </footer>
 
-@include('agriculture_officer_panel.include.footer_include')
+@include('land_revenue_panel.include.footer_include')
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>

@@ -382,4 +382,16 @@ class AgricultureUserFarmersController extends Controller
         }
     }
 
+    public function farmers_reporting(request $request){
+
+        $userId = Auth::id();
+        $all_agriculture_farmers = AgricultureUserFarmerRegistration::where('admin_or_user_id', '=', $userId)->get();
+
+        return view('agriculture_user_panel.farmers_reporting.index', [
+            'data' => $all_agriculture_farmers,
+        ]);
+    }
+
+
+
 }

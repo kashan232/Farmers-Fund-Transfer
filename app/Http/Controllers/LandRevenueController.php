@@ -397,4 +397,15 @@ class LandRevenueController extends Controller
             return redirect()->back();
         }
     }
+
+    public function farmers_reporting(request $request){
+
+        $userId = Auth::id();
+        $data = LandRevenueFarmerRegistation::where('admin_or_user_id', '=', $userId)->get();
+
+        return view('land_revenue_panel.farmers_reporting.index', [
+            'data' => $data,
+        ]);
+    }
+
 }

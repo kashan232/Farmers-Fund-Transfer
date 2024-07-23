@@ -19,14 +19,14 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="row">
-                        <form id="verifyfarmers" action="{{ route('verify-unverify-land-farmers') }}" method="POST">
+                        <form id="verifyfarmers" action="{{ route('verify-unverify-land-farmers-by-do') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="statusSelect">Status</label>
                                 <input type="hidden" id="farmers_id" name="farmers_id" readonly>
                                 <select class="form-control" id="statusSelect" name="verification_status">
-                                    <option value="Verified">Verified</option>
-                                    <option value="Unverified">Unverified</option>
+                                    <option value="1">Verified</option>
+                                    <option value="0">Unverified</option>
                                 </select>
                             </div>
                             <div class="form-group" id="reasonBox" style="display: none;">
@@ -172,7 +172,7 @@
         var statusSelect = document.getElementById('statusSelect');
         statusSelect.addEventListener('change', function() {
             var reasonBox = document.getElementById('reasonBox');
-            if (this.value === 'Unverified') {
+            if (this.value === 0) {
                 reasonBox.style.display = 'block';
                 document.getElementById('reasonTextarea').required = true;
             } else {

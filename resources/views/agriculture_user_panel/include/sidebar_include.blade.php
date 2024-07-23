@@ -75,7 +75,14 @@
                         </li>
                     </ul>
                 </li>
-
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('agriuser-farmers-reporting') }}" class="pc-link" style="color: #ebe5e5!important;">
+                        <span class="pc-micon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span class="pc-mtext">Reporting</span>
+                    </a>
+                </li>
             </ul>
 
         </div>

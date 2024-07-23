@@ -72,7 +72,7 @@
                                                         <td>{{ $all_agriculture_farmer->tappa }}</td>
                                                         <td>{{ $all_agriculture_farmer->village }}</td>
                                                         <td>
-                                                            @if ($all_agriculture_farmer->verification_status === 'Verified')
+                                                            @if ($all_agriculture_farmer->verification_status == 1)
                                                             <span class="badge text-bg-success">Verified</span>
                                                             @else
                                                             <span class="badge text-bg-danger">Unverified</span>
@@ -132,7 +132,7 @@
         var statusSelect = document.getElementById('statusSelect');
         statusSelect.addEventListener('change', function() {
             var reasonBox = document.getElementById('reasonBox');
-            if (this.value === 'Unverified') {
+            if (this.value === 0) {
                 reasonBox.style.display = 'block';
             } else {
                 reasonBox.style.display = 'none';
