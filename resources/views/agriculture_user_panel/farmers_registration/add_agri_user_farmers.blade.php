@@ -53,11 +53,11 @@
 </style>
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-    @include('agriculture_user_panel.include.sidebar_include')
+@include('agriculture_user_panel.include.sidebar_include')
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-    @include('agriculture_user_panel.include.navbar_include')
+@include('agriculture_user_panel.include.navbar_include')
 <!-- [ Header ] end -->
 
 
@@ -84,10 +84,10 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Registration</h5>
-                        @if (session()->has('farmer-added'))
-                            <div class="alert alert-success alert-dismissible fade show mt-4">
-                                <strong>Success!</strong> {{ session('farmer-added') }}.
-                            </div>
+                        @if (session()->has('farmers-registered'))
+                        <div class="alert alert-success alert-dismissible fade show mt-4">
+                            <strong>Success!</strong> {{ session('farmers-registered') }}.
+                        </div>
                         @endif
                     </div>
                     <div class="card-body">
@@ -220,11 +220,11 @@
                                             <h6>Family Composition</h6>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Gender</h6>
-                                                <input type="text" value="Female" readonly  class="form-control">
+                                                <input type="text" value="Female" readonly class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Children < 16 </h6>
-                                                <input type="text" name="female_children_under16" class="form-control">
+                                                        <input type="text" name="female_children_under16" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Adults > 16 </h6>
@@ -243,7 +243,7 @@
 
                                         <div class="row mt-3" id="">
                                             <h6>Landholding & Cropping</h6>
-                                            <div class="row" >
+                                            <div class="row">
                                                 <div class="mb-3 col-md-3">
                                                     <label class="form-label">Total Landholding (Acre)</label>
                                                     <input type="text" name="total_landing_acre" class="form-control">
@@ -288,7 +288,7 @@
                                                 </table>
                                             </div>
                                             <div class="col-12" style="justify-content: right; display: flex;">
-                                                <button type="button"  class="btn btn-primary" id="add_title_row_Btn">Add More</button>
+                                                <button type="button" class="btn btn-primary" id="add_title_row_Btn">Add More</button>
                                             </div>
                                         </div>
 
@@ -315,7 +315,7 @@
                                                 </table>
                                             </div>
                                             <div class="col-12" style="justify-content: right; display: flex;">
-                                                <button type="button"  class="btn btn-primary" id="add_crop_row_Btn">Add More</button>
+                                                <button type="button" class="btn btn-primary" id="add_crop_row_Btn">Add More</button>
                                             </div>
                                         </div>
                                     </div>
@@ -326,7 +326,7 @@
                                     <div class="row mt-2">
                                         <div class="row py-2" id="physical_assets_section">
                                             <h6>Physical Assets Currently Owned </h6>
-                                            <div class="row physical_asset-default-row" >
+                                            <div class="row physical_asset-default-row">
                                                 <div class="mb-8 col-md-8">
                                                     <label class="form-label">Items</label>
                                                     <select name="physical_asset_item[]" id="physical_asset_item" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
@@ -369,7 +369,7 @@
                                                 </table>
                                             </div>
                                             <div class="col-12" style="justify-content: right; display: flex;">
-                                                <button type="button"  class="btn btn-primary" id="add_poultry_assets_row_Btn">Add More</button>
+                                                <button type="button" class="btn btn-primary" id="add_poultry_assets_row_Btn">Add More</button>
                                             </div>
                                         </div>
                                     </div>
@@ -381,9 +381,9 @@
                                     <div class="row mt-2">
                                         <h6>Source of irrigation</h6>
                                         <div class="row" id="source_of_irrigation_section">
-                                            <div class="mb-6 col-md-6" >
+                                            <div class="mb-6 col-md-6">
                                                 <label class="form-label">Source of irrigation</label>
-                                                <select name="source_of_irrigation"  class="form-control" id="source_of_irrigation">
+                                                <select name="source_of_irrigation" class="form-control" id="source_of_irrigation">
                                                     <option value="canal_wall">Canal System</option>
                                                     <option value="tube_wall">Tube Wall</option>
                                                 </select>
@@ -393,11 +393,11 @@
                                     <div class="row mt-2">
                                         <h6>Status of water</h6>
                                         <div class="row" id="status_of_water_section">
-                                            <div class="mb-3 col-md-3" >
+                                            <div class="mb-3 col-md-3">
                                                 <label class="form-label">Area length</label>
                                                 <input type="text" name="area_length" class="form-control">
                                             </div>
-                                            <div class="mb-3 col-md-3" >
+                                            <div class="mb-3 col-md-3">
                                                 <label class="form-label">Area length</label>
                                                 <select class="form-control" id="lined_unlined" name="line_status">
                                                     <option value="">Select Lined/Unlined</option>
@@ -490,7 +490,6 @@
 
 @include('agriculture_user_panel.include.footer_include')
 <script>
-
     $('#add_title_row_Btn').click(function() {
         const newRow = `
             <tr>
@@ -547,10 +546,9 @@
 
 
 
-$('#source_of_irrigation').change(function() {
-    if($(this).val() == 'tube_wall')
-    {
-         $('#source_of_irrigation_section').append(`
+    $('#source_of_irrigation').change(function() {
+        if ($(this).val() == 'tube_wall') {
+            $('#source_of_irrigation_section').append(`
          <div class="mb-6 col-md-6" id="source_of_energy_section">
             <label class="form-label">Source of energy</label>
             <select name="source_of_irrigation_engery"  class="form-control" id="source_of_energy">
@@ -560,16 +558,14 @@ $('#source_of_irrigation').change(function() {
             </select>
             </div>
          `);
-    }
-    else{
-        $('#source_of_energy_section').remove();
-    }
-});
+        } else {
+            $('#source_of_energy_section').remove();
+        }
+    });
 
-$('#lined_unlined').change(function() {
-    if($(this).val() == 'lined')
-    {
-        $('#status_of_water_section').append(`
+    $('#lined_unlined').change(function() {
+        if ($(this).val() == 'lined') {
+            $('#status_of_water_section').append(`
         <div class="mb-6 col-md-6" id="lined_section" >
             <div class="row">
             <div class="mb-6 col-md-6" >
@@ -583,55 +579,54 @@ $('#lined_unlined').change(function() {
             </div>
         </div>
         `);
-    }
-    else{
-        $('#lined_section').remove();
-    }
-});
+        } else {
+            $('#lined_section').remove();
+        }
+    });
 
 
 
 
 
-$('select[name="tehsil"]').on('change', function() {
+    $('select[name="tehsil"]').on('change', function() {
 
-            var district = $('input[name="district"]').val();
+        var district = $('input[name="district"]').val();
 
-            var tehsil = [$(this).val()];
+        var tehsil = [$(this).val()];
 
-            if (district && tehsil) {
+        if (district && tehsil) {
 
-                $.ajax({
-                    url: '{{ route("get-ucs") }}',
-                    type: 'GET',
-                    data: {
-                        district: district,
-                        tehsil: tehsil
-                    },
-                    success: function(response) {
-                        // Populate UC dropdown
-                        var ucSelect = $('select[name="uc"]');
-                        ucSelect.empty();
-                        $.each(response.ucs, function(index, value) {
-                            ucSelect.append('<option value="' + value + '">' + value + '</option>');
-                        });
+            $.ajax({
+                url: '{{ route("get-ucs") }}',
+                type: 'GET',
+                data: {
+                    district: district,
+                    tehsil: tehsil
+                },
+                success: function(response) {
+                    // Populate UC dropdown
+                    var ucSelect = $('select[name="uc"]');
+                    ucSelect.empty();
+                    $.each(response.ucs, function(index, value) {
+                        ucSelect.append('<option value="' + value + '">' + value + '</option>');
+                    });
 
-                        // Populate Tappa dropdown
-                        var tappaSelect = $('select[name="tappa"]');
-                        tappaSelect.empty();
-                        $.each(response.Tappas, function(index, value) {
-                            tappaSelect.append('<option value="' + value + '">' + value + '</option>');
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            } else {
-                $('select[name="uc"]').empty();
-                $('select[name="tappa"]').empty();
-            }
-        });
+                    // Populate Tappa dropdown
+                    var tappaSelect = $('select[name="tappa"]');
+                    tappaSelect.empty();
+                    $.each(response.Tappas, function(index, value) {
+                        tappaSelect.append('<option value="' + value + '">' + value + '</option>');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        } else {
+            $('select[name="uc"]').empty();
+            $('select[name="tappa"]').empty();
+        }
+    });
 
 
     function nextStep(step) {
