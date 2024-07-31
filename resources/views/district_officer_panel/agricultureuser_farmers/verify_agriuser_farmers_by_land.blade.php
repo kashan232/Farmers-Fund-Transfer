@@ -72,7 +72,7 @@
                                                         <td>{{ $all_agricultureuser_farmer->tappa }}</td>
                                                         <td>{{ $all_agricultureuser_farmer->village }}</td>
                                                         <td>
-                                                            @if ($all_agricultureuser_farmer->verification_status === 'Verified')
+                                                            @if ($all_agricultureuser_farmer->verification_status == 1)
                                                             <span class="badge text-bg-success">Verified</span>
                                                             @else
                                                             <span class="badge text-bg-danger">Unverified</span>

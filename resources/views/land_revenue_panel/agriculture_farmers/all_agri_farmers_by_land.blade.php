@@ -99,7 +99,7 @@
                                                             @if ($all_agriculture_farmer->verification_status === 'Verified')
                                                             <span class="badge text-bg-success">Verified</span>
                                                             @else
-                                                            <span class="badge text-bg-danger">Unverified</span>
+                                                            <span class="badge text-bg-danger">{{ $all_agriculture_farmer->declined_reason != '' ? 'Rejected' : 'Unverified' }}</span>
                                                             @endif
                                                         </td>
                                                         @if ($all_agriculture_farmer->verification_status === 'Unverified')

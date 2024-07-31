@@ -66,7 +66,7 @@
                     <div class="card-body">
                         <div class="dt-responsive">
                             <div id="dom-jqry_wrapper" class="dt-container dt-bootstrap5">
-                                
+
                                 <div class="row mt-2 justify-content-md-center">
                                     <div class="col-12 ">
                                         <div class="table-responsive">
@@ -100,7 +100,7 @@
                                                             @if ($all_agricultureuser_farmer->verification_status === 'Verified')
                                                             <span class="badge text-bg-success">Verified</span>
                                                             @else
-                                                            <span class="badge text-bg-danger">Unverified</span>
+                                                            <span class="badge text-bg-danger">{{ $all_agricultureuser_farmer->declined_reason != '' ? 'Rejected' : 'Unverified' }}</span>
                                                             @endif
                                                         </td>
                                                         @if ($all_agricultureuser_farmer->verification_status === 'Unverified')

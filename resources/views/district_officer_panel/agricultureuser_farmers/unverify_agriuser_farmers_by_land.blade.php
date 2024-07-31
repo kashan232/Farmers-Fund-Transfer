@@ -109,8 +109,11 @@
                                                         <td>{{ $all_agricultureuser_farmer->tappa }}</td>
                                                         <td>{{ $all_agricultureuser_farmer->village }}</td>
                                                         <td>
-                                                            @if ($all_agricultureuser_farmer->verification_status === 1)
-                                                            <span class="badge text-bg-success">Verified</span>
+
+                                                            @if ($all_agricultureuser_farmer->verification_status == '2')
+                                                            <span class="badge text-bg-success">Rejected By Land Officer</span>
+                                                            @elseif ($all_agricultureuser_farmer->verification_status == '0' && $all_agricultureuser_farmer->declined_reason != '')
+                                                            <span class="badge text-bg-danger">Rejected by District Officer</span>
                                                             @else
                                                             <span class="badge text-bg-danger">Unverified</span>
                                                             @endif
@@ -174,7 +177,7 @@
         var statusSelect = document.getElementById('statusSelect');
         statusSelect.addEventListener('change', function() {
             var reasonBox = document.getElementById('reasonBox');
-            if (this.value === 0) {
+            if (this.value == '0') {
                 reasonBox.style.display = 'block';
                 document.getElementById('reasonTextarea').required = true;
             } else {

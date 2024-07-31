@@ -73,7 +73,7 @@
                                                         <td>{{ $all_agriculture_farmer->village }}</td>
                                                         <td>
                                                             @if ($all_agriculture_farmer->verification_status == 1)
-                                                            <span class="badge text-bg-success">Verified</span>
+                                                            <span class="badge text-bg-success">Submitted to Land Officer</span>
                                                             @else
                                                             <span class="badge text-bg-danger">Unverified</span>
                                                             @endif

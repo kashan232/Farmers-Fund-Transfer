@@ -25,8 +25,8 @@
                                 <label for="statusSelect">Status</label>
                                 <input type="hidden" id="farmers_id" name="farmers_id" readonly>
                                 <select class="form-control" id="statusSelect" name="verification_status">
-                                    <option value="Verified">Verified</option>
-                                    <option value="Unverified">Unverified</option>
+                                    <option value="1">Verified</option>
+                                    <option value="0">Unverified</option>
                                 </select>
                             </div>
                             <div class="form-group" id="reasonBox" style="display: none;">
@@ -96,12 +96,8 @@
                                                         <td>{{ $all_agriculture_farmer->tappa }}</td>
                                                         <td>{{ $all_agriculture_farmer->village }}</td>
                                                         <td>
-                                                            @if ($all_agriculture_farmer->verification_status === 'Verified')
-                                                            <span class="badge text-bg-success">Verified</span>
-                                                            @else
-                                                            <span class="badge text-bg-danger">Unverified</span>
-                                                            @endif
 
+                                                            <span class="badge text-bg-danger">{{ ($all_agriculture_farmer->declined_reason != '') ? 'Rejected':'UnVerified' }}</span>
 
                                                         </td>
                                                         <td>
@@ -144,7 +140,7 @@
         var statusSelect = document.getElementById('statusSelect');
         statusSelect.addEventListener('change', function() {
             var reasonBox = document.getElementById('reasonBox');
-            if (this.value === 'Unverified') {
+            if (this.value == '0') {
                 reasonBox.style.display = 'block';
                 document.getElementById('reasonTextarea').required = true;
             } else {

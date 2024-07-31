@@ -54,7 +54,7 @@ class AgricultureUserFarmersController extends Controller
                 $data['animal_name'] = json_encode($request->animal_name);
                 $data['animal_qty'] = json_encode($request->animal_qty);
 
-                $data['verification_status'] = 'Unverified';
+                $data['verification_status'] = '0';
 
                 // Handle front ID card image
                 if ($request->hasFile('front_id_card')) {
