@@ -22,7 +22,7 @@
             padding: 0 20px;
             background: #ddd;
              /* background: #4070f4; */
-            background: url('images/background.jpg');
+            background: url('images/background.png');
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -31,7 +31,7 @@
         .wrapper {
 
             background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(4.5px);
+    backdrop-filter: blur(31.5px);
     -webkit-backdrop-filter: blur(1.px);
     border: none;
     border-radius: 14px;

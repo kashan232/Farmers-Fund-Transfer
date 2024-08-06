@@ -141,6 +141,7 @@ Route::post('/verify-unverify-agriuser-farmers-by-do', [DistrictOfficerPanelCont
 
 Route::get('/unverify-farmers-by-do', [DistrictOfficerPanelController::class, 'unverify_farmers'])->name('unverify-farmers-by-do');
 Route::get('/verify-farmers-by-do', [DistrictOfficerPanelController::class, 'verify_farmers'])->name('verify-farmers-by-do');
+Route::get('/view-do-farmers/{id}', [DistrictOfficerPanelController::class, 'view_do_farmers'])->name('view-do-farmers');
 
 
 

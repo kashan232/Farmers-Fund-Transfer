@@ -64,7 +64,13 @@
                                                         <td>{{ $all_agriculture_farmer->uc }}</td>
                                                         <td>{{ $all_agriculture_farmer->tappa }}</td>
                                                         <td>{{ $all_agriculture_farmer->village }}</td>
-                                                        <td>{{ $all_agriculture_farmer->verification_status }}</td>
+                                                        <td>
+                                                            @if ($all_agriculture_farmer->verification_status == 1)
+                                                            <span class="badge text-bg-success">Verified</span>
+                                                            @else
+                                                            <span class="badge text-bg-danger">Unverified</span>
+                                                            @endif
+                                                        </td>
                                                         <td>
                                                             <div class="d-flex">
                                                                 <a href="{{ route('view-agri-farmers', ['id' => $all_agriculture_farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp;
