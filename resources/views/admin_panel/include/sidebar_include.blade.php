@@ -112,7 +112,7 @@
                 </li>
 
 
-                <li class="pc-item pc-hasmenu">
+                <!-- <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link" style="color: #ebe5e5!important;">
                         <span class="pc-micon">
                             <i class="fas fa-user-tie"></i>
@@ -128,7 +128,7 @@
                             <a class="pc-link" href="{{ route('all-caller-user') }}" style="color: #ebe5e5!important;">All Caller Users</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
 
 
