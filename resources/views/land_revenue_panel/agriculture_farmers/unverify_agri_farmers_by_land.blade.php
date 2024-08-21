@@ -1,11 +1,11 @@
 @include('land_revenue_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-    @include('land_revenue_panel.include.sidebar_include')
+@include('land_revenue_panel.include.sidebar_include')
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-    @include('land_revenue_panel.include.navbar_include')
+@include('land_revenue_panel.include.navbar_include')
 <!-- [ Header ] end -->
 
 
@@ -101,7 +101,10 @@
 
                                                         </td>
                                                         <td>
-                                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalLive" data-id="{{ $all_agriculture_farmer->id }}">Verify</button>
+                                                            <div class="d-flex">
+                                                                <a href="{{ route('view-farmers-land', ['id' => $all_agriculture_farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp;
+                                                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalLive" data-id="{{ $all_agriculture_farmer->id }}">Verify</button>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     @endforeach

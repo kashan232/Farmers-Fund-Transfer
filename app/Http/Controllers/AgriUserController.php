@@ -38,75 +38,61 @@ class AgriUserController extends Controller
         return response()->json($tehsils);
     }
 
-
-
-
-
-
-
-
-
-
-
     public function store_user(Request $request)
     {
-
-
         if (Auth::id()) {
-
-            $usertype = Auth()->user()->usertype;
+            $userId = Auth::id();
             $emp_id = Auth::user()->emp_id;
 
-            $userId = Auth::id();
+            // Encode the input arrays
             $ucs = json_encode($request->input('ucs'));
             $tappa = json_encode($request->input('tappa'));
             $tehsil = json_encode($request->input('tehsil'));
 
-            $userimgname = null;
+            // Handle the image upload and resizing
+            $image = null;
+            if ($request->hasFile('userimg')) {
+                $image = resize_image_and_save($request->file('userimg'), 'final');
+            }
 
-            // Handle front ID card image
-            // if ($request->hasFile('userimg')) {
-            //     $userimgname = $request->file('userimg');
-            //     $userimg = time() . '_' . uniqid() . '.' . $userimgname->getClientOriginalExtension();
-            //     $userimgname->move(public_path('user_profile/user_image'), $userimg);
-            // }
-
-           $image = resize_image_and_save($request->file('userimg'), 'final');
-
+            // Create the Agriculture User
             $agriuser = AgriUser::create([
-                'admin_or_user_id'    => $userId,
-                'emp_id'    => $emp_id,
-                'user_name'          => $request->user_name,
-                'number'          => $request->number,
-                'email'          => $request->email,
-                'address'          => $request->address,
-                'cnic'          => $request->cnic,
-                'district'          => $request->district,
-                'tehsil'          => $tehsil,
-                'ucs'          => $ucs,
-                'tappas'          => $tappa,
-                'password'          => $request->password,
-                'img'          => $image,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now(),
+                'admin_or_user_id' => $userId,
+                'emp_id' => $emp_id,
+                'user_name' => $request->user_name,
+                'number' => $request->number,
+                'email' => $request->email,
+                'address' => $request->address,
+                'cnic' => $request->cnic,
+                'district' => $request->district,
+                'tehsil' => $tehsil,
+                'ucs' => $ucs,
+                'tappas' => $tappa,
+                'password' => $request->password, // Assuming password is already hashed, adjust if needed
+                'img' => $image,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]);
 
-            // Create a user record with the same credentials and usertype 'employee'
-            $user = User::create([
+            // Create the User record with the same credentials
+            User::create([
                 'name' => $request->user_name,
                 'user_id' => $agriuser->id,
                 'email' => $request->email,
                 'district' => $request->district,
                 'tehsil' => $tehsil,
-                'ucs'               => $ucs,
-                'tappas'          => $tappa,
-                'password' => bcrypt($request->password), // Make sure to hash the password
-                'usertype' => 'Agriculture_User', // Set the usertype to 'employee'
+                'ucs' => $ucs,
+                'tappas' => $tappa,
+                'password' => bcrypt($request->password), // Ensure password is hashed
+                'usertype' => 'Agriculture_User',
             ]);
+
+            return redirect()->back()->with('user-added', 'Agriculture User Created Successfully');
         } else {
-            return redirect()->back()->with();
+            return redirect()->back()->withErrors(['error' => 'User not authenticated']);
         }
     }
+
     public function all_user()
     {
         if (Auth::id()) {

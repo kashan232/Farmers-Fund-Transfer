@@ -187,6 +187,7 @@ Route::post('/verify-unverify-land-farmers', [LandRevenueController::class, 'ver
 Route::get('/unverify-online-farmers-by-land', [LandRevenueController::class, 'unverify_online_farmers_by_land'])->name('unverify-online-farmers-by-land');
 Route::get('/verify-online-farmers-by-land', [LandRevenueController::class, 'verify_online_farmers_by_land'])->name('verify-online-farmers-by-land');
 Route::get('/verifications-online-farmers', [LandRevenueController::class, 'verifications_online_farmers'])->name('verifications-online-farmers');
+Route::get('/view-farmers-land/{id}', [LandRevenueController::class, 'view_farmers_land'])->name('view-farmers-land');
 
 Route::post('/verify-unverify-online-farmers', [LandRevenueController::class, 'verify_unverify_online_farmers'])->name('verify-unverify-online-farmers');
 
