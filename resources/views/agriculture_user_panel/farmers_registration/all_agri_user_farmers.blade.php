@@ -61,7 +61,18 @@
                                                         <td>{{ $all_agriuser_farmer->uc }}</td>
                                                         <td>{{ $all_agriuser_farmer->tappa }}</td>
                                                         <td>{{ $all_agriuser_farmer->village }}</td>
-                                                        <td>{{ $all_agriuser_farmer->verification_status }}</td>
+
+                                                        
+                                                        <td>
+
+                                                            @if ($all_agriuser_farmer->verification_status == '0')
+                                                            <span class="badge text-bg-danger">Rejected By District Officer</span>
+                                                            
+                                                            @else
+                                                            <span class="badge text-bg-success">{{ $all_agriuser_farmer->verification_status }}</span>
+                                                            @endif
+
+                                                        </td>
                                                         <td>
                                                             <div class="d-flex">
                                                                 <a href="{{ route('view-agriuser-farmers', ['id' => $all_agriuser_farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp;

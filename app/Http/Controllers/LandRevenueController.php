@@ -215,7 +215,7 @@ class LandRevenueController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             // dd($userId);
-            $all_agricultureuser_farmers = AgricultureUserFarmerRegistration::where('verification_status', '!=', '0')->get();
+            $all_agricultureuser_farmers = AgricultureUserFarmerRegistration::where('verification_status', '=', '1')->orWhere('verification_status', '=', 2)->orWhere('verification_status', '=',   'Verified')->get();
 
             return view('land_revenue_panel.agricultureuser_farmers.all_agriuser_farmers_by_land', [
                 'all_agricultureuser_farmers' => $all_agricultureuser_farmers,

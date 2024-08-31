@@ -96,7 +96,7 @@
                                                         <td>{{ $all_agricultureuser_farmer->tappa }}</td>
                                                         <td>{{ $all_agricultureuser_farmer->village }}</td>
                                                         <td>
-                                                            <span class="badge text-bg-danger">{{ ($all_agricultureuser_farmer->declined_reason != '') ? 'Rejected':'UnVerified' }}</span>
+                                                            <span class="badge text-bg-danger">{{ ($all_agricultureuser_farmer->declined_reason != '') ? 'Rejected':'Verified By District Officer' }}</span>
                                                         </td>
                                                         <td>
                                                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalLive" data-id="{{ $all_agricultureuser_farmer->id }}">Verify</button>
