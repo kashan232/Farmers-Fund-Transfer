@@ -98,7 +98,7 @@
                                                         <td>
 
                                                             @if ($all_agricultureuser_farmer->verification_status == '2')
-                                                            <span class="badge text-bg-success">Rejected By Land Officer</span>
+                                                            <span class="badge text-bg-danger">Rejected By Land Officer</span>
                                                             @elseif ($all_agricultureuser_farmer->verification_status == '0' && $all_agricultureuser_farmer->declined_reason != '')
                                                             <span class="badge text-bg-danger">Rejected by District Officer</span>
                                                             @else
