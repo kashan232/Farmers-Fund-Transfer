@@ -18,7 +18,7 @@
 <div class="pc-container">
     <div class="pc-content">
         <!-- [ breadcrumb ] start -->
-        <div class="page-header">
+        <!-- <div class="page-header">
             <div class="page-block">
                 <div class="row align-items-center">
                     <div class="col-md-12">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- [ breadcrumb ] end -->
         <!-- [ Main Content ] start -->
         <div class="row">
@@ -43,16 +43,16 @@
                 <div class="dashboard">
                     <div class="all-card">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-pink">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">District / Tehsil</p>
-                                                <h2 class="card-text text-amount">32 / 168</h2>
+                                                <h3 class="card-text text-amount">32 / 168</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-area">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-city" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -60,16 +60,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-orange">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Tappa</p>
-                                                <h2 class="card-text text-amount">250</h2>
+                                                <h3 class="card-text text-amount">250</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-pie">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-store-alt" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -77,16 +77,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-yellow">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">UC</p>
-                                                <h2 class="card-text text-amount">500</h2>
+                                                <h3 class="card-text text-amount">500</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-yellow">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-warehouse" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -94,16 +94,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-blue">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Agriculture User</p>
-                                                <h2 class="card-text text-amount">20</h2>
+                                                <h3 class="card-text text-amount">20</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-skyblue">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-user" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -111,16 +111,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-bluedark">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Agriculture Officer</p>
-                                                <h2 class="card-text text-amount">{{ $AgricultureOfficer }}</h2>
+                                                <h3 class="card-text text-amount">{{ $AgricultureOfficer }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-blue">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-user-shield" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -128,16 +128,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-green">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Land Revenue</p>
-                                                <h2 class="card-text text-amount">{{ $LandRevenueDepartment }}</h2>
+                                                <h3 class="card-text text-amount">{{ $LandRevenueDepartment }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-green">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-user-tie" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -145,16 +145,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body" style="border-left: 4px solid #005362;">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Total Farmers</p>
-                                                <h2 class="card-text text-amount">{{ $totalEntries }}</h2>
+                                                <h3 class="card-text text-amount">{{ $totalEntries }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape " style="background:#005362;">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-user" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -162,16 +162,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body" style="border-left: 4px solid #033323;">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Verified Farmers</p>
-                                                <h2 class="card-text text-amount">{{ $TotalVerifiedfarmers }}</h2>
+                                                <h3 class="card-text text-amount">{{ $TotalVerifiedfarmers }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape" style="background:#4ba064;">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-user-check" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -179,16 +179,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body" style="border-left: 4px solid #cf0000;">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">UnVerified Farmers</p>
-                                                <h2 class="card-text text-amount">{{ $TotalUnverifiedfarmer }}</h2>
+                                                <h3 class="card-text text-amount">{{ $TotalUnverifiedfarmer }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape" style="background:#cf0000;">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-user-times" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -200,11 +200,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <div id="chart" class="chart"></div>
             </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <div id="chart2" class="chart"></div>
             </div>
 
@@ -251,8 +251,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12 mt-5">
                 <div class="tabel--box">
                     <div class="table-responsive">
-                        <table class="table table-striped border">
-                            <thead class="text-center">
+                        <table class="table table-hover bg-white">
+                            <thead class="text-center" style="background:#2A7D4A;">
                                 <tr>
                                     <th scope="col">District</th>
                                     <th scope="col">Total Farmers</th>
@@ -494,12 +494,12 @@
                                 </tr>
 
                                 <tr>
-                                    <td style="font-weight: bold; border-bottom: 1px solid #000;">Total </td>
-                                    <td style="border-bottom: 1px solid #000;">185,928 </td>
-                                    <td style="border-bottom: 1px solid #000;">128,201</td>
-                                    <td style="border-bottom: 1px solid #000;">3,054,717,500 </td>
-                                    <td style="border-bottom: 1px solid #000;">57,727</td>
-                                    <td style="border-bottom: 1px solid #000;">69%</td>
+                                    <td style="font-weight: bold;">Total </td>
+                                    <td style="font-weight: bold;">185,928 </td>
+                                    <td style="font-weight: bold;">128,201</td>
+                                    <td style="font-weight: bold;">3,054,717,500 </td>
+                                    <td style="font-weight: bold;">57,727</td>
+                                    <td style="font-weight: bold;">69%</td>
                                 </tr>
 
                             </tbody>
@@ -579,7 +579,7 @@
                         colors: ["#304758"]
                     }
                 },
-                colors: ['#66ccff', '#ffcc66', '#ff9999', '#b3b3ff'],
+                colors: ['#2A7D4A', '#1EA954', '#1DE231', '#93FB79'],
                 grid: {
                     borderColor: '#e7e7e7',
                     row: {
@@ -610,7 +610,90 @@
         });
     </script>
 
+
     <script>
+       document.addEventListener('DOMContentLoaded', function() {
+    var totalFarmers = 220; // This will be the total number of farmers
+    var options = {
+        chart: {
+            type: 'donut',
+            height: 450,
+            toolbar: {
+                show: false
+            },
+            animations: {
+                enabled: true,
+                easing: 'easeinout',
+                speed: 800,
+                animateGradually: {
+                    enabled: true,
+                    delay: 150
+                }
+            }
+        },
+        series: [70, 50, 40, 30, 20, 10], // Series data representing farmers
+        colors: ['#2A7D4A', '#1EA954', '#1DE231', '#93FB79', '#EAD93F', '#F0B10F'],
+        labels: ['Draft', 'Unverified', 'Verified', 'Verification Requested', 'Approved by District Officer', 'Sent to Land Department'],
+        plotOptions: {
+            pie: {
+                donut: {
+                    labels: {
+                        show: true,
+                        total: {
+                            show: true,
+                            label: 'Total Farmers',
+                            formatter: function() {
+                                return totalFarmers;  // Show the total number of farmers in the center
+                            },
+                            style: {
+                                fontSize: '18px',
+                                fontWeight: 'bold',
+                                color: '#333'
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function(val, opts) {
+                // Only show the number, not the percentage
+                return opts.w.globals.series[opts.seriesIndex];
+            },
+            style: {
+                fontSize: '14px',
+                colors: ["#fff"] // Color of the number inside the doughnut
+            }
+        },
+        legend: {
+            position: 'bottom'
+        },
+        title: {
+            text: 'Farmer Registration Status',
+            align: 'center',
+            style: {
+                fontSize: '20px',
+                color: '#333'
+            }
+        },
+        tooltip: {
+            theme: 'dark',
+            y: {
+                formatter: function(val) {
+                    return val + " registrations";  // Tooltip showing the number of registrations
+                }
+            }
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart2"), options);
+    chart.render();
+});
+
+    </script>
+
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             var options = {
                 chart: {
@@ -723,7 +806,7 @@
                 return '#' + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
             }
         });
-    </script>
+    </script> -->
 
 
 

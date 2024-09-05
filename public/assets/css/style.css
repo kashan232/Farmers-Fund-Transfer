@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("../fonts/phosphor/duotone/style.css");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 :root {
   --bs-body-bg: #fff;
   --bs-body-bg-rgb: 255, 255, 255;
@@ -69,6 +70,7 @@
 
 body {
   font-feature-settings: "salt";
+  font-family: 'Poppins', sans-serif!important;
 }
 
 h1, .h1,
@@ -122,13 +124,14 @@ h2,
       }
       
       .text-title {
-        color: #8898aa;
-        font-weight: 500;
+        color: #8898aaf2;
+        font-weight: 600;
         font-size: 14px;
       }
       
       .text-amount {
         font-weight: 600;
+        color:#6e6969;
       }
       
       .icon-shape {
@@ -143,29 +146,15 @@ h2,
         box-shadow: 0 0 2rem 0 rgba(136,152,170,.15)!important;
       }
       
-      .icon-area {
-        background: #f5365c;
-      }
-      
-      .icon-pie {
-        background: #fb6340;
-      }
-      
-      .icon-yellow {
-        background: #ffd600;
-      }
-      
-      .icon-skyblue {
-        background: #11cdef;
+      .green-icon-bg {
+        background: #e7e3e0;
+        border: 1px solid #1EA954;
       }
 
-      .icon-blue {
-        background: #1155ef;
+      .green-icon-bg i {
+        color: #1EA954;
       }
 
-      .icon-green {
-        background: #57a530;
-      }
     }
   
   .chart {
@@ -20080,14 +20069,25 @@ pre[class*=language-] > code {
   right: 2px;
   left: 2px;
   bottom: 2px;
-  opacity: 0.1;
+  opacity: 0.9;
+  z-index: -999;
 }
 .pc-sidebar .pc-navbar > .pc-item.active > .pc-link {
   font-weight: 500;
-  color: var(--pc-sidebar-active-color);
+  color: #fff;
 }
+.pc-sidebar .pc-navbar > .pc-item.pc-hasmenu:hover {
+  background: #3f8a5c;
+  color:#fff;
+  border-radius: var(--bs-border-radius);
+}
+.datatable-table.dataTable[class*=table-] thead th, .table.dataTable[class*=table-] thead th
+{
+  background: #2A7D4A!important;
+}
+
 .pc-sidebar .pc-navbar > .pc-item.active > .pc-link:after {
-  background: var(--pc-sidebar-active-color);
+  background: #2A7D4A;
 }
 .pc-sidebar .pc-navbar > .pc-item:hover:not(.active) > .pc-link:after {
   background: var(--pc-sidebar-color);
@@ -20178,11 +20178,12 @@ pre[class*=language-] > code {
   background: var(--bs-primary);
 }
 .pc-sidebar .m-header {
-  height: 74px;
+  height: auto;
   display: flex;
   align-items: center;
-  padding: 16px 24px;
+  padding: 0;
 }
+
 .pc-sidebar .m-header .logo-sm {
   display: none;
 }
@@ -20298,6 +20299,7 @@ pre[class*=language-] > code {
   transform: rotate(90deg);
 }
 
+
 .pc-menu-overlay {
   position: fixed;
   top: 0;
@@ -20370,6 +20372,15 @@ pre[class*=language-] > code {
 .layout-creative .pc-sidebar .pc-navbar > .pc-item {
   margin: 0;
 }
+.simplebar-content
+{
+  padding: 22px 0 !important;
+}
+.layout-creative .pc-sidebar .pc-navbar > .pc-item:hover {
+  background: red!important;
+}
+
+
 .layout-creative .pc-sidebar .pc-navbar > .pc-item > .pc-link {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   margin: 0;
@@ -21012,6 +21023,17 @@ pre[class*=language-] > code {
     margin-top: 130px;
   }
 }
+.pc-footer
+{
+  margin-left: 0!important;
+}
+.pc-sidebar .pc-navbar > .pc-item .pc-submenu .pc-item.pc-trigger > .pc-link, .pc-sidebar .pc-navbar > .pc-item .pc-submenu .pc-item.active > .pc-link {
+    font-weight: 600!important;
+    color: #93fb79!important;
+}
+.pc-sidebar .pc-navbar > .pc-item .pc-submenu .pc-item.pc-trigger > .pc-link:after, .pc-sidebar .pc-navbar > .pc-item .pc-submenu .pc-item.active > .pc-link:after, .pc-sidebar .pc-navbar > .pc-item .pc-submenu .pc-item:focus > .pc-link:after, .pc-sidebar .pc-navbar > .pc-item .pc-submenu .pc-item:hover > .pc-link:after {
+  background: #93fb79!important;
+}
 .layout-extended .pc-tab-wrapper {
   position: fixed;
   top: 74px;
@@ -21150,6 +21172,7 @@ pre[class*=language-] > code {
   display: flex;
   padding: 0 25px;
   flex-grow: 1;
+  box-shadow: var(--pc-sidebar-shadow);
 }
 @media (max-width: 575.98px) {
   .pc-header .header-wrapper {
@@ -30240,10 +30263,10 @@ body.anim-slip-from-top.modal-open .pc-header {
 .datatable-table thead th,
 .table thead th {
   border-bottom: 1px solid #DBE0E5;
-  font-size: 13px;
-  color: #29344A;
-  background: rgba(244, 247, 250, 0.5);
-  text-transform: uppercase;
+  font-size: 11px;
+  color: #fff;
+  background: #2A7D4A;
+
 }
 .datatable-table tbody + tbody,
 .table tbody + tbody {
