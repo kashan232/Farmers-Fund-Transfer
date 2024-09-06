@@ -33,9 +33,9 @@
     }
 
     .step-indicator.active {
-        background-color: #5bcfc5 !important;
+        background-color: #3f8a5c!important;
         color: white !important;
-        border-color: #5bcfc5 !important;
+        border-color: #3f8a5c!important;
     }
 
     .connector {
@@ -288,7 +288,7 @@
                                                 </table>
                                             </div>
                                             <div class="col-12" style="justify-content: right; display: flex;">
-                                                <button type="button"  class="btn btn-primary" id="add_title_row_Btn">Add More</button>
+                                                <button type="button"  class="btn btn-success" id="add_title_row_Btn">Add More</button>
                                             </div>
                                         </div>
 
@@ -315,11 +315,11 @@
                                                 </table>
                                             </div>
                                             <div class="col-12" style="justify-content: right; display: flex;">
-                                                <button type="button"  class="btn btn-primary" id="add_crop_row_Btn">Add More</button>
+                                                <button type="button"  class="btn btn-success" id="add_crop_row_Btn">Add More</button>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary mt-1" onclick="nextStep(2)">Next</button>
+                                    <button type="button" class="btn btn-success mt-1" onclick="nextStep(2)">Next</button>
                                 </div>
 
                                 <div class="step step-2" style="display: none;">
@@ -369,12 +369,12 @@
                                                 </table>
                                             </div>
                                             <div class="col-12" style="justify-content: right; display: flex;">
-                                                <button type="button"  class="btn btn-primary" id="add_poultry_assets_row_Btn">Add More</button>
+                                                <button type="button"  class="btn btn-success" id="add_poultry_assets_row_Btn">Add More</button>
                                             </div>
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(1)">Previous</button>
-                                    <button type="button" class="btn btn-primary mt-5" onclick="nextStep(3)">Next</button>
+                                    <button type="button" class="btn btn-success mt-5" onclick="nextStep(3)">Next</button>
                                 </div>
 
                                 <div class="step step-3" style="display: none;">
@@ -408,7 +408,7 @@
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(2)">Previous</button>
-                                    <button type="button" class="btn btn-primary mt-5" onclick="nextStep(4)">Next</button>
+                                    <button type="button" class="btn btn-success mt-5" onclick="nextStep(4)">Next</button>
                                 </div>
 
                                 <div class="step step-4" style="display: none;">
@@ -440,7 +440,7 @@
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
-                                    <button type="button" class="btn btn-primary mt-5" onclick="nextStep(5)">Next</button>
+                                    <button type="button" class="btn btn-success mt-5" onclick="nextStep(5)">Next</button>
                                 </div>
 
                                 <div class="step step-5" style="display: none;">
@@ -472,7 +472,7 @@
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
-                                    <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                                    <button type="submit" class="btn btn-success mt-5">Submit</button>
                                 </div>
                             </form>
                         </div>

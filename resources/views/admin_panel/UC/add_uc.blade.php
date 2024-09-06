@@ -76,7 +76,7 @@
                                         <label>Designation</label>
                                         <select name="designation" id="designation" class="form-control"></select>
                                     </div> --}}
-                                    <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                                    <button type="submit" class="btn btn-success mt-5">Submit</button>
                                 </form>
                             </div>
                         </div>

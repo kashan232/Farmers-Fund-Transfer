@@ -3350,10 +3350,31 @@ textarea.is-invalid.dataTable-input {
   --bs-btn-disabled-border-color: #39465F;
 }
 
+.pc-sidebar {
+    background: #fff!important;
+    width: 280px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 1026;
+    overflow: hidden;
+    box-shadow: var(--pc-sidebar-shadow);
+    border-right: var(--pc-sidebar-border);
+}
+
+table.dataTable>thead>tr>th, table.dataTable>thead>tr>td {
+  padding: 10px;
+  border-bottom: 1px solid #DBE0E5!important;
+  font-size: 11px!important;
+  color: #fff!important;
+  background: #2A7D4A!important;
+}
+
+
 .btn-success {
   --bs-btn-color: #ffffff;
-  --bs-btn-bg: #1DE9B6;
-  --bs-btn-border-color: #1DE9B6;
+  --bs-btn-bg: #3f8a5c;
+  --bs-btn-border-color: #3f8a5c;
   --bs-btn-hover-color: #ffffff;
   --bs-btn-hover-bg: #19c69b;
   --bs-btn-hover-border-color: #17ba92;
@@ -3363,8 +3384,8 @@ textarea.is-invalid.dataTable-input {
   --bs-btn-active-border-color: #16af89;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #ffffff;
-  --bs-btn-disabled-bg: #1DE9B6;
-  --bs-btn-disabled-border-color: #1DE9B6;
+  --bs-btn-disabled-bg: #3f8a5c;
+  --bs-btn-disabled-border-color: #3f8a5c;
 }
 
 .btn-info {
@@ -20183,7 +20204,17 @@ pre[class*=language-] > code {
   align-items: center;
   padding: 0;
 }
-
+.pc-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background: #fff!important;
+}
 .pc-sidebar .m-header .logo-sm {
   display: none;
 }

@@ -14,7 +14,7 @@
 <div class="pc-container">
     <div class="pc-content">
         <!-- [ breadcrumb ] start -->
-        <div class="page-header">
+        <!-- <div class="page-header">
             <div class="page-block">
                 <div class="row align-items-center">
                     <div class="col-md-12">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- [ breadcrumb ] end -->
         <!-- [ Main Content ] start -->
         <div class="row">
@@ -39,16 +39,16 @@
                     <div class="all-card">
                         <div class="row">
 
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-blue">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Total Farmers</p>
-                                                <h2 class="card-text text-amount">{{ $agriUserfarmersCount }}</h2>
+                                                <h3 class="card-text text-amount">{{ $agriUserfarmersCount }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-skyblue">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-user" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -56,34 +56,36 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-bluedark">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Verified Farmers</p>
-                                                <h2 class="card-text text-amount">{{ $Verifiedfarmeragiruser }}</h2>
+                                                <h3 class="card-text text-amount">{{ $Verifiedfarmeragiruser }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-blue">
-                                                    <i class="fas fa-user-shield" aria-hidden="true"></i>
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-check" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-green">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">UnVerified Farmers</p>
-                                                <h2 class="card-text text-amount">{{ $Unverifiedfarmeragiruser }}</h2>
+                                                <h3 class="card-text text-amount">{{ $Unverifiedfarmeragiruser }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-green">
-                                                    <i class="fas fa-user-tie" aria-hidden="true"></i>
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -170,7 +172,7 @@
                 }
             }
         },
-        colors: ['#4ba064', '#34a853', '#ea4335'],
+        colors: ['#4a9065', '#40b66d', '#3ee54f'],
         dataLabels: {
             enabled: true,
             offsetX: -6,

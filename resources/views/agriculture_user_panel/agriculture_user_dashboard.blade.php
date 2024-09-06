@@ -13,7 +13,7 @@
 <div class="pc-container">
     <div class="pc-content">
         <!-- [ breadcrumb ] start -->
-        <div class="page-header">
+        <!-- <div class="page-header">
             <div class="page-block">
                 <div class="row align-items-center">
                     <div class="col-md-12">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- [ breadcrumb ] end -->
         <!-- [ Main Content ] start -->
         <div class="row">
@@ -38,16 +38,16 @@
                 <div class="dashboard">
                     <div class="all-card">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-pink">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">District / Tehsil</p>
-                                                <h2 class="card-text text-amount"> {{ $districtCount }} / {{ $tehsilCount }} </h2>
+                                                <h3 class="card-text text-amount">{{ $districtCount }} / {{ $tehsilCount }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-area">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-city" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -55,16 +55,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-orange">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Tappa</p>
-                                                <h2 class="card-text text-amount">{{ $tappaCount }}</h2>
+                                                <h3 class="card-text text-amount">{{ $tappaCount }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-pie">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-store-alt" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -72,16 +73,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-yellow">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">UC</p>
-                                                <h2 class="card-text text-amount">{{ $ucCount }}</h2>
+                                                <h3 class="card-text text-amount">{{ $ucCount }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-yellow">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-warehouse" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -240,7 +241,7 @@
                     colors: ['#fff']
                 }
             },
-            colors: ['#4CAF50', '#FFC107', '#F44336'],
+            colors: ['#1c5a32', '#1ea954', '#1de231'],
             grid: {
                 borderColor: '#e7e7e7',
                 row: {
@@ -323,7 +324,7 @@
                 }
             }
         },
-        colors: ['#4ba064', '#34a853', '#ea4335'],
+        colors: ['#4a9065', '#40b66d', '#3ee54f'],
         dataLabels: {
             enabled: true,
             offsetX: -6,

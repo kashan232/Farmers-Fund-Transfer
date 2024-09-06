@@ -47,7 +47,7 @@
                                         <label class="form-label">District</label>
                                         <input type="text" name="district" class="form-control" required placeholder="Enter district">
                                     </div>
-                                    <button type="submit" class="btn btn-primary mb-4">Submit</button>
+                                    <button type="submit" class="btn btn-success mb-4">Submit</button>
                                 </form>
                             </div>
                         </div>

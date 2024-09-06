@@ -14,7 +14,7 @@
 <div class="pc-container">
     <div class="pc-content">
         <!-- [ breadcrumb ] start -->
-        <div class="page-header">
+        <!-- <div class="page-header">
             <div class="page-block">
                 <div class="row align-items-center">
                     <div class="col-md-12">
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- [ breadcrumb ] end -->
         <!-- [ Main Content ] start -->
         <div class="row">
@@ -39,16 +39,16 @@
                 <div class="dashboard">
                     <div class="all-card">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-pink">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">District / Tehsil</p>
-                                                <h2 class="card-text text-amount"> {{ $districtCount }} / {{ $tehsilCount }} </h2>
+                                                <h3 class="card-text text-amount">{{ $districtCount }} / {{ $tehsilCount }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-area">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-city" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -56,16 +56,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-orange">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Tappa</p>
-                                                <h2 class="card-text text-amount">{{ $tappaCount }}</h2>
+                                                <h3 class="card-text text-amount">{{ $tappaCount }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-pie">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-store-alt" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -73,16 +74,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
-                                    <div class="card-body border-left-yellow">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">UC</p>
-                                                <h2 class="card-text text-amount">{{ $ucCount }}</h2>
+                                                <h3 class="card-text text-amount">{{ $ucCount }}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape icon-yellow">
+                                                <div class="icon-shape green-icon-bg">
                                                     <i class="fas fa-warehouse" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -90,57 +92,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="col-lg-4 col-md-6">
-                                <div class="card">
-                                    <div class="card-body border-left-blue">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">Total Farmers</p>
-                                                <h2 class="card-text text-amount">{{ $agriUserfarmersCount }}</h2>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape icon-skyblue">
-                                                    <i class="fas fa-user" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- <div class="col-lg-4 col-md-6">
-                                <div class="card">
-                                    <div class="card-body border-left-bluedark">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">Verified Farmers</p>
-                                                <h2 class="card-text text-amount">{{ $Verifiedfarmeragiruser }}</h2>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape icon-blue">
-                                                    <i class="fas fa-user-shield" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- <div class="col-lg-4 col-md-6">
-                                <div class="card">
-                                    <div class="card-body border-left-green">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">UnVerified Farmers</p>
-                                                <h2 class="card-text text-amount">{{ $Unverifiedfarmeragiruser }}</h2>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape icon-green">
-                                                    <i class="fas fa-user-tie" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -174,7 +125,7 @@
 @include('agriculture_officer_panel.include.footer_include')
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         var options = {
             chart: {
                 type: 'bar',
@@ -195,7 +146,7 @@
             },
             series: [{
                 name: 'Farmers Status',
-                data: [500, 300, 150]  // Example data: Total Farmers, Verified Farmers, Unverified Farmers
+                data: [500, 300, 150] // Example data: Total Farmers, Verified Farmers, Unverified Farmers
             }],
             xaxis: {
                 categories: ['Total Farmers', 'Verified Farmers', 'Unverified Farmers'],
@@ -218,7 +169,7 @@
                     }
                 },
                 labels: {
-                    formatter: function (val) {
+                    formatter: function(val) {
                         return val;
                     }
                 }
@@ -232,7 +183,7 @@
             },
             dataLabels: {
                 enabled: true,
-                formatter: function (val) {
+                formatter: function(val) {
                     return val;
                 },
                 style: {
@@ -240,7 +191,7 @@
                     colors: ['#fff']
                 }
             },
-            colors: ['#4CAF50', '#FFC107', '#F44336'],
+            colors: ['#1c5a32', '#1ea954', '#1de231'],
             grid: {
                 borderColor: '#e7e7e7',
                 row: {
@@ -251,7 +202,7 @@
             tooltip: {
                 theme: 'dark',
                 y: {
-                    formatter: function (val) {
+                    formatter: function(val) {
                         return val + " farmers";
                     }
                 }
@@ -274,8 +225,7 @@
 
 <script>
     // Static data for demonstration
-    var data = [
-        {
+    var data = [{
             tehsil: 'Tehsil 1',
             totalFarmers: 100,
             verifiedFarmers: 70,
@@ -324,7 +274,7 @@
                 }
             }
         },
-        colors: ['#4ba064', '#34a853', '#ea4335'],
+        colors: ['#4a9065', '#40b66d', '#3ee54f'],
         dataLabels: {
             enabled: true,
             offsetX: -6,

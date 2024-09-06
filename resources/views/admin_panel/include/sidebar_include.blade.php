@@ -1,4 +1,4 @@
-<nav class="pc-sidebar" style="background:#fff;">
+<nav class="pc-sidebar">
     <div class="navbar-wrapper">
         <div class="m-header" style="justify-content: center;">
             <a href="#" class="b-brand text-primary">

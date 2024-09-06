@@ -1,14 +1,9 @@
-<div class="footer-wrapper container-fluid">
+<div class="footer-wrapper container-fluid mt-3 mb-3">
     <div class="row">
-        <div class="col-sm-6 my-1">
-            <p class="m-0">Made with &#9829; by  <a href="#" target="_blank"> XCL Technologies</a></p>
-        </div>
-        <div class="col-sm-6 ms-auto my-1">
-            <ul class="list-inline footer-link mb-0 justify-content-sm-end d-flex">
-                <li class="list-inline-item"><a href="#">Home</a></li>
-                <li class="list-inline-item"><a href="#" target="_blank">Documentation</a></li>
-                <li class="list-inline-item"><a href="#" target="_blank">Support</a></li>
-            </ul>
+        <div class="col-md-12">
+            <div class="text-right w-100" style="text-align: center;font-weight: bold;">
+                <p class="m-0">Made with &#9829; by <a href="#" target="_blank"> XCL Technologies</a></p>
+            </div>
         </div>
     </div>
 </div>
