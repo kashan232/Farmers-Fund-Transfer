@@ -216,21 +216,21 @@
 
                         <tr>
                             <th>Front ID Card</th>
-                            <td><img src="{{ asset('agri_user_farmers/front_id_card/' . $data->front_id_card) }}" alt="Front ID Card" width="100"></td>
+                            <td><img src="{{ asset('agriculture_farmers/front_id_card/' . $data->front_id_card) }}" alt="Front ID Card" width="100"></td>
                             <th>Back ID Card</th>
-                            <td colspan="6"><img src="{{ asset('agri_user_farmers/back_id_card/' . $data->back_id_card) }}" alt="Back ID Card" width="100"></td>
+                            <td colspan="6"><img src="{{ asset('agriculture_farmers/back_id_card/' . $data->back_id_card) }}" alt="Back ID Card" width="100"></td>
                         </tr>
                         <tr>
                             <th>Upload Land Proof</th>
-                            <td><img src="{{ asset('agri_user_farmers/upload_land_proof/' . $data->upload_land_proof) }}" alt="Upload Land Proof" width="100"></td>
+                            <td><img src="{{ asset('agriculture_farmers/upload_land_proof/' . $data->upload_land_proof) }}" alt="Upload Land Proof" width="100"></td>
                             <th>Upload Other Attach</th>
-                            <td colspan="6"><img src="{{ asset('agri_user_farmers/upload_other_attach/' . $data->upload_other_attach) }}" alt="Upload Other Attach" width="100"></td>
+                            <td colspan="6"><img src="{{ asset('agriculture_farmers/upload_other_attach/' . $data->upload_other_attach) }}" alt="Upload Other Attach" width="100"></td>
                         </tr>
                         <tr>
                             <th>Upload Farmer Pic</th>
-                            <td><img src="{{ asset('agri_user_farmers/upload_farmer_pic/' . $data->upload_farmer_pic) }}" alt="Upload Farmer Pic" width="100"></td>
+                            <td><img src="{{ asset('agriculture_farmers/upload_farmer_pic/' . $data->upload_farmer_pic) }}" alt="Upload Farmer Pic" width="100"></td>
                             <th>Upload Cheque Pic</th>
-                            <td colspan="6"><img src="{{ asset('agri_user_farmers/upload_cheque_pic/' . $data->upload_cheque_pic) }}" alt="Upload Cheque Pic" width="100"></td>
+                            <td colspan="6"><img src="{{ asset('agriculture_farmers/upload_cheque_pic/' . $data->upload_cheque_pic) }}" alt="Upload Cheque Pic" width="100"></td>
                         </tr>
 
                         <tr>

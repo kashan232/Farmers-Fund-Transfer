@@ -34,9 +34,9 @@
                         <h5>Tappa</h5>
                     </div>
                     <div class="card-body">
-                        @if (session()->has('district-added'))
+                        @if (session()->has('tappa-added'))
                         <div class="alert alert-success alert-dismissible fade show">
-                            <strong>Success!</strong> {{ session('district-added') }}.
+                            <strong>Success!</strong> {{ session('tappa-added') }}.
                         </div>
                         @endif
                         <div class="row">
