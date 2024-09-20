@@ -43,158 +43,177 @@
                 <div class="dashboard">
                     <div class="all-card">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">District / Tehsil</p>
-                                                <h3 class="card-text text-amount">32 / 168</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-city" aria-hidden="true"></i>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                <a href="{{ route('farmers') }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="card-title text-title">Total Farmers</p>
+                                                    <h3 class="card-text text-amount">{{ $subsidyfarmers }}</h3>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="icon-shape green-icon-bg">
+                                                        <i class="fas fa-user" aria-hidden="true"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">Tappa</p>
-                                                <h3 class="card-text text-amount">250</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-store-alt" aria-hidden="true"></i>
+                                <a href="{{ route('all-district') }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="card-title text-title">District / Tehsil</p>
+                                                    <h3 class="card-text text-amount">32 / 168</h3>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="icon-shape green-icon-bg">
+                                                        <i class="fas fa-city" aria-hidden="true"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">UC</p>
-                                                <h3 class="card-text text-amount">500</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-warehouse" aria-hidden="true"></i>
+                                <a href="{{ route('all-tappa') }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="card-title text-title">Tappa</p>
+                                                    <h3 class="card-text text-amount">250</h3>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="icon-shape green-icon-bg">
+                                                        <i class="fas fa-store-alt" aria-hidden="true"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">Agriculture User</p>
-                                                <h3 class="card-text text-amount">20</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                <a href="{{ route('all-uc') }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="card-title text-title">UC</p>
+                                                    <h3 class="card-text text-amount">500</h3>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="icon-shape green-icon-bg">
+                                                        <i class="fas fa-warehouse" aria-hidden="true"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">Agriculture Officer</p>
-                                                <h3 class="card-text text-amount">{{ $AgricultureOfficer }}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-shield" aria-hidden="true"></i>
+                                <a href="{{ route('all-user') }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="card-title text-title">Agriculture User</p>
+                                                    <h3 class="card-text text-amount">20</h3>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="icon-shape green-icon-bg">
+                                                        <i class="fas fa-user" aria-hidden="true"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">Land Revenue</p>
-                                                <h3 class="card-text text-amount">{{ $LandRevenueDepartment }}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-tie" aria-hidden="true"></i>
+                                <a href="{{ route('all-agri-officer') }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="card-title text-title">Agriculture Officer</p>
+                                                    <h3 class="card-text text-amount">{{ $AgricultureOfficer }}</h3>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="icon-shape green-icon-bg">
+                                                        <i class="fas fa-user-shield" aria-hidden="true"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">Total Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $totalEntries }}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                <a href="{{ route('all-revenue-officer') }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="card-title text-title">Land Revenue</p>
+                                                    <h3 class="card-text text-amount">{{ $LandRevenueDepartment }}</h3>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="icon-shape green-icon-bg">
+                                                        <i class="fas fa-user-tie" aria-hidden="true"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
+                            </div>
+                           
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <a href="{{ route('veirfyfarmers') }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="card-title text-title">Verified Farmers</p>
+                                                    <h3 class="card-text text-amount">{{ $TotalVerifiedfarmers }}</h3>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="icon-shape green-icon-bg">
+                                                        <i class="fas fa-user-check" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">Verified Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $TotalVerifiedfarmers }}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-check" aria-hidden="true"></i>
+                                <a href="{{ route('unvieryfarmers') }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="card-title text-title">UnVerified Farmers</p>
+                                                    <h3 class="card-text text-amount">{{ $TotalUnverifiedfarmer }}</h3>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="icon-shape green-icon-bg">
+                                                        <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">UnVerified Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $TotalUnverifiedfarmer }}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -612,85 +631,84 @@
 
 
     <script>
-       document.addEventListener('DOMContentLoaded', function() {
-    var totalFarmers = 220; // This will be the total number of farmers
-    var options = {
-        chart: {
-            type: 'donut',
-            height: 450,
-            toolbar: {
-                show: false
-            },
-            animations: {
-                enabled: true,
-                easing: 'easeinout',
-                speed: 800,
-                animateGradually: {
-                    enabled: true,
-                    delay: 150
-                }
-            }
-        },
-        series: [70, 50, 40, 30, 20, 10], // Series data representing farmers
-        colors: ['#2A7D4A', '#1EA954', '#1DE231', '#93FB79', '#EAD93F', '#F0B10F'],
-        labels: ['Draft', 'Unverified', 'Verified', 'Verification Requested', 'Approved by District Officer', 'Sent to Land Department'],
-        plotOptions: {
-            pie: {
-                donut: {
-                    labels: {
-                        show: true,
-                        total: {
-                            show: true,
-                            label: 'Total Farmers',
-                            formatter: function() {
-                                return totalFarmers;  // Show the total number of farmers in the center
-                            },
-                            style: {
-                                fontSize: '18px',
-                                fontWeight: 'bold',
-                                color: '#333'
+        document.addEventListener('DOMContentLoaded', function() {
+            var totalFarmers = 220; // This will be the total number of farmers
+            var options = {
+                chart: {
+                    type: 'donut',
+                    height: 450,
+                    toolbar: {
+                        show: false
+                    },
+                    animations: {
+                        enabled: true,
+                        easing: 'easeinout',
+                        speed: 800,
+                        animateGradually: {
+                            enabled: true,
+                            delay: 150
+                        }
+                    }
+                },
+                series: [70, 50, 40, 30, 20, 10], // Series data representing farmers
+                colors: ['#2A7D4A', '#1EA954', '#1DE231', '#93FB79', '#EAD93F', '#F0B10F'],
+                labels: ['Draft', 'Unverified', 'Verified', 'Verification Requested', 'Approved by District Officer', 'Sent to Land Department'],
+                plotOptions: {
+                    pie: {
+                        donut: {
+                            labels: {
+                                show: true,
+                                total: {
+                                    show: true,
+                                    label: 'Total Farmers',
+                                    formatter: function() {
+                                        return totalFarmers; // Show the total number of farmers in the center
+                                    },
+                                    style: {
+                                        fontSize: '18px',
+                                        fontWeight: 'bold',
+                                        color: '#333'
+                                    }
+                                }
                             }
                         }
                     }
+                },
+                dataLabels: {
+                    enabled: true,
+                    formatter: function(val, opts) {
+                        // Only show the number, not the percentage
+                        return opts.w.globals.series[opts.seriesIndex];
+                    },
+                    style: {
+                        fontSize: '14px',
+                        colors: ["#fff"] // Color of the number inside the doughnut
+                    }
+                },
+                legend: {
+                    position: 'bottom'
+                },
+                title: {
+                    text: 'Farmer Registration Status',
+                    align: 'center',
+                    style: {
+                        fontSize: '20px',
+                        color: '#333'
+                    }
+                },
+                tooltip: {
+                    theme: 'dark',
+                    y: {
+                        formatter: function(val) {
+                            return val + " registrations"; // Tooltip showing the number of registrations
+                        }
+                    }
                 }
-            }
-        },
-        dataLabels: {
-            enabled: true,
-            formatter: function(val, opts) {
-                // Only show the number, not the percentage
-                return opts.w.globals.series[opts.seriesIndex];
-            },
-            style: {
-                fontSize: '14px',
-                colors: ["#fff"] // Color of the number inside the doughnut
-            }
-        },
-        legend: {
-            position: 'bottom'
-        },
-        title: {
-            text: 'Farmer Registration Status',
-            align: 'center',
-            style: {
-                fontSize: '20px',
-                color: '#333'
-            }
-        },
-        tooltip: {
-            theme: 'dark',
-            y: {
-                formatter: function(val) {
-                    return val + " registrations";  // Tooltip showing the number of registrations
-                }
-            }
-        }
-    };
+            };
 
-    var chart = new ApexCharts(document.querySelector("#chart2"), options);
-    chart.render();
-});
-
+            var chart = new ApexCharts(document.querySelector("#chart2"), options);
+            chart.render();
+        });
     </script>
 
     <!-- <script>

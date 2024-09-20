@@ -6,6 +6,7 @@ use App\Models\AgricultureOfficer;
 use App\Models\AgriUser;
 use App\Models\District;
 use App\Models\LandRevenueDepartment;
+use App\Models\OurUser;
 use App\Models\Tappa;
 use App\Models\Tehsil;
 use App\Models\UC;
@@ -36,8 +37,7 @@ class HomeController extends Controller
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
                 ]);
-            }
-            else if ($usertype == 'admin') {
+            } else if ($usertype == 'admin') {
                 // Fetching counts directly
                 $district_counts = District::count();
                 $tehsil_counts = Tehsil::count();
@@ -47,6 +47,8 @@ class HomeController extends Controller
                 $AgriUser = AgriUser::count();
                 $AgricultureOfficer = AgricultureOfficer::count();
                 $LandRevenueDepartment = LandRevenueDepartment::count();
+                $subsidyfarmers = OurUser::count();
+
 
                 $agriUserCount = DB::table('agriculture_user_farmer_registrations')->count();
                 $agricultureOfficerCount = DB::table('agriculture_farmers_registrations')->count();
@@ -124,6 +126,7 @@ class HomeController extends Controller
                     'totalEntries' => $totalEntries,
                     'TotalUnverifiedfarmer' => $TotalUnverifiedfarmer,
                     'TotalVerifiedfarmers' => $TotalVerifiedfarmers,
+                    'subsidyfarmers' => $subsidyfarmers,
                 ]);
             } else if ($usertype == 'Agriculture_Officer') {
 
@@ -179,7 +182,6 @@ class HomeController extends Controller
                     'tappaCount' => $tappaCount,
                     'ucCount' => $ucCount,
                 ]);
-
             } else if ($usertype == 'Land_Revenue_Officer') {
 
                 $userId = Auth::id();
@@ -234,7 +236,6 @@ class HomeController extends Controller
                     'tappaCount' => $tappaCount,
                     'ucCount' => $ucCount,
                 ]);
-
             } else if ($usertype == 'Agriculture_User') {
 
                 $userId = Auth::id();
@@ -299,5 +300,39 @@ class HomeController extends Controller
     public function adminpage()
     {
         return view('admin_panel.admin_dashboard');
+    }
+
+    public function farmers()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $all_user = OurUser::paginate(200);
+
+            return view('admin_panel.farmers', [
+                'all_user' => $all_user,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function veirfyfarmers()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            return view('admin_panel.verifeidfarmers', []);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function unvieryfarmers()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            return view('admin_panel.unverifeidfarmers', []);
+        } else {
+            return redirect()->back();
+        }
     }
 }

@@ -108,6 +108,11 @@ Route::get('/all-user', [AgriUserController::class, 'all_user'])->name('all-user
 
 Route::get('/edit-user/{id}', [AgriUserController::class, 'edit_user'])->name('edit-user');
 
+Route::get('/farmers', [HomeController::class, 'farmers'])->name('farmers');
+Route::get('/veirfyfarmers', [HomeController::class, 'veirfyfarmers'])->name('veirfyfarmers');
+Route::get('/unvieryfarmers', [HomeController::class, 'unvieryfarmers'])->name('unvieryfarmers');
+
+
 //Agriculture office
 
 Route::get('/agri-officer-create', [AgricultureOfficerController::class, 'agri_officer_create'])->middleware(['auth', 'admin'])->name('agri-officer-create');
@@ -236,7 +241,7 @@ Route::get('/reporting-farmers-by-landOfficer', [LandRevenueController::class, '
 
 
 Route::get('/Reporting', [ReportingController::class, 'index'])->name('reporting');
-Route::post('/Reports', [ReportingController::class, 'reports_generate'])->name('reports-generate');
+Route::get('/Reports', [ReportingController::class, 'reports_generate'])->name('reports-generate');
 Route::get('/view-reports/{id}/{table}', [ReportingController::class, 'view'])->name('reports-view');
 
 //Land Revenue PAnel

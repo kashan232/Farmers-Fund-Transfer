@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li class="pc-h-item d-none d-md-inline-flex">
-                <!-- <h4 style="color:#343a40;margin-top:6px;">Benazir Hari Card System</h4> -->
+                <h4 style="color:#343a40;margin-top:6px;">Benazir Hari Card System</h4>
             </li>
         </ul>
     </div>

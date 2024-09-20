@@ -2,6 +2,14 @@
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
 @include('admin_panel.include.sidebar_include')
+
+<!-- [ Sidebar Menu ] end -->
+<!-- [ Header Topbar ] start -->
+@include('admin_panel.include.navbar_include')
+<!-- [ Header ] end -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+
 <style>
     .bottom--impo th {
         padding-right: 28px !important;
@@ -15,30 +23,14 @@
     }
 
     .leading-5 {
-        padding: 15px 0px;
-
+        padding: 20px 0px;
     }
 
     .leading-5 span:nth-child(3) {
         color: red;
         font-weight: 500;
     }
-
-    .dataTables_info {
-        display: none;
-    }
-
-    .dataTables_paginate {
-        display: none;
-    }
 </style>
-<!-- [ Sidebar Menu ] end -->
-<!-- [ Header Topbar ] start -->
-@include('admin_panel.include.navbar_include')
-<!-- [ Header ] end -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
-
 
 <!-- [ Main Content ] start -->
 <div class="pc-container">
@@ -49,7 +41,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Reports</h2>
+                            <h2 class="mb-0">Farmers</h2>
                         </div>
                     </div>
                 </div>
@@ -63,7 +55,6 @@
                     <table id="reports-table" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th>Sno</th>
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Father Name</th>
@@ -120,9 +111,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($data as $farmer)
+                            @forelse($all_user as $farmer)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $farmer->id }}</td>
                                 <td>{{ $farmer->Name }}</td>
                                 <td>{{ $farmer->FatherName }}</td>
@@ -184,9 +174,8 @@
                             @endforelse
                         </tbody>
                     </table>
-                    <!-- Pagination links -->
                     <div class="py-5">
-                        {{ $data->appends(request()->input())->links() }}
+                        {{ $all_user->appends(request()->input())->links() }}
                     </div>
                 </div>
             </div>
@@ -208,26 +197,19 @@
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-        $('#reports-table').DataTable({
-            "pageLength": 100, // Default number of rows per page
-            "dom": 'Bfrtip', // Only include the filter (search box), table, and pagination
-            "processing": true, // Optional: for large datasets
-            "deferRender": true, // Improves performance by rendering rows only when needed
-            "order": [
-                [0, 'asc']
-            ], // Default ordering of the first column (optional)
-            "buttons": [
-                'copyHtml5',
-                'excelHtml5',
-                'csvHtml5',
-                'pdfHtml5'
-            ],
-            "language": {
-                "search": "Search:" // Customize the search box label (optional)
-            }
-        });
-    });
+    
+
+    // $(document).ready(function() {
+    //     $('#reports-table').DataTable({
+    //         dom: 'Bfrtip',
+    //         buttons: [
+    //             'copyHtml5',
+    //             'excelHtml5',
+    //             'csvHtml5',
+    //             'pdfHtml5'
+    //         ]
+    //     });
+    // });
 </script>
 </body>
 

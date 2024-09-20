@@ -1,13 +1,27 @@
 @include('admin_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-    @include('admin_panel.include.sidebar_include')
+@include('admin_panel.include.sidebar_include')
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-    @include('admin_panel.include.navbar_include')
+@include('admin_panel.include.navbar_include')
 <!-- [ Header ] end -->
 
+<style>
+    /* Darker placeholder color for the min_acre and max_acre fields */
+    input::placeholder {
+        color: #555;
+        /* Change this to your desired darker color */
+        opacity: 1;
+        /* Ensures the placeholder text is not too transparent */
+    }
 
+    /* Adjust for specific input types if necessary */
+    input[type="number"]::placeholder {
+        color: #555;
+        /* Darker placeholder */
+    }
+</style>
 
 <!-- [ Main Content ] start -->
 <div class="pc-container">
@@ -40,62 +54,110 @@
                         @endif
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="{{route('reports-generate')}}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('reports-generate') }}" method="get" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
+                                        <!-- Select Province -->
                                         <div class="col-6 mt-2">
                                             <div class="mb-12 col-md-12">
-                                                <label class="form-label">Select District</label>
-                                                <select name="district" id="district" class="form-control" required>
+                                                <label class="form-label" style="font-weight: 600;"> Province</label>
+                                                <input type="text" class="form-control" name="Province" value="SINDH" readonly>
+                                            </div>
+                                        </div>
+
+                                        <!-- Select District -->
+                                        <div class="col-6 mt-2">
+                                            <div class="mb-12 col-md-12">
+                                                <label class="form-label" style="font-weight: 600;">Select District</label>
+                                                <select name="district" id="district" class="form-control">
                                                     <option value="" selected disabled>Select One</option>
+                                                    <option value="All">All</option>
                                                     @foreach ($all_district as $district)
-                                                    <option value="{{ $district->district }}">
-                                                        {{ $district->district }}
-                                                    </option>
+                                                    <option value="{{ $district->district }}">{{ $district->district }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <!-- Select Tehsil -->
                                         <div class="col-6 mt-2">
                                             <div class="mb-12 col-md-12">
-                                                <label class="form-label">Select Tehsil</label>
-                                                <select name="tehsil[]" id="tehsil" class="col-12 form-control--input js-example-basic-multiple" multiple="multiple" required>
+                                                <label class="form-label" style="font-weight: 600;">Select Tehsil</label>
+                                                <select name="tehsil[]" id="tehsil" class="form-control js-example-basic-multiple" multiple="multiple">
+                                                    <!-- Tehsils will be loaded based on district -->
+                                                </select>
+                                            </div>
+                                        </div>
 
+                                        <!-- Acreage Range -->
+                                        <div class="col-6 mt-2">
+                                            <div class="mb-12 col-md-12">
+                                                <label class="form-label" style="font-weight: 600;">Acreage Range</label>
+                                                <div class="d-flex">
+                                                    <input type="number" name="min_acre" class="form-control" placeholder="Min Acre"> &nbsp;
+                                                    <input type="number" name="max_acre" class="form-control ml-2" placeholder="Max Acre">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <!-- New Farmer Type -->
+                                        <div class="col-6 mt-2">
+                                            <div class="mb-12 col-md-12">
+                                                <label class="form-label" style="font-weight: 600;">Select Farmer Type</label>
+                                                <select name="farmer_type" id="farmer_type" class="form-control">
+                                                    <option value="">Select Farmer Type</option>
+                                                    <option value="land_department">Land Department</option>
+                                                    <option value="district_officer">District Officer</option>
+                                                    <option value="field_assistant">Field Assistant</option>
+                                                    <option value="online_farmers">Online Farmers</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Verify Status -->
+                                        <div class="col-6 mt-2">
+                                            <div class="mb-12 col-md-12">
+                                                <label class="form-label" style="font-weight: 600;">Verify Status</label>
+                                                <select name="verify_status" id="verify_status" class="form-control">
+                                                    <option value="">Select Verify Status</option>
+                                                    <option value="Verified">Verified</option>
+                                                    <option value="Unverified">Unverified</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row mt-2">
-                                        <div class="mb-12 col-md-12">
-                                            <label class="form-label">Select Farmer Type</label>
-                                            <select name="farmer_type" id="farmer_type" class="form-control" required>
-                                                <option value="" >Select Farmer Type</option>
-                                                <option value="agriculture_farmers" >Agriculture farmers</option>
-                                                <option value="land_farmers" >Land farmers</option>
-                                                <option value="online_farmers" >Online farmers</option>
-                                                <option value="agriculture_user_farmers" >Agriculture user farmers</option>
-                                            </select>
+                                        <!-- Crop Type Filter -->
+                                        <div class="col-6 mt-2">
+                                            <div class="mb-12 col-md-12">
+                                                <label class="form-label" style="font-weight: 600;">Select Crop Type</label>
+                                                <select name="crop_type[]" id="crop_type" class="form-control js-example-basic-multiple" multiple="multiple">
+                                                    <option value="Wheat">Wheat</option>
+                                                    <option value="Rice">Rice</option>
+                                                    <option value="Cotton">Cotton</option>
+                                                    <option value="Sugarcane">Sugarcane</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="row mt-2">
-                                        <div class="mb-12 col-md-12">
-                                            <label class="form-label">Verify Status</label>
-                                            <select name="verify_status" id="verify_status" class="form-control" required>
-                                                <option value="" >Select Verify Status</option>
-                                                <option value="Verified" >Verified</option>
-                                                <option value="Unverified" >Unverified</option>
-                                            </select>
+                                    <div class="row mt-4">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-success">Generate Report</button>
                                         </div>
                                     </div>
-
-
-
-                                    <button type="submit" class="btn btn-success mt-4">Search</button>
                                 </form>
+
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

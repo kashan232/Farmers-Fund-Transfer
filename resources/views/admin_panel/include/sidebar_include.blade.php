@@ -18,6 +18,15 @@
                 </li>
 
                 <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('farmers') }}" class="nav-link-a pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <span class="pc-mtext">Farmers</span>
+                    </a>
+                </li>
+
+                <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-user"></i>
@@ -111,14 +120,24 @@
 
 
 
-                <li class="pc-item">
+                <!-- <li class="pc-item">
                     <a href="{{ route('reporting') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class=""></i>
+                        </span>
+                        <span class="pc-mtext"></span>
+                    </a>
+                </li> -->
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('reporting') }}" class="nav-link-a pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-chart-bar"></i>
                         </span>
                         <span class="pc-mtext">Reports</span>
                     </a>
                 </li>
+
 
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
