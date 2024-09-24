@@ -119,4 +119,61 @@ class ReportingController extends Controller
             ]);
         }
     }
+
+    public function sms_reporting()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $all_district = District::get();
+            $all_tehsil = Tehsil::get();
+
+            return view('admin_panel.sms_reporting.index', [
+                'all_district' => $all_district,
+                'all_tehsil' => $all_tehsil,
+            ]);
+        }
+    }
+
+    public function sms_filter_report(Request $req)
+    {
+        // Start the query with a base condition for the province (which is always 'SINDH')
+        $query = OurUser::where('Province', 'SINDH');
+
+        // Apply district filter only if a specific district is selected
+        if ($req->district != 'All') {
+            $query->where('District', $req->district);
+        }
+
+        // Apply tehsil filter if tehsils are selected
+        if (!empty($req->tehsil)) {
+            $query->whereIn('Tehsil', $req->tehsil);
+        }
+
+        // Apply acreage range filter if provided
+        if ($req->min_acre && $req->max_acre) {
+            $query->whereBetween('Area', [$req->min_acre, $req->max_acre]);
+        }
+
+        // Pluck only 'Name' and 'Mobile' fields, limiting to 100 records per page
+        $data = $query->select('Name', 'Mobile')->paginate(100);
+
+        // Return the paginated data to the view
+        return view('admin_panel.sms_reporting.sms-reports-generate', ['data' => $data]);
+    }
+
+    public function complains()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $all_district = District::get();
+            $all_tehsil = Tehsil::get();
+
+            return view('admin_panel.complains.complains', [
+                'all_district' => $all_district,
+                'all_tehsil' => $all_tehsil,
+            ]);
+        }
+    }
+
 }
+

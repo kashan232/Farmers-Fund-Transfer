@@ -244,6 +244,11 @@ Route::get('/Reporting', [ReportingController::class, 'index'])->name('reporting
 Route::get('/Reports', [ReportingController::class, 'reports_generate'])->name('reports-generate');
 Route::get('/view-reports/{id}/{table}', [ReportingController::class, 'view'])->name('reports-view');
 
+
+Route::get('/sms-reporting', [ReportingController::class, 'sms_reporting'])->name('sms-reporting');
+Route::get('/sms-filter-report', [ReportingController::class, 'sms_filter_report'])->name('sms-filter-report');
+Route::get('/complains', [ReportingController::class, 'complains'])->name('complains');
+
 //Land Revenue PAnel
 //  All Screens
 
