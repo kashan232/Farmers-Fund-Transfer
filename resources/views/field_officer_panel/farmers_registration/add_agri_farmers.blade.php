@@ -1,4 +1,4 @@
-@include('land_revenue_panel.include.header_include')
+@include('agriculture_officer_panel.include.header_include')
 <style>
     .progress-indicator {
         display: flex;
@@ -53,11 +53,11 @@
 </style>
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-    @include('land_revenue_panel.include.sidebar_include')
+    @include('agriculture_officer_panel.include.sidebar_include')
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-    @include('land_revenue_panel.include.navbar_include')
+    @include('agriculture_officer_panel.include.navbar_include')
 <!-- [ Header ] end -->
 
 
@@ -84,9 +84,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Registration</h5>
-                        @if (session()->has('farmers-registered'))
+                        @if (session()->has('farmer-added'))
                             <div class="alert alert-success alert-dismissible fade show mt-4">
-                                <strong>Success!</strong> {{ session('farmers-registered') }}.
+                                <strong>Success!</strong> {{ session('farmer-added') }}.
                             </div>
                         @endif
                     </div>
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
 
-                            <form id="registrationForm" action="{{ route('store-land-farmers') }}" method="POST" enctype="multipart/form-data">
+                            <form id="registrationForm" action="{{ route('store-agri-farmers') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="step step-1">
                                     <div class="row mt-2">
@@ -134,7 +134,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Tehsil</label>
-                                            <select name="tehsil" id="tehsil" class="form-control" >
+                                            <select name="tehsil" id="tehsil" class="form-control">
                                                 <option value="">Please Select Tehsil</option>
                                                 @foreach(json_decode($tehsil) as $tehsil)
                                                 <option value="{{ $tehsil }}">{{ $tehsil }}</option>
@@ -220,7 +220,7 @@
                                             <h6>Family Composition</h6>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Gender</h6>
-                                                <input type="text" value="Female" readonly  class="form-control">
+                                                <input type="text" value="Female" readonly name="family_composition_female" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Children < 16 </h6>
@@ -231,7 +231,7 @@
                                                 <input type="text" name="female_Adults_above16" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" value="Male" readonly class="form-control">
+                                                <input type="text" value="Male" readonly name="family_composition_male" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
                                                 <input type="text" name="male_children_under16" class="form-control">
@@ -329,7 +329,7 @@
                                             <div class="row physical_asset-default-row" >
                                                 <div class="mb-8 col-md-8">
                                                     <label class="form-label">Items</label>
-                                                    <select name="physical_asset_item[]" id="physical_asset_item"  class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
+                                                    <select name="physical_asset_item[]" id="physical_asset_item" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
                                                         <option value="car/jeep">Car/Jeep </option>
                                                         <option value="pickup/loader">Pickup/loader</option>
                                                         <option value="motorcycle">Motorcycle</option>
@@ -485,26 +485,11 @@
 </div>
 <!-- [ Main Content ] end -->
 <footer class="pc-footer">
-    @include('land_revenue_panel.include.footer_copyright_include')
+    @include('agriculture_officer_panel.include.footer_copyright_include')
 </footer>
 
-@include('land_revenue_panel.include.footer_include')
+@include('agriculture_officer_panel.include.footer_include')
 <script>
-
-$('#registrationForm').submit(function(e) {
-e.preventDefault();
-
-tehsil = $('#tehsil').val();
-if(tehsil == '' || tehsil == null)
-{
-    alert('Tehsil Feild is Required..!');
-}
-else{
-    this.submit();
-}
-});
-
-
 
     $('#add_title_row_Btn').click(function() {
         const newRow = `
@@ -557,9 +542,6 @@ else{
     $('#poultry_assets_tableBody').on('click', '.delete-row', function() {
         $(this).closest('tr').remove();
     });
-
-
-
 
 
 

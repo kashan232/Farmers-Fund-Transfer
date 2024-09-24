@@ -18,6 +18,54 @@
 
 
                 <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('do-farmers') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span class="pc-mtext">Farmers</span>
+                    </a>
+                </li>
+
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('verify-farmers') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span class="pc-mtext">Verified Farmers</span>
+                    </a>
+                </li>
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('do-unverify-farmers') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span class="pc-mtext">Unverified Farmers</span>
+                    </a>
+                </li>
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-user-shield"></i>
+                        </span>
+                        <span class="pc-mtext">Field Officers</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('all-field-officer-by-do') }}">All Field Officers</a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('create-field-officer-by-do') }}">Create Field Officer</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+            {{--
+                <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-user-shield"></i>
@@ -53,6 +101,14 @@
                         </li>
                     </ul>
                 </li>
+            --}}
+
+
+
+
+
+
+
 {{--
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
