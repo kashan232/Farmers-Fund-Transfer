@@ -13,6 +13,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\FieldOfficer;
 
 class DistrictOfficerPanelController extends Controller
 {
@@ -29,6 +30,118 @@ class DistrictOfficerPanelController extends Controller
             'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
         ]);
     }
+
+
+    public function farmers_index(){
+        $user = User::find(Auth::id());
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->get();
+        return view('district_officer_panel.farmers.index',['farmers' => $farmers]);
+    }
+
+    public function unverify_farmers(){
+        $user = User::find(Auth::id());
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('verification_status', '=', 0)->get();
+        return view('district_officer_panel.farmers.unverify_farmers',['farmers' => $farmers]);
+    }
+
+    public function verify_farmers(){
+        $user = User::find(Auth::id());
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('verification_status', '=', 1)->get();
+        return view('district_officer_panel.farmers.verify_farmers',['farmers' => $farmers]);
+    }
+
+    public function all_field_officer(){
+        $field_officers = FieldOfficer::where('admin_or_user_id',Auth::id())->get();
+        return view('district_officer_panel.field_officers.index',['data' => $field_officers]);
+    }
+
+    public function create_field_officer(){
+        $user = User::find(Auth::id());
+        $tehsils = Tehsil::where('district', '=', $user->district)->get();
+        return view('district_officer_panel.field_officers.create',['district' => $user->district,'tehsils' => $tehsils]);
+    }
+
+
+    public function edit_field_officer($id){
+        $user = User::find(Auth::id());
+        $data = FieldOfficer::find($id);
+        $tehsils = Tehsil::where('district', '=', $user->district)->get();
+        return view('district_officer_panel.field_officers.create',['data' => $data,'tehsils' => $tehsils]);
+    }
+
+
+    public function store_field_officer(request $request){
+
+        if (Auth::id()) {
+
+            $usertype = Auth()->user()->usertype;
+            $userId = Auth::id();
+            $tehsil = json_encode($request->input('tehsil'));
+            $ucs = json_encode($request->input('ucs'));
+            $tappa = json_encode($request->input('tappa'));
+
+            if($request->edit_id && $request->edit_id != '')
+            {
+                $FieldOfficer = FieldOfficer::where('id',$request->edit_id)->update([
+                    'admin_or_user_id'    => $userId,
+                    'full_name'          => $request->full_name,
+                    'contact_number'          => $request->contact_number,
+                    'address'          => $request->address,
+                    'email_address'          => $request->email_address,
+                    'district'          => $request->district,
+                    'tehsil'          => $tehsil,
+                    'ucs'               => $ucs,
+                    'tappas'          => $tappa,
+                    'username'          => $request->username,
+
+                    'created_at'        => Carbon::now(),
+                    'updated_at'        => Carbon::now(),
+                ]);
+                return redirect()->back()->with('officer-added', 'Field Officer Updated Successfully');
+            }
+            else
+            {
+                $FieldOfficer = FieldOfficer::create([
+                    'admin_or_user_id'    => $userId,
+                    'full_name'          => $request->full_name,
+                    'contact_number'          => $request->contact_number,
+                    'address'          => $request->address,
+                    'email_address'          => $request->email_address,
+                    'district'          => $request->district,
+                    'tehsil'          => $tehsil,
+                    'ucs'               => $ucs,
+                    'tappas'          => $tappa,
+                    'username'          => $request->username,
+                    'password'          => $request->password,
+                    'created_at'        => Carbon::now(),
+                    'updated_at'        => Carbon::now(),
+                ]);
+                // Create a user record with the same credentials and usertype 'employee'
+                $user = User::create([
+                    'name' => $request->full_name,
+                    'user_id' => $FieldOfficer->id,
+                    'email' => $request->email_address,
+                    'district' => $request->district,
+                    'tehsil' => $tehsil,
+                    'ucs'               => $ucs,
+                    'tappas'    => $tappa,
+                    'password' => bcrypt($request->password), // Make sure to hash the password
+                    'usertype' => 'Field_Officer', // Set the usertype to 'employee'
+                ]);
+
+                return redirect()->back()->with('officer-added', 'Field Officer Created Successfully');
+            }
+
+
+        } else {
+            return redirect()->back();
+        }
+
+    }
+
+
+
+
 
 
     public function unverify_agri_farmers()

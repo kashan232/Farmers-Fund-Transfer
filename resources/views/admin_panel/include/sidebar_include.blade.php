@@ -26,7 +26,7 @@
                     </a>
                 </li>
 
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-user"></i>
@@ -60,7 +60,7 @@
                             <a class="pc-link" href="{{ route('all-agri-officer') }}">All Officer</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">

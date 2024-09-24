@@ -26,10 +26,11 @@ use App\Http\Controllers\OnlineFormController;
 
 use App\Http\Controllers\CallerUserController;
 use App\Http\Controllers\DistrictOfficerPanelController;
-
+use App\Http\Controllers\FieldOfficerController;
 
 use App\Models\AgricultureOfficer;
 use App\Models\District;
+use App\Models\FieldOfficer;
 use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -133,10 +134,23 @@ Route::get('/all-district-officer', [DistrictOfficerController::class, 'all_dist
 Route::get('/district-officer-edit/{id}', [DistrictOfficerController::class, 'edit_district_officer'])->middleware(['auth', 'admin'])->name('district-officer-edit');
 
 // District Officer Panel
+
+Route::get('/do/farmers', [DistrictOfficerPanelController::class, 'farmers_index'])->name('do-farmers');
+Route::get('/do/unverify-farmers', [DistrictOfficerPanelController::class, 'unverify_farmers'])->name('do-unverify-farmers');
+Route::get('/do/verify-farmers', [DistrictOfficerPanelController::class, 'verify_farmers'])->name('verify-farmers');
+
+Route::get('/do/all/field-officers', [DistrictOfficerPanelController::class, 'all_field_officer'])->name('all-field-officer-by-do');
+Route::get('/do/create/field-officer', [DistrictOfficerPanelController::class, 'create_field_officer'])->name('create-field-officer-by-do');
+Route::post('/do/store/field-officer', [DistrictOfficerPanelController::class, 'store_field_officer'])->name('store-field-officer');
+
+Route::get('/do/field-officer-edit/{id}', [DistrictOfficerPanelController::class, 'edit_field_officer']);
+
+
+
+
 Route::get('/unverify-agri-farmers-by-do', [DistrictOfficerPanelController::class, 'unverify_agri_farmers'])->name('unverify-agri-farmers-by-do');
 Route::get('/verify-agri-farmers-by-do', [DistrictOfficerPanelController::class, 'verify_agri_farmers'])->name('verify-agri-farmers-by-do');
 Route::post('/verify-unverify-agri-farmers-by-do', [DistrictOfficerPanelController::class, 'verify_unverify_agri_farmers'])->name('verify-unverify-agri-farmers-by-do');
-
 
 Route::get('/unverify-agriuser-farmers-by-do', [DistrictOfficerPanelController::class, 'unverify_agriuser_farmers'])->name('unverify-agriuser-farmers-by-do');
 Route::get('/verify-agriuser-farmers-by-do', [DistrictOfficerPanelController::class, 'verify_agriuser_farmers'])->name('verify-agriuser-farmers-by-do');
@@ -153,6 +167,20 @@ Route::get('/view-do-farmers/{id}', [DistrictOfficerPanelController::class, 'vie
 Route::get('/unverify-online-farmers-by-do', [DistrictOfficerPanelController::class, 'unverify_online_farmers'])->name('unverify-online-farmers-by-do');
 Route::get('/verify-online-farmers-by-do', [DistrictOfficerPanelController::class, 'verify_online_farmers'])->name('verify-online-farmers-by-do');
 // End District Officer Panel
+
+
+
+
+
+// Field Officer Panel
+
+
+
+Route::get('/farmers-list-by-field-officer',[FieldOfficerController::class,'index'])->name('farmers-list-field-officer');
+Route::get('/farmer-view-by-field-officer/{id}',[FieldOfficerController::class,'view'])->name('farmer-view-by-field-officer');
+Route::get('/farmer-edit-by-field-officer/{id}',[FieldOfficerController::class,'edit'])->name('farmer-edit-by-field-officer');
+Route::post('/farmer-store-by-field-officer',[FieldOfficerController::class,'store'])->name('farmer-store-by-field-officer');
+
 
 
 
