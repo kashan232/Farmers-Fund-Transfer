@@ -34,7 +34,7 @@ class DistrictOfficerPanelController extends Controller
 
     public function farmers_index(){
         $user = User::find(Auth::id());
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->get();
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->whereIn('verification_status', [0,1])->get();
         return view('district_officer_panel.farmers.index',['farmers' => $farmers]);
     }
 

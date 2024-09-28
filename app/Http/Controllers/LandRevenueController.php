@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\Auth;
 
 class LandRevenueController extends Controller
 {
+
+
+    public function upload_excel_index(){
+
+        return view('land_revenue_panel.upload_excel.index');
+
+    }
+
+
     public function add_revenue_officer()
     {
         if (Auth::id()) {
