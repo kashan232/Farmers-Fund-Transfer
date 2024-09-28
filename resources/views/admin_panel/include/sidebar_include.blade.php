@@ -156,6 +156,23 @@
                     </a>
                 </li>
 
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('sms-reporting') }}" class="nav-link-a pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="pc-mtext">SMS</span>
+                    </a>
+                </li>
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('complains') }}" class="nav-link-a pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="pc-mtext">Complains</span>
+                    </a>
+                </li>
 
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
