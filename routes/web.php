@@ -27,9 +27,11 @@ use App\Http\Controllers\OnlineFormController;
 use App\Http\Controllers\CallerUserController;
 use App\Http\Controllers\DistrictOfficerPanelController;
 use App\Http\Controllers\FieldOfficerController;
+use App\Http\Controllers\FieldOfficerPanelController;
 
 use App\Models\AgricultureOfficer;
 use App\Models\District;
+use App\Models\DistrictOfficer;
 use App\Models\FieldOfficer;
 use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +51,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::get('/get-district-officers', function () {
+    $district = request()->query('district');
+    $data = DistrictOfficer::where('district','=',$district)->get();
+    return response()->json($data, 200);
+})->name('get-district-officers');
+
+
+
 
 // Azhar connected
 
@@ -76,6 +89,13 @@ Route::post('/store-district', [DistrictController::class, 'store_district'])->n
 Route::get('/all-district', [DistrictController::class, 'all_district'])->name('all-district');
 Route::get('/edit-district/{id}', [DistrictController::class, 'edit_district'])->name('edit-district');
 Route::post('/update-district/{id}', [DistrictController::class, 'update_district'])->name('update-district');
+
+//FieldOfficer
+Route::get('/all-field-officers', [FieldOfficerController::class, 'index'])->name('all-field-officers');
+Route::get('/create-field-officer', [FieldOfficerController::class, 'create'])->name('create-field-officer');
+Route::post('/store-field-officer-by-admin', [FieldOfficerController::class, 'store'])->name('store-field-officer-by-admin');
+
+
 
 //tehsil
 Route::get('/add-tehsil', [TehsilController::class, 'add_tehsil'])->name('add-tehsil');
@@ -176,10 +196,12 @@ Route::get('/verify-online-farmers-by-do', [DistrictOfficerPanelController::clas
 
 
 
-Route::get('/farmers-list-by-field-officer',[FieldOfficerController::class,'index'])->name('farmers-list-field-officer');
-Route::get('/farmer-view-by-field-officer/{id}',[FieldOfficerController::class,'view'])->name('farmer-view-by-field-officer');
-Route::get('/farmer-edit-by-field-officer/{id}',[FieldOfficerController::class,'edit'])->name('farmer-edit-by-field-officer');
-Route::post('/farmer-store-by-field-officer',[FieldOfficerController::class,'store'])->name('farmer-store-by-field-officer');
+Route::get('/farmers-list-by-field-officer',[FieldOfficerPanelController::class,'index'])->name('farmers-list-field-officer');
+Route::get('/farmer-view-by-field-officer/{id}',[FieldOfficerPanelController::class,'view'])->name('farmer-view-by-field-officer');
+Route::get('/farmer-edit-by-field-officer/{id}',[FieldOfficerPanelController::class,'edit'])->name('farmer-edit-by-field-officer');
+Route::get('/farmer-create-by-field-officer',[FieldOfficerPanelController::class,'create'])->name('farmer-create-by-field-officer');
+
+Route::post('/farmer-store-by-field-officer',[FieldOfficerPanelController::class,'store'])->name('farmer-store-by-field-officer');
 
 
 
@@ -215,14 +237,19 @@ Route::get('/verifications-land-farmers', [LandRevenueController::class, 'verifi
 
 Route::post('/verify-unverify-land-farmers', [LandRevenueController::class, 'verify_unverify_land_farmers'])->name('verify-unverify-land-farmers');
 
-
-
 Route::get('/unverify-online-farmers-by-land', [LandRevenueController::class, 'unverify_online_farmers_by_land'])->name('unverify-online-farmers-by-land');
 Route::get('/verify-online-farmers-by-land', [LandRevenueController::class, 'verify_online_farmers_by_land'])->name('verify-online-farmers-by-land');
 Route::get('/verifications-online-farmers', [LandRevenueController::class, 'verifications_online_farmers'])->name('verifications-online-farmers');
 Route::get('/view-farmers-land/{id}', [LandRevenueController::class, 'view_farmers_land'])->name('view-farmers-land');
 
 Route::post('/verify-unverify-online-farmers', [LandRevenueController::class, 'verify_unverify_online_farmers'])->name('verify-unverify-online-farmers');
+
+
+Route::get('/upload-excel-file', [LandRevenueController::class, 'upload_excel_index'])->name('upload.excel.index');
+
+
+
+
 
 // agriculture department panel
 Route::get('/add-agri-farmers', [AgricultureFarmerRegistrationController::class, 'add_agri_farmers'])->name('add-agri-farmers');

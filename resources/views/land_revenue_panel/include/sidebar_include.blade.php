@@ -131,6 +131,15 @@
                         <span class="pc-mtext">Reporting</span>
                     </a>
                 </li>
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{route('upload.excel.index')}}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span class="pc-mtext">Upload Excel Farmer</span>
+                    </a>
+                </li>
             </ul>
 
         </div>
