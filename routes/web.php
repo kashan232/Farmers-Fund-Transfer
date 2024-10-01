@@ -246,6 +246,7 @@ Route::post('/verify-unverify-online-farmers', [LandRevenueController::class, 'v
 
 
 Route::get('/upload-excel-file', [LandRevenueController::class, 'upload_excel_index'])->name('upload.excel.index');
+Route::post('/import-excel-file', [LandRevenueController::class, 'upload_excel_import'])->name('import.excel.farmers');
 
 
 

@@ -13,7 +13,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Imports\FarmersImport;
+use Maatwebsite\Excel\Facades\Excel;
 class LandRevenueController extends Controller
 {
 
@@ -24,6 +25,22 @@ class LandRevenueController extends Controller
 
     }
 
+    public function upload_excel_import(request $request){
+
+        $request->validate([
+            'file' => 'required|file|mimes:xlsx',
+        ]);
+
+        try {
+            Excel::import(new FarmersImport, $request->file('file'));
+            return redirect()->back()->with('success', 'Farmers imported successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['file' => $e->getMessage()]);
+        }
+
+        return redirect()->back()->with('success', 'Excel imported successfully.');
+
+    }
 
     public function add_revenue_officer()
     {

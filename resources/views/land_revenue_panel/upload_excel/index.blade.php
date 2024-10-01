@@ -13,8 +13,27 @@
 <!-- [ Main Content ] start -->
 <div class="pc-container">
     <div class="pc-content">
-
-        
+        @if ($errors->has('file'))
+            <div class="alert alert-danger alert-dismissible fade show mt-4">
+                <strong>Error!</strong> {{ $errors->first('file') }}
+            </div>
+        @endif
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show mt-4">
+                <strong>Success!</strong> {{ session('success') }}
+            </div>
+        @endif
+        <form action="{{route('import.excel.farmers')}}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="col-10">
+                    <input type="file" name="file" id="file" class="form-control" accept=".xlsx">
+                </div>
+                <div class="col-2">
+                    <input type="submit" style="height: 49px" class="form-control btn btn-primary col-3" value="upload" >
+                </div>
+            </div>
+        </form>
 
         <!-- [ Main Content ] end -->
     </div>
