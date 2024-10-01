@@ -168,7 +168,7 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('complains') }}" class="nav-link-a pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-bell"></i>
                         </span>
                         <span class="pc-mtext">Complains</span>
                     </a>
