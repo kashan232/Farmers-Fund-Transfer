@@ -78,9 +78,16 @@ class DistrictOfficerPanelController extends Controller
 
         try{
 
-            $validatedData = $request->validate([
-                'email_address' => 'required|email|unique:users,email',
-            ]);
+            if($request->edit_id && $request->edit_id != '')
+            {
+
+            }else{
+                $validatedData = $request->validate([
+                    'email_address' => 'required|email|unique:users,email',
+                ]);
+            }
+
+
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
