@@ -44,8 +44,8 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">District / Tehsil</p>
-                                                <h3 class="card-text text-amount">{{ $districtCount }} / {{ $tehsilCount }}</h3>
+                                                <p class="card-title text-title">All Farmers</p>
+                                                <h3 class="card-text text-amount">{{ $districtCount }}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
@@ -57,7 +57,25 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            {{-- <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title">District / Tehsil</p>
+                                                <h3 class="card-text text-amount">{{ $districtCount }} / {{ $tehsilCount }}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-city" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+
+                            {{-- <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -91,12 +109,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+            {{-- <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                 <div class="box--sec">
                     <div id="chart2"></div>
                 </div>
@@ -111,7 +129,7 @@
                     <div id="chart" style="width: 100%;"></div>
 
                 </div>
-            </div>
+            </div> --}}
 
         </div>
         <!-- [ Main Content ] end -->

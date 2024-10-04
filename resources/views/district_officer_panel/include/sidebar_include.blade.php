@@ -26,7 +26,7 @@
                     </a>
                 </li>
 
-
+                {{--
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('verify-farmers') }}" class="pc-link">
                         <span class="pc-micon">
@@ -43,7 +43,7 @@
                         </span>
                         <span class="pc-mtext">Unverified Farmers</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">

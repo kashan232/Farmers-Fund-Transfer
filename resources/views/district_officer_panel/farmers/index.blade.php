@@ -16,7 +16,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Agriculture verified Farmers</h2>
+                            <h2 class="mb-0">Farmers</h2>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                                                         <th>UC</th>
                                                         <th>Tappa</th>
                                                         <th>Village</th>
-                                                        <th>Status</th>
+                                                        {{-- <th>Status</th> --}}
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -58,13 +58,13 @@
                                                         <td>{{ $farmers->uc }}</td>
                                                         <td>{{ $farmers->tappa }}</td>
                                                         <td>{{ $farmers->village }}</td>
-                                                        <td>
+                                                        {{-- <td>
                                                             @if ($farmers->verification_status == 1)
                                                             <span class="badge text-bg-success">Submitted to Land Officer</span>
                                                             @else
                                                             <span class="badge text-bg-danger">Unverified</span>
                                                             @endif
-                                                        </td>
+                                                        </td> --}}
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

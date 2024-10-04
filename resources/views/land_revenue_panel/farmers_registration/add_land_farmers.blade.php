@@ -122,7 +122,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">CNIC</label>
-                                            <input type="text" name="cnic" class="form-control">
+                                            <input type="text" name="cnic" class="form-control" max="13" min="13">
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Mobile</label>
@@ -468,7 +468,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="upload_cheque_pic" class="form-control">
+                                            <input type="file" name="upload_cheque_pic" class="form-control" >
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>

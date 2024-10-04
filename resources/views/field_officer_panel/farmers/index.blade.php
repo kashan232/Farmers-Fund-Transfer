@@ -8,7 +8,12 @@
 @include('field_officer_panel.include.navbar_include')
 <!-- [ Header ] end -->
 
+<style>
 
+.dt-buttons{
+    display: none !important;
+}
+</style>
 
 <!-- [ Main Content ] start -->
 <div class="pc-container">
@@ -48,7 +53,7 @@
                                                         <th>UC</th>
                                                         <th>Tappa</th>
                                                         <th>Village</th>
-                                                        <th>Status</th>
+                                                        {{-- <th>Status</th> --}}
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -64,16 +69,16 @@
                                                         <td>{{ $farmer->uc }}</td>
                                                         <td>{{ $farmer->tappa }}</td>
                                                         <td>{{ $farmer->village }}</td>
-                                                        <td>
+                                                        {{-- <td>
                                                             @if ($farmer->verification_status == 1)
                                                             <span class="badge text-bg-success">Verified</span>
                                                             @else
                                                             <span class="badge text-bg-danger">Unverified</span>
                                                             @endif
-                                                        </td>
+                                                        </td> --}}
                                                         <td>
                                                             <div class="d-flex">
-                                                                <a href="{{ route('farmer-view-by-field-officer', ['id' => $farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp;
+                                                                {{-- <a href="{{ route('farmer-view-by-field-officer', ['id' => $farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp; --}}
                                                                 <a href="{{ route('farmer-edit-by-field-officer', ['id' => $farmer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>&nbsp;
 
                                                             </div>

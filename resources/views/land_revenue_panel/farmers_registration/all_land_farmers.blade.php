@@ -48,7 +48,7 @@
                                                         <th>UC</th>
                                                         <th>Tappa</th>
                                                         <th>Village</th>
-                                                        <th>Status</th>
+                                                        {{-- <th>Status</th> --}}
 
                                                         <th>Action</th>
                                                     </tr>
@@ -66,7 +66,7 @@
                                                         <td>{{ $all_land_farmer->uc }}</td>
                                                         <td>{{ $all_land_farmer->tappa }}</td>
                                                         <td>{{ $all_land_farmer->village }}</td>
-                                                        <td>{{ $all_land_farmer->verification_status }}</td>
+                                                        {{-- <td>{{ $all_land_farmer->verification_status }}</td> --}}
                                                         <td>
                                                             <div class="d-flex">
                                                                 <a href="{{ route('view-land-farmers', ['id' => $all_land_farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp;

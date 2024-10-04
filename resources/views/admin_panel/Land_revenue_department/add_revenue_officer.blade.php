@@ -52,7 +52,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Contact Number</label>
-                                            <input type="text" class="form-control" name="contact_number" required>
+                                            <input type="text" class="form-control" name="contact_number" required maxlength="11" max="11" minlength="11" min="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                         </div>
                                     </div>
                                     <div class="row mt-2">
@@ -65,6 +65,9 @@
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Email Address</label>
                                             <input type="email" class="form-control" name="email_address" required>
+                                            @error('email_address')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row mt-2">

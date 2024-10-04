@@ -8,11 +8,17 @@ use App\Models\FieldOfficer;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Validation\ValidationException;
 class FieldOfficerController extends Controller
 {
     public function index(){
-        $field_officers = FieldOfficer::where('admin_or_user_id',Auth::id())->get();
+
+
+        if(Auth::user()->usertype == 'admin'){
+            $field_officers = FieldOfficer::get();
+        }else{
+            $field_officers = FieldOfficer::where('admin_or_user_id',Auth::id())->get();
+        }
         return view('admin_panel.field_officers.index',['data' => $field_officers]);
      }
 
@@ -30,6 +36,13 @@ class FieldOfficerController extends Controller
     public function store(request $request){
 
         if (Auth::id()) {
+
+            try{
+
+                $validatedData = $request->validate([
+                    'email_address' => 'required|email|unique:users,email',
+                ]);
+
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
@@ -87,7 +100,11 @@ class FieldOfficerController extends Controller
 
                 return redirect()->back()->with('officer-added', 'Field Officer Created Successfully');
             }
-
+ }
+        catch (ValidationException $e) {
+            // Handle the validation failure
+            return back()->withErrors($e->validator)->withInput();
+        }
 
         } else {
             return redirect()->back();

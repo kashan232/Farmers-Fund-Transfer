@@ -58,12 +58,16 @@
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Email Address</label>
                                             <input type="email" class="form-control"  value="@if(isset($data)) {{$data->email_address}} @endif" name="email_address" required>
+                                            @error('email_address')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Contact Number</label>
-                                            <input type="text" class="form-control"  value="@if(isset($data)) {{$data->contact_number}} @endif" name="contact_number" required>
+                                            <input type="text" class="form-control"  value="@if(isset($data)) {{$data->contact_number}} @endif" name="contact_number" required maxlength="11" max="11" minlength="11" min="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                         </div>
                                     </div>
                                     <div class="row mt-2">
@@ -157,8 +161,8 @@
 
 <script>
     $(document).ready(function() {
-        $('select[name="district"]').on('change', function() {
-            var district = $(this).val();
+
+            var district = $('#district').val();
             if (district) {
                 $.ajax({
                     url: '{{ route('get-tehsils') }}',
@@ -177,7 +181,7 @@
             } else {
                 $('select[name="tehsil"]').empty();
             }
-        });
+
 
         $('select[name="tehsil[]"]').on('change', function() {
             var district = $('input[name="district"]').val();

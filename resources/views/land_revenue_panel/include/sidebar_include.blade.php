@@ -79,7 +79,7 @@
                     </ul>
                 </li>
 
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-user-check"></i>
@@ -99,9 +99,9 @@
                             <a class="pc-link" href="{{ route('verify-farmers-by-land') }}">Verified Farmers</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-user-check"></i>
@@ -121,16 +121,16 @@
                             <a class="pc-link" href="{{ route('verify-online-farmers-by-land') }}">Verified Farmers</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="{{ route('reporting-farmers-by-land-officer') }}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-home"></i>
                         </span>
                         <span class="pc-mtext">Reporting</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="pc-item pc-hasmenu">
                     <a href="{{route('upload.excel.index')}}" class="pc-link">

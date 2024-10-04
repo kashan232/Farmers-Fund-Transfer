@@ -15,7 +15,7 @@ class TehsilController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             // dd($userId);
-            $all_district = District::where('admin_or_user_id', '=', $userId)->get();
+            $all_district = District::get();
             return view('admin_panel.tehsil.add_tehsil', [
                 'all_district' => $all_district,
             ]);
@@ -26,7 +26,7 @@ class TehsilController extends Controller
     public function store_tehsil(Request $request)
     {
         if (Auth::id()) {
-            $usertype = Auth()->user()->usertype;
+            // $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
             if($request->edit_id && $request->edit_id != '')
             {

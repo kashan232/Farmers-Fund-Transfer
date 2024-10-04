@@ -10,7 +10,7 @@ use App\Models\User;
 use App\Models\DistrictOfficer;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Validation\ValidationException;
 class DistrictOfficerController extends Controller
 {
 
@@ -19,8 +19,13 @@ class DistrictOfficerController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             // dd($userId);
-            $all_district = District::where('admin_or_user_id', '=', $userId)->get();
-            $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
+            if(Auth::user()->usertype == 'admin'){
+                $all_district = District::get();
+                $all_tehsil = Tehsil::get();
+            }else{
+                $all_district = District::where('admin_or_user_id', '=', $userId)->get();
+                $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
+            }
             return view('admin_panel.district_officer.add_district_officer', [
                 'all_district' => $all_district,
                 'all_tehsil' => $all_tehsil,
@@ -33,6 +38,13 @@ class DistrictOfficerController extends Controller
     public function store_district_officer(Request $request)
     {
         if (Auth::id()) {
+
+            try{
+
+                $validatedData = $request->validate([
+                    'email_address' => 'required|email|unique:users,email',
+                ]);
+
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
@@ -90,7 +102,11 @@ class DistrictOfficerController extends Controller
 
                 return redirect()->back()->with('officer-added', 'District Officer Created Successfully');
             }
-
+        }
+        catch (ValidationException $e) {
+            // Handle the validation failure
+            return back()->withErrors($e->validator)->withInput();
+        }
 
         } else {
             return redirect()->back();
@@ -101,6 +117,7 @@ class DistrictOfficerController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             // dd($userId);
+
             $all_agri = DistrictOfficer::where('admin_or_user_id', '=', $userId)->get();
             return view('admin_panel.district_officer.all_district_officer', [
                 'all_agri' => $all_agri,
@@ -116,8 +133,13 @@ class DistrictOfficerController extends Controller
             $userId = Auth::id();
             // dd($userId);
             $data = DistrictOfficer::find($id);
-            $all_district = District::where('admin_or_user_id', '=', $userId)->get();
-            $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
+            if(Auth::user()->usertype == 'admin'){
+                $all_district = District::get();
+                $all_tehsil = Tehsil::get();
+            }else{
+                $all_district = District::where('admin_or_user_id', '=', $userId)->get();
+                $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
+            }
             return view('admin_panel.district_officer.edit_district_officer', [
                 'all_district' => $all_district,
                 'all_tehsil' => $all_tehsil,

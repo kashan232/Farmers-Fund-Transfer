@@ -15,7 +15,7 @@ class TappaController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            $all_district = District::where('admin_or_user_id', '=', $userId)->get();
+            $all_district = District::get();
             $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
             return view('admin_panel.tappa.add_tappa', [
                 'all_district' => $all_district,

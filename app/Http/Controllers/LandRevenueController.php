@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Imports\FarmersImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Validation\ValidationException;
 class LandRevenueController extends Controller
 {
 
@@ -47,8 +48,13 @@ class LandRevenueController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             // dd($userId);
-            $all_district = District::where('admin_or_user_id', '=', $userId)->get();
-            $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
+            if(Auth::user()->usertype == 'admin'){
+                $all_district = District::get();
+                $all_tehsil = Tehsil::get();
+            }else{
+                $all_district = District::where('admin_or_user_id', '=', $userId)->get();
+                $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
+            }
             return view('admin_panel.Land_revenue_department.add_revenue_officer', [
                 'all_district' => $all_district,
                 'all_tehsil' => $all_tehsil,
@@ -64,8 +70,15 @@ class LandRevenueController extends Controller
             $userId = Auth::id();
             $data = LandRevenueDepartment::find($id);
             // dd($userId);
-            $all_district = District::where('admin_or_user_id', '=', $userId)->get();
-            $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
+
+
+            if(Auth::user()->usertype == 'admin'){
+                $all_district = District::get();
+                $all_tehsil = Tehsil::get();
+            }else{
+                $all_district = District::where('admin_or_user_id', '=', $userId)->get();
+                $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
+            }
             return view('admin_panel.Land_revenue_department.edit_revenue_officer', [
                 'all_district' => $all_district,
                 'all_tehsil' => $all_tehsil,
@@ -79,6 +92,13 @@ class LandRevenueController extends Controller
     public function store_revenue_officer(Request $request)
     {
         if (Auth::id()) {
+
+
+            try{
+
+                $validatedData = $request->validate([
+                    'email_address' => 'required|email|unique:users,email',
+                ]);
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
@@ -139,6 +159,11 @@ class LandRevenueController extends Controller
 
                 return redirect()->back()->with('officer-added', 'Land Revenue Officer Created Successfully');
             }
+        }
+        catch (ValidationException $e) {
+            // Handle the validation failure
+            return back()->withErrors($e->validator)->withInput();
+        }
         } else {
             return redirect()->back();
         }

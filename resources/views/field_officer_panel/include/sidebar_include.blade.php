@@ -16,24 +16,22 @@
                     </a>
                 </li>
 
-
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('farmers-list-field-officer') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span class="pc-mtext">All Farmers</span>
+                    </a>
+                </li>
 
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
+                    <a href="{{ route('farmer-create-by-field-officer') }}" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-user-plus"></i>
+                            <i class="fas fa-home"></i>
                         </span>
-                        <span class="pc-mtext">Farmers</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                        <span class="pc-mtext">Add Farmers</span>
                     </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('farmer-create-by-field-officer') }}">Add Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('farmers-list-field-officer') }}">All Farmers</a>
-                        </li>
-                    </ul>
                 </li>
 
 
@@ -77,14 +75,14 @@
                 --}}
 
 
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="{{ route('agri-officer-reporting') }}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-home"></i>
                         </span>
                         <span class="pc-mtext">Reporting</span>
                     </a>
-                </li>
+                </li> --}}
 
             </ul>
 

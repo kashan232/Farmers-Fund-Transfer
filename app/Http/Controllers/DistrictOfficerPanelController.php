@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\FieldOfficer;
+use Illuminate\Validation\ValidationException;
 
 class DistrictOfficerPanelController extends Controller
 {
@@ -51,7 +52,8 @@ class DistrictOfficerPanelController extends Controller
     }
 
     public function all_field_officer(){
-        $field_officers = FieldOfficer::where('admin_or_user_id',Auth::id())->get();
+        $user = user::find(Auth::id());
+        $field_officers = FieldOfficer::where('District', $user->district)->get();
         return view('district_officer_panel.field_officers.index',['data' => $field_officers]);
     }
 
@@ -73,6 +75,12 @@ class DistrictOfficerPanelController extends Controller
     public function store_field_officer(request $request){
 
         if (Auth::id()) {
+
+        try{
+
+            $validatedData = $request->validate([
+                'email_address' => 'required|email|unique:users,email',
+            ]);
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
@@ -132,7 +140,11 @@ class DistrictOfficerPanelController extends Controller
                 return redirect()->back()->with('officer-added', 'Field Officer Created Successfully');
             }
 
-
+        }
+        catch (ValidationException $e) {
+            // Handle the validation failure
+            return back()->withErrors($e->validator)->withInput();
+        }
         } else {
             return redirect()->back();
         }
