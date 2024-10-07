@@ -456,7 +456,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Code</label>
-                                            <input type="text" value="{{$data->branch_code}}" name="branch_code" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                                            <input type="text" value="{{$data->branch_code}}" name="branch_code" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
@@ -515,8 +515,8 @@
         const newRow = `
             <tr>
                 <td><input type="text" name="title_name[]" class="form-control"></td>
-                <td><input type="text" name="title_cnic[]" class="form-control"></td>
-                <td><input type="text" name="title_number[]" class="form-control"></td>
+                <td><input type="text" name="title_cnic[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" class="form-control"></td>
+                <td><input type="text" name="title_number[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" class="form-control"></td>
                 <td><input type="text" name="title_area[]" class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
