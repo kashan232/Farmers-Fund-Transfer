@@ -24,6 +24,9 @@ class FarmersImport implements ToModel, WithStartRow
     public function model(array $row)
     {
         try{
+            if (count($row) !== 8) {
+                throw new \Exception("Excel Invalid...");
+            }
 
 
                 if($row[4] == null)

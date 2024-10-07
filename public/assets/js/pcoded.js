@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // feather icon start
   feather.replace();
   // feather icon end
-  
+
   // remove pre-loader start
   setTimeout(function () {
     document.querySelector('.loader-bg').remove();
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
     new SimpleBar(document.querySelector('.profile-notification-scroll'));
   }
   // header dropdown scrollbar end
-  
+
   // component scrollbar start
   if (!!document.querySelector('.component-list-card .card-body')) {
     new SimpleBar(document.querySelector('.component-list-card .card-body'));
@@ -127,11 +127,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   document.addEventListener("keydown", myFunction);
   function myFunction(event) {
-    if(event.ctrlKey && event.keyCode == 75) { 
+    if(event.ctrlKey && event.keyCode == 75) {
       if (!!document.querySelector('.form-search input')) {
         document.querySelector('.form-search input').focus();
       }
-      event.preventDefault(); 
+      event.preventDefault();
     }
   }
   if (!!document.querySelector('.trig-drp-search')) {
@@ -501,7 +501,7 @@ function layout_change(layout) {
     if (document.querySelector('.navbar-brand .logo-lg')) {
       document.querySelector('.navbar-brand .logo-lg').setAttribute('src', '../assets/images/Sindh_Hari_Card.png');
     }
-    
+
     if (document.querySelector('.landing-logo')) {
       document.querySelector('.landing-logo').setAttribute('src', 'assets/images/Sindh_Hari_Card.png');
     }

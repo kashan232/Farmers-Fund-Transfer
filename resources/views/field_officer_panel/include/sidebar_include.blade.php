@@ -2,7 +2,7 @@
     <div class="navbar-wrapper">
         <div class="m-header" style="justify-content: center;">
             <a href="#" class="b-brand text-primary">
-                <img src="../assets/images/Sindh_Hari_Card.png" alt="logo image" class="logo-lg" style="max-width:120px;" />
+                <img src="{{asset('')}}/assets/images/Sindh_Hari_Card.png" alt="logo image" class="#logo-lg" style="max-width:120px;" />
             </a>
         </div>
         <div class="navbar-content">

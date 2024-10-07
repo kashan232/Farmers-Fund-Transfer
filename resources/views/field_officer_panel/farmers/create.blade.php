@@ -123,11 +123,11 @@
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">CNIC</label>
-                                            <input type="text" value="" name="cnic" class="form-control">
+                                            <input type="text" value="" name="cnic" class="form-control" min="13" max="13" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Mobile</label>
-                                            <input type="text" value="" name="mobile" class="form-control">
+                                            <input type="text" value="" name="mobile" class="form-control" min="11" max="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Dictrict</label>
@@ -195,20 +195,20 @@
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Children < 16 </h6>
-                                                <input type="text" name="female_children_under16" value="" class="form-control">
+                                                <input type="text" name="female_children_under16" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Adults > 16 </h6>
-                                                <input type="text" name="female_Adults_above16" value="" class="form-control">
+                                                <input type="text" name="female_Adults_above16" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
                                                 <input type="text" value="Male" readonly class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" name="male_children_under16" value="" class="form-control">
+                                                <input type="text" name="male_children_under16" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" name="male_Adults_above16" value="" class="form-control">
+                                                <input type="text" name="male_Adults_above16" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                             </div>
                                         </div>
 
@@ -251,8 +251,8 @@
                                                     <tbody id="title_tableBody">
                                                         <tr>
                                                             <td><input type="text" name="title_name[]"  class="form-control"></td>
-                                                            <td><input type="text" name="title_cnic[]"  class="form-control"></td>
-                                                            <td><input type="text" name="title_number[]"  class="form-control"></td>
+                                                            <td><input type="text" name="title_cnic[]"  class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')" min="13" max="13"></td>
+                                                            <td><input type="text" name="title_number[]"  class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')" min="11" max="11"></td>
                                                             <td><input type="text" name="title_area[]"  class="form-control"></td>
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
@@ -334,7 +334,7 @@
                                                     <tbody id="poultry_assets_tableBody">
                                                         <tr>
                                                             <td><input type="text" name="animal_name[]"   class="form-control"></td>
-                                                            <td><input type="text" name="animal_qty[]"  class="form-control"></td>
+                                                            <td><input type="text" name="animal_qty[]"  class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')"></td>
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
                                                     </tbody>
@@ -377,7 +377,7 @@
                                         <div class="row" id="status_of_water_section">
                                             <div class="mb-3 col-md-3" >
                                                 <label class="form-label">Area length</label>
-                                                <input type="text" name="area_length" value="" class="form-control">
+                                                <input type="text" name="area_length" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                             </div>
                                             <div class="mb-3 col-md-3" >
                                                 <label class="form-label">Area length</label>
@@ -396,7 +396,7 @@
                                                 </div>
                                                 <div class="mb-6 col-md-6" >
                                                     <label class="form-label">Total Command Area</label>
-                                                    <input type="text" value="" name="total_command_area" class="form-control">
+                                                    <input type="text" value="" name="total_command_area" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                                 </div>
                                                 </div>
                                             </div>
@@ -417,7 +417,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Account No</label>
-                                            <input type="text" value="" name="account_no" class="form-control">
+                                            <input type="text" value="" name="account_no" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Name</label>
@@ -429,11 +429,11 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">IBAN</label>
-                                            <input type="text" value="" name="IBAN_number" class="form-control">
+                                            <input type="text" value="" name="IBAN_number" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Code</label>
-                                            <input type="text" value="" name="branch_code" class="form-control">
+                                            <input type="text" value="" name="branch_code" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>

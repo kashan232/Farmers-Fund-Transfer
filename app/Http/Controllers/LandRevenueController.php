@@ -36,6 +36,7 @@ class LandRevenueController extends Controller
             Excel::import(new FarmersImport, $request->file('file'));
             return redirect()->back()->with('success', 'Farmers imported successfully.');
         } catch (\Exception $e) {
+
             return redirect()->back()->withErrors(['file' => $e->getMessage()]);
         }
 

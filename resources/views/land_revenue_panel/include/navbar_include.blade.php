@@ -27,7 +27,7 @@
 
             <li class="dropdown pc-h-item header-user-profile">
                 <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
-                    <img src="../assets/images/user/land-officer.png" alt="user-image" class="user-avtar" />
+                    <img src="{{asset('')}}/assets/images/user/land-officer.png" alt="user-image" class="#user-avtar" />
                 </a>
                 <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                     <div class="dropdown-header d-flex align-items-center justify-content-between">
@@ -39,7 +39,7 @@
                                 <li class="list-group-item">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-shrink-0">
-                                            <img src="../assets/images/user/land-officer.png" alt="user-image" class="wid-50 rounded-circle" />
+                                            <img src="{{asset('')}}/assets/images/user/land-officer.png" alt="user-image" class="wid-50 rounded-circle" />
                                         </div>
                                         @if (Auth::check())
                                         <div class="flex-grow-1 mx-3">
