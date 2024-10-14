@@ -63,7 +63,6 @@ Route::get('/get-district-officers', function () {
 
 
 
-// Azhar connected
 
 // funds_transfer_gitmove
 // Route::get('/dashboard', function () {

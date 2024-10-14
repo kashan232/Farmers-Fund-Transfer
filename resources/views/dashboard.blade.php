@@ -129,8 +129,8 @@
 
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <!-- <link rel="stylesheet" href="/online_farmers_assets/css/font-awesome.min.css"> -->
-    <link rel="stylesheet" href="/online_farmers_assets/css/style.css">
-    <link rel="stylesheet" href="/online_farmers_assets/css/select2.min.css">
+    <link rel="stylesheet" href="{{asset('')}}/online_farmers_assets/css/style.css">
+    <link rel="stylesheet" href="{{asset('')}}/online_farmers_assets/css/select2.min.css">
     <meta name="robots" content="noindex, follow">
 </head>
 
@@ -277,20 +277,20 @@
                                         </div>
                                         <div class="mb-4 col-md-4 mt-1">
                                             <h6 class="text-center">Children < 16 </h6>
-                                            <input type="text" name="female_children_under16" class="form-control">
+                                            <input type="text" name="female_children_under16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
                                         </div>
                                         <div class="mb-4 col-md-4 mt-1">
                                             <h6 class="text-center">Adults > 16 </h6>
-                                            <input type="text" name="female_Adults_above16" class="form-control">
+                                            <input type="text" name="female_Adults_above16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
                                         </div>
                                         <div class="mb-4 col-md-4 ">
                                             <input type="text" value="Male" readonly name="" class="form-control">
                                         </div>
                                         <div class="mb-4 col-md-4 ">
-                                            <input type="text" name="male_children_under16" class="form-control">
+                                            <input type="text" name="male_children_under16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
                                         </div>
                                         <div class="mb-4 col-md-4 ">
-                                            <input type="text" name="male_Adults_above16" class="form-control">
+                                            <input type="text" name="male_Adults_above16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
                                         </div>
                                     </div>
                                     <div class="row" id="">
@@ -332,8 +332,8 @@
                                                 <tbody id="title_tableBody">
                                                     <tr>
                                                             <td><input type="text" name="title_name[]" class="form-control"></td>
-                                                            <td><input type="text" name="title_cnic[]" class="form-control"></td>
-                                                            <td><input type="text" name="title_number[]" class="form-control"></td>
+                                                            <td><input type="text" name="title_cnic[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
+                                                            <td><input type="text" name="title_number[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)"></td>
                                                             <td><input type="text" name="title_area[]" class="form-control"></td>
                                                         <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                     </tr>
@@ -416,7 +416,7 @@
                                                 <tbody id="poultry_assets_tableBody">
                                                     <tr>
                                                         <td><input type="text" name="animal_name[]" class="form-control"></td>
-                                                        <td><input type="text" name="animal_qty[]" class="form-control"></td>
+                                                        <td><input type="text" name="animal_qty[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)"></td>
                                                         <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                     </tr>
                                                 </tbody>
@@ -479,7 +479,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Account No</label>
-                                            <input type="text" name="account_no" class="form-control">
+                                            <input type="text" name="account_no" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Name</label>
@@ -487,15 +487,15 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Name</label>
-                                            <input type="text" name="branch_name" class="form-control">
+                                            <input type="text" name="branch_name" class="form-control" >
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">IBAN</label>
-                                            <input type="text" name="IBAN_number" class="form-control">
+                                            <input type="text" name="IBAN_number" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Code</label>
-                                            <input type="text" name="branch_code" class="form-control">
+                                            <input type="text" name="branch_code" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-3" onclick="prevStep(3)">Previous</button>
@@ -542,11 +542,11 @@
             </div>
         </div>
     </div>
-    <script src="/online_farmers_assets/js/jquery.min.js"></script>
-    <script src="/online_farmers_assets/js/popper.js"></script>
-    <script src="/online_farmers_assets/js/bootstrap.min.js"></script>
-    <script src="/online_farmers_assets/js/main.js"></script>
-    <script src="/online_farmers_assets/js/select2.min.js"></script>
+    <script src="{{asset('')}}/online_farmers_assets/js/jquery.min.js"></script>
+    <script src="{{asset('')}}/online_farmers_assets/js/popper.js"></script>
+    <script src="{{asset('')}}/online_farmers_assets/js/bootstrap.min.js"></script>
+    <script src="{{asset('')}}/online_farmers_assets/js/main.js"></script>
+    <script src="{{asset('')}}/online_farmers_assets/js/select2.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
         let allTehsils = [];
@@ -690,8 +690,8 @@
             const newRow = `
             <tr>
                 <td><input type="text" name="title_name[]" class="form-control"></td>
-                <td><input type="text" name="title_cnic[]" class="form-control"></td>
-                <td><input type="text" name="title_number[]" class="form-control"></td>
+                <td><input type="text" name="title_cnic[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
+                <td><input type="text" name="title_number[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)"></td>
                 <td><input type="text" name="title_area[]" class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
@@ -726,7 +726,7 @@
             const newRow = `
             <tr>
                 <td><input type="text" name="animal_name[]" class="form-control"></td>
-                <td><input type="text" name="animal_qty[]" class="form-control"></td>
+                <td><input type="text" name="animal_qty[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;

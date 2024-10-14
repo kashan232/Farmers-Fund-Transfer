@@ -420,7 +420,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Account No</label>
-                                            <input type="text" name="account_no" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                            <input type="text" name="account_no" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Name</label>
@@ -432,11 +432,11 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">IBAN</label>
-                                            <input type="text" name="IBAN_number" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                            <input type="text" name="IBAN_number" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Code</label>
-                                            <input type="text" name="branch_code" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                            <input type="text" name="branch_code" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
