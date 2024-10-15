@@ -1,10 +1,18 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <title>Online Farmers</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <style id="" media="all">
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <!-- <link rel="stylesheet" href="/online_farmers_assets/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="{{asset('')}}/online_farmers_assets/css/style.css">
+    <link rel="stylesheet" href="{{asset('')}}/online_farmers_assets/css/select2.min.css">
+    <meta name="robots" content="noindex, follow">
+    <style>
         @font-face {
             font-family: 'Poppins';
             font-style: normal;
@@ -62,7 +70,7 @@
         }
 
         #sidebar {
-            background: #1B4714 !important;
+            background: #fff !important;
             width: 400px !important;
             max-width: 400px !important;
         }
@@ -92,9 +100,9 @@
 
         .logo-content img {
             margin-right: 10px;
-            /* Add some spacing between text and logo */
-            width: 50px;
-            height: 50px;
+            width: 90px;
+            height: 90px;
+            margin-bottom: 15px;
         }
 
         #sidebar.active {
@@ -104,14 +112,14 @@
 
         #sidebar ul li a:hover {
             color: #fff;
-            background: #006400 !important;
-            border-bottom: 1px solid #006400 !important;
+            background: #3f8a5c !important;
+            border-bottom: 1px solid #3f8a5c !important;
         }
 
         .active {
             color: #fff;
-            background: #006400 !important;
-            border-bottom: 1px solid #006400 !important;
+            background: #3f8a5c !important;
+            border-bottom: 1px solid #3f8a5c !important;
         }
 
         .form-control {
@@ -126,12 +134,6 @@
             padding: 5rem !important;
         }
     </style>
-
-   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <!-- <link rel="stylesheet" href="/online_farmers_assets/css/font-awesome.min.css"> -->
-    <link rel="stylesheet" href="{{asset('')}}/online_farmers_assets/css/style.css">
-    <link rel="stylesheet" href="{{asset('')}}/online_farmers_assets/css/select2.min.css">
-    <meta name="robots" content="noindex, follow">
 </head>
 
 <body>
@@ -169,7 +171,7 @@
                     <a href="javascript:void(0)"><span class="fa fa-sticky-note mr-3"></span> Upload Documents </a>
                 </li>
                 <li>
-                    <a href="{{route('online-dashboard-logout')}}"   class="dropdown-item">
+                    <a href="{{route('online-dashboard-logout')}}" class="dropdown-item">
                         <span class="fa fa-door-open mr-3"></span> Logout
                     </a>
                 </li>
@@ -182,9 +184,9 @@
                 <div class="col-md-12">
                     <div class="card">
                         @if (session()->has('farmers-registered'))
-                            <div class="alert alert-success alert-dismissible fade show mt-4">
-                                <strong>Success!</strong> {{ session('farmers-registered') }}.
-                            </div>
+                        <div class="alert alert-success alert-dismissible fade show mt-4">
+                            <strong>Success!</strong> {{ session('farmers-registered') }}.
+                        </div>
                         @endif
                         <div class="card-body">
                             <form id="registrationForm" action="{{ route('store-online-farmers-registration') }}" method="POST" enctype="multipart/form-data">
@@ -279,7 +281,7 @@
                                         </div>
                                         <div class="mb-4 col-md-4 mt-1">
                                             <h6 class="text-center">Children < 16 </h6>
-                                            <input type="text" name="female_children_under16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                    <input type="text" name="female_children_under16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
                                         </div>
                                         <div class="mb-4 col-md-4 mt-1">
                                             <h6 class="text-center">Adults > 16 </h6>
@@ -333,10 +335,10 @@
                                                 </thead>
                                                 <tbody id="title_tableBody">
                                                     <tr>
-                                                            <td><input type="text" name="title_name[]" class="form-control"></td>
-                                                            <td><input type="text" name="title_cnic[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
-                                                            <td><input type="text" name="title_number[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)"></td>
-                                                            <td><input type="text" name="title_area[]" class="form-control"></td>
+                                                        <td><input type="text" name="title_name[]" class="form-control"></td>
+                                                        <td><input type="text" name="title_cnic[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
+                                                        <td><input type="text" name="title_number[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)"></td>
+                                                        <td><input type="text" name="title_area[]" class="form-control"></td>
                                                         <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                     </tr>
                                                 </tbody>
@@ -458,7 +460,7 @@
                                             </div>
                                             <div class="mb-3 col-md-3">
                                                 <label class="form-label">Area length</label>
-                                                <select class="form-control" id="lined_unlined"  name="line_status">
+                                                <select class="form-control" id="lined_unlined" name="line_status">
                                                     <option value="">Select Lined/Unlined</option>
                                                     <option value="lined">lined</option>
                                                     <option value="unlined">Unlind</option>
@@ -489,7 +491,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Name</label>
-                                            <input type="text" name="branch_name" class="form-control" >
+                                            <input type="text" name="branch_name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">IBAN</label>
@@ -551,99 +553,97 @@
     <script src="{{asset('')}}/online_farmers_assets/js/select2.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        let allTehsils = [];
-        let allUcs = [];
-        let allTappas = [];
+            let allTehsils = [];
+            let allUcs = [];
+            let allTappas = [];
 
-        // Fetch districts from the API
-        fetch('http://127.0.0.1:8000/api/get-districts')
-            .then(response => response.json())
-            .then(data => {
-                const districtSelect = document.getElementById('district');
-                districtSelect.innerHTML = '<option value="" selected disabled>Select District</option>';
-                data.districts.forEach(district => {
+            // Fetch districts from the API
+            fetch('http://127.0.0.1:8000/api/get-districts')
+                .then(response => response.json())
+                .then(data => {
+                    const districtSelect = document.getElementById('district');
+                    districtSelect.innerHTML = '<option value="" selected disabled>Select District</option>';
+                    data.districts.forEach(district => {
+                        const option = document.createElement('option');
+                        option.value = district.district;
+                        option.textContent = district.district;
+                        districtSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching districts:', error));
+
+            // Fetch all tehsils from the API
+            fetch('http://127.0.0.1:8000/api/get-tehsil')
+                .then(response => response.json())
+                .then(data => {
+                    allTehsils = data.tehsils;
+                })
+                .catch(error => console.error('Error fetching tehsils:', error));
+
+            // Fetch all UCs from the API
+            fetch('http://127.0.0.1:8000/api/get-uc')
+                .then(response => response.json())
+                .then(data => {
+                    allUcs = data.Ucs;
+                })
+                .catch(error => console.error('Error fetching UCs:', error));
+
+            // Fetch all tappas from the API
+            fetch('http://127.0.0.1:8000/api/get-tappa')
+                .then(response => response.json())
+                .then(data => {
+                    allTappas = data.tehsils;
+                })
+                .catch(error => console.error('Error fetching tappas:', error));
+
+            // Populate tehsils based on selected district
+            document.getElementById('district').addEventListener('change', function() {
+                const selectedDistrict = this.value;
+                const tehsilSelect = document.getElementById('tehsil');
+                tehsilSelect.innerHTML = '<option value="" selected disabled>Select Tehsil</option>';
+
+                const filteredTehsils = allTehsils.filter(tehsil => tehsil.district === selectedDistrict);
+                filteredTehsils.forEach(tehsil => {
                     const option = document.createElement('option');
-                    option.value = district.district;
-                    option.textContent = district.district;
-                    districtSelect.appendChild(option);
+                    option.value = tehsil.tehsil;
+                    option.textContent = tehsil.tehsil;
+                    tehsilSelect.appendChild(option);
                 });
-            })
-            .catch(error => console.error('Error fetching districts:', error));
 
-        // Fetch all tehsils from the API
-        fetch('http://127.0.0.1:8000/api/get-tehsil')
-            .then(response => response.json())
-            .then(data => {
-                allTehsils = data.tehsils;
-            })
-            .catch(error => console.error('Error fetching tehsils:', error));
-
-        // Fetch all UCs from the API
-        fetch('http://127.0.0.1:8000/api/get-uc')
-            .then(response => response.json())
-            .then(data => {
-                allUcs = data.Ucs;
-            })
-            .catch(error => console.error('Error fetching UCs:', error));
-
-        // Fetch all tappas from the API
-        fetch('http://127.0.0.1:8000/api/get-tappa')
-            .then(response => response.json())
-            .then(data => {
-                allTappas = data.tehsils;
-            })
-            .catch(error => console.error('Error fetching tappas:', error));
-
-        // Populate tehsils based on selected district
-        document.getElementById('district').addEventListener('change', function() {
-            const selectedDistrict = this.value;
-            const tehsilSelect = document.getElementById('tehsil');
-            tehsilSelect.innerHTML = '<option value="" selected disabled>Select Tehsil</option>';
-
-            const filteredTehsils = allTehsils.filter(tehsil => tehsil.district === selectedDistrict);
-            filteredTehsils.forEach(tehsil => {
-                const option = document.createElement('option');
-                option.value = tehsil.tehsil;
-                option.textContent = tehsil.tehsil;
-                tehsilSelect.appendChild(option);
+                // Clear UC and Tappa selects
+                document.getElementById('uc').innerHTML = '<option value="" selected disabled>Select UC</option>';
+                document.getElementById('tappa').innerHTML = '<option value="" selected disabled>Select Tappa</option>';
             });
 
-            // Clear UC and Tappa selects
-            document.getElementById('uc').innerHTML = '<option value="" selected disabled>Select UC</option>';
-            document.getElementById('tappa').innerHTML = '<option value="" selected disabled>Select Tappa</option>';
-        });
+            // Populate UCs and tappas based on selected tehsil and district
+            document.getElementById('tehsil').addEventListener('change', function() {
+                const selectedDistrict = document.getElementById('district').value;
+                const selectedTehsil = this.value;
 
-        // Populate UCs and tappas based on selected tehsil and district
-        document.getElementById('tehsil').addEventListener('change', function() {
-            const selectedDistrict = document.getElementById('district').value;
-            const selectedTehsil = this.value;
+                // Populate UCs
+                const ucSelect = document.getElementById('uc');
+                ucSelect.innerHTML = '<option value="" selected disabled>Select UC</option>';
+                const filteredUcs = allUcs.filter(uc => uc.district === selectedDistrict && uc.tehsil === selectedTehsil);
+                filteredUcs.forEach(uc => {
+                    const option = document.createElement('option');
+                    option.value = uc.uc;
+                    option.textContent = uc.uc;
+                    ucSelect.appendChild(option);
+                });
 
-            // Populate UCs
-            const ucSelect = document.getElementById('uc');
-            ucSelect.innerHTML = '<option value="" selected disabled>Select UC</option>';
-            const filteredUcs = allUcs.filter(uc => uc.district === selectedDistrict && uc.tehsil === selectedTehsil);
-            filteredUcs.forEach(uc => {
-                const option = document.createElement('option');
-                option.value = uc.uc;
-                option.textContent = uc.uc;
-                ucSelect.appendChild(option);
-            });
-
-            // Populate tappas
-            const tappaSelect = document.getElementById('tappa');
-            tappaSelect.innerHTML = '<option value="" selected disabled>Select Tappa</option>';
-            const filteredTappas = allTappas.filter(tappa => tappa.district === selectedDistrict && tappa.tehsil === selectedTehsil);
-            filteredTappas.forEach(tappa => {
-                const option = document.createElement('option');
-                option.value = tappa.tappa;
-                option.textContent = tappa.tappa;
-                tappaSelect.appendChild(option);
+                // Populate tappas
+                const tappaSelect = document.getElementById('tappa');
+                tappaSelect.innerHTML = '<option value="" selected disabled>Select Tappa</option>';
+                const filteredTappas = allTappas.filter(tappa => tappa.district === selectedDistrict && tappa.tehsil === selectedTehsil);
+                filteredTappas.forEach(tappa => {
+                    const option = document.createElement('option');
+                    option.value = tappa.tappa;
+                    option.textContent = tappa.tappa;
+                    tappaSelect.appendChild(option);
+                });
             });
         });
-    });
-
-
-      </script>
+    </script>
     <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
