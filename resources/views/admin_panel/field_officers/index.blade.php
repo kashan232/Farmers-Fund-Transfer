@@ -48,20 +48,20 @@
                                                         <th><strong>UC</strong></th>
                                                         <th><strong>Tappa</strong></th>
                                                         <th><strong>Username</strong></th>
-                                                        {{-- <th class="text-end"><strong>Action</strong></th> --}}
+                                                        <th class="text-end"><strong>Action</strong></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($data as $agri)
+                                                    @foreach ($data as $field_officer)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $agri->full_name }}</td>
-                                                        <td>{{ $agri->contact_number }}</td>
-                                                        <td>{{ $agri->address }}</td>
-                                                        <td>{{ $agri->email_address }}</td>
+                                                        <td>{{ $field_officer->full_name }}</td>
+                                                        <td>{{ $field_officer->contact_number }}</td>
+                                                        <td>{{ $field_officer->address }}</td>
+                                                        <td>{{ $field_officer->email_address }}</td>
                                                         <td>
                                                             @php
-                                                            $tehsil = json_decode($agri->tehsil);
+                                                            $tehsil = json_decode($field_officer->tehsil);
                                                             @endphp
                                                             @if(is_array($tehsil))
                                                             @foreach($tehsil as $tehsil)
@@ -71,7 +71,7 @@
                                                         </td>
                                                         <td>
                                                             @php
-                                                            $userUcArray = json_decode($agri->ucs);
+                                                            $userUcArray = json_decode($field_officer->ucs);
                                                             @endphp
                                                             @if(is_array($userUcArray))
                                                             @foreach($userUcArray as $uc)
@@ -81,7 +81,7 @@
                                                         </td>
                                                         <td>
                                                             @php
-                                                            $usertappaArray = json_decode($agri->tappas);
+                                                            $usertappaArray = json_decode($field_officer->tappas);
                                                             @endphp
                                                             @if(is_array($usertappaArray))
                                                             @foreach($usertappaArray as $tappa)
@@ -89,12 +89,12 @@
                                                             @endforeach
                                                             @endif
                                                         </td>
-                                                        <td>{{ $agri->username }}</td>
-                                                        {{-- <td>
+                                                        <td>{{ $field_officer->username }}</td>
+                                                        <td>
                                                             <div class="d-flex">
-                                                                <a href="/do/field-officer-edit/{{$agri->id}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                                                <a href="{{route('edit-field-officer',$field_officer->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                                             </div>
-                                                        </td> --}}
+                                                        </td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
