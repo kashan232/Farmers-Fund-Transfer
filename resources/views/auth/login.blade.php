@@ -83,8 +83,11 @@
                     <div class="container-login100-form-btn">
                         <input type="Submit" class="login100-form-btn" value="Sign in">
                     </div>
-                </form>
+                    <div class=" container-login100-form-btn" style="margin-top:35px">
+                        Powered by: XCL Technologies
+                    </div>
 
+                </form>
 
             </div>
         </div>
