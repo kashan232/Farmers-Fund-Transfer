@@ -145,7 +145,9 @@
             </div>
             <div id="logo">
                 <div class="logo-content text-center">
-                    <h3 class="mt-2" style="font-size: 13px;text-align:center;color:#e5e5e5;letter-spacing: 1px;"><span style="font-size: 24px;letter-spacing: 3px;line-height: 1.5;">Sindh</span> <br> Hari Card</h3>
+                    <a href="#" class="b-brand text-primary">
+                        <img src="{{asset('')}}/assets/images/Sindh_Hari_Card.png" alt="logo image" class="#logo-lg" style="max-width:120px;" />
+                    </a>
                     <!-- <span>FARMER REGISTRATION FORM</span> -->
                 </div>
             </div>
