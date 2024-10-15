@@ -9,6 +9,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use App\Models\DistrictOfficer;
+
 class FieldOfficerController extends Controller
 {
     public function index(){
@@ -29,6 +31,21 @@ class FieldOfficerController extends Controller
         $data = [
             'districts' => $districts,
             'tehsils' => $tehsils,
+        ];
+        return view('admin_panel.field_officers.create',$data);
+    }
+
+
+    public function edit($id){
+        $districts = district::get();
+        $tehsils = tehsil::get();
+        $field_officer = FieldOfficer::find($id);
+        $district_officers = DistrictOfficer::where('district' ,'=',$field_officer->district)->get();
+        $data = [
+            'districts' => $districts,
+            'tehsils' => $tehsils,
+            'field_officer' => $field_officer,
+            'district_officers' => $district_officers
         ];
         return view('admin_panel.field_officers.create',$data);
     }

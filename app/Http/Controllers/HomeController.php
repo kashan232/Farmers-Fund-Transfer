@@ -223,9 +223,9 @@ class HomeController extends Controller
                         $ucCount = count($ucs);
                     }
                 }
-                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('agri_user_emp_id', '=', $user_id)->count();
-                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('agri_user_emp_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
-                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('agri_user_emp_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
+                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
+                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
 
                 return view('field_officer_panel.dashboard', [
                     'agriUserfarmersCount' => $agriUserfarmersCount,

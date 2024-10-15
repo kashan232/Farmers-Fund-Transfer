@@ -233,7 +233,7 @@
                                 <td colspan="6"><img src="{{ asset('land_farmers/upload_cheque_pic/' . $data->upload_cheque_pic) }}" alt="Upload Cheque Pic" width="100"></td>
                             </tr>
 
-                            <tr>
+                            {{-- <tr>
                                 <th colspan="6">SURVEYOR / ENUMERATOR DETAILS</th>
                             </tr>
 
@@ -267,7 +267,7 @@
 
                                 <th>Updated At</th>
                                 <td>{{ $data->updated_at->diffForHumans() }}</td>
-                            </tr>
+                            </tr> --}}
                         </table>
                     </div>
                 </div>

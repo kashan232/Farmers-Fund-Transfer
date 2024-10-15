@@ -63,7 +63,6 @@ Route::get('/get-district-officers', function () {
 
 
 
-// Azhar connected
 
 // funds_transfer_gitmove
 // Route::get('/dashboard', function () {
@@ -94,6 +93,7 @@ Route::post('/update-district/{id}', [DistrictController::class, 'update_distric
 Route::get('/all-field-officers', [FieldOfficerController::class, 'index'])->name('all-field-officers');
 Route::get('/create-field-officer', [FieldOfficerController::class, 'create'])->name('create-field-officer');
 Route::post('/store-field-officer-by-admin', [FieldOfficerController::class, 'store'])->name('store-field-officer-by-admin');
+Route::get('/edit-field-officer/{id}', [FieldOfficerController::class, 'edit'])->name('edit-field-officer');
 
 
 

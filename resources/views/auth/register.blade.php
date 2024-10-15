@@ -1,4 +1,137 @@
 <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{{asset('')}}/login_assets/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('')}}/login_assets/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('')}}/login_assets/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('')}}/login_assets/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('')}}/login_assets/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('')}}/login_assets/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('')}}/login_assets/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('')}}/login_assets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('')}}/login_assets/css/main.css">
+    <!--===============================================================================================-->
+</head>
+
+<body style="background-color: #666666;">
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-more" style="background-image: url('{{asset('')}}/login_assets/images/COVER_BENAZIR.jpg');">
+                </div>
+                <form method="POST" action="{{ route('register') }}" class="login100-form validate-form" style="position: relative">
+                    @csrf
+                    <span class="login100-form-title">
+                        <img src="{{asset('')}}/login_assets/images/Sindh_Hari_Card.png" style="width: 100px;padding: 20px 0;"><br>
+                        Sign In
+                        <p>Please enter your Email and Password</p>
+                    </span>
+
+
+                    <div class="wrap-input100 validate-input" >
+                        <input class="input100" type="text" name="cnic" id="cnic" :value="old('cnic')" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">CNIC</span>
+                        @if ($errors->has('cnic'))
+                        <div class="text-danger">{{ $errors->first('cnic') }}</div>
+                        @endif
+                    </div>
+
+                    <div class="wrap-input100 validate-input" >
+                        <input class="input100" type="text" name="number" id="number" :value="old('number')" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Number</span>
+                        @if ($errors->has('number'))
+                        <div class="text-danger">{{ $errors->first('number') }}</div>
+                        @endif
+                    </div>
+
+
+
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" name="password" required>
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Password</span>
+                        @if ($errors->has('password'))
+                        <div class="text-danger">{{ $errors->first('password') }}</div>
+                        @endif
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Confirm Password is required">
+                        <input class="input100" type="password" name="password_confirmation" required>
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Confirm Password</span>
+                        @if ($errors->has('password_confirmation'))
+                        <div class="text-danger">{{ $errors->first('password_confirmation') }}</div>
+                        @endif
+                    </div>
+
+
+
+                    <div class="container-login100-form-btn">
+                        <input type="Submit" class="login100-form-btn" value="Sign Up">
+                    </div>
+
+                    <div class="mt-2 container-login100-form-btn">
+                        Already have Account?&nbsp;<a href="{{route('login')}}">Login</a>
+                    </div>
+
+                    <div class=" container-login100-form-btn" style="position: absolute;bottom:5px; left:0">
+                        Powered by: XCL Technologies
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="{{asset('')}}/login_assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="{{asset('')}}/login_assets/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="{{asset('')}}/login_assets/vendor/bootstrap/js/popper.js"></script>
+    <script src="{{asset('')}}/login_assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="{{asset('')}}/login_assets/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="{{asset('')}}/login_assets/vendor/daterangepicker/moment.min.js"></script>
+    <script src="{{asset('')}}/login_assets/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="{{asset('')}}/login_assets/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="{{asset('')}}/login_assets/js/main.js"></script>
+
+</body>
+
+</html>
+
+
+
+{{--
+<!DOCTYPE html>
 <!---Coding By CodingLab | www.codinglabweb.com--->
 <html lang="en">
 
@@ -201,4 +334,4 @@
     </section>
 </body>
 
-</html>
+</html> --}}

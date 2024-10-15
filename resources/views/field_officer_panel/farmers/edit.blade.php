@@ -400,7 +400,7 @@
                                         <div class="row" id="status_of_water_section">
                                             <div class="mb-3 col-md-3" >
                                                 <label class="form-label">Area length</label>
-                                                <input type="text" name="area_length" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)" value="{{$data->area_length}}" class="form-control">
+                                                <input type="text" name="area_length"  value="{{$data->area_length}}" class="form-control">
                                             </div>
                                             <div class="mb-3 col-md-3" >
                                                 <label class="form-label">Area length</label>
@@ -515,8 +515,8 @@
         const newRow = `
             <tr>
                 <td><input type="text" name="title_name[]" class="form-control"></td>
-                <td><input type="text" name="title_cnic[]" class="form-control"></td>
-                <td><input type="text" name="title_number[]" class="form-control"></td>
+                <td><input type="text" name="title_cnic[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" class="form-control"></td>
+                <td><input type="text" name="title_number[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" class="form-control"></td>
                 <td><input type="text" name="title_area[]" class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
@@ -551,7 +551,7 @@
         const newRow = `
             <tr>
                 <td><input type="text" name="animal_name[]" class="form-control"></td>
-                <td><input type="text" name="animal_qty[]"  class="form-control"></td>
+                <td><input type="text" name="animal_qty[]"  class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;

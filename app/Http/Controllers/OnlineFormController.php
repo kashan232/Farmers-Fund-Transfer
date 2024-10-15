@@ -30,7 +30,7 @@ class OnlineFormController extends Controller
         }
         else
         {
-                return redirect()->route('online-login-form')->withErrors(['credentials' => 'Invalid Cnic or password'])->withInput();
+                return redirect()->route('online-login-form')->withErrors(['cnic' => 'Invalid Cnic or password'])->withInput();
         }
     }
 
