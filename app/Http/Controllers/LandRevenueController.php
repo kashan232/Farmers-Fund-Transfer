@@ -500,12 +500,35 @@ class LandRevenueController extends Controller
 
     public function farmers_reporting(request $request){
 
-        $userId = Auth::id();
-        $data = LandRevenueFarmerRegistation::where('admin_or_user_id', '=', $userId)->get();
-
-        return view('land_revenue_panel.farmers_reporting.index', [
-            'data' => $data,
-        ]);
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $district = Auth::user()->district;
+            $tehsils = Tehsil::where('district', $district)->get();
+            return view('land_revenue_panel.farmers_reporting.index', [
+                'district' => $district,
+                'tehsils' => $tehsils,
+            ]);
+        }
     }
+    public function view_farmers_reporting(request $request)
+    {
 
+        $start_date = Carbon::parse($request->start_date)->startOfDay();
+        $end_date = Carbon::parse($request->end_date)->endOfDay();
+        $district = $request->input('district');
+        $tehsilArray = $request->input('tehsil', []); // Default to an empty array if no tehsils are provided
+        $minAcre = intval($request->input('min_acre'));
+        $maxAcre = intval($request->input('max_acre'));
+
+        $registrations = LandRevenueFarmerRegistation::where('district', $district)
+            ->whereIn('tehsil', $tehsilArray)
+            ->where('total_landing_acre', '>=', $minAcre)
+            ->where('total_landing_acre', '<=', $maxAcre)
+            ->whereBetween('created_at', [$start_date, $end_date]);
+
+        $data = $registrations->paginate(10);
+
+// dd($data);
+        return view('land_revenue_panel.farmers_reporting.view',['data' => $data]);
+    }
 }

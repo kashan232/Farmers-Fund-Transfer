@@ -292,6 +292,7 @@ Route::post('/verify-unverify-agriuser-farmers-by-land', [LandRevenueController:
 
 Route::get('/reporting-farmers-by-landOfficer', [LandRevenueController::class, 'farmers_reporting'])->name('reporting-farmers-by-land-officer');
 
+Route::post('/view/reporting-farmers-by-landOfficer', [LandRevenueController::class, 'view_farmers_reporting'])->name('view.reporting-farmers-by-land-officer');
 
 
 
