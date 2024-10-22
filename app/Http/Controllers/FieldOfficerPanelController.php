@@ -78,9 +78,15 @@ class FieldOfficerPanelController extends Controller
     public function store(Request $request)
     {
         if (Auth::check()) {
+
+
             if ($request->edit_id && $request->edit_id != '') {
                 $data = $request->all();
                 $data = $request->except(['_token', 'edit_id']);
+                $data['user_type'] = Auth()->user()->usertype;
+                $data['admin_or_user_id'] = Auth::id();
+                $data['land_emp_id'] = Auth()->user()->user_id;
+                $data['land_emp_name'] = Auth()->user()->name;
 
                 $data['title_name'] = json_encode($request->title_name);
                 $data['title_cnic'] = json_encode($request->title_cnic);
@@ -96,13 +102,14 @@ class FieldOfficerPanelController extends Controller
                 $data['animal_name'] = json_encode($request->animal_name);
                 $data['animal_qty'] = json_encode($request->animal_qty);
 
-                $data['verification_status'] = 0;
+                $data['verification_status'] = null;
+
 
                 // Handle front ID card image
                 if ($request->hasFile('front_id_card')) {
                     $front_id_cardimage = $request->file('front_id_card');
                     $front_id_cardimageName = time() . '_' . uniqid() . '.' . $front_id_cardimage->getClientOriginalExtension();
-                    $front_id_cardimage->move(public_path('agri_user_farmers/front_id_card'), $front_id_cardimageName);
+                    $front_id_cardimage->move(public_path('land_farmers/front_id_card'), $front_id_cardimageName);
                     $data['front_id_card'] = $front_id_cardimageName;
                 }
 
@@ -110,7 +117,7 @@ class FieldOfficerPanelController extends Controller
                 if ($request->hasFile('back_id_card')) {
                     $back_id_cardimage = $request->file('back_id_card');
                     $back_id_cardimageName = time() . '_' . uniqid() . '.' . $back_id_cardimage->getClientOriginalExtension();
-                    $back_id_cardimage->move(public_path('agri_user_farmers/back_id_card'), $back_id_cardimageName);
+                    $back_id_cardimage->move(public_path('land_farmers/back_id_card'), $back_id_cardimageName);
                     $data['back_id_card'] = $back_id_cardimageName;
                 }
 
@@ -118,7 +125,7 @@ class FieldOfficerPanelController extends Controller
                 if ($request->hasFile('upload_land_proof')) {
                     $upload_land_proofimage = $request->file('upload_land_proof');
                     $upload_land_proofimageName = time() . '_' . uniqid() . '.' . $upload_land_proofimage->getClientOriginalExtension();
-                    $upload_land_proofimage->move(public_path('agri_user_farmers/upload_land_proof'), $upload_land_proofimageName);
+                    $upload_land_proofimage->move(public_path('land_farmers/upload_land_proof'), $upload_land_proofimageName);
                     $data['upload_land_proof'] = $upload_land_proofimageName;
                 }
 
@@ -126,7 +133,7 @@ class FieldOfficerPanelController extends Controller
                 if ($request->hasFile('upload_other_attach')) {
                     $upload_other_attachimage = $request->file('upload_other_attach');
                     $upload_other_attachimageName = time() . '_' . uniqid() . '.' . $upload_other_attachimage->getClientOriginalExtension();
-                    $upload_other_attachimage->move(public_path('agri_user_farmers/upload_other_attach'), $upload_other_attachimageName);
+                    $upload_other_attachimage->move(public_path('land_farmers/upload_other_attach'), $upload_other_attachimageName);
                     $data['upload_other_attach'] = $upload_other_attachimageName;
                 }
 
@@ -134,7 +141,7 @@ class FieldOfficerPanelController extends Controller
                 if ($request->hasFile('upload_farmer_pic')) {
                     $upload_farmer_picimage = $request->file('upload_farmer_pic');
                     $upload_farmer_picimageName = time() . '_' . uniqid() . '.' . $upload_farmer_picimage->getClientOriginalExtension();
-                    $upload_farmer_picimage->move(public_path('agri_user_farmers/upload_farmer_pic'), $upload_farmer_picimageName);
+                    $upload_farmer_picimage->move(public_path('land_farmers/upload_farmer_pic'), $upload_farmer_picimageName);
                     $data['upload_farmer_pic'] = $upload_farmer_picimageName;
                 }
 
@@ -142,18 +149,18 @@ class FieldOfficerPanelController extends Controller
                 if ($request->hasFile('upload_cheque_pic')) {
                     $upload_cheque_picimage = $request->file('upload_cheque_pic');
                     $upload_cheque_picimageName = time() . '_' . uniqid() . '.' . $upload_cheque_picimage->getClientOriginalExtension();
-                    $upload_cheque_picimage->move(public_path('agri_user_farmers/upload_cheque_pic'), $upload_cheque_picimageName);
+                    $upload_cheque_picimage->move(public_path('land_farmers/upload_cheque_pic'), $upload_cheque_picimageName);
                     $data['upload_cheque_pic'] = $upload_cheque_picimageName;
                 }
 
                 LandRevenueFarmerRegistation::where('id', $request->edit_id)->update($data);
-                return redirect()->back()->with('farmer-added', 'Your Farmers Is Successfully Updated!');
+                return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Updated');
             } else {
                 $data = $request->all();
-
+                $data['user_type'] = Auth()->user()->usertype;
                 $data['admin_or_user_id'] = Auth::id();
-                $data['agri_user_emp_id'] = Auth()->user()->user_id;
-                $data['agri_user_emp_name'] = Auth()->user()->name;
+                $data['land_emp_id'] = Auth()->user()->user_id;
+                $data['land_emp_name'] = Auth()->user()->name;
 
                 $data['title_name'] = json_encode($request->title_name);
                 $data['title_cnic'] = json_encode($request->title_cnic);
@@ -169,13 +176,13 @@ class FieldOfficerPanelController extends Controller
                 $data['animal_name'] = json_encode($request->animal_name);
                 $data['animal_qty'] = json_encode($request->animal_qty);
 
-                $data['verification_status'] = 0;
+                $data['verification_status'] = null;
 
                 // Handle front ID card image
                 if ($request->hasFile('front_id_card')) {
                     $front_id_cardimage = $request->file('front_id_card');
                     $front_id_cardimageName = time() . '_' . uniqid() . '.' . $front_id_cardimage->getClientOriginalExtension();
-                    $front_id_cardimage->move(public_path('agri_user_farmers/front_id_card'), $front_id_cardimageName);
+                    $front_id_cardimage->move(public_path('land_farmers/front_id_card'), $front_id_cardimageName);
                     $data['front_id_card'] = $front_id_cardimageName;
                 }
 
@@ -183,7 +190,7 @@ class FieldOfficerPanelController extends Controller
                 if ($request->hasFile('back_id_card')) {
                     $back_id_cardimage = $request->file('back_id_card');
                     $back_id_cardimageName = time() . '_' . uniqid() . '.' . $back_id_cardimage->getClientOriginalExtension();
-                    $back_id_cardimage->move(public_path('agri_user_farmers/back_id_card'), $back_id_cardimageName);
+                    $back_id_cardimage->move(public_path('land_farmers/back_id_card'), $back_id_cardimageName);
                     $data['back_id_card'] = $back_id_cardimageName;
                 }
 
@@ -191,7 +198,7 @@ class FieldOfficerPanelController extends Controller
                 if ($request->hasFile('upload_land_proof')) {
                     $upload_land_proofimage = $request->file('upload_land_proof');
                     $upload_land_proofimageName = time() . '_' . uniqid() . '.' . $upload_land_proofimage->getClientOriginalExtension();
-                    $upload_land_proofimage->move(public_path('agri_user_farmers/upload_land_proof'), $upload_land_proofimageName);
+                    $upload_land_proofimage->move(public_path('land_farmers/upload_land_proof'), $upload_land_proofimageName);
                     $data['upload_land_proof'] = $upload_land_proofimageName;
                 }
 
@@ -199,7 +206,7 @@ class FieldOfficerPanelController extends Controller
                 if ($request->hasFile('upload_other_attach')) {
                     $upload_other_attachimage = $request->file('upload_other_attach');
                     $upload_other_attachimageName = time() . '_' . uniqid() . '.' . $upload_other_attachimage->getClientOriginalExtension();
-                    $upload_other_attachimage->move(public_path('agri_user_farmers/upload_other_attach'), $upload_other_attachimageName);
+                    $upload_other_attachimage->move(public_path('land_farmers/upload_other_attach'), $upload_other_attachimageName);
                     $data['upload_other_attach'] = $upload_other_attachimageName;
                 }
 
@@ -207,7 +214,7 @@ class FieldOfficerPanelController extends Controller
                 if ($request->hasFile('upload_farmer_pic')) {
                     $upload_farmer_picimage = $request->file('upload_farmer_pic');
                     $upload_farmer_picimageName = time() . '_' . uniqid() . '.' . $upload_farmer_picimage->getClientOriginalExtension();
-                    $upload_farmer_picimage->move(public_path('agri_user_farmers/upload_farmer_pic'), $upload_farmer_picimageName);
+                    $upload_farmer_picimage->move(public_path('land_farmers/upload_farmer_pic'), $upload_farmer_picimageName);
                     $data['upload_farmer_pic'] = $upload_farmer_picimageName;
                 }
 
@@ -215,15 +222,13 @@ class FieldOfficerPanelController extends Controller
                 if ($request->hasFile('upload_cheque_pic')) {
                     $upload_cheque_picimage = $request->file('upload_cheque_pic');
                     $upload_cheque_picimageName = time() . '_' . uniqid() . '.' . $upload_cheque_picimage->getClientOriginalExtension();
-                    $upload_cheque_picimage->move(public_path('agri_user_farmers/upload_cheque_pic'), $upload_cheque_picimageName);
+                    $upload_cheque_picimage->move(public_path('land_farmers/upload_cheque_pic'), $upload_cheque_picimageName);
                     $data['upload_cheque_pic'] = $upload_cheque_picimageName;
                 }
 
                 LandRevenueFarmerRegistation::create($data);
-                return redirect()->back()->with('farmer-added', 'Your Farmers Is Successfully Registered!');
+                return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Registered');
             }
-        } else {
-            return redirect('/login');
         }
     }
 

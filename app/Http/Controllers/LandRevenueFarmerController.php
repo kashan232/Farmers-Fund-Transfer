@@ -35,7 +35,7 @@ class LandRevenueFarmerController extends Controller
             if ($request->edit_id && $request->edit_id != '') {
                 $data = $request->all();
                 $data = $request->except(['_token', 'edit_id']);
-
+                $data['user_type'] = Auth()->user()->usertype;
                 $data['admin_or_user_id'] = Auth::id();
                 $data['land_emp_id'] = Auth()->user()->user_id;
                 $data['land_emp_name'] = Auth()->user()->name;
@@ -108,7 +108,7 @@ class LandRevenueFarmerController extends Controller
                 return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Updated');
             } else {
                 $data = $request->all();
-
+                $data['user_type'] = Auth()->user()->usertype;
                 $data['admin_or_user_id'] = Auth::id();
                 $data['land_emp_id'] = Auth()->user()->user_id;
                 $data['land_emp_name'] = Auth()->user()->name;
@@ -190,7 +190,9 @@ class LandRevenueFarmerController extends Controller
             $userId = Auth::id();
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
-            $all_land_farmers = LandRevenueFarmerRegistation::where('land_emp_id', '=', $user_id)->where('land_emp_name', '=', $user_name)->get();
+
+
+            $all_land_farmers = LandRevenueFarmerRegistation::where('land_emp_id', '=', $user_id)->Orwhere('district', '=', Auth()->user()->district)->get();
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
                 'all_land_farmers' => $all_land_farmers,

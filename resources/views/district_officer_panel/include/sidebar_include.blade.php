@@ -18,13 +18,25 @@
 
 
                 <li class="pc-item pc-hasmenu">
-                    <a href="{{ route('do-farmers') }}" class="pc-link">
+                    <a href="#!" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-user-shield"></i>
                         </span>
                         <span class="pc-mtext">Farmers</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('do-farmers') }}">All Farmers</a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('do-create-farmer') }}">Create Farmer</a>
+                        </li>
+                    </ul>
                 </li>
+
+
+
 
                 {{--
                 <li class="pc-item pc-hasmenu">
@@ -105,7 +117,14 @@
 
 
 
-
+            <li class="pc-item pc-hasmenu">
+                <a href="{{ route('reporting-farmers-by-do') }}" class="pc-link">
+                    <span class="pc-micon">
+                        <i class="fas fa-home"></i>
+                    </span>
+                    <span class="pc-mtext">Reporting</span>
+                </a>
+            </li>
 
 
 
