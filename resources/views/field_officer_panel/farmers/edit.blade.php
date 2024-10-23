@@ -84,9 +84,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Registration</h5>
-                        @if (session()->has('farmer-added'))
+                        @if (session()->has('farmers-registered'))
                             <div class="alert alert-success alert-dismissible fade show mt-4">
-                                <strong>Success!</strong> {{ session('farmer-added') }}.
+                                <strong>Success!</strong> {{ session('farmers-registered') }}.
                             </div>
                         @endif
                     </div>
@@ -321,7 +321,7 @@
                                             <div class="row physical_asset-default-row" >
                                                 <div class="mb-8 col-md-8">
                                                     <label class="form-label">Items</label>
-                                                    <select name="physical_asset_item[]"  id="physical_asset_item" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
+                                                    <select name="physical_asset_item[]"  id="physical_asset_item"  class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
                                                         <option value="car/jeep" @if(is_array($data->physical_asset_item)) {{ in_array('car/jeep', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Car/Jeep</option>
                                                         <option value="pickup/loader" @if(is_array($data->physical_asset_item)) {{ in_array('pickup/loader', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Pickup/loader</option>
                                                         <option value="motorcycle" @if(is_array($data->physical_asset_item)) {{ in_array('motorcycle', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Motorcycle</option>

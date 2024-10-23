@@ -6,18 +6,55 @@ use App\Models\LandRevenueDepartment;
 use Illuminate\Http\Request;
 use App\Models\LandRevenueFarmerRegistation;
 use App\Models\User;
+use App\Models\Tehsil;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use function PHPUnit\Framework\returnSelf;
 
 class FieldOfficerPanelController extends Controller
 {
     public function index(){
-        $user = User::find(Auth::id());
-
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->whereIn('tehsil',json_decode($user->tehsil))->get();
-
+        // $user = User::find(Auth::id());
+        $farmers = LandRevenueFarmerRegistation::where('admin_or_user_id' , Auth::user()->id)->get();
         return view('field_officer_panel.farmers.index',['farmers'=>$farmers]);
+    }
 
+
+    public function farmers_reporting(request $request){
+
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $district = Auth::user()->district;
+            $tehsils = Tehsil::where('district', $district)->get();
+            $tehsil = json_decode(Auth::user()->tehsil);
+
+            return view('field_officer_panel.farmers_reporting.index', [
+                'district' => $district,
+                'tehsil' => $tehsil,
+            ]);
+        }
+    }
+    public function view_farmers_reporting(request $request)
+    {
+
+        $start_date = Carbon::parse($request->start_date)->startOfDay();
+        $end_date = Carbon::parse($request->end_date)->endOfDay();
+        $district = $request->input('district');
+        $tehsilArray = $request->input('tehsil'); // Default to an empty array if no tehsils are provided
+        $minAcre = intval($request->input('min_acre'));
+        $maxAcre = intval($request->input('max_acre'));
+
+        $registrations = LandRevenueFarmerRegistation::where('district', $district)
+            ->where('admin_or_user_id' , Auth::user()->id)
+            ->where('tehsil', $tehsilArray)
+            ->where('total_landing_acre', '>=', $minAcre)
+            ->where('total_landing_acre', '<=', $maxAcre)
+            ->whereBetween('created_at', [$start_date, $end_date]);
+
+        $data = $registrations->paginate(10);
+
+// dd($data);
+        return view('field_officer_panel.farmers_reporting.view',['data' => $data]);
     }
 
 

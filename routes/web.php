@@ -204,8 +204,10 @@ Route::get('/farmers-list-by-field-officer',[FieldOfficerPanelController::class,
 Route::get('/farmer-view-by-field-officer/{id}',[FieldOfficerPanelController::class,'view'])->name('farmer-view-by-field-officer');
 Route::get('/farmer-edit-by-field-officer/{id}',[FieldOfficerPanelController::class,'edit'])->name('farmer-edit-by-field-officer');
 Route::get('/farmer-create-by-field-officer',[FieldOfficerPanelController::class,'create'])->name('farmer-create-by-field-officer');
-
 Route::post('/farmer-store-by-field-officer',[FieldOfficerPanelController::class,'store'])->name('farmer-store-by-field-officer');
+
+Route::get('/reporting-farmers-by-field-officer', [FieldOfficerPanelController::class, 'farmers_reporting'])->name('reporting-farmers-by-field-officer');
+Route::post('/view/reporting-farmers-by-field-officer', [FieldOfficerPanelController::class, 'view_farmers_reporting'])->name('view.reporting-farmers-by-field-officer');
 
 
 

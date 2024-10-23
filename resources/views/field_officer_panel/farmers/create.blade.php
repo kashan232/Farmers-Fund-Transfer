@@ -84,9 +84,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Registration</h5>
-                        @if (session()->has('farmer-added'))
+                        @if (session()->has('farmers-registered'))
                             <div class="alert alert-success alert-dismissible fade show mt-4">
-                                <strong>Success!</strong> {{ session('farmer-added') }}.
+                                <strong>Success!</strong> {{ session('farmers-registered') }}.
                             </div>
                         @endif
                     </div>
@@ -135,7 +135,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Tehsil</label>
-                                            <select name="tehsil" id="tehsil" class="form-control">
+                                            <select name="tehsil" id="tehsil" class="form-control" required>
                                                 <option value="">Select Tehsil</option>
                                                 @foreach(json_decode($tehsils) as $tehsil)
                                                     <option value="{{ $tehsil }}" > {{ $tehsil }} </option>
@@ -301,7 +301,7 @@
                                             <div class="row physical_asset-default-row" >
                                                 <div class="mb-8 col-md-8">
                                                     <label class="form-label">Items</label>
-                                                    <select name="physical_asset_item[]"  id="physical_asset_item" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
+                                                    <select name="physical_asset_item[]"  id="physical_asset_item"  class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
                                                         <option value="car/jeep" >Car/Jeep</option>
                                                         <option value="pickup/loader" >Pickup/loader</option>
                                                         <option value="motorcycle" >Motorcycle</option>
