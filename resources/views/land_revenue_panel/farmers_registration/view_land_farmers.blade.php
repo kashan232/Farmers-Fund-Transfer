@@ -139,7 +139,7 @@
                                 <td colspan="4">{{json_decode($data->crop_average_yeild)[$index]}}</td>
                             </tr>
                             @endforeach
-
+                            @if (is_array(json_decode($data->physical_asset_item)))
                             <tr>
                                 <th colspan="6">Physical Assets Currently Owned</th>
                             </tr>
@@ -150,7 +150,7 @@
                                     @endforeach
                                 </td>
                             </tr>
-
+@endif
                             <tr>
                                 <th colspan="6">Livestock and Poultry Assets Currently Owned</th>
                             </tr>

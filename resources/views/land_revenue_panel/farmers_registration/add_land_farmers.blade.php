@@ -444,36 +444,43 @@
                                 </div>
 
                                 <div class="step step-5" style="display: none;">
-                                    <div class="row mt-2">
-                                        <h4 class="card-title">Uploaded Documents</h4>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Front ID Card Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="front_id_card" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Back ID Card Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="back_id_card" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Land Proof Pic Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="upload_land_proof" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Other Attachments Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="upload_other_attach" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Farmer Picture Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="upload_farmer_pic" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="upload_cheque_pic" class="form-control" >
-                                        </div>
-                                    </div>
-                                    <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
-                                    <button type="submit" class="btn btn-success mt-5">Submit</button>
-                                </div>
+    <div class="row mt-2">
+        <h4 class="card-title">Uploaded Documents</h4>
+        <div class="mb-6 col-md-6 mt-3">
+            <label class="form-label">Upload Front ID Card Img "jpg/png/jpeg"</label>
+            <input type="file" name="front_id_card" class="form-control file-input " accept=".jpg,.jpeg,.png" >
+            <small class="error-message" class="text-danger"></small>
+        </div>
+        <div class="mb-6 col-md-6 mt-3">
+            <label class="form-label">Upload Back ID Card Img "jpg/png/jpeg"</label>
+            <input type="file" name="back_id_card" class="form-control file-input">
+            <small class="error-message" class="text-danger"></small>
+        </div>
+        <div class="mb-6 col-md-6 mt-3">
+            <label class="form-label">Upload Land Proof Pic Img "jpg/png/jpeg"</label>
+            <input type="file" name="upload_land_proof" class="form-control file-input">
+            <small class="error-message" class="text-danger"></small>
+        </div>
+        <div class="mb-6 col-md-6 mt-3">
+            <label class="form-label">Upload Other Attachments Img "jpg/png/jpeg"</label>
+            <input type="file" name="upload_other_attach" class="form-control file-input">
+            <small class="error-message" class="text-danger"></small>
+        </div>
+        <div class="mb-6 col-md-6 mt-3">
+            <label class="form-label">Upload Farmer Picture Img "jpg/png/jpeg"</label>
+            <input type="file" name="upload_farmer_pic" class="form-control file-input">
+            <small class="error-message" class="text-danger"></small>
+        </div>
+        <div class="mb-6 col-md-6 mt-3">
+            <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label>
+            <input type="file" name="upload_cheque_pic" class="form-control file-input" >
+            <small class="error-message" class="text-danger"></small>
+        </div>
+    </div>
+    <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
+    <button type="submit" class="btn btn-success mt-5">Submit</button>
+</div>
+
                             </form>
                         </div>
                     </div>
@@ -490,6 +497,36 @@
 
 @include('land_revenue_panel.include.footer_include')
 <script>
+
+$(document).ready(function() {
+        $('.file-input').on('change', function() {
+            validateFile($(this), 500); // Max size 500 KB
+        });
+    });
+    function validateFile(input, maxSizeKB) {
+        const file = input[0]?.files[0]; // Use optional chaining to avoid errors
+        const errorMessage = input.siblings('.error-message');
+
+        // Clear previous error messages
+        errorMessage.text('');
+
+        if (file) {
+            const fileSize = file.size / 1024; // Convert size to KB
+            const fileType = file.type;
+
+            if (fileSize > maxSizeKB) {
+                errorMessage.text(`File size must be less than ${maxSizeKB} KB.`);
+                input.val(''); // Clear the input
+            } else if (!['image/jpeg', 'image/png'].includes(fileType)) {
+                errorMessage.text('Invalid file type. Only jpg, jpeg, and png are allowed.');
+                input.val(''); // Clear the input
+            }
+        } else {
+            errorMessage.text('No file selected.');
+        }
+    }
+
+
 
 $('#registrationForm').submit(function(e) {
 e.preventDefault();
@@ -651,14 +688,22 @@ $('select[name="tehsil"]').on('change', function() {
         });
 
 
-    function nextStep(step) {
-        // Hide all steps
+   function nextStep(step) {
+
+        tehsil = $('#tehsil').val();
+        if((tehsil === '' || tehsil === null) && step !== 1)
+        {
+            alert('Tehsil Feild is Required..!');
+        }
+        else{
+            // Hide all steps
         document.querySelectorAll('.step').forEach(function(stepElement) {
-            stepElement.style.display = 'none';
+        stepElement.style.display = 'none';
         });
         // Show the current step
         document.querySelector('.step-' + step).style.display = 'block';
         updateProgressIndicator(step);
+        }
     }
 
     function prevStep(step) {
