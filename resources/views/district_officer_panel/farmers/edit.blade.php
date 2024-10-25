@@ -1,4 +1,4 @@
-@include('field_officer_panel.include.header_include')
+@include('district_officer_panel.include.header_include')
 <style>
     .progress-indicator {
         display: flex;
@@ -53,11 +53,11 @@
 </style>
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-    @include('field_officer_panel.include.sidebar_include')
+    @include('district_officer_panel.include.sidebar_include')
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-    @include('field_officer_panel.include.navbar_include')
+    @include('district_officer_panel.include.navbar_include')
 <!-- [ Header ] end -->
 
 
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
 
-                            <form id="registrationForm" action="{{ route('farmer-store-by-field-officer') }}" method="POST" enctype="multipart/form-data">
+                            <form id="registrationForm" action="{{ route('store-land-farmers') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" value="{{ $data->id }}" name="edit_id">
                                 <div class="step step-1">
@@ -210,20 +210,20 @@
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Children < 16 </h6>
-                                                <input type="text" name="female_children_under16" value="{{$data->female_children_under16}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                <input type="text" name="female_children_under16" value="{{$data->female_children_under16}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Adults > 16 </h6>
-                                                <input type="text" name="female_Adults_above16" value="{{$data->female_Adults_above16}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                <input type="text" name="female_Adults_above16" value="{{$data->female_Adults_above16}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
                                                 <input type="text" value="Male" readonly class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" name="male_children_under16" value="{{$data->male_children_under16}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                <input type="text" name="male_children_under16" value="{{$data->male_children_under16}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)" class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" name="male_Adults_above16" value="{{$data->male_Adults_above16}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                <input type="text" name="male_Adults_above16" value="{{$data->male_Adults_above16}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)" class="form-control">
                                             </div>
                                         </div>
 
@@ -267,8 +267,8 @@
                                                         @foreach (json_decode($data->title_name) as $index => $title_name)
                                                         <tr>
                                                             <td><input type="text" name="title_name[]" value="{{$title_name}}" class="form-control"></td>
-                                                            <td><input type="text" name="title_cnic[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
-                                                            <td><input type="text" name="title_number[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
+                                                            <td><input type="text" name="title_cnic[]" value="{{json_decode($data->title_cnic)[$index]}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" class="form-control"></td>
+                                                            <td><input type="text" name="title_number[]" value="{{json_decode($data->title_number)[$index]}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" class="form-control"></td>
                                                             <td><input type="text" name="title_area[]" value="{{json_decode($data->title_area)[$index]}}" class="form-control"></td>
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
@@ -321,22 +321,21 @@
                                             <div class="row physical_asset-default-row" >
                                                 <div class="mb-8 col-md-8">
                                                     <label class="form-label">Items</label>
-                                                    <select name="physical_asset_item[]"  id="physical_asset_item"  class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
-                                                        <option value="car/jeep" @if(is_array($data->physical_asset_item)) {{ in_array('car/jeep', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Car/Jeep</option>
-                                                        <option value="pickup/loader" @if(is_array($data->physical_asset_item)) {{ in_array('pickup/loader', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Pickup/loader</option>
-                                                        <option value="motorcycle" @if(is_array($data->physical_asset_item)) {{ in_array('motorcycle', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Motorcycle</option>
-                                                        <option value="bicycles" @if(is_array($data->physical_asset_item)) {{ in_array('bicycles', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Bicycles</option>
-                                                        <option value="bullock_cart" @if(is_array($data->physical_asset_item)) {{ in_array('bullock_cart', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Bullock Cart</option>
-                                                        <option value="Tractor(4wheels)" @if(is_array($data->physical_asset_item)) {{ in_array('Tractor(4wheels)', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Tractor (4 wheels)</option>
-                                                        <option value="disk_harrow" @if(is_array($data->physical_asset_item)) {{ in_array('disk_harrow', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Disk Harrow</option>
-                                                        <option value="cultivator" @if(is_array($data->physical_asset_item)) {{ in_array('cultivator', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Cultivator</option>
-                                                        <option value="tractor_trolley" @if(is_array($data->physical_asset_item)) {{ in_array('tractor_trolley', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Tractor Trolley</option>
-                                                        <option value="plough" @if(is_array($data->physical_asset_item)) {{ in_array('plough', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Plough (wood or metal)</option>
-                                                        <option value="thresher" @if(is_array($data->physical_asset_item)) {{ in_array('thresher', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Thresher</option>
-                                                        <option value="harvester" @if(is_array($data->physical_asset_item)) {{ in_array('harvester', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Harvester</option>
-                                                        <option value="rotavetor" @if(is_array($data->physical_asset_item)) {{ in_array('rotavetor', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Rotavetor</option>
-                                                        <option value="laser_lever" @if(is_array($data->physical_asset_item)) {{ in_array('laser_lever', json_decode($data->physical_asset_item)) ? 'selected' : '' }}  @endif>Laser lever</option>
-
+                                                    <select name="physical_asset_item[]"  id="physical_asset_item" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
+                                                        <option value="car/jeep" {{ in_array('car/jeep', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Car/Jeep</option>
+                                                        <option value="pickup/loader" {{ in_array('pickup/loader', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Pickup/loader</option>
+                                                        <option value="motorcycle" {{ in_array('motorcycle', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Motorcycle</option>
+                                                        <option value="bicycles" {{ in_array('bicycles', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Bicycles</option>
+                                                        <option value="bullock_cart" {{ in_array('bullock_cart', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Bullock Cart</option>
+                                                        <option value="Tractor(4wheels)" {{ in_array('Tractor(4wheels)', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Tractor (4 wheels)</option>
+                                                        <option value="disk_harrow" {{ in_array('disk_harrow', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Disk Harrow</option>
+                                                        <option value="cultivator" {{ in_array('cultivator', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Cultivator</option>
+                                                        <option value="tractor_trolley" {{ in_array('tractor_trolley', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Tractor Trolley</option>
+                                                        <option value="plough" {{ in_array('plough', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Plough (wood or metal)</option>
+                                                        <option value="thresher" {{ in_array('thresher', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Thresher</option>
+                                                        <option value="harvester" {{ in_array('harvester', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Harvester</option>
+                                                        <option value="rotavetor" {{ in_array('rotavetor', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Rotavetor</option>
+                                                        <option value="laser_lever" {{ in_array('laser_lever', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Laser lever</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -400,7 +399,7 @@
                                         <div class="row" id="status_of_water_section">
                                             <div class="mb-3 col-md-3" >
                                                 <label class="form-label">Area length</label>
-                                                <input type="text" name="area_length"  value="{{$data->area_length}}" class="form-control">
+                                                <input type="text" name="area_length" value="{{$data->area_length}}" class="form-control">
                                             </div>
                                             <div class="mb-3 col-md-3" >
                                                 <label class="form-label">Area length</label>
@@ -440,7 +439,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Account No</label>
-                                            <input type="text" value="{{$data->account_no}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)" name="account_no" class="form-control">
+                                            <input type="text" value="{{$data->account_no}}" name="account_no" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Name</label>
@@ -452,11 +451,11 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">IBAN</label>
-                                            <input type="text" value="{{$data->IBAN_number}}" name="IBAN_number" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
+                                            <input type="text" value="{{$data->IBAN_number}}" name="IBAN_number" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Code</label>
-                                            <input type="text" value="{{$data->branch_code}}" name="branch_code" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                                            <input type="text" value="{{$data->branch_code}}" name="branch_code" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)" class="form-control">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
@@ -505,18 +504,18 @@
 </div>
 <!-- [ Main Content ] end -->
 <footer class="pc-footer">
-    @include('field_officer_panel.include.footer_copyright_include')
+    @include('district_officer_panel.include.footer_copyright_include')
 </footer>
 
-@include('field_officer_panel.include.footer_include')
+@include('district_officer_panel.include.footer_include')
 <script>
 
     $('#add_title_row_Btn').click(function() {
         const newRow = `
             <tr>
                 <td><input type="text" name="title_name[]" class="form-control"></td>
-                <td><input type="text" name="title_cnic[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" class="form-control"></td>
-                <td><input type="text" name="title_number[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" class="form-control"></td>
+                <td><input type="text" name="title_cnic[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
+                <td><input type="text" name="title_number[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)"></td>
                 <td><input type="text" name="title_area[]" class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
@@ -551,7 +550,7 @@
         const newRow = `
             <tr>
                 <td><input type="text" name="animal_name[]" class="form-control"></td>
-                <td><input type="text" name="animal_qty[]"  class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)"></td>
+                <td><input type="text" name="animal_qty[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)" class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;
@@ -614,7 +613,6 @@ $('#lined_unlined').change(function() {
 
 
 $('select[name="tehsil"]').on('change', function() {
-
             var district = $('input[name="district"]').val();
 
             var tehsil = [$(this).val()];

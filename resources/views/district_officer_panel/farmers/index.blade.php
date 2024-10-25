@@ -44,7 +44,7 @@
                                                         <th>UC</th>
                                                         <th>Tappa</th>
                                                         <th>Village</th>
-                                                        {{-- <th>Status</th> --}}
+                                                        <th>Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -58,6 +58,7 @@
                                                         <td>{{ $farmers->uc }}</td>
                                                         <td>{{ $farmers->tappa }}</td>
                                                         <td>{{ $farmers->village }}</td>
+                                                        <td><a class="btn btn-primary" href="{{route('do-edit-farmer',$farmers->id)}}">Edit</a></td>
                                                         {{-- <td>
                                                             @if ($farmers->verification_status == 1)
                                                             <span class="badge text-bg-success">Submitted to Land Officer</span>

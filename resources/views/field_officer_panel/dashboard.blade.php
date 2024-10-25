@@ -45,7 +45,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">All Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $districtCount }}</h3>
+                                                <h3 class="card-text text-amount">{{ \App\Models\LandRevenueFarmerRegistation::where('admin_or_user_id' , Auth::user()->id)->count() }}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">

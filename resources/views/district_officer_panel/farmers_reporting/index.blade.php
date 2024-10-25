@@ -1,13 +1,13 @@
-@include('field_officer_panel.include.header_include')
+@include('district_officer_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-@include('field_officer_panel.include.sidebar_include')
+    @include('district_officer_panel.include.sidebar_include')
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-@include('field_officer_panel.include.navbar_include')
+    @include('district_officer_panel.include.navbar_include')
 
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 
     <style>
@@ -35,7 +35,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-12">
                             <div class="page-header-title">
-                                <h2 class="mb-0">Reporting</h2>
+                                <h2 class="mb-0">Create Report</h2>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                             @endif
                             <div class="row">
                                 <div class="col-md-12">
-                                    <form action="{{ route('view.reporting-farmers-by-field-officer') }}" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('view.reporting-farmers-by-do') }}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="row">
 
@@ -73,10 +73,13 @@
                                              <div class="col-6 mt-2">
                                                 <div class="mb-12 col-md-12">
                                                     <label class="form-label" style="font-weight: 600;">Select Tehsil</label>
-                                                        <input class="form-control" type="text" readonly value="{{ $tehsil[0] }}" name="tehsil">
+                                                    <select name="tehsil[]" id="tehsil" class="form-control js-example-basic-multiple" multiple="multiple">
+                                                        @foreach ($tehsils as $tehsil)
+                                                        <option value="{{ $tehsil->tehsil }}">{{ $tehsil->tehsil }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
-
                                         </div>
 
                                         <div class="row mt-2">
@@ -131,10 +134,10 @@
     </div>
     <!-- [ Main Content ] end -->
     <footer class="pc-footer">
-        @include('field_officer_panel.include.footer_copyright_include')
+        @include('district_officer_panel.include.footer_copyright_include')
   </footer>
 
-    @include('field_officer_panel.include.footer_include')
+    @include('district_officer_panel.include.footer_include')
 
 
     <script>

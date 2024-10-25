@@ -34,6 +34,15 @@
                     </a>
                 </li>
 
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('reporting-farmers-by-field-officer') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span class="pc-mtext">Reporting</span>
+                    </a>
+                </li>
+
 
                 {{--
                 <li class="pc-item pc-hasmenu">
