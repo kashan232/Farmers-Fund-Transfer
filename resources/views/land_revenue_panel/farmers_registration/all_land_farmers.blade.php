@@ -7,6 +7,8 @@
 <!-- [ Header Topbar ] start -->
     @include('land_revenue_panel.include.navbar_include')
 <!-- [ Header ] end -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 
 
 
@@ -36,7 +38,7 @@
                                 <div class="row mt-2 justify-content-md-center">
                                     <div class="col-12">
                                         <div class="table-responsive">
-                                            <table id="example" class="display" style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
+                                            <table id="example"  style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
                                                     <tr>
                                                         <th>Sno</th>
@@ -96,7 +98,34 @@
 </footer>
 
 @include('land_revenue_panel.include.footer_include')
-
 </body>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
 
+<script>
+    $(document).ready(function() {
+        $('#reports-table').DataTable({
+            "pageLength": 100, // Default number of rows per page
+            "dom": 'Bfrtip', // Only include the filter (search box), table, and pagination
+            "processing": true, // Optional: for large datasets
+            "deferRender": true, // Improves performance by rendering rows only when needed
+            "order": [
+                [0, 'asc']
+            ], // Default ordering of the first column (optional)
+            "buttons": [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ],
+            "language": {
+                "search": "Search:" // Customize the search box label (optional)
+            }
+        });
+    });
+</script>
 </html>

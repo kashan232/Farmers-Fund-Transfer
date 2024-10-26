@@ -40,6 +40,10 @@ class LandRevenueFarmerController extends Controller
                 $data['land_emp_id'] = Auth()->user()->user_id;
                 $data['land_emp_name'] = Auth()->user()->name;
 
+
+
+
+
                 $data['title_name'] = json_encode($request->title_name);
                 $data['title_cnic'] = json_encode($request->title_cnic);
                 $data['title_number'] = json_encode($request->title_number);
@@ -112,6 +116,9 @@ class LandRevenueFarmerController extends Controller
                 $data['admin_or_user_id'] = Auth::id();
                 $data['land_emp_id'] = Auth()->user()->user_id;
                 $data['land_emp_name'] = Auth()->user()->name;
+
+
+
 
                 $data['title_name'] = json_encode($request->title_name);
                 $data['title_cnic'] = json_encode($request->title_cnic);
@@ -190,9 +197,7 @@ class LandRevenueFarmerController extends Controller
             $userId = Auth::id();
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
-
-
-            $all_land_farmers = LandRevenueFarmerRegistation::where('land_emp_id', '=', $user_id)->Orwhere('district', '=', Auth()->user()->district)->get();
+            $all_land_farmers = LandRevenueFarmerRegistation::where('land_emp_id', '=', $user_id)->where('user_type', '=', 'Land_Revenue_Officer')->where('district', '=', Auth()->user()->district)->get();
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
                 'all_land_farmers' => $all_land_farmers,
@@ -201,6 +206,43 @@ class LandRevenueFarmerController extends Controller
             return redirect()->back();
         }
     }
+
+
+    public function  field_farmers_list()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $user_id = Auth()->user()->user_id;
+            $user_name = Auth()->user()->name;
+            $all_land_farmers = LandRevenueFarmerRegistation::where('user_type', '=', 'Field_Officer')->where('district', '=', Auth()->user()->district)->get();
+            // dd($all_agriculture_farmers);
+            return view('land_revenue_panel.farmers_registration.all_land_farmers', [
+                'all_land_farmers' => $all_land_farmers,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+
+
+    public function  district_farmers_list()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $user_id = Auth()->user()->user_id;
+            $user_name = Auth()->user()->name;
+            $all_land_farmers = LandRevenueFarmerRegistation::where('user_type', '=', 'District_Officer')->where('district', '=', Auth()->user()->district)->get();
+            // dd($all_agriculture_farmers);
+            return view('land_revenue_panel.farmers_registration.all_land_farmers', [
+                'all_land_farmers' => $all_land_farmers,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+
 
     public function view_land_farmers($id)
     {

@@ -271,6 +271,27 @@
                                             </select>
                                         </div>
                                     </div>
+
+
+                                    <div class="row">
+                                        <div class=" col-md-12">
+                                            <h6 class="card-title">Next of Kin</h6>
+                                        </div>
+                                        <div class="mb-4 col-md-4 ">
+                                            <label class="form-label">Full Name</label>
+                                            <input type="text" name="full_name_of_next_kin"   class="form-control">
+                                        </div>
+                                        <div class="mb-4 col-md-4 ">
+                                            <label class="form-label">CNIC</label>
+                                            <input type="text" name="cnic_of_next_kin" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" >
+                                        </div>
+                                        <div class="mb-4 col-md-4 ">
+                                            <label class="form-label">Mobile No</label>
+                                            <input type="text" name="mobile_of_next_kin" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" >
+                                        </div>
+                                    </div>
+
+
                                     <div class="row">
                                         <div class=" col-md-12">
                                             <h6 class="card-title">Family Compostion</h6>

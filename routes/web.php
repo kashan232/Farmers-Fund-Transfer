@@ -74,7 +74,12 @@ Route::get('/get-district-officers', function () {
 Route::get('/online-login-form', [OnlineFormController::class, 'index'])->middleware(['guest'])->name('online-login-form');
 Route::post('/online-login', [OnlineFormController::class, 'authenticate'])->name('online-login');
 Route::get('/online-dashboard-logout', [OnlineFormController::class, 'logout'])->name('online-dashboard-logout');
-Route::get('/home', [HomeController::class, 'home'])->middleware(['auth'])->name('home');
+Route::get('/home', [HomeController::class, 'home'])->name('home');
+
+Route::get('/farmers/registrations', function(){
+    return view('online_registration_farmer');
+});
+
 
 
 Route::post('/store-online-farmers-registration', [OnlineFormController::class, 'store_online_farmers_registration'])->name('store-online-farmers-registration');
@@ -221,6 +226,9 @@ Route::get('/all-caller-user', [CallerUserController::class, 'all_caller_user'])
 Route::get('/caller-user-edit/{id}', [CallerUserController::class, 'edit_caller_user'])->middleware(['auth', 'admin'])->name('caller-user-edit');
 
 
+Route::get('/field-officer-farmers-list-by-land-officer', [LandRevenueFarmerController::class, 'field_farmers_list'])->name('field-officer-farmers-list-by-land-officer');
+Route::get('/district-officer-farmers-list-by-land-officer', [LandRevenueFarmerController::class, 'district_farmers_list'])->name('district-officer-farmers-list-by-land-officer');
+Route::get('/self-officer-farmers-list-by-land-officer', [LandRevenueFarmerController::class, 'self_farmers_list'])->name('self-officer-farmers-list-by-land-officer');
 
 
 //Land Revenue Department verify agriculture farmers

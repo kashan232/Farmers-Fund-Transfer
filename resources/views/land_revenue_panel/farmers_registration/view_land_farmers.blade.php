@@ -94,6 +94,21 @@
                                 <td colspan="4">{{ $data->male_Adults_above16 }}</td>
                             </tr>
                             <tr>
+                                <th colspan="6">Next of kin</th>
+                            </tr>
+                            <tr>
+                                <th>Fullname</th>
+                                <th>CNIC</th>
+                                <th colspan="4">Mobile</th>
+                            </tr>
+                            <tr>
+                                <td>{{ $data->full_name_of_next_kin ?? '-'}}</td>
+                                <td>{{ $data->cnic_of_next_kin ?? '-' }}</td>
+                                <td colspan="4">{{ $data->mobile_of_next_kin ?? '-' }}</td>
+                            </tr>
+
+
+                            <tr>
                                 <th colspan="6">LANDHOLDING & CROPPING</th>
                             </tr>
                             <tr>
@@ -114,6 +129,7 @@
                                 <th>Contact Number</th>
                                 <th colspan="3">Total Area (Acre)</th>
                             </tr>
+                            @if(is_array($data->title_name))
                             @foreach (json_decode($data->title_name) as $index => $title_names)
                             <tr>
                                 <td>{{$title_names}}</td>
@@ -122,6 +138,7 @@
                                 <td colspan="3">{{json_decode($data->title_area)[$index]}}</td>
                             </tr>
                             @endforeach
+                            @endif
 
 
                             <tr>
@@ -132,6 +149,7 @@
                                 <th>Area</th>
                                 <th colspan="4">Average yield</th>
                             </tr>
+                            @if(is_array($data->crops))
                             @foreach (json_decode($data->crops) as $index => $crops)
                             <tr>
                                 <td>{{$crops}}</td>
@@ -139,15 +157,18 @@
                                 <td colspan="4">{{json_decode($data->crop_average_yeild)[$index]}}</td>
                             </tr>
                             @endforeach
+                            @endif
 
                             <tr>
                                 <th colspan="6">Physical Assets Currently Owned</th>
                             </tr>
                             <tr>
                                 <td colspan="6">
+                                    @if(is_array($data->physical_asset_item))
                                     @foreach (json_decode($data->physical_asset_item) as $physical_asset_item)
                                     <span class="badge text-bg-dark">{{$physical_asset_item}}</span>
                                     @endforeach
+                                    @endif
                                 </td>
                             </tr>
 
@@ -158,12 +179,14 @@
                                 <th>Animal Name</th>
                                 <th colspan="6">Numbers</th>
                             </tr>
+                            @if(is_array($data->animal_name))
                             @foreach (json_decode($data->animal_name) as $index => $animal_name)
                             <tr>
                                 <td>{{$animal_name}}</td>
                                 <td colspan="6">{{json_decode($data->animal_qty)[$index]}}</td>
                             </tr>
                             @endforeach
+                            @endif
                             <tr>
                                 <th>Source of irrigation</th>
                                 <th colspan="6">If Tube Wall</th>
