@@ -151,7 +151,7 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="{{route('upload.excel.index')}}" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-upload"></i>
                         </span>
                         <span class="pc-mtext">Upload Excel Farmer</span>
                     </a>

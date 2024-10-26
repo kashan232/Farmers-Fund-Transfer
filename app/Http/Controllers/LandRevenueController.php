@@ -180,6 +180,7 @@ class LandRevenueController extends Controller
             $userId = Auth::id();
             // dd($userId);
             $all_revenue = LandRevenueDepartment::where('admin_or_user_id', '=', $userId)->get();
+            // dd($all_revenue);
             return view('admin_panel.Land_revenue_department.all_revenue_officer', [
                 'all_revenue' => $all_revenue,
             ]);

@@ -87,8 +87,8 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <p class="card-title text-title">Tappa</p>
-                                                    <h3 class="card-text text-amount">250</h3>
+                                                    <p class="card-title text-title">Tappa / UC</p>
+                                                    <h3 class="card-text text-amount">250 / 500</h3>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon-shape green-icon-bg">
@@ -100,18 +100,19 @@
                                     </div>
                                 </a>
                             </div>
+
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <a href="{{ route('all-uc') }}">
+                                <a href="{{ route('all-revenue-officer') }}">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <p class="card-title text-title">UC</p>
-                                                    <h3 class="card-text text-amount">500</h3>
+                                                    <p class="card-title text-title">Land Officer</p>
+                                                    <h3 class="card-text text-amount">{{ $LandRevenueDepartment }}</h3>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon-shape green-icon-bg">
-                                                        <i class="fas fa-warehouse" aria-hidden="true"></i>
+                                                        <i class="fas fa-user-tie" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,13 +120,14 @@
                                     </div>
                                 </a>
                             </div>
+
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <a href="{{ route('all-user') }}">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <p class="card-title text-title">Agriculture User</p>
+                                                    <p class="card-title text-title">District Officer</p>
                                                     <h3 class="card-text text-amount">20</h3>
                                                 </div>
                                                 <div class="col-auto">
@@ -144,7 +146,7 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <p class="card-title text-title">Agriculture Officer</p>
+                                                    <p class="card-title text-title">Field Officer</p>
                                                     <h3 class="card-text text-amount">{{ $AgricultureOfficer }}</h3>
                                                 </div>
                                                 <div class="col-auto">
@@ -157,70 +159,37 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <a href="{{ route('all-revenue-officer') }}">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <p class="card-title text-title">Land Revenue</p>
-                                                    <h3 class="card-text text-amount">{{ $LandRevenueDepartment }}</h3>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="icon-shape green-icon-bg">
-                                                        <i class="fas fa-user-tie" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                            
                            
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <a href="{{ route('veirfyfarmers') }}">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <p class="card-title text-title">Verified Farmers</p>
-                                                    <h3 class="card-text text-amount">{{ $TotalVerifiedfarmers }}</h3>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="icon-shape green-icon-bg">
-                                                        <i class="fas fa-user-check" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <a href="{{ route('unvieryfarmers') }}">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <p class="card-title text-title">UnVerified Farmers</p>
-                                                    <h3 class="card-text text-amount">{{ $TotalUnverifiedfarmer }}</h3>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="icon-shape green-icon-bg">
-                                                        <i class="fas fa-user-times" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <div id="chart" class="chart"></div>
+                <!-- <div id="chart" class="chart"></div> -->
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="box--sec">
+                    <div class="top-heading">
+                        <div>
+                            <p> District Wise Details Of Farmers</p>
+                        </div>
+                    </div>
+                <div id="horizontalBarFarmersChart" class="chart"></div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="box--sec">
+                    <div class="top-heading">
+                        <div>
+                            <p> District Wise Land Claim Of Farmers</p>
+                        </div>
+                    </div>
+                <div id="landClaimChart" class="chart"></div>
+                </div>
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -711,233 +680,136 @@
         });
     </script>
 
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var options = {
-                chart: {
-                    type: 'bar',
-                    height: 450,
-                    stacked: true,
-                    toolbar: {
-                        show: false
-                    },
-                    animations: {
-                        enabled: true,
-                        easing: 'easeinout',
-                        speed: 800,
-                        animateGradually: {
-                            enabled: true,
-                            delay: 150
-                        }
-                    }
-                },
-                series: [{
-                    name: 'Draft',
-                    data: [10, 20, 15, 25]
-                }, {
-                    name: 'Unverified',
-                    data: [5, 10, 7, 12]
-                }, {
-                    name: 'Verified',
-                    data: [8, 12, 10, 14]
-                }, {
-                    name: 'Verification Requested',
-                    data: [4, 6, 5, 7]
-                }, {
-                    name: 'Approved by District Officer',
-                    data: [6, 8, 7, 9]
-                }, {
-                    name: 'Sent to Land Department',
-                    data: [3, 5, 4, 6]
-                }],
-                xaxis: {
-                    categories: ['Badin', 'Dadu', 'Ghotki', 'Hyderabad'],
-                    title: {
-                        text: 'Districts',
-                        style: {
-                            fontSize: '14px',
-                            fontWeight: 'bold',
-                            color: '#333'
-                        }
-                    }
-                },
-                yaxis: {
-                    title: {
-                        text: 'Number of Registrations',
-                        style: {
-                            fontSize: '14px',
-                            fontWeight: 'bold',
-                            color: '#333'
-                        }
-                    }
-                },
-                plotOptions: {
-                    bar: {
-                        horizontal: false
-                    }
-                },
-                dataLabels: {
-                    enabled: true,
-                    formatter: function(val) {
-                        return val;
-                    },
-                    style: {
-                        fontSize: '12px',
-                        colors: ["#304758"]
-                    }
-                },
-                colors: ['#00E396', '#FEB019', '#FF4560', '#775DD0', '#66DA26', '#546E7A'].map(color => lightenColor(color, 40)),
-                grid: {
-                    borderColor: '#e7e7e7',
-                    row: {
-                        colors: ['#f3f3f3', 'transparent'], // alternating row colors
-                        opacity: 0.5
-                    }
-                },
-                tooltip: {
-                    theme: 'dark',
-                    y: {
-                        formatter: function(val) {
-                            return val + " registrations";
-                        }
-                    }
-                },
-                title: {
-                    text: 'Farmer Registration Status   ',
-                    align: 'center',
-                    style: {
-                        fontSize: '20px',
-                        color: '#333'
-                    }
-                }
-            };
+<script>
+    var data = [
+        {"label":"Badin","value":39094},
+        {"label":"Dadu","value":20113},
+        {"label":"Ghotki","value":20820},
+        {"label":"Hyderabad","value":3064},
+        {"label":"Jacobabad","value":9928},
+        {"label":"Jamshoro","value":9327},
+        {"label":"Kashmore","value":6086},
+        {"label":"Khairpur","value":42161},
+        {"label":"Larkana","value":14672},
+        {"label":"Matiari","value":6934},
+        {"label":"Mirpur Khas","value":21591},
+        {"label":"Naushahro Feroze","value":23919},
+        {"label":"Shaheed Benazirabad","value":26911},
+        {"label":"Sanghar","value":37071},
+        {"label":"Shikarpur","value":12535},
+        {"label":"Sukkur","value":14312},
+        {"label":"Tando Muhammad Khan","value":2704},
+        {"label":"Tharparkar","value":1067},
+        {"label":"Thatta","value":3707},
+        {"label":"Sujawal","value":4692},
+        {"label":"Malir","value":267},
+        {"label":"Qambar Shahdadkot","value":0},
+        {"label":"Tando Allahyar","value":0},
+        {"label":"Umerkot","value":0},
+        {"label":"8 num","value":0}
+    ];
 
-            var chart = new ApexCharts(document.querySelector("#chart2"), options);
-            chart.render();
-
-            function lightenColor(color, percent) {
-                var num = parseInt(color.slice(1), 16),
-                    amt = Math.round(2.55 * percent),
-                    R = (num >> 16) + amt,
-                    G = (num >> 8 & 0x00FF) + amt,
-                    B = (num & 0x0000FF) + amt;
-                return '#' + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+    var options = {
+        series: [{
+            data: data.map(function (item) { return item.value })
+        }],
+        chart: {
+            type: 'bar',
+            height: 600
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 4,
+                horizontal: true
             }
-        });
-    </script> -->
-
-
-
-    <!-- <script>
-        var data = <?= json_encode($data) ?>;
-        var options = {
-            series: [{
-                data: data.map(function(item) {
-                    return item.value
-                }),
-            }],
-            chart: {
-                type: 'bar',
-                height: 300,
-
-            },
-            plotOptions: {
-                bar: {
-                    borderRadius: 4,
-                    horizontal: true,
-                    colors: {
-                        ranges: [{
-                            from: 0,
-                            to: Infinity,
-                            color: '#4ba064'
-                        }]
-                    }
-                }
-            },
-            xaxis: {
-                categories: data.map(function(item) {
-                    return item.label
-                }),
+        },
+        xaxis: {
+            categories: data.map(function (item) { return item.label })
+        },
+        dataLabels: {
+            enabled: true,
+            style: {
+                fontSize: '12px',
+                colors: ['#fff']
             }
-        };
+        },
+        colors: ['#3f8a5c']  // Same green color as in the image you shared
+    };
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-    </script> -->
+    var chart = new ApexCharts(document.querySelector("#horizontalBarFarmersChart"), options);
+    chart.render();
+</script>
 
-    <!-- <script>
-        var data = <?= json_encode($data2) ?>;
-        var options = {
-            series: [{
-                data: data.map(function(item) {
-                    return item.value
-                }),
-            }],
-            chart: {
-                type: 'bar',
-                height: 300,
 
-            },
-            plotOptions: {
-                bar: {
-                    borderRadius: 4,
-                    horizontal: true,
-                    colors: {
-                        ranges: [{
-                            from: 0,
-                            to: Infinity,
-                            color: '#4ba064'
-                        }]
-                    }
-                }
-            },
-            xaxis: {
-                categories: data.map(function(item) {
-                    return item.label
-                }),
+<script>
+    var landData = [
+        {"label":"Badin","value":50000},  // Example land claim in acres
+        {"label":"Dadu","value":35000},
+        {"label":"Ghotki","value":45000},
+        {"label":"Hyderabad","value":25000},
+        {"label":"Jacobabad","value":30000},
+        {"label":"Jamshoro","value":20000},
+        {"label":"Kashmore","value":40000},
+        {"label":"Khairpur","value":55000},
+        {"label":"Larkana","value":30000},
+        {"label":"Matiari","value":15000},
+        {"label":"Mirpur Khas","value":28000},
+        {"label":"Naushahro Feroze","value":35000},
+        {"label":"Shaheed Benazirabad","value":32000},
+        {"label":"Sanghar","value":47000},
+        {"label":"Shikarpur","value":24000},
+        {"label":"Sukkur","value":29000},
+        {"label":"Tando Muhammad Khan","value":18000},
+        {"label":"Tharparkar","value":10000},
+        {"label":"Thatta","value":22000},
+        {"label":"Sujawal","value":26000},
+        {"label":"Malir","value":5000},
+        {"label":"Qambar Shahdadkot","value":15000},
+        {"label":"Tando Allahyar","value":12000},
+        {"label":"Umerkot","value":14000},
+        {"label":"8 num","value":9000}
+    ];
+
+    var options = {
+        series: [{
+            data: landData.map(function (item) { return item.value })
+        }],
+        chart: {
+            type: 'bar',
+            height: 600
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 4,
+                horizontal: true
             }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart2"), options);
-        chart.render();
-    </script> -->
-
-    <!-- <script>
-        var data = <?= json_encode($data3) ?>;
-        var options = {
-            series: [{
-                data: data.map(function(item) {
-                    return item.value
-                }),
-            }],
-            chart: {
-                type: 'bar',
-                height: 300,
-
-            },
-            plotOptions: {
-                bar: {
-                    borderRadius: 4,
-                    horizontal: true,
-                    colors: {
-                        ranges: [{
-                            from: 0,
-                            to: Infinity,
-                            color: '#4ba064'
-                        }]
-                    }
-                }
-            },
-            xaxis: {
-                categories: data.map(function(item) {
-                    return item.label
-                }),
+        },
+        xaxis: {
+            categories: landData.map(function (item) { return item.label })
+        },
+        dataLabels: {
+            enabled: true,
+            style: {
+                fontSize: '12px',
+                colors: ['#000']
             }
-        };
+        },
+        colors: ['#40b66d'],  // Green color to represent land
+        title: {
+            text: 'District-wise Land Claim (in Acres)',
+            align: 'center',
+            margin: 10,
+            style: {
+                fontSize:  '18px',
+                fontWeight:  'bold',
+                color:  '#333'
+            }
+        }
+    };
 
-        var chart = new ApexCharts(document.querySelector("#chart3"), options);
-        chart.render();
-    </script> -->
+    var chart = new ApexCharts(document.querySelector("#landClaimChart"), options);
+    chart.render();
+</script>
 
     </body>
 

@@ -338,6 +338,7 @@
                                                 <div class="mb-8 col-md-8">
                                                     <label class="form-label">Items</label>
                                                     <select name="physical_asset_item[]"  id="physical_asset_item" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
+<<<<<<< HEAD
                                                         <option value="car/jeep" @if(is_array($data->physical_asset_item)) {{  in_array('car/jeep', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Car/Jeep</option>
                                                         <option value="pickup/loader" @if(is_array($data->physical_asset_item)) {{  in_array('pickup/loader', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Pickup/loader</option>
                                                         <option value="motorcycle" @if(is_array($data->physical_asset_item)) {{  in_array('motorcycle', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Motorcycle</option>
@@ -352,6 +353,22 @@
                                                         <option value="harvester" @if(is_array($data->physical_asset_item)) {{  in_array('harvester', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Harvester</option>
                                                         <option value="rotavetor" @if(is_array($data->physical_asset_item)) {{  in_array('rotavetor', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Rotavetor</option>
                                                         <option value="laser_lever" @if(is_array($data->physical_asset_item)) {{  in_array('laser_lever', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Laser lever</option>
+=======
+                                                        <option value="car/jeep" @if (is_array(json_decode($data->physical_asset_item))) {{ in_array('car/jeep', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif >Car/Jeep</option>
+                                                        <option value="pickup/loader" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('pickup/loader', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Pickup/loader</option>
+                                                        <option value="motorcycle" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('motorcycle', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Motorcycle</option>
+                                                        <option value="bicycles" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('bicycles', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Bicycles</option>
+                                                        <option value="bullock_cart" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('bullock_cart', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Bullock Cart</option>
+                                                        <option value="Tractor(4wheels)" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('Tractor(4wheels)', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Tractor (4 wheels)</option>
+                                                        <option value="disk_harrow" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('disk_harrow', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Disk Harrow</option>
+                                                        <option value="cultivator" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('cultivator', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Cultivator</option>
+                                                        <option value="tractor_trolley" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('tractor_trolley', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Tractor Trolley</option>
+                                                        <option value="plough" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('plough', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Plough (wood or metal)</option>
+                                                        <option value="thresher" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('thresher', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Thresher</option>
+                                                        <option value="harvester" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('harvester', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Harvester</option>
+                                                        <option value="rotavetor" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('rotavetor', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Rotavetor</option>
+                                                        <option value="laser_lever" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('laser_lever', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Laser lever</option>
+>>>>>>> f0ea8a38be31a20fa73a48f400360d234ccfaa8c
                                                     </select>
                                                 </div>
                                             </div>
@@ -479,36 +496,44 @@
                                 </div>
 
                                 <div class="step step-5" style="display: none;">
-                                    <div class="row mt-2">
-                                        <h4 class="card-title">Uploaded Documents</h4>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Front ID Card Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="front_id_card" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Back ID Card Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="back_id_card" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Land Proof Pic Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="upload_land_proof" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Other Attachments Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="upload_other_attach" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Farmer Picture Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="upload_farmer_pic" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="upload_cheque_pic" class="form-control">
-                                        </div>
-                                    </div>
-                                    <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
-                                    <button type="submit" class="btn btn-primary mt-5">Submit</button>
-                                </div>
+    <div class="row mt-2">
+        <h4 class="card-title">Uploaded Documents</h4>
+        <div class="mb-6 col-md-6 mt-3">
+            <label class="form-label">Upload Front ID Card Img "jpg/png/jpeg"</label>
+            <input type="file" name="front_id_card" class="form-control file-input " accept=".jpg,.jpeg,.png" >
+            <small class="error-message" class="text-danger"></small>
+        </div>
+        <div class="mb-6 col-md-6 mt-3">
+            <label class="form-label">Upload Back ID Card Img "jpg/png/jpeg"</label>
+            <input type="file" name="back_id_card" class="form-control file-input">
+            <small class="error-message" class="text-danger"></small>
+        </div>
+        <div class="mb-6 col-md-6 mt-3">
+            <label class="form-label">Upload Land Proof Pic Img "jpg/png/jpeg"</label>
+            <input type="file" name="upload_land_proof" class="form-control file-input">
+            <small class="error-message" class="text-danger"></small>
+        </div>
+        <div class="mb-6 col-md-6 mt-3">
+            <label class="form-label">Upload Other Attachments Img "jpg/png/jpeg"</label>
+            <input type="file" name="upload_other_attach" class="form-control file-input">
+            <small class="error-message" class="text-danger"></small>
+        </div>
+        <div class="mb-6 col-md-6 mt-3">
+            <label class="form-label">Upload Farmer Picture Img "jpg/png/jpeg"</label>
+            <input type="file" name="upload_farmer_pic" class="form-control file-input">
+            <small class="error-message" class="text-danger"></small>
+        </div>
+        <div class="mb-6 col-md-6 mt-3">
+            <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label>
+            <input type="file" name="upload_cheque_pic" class="form-control file-input" >
+            <small class="error-message" class="text-danger"></small>
+        </div>
+    </div>
+    <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
+    <button type="submit" class="btn btn-success mt-5">Submit</button>
+</div>
+
+
                             </form>
                         </div>
                     </div>
@@ -525,6 +550,36 @@
 
 @include('land_revenue_panel.include.footer_include')
 <script>
+
+
+$(document).ready(function() {
+        $('.file-input').on('change', function() {
+            validateFile($(this), 500); // Max size 500 KB
+        });
+    });
+
+    function validateFile(input, maxSizeKB) {
+        const file = input[0]?.files[0]; // Use optional chaining to avoid errors
+        const errorMessage = input.siblings('.error-message');
+
+        // Clear previous error messages
+        errorMessage.text('');
+
+        if (file) {
+            const fileSize = file.size / 1024; // Convert size to KB
+            const fileType = file.type;
+
+            if (fileSize > maxSizeKB) {
+                errorMessage.text(`File size must be less than ${maxSizeKB} KB.`);
+                input.val(''); // Clear the input
+            } else if (!['image/jpeg', 'image/png'].includes(fileType)) {
+                errorMessage.text('Invalid file type. Only jpg, jpeg, and png are allowed.');
+                input.val(''); // Clear the input
+            }
+        } else {
+            errorMessage.text('No file selected.');
+        }
+    }
 
     $('#add_title_row_Btn').click(function() {
         const newRow = `
@@ -668,15 +723,23 @@ $('select[name="tehsil"]').on('change', function() {
         });
 
 
-    function nextStep(step) {
-        // Hide all steps
-        document.querySelectorAll('.step').forEach(function(stepElement) {
-            stepElement.style.display = 'none';
-        });
-        // Show the current step
-        document.querySelector('.step-' + step).style.display = 'block';
-        updateProgressIndicator(step);
-    }
+        function nextStep(step) {
+
+tehsil = $('#tehsil').val();
+if((tehsil === '' || tehsil === null) && step !== 1)
+{
+    alert('Tehsil Feild is Required..!');
+}
+else{
+    // Hide all steps
+document.querySelectorAll('.step').forEach(function(stepElement) {
+stepElement.style.display = 'none';
+});
+// Show the current step
+document.querySelector('.step-' + step).style.display = 'block';
+updateProgressIndicator(step);
+}
+}
 
     function prevStep(step) {
         // Hide all steps

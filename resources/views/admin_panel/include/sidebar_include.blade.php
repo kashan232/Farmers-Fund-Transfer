@@ -67,24 +67,6 @@
                         <span class="pc-micon">
                             <i class="fas fa-user-tie"></i>
                         </span>
-                        <span class="pc-mtext">Field Officer</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('create-field-officer') }}">Create Field Officer</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-field-officers') }}">All Field Officers</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fas fa-user-tie"></i>
-                        </span>
                         <span class="pc-mtext">Land Revenue</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
@@ -97,7 +79,6 @@
                         </li>
                     </ul>
                 </li>
-
 
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
@@ -116,6 +97,29 @@
                         </li>
                     </ul>
                 </li>
+                
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-user-tie"></i>
+                        </span>
+                        <span class="pc-mtext">Field Officer</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('create-field-officer') }}">Create Field Officer</a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('all-field-officers') }}">All Field Officers</a>
+                        </li>
+                    </ul>
+                </li>
+
+               
+
+
+              
 
 
                 <!-- <li class="pc-item pc-hasmenu">
