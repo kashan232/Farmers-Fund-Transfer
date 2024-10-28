@@ -27,7 +27,7 @@
         $('.js-example-basic-multiple').select2();
     });
 </script>
-
+{{--
 <script>
     $(document).ready(function() {
         $('#example').DataTable( {
@@ -40,4 +40,4 @@
             ]
         });
     });
-</script>
+</script> --}}
