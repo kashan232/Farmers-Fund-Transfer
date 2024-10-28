@@ -11,7 +11,14 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 
 
+<style>
+    .table-responsive{
+        position: relative !important;
+        padding-top: 2% !important;
+    }
 
+
+</style>
 <!-- [ Main Content ] start -->
 <div class="pc-container">
     <div class="pc-content">
@@ -33,11 +40,12 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
+
                         <div class="dt-responsive">
                             <div id="dom-jqry_wrapper" class="dt-container dt-bootstrap5">
                                 <div class="row mt-2 justify-content-md-center">
                                     <div class="col-12">
-                                        <div class="table-responsive">
+                                        <div class="table-responsive" id="table-responsive">
                                             <table id="example"  style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
                                                     <tr>
@@ -50,8 +58,6 @@
                                                         <th>UC</th>
                                                         <th>Tappa</th>
                                                         <th>Village</th>
-                                                        {{-- <th>Status</th> --}}
-
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -81,6 +87,10 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <div style="float:right; margin-top:10px">
+                                            {{ $all_land_farmers->links() }}
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -108,9 +118,15 @@
 
 <script>
     $(document).ready(function() {
-        $('#reports-table').DataTable({
+
+
+
+
+
+
+       table =  $('#example').DataTable({
             "pageLength": 100, // Default number of rows per page
-            "dom": 'Bfrtip', // Only include the filter (search box), table, and pagination
+            "dom": 'frt', // Only include the filter (search box), table, and pagination
             "processing": true, // Optional: for large datasets
             "deferRender": true, // Improves performance by rendering rows only when needed
             "order": [
@@ -126,6 +142,29 @@
                 "search": "Search:" // Customize the search box label (optional)
             }
         });
+
+        // Attach the change event listener after the dropdown is created
+        $(document).on('change', '#tehsil', function(e) {
+                e.preventDefault();
+                var searchValue = $(this).val(); // Get value from the dropdown
+                // Perform exact match search on column 5
+                table.column(5).search('^' + searchValue + '$', true, false).draw();
+            });
+
+
+
+        $('#example_wrapper').before(`
+        <div class="col-3" style="position: absolute; top:1%" >
+            <select name="tehsil" id="tehsil" class="form-control">
+                <option value="">Please Select Tehsil</option>
+                @foreach ($tehsils as $tehsil)
+                    <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
+                @endforeach
+            </select>
+        </div>
+    `);
+
+
     });
 </script>
 </html>
