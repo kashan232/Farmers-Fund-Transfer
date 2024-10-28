@@ -667,35 +667,34 @@ $('select[name="tehsil"]').on('change', function() {
 
 
 
-        if(tehsil == '' || tehsil == null || mobile == null || mobile == '' || cnic == null || cnic == null){
+        if(tehsil == '' || tehsil == null || mobile == null || mobile == '' || cnic == null || cnic == ''){
 
+            if(tehsil == '' || tehsil == null){
+                msg  = 'Tehsil Field is Required..!';
+            }
+            if(mobile == '' || mobile == null){
+                msg  = 'Mobile Field is Required..!';
+            }
+            if(cnic == '' || cnic == null){
+                msg  = 'Cnic Field is Required..!';
+            }
 
-        if(tehsil == '' || tehsil == null){
-            msg  = 'Tehsil Field is Required..!';
-        }
-        if(mobile == '' || mobile == null){
-            msg  = 'Mobile Field is Required..!';
-        }
-        if(cnic == '' || cnic == null){
-            msg  = 'Cnic Field is Required..!';
-        }
+            if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '')){
+                msg  = 'Mobile Field is Required,\nTehsil Field is Required..!';
+            }
+            if((tehsil == '' || tehsil == null) && (cnic == null || cnic == '')){
+                msg  = 'Cnic Field is Required,\nTehsil Field is Required..!';
+            }
+            if((mobile == '' || mobile == null) && (cnic == null || cnic == '')){
+                msg  = 'Cnic Field is Required,\nMobile Field is Required..!';
+            }
 
-        if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '')){
-            msg  = 'Mobile Field is Required,\nTehsil Field is Required..!';
+            if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '') && (cnic == '' || cnic == null) )
+            {
+                msg = 'CNIC Field is Required,\nMobile Field is Required,\nTehsil Field is Required..!';
+            }
+            alert(msg);
         }
-        if((tehsil == '' || tehsil == null) && (cnic == null || cnic == '')){
-            msg  = 'Cnic Field is Required,\nTehsil Field is Required..!';
-        }
-        if((mobile == '' || mobile == null) && (cnic == null || cnic == '')){
-            msg  = 'Cnic Field is Required,\nMobile Field is Required..!';
-        }
-
-        if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '') && (cnic == '' || cnic == null) )
-        {
-            msg = 'CNIC Field is Required,\nMobile Field is Required,\nTehsil Field is Required..!';
-        }
-        alert(msg);
-    }
         else{
         // Hide all steps
         document.querySelectorAll('.step').forEach(function(stepElement) {

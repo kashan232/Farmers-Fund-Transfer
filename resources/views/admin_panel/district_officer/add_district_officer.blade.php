@@ -164,6 +164,8 @@
             var district = $('select[name="district"]').val();
             var tehsil = $(this).val();
 
+
+
             if (district && tehsil) {
                 $.ajax({
                     url: '{{ route("get-ucs") }}',

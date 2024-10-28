@@ -122,19 +122,19 @@
                                             <input type="text" value="{{$data->father_name}}"  name="father_name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
-                                            <label class="form-label">CNIC</label>
-                                            <input type="text" value="{{$data->cnic}}" name="cnic" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                            <label class="form-label">CNIC <span class="text-danger">*</span></label>
+                                            <input type="text" value="{{$data->cnic}}" name="cnic" id="cnic" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
-                                            <label class="form-label">Mobile</label>
-                                            <input type="text" value="{{$data->mobile}}" name="mobile" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)">
+                                            <label class="form-label">Mobile <span class="text-danger">*</span></label>
+                                            <input type="text" value="{{$data->mobile}}" name="mobile" id="mobile" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)">
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Dictrict</label>
                                             <input type="text" name="district"  id="district" class="form-control" value="{{ $district }}" readonly>
                                         </div>
                                         <div class="mb-6 col-md-6">
-                                            <label class="form-label">Tehsil</label>
+                                            <label class="form-label">Tehsil <span class="text-danger">*</span></label>
                                             <select name="tehsil" id="tehsil" class="form-control">
                                                 @foreach(json_decode($tehsil) as $option)
                                                     <option value="{{ $option }}" {{ ($data->tehsil == $option) ? 'selected' : '' }}>
@@ -338,7 +338,6 @@
                                                 <div class="mb-8 col-md-8">
                                                     <label class="form-label">Items</label>
                                                     <select name="physical_asset_item[]"  id="physical_asset_item" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
-<<<<<<< HEAD
                                                         <option value="car/jeep" @if(is_array($data->physical_asset_item)) {{  in_array('car/jeep', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Car/Jeep</option>
                                                         <option value="pickup/loader" @if(is_array($data->physical_asset_item)) {{  in_array('pickup/loader', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Pickup/loader</option>
                                                         <option value="motorcycle" @if(is_array($data->physical_asset_item)) {{  in_array('motorcycle', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Motorcycle</option>
@@ -353,7 +352,6 @@
                                                         <option value="harvester" @if(is_array($data->physical_asset_item)) {{  in_array('harvester', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Harvester</option>
                                                         <option value="rotavetor" @if(is_array($data->physical_asset_item)) {{  in_array('rotavetor', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Rotavetor</option>
                                                         <option value="laser_lever" @if(is_array($data->physical_asset_item)) {{  in_array('laser_lever', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Laser lever</option>
-=======
                                                         <option value="car/jeep" @if (is_array(json_decode($data->physical_asset_item))) {{ in_array('car/jeep', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif >Car/Jeep</option>
                                                         <option value="pickup/loader" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('pickup/loader', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Pickup/loader</option>
                                                         <option value="motorcycle" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('motorcycle', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Motorcycle</option>
@@ -368,7 +366,6 @@
                                                         <option value="harvester" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('harvester', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Harvester</option>
                                                         <option value="rotavetor" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('rotavetor', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Rotavetor</option>
                                                         <option value="laser_lever" @if (is_array(json_decode($data->physical_asset_item))) {{  in_array('laser_lever', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Laser lever</option>
->>>>>>> f0ea8a38be31a20fa73a48f400360d234ccfaa8c
                                                     </select>
                                                 </div>
                                             </div>
@@ -499,32 +496,32 @@
     <div class="row mt-2">
         <h4 class="card-title">Uploaded Documents</h4>
         <div class="mb-6 col-md-6 mt-3">
-            <label class="form-label">Upload Front ID Card Img "jpg/png/jpeg"</label>
+            <label class="form-label">Upload Front ID Card Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
             <input type="file" name="front_id_card" class="form-control file-input " accept=".jpg,.jpeg,.png" >
             <small class="error-message" class="text-danger"></small>
         </div>
         <div class="mb-6 col-md-6 mt-3">
-            <label class="form-label">Upload Back ID Card Img "jpg/png/jpeg"</label>
+            <label class="form-label">Upload Back ID Card Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
             <input type="file" name="back_id_card" class="form-control file-input">
             <small class="error-message" class="text-danger"></small>
         </div>
         <div class="mb-6 col-md-6 mt-3">
-            <label class="form-label">Upload Land Proof Pic Img "jpg/png/jpeg"</label>
+            <label class="form-label">Upload Land Proof Pic Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
             <input type="file" name="upload_land_proof" class="form-control file-input">
             <small class="error-message" class="text-danger"></small>
         </div>
         <div class="mb-6 col-md-6 mt-3">
-            <label class="form-label">Upload Other Attachments Img "jpg/png/jpeg"</label>
+            <label class="form-label">Upload Other Attachments Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
             <input type="file" name="upload_other_attach" class="form-control file-input">
             <small class="error-message" class="text-danger"></small>
         </div>
         <div class="mb-6 col-md-6 mt-3">
-            <label class="form-label">Upload Farmer Picture Img "jpg/png/jpeg"</label>
+            <label class="form-label">Upload Farmer Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
             <input type="file" name="upload_farmer_pic" class="form-control file-input">
             <small class="error-message" class="text-danger"></small>
         </div>
         <div class="mb-6 col-md-6 mt-3">
-            <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label>
+            <label class="form-label">Upload Cheque Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
             <input type="file" name="upload_cheque_pic" class="form-control file-input" >
             <small class="error-message" class="text-danger"></small>
         </div>
@@ -725,20 +722,52 @@ $('select[name="tehsil"]').on('change', function() {
 
         function nextStep(step) {
 
-tehsil = $('#tehsil').val();
-if((tehsil === '' || tehsil === null) && step !== 1)
-{
-    alert('Tehsil Feild is Required..!');
-}
-else{
-    // Hide all steps
-document.querySelectorAll('.step').forEach(function(stepElement) {
-stepElement.style.display = 'none';
-});
-// Show the current step
-document.querySelector('.step-' + step).style.display = 'block';
-updateProgressIndicator(step);
-}
+
+
+        tehsil = $('#tehsil').val();
+        mobile = $('#mobile').val();
+        cnic = $('#cnic').val();
+
+
+
+        if(tehsil == '' || tehsil == null || mobile == null || mobile == '' || cnic == null || cnic == ''){
+
+
+        if(tehsil == '' || tehsil == null){
+            msg  = 'Tehsil Field is Required..!';
+        }
+        if(mobile == '' || mobile == null){
+            msg  = 'Mobile Field is Required..!';
+        }
+        if(cnic == '' || cnic == null){
+            msg  = 'Cnic Field is Required..!';
+        }
+
+        if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '')){
+            msg  = 'Mobile Field is Required,\nTehsil Field is Required..!';
+        }
+        if((tehsil == '' || tehsil == null) && (cnic == null || cnic == '')){
+            msg  = 'Cnic Field is Required,\nTehsil Field is Required..!';
+        }
+        if((mobile == '' || mobile == null) && (cnic == null || cnic == '')){
+            msg  = 'Cnic Field is Required,\nMobile Field is Required..!';
+        }
+
+        if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '') && (cnic == '' || cnic == null) )
+        {
+            msg = 'CNIC Field is Required,\nMobile Field is Required,\nTehsil Field is Required..!';
+        }
+        alert(msg);
+    }
+        else{
+        // Hide all steps
+        document.querySelectorAll('.step').forEach(function(stepElement) {
+        stepElement.style.display = 'none';
+        });
+        // Show the current step
+        document.querySelector('.step-' + step).style.display = 'block';
+        updateProgressIndicator(step);
+        }
 }
 
     function prevStep(step) {
@@ -766,7 +795,7 @@ updateProgressIndicator(step);
     }
 
     // Initialize the first step
-    nextStep(1);
+    // nextStep(1);
 </script>
 </body>
 
