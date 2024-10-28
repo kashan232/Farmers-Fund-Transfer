@@ -7,6 +7,15 @@
 <!-- [ Header Topbar ] start -->
 @include('district_officer_panel.include.navbar_include')
 <!-- [ Header ] end -->
+
+<style>
+    .table-responsive{
+        position: relative !important;
+        padding-top: 2% !important;
+    }
+
+
+</style>
 <!-- [ Main Content ] start -->
 <div class="pc-container">
     <div class="pc-content">
@@ -48,28 +57,25 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($farmers as $farmers)
+                                                    @foreach($farmers as $farmer)
                                                     <tr>
-                                                        <td>{{ $farmers->name }}</td>
-                                                        <td>{{ $farmers->cnic }}</td>
-                                                        <td>{{ $farmers->mobile }}</td>
-                                                        <td>{{ $farmers->district }}</td>
-                                                        <td>{{ $farmers->tehsil }}</td>
-                                                        <td>{{ $farmers->uc }}</td>
-                                                        <td>{{ $farmers->tappa }}</td>
-                                                        <td>{{ $farmers->village }}</td>
-                                                        <td><a class="btn btn-primary" href="{{route('do-edit-farmer',$farmers->id)}}">Edit</a></td>
-                                                        {{-- <td>
-                                                            @if ($farmers->verification_status == 1)
-                                                            <span class="badge text-bg-success">Submitted to Land Officer</span>
-                                                            @else
-                                                            <span class="badge text-bg-danger">Unverified</span>
-                                                            @endif
-                                                        </td> --}}
+                                                        <td>{{ $farmer->name }}</td>
+                                                        <td>{{ $farmer->cnic }}</td>
+                                                        <td>{{ $farmer->mobile }}</td>
+                                                        <td>{{ $farmer->district }}</td>
+                                                        <td>{{ $farmer->tehsil }}</td>
+                                                        <td>{{ $farmer->uc }}</td>
+                                                        <td>{{ $farmer->tappa }}</td>
+                                                        <td>{{ $farmer->village }}</td>
+                                                        <td><a class="btn btn-primary" href="{{route('do-edit-farmer',$farmer->id)}}">Edit</a></td>
+
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
+                                        </div>
+                                        <div style="float:right; margin-top:10px">
+                                            {{ $farmers->links() }}
                                         </div>
                                     </div>
                                 </div>
@@ -88,27 +94,59 @@
 </footer>
 
 @include('district_officer_panel.include.footer_include')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Event listener for opening the modal
-        var exampleModalLive = document.getElementById('exampleModalLive');
-        exampleModalLive.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget;
-            var farmerId = button.getAttribute('data-id');
-            var farmersIdInput = exampleModalLive.querySelector('#farmers_id');
-            farmersIdInput.value = farmerId;
-        });
 
-        // Event listener for changing the status
-        var statusSelect = document.getElementById('statusSelect');
-        statusSelect.addEventListener('change', function() {
-            var reasonBox = document.getElementById('reasonBox');
-            if (this.value === 0) {
-                reasonBox.style.display = 'block';
-            } else {
-                reasonBox.style.display = 'none';
+ <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+       table =  $('#example').DataTable({
+            "pageLength": 100, // Default number of rows per page
+            "dom": 'frt', // Only include the filter (search box), table, and pagination
+            "processing": true, // Optional: for large datasets
+            "deferRender": true, // Improves performance by rendering rows only when needed
+            "order": [
+                [0, 'asc']
+            ], // Default ordering of the first column (optional)
+            "buttons": [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ],
+            "language": {
+                "search": "Search:" // Customize the search box label (optional)
             }
         });
+
+        // Attach the change event listener after the dropdown is created
+        $(document).on('change', '#tehsil', function(e) {
+            e.preventDefault();
+            var searchValue = $(this).val();
+            if(searchValue !=  0){
+                table.column(5).search('^' + searchValue + '$', true, false).draw();
+            }
+            else{
+                table.column(5).search('').draw();
+            }
+        });
+
+        $('#example_wrapper').before(`
+            <div class="col-3" style="position: absolute; top:1%" >
+                <select name="tehsil" id="tehsil" class="form-control">
+                    <option value="0">Please Select Tehsil</option>
+                    @foreach ($tehsils as $tehsil)
+                        <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
+                    @endforeach
+                </select>
+            </div>
+        `);
+
     });
 </script>
 

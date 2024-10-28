@@ -100,7 +100,7 @@
                         <span class="pc-micon">
                             <i class="fas fa-home"></i>
                         </span>
-                        <span class="pc-mtext">Self Farmers List</span>
+                        <span class="pc-mtext">Online Farmers</span>
                     </a>
                 </li>
 

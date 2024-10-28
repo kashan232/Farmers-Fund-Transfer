@@ -184,8 +184,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         @if (session()->has('farmers-registered'))
-                        <div class="alert alert-success alert-dismissible fade show mt-4">
-                            <strong>Success!</strong> {{ session('farmers-registered') }}.
+                        <div class="alert alert-success alert-dismissible fade show mt-4" style="width: 95%; margin: auto;">
+                            <strong>Success!</strong> Successfully Registered.
                         </div>
                         @endif
                         <div class="card-body">

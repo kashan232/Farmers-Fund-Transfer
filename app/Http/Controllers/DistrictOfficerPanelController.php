@@ -253,14 +253,16 @@ class DistrictOfficerPanelController extends Controller
 
     public function farmers_index(){
         $user = User::find(Auth::id());
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->get();
-        return view('district_officer_panel.farmers.index',['farmers' => $farmers]);
+        $tehsils = Tehsil::where('district', '=', $user->district)->get();
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->paginate(5);
+        return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
     public function unverify_farmers(){
         $user = User::find(Auth::id());
+
         $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('verification_status', '=', 0)->get();
-        return view('district_officer_panel.farmers.unverify_farmers',['farmers' => $farmers]);
+        return view('district_officer_panel.farmers.unverify_farmers',['farmers' => $farmers, ]);
     }
 
     public function verify_farmers(){
