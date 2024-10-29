@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tehsil;
+use App\Models\OnlineFarmerRegistration;
 class LandRevenueFarmerController extends Controller
 {
     public function add_land_farmers()
@@ -219,10 +220,12 @@ class LandRevenueFarmerController extends Controller
             $userId = Auth::id();
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
-            $all_land_farmers = LandRevenueFarmerRegistation::where('user_type', '=', 'Field_Officer')->where('district', '=', Auth()->user()->district)->get();
+            $tehsils = Tehsil::where('district', '=', Auth()->user()->district)->get();
+            $all_land_farmers = LandRevenueFarmerRegistation::where('user_type', '=', 'Field_Officer')->where('district', '=', Auth()->user()->district)->paginate();
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
                 'all_land_farmers' => $all_land_farmers,
+                'tehsils' => $tehsils
             ]);
         } else {
             return redirect()->back();
@@ -237,10 +240,31 @@ class LandRevenueFarmerController extends Controller
             $userId = Auth::id();
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
-            $all_land_farmers = LandRevenueFarmerRegistation::where('user_type', '=', 'District_Officer')->where('district', '=', Auth()->user()->district)->get();
+            $tehsils = Tehsil::where('district', '=', Auth()->user()->district)->get();
+            $all_land_farmers = LandRevenueFarmerRegistation::where('user_type', '=', 'District_Officer')->where('district', '=', Auth()->user()->district)->paginate();
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
                 'all_land_farmers' => $all_land_farmers,
+                'tehsils' => $tehsils
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+
+    public function  self_farmers_list()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $user_id = Auth()->user()->user_id;
+            $user_name = Auth()->user()->name;
+            $tehsils = Tehsil::where('district', '=', Auth()->user()->district)->get();
+            $all_land_farmers = OnlineFarmerRegistration::where('district', '=', Auth()->user()->district)->paginate();
+            // dd($all_agriculture_farmers);
+            return view('land_revenue_panel.farmers_registration.all_land_farmers', [
+                'all_land_farmers' => $all_land_farmers,
+                'tehsils' => $tehsils
             ]);
         } else {
             return redirect()->back();

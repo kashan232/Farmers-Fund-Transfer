@@ -95,6 +95,15 @@
                     </a>
                 </li>
 
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('self-officer-farmers-list-by-land-officer') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span class="pc-mtext">Online Farmers</span>
+                    </a>
+                </li>
+
                 {{-- <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                         <span class="pc-micon">

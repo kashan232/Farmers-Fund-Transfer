@@ -77,7 +77,12 @@ Route::get('/online-dashboard-logout', [OnlineFormController::class, 'logout'])-
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 
 Route::get('/farmers/registrations', function(){
-    return view('online_registration_farmer');
+
+    $districts = \App\Models\District::all();
+
+    return view('online_registration_farmer' ,[
+        'districts' => $districts
+    ]);
 });
 
 

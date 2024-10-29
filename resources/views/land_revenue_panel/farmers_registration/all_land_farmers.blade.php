@@ -58,7 +58,7 @@
                                                         <th>UC</th>
                                                         <th>Tappa</th>
                                                         <th>Village</th>
-                                                        <th>Action</th>
+                                                        @if(isset($all_land_farmers[0]->user_type))<th>Action</th>@endif
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -75,6 +75,7 @@
                                                         <td>{{ $all_land_farmer->tappa }}</td>
                                                         <td>{{ $all_land_farmer->village }}</td>
                                                         {{-- <td>{{ $all_land_farmer->verification_status }}</td> --}}
+                                                        @if(isset($all_land_farmer->user_type))
                                                         <td>
                                                             <div class="d-flex">
                                                                 <a href="{{ route('view-land-farmers', ['id' => $all_land_farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp;
@@ -82,6 +83,7 @@
                                                                 {{-- <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>&nbsp; --}}
                                                             </div>
                                                         </td>
+                                                        @endif
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -119,11 +121,6 @@
 <script>
     $(document).ready(function() {
 
-
-
-
-
-
        table =  $('#example').DataTable({
             "pageLength": 100, // Default number of rows per page
             "dom": 'frt', // Only include the filter (search box), table, and pagination
@@ -145,25 +142,26 @@
 
         // Attach the change event listener after the dropdown is created
         $(document).on('change', '#tehsil', function(e) {
-                e.preventDefault();
-                var searchValue = $(this).val(); // Get value from the dropdown
-                // Perform exact match search on column 5
+            e.preventDefault();
+            var searchValue = $(this).val();
+            if(searchValue !=  0){
                 table.column(5).search('^' + searchValue + '$', true, false).draw();
-            });
-
-
+            }
+            else{
+                table.column(5).search('').draw();
+            }
+        });
 
         $('#example_wrapper').before(`
-        <div class="col-3" style="position: absolute; top:1%" >
-            <select name="tehsil" id="tehsil" class="form-control">
-                <option value="">Please Select Tehsil</option>
-                @foreach ($tehsils as $tehsil)
-                    <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
-                @endforeach
-            </select>
-        </div>
-    `);
-
+            <div class="col-3" style="position: absolute; top:1%" >
+                <select name="tehsil" id="tehsil" class="form-control">
+                    <option value="0">Please Select Tehsil</option>
+                    @foreach ($tehsils as $tehsil)
+                        <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
+                    @endforeach
+                </select>
+            </div>
+        `);
 
     });
 </script>

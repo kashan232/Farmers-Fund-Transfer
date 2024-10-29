@@ -41,7 +41,7 @@ class OnlineFormController extends Controller
 
      public function store_online_farmers_registration(Request $request)
     {
-        if (Auth::check()) {
+
             $data = $request->all();
             $data['title_name'] = json_encode($request->title_name);
             $data['title_cnic'] = json_encode($request->title_cnic);
@@ -109,11 +109,7 @@ class OnlineFormController extends Controller
 
             OnlineFarmerRegistration::create($data);
             return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Registered');
-        }
-        else {
-            // If user is not authenticated, redirect back
-            return redirect()->back()->withErrors(['Authentication failed.']);
-        }
+
 
     }
 

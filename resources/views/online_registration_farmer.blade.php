@@ -184,8 +184,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         @if (session()->has('farmers-registered'))
-                        <div class="alert alert-success alert-dismissible fade show mt-4">
-                            <strong>Success!</strong> {{ session('farmers-registered') }}.
+                        <div class="alert alert-success alert-dismissible fade show mt-4" style="width: 95%; margin: auto;">
+                            <strong>Success!</strong> Successfully Registered.
                         </div>
                         @endif
                         <div class="card-body">
@@ -214,28 +214,30 @@
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Dictrict</label>
-                                            <select id="district" name="district" class="form-control">
-                                                <option value="" selected disabled>Select District</option>
-                                                <!-- Options will be populated dynamically -->
+                                            <select id="districts" name="district"  class="form-control">
+                                                <option value="" >Select District</option>
+                                                @foreach ($districts as $district)
+                                                <option value="{{$district->district}}">{{$district->district}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Tehsil</label>
-                                            <select id="tehsil" name="tehsil" class="form-control">
+                                            <select id="tehsils" name="tehsil" class="form-control">
                                                 <option value="" selected disabled>Select Tehsil</option>
                                                 <!-- Options will be populated dynamically -->
                                             </select>
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">UC</label>
-                                            <select id="uc" name="uc" class="form-control">
+                                            <select id="ucs" name="uc" class="form-control">
                                                 <option value="" selected disabled>Select UC</option>
                                                 <!-- Options will be populated dynamically -->
                                             </select>
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Tappa</label>
-                                            <select id="tappa" name="tappa" class="form-control">
+                                            <select id="tappas" name="tappa" class="form-control">
                                                 <option value="" selected disabled>Select Tappa</option>
                                                 <!-- Options will be populated dynamically -->
                                             </select>
@@ -533,27 +535,27 @@
                                             <h6>Uploaded Documents</h6>
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Front ID Card Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Front ID Card Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="front_id_card" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Back ID Card Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Back ID Card Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="back_id_card" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Land Proof Pic Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Land Proof Pic Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_land_proof" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Other Attachments Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Other Attachments Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_other_attach" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Farmer Picture Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Farmer Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_farmer_pic" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Cheque Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_cheque_pic" class="form-control">
                                         </div>
                                     </div>
@@ -572,7 +574,7 @@
     <script src="{{asset('')}}/online_farmers_assets/js/bootstrap.min.js"></script>
     <script src="{{asset('')}}/online_farmers_assets/js/main.js"></script>
     <script src="{{asset('')}}/online_farmers_assets/js/select2.min.js"></script>
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             let allTehsils = [];
             let allUcs = [];
@@ -664,7 +666,10 @@
                 });
             });
         });
-    </script>
+    </script> --}}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
@@ -792,6 +797,69 @@
             });
             $('.step-indicator-' + step).addClass('active');
         }
+
+
+
+        $(document).ready(function() {
+        $('#districts').on('change', function() {
+            var district = $(this).val();
+            if (district) {
+                $.ajax({
+                    url: '{{ route('get-tehsils') }}',
+                    type: 'GET',
+                    data: {
+                        district: district
+                    },
+                    success: function(data) {
+                        $('#tehsils').empty();
+                        $.each(data, function(key, value) {
+                            $('#tehsils').append('<option value="' +
+                                value + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#tehsils').empty();
+            }
+        });
+
+        $('#tehsils').on('change', function() {
+            var district = $('#districts').val();
+            var tehsil = $(this).val();
+
+            if (district && tehsil) {
+                $.ajax({
+                    url: '{{ route("get-ucs") }}',
+                    type: 'GET',
+                    data: {
+                        district: district,
+                        tehsil: tehsil
+                    },
+                    success: function(response) {
+                        // Populate UC dropdown
+                        var ucSelect = $('#ucs');
+                        ucSelect.empty();
+                        $.each(response.ucs, function(index, value) {
+                            ucSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+
+                        // Populate Tappa dropdown
+                        var tappaSelect = $('#tappas');
+                        tappaSelect.empty();
+                        $.each(response.Tappas, function(index, value) {
+                            tappaSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            } else {
+                $('#ucs').empty();
+                $('#tappas').empty();
+            }
+        });
+    });
     </script>
 </body>
 <!-- Mirrored from colorlib.com/etc/bootstrap-sidebar/sidebar-04/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 29 Jun 2024 10:27:48 GMT -->
