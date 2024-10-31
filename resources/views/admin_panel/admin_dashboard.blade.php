@@ -43,7 +43,7 @@
                 <div class="dashboard">
                     <div class="all-card">
                         <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <a href="{{ route('farmers') }}">
                                     <div class="card">
                                         <div class="card-body">
@@ -159,8 +159,8 @@
                                     </div>
                                 </a>
                             </div>
-                            
-                           
+
+
                         </div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                             <p> District Wise Details Of Farmers</p>
                         </div>
                     </div>
-                <div id="horizontalBarFarmersChart" class="chart"></div>
+                    <div id="horizontalBarFarmersChart" class="chart"></div>
 
                 </div>
             </div>
@@ -188,9 +188,11 @@
                             <p> District Wise Land Claim Of Farmers</p>
                         </div>
                     </div>
-                <div id="landClaimChart" class="chart"></div>
+                    <div id="landClaimChart" class="chart"></div>
                 </div>
             </div>
+
+
 
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div id="chart2" class="chart"></div>
@@ -505,6 +507,8 @@
     </footer>
 
     @include('admin_panel.include.footer_include')
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var options = {
@@ -598,10 +602,9 @@
         });
     </script>
 
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var totalFarmers = 220; // This will be the total number of farmers
+            var totalRegistrations = 220; // Adjust this to the actual total number of registrations
             var options = {
                 chart: {
                     type: 'donut',
@@ -619,9 +622,9 @@
                         }
                     }
                 },
-                series: [70, 50, 40, 30, 20, 10], // Series data representing farmers
-                colors: ['#2A7D4A', '#1EA954', '#1DE231', '#93FB79', '#EAD93F', '#F0B10F'],
-                labels: ['Draft', 'Unverified', 'Verified', 'Verification Requested', 'Approved by District Officer', 'Sent to Land Department'],
+                series: [80, 50, 40, 30], // Updated values: [Online, Land Department, District Officer, Field Officer]
+                colors: ['#4ba064', '#2a7d4a', '#1ea954', '#1de231'],
+                labels: ['Online Registrations', 'Land Department Registrations', 'District Officer Registrations', 'Field Officer Registrations'],
                 plotOptions: {
                     pie: {
                         donut: {
@@ -629,9 +632,9 @@
                                 show: true,
                                 total: {
                                     show: true,
-                                    label: 'Total Farmers',
+                                    label: 'Total Registrations',
                                     formatter: function() {
-                                        return totalFarmers; // Show the total number of farmers in the center
+                                        return totalRegistrations; // Display the total number of registrations in the center
                                     },
                                     style: {
                                         fontSize: '18px',
@@ -646,19 +649,20 @@
                 dataLabels: {
                     enabled: true,
                     formatter: function(val, opts) {
-                        // Only show the number, not the percentage
+                        // Display the count, not the percentage
                         return opts.w.globals.series[opts.seriesIndex];
                     },
                     style: {
                         fontSize: '14px',
-                        colors: ["#fff"] // Color of the number inside the doughnut
+                        colors: ["#fff"]
                     }
                 },
                 legend: {
-                    position: 'bottom'
+                    position: 'bottom',
+                    horizontalAlign: 'center'
                 },
                 title: {
-                    text: 'Farmer Registration Status',
+                    text: 'Farmer Registration Overview by Role',
                     align: 'center',
                     style: {
                         fontSize: '20px',
@@ -669,7 +673,7 @@
                     theme: 'dark',
                     y: {
                         formatter: function(val) {
-                            return val + " registrations"; // Tooltip showing the number of registrations
+                            return val + " registrations"; // Show count in tooltip
                         }
                     }
                 }
@@ -680,136 +684,291 @@
         });
     </script>
 
-<script>
-    var data = [
-        {"label":"Badin","value":39094},
-        {"label":"Dadu","value":20113},
-        {"label":"Ghotki","value":20820},
-        {"label":"Hyderabad","value":3064},
-        {"label":"Jacobabad","value":9928},
-        {"label":"Jamshoro","value":9327},
-        {"label":"Kashmore","value":6086},
-        {"label":"Khairpur","value":42161},
-        {"label":"Larkana","value":14672},
-        {"label":"Matiari","value":6934},
-        {"label":"Mirpur Khas","value":21591},
-        {"label":"Naushahro Feroze","value":23919},
-        {"label":"Shaheed Benazirabad","value":26911},
-        {"label":"Sanghar","value":37071},
-        {"label":"Shikarpur","value":12535},
-        {"label":"Sukkur","value":14312},
-        {"label":"Tando Muhammad Khan","value":2704},
-        {"label":"Tharparkar","value":1067},
-        {"label":"Thatta","value":3707},
-        {"label":"Sujawal","value":4692},
-        {"label":"Malir","value":267},
-        {"label":"Qambar Shahdadkot","value":0},
-        {"label":"Tando Allahyar","value":0},
-        {"label":"Umerkot","value":0},
-        {"label":"8 num","value":0}
-    ];
-
-    var options = {
-        series: [{
-            data: data.map(function (item) { return item.value })
-        }],
-        chart: {
-            type: 'bar',
-            height: 600
-        },
-        plotOptions: {
-            bar: {
-                borderRadius: 4,
-                horizontal: true
+    <script>
+        var data = [{
+                "label": "Badin",
+                "value": 39094
+            },
+            {
+                "label": "Dadu",
+                "value": 20113
+            },
+            {
+                "label": "Ghotki",
+                "value": 20820
+            },
+            {
+                "label": "Hyderabad",
+                "value": 3064
+            },
+            {
+                "label": "Jacobabad",
+                "value": 9928
+            },
+            {
+                "label": "Jamshoro",
+                "value": 9327
+            },
+            {
+                "label": "Kashmore",
+                "value": 6086
+            },
+            {
+                "label": "Khairpur",
+                "value": 42161
+            },
+            {
+                "label": "Larkana",
+                "value": 14672
+            },
+            {
+                "label": "Matiari",
+                "value": 6934
+            },
+            {
+                "label": "Mirpur Khas",
+                "value": 21591
+            },
+            {
+                "label": "Naushahro Feroze",
+                "value": 23919
+            },
+            {
+                "label": "Shaheed Benazirabad",
+                "value": 26911
+            },
+            {
+                "label": "Sanghar",
+                "value": 37071
+            },
+            {
+                "label": "Shikarpur",
+                "value": 12535
+            },
+            {
+                "label": "Sukkur",
+                "value": 14312
+            },
+            {
+                "label": "Tando Muhammad Khan",
+                "value": 2704
+            },
+            {
+                "label": "Tharparkar",
+                "value": 1067
+            },
+            {
+                "label": "Thatta",
+                "value": 3707
+            },
+            {
+                "label": "Sujawal",
+                "value": 4692
+            },
+            {
+                "label": "Malir",
+                "value": 267
+            },
+            {
+                "label": "Qambar Shahdadkot",
+                "value": 0
+            },
+            {
+                "label": "Tando Allahyar",
+                "value": 0
+            },
+            {
+                "label": "Umerkot",
+                "value": 0
+            },
+            {
+                "label": "8 num",
+                "value": 0
             }
-        },
-        xaxis: {
-            categories: data.map(function (item) { return item.label })
-        },
-        dataLabels: {
-            enabled: true,
-            style: {
-                fontSize: '12px',
-                colors: ['#fff']
+        ];
+
+        var options = {
+            series: [{
+                data: data.map(function(item) {
+                    return item.value
+                })
+            }],
+            chart: {
+                type: 'bar',
+                height: 600
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: true
+                }
+            },
+            xaxis: {
+                categories: data.map(function(item) {
+                    return item.label
+                })
+            },
+            dataLabels: {
+                enabled: true,
+                style: {
+                    fontSize: '12px',
+                    colors: ['#fff']
+                }
+            },
+            colors: ['#3f8a5c'] // Same green color as in the image you shared
+        };
+
+        var chart = new ApexCharts(document.querySelector("#horizontalBarFarmersChart"), options);
+        chart.render();
+    </script>
+
+    <script>
+        var landData = [{
+                "label": "Badin",
+                "value": 50000
+            }, // Example land claim in acres
+            {
+                "label": "Dadu",
+                "value": 35000
+            },
+            {
+                "label": "Ghotki",
+                "value": 45000
+            },
+            {
+                "label": "Hyderabad",
+                "value": 25000
+            },
+            {
+                "label": "Jacobabad",
+                "value": 30000
+            },
+            {
+                "label": "Jamshoro",
+                "value": 20000
+            },
+            {
+                "label": "Kashmore",
+                "value": 40000
+            },
+            {
+                "label": "Khairpur",
+                "value": 55000
+            },
+            {
+                "label": "Larkana",
+                "value": 30000
+            },
+            {
+                "label": "Matiari",
+                "value": 15000
+            },
+            {
+                "label": "Mirpur Khas",
+                "value": 28000
+            },
+            {
+                "label": "Naushahro Feroze",
+                "value": 35000
+            },
+            {
+                "label": "Shaheed Benazirabad",
+                "value": 32000
+            },
+            {
+                "label": "Sanghar",
+                "value": 47000
+            },
+            {
+                "label": "Shikarpur",
+                "value": 24000
+            },
+            {
+                "label": "Sukkur",
+                "value": 29000
+            },
+            {
+                "label": "Tando Muhammad Khan",
+                "value": 18000
+            },
+            {
+                "label": "Tharparkar",
+                "value": 10000
+            },
+            {
+                "label": "Thatta",
+                "value": 22000
+            },
+            {
+                "label": "Sujawal",
+                "value": 26000
+            },
+            {
+                "label": "Malir",
+                "value": 5000
+            },
+            {
+                "label": "Qambar Shahdadkot",
+                "value": 15000
+            },
+            {
+                "label": "Tando Allahyar",
+                "value": 12000
+            },
+            {
+                "label": "Umerkot",
+                "value": 14000
+            },
+            {
+                "label": "8 num",
+                "value": 9000
             }
-        },
-        colors: ['#3f8a5c']  // Same green color as in the image you shared
-    };
+        ];
 
-    var chart = new ApexCharts(document.querySelector("#horizontalBarFarmersChart"), options);
-    chart.render();
-</script>
-
-
-<script>
-    var landData = [
-        {"label":"Badin","value":50000},  // Example land claim in acres
-        {"label":"Dadu","value":35000},
-        {"label":"Ghotki","value":45000},
-        {"label":"Hyderabad","value":25000},
-        {"label":"Jacobabad","value":30000},
-        {"label":"Jamshoro","value":20000},
-        {"label":"Kashmore","value":40000},
-        {"label":"Khairpur","value":55000},
-        {"label":"Larkana","value":30000},
-        {"label":"Matiari","value":15000},
-        {"label":"Mirpur Khas","value":28000},
-        {"label":"Naushahro Feroze","value":35000},
-        {"label":"Shaheed Benazirabad","value":32000},
-        {"label":"Sanghar","value":47000},
-        {"label":"Shikarpur","value":24000},
-        {"label":"Sukkur","value":29000},
-        {"label":"Tando Muhammad Khan","value":18000},
-        {"label":"Tharparkar","value":10000},
-        {"label":"Thatta","value":22000},
-        {"label":"Sujawal","value":26000},
-        {"label":"Malir","value":5000},
-        {"label":"Qambar Shahdadkot","value":15000},
-        {"label":"Tando Allahyar","value":12000},
-        {"label":"Umerkot","value":14000},
-        {"label":"8 num","value":9000}
-    ];
-
-    var options = {
-        series: [{
-            data: landData.map(function (item) { return item.value })
-        }],
-        chart: {
-            type: 'bar',
-            height: 600
-        },
-        plotOptions: {
-            bar: {
-                borderRadius: 4,
-                horizontal: true
+        var options = {
+            series: [{
+                data: landData.map(function(item) {
+                    return item.value
+                })
+            }],
+            chart: {
+                type: 'bar',
+                height: 600
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: true
+                }
+            },
+            xaxis: {
+                categories: landData.map(function(item) {
+                    return item.label
+                })
+            },
+            dataLabels: {
+                enabled: true,
+                style: {
+                    fontSize: '12px',
+                    colors: ['#000']
+                }
+            },
+            colors: ['#40b66d'], // Green color to represent land
+            title: {
+                text: 'District-wise Land Claim (in Acres)',
+                align: 'center',
+                margin: 10,
+                style: {
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    color: '#333'
+                }
             }
-        },
-        xaxis: {
-            categories: landData.map(function (item) { return item.label })
-        },
-        dataLabels: {
-            enabled: true,
-            style: {
-                fontSize: '12px',
-                colors: ['#000']
-            }
-        },
-        colors: ['#40b66d'],  // Green color to represent land
-        title: {
-            text: 'District-wise Land Claim (in Acres)',
-            align: 'center',
-            margin: 10,
-            style: {
-                fontSize:  '18px',
-                fontWeight:  'bold',
-                color:  '#333'
-            }
-        }
-    };
+        };
 
-    var chart = new ApexCharts(document.querySelector("#landClaimChart"), options);
-    chart.render();
-</script>
+        var chart = new ApexCharts(document.querySelector("#landClaimChart"), options);
+        chart.render();
+    </script>
 
     </body>
 
