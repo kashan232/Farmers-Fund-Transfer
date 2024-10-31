@@ -553,8 +553,8 @@
     $('#add_poultry_assets_row_Btn').click(function() {
         const newRow = `
             <tr>
-                <td><input type="text" name="animal_name[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)"></td>
-                <td><input type="text" name="animal_qty[]"  class="form-control"></td>
+                <td><input type="text" name="animal_name[]" class="form-control" ></td>
+                <td><input type="text" name="animal_qty[]"  class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;

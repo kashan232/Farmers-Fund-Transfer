@@ -111,6 +111,28 @@ class FieldOfficerPanelController extends Controller
         }
     }
 
+    public function lrd_farmers(){
+        $user = User::find(Auth::id());
+        $tehsils = Tehsil::where('district', '=', $user->district)->get();
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Land_Revenue_Officer')->paginate(5);
+        return view('field_officer_panel.lrd_farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
+    }
+
+    public function view_farmers($id)
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $user_id = Auth()->user()->user_id;
+            $user_name = Auth()->user()->name;
+            $data = LandRevenueFarmerRegistation::where('id', '=', $id)->first();
+            // dd($all_agriculture_farmers);
+            return view('field_officer_panel.lrd_farmers.view', [
+                'data' => $data,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
 
     public function store(Request $request)
     {

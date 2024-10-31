@@ -59,6 +59,7 @@
         <!-- [ Main Content ] start -->
         <div class="row">
             <div class="col-md-12">
+                <div id="chart"></div>
                 <div class="table-responsive">
                     <table id="reports-table" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info" style="width: 100%;">
                         <thead>
@@ -171,10 +172,11 @@
                         </tbody>
                     </table>
                     <!-- Pagination links -->
-                    <div class="py-5">
-                        {{ $data->appends(request()->input())->links() }}
-                    </div>
+
                 </div>
+            </div>
+            <div class="py-1" style="display:flex; justify-content:right">
+                {{ $data->appends(request()->input())->links() }}
             </div>
         </div>
         <!-- [ Main Content ] end -->
@@ -197,24 +199,66 @@
     $(document).ready(function() {
         $('#reports-table').DataTable({
             "pageLength": 100, // Default number of rows per page
-            "dom": 'Bfrtip', // Only include the filter (search box), table, and pagination
+            "dom": 'frt', // Only include the filter (search box), table, and pagination
             "processing": true, // Optional: for large datasets
             "deferRender": true, // Improves performance by rendering rows only when needed
             "order": [
                 [0, 'asc']
             ], // Default ordering of the first column (optional)
-            "buttons": [
-                'copyHtml5',
-                'excelHtml5',
-                'csvHtml5',
-                'pdfHtml5'
-            ],
+
             "language": {
                 "search": "Search:" // Customize the search box label (optional)
             }
         });
     });
-</script>
+
+//     var data = @json($data);
+
+// d = data.data;
+// // Group by tehsil
+// const groupedByTehsil = d.reduce((acc, current) => {
+//     const tehsil = current.tehsil;
+
+//     // Initialize an array for the tehsil if it doesn't exist
+//     if (!acc[tehsil]) {
+//         acc[tehsil] = [];
+//     }
+
+//     // Push the current item into the appropriate tehsil array
+//     acc[tehsil].push(current);
+
+//     return acc;
+// }, {});
+
+// // Log the grouped data
+// console.log(groupedByTehsil);
+
+//     // console.log(data.data);
+
+//     var options = {
+//             series: [44, 55, 41, 17, 15],
+//             chart: {
+//             type: 'donut',
+//             width: '500px', // Chart ki width
+//             height: '500px' // Chart ki height
+//         },
+//         responsive: [{
+//           breakpoint: 480,
+//           options: {
+//             chart: {
+//               width: 100,
+//               height: 100
+//             },
+//             legend: {
+//               position: 'bottom'
+//             }
+//           }
+//         }]
+//         };
+
+//         var chart = new ApexCharts(document.querySelector("#chart"), options);
+//         chart.render();
+// </script>
 </body>
 
 </html>

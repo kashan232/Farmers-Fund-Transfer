@@ -254,9 +254,35 @@ class DistrictOfficerPanelController extends Controller
     public function farmers_index(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->paginate(5);
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','District_Officer')->paginate(5);
         return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
+
+
+    public function lrd_farmers(){
+        $user = User::find(Auth::id());
+        $tehsils = Tehsil::where('district', '=', $user->district)->get();
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Land_Revenue_Officer')->paginate(5);
+        return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
+    }
+
+    public function view_farmers($id)
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $user_id = Auth()->user()->user_id;
+            $user_name = Auth()->user()->name;
+            $data = LandRevenueFarmerRegistation::where('id', '=', $id)->first();
+            // dd($all_agriculture_farmers);
+            return view('district_officer_panel.farmers.view', [
+                'data' => $data,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+
 
     public function unverify_farmers(){
         $user = User::find(Auth::id());

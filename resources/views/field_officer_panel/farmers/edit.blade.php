@@ -115,26 +115,26 @@
                                         <h4 class="card-title">Personal Details</h4>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Name</label>
-                                            <input type="text" value="{{$data->name}}" name="name" class="form-control">
+                                            <input type="text" value="{{$data->name}}" name="name" id="name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Father Name</label>
-                                            <input type="text" value="{{$data->father_name}}"  name="father_name" class="form-control">
+                                            <input type="text" value="{{$data->father_name}}"  name="father_name" id="father_name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
-                                            <label class="form-label">CNIC</label>
-                                            <input type="text" value="{{$data->cnic}}" name="cnic" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                            <label class="form-label">CNIC <span class="text-danger">*</span></label>
+                                            <input type="text" value="{{$data->cnic}}" name="cnic" id="cnic"  class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
-                                            <label class="form-label">Mobile</label>
-                                            <input type="text" value="{{$data->mobile}}" name="mobile" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)">
+                                            <label class="form-label">Mobile <span class="text-danger">*</span></label>
+                                            <input type="text" value="{{$data->mobile}}" name="mobile" id="mobile" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)">
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
-                                            <label class="form-label">Dictrict</label>
+                                            <label class="form-label">Dictrict <span class="text-danger">*</span></label>
                                             <input type="text" name="district"  id="district" class="form-control" value="{{ $district }}" readonly>
                                         </div>
                                         <div class="mb-6 col-md-6">
-                                            <label class="form-label">Tehsil</label>
+                                            <label class="form-label">Tehsil <span class="text-danger">*</span></label>
                                             <select name="tehsil" id="tehsil" class="form-control">
                                                 @foreach(json_decode($tehsil) as $option)
                                                     <option value="{{ $option }}" {{ ($data->tehsil == $option) ? 'selected' : '' }}>
@@ -227,6 +227,22 @@
                                             </div>
                                         </div>
 
+                                        <div class="row mt-2">
+                                            <h6>Next of Kin: </h6>
+                                            <div class="mb-4 col-md-4 mt-3">
+                                                <h6 class="text-center">Full Name</h6>
+                                                <input type="text" name="full_name_of_next_kin" value="{{ $data->full_name_of_next_kin }}"   class="form-control">
+                                            </div>
+                                            <div class="mb-4 col-md-4 mt-3">
+                                                <h6 class="text-center">CNIC NO</h6>
+                                                <input type="text" name="cnic_of_next_kin" value="{{ $data->cnic_of_next_kin }}"  class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" >
+                                            </div>
+                                            <div class="mb-4 col-md-4 mt-3">
+                                                <h6 class="text-center">Mobile No</h6>
+                                                <input type="text" name="mobile_of_next_kin" value="{{ $data->mobile_of_next_kin }}"  class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" >
+                                            </div>
+                                        </div>
+
                                         <div class="row mt-3" id="">
                                             <h6>Landholding & Cropping</h6>
                                             <div class="row" >
@@ -278,7 +294,7 @@
                                                 </table>
                                             </div>
                                             <div class="col-12" style="justify-content: right; display: flex;">
-                                                <button type="button"  class="btn btn-primary" id="add_title_row_Btn">Add More</button>
+                                                <button type="button"  class="btn btn-primary btn-sm" id="add_title_row_Btn" >Add More</button>
                                             </div>
                                         </div>
 
@@ -435,14 +451,6 @@
                                     <div class="row mt-2">
                                         <h4 class="card-title">Bank & Account Details</h4>
                                         <div class="mb-6 col-md-6">
-                                            <label class="form-label">Title of Account</label>
-                                            <input type="text" value="{{$data->account_title}}"  name="account_title" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Account No</label>
-                                            <input type="text" value="{{$data->account_no}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)" name="account_no" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Name</label>
                                             <input type="text" value="{{$data->bank_name}}" name="bank_name" class="form-control">
                                         </div>
@@ -451,12 +459,20 @@
                                             <input type="text" value="{{$data->branch_name}}" name="branch_name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
+                                            <label class="form-label">Branch Code</label>
+                                            <input type="text" value="{{$data->branch_code}}" name="branch_code" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                                        </div>
+                                        <div class="mb-6 col-md-6">
                                             <label class="form-label">IBAN</label>
                                             <input type="text" value="{{$data->IBAN_number}}" name="IBAN_number" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
                                         </div>
                                         <div class="mb-6 col-md-6">
-                                            <label class="form-label">Branch Code</label>
-                                            <input type="text" value="{{$data->branch_code}}" name="branch_code" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                                            <label class="form-label">Title of Account</label>
+                                            <input type="text" value="{{$data->account_title}}"  name="account_title" class="form-control">
+                                        </div>
+                                        <div class="mb-6 col-md-6">
+                                            <label class="form-label">Account No</label>
+                                            <input type="text" value="{{$data->account_no}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)" name="account_no" class="form-control">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
@@ -467,27 +483,27 @@
                                     <div class="row mt-2">
                                         <h4 class="card-title">Uploaded Documents</h4>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Front ID Card Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Front ID Card Img<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="front_id_card" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Back ID Card Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Back ID Card Img<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="back_id_card" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Land Proof Pic Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Land Proof Pic Img<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_land_proof" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Other Attachments Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Other Attachments Img<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_other_attach" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Farmer Picture Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Farmer Picture Img<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_farmer_pic" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Cheque Picture Img<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_cheque_pic" class="form-control">
                                         </div>
                                     </div>
@@ -654,15 +670,54 @@ $('select[name="tehsil"]').on('change', function() {
         });
 
 
-    function nextStep(step) {
-        // Hide all steps
-        document.querySelectorAll('.step').forEach(function(stepElement) {
-            stepElement.style.display = 'none';
-        });
-        // Show the current step
-        document.querySelector('.step-' + step).style.display = 'block';
-        updateProgressIndicator(step);
+        function nextStep(step) {
+
+tehsil = $('#tehsil').val();
+mobile = $('#mobile').val();
+cnic = $('#cnic').val();
+
+
+
+if(tehsil == '' || tehsil == null || mobile == null || mobile == '' || cnic == null || cnic == ''){
+
+    if(tehsil == '' || tehsil == null){
+        msg  = 'Tehsil Field is Required..!';
     }
+    if(mobile == '' || mobile == null){
+        msg  = 'Mobile Field is Required..!';
+    }
+    if(cnic == '' || cnic == null){
+        msg  = 'Cnic Field is Required..!';
+    }
+
+    if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '')){
+        msg  = 'Mobile Field is Required,\nTehsil Field is Required..!';
+    }
+    if((tehsil == '' || tehsil == null) && (cnic == null || cnic == '')){
+        msg  = 'Cnic Field is Required,\nTehsil Field is Required..!';
+    }
+    if((mobile == '' || mobile == null) && (cnic == null || cnic == '')){
+        msg  = 'Cnic Field is Required,\nMobile Field is Required..!';
+    }
+
+    if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '') && (cnic == '' || cnic == null) )
+    {
+        msg = 'CNIC Field is Required,\nMobile Field is Required,\nTehsil Field is Required..!';
+    }
+    alert(msg);
+}
+else{
+// Hide all steps
+document.querySelectorAll('.step').forEach(function(stepElement) {
+stepElement.style.display = 'none';
+});
+// Show the current step
+document.querySelector('.step-' + step).style.display = 'block';
+updateProgressIndicator(step);
+}
+
+
+}
 
     function prevStep(step) {
         // Hide all steps
@@ -689,7 +744,7 @@ $('select[name="tehsil"]').on('change', function() {
     }
 
     // Initialize the first step
-    nextStep(1);
+    // nextStep(1);
 </script>
 </body>
 

@@ -200,8 +200,19 @@ Route::get('/view-do-farmers/{id}', [DistrictOfficerPanelController::class, 'vie
 
 Route::get('/unverify-online-farmers-by-do', [DistrictOfficerPanelController::class, 'unverify_online_farmers'])->name('unverify-online-farmers-by-do');
 Route::get('/verify-online-farmers-by-do', [DistrictOfficerPanelController::class, 'verify_online_farmers'])->name('verify-online-farmers-by-do');
+
+
+Route::get('/view-farmers/{id}', [DistrictOfficerPanelController::class, 'view_farmers'])->name('view-farmers');
+
+Route::get('/lrd/farmers', [DistrictOfficerPanelController::class, 'lrd_farmers'])->name('lrd-farmers');
+
+
 // End District Officer Panel
 
+
+Route::get('/lrd/farmer', [FieldOfficerPanelController::class, 'lrd_farmers'])->name('lrd-farmers-by-field-officer');
+
+Route::get('/view/farmers/{id}', [FieldOfficerPanelController::class, 'view_farmers'])->name('view-farmers-by-field-officer');
 
 
 

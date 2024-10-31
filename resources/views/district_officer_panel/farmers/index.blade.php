@@ -67,7 +67,10 @@
                                                         <td>{{ $farmer->uc }}</td>
                                                         <td>{{ $farmer->tappa }}</td>
                                                         <td>{{ $farmer->village }}</td>
-                                                        <td><a class="btn btn-primary" href="{{route('do-edit-farmer',$farmer->id)}}">Edit</a></td>
+                                                        <td>
+                                                            <a class="btn btn-primary" href="{{route('view-farmers',$farmer->id)}}">View</a>
+                                                            {{-- <a class="btn btn-primary" href="{{route('do-edit-farmer',$farmer->id)}}">Edit</a> --}}
+                                                        </td>
 
                                                     </tr>
                                                     @endforeach
