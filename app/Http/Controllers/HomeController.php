@@ -44,37 +44,37 @@ class HomeController extends Controller
                 $ucs_counts = UC::count();
                 $tappas_count = Tappa::count();
 
-                $AgriUser = AgriUser::count();
-                $AgricultureOfficer = AgricultureOfficer::count();
+                // $AgriUser = AgriUser::count();
+                // $AgricultureOfficer = AgricultureOfficer::count();
                 $LandRevenueDepartment = LandRevenueDepartment::count();
                 $subsidyfarmers = OurUser::count();
 
 
-                $agriUserCount = DB::table('agriculture_user_farmer_registrations')->count();
-                $agricultureOfficerCount = DB::table('agriculture_farmers_registrations')->count();
+                // $agriUserCount = DB::table('agriculture_user_farmer_registrations')->count();
+                // $agricultureOfficerCount = DB::table('agriculture_farmers_registrations')->count();
                 $landRevenueDepartmentCount = DB::table('land_revenue_farmer_registations')->count();
                 $onlineFarmerRegistrationCount = DB::table('online_farmer_registrations')->count();
 
-                $totalEntries = $agriUserCount + $agricultureOfficerCount + $landRevenueDepartmentCount + $onlineFarmerRegistrationCount;
+                $totalEntries = $landRevenueDepartmentCount + $onlineFarmerRegistrationCount;
 
-                $Unverifiedfarmeragiruser = DB::table('agriculture_user_farmer_registrations')->where('verification_status', '=', 'Unverified')->count();
-                $Unverifiedfarmeragioficr = DB::table('agriculture_farmers_registrations')->where('verification_status', '=', 'Unverified')->count();
+                // $Unverifiedfarmeragiruser = DB::table('agriculture_user_farmer_registrations')->where('verification_status', '=', 'Unverified')->count();
+                // $Unverifiedfarmeragioficr = DB::table('agriculture_farmers_registrations')->where('verification_status', '=', 'Unverified')->count();
                 $Unverifiedfarmerland = DB::table('land_revenue_farmer_registations')->where('verification_status', '=', 'Unverified')->count();
                 $Unverifiedfarmeronline = DB::table('online_farmer_registrations')->where('verification_status', '=', 'Unverified')->count();
 
-                $TotalUnverifiedfarmer = $Unverifiedfarmeragiruser + $Unverifiedfarmeragioficr + $Unverifiedfarmerland + $Unverifiedfarmeronline;
+                $TotalUnverifiedfarmer =  $Unverifiedfarmerland + $Unverifiedfarmeronline;
 
-                $Verifiedfarmeragiruser = DB::table('agriculture_user_farmer_registrations')->where('verification_status', '=', 'Verified')->count();
-                $Verifiedfarmeragioficr = DB::table('agriculture_farmers_registrations')->where('verification_status', '=', 'Verified')->count();
+                // $Verifiedfarmeragiruser = DB::table('agriculture_user_farmer_registrations')->where('verification_status', '=', 'Verified')->count();
+                // $Verifiedfarmeragioficr = DB::table('agriculture_farmers_registrations')->where('verification_status', '=', 'Verified')->count();
                 $Verifiedfarmerland = DB::table('land_revenue_farmer_registations')->where('verification_status', '=', 'Verified')->count();
                 $Verifiedfarmeronline = DB::table('online_farmer_registrations')->where('verification_status', '=', 'Verified')->count();
 
-                $TotalVerifiedfarmers = $Verifiedfarmeragiruser + $Verifiedfarmeragioficr + $Verifiedfarmerland + $Verifiedfarmeronline;
+                $TotalVerifiedfarmers =  $Verifiedfarmerland + $Verifiedfarmeronline;
 
                 // Fetching data for the view
                 $data = DB::table('districts')
-                    ->leftJoin('agriculture_farmers_registrations', 'districts.district', '=', 'agriculture_farmers_registrations.district')
-                    ->select('districts.district', DB::raw('COUNT(agriculture_farmers_registrations.id) as user_count'))
+                    ->leftJoin('land_revenue_farmer_registations', 'districts.district', '=', 'land_revenue_farmer_registations.district')
+                    ->select('districts.district', DB::raw('COUNT(land_revenue_farmer_registations.id) as user_count'))
                     ->groupBy('districts.district')
                     ->orderBy('districts.district', 'asc')
                     ->get()
@@ -120,8 +120,8 @@ class HomeController extends Controller
                     'tehsil_counts' => $tehsil_counts,
                     'ucs_counts' => $ucs_counts,
                     'tappas_count' => $tappas_count,
-                    'AgriUser' => $AgriUser,
-                    'AgricultureOfficer' => $AgricultureOfficer,
+                    // 'AgriUser' => $AgriUser,
+                    // 'AgricultureOfficer' => $AgricultureOfficer,
                     'LandRevenueDepartment' => $LandRevenueDepartment,
                     'totalEntries' => $totalEntries,
                     'TotalUnverifiedfarmer' => $TotalUnverifiedfarmer,

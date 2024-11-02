@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OnlineFarmerRegistration;
+use App\Models\LandRevenueFarmerRegistation;
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -43,6 +43,7 @@ class OnlineFormController extends Controller
     {
 
             $data = $request->all();
+            $data['user_type'] = 'Online';
             $data['title_name'] = json_encode($request->title_name);
             $data['title_cnic'] = json_encode($request->title_cnic);
             $data['title_number'] = json_encode($request->title_number);
@@ -57,7 +58,7 @@ class OnlineFormController extends Controller
             $data['animal_name'] = json_encode($request->animal_name);
             $data['animal_qty'] = json_encode($request->animal_qty);
 
-            $data['verification_status'] = 'Unverified';
+            $data['verification_status'] = 0;
 
             // Handle front ID card image
             if ($request->hasFile('front_id_card')) {
@@ -107,7 +108,7 @@ class OnlineFormController extends Controller
                 $data['upload_cheque_pic'] = $upload_cheque_picimageName;
             }
 
-            OnlineFarmerRegistration::create($data);
+            LandRevenueFarmerRegistation::create($data);
             return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Registered');
 
 

@@ -147,7 +147,7 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <p class="card-title text-title">Field Officer</p>
-                                                    <h3 class="card-text text-amount">{{ $AgricultureOfficer }}</h3>
+                                                    <h3 class="card-text text-amount">23</h3>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon-shape green-icon-bg">

@@ -266,6 +266,36 @@ class DistrictOfficerPanelController extends Controller
         return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
+
+
+    public function fields_farmers(){
+        $user = User::find(Auth::id());
+        $tehsils = Tehsil::where('district', '=', $user->district)->get();
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->paginate(5);
+        return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
+    }
+
+    public function online_farmers(){
+        $user = User::find(Auth::id());
+        $tehsils = Tehsil::where('district', '=', $user->district)->get();
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Online')->paginate(5);
+        return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
+    }
+
+    public function verify_farmer(request $request){
+        $user = User::find(Auth::id());
+        $farmer = LandRevenueFarmerRegistation::find($request->farmer_id);
+        // Update farmer verification status
+        $farmer->verification_status = $request->verification_status ? 1 : 0;
+        if ($request->verification_status == 0) {
+            $farmer->declined_reason = $request->declined_reason;
+        }
+        $farmer->verification_by = $user->id;
+        $farmer->save();
+        return redirect()->back()->with('farmers-registered', 'Done');
+    }
+
+
     public function view_farmers($id)
     {
         if (Auth::id()) {

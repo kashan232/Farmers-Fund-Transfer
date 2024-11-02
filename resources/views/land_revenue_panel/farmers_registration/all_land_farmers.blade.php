@@ -58,6 +58,7 @@
                                                         <th>UC</th>
                                                         <th>Tappa</th>
                                                         <th>Village</th>
+                                                        <th>Verification Status</th>
                                                         @if(isset($all_land_farmers[0]->user_type))<th>Action</th>@endif
                                                     </tr>
                                                 </thead>
@@ -74,7 +75,15 @@
                                                         <td>{{ $all_land_farmer->uc }}</td>
                                                         <td>{{ $all_land_farmer->tappa }}</td>
                                                         <td>{{ $all_land_farmer->village }}</td>
-                                                        {{-- <td>{{ $all_land_farmer->verification_status }}</td> --}}
+                                                        <td>
+                                                            @if ($all_land_farmer->verification_status == 1)
+                                                            <span class="badge bg-success">Verified by District Officer</span>
+                                                            @elseif ($all_land_farmer->declined_reason != '' && $all_land_farmer->verification_status == 2)
+                                                            <span class="badge text-bg-danger">Rejected</span>
+                                                            @else
+                                                            <span class="badge text-bg-primary">Unverified</span>
+                                                            @endif
+                                                        </td>
                                                         @if(isset($all_land_farmer->user_type))
                                                         <td>
                                                             <div class="d-flex">

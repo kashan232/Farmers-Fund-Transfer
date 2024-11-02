@@ -16,6 +16,43 @@
 
 
 </style>
+
+<div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLiveLabel">Farmers Verification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <form id="verifyfarmers" action="{{ route('verify-farmer') }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="statusSelect">Status</label>
+                                <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
+                                <select class="form-control" id="statusSelect" name="verification_status">
+                                    <option value="1">Verified</option>
+                                    <option value="0">Unverified</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="reasonBox" style="display: none;">
+                                <label for="reasonTextarea">Reason</label>
+                                <textarea class="form-control" id="reasonTextarea" name="declined_reason" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <!-- [ Main Content ] start -->
 <div class="pc-container">
     <div class="pc-content">
@@ -54,6 +91,7 @@
                                                         <th>Tappa</th>
                                                         <th>Village</th>
                                                         <th>Status</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -68,8 +106,21 @@
                                                         <td>{{ $farmer->tappa }}</td>
                                                         <td>{{ $farmer->village }}</td>
                                                         <td>
+                                                            @if ($farmer->verification_status == '1')
+                                                            <span class="badge text-bg-success">Verified</span>
+                                                            @elseif ($farmer->declined_reason != '')
+                                                            <span class="badge text-bg-danger">Rejected</span>
+                                                            @else
+                                                            <span class="badge text-bg-primary">Unverified</span>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <div style="display:flex">
+
+                                                                <button type="button" class="btn btn-success verifiy-btn "   data-id="{{ $farmer->id }}">Verify</button> &nbsp;
+                                                                {{-- <a class="btn btn-primary" href="{{route('do-edit-farmer',$farmer->id)}}">Edit</a> --}}
                                                             <a class="btn btn-primary" href="{{route('view-farmers',$farmer->id)}}">View</a>
-                                                            {{-- <a class="btn btn-primary" href="{{route('do-edit-farmer',$farmer->id)}}">Edit</a> --}}
+                                                            </div>
                                                         </td>
 
                                                     </tr>
@@ -132,10 +183,10 @@
             e.preventDefault();
             var searchValue = $(this).val();
             if(searchValue !=  0){
-                table.column(5).search('^' + searchValue + '$', true, false).draw();
+                table.column(4).search('^' + searchValue + '$', true, false).draw();
             }
             else{
-                table.column(5).search('').draw();
+                table.column(4).search('').draw();
             }
         });
 
@@ -151,8 +202,33 @@
         `);
 
     });
-</script>
 
+
+    $(document).ready(function() {
+    // Event listener for opening the modal
+
+
+    $('.verifiy-btn').on('click', function() {
+            var farmerId = $(this).data('id');
+            $('#farmer_id').val(farmerId);
+            $('#exampleModalLive').modal('show');
+        });
+
+    // Event listener for changing the status
+    $('#statusSelect').on('change', function() {
+        var reasonBox = $('#reasonBox');
+        if ($(this).val() == '0') {
+            reasonBox.show();
+            $('#reasonTextarea').prop('required', true);
+
+        } else {
+            reasonBox.hide();
+            $('#reasonTextarea').prop('required', false);
+        }
+    });
+});
+
+</script>
 </body>
 
 </html>
