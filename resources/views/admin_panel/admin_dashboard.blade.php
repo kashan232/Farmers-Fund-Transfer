@@ -508,7 +508,7 @@
 
     @include('admin_panel.include.footer_include')
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
+    <!-- not working -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var options = {
