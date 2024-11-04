@@ -7,11 +7,29 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tehsil;
+use App\Models\User;
 use App\Models\OnlineFarmerRegistration;
 class LandRevenueFarmerController extends Controller
 {
+
+    public function final_verify_farmer(request $request){
+        $user = User::find(Auth::id());
+        $farmer = LandRevenueFarmerRegistation::find($request->farmer_id);
+        // Update farmer verification status
+        $farmer->verification_status = $request->verification_status;
+        if ($request->verification_status == 'rejected') {
+            $farmer->declined_reason = $request->declined_reason;
+        }
+        $farmer->verification_by = $user->id;
+        $farmer->save();
+        return redirect()->back()->with('farmers-registered', 'Done');
+    }
+
+
+
     public function add_land_farmers()
     {
+
         if (Auth::id()) {
             $userId = Auth::id();
             $district = Auth()->user()->district;
