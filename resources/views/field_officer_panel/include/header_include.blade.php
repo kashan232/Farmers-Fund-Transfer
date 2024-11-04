@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="{{asset('select2.min.css')}}">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.27.1/dist/apexcharts.css">
+
 </head>
 
 <body data-pc-preset="preset-1" data-pc-sidebar-theme="light" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme="light">
