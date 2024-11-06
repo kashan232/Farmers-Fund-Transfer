@@ -114,7 +114,7 @@ class FieldOfficerPanelController extends Controller
     public function lrd_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Land_Revenue_Officer')->paginate(5);
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Land_Revenue_Officer')->where('verification_status',0)->paginate(5);
         return view('field_officer_panel.lrd_farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 

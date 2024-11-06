@@ -213,14 +213,28 @@ class HomeController extends Controller
 
                     // Decode and count tappas
                     if ($user->tappas) {
-                        $tappas = json_decode($user->tappas, true);
-                        $tappaCount = count($tappas);
+                        if($user->tappas != null && is_array(json_decode($user->tappas)))
+                        {
+                            $tappas = json_decode($user->tappas, true);
+                            $tappaCount = count($tappas);
+                        }
+                        else
+                        {
+                            $tappaCount = 0;
+                        }
                     }
 
                     // Decode and count UCs
                     if ($user->ucs) {
-                        $ucs = json_decode($user->ucs, true);
-                        $ucCount = count($ucs);
+                        if($user->ucs != null && is_array(json_decode($user->ucs)))
+                        {
+                            $ucs = json_decode($user->ucs, true);
+                            $ucCount = count($ucs);
+                        }
+                        else
+                        {
+                            $ucCount =  0;
+                        }
                     }
                 }
                 $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
@@ -268,14 +282,28 @@ class HomeController extends Controller
 
                     // Decode and count tappas
                     if ($user->tappas) {
-                        $tappas = json_decode($user->tappas, true);
-                        $tappaCount = count($tappas);
+                        if($user->tappas != null && is_array(json_decode($user->tappas)))
+                        {
+                            $tappas = json_decode($user->tappas, true);
+                            $tappaCount = count($tappas);
+                        }
+                        else
+                        {
+                            $tappaCount = 0;
+                        }
                     }
 
                     // Decode and count UCs
                     if ($user->ucs) {
-                        $ucs = json_decode($user->ucs, true);
-                        $ucCount = count($ucs);
+                        if($user->tappas != null && is_array(json_decode($user->tappas)))
+                        {
+                            $ucs = json_decode($user->ucs, true);
+                            $ucCount = count($ucs);
+                        }
+                        else
+                        {
+                            $ucCount = 0;
+                        }
                     }
                 }
                 $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();

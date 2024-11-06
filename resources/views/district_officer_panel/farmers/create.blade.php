@@ -112,6 +112,14 @@
                                 <div class="step step-1">
                                     <div class="row mt-2">
                                         <h4 class="card-title">Personal Details</h4>
+                                        <div class="mb-6 col-md-6">
+                                            <label class="form-label">Name</label>
+                                            <input type="text" name="name" class="form-control">
+                                        </div>
+                                        <div class="mb-6 col-md-6">
+                                            <label class="form-label">Father Name</label>
+                                            <input type="text" name="father_name" class="form-control">
+                                        </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">CNIC <span class="text-danger">*</span></label>
                                             <input type="text" id="cnic" name="cnic" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"  >
@@ -657,15 +665,54 @@ $('select[name="tehsil"]').on('change', function() {
         });
 
 
-    function nextStep(step) {
-        // Hide all steps
-        document.querySelectorAll('.step').forEach(function(stepElement) {
-            stepElement.style.display = 'none';
-        });
-        // Show the current step
-        document.querySelector('.step-' + step).style.display = 'block';
-        updateProgressIndicator(step);
+        function nextStep(step) {
+
+tehsil = $('#tehsil').val();
+mobile = $('#mobile').val();
+cnic = $('#cnic').val();
+
+
+
+if(tehsil == '' || tehsil == null || mobile == null || mobile == '' || cnic == null || cnic == ''){
+
+    if(tehsil == '' || tehsil == null){
+        msg  = 'Tehsil Field is Required..!';
     }
+    if(mobile == '' || mobile == null){
+        msg  = 'Mobile Field is Required..!';
+    }
+    if(cnic == '' || cnic == null){
+        msg  = 'Cnic Field is Required..!';
+    }
+
+    if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '')){
+        msg  = 'Mobile Field is Required,\nTehsil Field is Required..!';
+    }
+    if((tehsil == '' || tehsil == null) && (cnic == null || cnic == '')){
+        msg  = 'Cnic Field is Required,\nTehsil Field is Required..!';
+    }
+    if((mobile == '' || mobile == null) && (cnic == null || cnic == '')){
+        msg  = 'Cnic Field is Required,\nMobile Field is Required..!';
+    }
+
+    if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '') && (cnic == '' || cnic == null) )
+    {
+        msg = 'CNIC Field is Required,\nMobile Field is Required,\nTehsil Field is Required..!';
+    }
+    alert(msg);
+}
+else{
+// Hide all steps
+document.querySelectorAll('.step').forEach(function(stepElement) {
+stepElement.style.display = 'none';
+});
+// Show the current step
+document.querySelector('.step-' + step).style.display = 'block';
+updateProgressIndicator(step);
+}
+
+
+}
 
     function prevStep(step) {
         // Hide all steps
@@ -692,7 +739,7 @@ $('select[name="tehsil"]').on('change', function() {
     }
 
     // Initialize the first step
-    nextStep(1);
+    // nextStep(1);
 </script>
 </body>
 

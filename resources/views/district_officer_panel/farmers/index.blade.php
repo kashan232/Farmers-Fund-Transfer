@@ -117,9 +117,9 @@
                                                         <td>
                                                             <div style="display:flex">
 
-                                                                <button type="button" class="btn btn-success verifiy-btn "   data-id="{{ $farmer->id }}">Verify</button> &nbsp;
+                                                                <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $farmer->id }}">Verify</button> &nbsp;
                                                                 {{-- <a class="btn btn-primary" href="{{route('do-edit-farmer',$farmer->id)}}">Edit</a> --}}
-                                                            <a class="btn btn-primary" href="{{route('view-farmers',$farmer->id)}}">View</a>
+                                                            <a class="btn btn-primary btn-sm" href="{{route('view-farmers',$farmer->id)}}">View</a>
                                                             </div>
                                                         </td>
 

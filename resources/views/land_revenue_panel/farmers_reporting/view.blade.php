@@ -51,6 +51,17 @@
                         <div class="page-header-title">
                             <h2 class="mb-0">Reports</h2>
                         </div>
+                        <div>
+                            <form action="">
+                                <input type="hidden" value="{{$filter_data['start_date'] }}">
+                                <input type="hidden" value="{{$filter_data['end_date'] }}">
+                                <input type="hidden" value="{{$filter_data['district'] }}">
+                                {{-- <input type="hidden" value="{{$filter_data['tehsilArray'] }}"> --}}
+                                <input type="hidden" value="{{$filter_data['minAcre'] }}">
+                                <input type="hidden" value="{{$filter_data['maxAcre'] }}">
+                                <input type="submit" value="Download in Excel" >
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -212,7 +223,9 @@
         });
     });
 
-//     var data = @json($data);
+// var data = @json($data);
+
+
 
 // d = data.data;
 // // Group by tehsil
