@@ -120,11 +120,13 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>UC</label><br>
-                                            <select name="ucs[]" id="uc" required class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            <select name="ucs[]" id="uc"  class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
                                                 @if(isset($field_officer))
+                                                @if($field_officer->ucs != null && is_array(json_decode($field_officer->ucs)))
                                                 @foreach (json_decode($field_officer->ucs) as $uc )
                                                 <option selected value="{{$uc}}">{{$uc}}</option>
                                                 @endforeach
+                                                @endif
                                                 @endif
                                             </select>
                                         </div>
@@ -133,11 +135,13 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>Tappa</label><br>
-                                            <select name="tappa[]" id="tappa" required class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
-                                                @if(isset($field_officer))
-                                                @foreach (json_decode($field_officer->tappas) as $tappa )
-                                                <option selected value="{{$tappa}}">{{$tappa}}</option>
-                                                @endforeach
+                                            <select name="tappa[]" id="tappa"  class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                                @if(isset($field_officer) )
+                                                    @if($field_officer->tappas != null && is_array(json_decode($field_officer->tappas)))
+                                                        @foreach (json_decode($field_officer->tappas) as $tappa )
+                                                            <option selected value="{{$tappa}}">{{$tappa}}</option>
+                                                        @endforeach
+                                                    @endif
                                                 @endif
                                             </select>
                                         </div>

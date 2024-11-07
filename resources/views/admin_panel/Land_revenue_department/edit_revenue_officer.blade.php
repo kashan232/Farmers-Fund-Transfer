@@ -99,12 +99,14 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>UC</label><br>
-                                            <select name="ucs[]" id="uc" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
+                                            <select name="ucs[]" id="uc" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" >
+                                                @if($data->ucs != null && is_array(json_decode($data->ucs)))
                                                 @foreach (json_decode($data->ucs) as $ucs)
                                                 <option value="{{ $ucs }}" selected>
                                                     {{ $ucs }}
                                                 </option>
                                                 @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
@@ -112,15 +114,18 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>Tappa</label><br>
-                                            <select name="tappa[]" id="tappa" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
+                                            <select name="tappa[]" id="tappa" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" >
+                                                @if($data->tappas != null && is_array(json_decode($data->tappas)))
                                                 @foreach (json_decode($data->tappas) as $tappas)
                                                 <option value="{{ $tappas }}" selected>
                                                     {{ $tappas }}
                                                 </option>
                                                 @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Username</label>

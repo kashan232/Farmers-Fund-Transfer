@@ -76,6 +76,12 @@ Route::post('/online-login', [OnlineFormController::class, 'authenticate'])->nam
 Route::get('/online-dashboard-logout', [OnlineFormController::class, 'logout'])->name('online-dashboard-logout');
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 
+
+
+
+
+
+
 Route::get('/farmers/registrations', function(){
 
     $districts = \App\Models\District::all();

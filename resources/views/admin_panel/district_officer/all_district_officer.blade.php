@@ -94,7 +94,7 @@
                                                         <td>{{ $agri->username }}</td>
                                                         <td>
                                                             <div class="d-flex">
-                                                                <a href="/district-officer-edit/{{$agri->id}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                                                <a href="{{route('district-officer-edit',$agri->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                                             </div>
                                                         </td>
                                                     </tr>

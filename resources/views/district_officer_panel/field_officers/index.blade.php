@@ -92,7 +92,7 @@
                                                         <td>{{ $agri->username }}</td>
                                                         <td>
                                                             <div class="d-flex">
-                                                                <a href="/do/field-officer-edit/{{$agri->id}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                                                <a href="/do/field-officer-edit/{{$agri->id}}" class="btn btn-sm btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                                             </div>
                                                         </td>
                                                     </tr>

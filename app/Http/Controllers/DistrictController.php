@@ -57,7 +57,7 @@ class DistrictController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             // dd($userId);
-            $all_district = District::where('admin_or_user_id', '=', $userId)->get();
+            $all_district = District::get();
             return view('admin_panel.district.all_district', [
                 'all_district' => $all_district,
             ]);

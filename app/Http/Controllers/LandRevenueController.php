@@ -529,7 +529,16 @@ class LandRevenueController extends Controller
 
         $data = $registrations->paginate(10);
 
+        $filter_data = [
+            'start_date' => $start_date,
+            'end_date' => $end_date,
+            'district' => $district,
+            'tehsilArray' => $tehsilArray,
+            'minAcre' => $minAcre,
+            'maxAcre' => $maxAcre
+        ];
+
 // dd($data);
-        return view('land_revenue_panel.farmers_reporting.view',['data' => $data]);
+        return view('land_revenue_panel.farmers_reporting.view',['data' => $data, 'filter_data' => $filter_data]);
     }
 }
