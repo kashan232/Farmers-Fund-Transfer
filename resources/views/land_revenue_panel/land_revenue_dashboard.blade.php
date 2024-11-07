@@ -59,17 +59,44 @@
                 </div>
             </div>
 
-
-            <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+            <div class="col-12 mt-3">
                 <div class="box--sec">
                     <div class="top-heading">
-                        <div>
-                            <p> District : Hyderabad</p>
+                        <p>Farmers Statistics</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 p-3">
+                            <div class="chart-heading text-center pt-2 pb-2" style="font-weight: bold;">Online Farmer Registration</div>
+                            <div class="chart-wrapper">
+                                <div class="chart" id="onlinefarmers"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 p-3">
+                            <div class="chart-heading text-center pt-2 pb-2" style="font-weight: bold;">District officer</div>
+                            <div class="chart-wrapper">
+                                <div class="chart" id="distirct_officer"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 p-3">
+                            <div class="chart-heading text-center pt-2 pb-2" style="font-weight: bold;">Field Officer</div>
+                            <div class="chart-wrapper">
+                                <div class="chart" id="fieldOfficerRegistrationChart"></div>
+                            </div>
                         </div>
                     </div>
-                    <div id="chart" style="width: 100%;"></div>
                 </div>
             </div>
+
+            <!-- Tehsil-Wise Farmer Statistics -->
+            <div class="col-12 mt-3">
+                <div class="box--sec">
+                    <div class="top-heading">
+                        <p>District Wise Farmers Registration</p>
+                    </div>
+                    <div id="districtOfficerTehsilWiseRegistrationChart"></div>
+                </div>
+            </div>
+
 
             <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                 <div class="box--sec">
@@ -96,6 +123,51 @@
 @include('land_revenue_panel.include.footer_include')
 <script>
     // Data for Hyderabad district with verified farmers
+
+     // Donut Charts Data and Configurations
+     const ownFarmerData = [100, 80, 20];
+    const district_data = [120, 90, 30];
+    const fieldOfficerData = [90, 70, 20];
+
+    function renderDonutChart(elementId, data, total) {
+        const options = {
+            series: data,
+            chart: {
+                type: 'donut',
+                height: 400
+            },
+            labels: ['Registered Farmers', 'Verified Farmers', 'Rejected Farmers'],
+            colors: ['#4ba064', '#5cc183', '#d9534f'],
+            dataLabels: {
+                enabled: true,
+                formatter: (val) => val.toFixed(1) + '%'
+            },
+            plotOptions: {
+                pie: {
+                    donut: {
+                        size: '65%',
+                        labels: {
+                            show: true,
+                            total: {
+                                show: true,
+                                label: 'Total',
+                                formatter: () => total
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                position: 'bottom'
+            }
+        };
+        new ApexCharts(document.querySelector(elementId), options).render();
+    }
+
+    renderDonutChart("#onlinefarmers", ownFarmerData, 100);
+    renderDonutChart("#distirct_officer", district_data, 120);
+    renderDonutChart("#fieldOfficerRegistrationChart", fieldOfficerData, 90);
+
 var data = [
     {
         tehsil: 'Hyderabad City',
@@ -114,51 +186,51 @@ var data = [
     }
 ];
 
-var options = {
-    series: [
-        {
-            name: 'Total Farmers',
-            data: data.map(function(item) {
-                return item.totalFarmers;
-            })
-        }, 
-        {
+
+
+const districtOfficerOptions = {
+        series: [{
+            name: 'Registered Farmers',
+            data: [50, 70, 40]
+        }, {
             name: 'Verified Farmers',
-            data: data.map(function(item) {
-                return item.verifiedFarmers;
-            })
-        }
-    ],
-    chart: {
-        type: 'bar',
-        height: 350
-    },
-    plotOptions: {
-        bar: {
-            horizontal: true,
-            dataLabels: {
-                position: 'top'
+            data: [30, 50, 20]
+        }, {
+            name: 'Rejected Farmers',
+            data: [10, 5, 10]
+        }],
+        chart: {
+            type: 'bar',
+            height: 500
+        },
+        plotOptions: {
+            bar: {
+                horizontal: true,
+                barHeight: '60%',
+                endingShape: 'rounded'
+            }
+        },
+        colors: ['#4ba064', '#5cc183', '#d9534f'],
+        xaxis: {
+            categories: ['Hyderabad City', 'Qasimabad', 'Latifabad'], // Replace with actual Tehsil names
+        },
+        yaxis: {
+            title: {
+                text: 'Tehsils'
+            }
+        },
+        legend: {
+            position: 'top'
+        },
+        tooltip: {
+            y: {
+                formatter: (val) => `${val} farmers`
             }
         }
-    },
-    colors: ['#4a9065', '#40b66d'],
-    dataLabels: {
-        enabled: true,
-        offsetX: -6,
-        style: {
-            fontSize: '12px',
-            colors: ['#fff']
-        }
-    },
-    xaxis: {
-        categories: data.map(function(item) {
-            return item.tehsil;
-        }),
-    }
-};
+    };
 
-var chart = new ApexCharts(document.querySelector("#chart"), options);
-chart.render();
+    new ApexCharts(document.querySelector("#districtOfficerTehsilWiseRegistrationChart"), districtOfficerOptions).render();
+    
 // Data for Tehsil-wise land claims (in acres)
 var data = [
     {
