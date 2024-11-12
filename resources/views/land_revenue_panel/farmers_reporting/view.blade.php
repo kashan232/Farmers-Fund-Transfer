@@ -31,6 +31,10 @@
     .dataTables_paginate {
         display: none;
     }
+
+    table tbody tr td{
+        font-size: 11px !important;
+    }
 </style>
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
@@ -52,13 +56,14 @@
                             <h2 class="mb-0">Reports</h2>
                         </div>
                         <div>
-                            <form action="">
-                                <input type="hidden" value="{{$filter_data['start_date'] }}">
-                                <input type="hidden" value="{{$filter_data['end_date'] }}">
-                                <input type="hidden" value="{{$filter_data['district'] }}">
+                            <form action="{{route('reports-download')}}" method="post">
+                                @csrf
+                                <input type="hidden" value="{{$filter_data['start_date'] }}" name="start_date">
+                                <input type="hidden" value="{{$filter_data['end_date'] }}" name="end_date">
+                                <input type="hidden" value="{{$filter_data['district'] }}" name="district">
                                 {{-- <input type="hidden" value="{{$filter_data['tehsilArray'] }}"> --}}
-                                <input type="hidden" value="{{$filter_data['minAcre'] }}">
-                                <input type="hidden" value="{{$filter_data['maxAcre'] }}">
+                                <input type="hidden" value="{{$filter_data['minAcre'] }}" name="minAcre">
+                                <input type="hidden" value="{{$filter_data['maxAcre'] }}" name="maxAcre">
                                 <input type="submit" value="Download in Excel" >
                             </form>
                         </div>
@@ -125,7 +130,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($data as $farmer)
+
+                            @foreach($data as $farmer)
                             <tr>
                                 <td>{{ $loop->index+1 }}</td>
                                 <td>{{ $farmer->name }}</td>
@@ -175,11 +181,10 @@
                                 <td>{{ $farmer->created_at->format('Y-m-d H:i') }}</td>
                                 <td>{{ $farmer->updated_at->format('Y-m-d H:i') }}</td>
                             </tr>
-                            @empty
-                            <tr>
-                                <td colspan="56">No farmers found.</td>
-                            </tr>
-                            @endforelse
+                            {{-- @empty --}}
+
+                            @endforeach
+
                         </tbody>
                     </table>
                     <!-- Pagination links -->

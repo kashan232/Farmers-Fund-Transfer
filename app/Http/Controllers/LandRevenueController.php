@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Imports\FarmersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Validation\ValidationException;
+use App\Exports\reportsExport;
 class LandRevenueController extends Controller
 {
 
@@ -540,5 +541,13 @@ class LandRevenueController extends Controller
 
 // dd($data);
         return view('land_revenue_panel.farmers_reporting.view',['data' => $data, 'filter_data' => $filter_data]);
+    }
+
+
+
+    public function reports_download (request $req){
+
+        return Excel::download(new reportsExport, 'reports.xlsx');
+
     }
 }

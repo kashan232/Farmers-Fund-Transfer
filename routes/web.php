@@ -335,6 +335,7 @@ Route::get('/reporting-farmers-by-landOfficer', [LandRevenueController::class, '
 Route::post('/view/reporting-farmers-by-landOfficer', [LandRevenueController::class, 'view_farmers_reporting'])->name('view.reporting-farmers-by-land-officer');
 
 
+Route::post('/reports/download', [LandRevenueController::class, 'reports_download'])->name('reports-download');
 
 
 Route::get('/Reporting', [ReportingController::class, 'index'])->name('reporting');
