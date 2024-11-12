@@ -145,9 +145,16 @@
                                         </div>
                                         @if(Auth::check())
                                         @php
-                                        $userUcArray = json_decode(Auth::user()->ucs);
+                                        $userUcArray = json_decode($data->uc);
                                         @endphp
                                         @if(is_array($userUcArray))
+                                        <div class="mb-3 col-md-6">
+                                            <label for="uc">UC</label>
+                                            <select name="uc" id="uc" class="form-control">
+                                                <option  value="{{ $data->uc }}" selected >{{ $data->uc }}</option>
+                                            </select>
+                                        </div>
+                                        @else
                                         <div class="mb-3 col-md-6">
                                             <label for="uc">UC</label>
                                             <select name="uc" id="uc" class="form-control">
@@ -158,7 +165,7 @@
                                         @endif
                                         @if(Auth::check())
                                         @php
-                                        $usertappasArray = json_decode(Auth::user()->tappas);
+                                        $usertappasArray = json_decode($data->tappa);
                                         @endphp
                                         @if(is_array($usertappasArray))
                                         <div class="mb-3 col-md-6">
@@ -168,6 +175,12 @@
                                             </select>
                                         </div>
                                         @else
+                                        <div class="mb-3 col-md-6">
+                                            <label for="tappa">tappa</label>
+                                            <select name="tappa" id="tappa" class="form-control">
+                                                <option  value="{{ $data->tappa }}" selected >{{ $data->tappa }}</option>
+                                            </select>
+                                        </div>
                                         @endif
                                         @endif
 
@@ -294,7 +307,7 @@
                                                 </table>
                                             </div>
                                             <div class="col-12" style="justify-content: right; display: flex;">
-                                                <button type="button"  class="btn btn-primary" id="add_title_row_Btn">Add More</button>
+                                                <button type="button"  class="btn btn-primary btn-sm" id="add_title_row_Btn">Add More</button>
                                             </div>
                                         </div>
 
@@ -316,14 +329,14 @@
                                                             <td><input type="text" name="crops[]" value="{{$crops}}"  class="form-control"></td>
                                                             <td><input type="text" name="crop_area[]" value="{{json_decode($data->crop_area)[$index]}}" class="form-control"></td>
                                                             <td><input type="text" name="crop_average_yeild[]" value="{{json_decode($data->crop_average_yeild)[$index]}}" class="form-control"></td>
-                                                            <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+                                                            <td style="text-align:right"><button type="button"  class="btn btn-danger btn-sm delete-row" >Delete</button></td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
                                             <div class="col-12" style="justify-content: right; display: flex;">
-                                                <button type="button"  class="btn btn-primary" id="add_crop_row_Btn">Add More</button>
+                                                <button type="button"  class="btn btn-primary btn-sm" id="add_crop_row_Btn">Add More</button>
                                             </div>
                                         </div>
                                     </div>
@@ -378,7 +391,7 @@
                                                         <tr>
                                                             <th>Animal</th>
                                                             <th>Numbers</th>
-                                                            <th>Action</th>
+                                                            <th style="text-align:center">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="poultry_assets_tableBody">
@@ -386,14 +399,14 @@
                                                         <tr>
                                                             <td><input type="text" name="animal_name[]"  value="{{$animal_names}}" class="form-control"></td>
                                                             <td><input type="text" name="animal_qty[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)" value="{{json_decode($data->animal_qty)[$index]}}" class="form-control"></td>
-                                                            <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+                                                            <td style="text-align:center"><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="col-12" style="justify-content: right; display: flex;">
-                                                <button type="button"  class="btn btn-primary" id="add_poultry_assets_row_Btn">Add More</button>
+                                            <div class="col-12" style="text-align:right">
+                                                <button type="button"  class="btn btn-sm btn-primary" id="add_poultry_assets_row_Btn">Add More</button>
                                             </div>
                                         </div>
                                     </div>

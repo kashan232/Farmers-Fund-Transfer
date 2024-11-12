@@ -170,7 +170,7 @@
                                         $usertappasArray = json_decode(Auth::user()->tappas);
                                         @endphp
                                         @if(is_array($usertappasArray))
-                                        <div class="mb-3 col-md-6 py-2">
+                                        <div class="mb-6 col-md-6 py-2">
                                             <label for="tappa">tappa</label>
                                             <select name="tappa" id="tappa" class="form-control">
                                                 {{-- @foreach($usertappasArray as $tappa)
@@ -179,6 +179,14 @@
                                             </select>
                                         </div>
                                         @else
+                                        <div class="mb-6 col-md-6 py-2">
+                                            <label for="tappa">tappa</label>
+                                            <select name="tappa" id="tappa" class="form-control">
+                                                {{-- @foreach($usertappasArray as $tappa)
+                                                <option value="{{ $tappa }}">{{ $tappa }}</option>
+                                                @endforeach --}}
+                                            </select>
+                                        </div>
                                         {{-- <div class="mb-3 col-md-6">
                                             <label for="tappa">tappa</label>
                                             <select name="tappa" id="tappa" class="form-control">
@@ -191,11 +199,13 @@
                                             <label class="form-label">DAH</label>
                                             <input type="text" name="dah" class="form-control">
                                         </div>
+
+
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Village</label>
                                             <input type="text" name="village" class="form-control">
                                         </div>
-                                        <div class="mb-4 col-md-4 mt-3">
+                                        <div class="mb-4 col-md-4 py-2">
                                             <label class="form-label">Gender</label>
                                             <select name="gender" class="form-control">
                                                 <option value="male">Male</option>

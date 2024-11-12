@@ -51,8 +51,8 @@
         <div class="page-header">
             <div class="page-block">
                 <div class="row align-items-center">
-                    <div class="col-md-12">
-                        <div class="page-header-title">
+                    <div class="col-md-12" style="display:flex; justify-content:space-between">
+                        <div class="page-header-tite">
                             <h2 class="mb-0">Reports</h2>
                         </div>
                         <div>
@@ -64,7 +64,7 @@
                                 {{-- <input type="hidden" value="{{$filter_data['tehsilArray'] }}"> --}}
                                 <input type="hidden" value="{{$filter_data['minAcre'] }}" name="minAcre">
                                 <input type="hidden" value="{{$filter_data['maxAcre'] }}" name="maxAcre">
-                                <input type="submit" value="Download in Excel" >
+                                <input type="submit" class="btn btn-success" value="Download in Excel" >
                             </form>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
         </div>
         <!-- [ breadcrumb ] end -->
         <!-- [ Main Content ] start -->
-        <div class="row">
+        <div class="row" style="padding-top:0">
             <div class="col-md-12">
                 <div id="chart"></div>
                 <div class="table-responsive">
