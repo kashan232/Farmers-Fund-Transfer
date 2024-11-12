@@ -224,9 +224,7 @@
             }
         },
         xaxis: {
-            title: {
-                text: 'Number of Farmers'
-            }
+            categories: ['Hyderabad City', 'Qasimabad', 'Latifabad'], // Replace with actual Tehsil names
         },
         yaxis: {
             categories: tehsilNames,
