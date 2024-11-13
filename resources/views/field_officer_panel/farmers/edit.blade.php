@@ -109,7 +109,9 @@
 
                             <form id="registrationForm" action="{{ route('farmer-store-by-field-officer') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+
                                 <input type="hidden" value="{{ $data->id }}" name="edit_id">
+                                <input type="hidden" value="{{ $data->user_type }}" name="user_type">
                                 <div class="step step-1">
                                     <div class="row mt-2">
                                         <h4 class="card-title">Personal Details</h4>

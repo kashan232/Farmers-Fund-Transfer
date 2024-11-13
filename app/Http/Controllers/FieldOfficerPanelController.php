@@ -114,9 +114,20 @@ class FieldOfficerPanelController extends Controller
     public function lrd_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Land_Revenue_Officer')->where('verification_status',0)->paginate(5);
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Land_Revenue_Officer')->where('verification_status',null)->paginate(5);
         return view('field_officer_panel.lrd_farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
+
+
+
+
+    public function district_farmers(){
+        $user = User::find(Auth::id());
+        $tehsils = Tehsil::where('district', '=', $user->district)->get();
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','District_Officer')->where('verification_status',null)->paginate(5);
+        return view('field_officer_panel.lrd_farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
+    }
+
 
     public function view_farmers($id)
     {
@@ -142,7 +153,9 @@ class FieldOfficerPanelController extends Controller
             if ($request->edit_id && $request->edit_id != '') {
                 $data = $request->all();
                 $data = $request->except(['_token', 'edit_id']);
-                $data['user_type'] = Auth()->user()->usertype;
+
+
+                $data['user_type'] = $request->user_type;
                 $data['admin_or_user_id'] = Auth::id();
                 $data['land_emp_id'] = Auth()->user()->user_id;
                 $data['land_emp_name'] = Auth()->user()->name;
