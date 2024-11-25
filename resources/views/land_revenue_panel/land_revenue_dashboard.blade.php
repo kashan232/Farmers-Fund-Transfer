@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-12 col-lg-12">
                 <div class="dashboard">
-                    <div class="all-card">
+                    <div class="all-card p-0" >
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <div class="col-12 mt-3">
+            <div class="col-12">
                 <div class="box--sec">
                     <div class="top-heading">
                         <p>Farmers Statistics</p>
@@ -230,7 +230,7 @@ const districtOfficerOptions = {
     };
 
     new ApexCharts(document.querySelector("#districtOfficerTehsilWiseRegistrationChart"), districtOfficerOptions).render();
-    
+
 // Data for Tehsil-wise land claims (in acres)
 var data = [
     {

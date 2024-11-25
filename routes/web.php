@@ -225,6 +225,8 @@ Route::get('/lrd/farmer', [FieldOfficerPanelController::class, 'lrd_farmers'])->
 Route::get('/view/farmers/{id}', [FieldOfficerPanelController::class, 'view_farmers'])->name('view-farmers-by-field-officer');
 
 
+Route::get('/district/farmer', [FieldOfficerPanelController::class, 'district_farmers'])->name('district-farmers-by-field-officer');
+
 
 
 // Field Officer Panel

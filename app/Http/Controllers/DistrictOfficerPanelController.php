@@ -262,7 +262,7 @@ class DistrictOfficerPanelController extends Controller
     public function lrd_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Land_Revenue_Officer')->paginate(5);
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('verification_status',0)->where('user_type','Land_Revenue_Officer')->paginate(5);
         return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
@@ -271,7 +271,7 @@ class DistrictOfficerPanelController extends Controller
     public function fields_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->paginate(5);
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->where('verification_status',0)->paginate(5);
         return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
