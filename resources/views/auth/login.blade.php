@@ -44,14 +44,19 @@
                         <p>Please enter your Email and Password</p>
                     </span>
 
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                    @endif
+
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                         <input class="input100" type="email" name="email" :value="old('email')" required>
                         <span class="focus-input100"></span>
                         <span class="label-input100">Email</span>
-                        @if ($errors->has('email'))
-                        <div class="text-danger">{{ $errors->first('email') }}</div>
-                        @endif
                     </div>
 
 
@@ -60,9 +65,6 @@
                         <input class="input100" type="password" name="password" required>
                         <span class="focus-input100"></span>
                         <span class="label-input100">Password</span>
-                        @if ($errors->has('password'))
-                        <div class="text-danger">{{ $errors->first('password') }}</div>
-                        @endif
                     </div>
 
 
@@ -75,7 +77,7 @@
                         </div>
 
                         <div>
-                            <a href="#" class="txt1">
+                            <a href="{{ route('password.request') }}" class="txt1">
                                 Forgot Password?
                             </a>
                         </div>
@@ -83,8 +85,8 @@
                     <div class="container-login100-form-btn">
                         <input type="Submit" class="login100-form-btn" value="Sign in">
                     </div>
-                    <div class=" container-login100-form-btn" style="margin-top:35px;font-size: 13px;">
-                        Powered by&nbsp;: <a href="#" style="font-size: 13px;font-weight:bold;">&nbsp;XCL Technologies</a>
+                    <div class=" container-login100-form-btn" style="margin-top:35px;font-size: 11px;">
+                        Powered by&nbsp;: <a href="https://xcltechnologies.com/" target="_blank" style="font-size: 11px;font-weight:bold;">&nbsp;XCL Technologies</a>
                     </div>
 
                 </form>
