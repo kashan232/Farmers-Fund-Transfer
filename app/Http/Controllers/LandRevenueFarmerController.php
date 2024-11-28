@@ -241,6 +241,24 @@ class LandRevenueFarmerController extends Controller
     }
 
 
+    public function  agri_farmers_list()
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $user_id = Auth()->user()->user_id;
+            $user_name = Auth()->user()->name;
+            $tehsils = Tehsil::where('district', '=', Auth()->user()->district)->get();
+            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status',1)->where('user_type', '=', 'Agri_Officer')->where('district', '=', Auth()->user()->district)->paginate(5);
+            // dd($all_agriculture_farmers);
+            return view('land_revenue_panel.farmers_registration.all_land_farmers', [
+                'all_land_farmers' => $all_land_farmers,
+                'tehsils' => $tehsils
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
 
     public function  district_farmers_list()
     {

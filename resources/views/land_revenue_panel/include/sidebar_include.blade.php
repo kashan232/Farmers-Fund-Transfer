@@ -88,14 +88,14 @@
                         <span class="pc-mtext">Field Officer Farmers</span>
                     </a>
                 </li>
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="{{ route('district-officer-farmers-list-by-land-officer') }}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-home"></i>
                         </span>
                         <span class="pc-mtext">District Officer Farmers</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('self-officer-farmers-list-by-land-officer') }}" class="pc-link">
