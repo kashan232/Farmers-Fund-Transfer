@@ -31,7 +31,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Agriculture</h5>
+                        <h5>Agriculture Officer</h5>
                     </div>
                     <div class="card-body">
                         @if (session()->has('officer-added'))
@@ -53,7 +53,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Contact Number</label>
-                                            <input type="text" class="form-control" name="contact_number" value="{{$data->contact_number}}" required>
+                                            <input type="text" class="form-control" name="contact_number" value="{{$data->contact_number}}" required maxlength="11" max="11" minlength="11" min="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                         </div>
                                     </div>
                                     <div class="row mt-2">
@@ -99,12 +99,14 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>UC</label><br>
-                                            <select name="ucs[]" id="uc" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
+                                            <select name="ucs[]" id="uc" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" >
+                                                @if($data->ucs != null && is_array(json_decode($data->ucs)))
                                                 @foreach (json_decode($data->ucs) as $ucs)
                                                 <option value="{{ $ucs }}" selected>
                                                     {{ $ucs }}
                                                 </option>
                                                 @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
@@ -112,12 +114,14 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>Tappa</label><br>
-                                            <select name="tappa[]" id="tappa" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
+                                            <select name="tappa[]" id="tappa" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" >
+                                                @if($data->tappas != null && is_array(json_decode($data->tappas)))
                                                 @foreach (json_decode($data->tappas) as $tappas)
                                                 <option value="{{ $tappas }}" selected>
                                                     {{ $tappas }}
                                                 </option>
                                                 @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>

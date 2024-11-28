@@ -13,6 +13,7 @@
                     <i class="ti ti-menu-2"></i>
                 </a>
             </li>
+
         </ul>
     </div>
     <!-- [Mobile Media Block end] -->
@@ -20,12 +21,13 @@
         <ul class="list-unstyled">
             <li class="dropdown pc-h-item">
                 <a class="text-dark pt-1" style="font-weight: 700;">
-                    Agriculture User
+                    Agriculture Officer
                 </a>
             </li>
+
             <li class="dropdown pc-h-item header-user-profile">
                 <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
-                    <img src="../assets/images/user/user.png" alt="user-image" class="user-avtar" />
+                    <img src="{{asset('')}}/assets/images/user/land-officer.png" alt="user-image" class="user-avtar" />
                 </a>
                 <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                     <div class="dropdown-header d-flex align-items-center justify-content-between">
@@ -37,18 +39,18 @@
                                 <li class="list-group-item">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-shrink-0">
-                                            <img src="../assets/images/user/user.png" alt="user-image" class="wid-50 rounded-circle" />
+                                            <img src="{{asset('')}}/assets/images/user/land-officer.png" alt="user-image" class="wid-50 rounded-circle" />
                                         </div>
                                         @if (Auth::check())
-                                            <div class="flex-grow-1 mx-3">
-                                                <h5 class="mb-0">{{ Auth::user()->name }}</h5>
-                                                <a class="link-primary">{{ Auth::user()->email }}</a>
-                                            </div>
+                                        <div class="flex-grow-1 mx-3">
+                                            <h5 class="mb-0">{{ Auth::user()->name }}</h5>
+                                            <a class="link-primary">{{ Auth::user()->email }}</a>
+                                        </div>
                                         @else
-                                            <div class="flex-grow-1 mx-3">
-                                                <h5 class="mb-0">Guest</h5>
-                                                <a class="link-primary">Please log in</a>
-                                            </div>
+                                        <div class="flex-grow-1 mx-3">
+                                            <h5 class="mb-0">Guest</h5>
+                                            <a class="link-primary">Please log in</a>
+                                        </div>
                                         @endif
                                     </div>
                                 </li>

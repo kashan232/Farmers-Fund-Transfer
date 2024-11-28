@@ -1,4 +1,4 @@
-@include('agriculture_officer_panel.include.header_include')
+@include('agri_officer_panel.include.header_include')
 <style>
     .progress-indicator {
         display: flex;
@@ -53,11 +53,11 @@
 </style>
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-    @include('agriculture_officer_panel.include.sidebar_include')
+    @include('agri_officer_panel.include.sidebar_include')
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-    @include('agriculture_officer_panel.include.navbar_include')
+    @include('agri_officer_panel.include.navbar_include')
 <!-- [ Header ] end -->
 
 
@@ -84,9 +84,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Registration</h5>
-                        @if (session()->has('farmer-added'))
+                        @if (session()->has('farmers-registered'))
                             <div class="alert alert-success alert-dismissible fade show mt-4">
-                                <strong>Success!</strong> {{ session('farmer-added') }}.
+                                <strong>Success!</strong> {{ session('farmers-registered') }}.
                             </div>
                         @endif
                     </div>
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
 
-                            <form id="registrationForm" action="{{ route('store-agri-farmers') }}" method="POST" enctype="multipart/form-data">
+                            <form id="registrationForm" action="{{ route('do-store-farmer') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="step step-1">
                                     <div class="row mt-2">
@@ -121,20 +121,20 @@
                                             <input type="text" name="father_name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
-                                            <label class="form-label">CNIC</label>
-                                            <input type="text" name="cnic" class="form-control">
+                                            <label class="form-label">CNIC <span class="text-danger">*</span></label>
+                                            <input type="text" id="cnic" name="cnic" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"  >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
-                                            <label class="form-label">Mobile</label>
-                                            <input type="text" name="mobile" class="form-control">
+                                            <label class="form-label">Mobile <span class="text-danger">*</span></label>
+                                            <input type="text" id="mobile" name="mobile" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Dictrict</label>
                                             <input type="text" name="district" id="district" class="form-control" value="{{ $district }}" readonly>
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
-                                            <label class="form-label">Tehsil</label>
-                                            <select name="tehsil" id="tehsil" class="form-control">
+                                            <label class="form-label">Tehsil <span class="text-danger">*</span></label>
+                                            <select name="tehsil" id="tehsil" class="form-control" >
                                                 <option value="">Please Select Tehsil</option>
                                                 @foreach(json_decode($tehsil) as $tehsil)
                                                 <option value="{{ $tehsil }}">{{ $tehsil }}</option>
@@ -163,8 +163,6 @@
                                         </div>
                                         @endif
                                         @endif
-
-
                                         @if(Auth::check())
                                         @php
                                         $usertappasArray = json_decode(Auth::user()->tappas);
@@ -220,27 +218,41 @@
                                             <h6>Family Composition</h6>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Gender</h6>
-                                                <input type="text" value="Female" readonly name="family_composition_female" class="form-control">
+                                                <input type="text" value="Female" readonly  class="form-control">
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Children < 16 </h6>
-                                                <input type="text" name="female_children_under16" class="form-control">
+                                                <input type="text" name="female_children_under16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)" >
                                             </div>
                                             <div class="mb-4 col-md-4 mt-3">
                                                 <h6 class="text-center">Adults > 16 </h6>
-                                                <input type="text" name="female_Adults_above16" class="form-control">
+                                                <input type="text" name="female_Adults_above16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)" >
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" value="Male" readonly name="family_composition_male" class="form-control">
+                                                <input type="text" value="Male" readonly class="form-control" >
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" name="male_children_under16" class="form-control">
+                                                <input type="text" name="male_children_under16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <input type="text" name="male_Adults_above16" class="form-control">
+                                                <input type="text" name="male_Adults_above16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
                                             </div>
                                         </div>
-
+                                        <div class="row mt-2">
+                                            <h6>Next of Kin: </h6>
+                                            <div class="mb-4 col-md-4 mt-3">
+                                                <h6 class="text-center">Full Name</h6>
+                                                <input type="text" name="full_name_of_next_kin"   class="form-control">
+                                            </div>
+                                            <div class="mb-4 col-md-4 mt-3">
+                                                <h6 class="text-center">CNIC NO</h6>
+                                                <input type="text" name="cnic_of_next_kin" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" >
+                                            </div>
+                                            <div class="mb-4 col-md-4 mt-3">
+                                                <h6 class="text-center">Mobile No</h6>
+                                                <input type="text" name="mobile_of_next_kin" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" >
+                                            </div>
+                                        </div>
                                         <div class="row mt-3" id="">
                                             <h6>Landholding & Cropping</h6>
                                             <div class="row" >
@@ -279,9 +291,9 @@
                                                     <tbody id="title_tableBody">
                                                         <tr>
                                                             <td><input type="text" name="title_name[]" class="form-control"></td>
-                                                            <td><input type="text" name="title_cnic[]" class="form-control"></td>
-                                                            <td><input type="text" name="title_number[]" class="form-control"></td>
-                                                            <td><input type="text" name="title_area[]" class="form-control"></td>
+                                                            <td><input type="text" name="title_cnic[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
+                                                            <td><input type="text" name="title_number[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)"></td>
+                                                            <td><input type="text" name="title_area[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')"></td>
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
                                                     </tbody>
@@ -329,7 +341,7 @@
                                             <div class="row physical_asset-default-row" >
                                                 <div class="mb-8 col-md-8">
                                                     <label class="form-label">Items</label>
-                                                    <select name="physical_asset_item[]" id="physical_asset_item" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
+                                                    <select name="physical_asset_item[]" id="physical_asset_item"  class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
                                                         <option value="car/jeep">Car/Jeep </option>
                                                         <option value="pickup/loader">Pickup/loader</option>
                                                         <option value="motorcycle">Motorcycle</option>
@@ -362,7 +374,7 @@
                                                     <tbody id="poultry_assets_tableBody">
                                                         <tr>
                                                             <td><input type="text" name="animal_name[]" class="form-control"></td>
-                                                            <td><input type="text" name="animal_qty[]" class="form-control"></td>
+                                                            <td><input type="text" name="animal_qty[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)"></td>
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
                                                     </tbody>
@@ -395,7 +407,7 @@
                                         <div class="row" id="status_of_water_section">
                                             <div class="mb-3 col-md-3" >
                                                 <label class="form-label">Area length</label>
-                                                <input type="text" name="area_length" class="form-control">
+                                                <input type="text" name="area_length" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                             </div>
                                             <div class="mb-3 col-md-3" >
                                                 <label class="form-label">Area length</label>
@@ -415,14 +427,6 @@
                                     <div class="row mt-2">
                                         <h4 class="card-title">Bank & Account Details</h4>
                                         <div class="mb-6 col-md-6">
-                                            <label class="form-label">Title of Account</label>
-                                            <input type="text" name="account_title" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Account No</label>
-                                            <input type="text" name="account_no" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Name</label>
                                             <input type="text" name="bank_name" class="form-control">
                                         </div>
@@ -431,13 +435,23 @@
                                             <input type="text" name="branch_name" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6">
-                                            <label class="form-label">IBAN</label>
-                                            <input type="text" name="IBAN_number" class="form-control">
+                                            <label class="form-label">Branch Code</label>
+                                            <input type="text" name="branch_code" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
                                         </div>
                                         <div class="mb-6 col-md-6">
-                                            <label class="form-label">Branch Code</label>
-                                            <input type="text" name="branch_code" class="form-control">
+                                            <label class="form-label">IBAN</label>
+                                            <input type="text" name="IBAN_number" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
                                         </div>
+                                        <div class="mb-6 col-md-6">
+                                            <label class="form-label">Title of Account</label>
+                                            <input type="text" name="account_title" class="form-control">
+                                        </div>
+                                        <div class="mb-6 col-md-6">
+                                            <label class="form-label">Account No</label>
+                                            <input type="text" name="account_no" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
+                                        </div>
+
+
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
                                     <button type="button" class="btn btn-success mt-5" onclick="nextStep(5)">Next</button>
@@ -447,28 +461,28 @@
                                     <div class="row mt-2">
                                         <h4 class="card-title">Uploaded Documents</h4>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Front ID Card Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Front ID Card Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="front_id_card" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Back ID Card Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Back ID Card Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="back_id_card" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Land Proof Pic Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Land Proof Pic Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_land_proof" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Other Attachments Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Other Attachments Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_other_attach" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Farmer Picture Img "jpg/png/jpeg"</label>
+                                            <label class="form-label">Upload Farmer Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_farmer_pic" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Cheque Picture Img "jpg/png/jpeg"</label>
-                                            <input type="file" name="upload_cheque_pic" class="form-control">
+                                            <label class="form-label">Upload Cheque Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
+                                            <input type="file" name="upload_cheque_pic" class="form-control" >
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
@@ -485,18 +499,33 @@
 </div>
 <!-- [ Main Content ] end -->
 <footer class="pc-footer">
-    @include('agriculture_officer_panel.include.footer_copyright_include')
+    @include('land_revenue_panel.include.footer_copyright_include')
 </footer>
 
-@include('agriculture_officer_panel.include.footer_include')
+@include('land_revenue_panel.include.footer_include')
 <script>
+
+$('#registrationForm').submit(function(e) {
+e.preventDefault();
+
+tehsil = $('#tehsil').val();
+if(tehsil == '' || tehsil == null)
+{
+    alert('Tehsil Feild is Required..!');
+}
+else{
+    this.submit();
+}
+});
+
+
 
     $('#add_title_row_Btn').click(function() {
         const newRow = `
             <tr>
                 <td><input type="text" name="title_name[]" class="form-control"></td>
-                <td><input type="text" name="title_cnic[]" class="form-control"></td>
-                <td><input type="text" name="title_number[]" class="form-control"></td>
+                <td><input type="text" name="title_cnic[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
+                <td><input type="text" name="title_number[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)"></td>
                 <td><input type="text" name="title_area[]" class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
@@ -530,7 +559,7 @@
     $('#add_poultry_assets_row_Btn').click(function() {
         const newRow = `
             <tr>
-                <td><input type="text" name="animal_name[]" class="form-control"></td>
+                <td><input type="text" name="animal_name[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)"></td>
                 <td><input type="text" name="animal_qty[]"  class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
@@ -542,6 +571,9 @@
     $('#poultry_assets_tableBody').on('click', '.delete-row', function() {
         $(this).closest('tr').remove();
     });
+
+
+
 
 
 
@@ -633,15 +665,54 @@ $('select[name="tehsil"]').on('change', function() {
         });
 
 
-    function nextStep(step) {
-        // Hide all steps
-        document.querySelectorAll('.step').forEach(function(stepElement) {
-            stepElement.style.display = 'none';
-        });
-        // Show the current step
-        document.querySelector('.step-' + step).style.display = 'block';
-        updateProgressIndicator(step);
+        function nextStep(step) {
+
+tehsil = $('#tehsil').val();
+mobile = $('#mobile').val();
+cnic = $('#cnic').val();
+
+
+
+if(tehsil == '' || tehsil == null || mobile == null || mobile == '' || cnic == null || cnic == ''){
+
+    if(tehsil == '' || tehsil == null){
+        msg  = 'Tehsil Field is Required..!';
     }
+    if(mobile == '' || mobile == null){
+        msg  = 'Mobile Field is Required..!';
+    }
+    if(cnic == '' || cnic == null){
+        msg  = 'Cnic Field is Required..!';
+    }
+
+    if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '')){
+        msg  = 'Mobile Field is Required,\nTehsil Field is Required..!';
+    }
+    if((tehsil == '' || tehsil == null) && (cnic == null || cnic == '')){
+        msg  = 'Cnic Field is Required,\nTehsil Field is Required..!';
+    }
+    if((mobile == '' || mobile == null) && (cnic == null || cnic == '')){
+        msg  = 'Cnic Field is Required,\nMobile Field is Required..!';
+    }
+
+    if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '') && (cnic == '' || cnic == null) )
+    {
+        msg = 'CNIC Field is Required,\nMobile Field is Required,\nTehsil Field is Required..!';
+    }
+    alert(msg);
+}
+else{
+// Hide all steps
+document.querySelectorAll('.step').forEach(function(stepElement) {
+stepElement.style.display = 'none';
+});
+// Show the current step
+document.querySelector('.step-' + step).style.display = 'block';
+updateProgressIndicator(step);
+}
+
+
+}
 
     function prevStep(step) {
         // Hide all steps
@@ -668,7 +739,7 @@ $('select[name="tehsil"]').on('change', function() {
     }
 
     // Initialize the first step
-    nextStep(1);
+    // nextStep(1);
 </script>
 </body>
 

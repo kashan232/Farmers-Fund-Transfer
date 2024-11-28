@@ -1,11 +1,11 @@
-@include('agriculture_user_panel.include.header_include')
+@include('district_officer_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-    @include('agriculture_user_panel.include.sidebar_include')
+@include('district_officer_panel.include.sidebar_include')
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-    @include('agriculture_user_panel.include.navbar_include')
+@include('district_officer_panel.include.navbar_include')
 <!-- [ Header ] end -->
 <!-- [ Main Content ] start -->
 <div class="pc-container">
@@ -16,7 +16,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Agriculture User verified Farmers</h2>
+                            <h2 class="mb-0">Agriculture verified Farmers</h2>
                         </div>
                     </div>
                 </div>
@@ -48,19 +48,19 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($all_agricultureuser_farmers as $all_agricultureuser_farmer)
+                                                    @foreach($farmers as $farmers)
                                                     <tr>
-                                                        <td>{{ $all_agricultureuser_farmer->name }}</td>
-                                                        <td>{{ $all_agricultureuser_farmer->cnic }}</td>
-                                                        <td>{{ $all_agricultureuser_farmer->mobile }}</td>
-                                                        <td>{{ $all_agricultureuser_farmer->district }}</td>
-                                                        <td>{{ $all_agricultureuser_farmer->tehsil }}</td>
-                                                        <td>{{ $all_agricultureuser_farmer->uc }}</td>
-                                                        <td>{{ $all_agricultureuser_farmer->tappa }}</td>
-                                                        <td>{{ $all_agricultureuser_farmer->village }}</td>
+                                                        <td>{{ $farmers->name }}</td>
+                                                        <td>{{ $farmers->cnic }}</td>
+                                                        <td>{{ $farmers->mobile }}</td>
+                                                        <td>{{ $farmers->district }}</td>
+                                                        <td>{{ $farmers->tehsil }}</td>
+                                                        <td>{{ $farmers->uc }}</td>
+                                                        <td>{{ $farmers->tappa }}</td>
+                                                        <td>{{ $farmers->village }}</td>
                                                         <td>
-                                                            @if ($all_agricultureuser_farmer->verification_status === 'Verified')
-                                                            <span class="badge text-bg-success">Verified</span>
+                                                            @if ($farmers->verification_status == 1)
+                                                            <span class="badge text-bg-success">Submitted to Land Officer</span>
                                                             @else
                                                             <span class="badge text-bg-danger">Unverified</span>
                                                             @endif
@@ -83,10 +83,10 @@
 </div>
 <!-- [ Main Content ] end -->
 <footer class="pc-footer">
-    @include('agriculture_user_panel.include.footer_copyright_include')
+    @include('district_officer_panel.include.footer_copyright_include')
 </footer>
 
-@include('agriculture_user_panel.include.footer_include')
+@include('district_officer_panel.include.footer_include')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Event listener for opening the modal
@@ -102,7 +102,7 @@
         var statusSelect = document.getElementById('statusSelect');
         statusSelect.addEventListener('change', function() {
             var reasonBox = document.getElementById('reasonBox');
-            if (this.value === 'Unverified') {
+            if (this.value === 0) {
                 reasonBox.style.display = 'block';
             } else {
                 reasonBox.style.display = 'none';

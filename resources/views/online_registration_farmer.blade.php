@@ -9,9 +9,16 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <!-- <link rel="stylesheet" href="/online_farmers_assets/css/font-awesome.min.css"> -->
-    <link rel="stylesheet" href="{{asset('')}}/online_farmers_assets/css/style.css">
-    <link rel="stylesheet" href="{{asset('')}}/online_farmers_assets/css/select2.min.css">
+    <link rel="stylesheet" href="{{asset('online_farmers_assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('online_farmers_assets/css/select2.min.css')}}">
     <meta name="robots" content="noindex, follow">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 400px; /* Define map container height */
+            width: 100%;  /* Ensure the map takes full width */
+        }
+    </style>
     <style>
         @font-face {
             font-family: 'Poppins';
@@ -133,6 +140,16 @@
         #content {
             padding: 5rem !important;
         }
+
+        @media (max-width: 768px) {
+            #content {
+                padding: 0 !important;
+            }
+            #sidebar {
+                display: none !important;
+            }
+        }
+
     </style>
 </head>
 
@@ -182,6 +199,7 @@
         <div id="content" class="p-4 p-md-5 pt-5">
             <div class="row">
                 <div class="col-md-12">
+
                     <div class="card">
                         @if (session()->has('farmers-registered'))
                         <div class="alert alert-success alert-dismissible fade show mt-4" style="width: 95%; margin: auto;">
@@ -198,19 +216,31 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Name</label>
-                                            <input type="text" name="name" class="form-control">
+                                            <input type="text" name="name" class="form-control" value="{{ old('name') }}">
+                                            @error('name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Father Name</label>
-                                            <input type="text" name="father_name" class="form-control">
+                                            <input type="text" name="father_name" class="form-control" value="{{ old('father_name') }}">
+                                            @error('father_name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">CNIC</label>
-                                            <input type="text" name="cnic" class="form-control">
+                                            <input type="text" name="cnic" class="form-control" value="{{ old('cnic') }}">
+                                            @error('cnic')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Mobile</label>
-                                            <input type="text" name="mobile" class="form-control">
+                                            <input type="text" name="mobile" class="form-control" value="{{ old('mobile') }}">
+                                            @error('mobile')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Dictrict</label>
@@ -223,10 +253,13 @@
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Tehsil</label>
-                                            <select id="tehsils" name="tehsil" class="form-control">
-                                                <option value="" selected disabled>Select Tehsil</option>
+                                            <select id="tehsils" name="tehsil" class="form-control" >
+                                                <option value=""  disabled>Select Tehsil</option>
                                                 <!-- Options will be populated dynamically -->
                                             </select>
+                                            @error('tehsil')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">UC</label>
@@ -245,32 +278,47 @@
 
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">DAH</label>
-                                            <input type="text" name="dah" class="form-control">
+                                            <input type="text" name="dah" class="form-control" value="{{ old('dah') }}">
+                                            @error('dah')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Village</label>
-                                            <input type="text" name="village" class="form-control">
+                                            <input type="text" name="village" class="form-control" value="{{ old('village') }}">
+                                            @error('village')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-4 col-md-4 mt-2">
                                             <label class="form-label">Gender</label>
                                             <select name="gender" class="form-control">
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
+                                                <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                                                <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
                                             </select>
+                                            @error('gender')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-4 col-md-4">
                                             <label class="form-label">House Type</label>
                                             <select name="house_type" id="house_type" class="form-control">
-                                                <option value="pakka_house">Pakka House</option>
-                                                <option value="kacha_house">Kacha House</option>
+                                                <option value="pakka_house" {{ old('house_type') == 'pakka_house' ? 'selected' : '' }}>Pakka House</option>
+                                                <option value="kacha_house" {{ old('house_type') == 'kacha_house' ? 'selected' : '' }}>Kacha House</option>
                                             </select>
+                                            @error('house_type')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-4 col-md-4">
                                             <label class="form-label">Owner Type</label>
                                             <select name="owner_type" id="" class="form-control">
-                                                <option value="owner">Owner</option>
-                                                <option value="makandar">Makandar</option>
+                                                <option value="owner" {{ old('owner_type') == 'owner' ? 'selected' : '' }}>Owner</option>
+                                                <option value="makandar" {{ old('owner_type') == 'makandar' ? 'selected' : '' }}>Makandar</option>
                                             </select>
+                                            @error('owner_type')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -281,15 +329,24 @@
                                         </div>
                                         <div class="mb-4 col-md-4 ">
                                             <label class="form-label">Full Name</label>
-                                            <input type="text" name="full_name_of_next_kin"   class="form-control">
+                                            <input type="text" name="full_name_of_next_kin"   class="form-control" value="{{ old('full_name_of_next_kin') }}">
+                                            @error('full_name_of_next_kin')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-4 col-md-4 ">
                                             <label class="form-label">CNIC</label>
-                                            <input type="text" name="cnic_of_next_kin" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" >
+                                            <input type="text" name="cnic_of_next_kin" class="form-control" value="{{ old('cnic_of_next_kin') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" >
+                                            @error('cnic_of_next_kin')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-4 col-md-4 ">
                                             <label class="form-label">Mobile No</label>
-                                            <input type="text" name="mobile_of_next_kin" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" >
+                                            <input type="text" name="mobile_of_next_kin" class="form-control" value="{{ old('mobile_of_next_kin') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" >
+                                            @error('mobile_of_next_kin')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -304,20 +361,32 @@
                                         </div>
                                         <div class="mb-4 col-md-4 mt-1">
                                             <h6 class="text-center">Children < 16 </h6>
-                                                    <input type="text" name="female_children_under16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                            <input type="text" name="female_children_under16"  value="{{ old('female_children_under16') }}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                            @error('female_children_under16')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-4 col-md-4 mt-1">
                                             <h6 class="text-center">Adults > 16 </h6>
-                                            <input type="text" name="female_Adults_above16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                            <input type="text" name="female_Adults_above16" value="{{ old('female_Adults_above16') }}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                            @error('female_Adults_above16')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-4 col-md-4 ">
                                             <input type="text" value="Male" readonly name="" class="form-control">
                                         </div>
                                         <div class="mb-4 col-md-4 ">
-                                            <input type="text" name="male_children_under16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                            <input type="text" name="male_children_under16" value="{{ old('male_children_under16') }}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                            @error('male_children_under16')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-4 col-md-4 ">
-                                            <input type="text" name="male_Adults_above16" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                            <input type="text" name="male_Adults_above16" value="{{ old('male_Adults_above16') }}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                            @error('male_Adults_above16')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row" id="">
@@ -326,19 +395,31 @@
                                         </div>
                                         <div class="mb-3 col-md-3">
                                             <label class="form-label">Total Landholding (Acre)</label>
-                                            <input type="text" name="total_landing_acre" class="form-control">
+                                            <input type="text" name="total_landing_acre" value="{{ old('total_landing_acre') }}" class="form-control">
+                                            @error('total_landing_acre')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-3 col-md-3">
                                             <label class="form-label">Total Area with Hari(s)</label>
-                                            <input type="text" name="total_area_with_hari" class="form-control">
+                                            <input type="text" name="total_area_with_hari" value="{{ old('total_area_with_hari') }}" class="form-control">
+                                            @error('total_area_with_hari')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-3 col-md-3">
                                             <label class="form-label">Total self cultivated land</label>
-                                            <input type="text" name="total_area_cultivated_land" class="form-control">
+                                            <input type="text" name="total_area_cultivated_land" value="{{ old('total_area_cultivated_land') }}" class="form-control">
+                                            @error('total_area_cultivated_land')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-3 col-md-3">
                                             <label class="form-label">Total fallow land</label>
-                                            <input type="text" name="total_fallow_land" class="form-control">
+                                            <input type="text" name="total_fallow_land" value="{{ old('total_fallow_land') }}" class="form-control">
+                                            @error('total_fallow_land')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row " id="no_title_section">
@@ -358,10 +439,30 @@
                                                 </thead>
                                                 <tbody id="title_tableBody">
                                                     <tr>
-                                                        <td><input type="text" name="title_name[]" class="form-control"></td>
-                                                        <td><input type="text" name="title_cnic[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
-                                                        <td><input type="text" name="title_number[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)"></td>
-                                                        <td><input type="text" name="title_area[]" class="form-control"></td>
+                                                        <td>
+                                                            <input type="text" name="title_name[]" value="{{ old('title_name.0') }}" class="form-control">
+                                                            @error('title_name.0')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="title_cnic[]" value="{{ old('title_cnic.0') }}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                            @error('title_cnic.0')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="title_number[]" value="{{ old('title_number.0') }}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)">
+                                                            @error('title_number.0')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="title_area[]" value="{{ old('title_area.0') }}" class="form-control">
+                                                            @error('title_area.0')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </td>
                                                         <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                     </tr>
                                                 </tbody>
@@ -387,9 +488,24 @@
                                                 </thead>
                                                 <tbody id="crop_tableBody">
                                                     <tr>
-                                                        <td><input type="text" name="crops[]" class="form-control"></td>
-                                                        <td><input type="text" name="crop_area[]" class="form-control"></td>
-                                                        <td><input type="text" name="crop_average_yeild[]" class="form-control"></td>
+                                                        <td>
+                                                            <input type="text" name="crops[]" value="{{ old('crops.0') }}" class="form-control">
+                                                            @error('crops.0')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="crop_area[]" value="{{ old('crop_area.0') }}" class="form-control">
+                                                            @error('crop_area.0')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="crop_average_yeild[]"  value="{{ old('crop_average_yeild.0') }}" class="form-control">
+                                                            @error('crop_average_yeild.0')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </td>
                                                         <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                     </tr>
                                                 </tbody>
@@ -399,6 +515,7 @@
                                             <button type="button" class="btn btn-primary" id="add_crop_row_Btn">Add More</button>
                                         </div>
                                     </div>
+
                                     <button type="button" class="btn btn-primary mt-1" onclick="nextStep(2)">Next</button>
                                 </div>
 
@@ -409,22 +526,25 @@
                                         </div>
                                         <div class="mb-8 col-md-8">
                                             <label class="form-label">Items</label>
-                                            <select name="physical_asset_item[]" id="" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
-                                                <option value="car/jeep">Car/Jeep </option>
-                                                <option value="pickup/loader">Pickup/loader</option>
-                                                <option value="motorcycle">Motorcycle</option>
-                                                <option value="bicycles">Bicycles</option>
-                                                <option value="bullock_cart">Bullock Cart</option>
-                                                <option value="Tractor(4wheels)">Tractor (4 wheels)</option>
-                                                <option value="disk_harrow">Disk Harrow</option>
-                                                <option value="cultivator">Cultivator</option>
-                                                <option value="tractor_trolley">Tractor Trolley</option>
-                                                <option value="plough">Plough (wood or metal)</option>
-                                                <option value="thresher">Thresher</option>
-                                                <option value="harvester">Harvester</option>
-                                                <option value="rotavetor">Rotavetor</option>
-                                                <option value="laser_lever">Laser lever</option>
+                                            <select name="physical_asset_item[]" id=""  class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
+                                                <option value="car/jeep" {{ in_array('car/jeep', old('physical_asset_item', [])) ? 'selected' : '' }} >Car/Jeep </option>
+                                                <option value="pickup/loader" {{ in_array('pickup/loader', old('physical_asset_item', [])) ? 'selected' : '' }}>Pickup/loader</option>
+                                                <option value="motorcycle" {{ in_array('motorcycle', old('physical_asset_item', [])) ? 'selected' : '' }}>Motorcycle</option>
+                                                <option value="bicycles" {{ in_array('bicycles', old('physical_asset_item', [])) ? 'selected' : '' }}>Bicycles</option>
+                                                <option value="bullock_cart" {{ in_array('bullock_cart', old('physical_asset_item', [])) ? 'selected' : '' }}>Bullock Cart</option>
+                                                <option value="Tractor(4wheels)" {{ in_array('Tractor(4wheels)', old('physical_asset_item', [])) ? 'selected' : '' }}>Tractor (4 wheels)</option>
+                                                <option value="disk_harrow" {{ in_array('disk_harrow', old('physical_asset_item', [])) ? 'selected' : '' }}>Disk Harrow</option>
+                                                <option value="cultivator" {{ in_array('cultivator', old('physical_asset_item', [])) ? 'selected' : '' }}>Cultivator</option>
+                                                <option value="tractor_trolley" {{ in_array('car/jeep', old('physical_asset_item', [])) ? 'selected' : '' }}>Tractor Trolley</option>
+                                                <option value="plough" {{ in_array('plough', old('physical_asset_item', [])) ? 'selected' : '' }}>Plough (wood or metal)</option>
+                                                <option value="thresher" {{ in_array('thresher', old('physical_asset_item', [])) ? 'selected' : '' }}>Thresher</option>
+                                                <option value="harvester" {{ in_array('harvester', old('physical_asset_item', [])) ? 'selected' : '' }}>Harvester</option>
+                                                <option value="rotavetor" {{ in_array('rotavetor', old('physical_asset_item', [])) ? 'selected' : '' }}>Rotavetor</option>
+                                                <option value="laser_lever" {{ in_array('laser_lever', old('physical_asset_item', [])) ? 'selected' : '' }}>Laser lever</option>
                                             </select>
+                                            @error('physical_asset_item')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row mt-2 " id="poultry_assets_section">
@@ -442,8 +562,18 @@
                                                 </thead>
                                                 <tbody id="poultry_assets_tableBody">
                                                     <tr>
-                                                        <td><input type="text" name="animal_name[]" class="form-control"></td>
-                                                        <td><input type="text" name="animal_qty[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)"></td>
+                                                        <td>
+                                                            <input type="text" value="{{ old('animal_name.0') }}" name="animal_name[]" class="form-control">
+                                                            @error('animal_name.0')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </td>
+                                                        <td>
+                                                            <input type="text"  value="{{ old('animal_qty.0') }}"  name="animal_qty[]"   class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)">
+                                                            @error('animal_qty.0')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </td>
                                                         <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                     </tr>
                                                 </tbody>
@@ -466,9 +596,12 @@
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label">Source of irrigation</label>
                                                 <select name="source_of_irrigation" class="form-control" id="source_of_irrigation">
-                                                    <option value="canal_wall">Canal System</option>
-                                                    <option value="tube_wall">Tube Wall</option>
+                                                    <option value="canal_wall" {{ old('source_of_irrigation') == 'canal_wall' ? 'selected' : '' }}>Canal System</option>
+                                                    <option value="tube_wall" {{ old('source_of_irrigation') == 'tube_wall' ? 'selected' : '' }}>Tube Wall</option>
                                                 </select>
+                                                @error('source_of_irrigation')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -479,15 +612,21 @@
                                         <div class="row mb-12 col-md-12" id="status_of_water_section">
                                             <div class="mb-3 col-md-3">
                                                 <label class="form-label">Area length</label>
-                                                <input type="text" name="area_length" class="form-control">
+                                                <input type="text" name="area_length" class="form-control" value="{{ old('area_length') }}">
+                                                @error('area_length')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                             <div class="mb-3 col-md-3">
                                                 <label class="form-label">Area length</label>
                                                 <select class="form-control" id="lined_unlined" name="line_status">
                                                     <option value="">Select Lined/Unlined</option>
-                                                    <option value="lined">lined</option>
-                                                    <option value="unlined">Unlind</option>
+                                                    <option value="lined" {{ old('line_status') == 'lined' ? 'selected' : '' }}>lined</option>
+                                                    <option value="unlined" {{ old('line_status') == 'unlined' ? 'selected' : '' }}>Unlind</option>
                                                 </select>
+                                                @error('line_status')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -502,29 +641,54 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Title of Account</label>
-                                            <input type="text" name="account_title" class="form-control">
+                                            <input type="text" name="account_title" class="form-control" value="{{ old('account_title') }}">
+                                            @error('account_title')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Account No</label>
-                                            <input type="text" name="account_no" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
+                                            <input type="text" name="account_no" class="form-control" value="{{ old('account_no') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
+                                            @error('account_no')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Bank Name</label>
-                                            <input type="text" name="bank_name" class="form-control">
+                                            <input type="text" name="bank_name" value="{{ old('bank_name') }}" class="form-control">
+                                            @error('bank_name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Name</label>
-                                            <input type="text" name="branch_name" class="form-control">
+                                            <input type="text" name="branch_name" value="{{ old('branch_name') }}"  class="form-control">
+                                            @error('branch_name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">IBAN</label>
-                                            <input type="text" name="IBAN_number" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
+                                            <input type="text" name="IBAN_number" value="{{ old('IBAN_number') }}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
+                                            @error('IBAN_number')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Branch Code</label>
-                                            <input type="text" name="branch_code" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                                            <input type="text" name="branch_code" value="{{ old('branch_code') }}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                                            @error('branch_code')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
+                                    <div class="row mt-4">
+                                        <div class="mb-12 col-md-12">
+                                            <button id="gpsButton" class="btn btn-primary">GPS Coordinates</button> &nbsp;
+                                            <span id="locationInput"></span>
+                                        </div>
+                                    </div>
+
                                     <button type="button" class="btn btn-secondary mt-3" onclick="prevStep(3)">Previous</button>
                                     <button type="button" class="btn btn-primary mt-3" onclick="nextStep(5)">Next</button>
                                 </div>
@@ -537,26 +701,44 @@
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Upload Front ID Card Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="front_id_card" class="form-control">
+                                            @error('front_id_card')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Upload Back ID Card Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="back_id_card" class="form-control">
+                                            @error('back_id_card')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Upload Land Proof Pic Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_land_proof" class="form-control">
+                                            @error('upload_land_proof')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Upload Other Attachments Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_other_attach" class="form-control">
+                                            @error('upload_other_attach')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Upload Farmer Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_farmer_pic" class="form-control">
+                                            @error('upload_farmer_pic')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Upload Cheque Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_cheque_pic" class="form-control">
+                                            @error('upload_cheque_pic')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-3" onclick="prevStep(4)">Previous</button>
@@ -569,11 +751,7 @@
             </div>
         </div>
     </div>
-    <script src="{{asset('')}}/online_farmers_assets/js/jquery.min.js"></script>
-    <script src="{{asset('')}}/online_farmers_assets/js/popper.js"></script>
-    <script src="{{asset('')}}/online_farmers_assets/js/bootstrap.min.js"></script>
-    <script src="{{asset('')}}/online_farmers_assets/js/main.js"></script>
-    <script src="{{asset('')}}/online_farmers_assets/js/select2.min.js"></script>
+
     {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             let allTehsils = [];
@@ -669,9 +847,32 @@
     </script> --}}
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="{{asset('online_farmers_assets/js/popper.js')}}"></script>
+    <script src="{{asset('online_farmers_assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('online_farmers_assets/js/main.js')}}"></script>
+    <script src="{{asset('online_farmers_assets/js/select2.min.js')}}"></script>
     <script>
-        $(document).ready(function() {
+
+document.getElementById('gpsButton').addEventListener('focus', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        // Optionally, you can fill the input with coordinates or display elsewhere
+                        document.getElementById('locationInput').innerHTML = `${latitude}, ${longitude}`;
+                    },
+                    function(error) {
+                        console.error('Error getting location:', error);
+                    }
+                );
+            } else {
+                console.error('Geolocation is not supported by this browser.');
+            }
+        });
+
+
+ $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
         });
 

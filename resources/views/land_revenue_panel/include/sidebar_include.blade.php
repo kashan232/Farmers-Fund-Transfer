@@ -61,7 +61,7 @@
                 </li> --}}
 
 
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-user-plus"></i>
@@ -77,7 +77,9 @@
                             <a class="pc-link" href="{{ route('all-land-farmers') }}">All Farmers</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
+
+
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('field-officer-farmers-list-by-land-officer') }}" class="pc-link">
                         <span class="pc-micon">
@@ -157,14 +159,14 @@
                     </a>
                 </li> --}}
 
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="{{route('upload.excel.index')}}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-upload"></i>
                         </span>
                         <span class="pc-mtext">Upload Excel Farmer</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('reporting-farmers-by-land-officer') }}" class="pc-link">
                         <span class="pc-micon">

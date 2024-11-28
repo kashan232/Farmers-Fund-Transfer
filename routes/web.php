@@ -28,7 +28,7 @@ use App\Http\Controllers\CallerUserController;
 use App\Http\Controllers\DistrictOfficerPanelController;
 use App\Http\Controllers\FieldOfficerController;
 use App\Http\Controllers\FieldOfficerPanelController;
-
+use App\Http\Controllers\AgricultureOfficerPanelController;
 use App\Models\AgricultureOfficer;
 use App\Models\District;
 use App\Models\DistrictOfficer;
@@ -168,6 +168,31 @@ Route::get('/district-officer-create', [DistrictOfficerController::class, 'distr
 Route::post('/store-district-officer', [DistrictOfficerController::class, 'store_district_officer'])->name('store-district-officer');
 Route::get('/all-district-officer', [DistrictOfficerController::class, 'all_district_officer'])->middleware(['auth', 'admin'])->name('all-district-officer');
 Route::get('/district-officer-edit/{id}', [DistrictOfficerController::class, 'edit_district_officer'])->middleware(['auth', 'admin'])->name('district-officer-edit');
+
+
+
+// District Officer
+Route::get('/agri-officer-create', [AgricultureOfficerController::class, 'agri_officer_create'])->middleware(['auth', 'admin'])->name('agri-officer-create');
+Route::post('/store-agri-officer', [AgricultureOfficerController::class, 'store_agri_officer'])->name('store-agri-officer');
+Route::get('/all-agri-officer', [AgricultureOfficerController::class, 'all_agri_officer'])->middleware(['auth', 'admin'])->name('all-agri-officer');
+Route::get('/agri-officer-edit/{id}', [AgricultureOfficerController::class, 'edit_agri_officer'])->middleware(['auth', 'admin'])->name('agri-officer-edit');
+
+
+
+
+Route::get('/ao/farmers', [AgricultureOfficerPanelController::class, 'farmers_index'])->name('ao-farmers');
+Route::get('/ao/create/farmer', [AgricultureOfficerPanelController::class, 'farmer_create'])->name('ao-create-farmer');
+Route::get('/ao/edit/farmer/{id}', [AgricultureOfficerPanelController::class, 'farmer_edit'])->name('ao-edit-farmer');
+Route::post('/ao/store/farmer', [AgricultureOfficerPanelController::class, 'store_farmer'])->name('ao-store-farmer');
+Route::get('/ao/unverify-farmers', [AgricultureOfficerPanelController::class, 'unverify_farmers'])->name('ao-unverify-farmers');
+Route::get('/ao/verify-farmers', [AgricultureOfficerPanelController::class, 'verify_farmers'])->name('verify-farmers');
+Route::get('/reporting-farmers-by-ao', [AgricultureOfficerPanelController::class, 'farmers_reporting'])->name('reporting-farmers-by-ao');
+Route::post('/view/reporting-farmers-by-ao', [AgricultureOfficerPanelController::class, 'view_farmers_reporting'])->name('view.reporting-farmers-by-ao');
+
+
+
+Route::get('/ao/field/farmers', [AgricultureOfficerPanelController::class, 'fields_farmers'])->name('ao-field-farmers');
+Route::get('/ao/online/farmers', [AgricultureOfficerPanelController::class, 'online_farmers'])->name('ao-online-farmers');
 
 // District Officer Panel
 

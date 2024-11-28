@@ -17,44 +17,23 @@
                 </li>
 
 
-                <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fas fa-user-plus"></i>
-                        </span>
-                        <span class="pc-mtext">Farmers Registration</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('farmer-create-by-field-officer') }}">Add Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('farmers-list-field-officer') }}">Farmers List</a>
-                        </li>
-                    </ul>
-                </li>
-
-
-
 
 
                 <li class="pc-item pc-hasmenu">
-                    <a href="{{ route('lrd-farmers-by-field-officer') }}" class="pc-link">
+                    <a href="{{ route('farmer-create-by-field-officer') }}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-home"></i>
                         </span>
-                        <span class="pc-mtext">LRD Farmers</span>
+                        <span class="pc-mtext">Add Farmers</span>
                     </a>
                 </li>
 
-
                 <li class="pc-item pc-hasmenu">
-                    <a href="{{ route('district-farmers-by-field-officer') }}" class="pc-link">
+                    <a href="{{ route('farmers-list-field-officer') }}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-home"></i>
                         </span>
-                        <span class="pc-mtext">District Farmers</span>
+                        <span class="pc-mtext">Farmers List</span>
                     </a>
                 </li>
 
@@ -69,37 +48,6 @@
                 </li>
 
 
-                {{--
-
-
-                <li class="pc-item pc-hasmenu">
-                    <a href="#" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fas fa-user-check"></i>
-                        </span>
-                        <span class="pc-mtext">Farmers Verification </span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('agri-unverify-farmers') }}">Unverify Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('agri-verify-farmers') }}">Verified Farmers</a>
-                        </li>
-                    </ul>
-                </li>
-                --}}
-
-
-                {{-- <li class="pc-item pc-hasmenu">
-                    <a href="{{ route('agri-officer-reporting') }}" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fas fa-home"></i>
-                        </span>
-                        <span class="pc-mtext">Reporting</span>
-                    </a>
-                </li> --}}
 
             </ul>
 
