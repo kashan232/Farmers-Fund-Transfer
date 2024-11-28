@@ -20,7 +20,7 @@
         <ul class="list-unstyled">
             <li class="dropdown pc-h-item">
                 <a class="text-dark pt-1" style="font-weight: 700;">
-                    Field Officer
+                Field Assistants
                 </a>
             </li>
             <li class="dropdown pc-h-item header-user-profile">
