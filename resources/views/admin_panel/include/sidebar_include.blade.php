@@ -67,7 +67,7 @@
                         <span class="pc-micon">
                             <i class="fas fa-user-tie"></i>
                         </span>
-                        <span class="pc-mtext">Land Revenue</span>
+                        <span class="pc-mtext">LRD Officer</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
@@ -105,15 +105,15 @@
                         <span class="pc-micon">
                             <i class="fas fa-user-tie"></i>
                         </span>
-                        <span class="pc-mtext">District Officer</span>
+                        <span class="pc-mtext">Additional Director</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('district-officer-create') }}">Create Officer</a>
+                            <a class="pc-link" href="{{ route('district-officer-create') }}">Create Director</a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-district-officer') }}">All Officer</a>
+                            <a class="pc-link" href="{{ route('all-district-officer') }}">All Additional Director</a>
                         </li>
                     </ul>
                 </li>
@@ -123,15 +123,15 @@
                         <span class="pc-micon">
                             <i class="fas fa-user-tie"></i>
                         </span>
-                        <span class="pc-mtext">Field Officer</span>
+                        <span class="pc-mtext">Field Assistants</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('create-field-officer') }}">Create Field Officer</a>
+                            <a class="pc-link" href="{{ route('create-field-officer') }}">Create Field Assistants</a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-field-officers') }}">All Field Officers</a>
+                            <a class="pc-link" href="{{ route('all-field-officers') }}">All Field Assistants</a>
                         </li>
                     </ul>
                 </li>
