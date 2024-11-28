@@ -193,6 +193,7 @@ Route::post('/view/reporting-farmers-by-ao', [AgricultureOfficerPanelController:
 
 Route::get('/ao/field/farmers', [AgricultureOfficerPanelController::class, 'fields_farmers'])->name('ao-field-farmers');
 Route::get('/ao/online/farmers', [AgricultureOfficerPanelController::class, 'online_farmers'])->name('ao-online-farmers');
+Route::post('/verifiy/farmer/by/ao/officer', [AgricultureOfficerPanelController::class, 'verify_farmer'])->name('verify-farmer-by-ao');
 
 // District Officer Panel
 
@@ -246,7 +247,6 @@ Route::post('/verifiy/farmer', [DistrictOfficerPanelController::class, 'verify_f
 
 
 Route::post('/verifiy/farmer/by/land/officer', [LandRevenueFarmerController::class, 'verify_farmer'])->name('verify-farmer-by-land-officer');
-
 
 // End District Officer Panel
 

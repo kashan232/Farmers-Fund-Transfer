@@ -229,7 +229,7 @@ class LandRevenueFarmerController extends Controller
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
             $tehsils = Tehsil::where('district', '=', Auth()->user()->district)->get();
-            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status',1)->where('user_type', '=', 'Field_Officer')->where('district', '=', Auth()->user()->district)->paginate();
+            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status','verified_by_ao')->where('user_type', '=', 'Field_Officer')->where('district', '=', Auth()->user()->district)->paginate();
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
                 'all_land_farmers' => $all_land_farmers,
@@ -302,14 +302,16 @@ class LandRevenueFarmerController extends Controller
         $farmer = LandRevenueFarmerRegistation::find($request->farmer_id);
         // Update farmer verification status
         $farmer->verification_status = $request->verification_status;
-        if ($request->verification_status == 0 || $request->verification_status == 1) {
+        if ($request->verification_status == 'rejected_by_lo') {
             $farmer->declined_reason = $request->declined_reason;
+        }
+        else{
+            $farmer->declined_reason = null;
         }
         $farmer->verification_by = $user->id;
         $farmer->save();
         return redirect()->back()->with('farmers-registered', 'Done');
     }
-
 
 
 

@@ -273,7 +273,7 @@ class AgricultureOfficerPanelController extends Controller
     public function fields_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->where('verification_status',0)->paginate(5);
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->where('verification_status','=','0')->orWhere('verification_status','=','rejected_by_lo')->paginate(5);
         return view('agri_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
@@ -288,9 +288,12 @@ class AgricultureOfficerPanelController extends Controller
         $user = User::find(Auth::id());
         $farmer = LandRevenueFarmerRegistation::find($request->farmer_id);
         // Update farmer verification status
-        $farmer->verification_status = $request->verification_status ? 1 : 0;
-        if ($request->verification_status == 0) {
+        $farmer->verification_status = $request->verification_status;
+        if ($request->verification_status == 'rejected_by_ao') {
             $farmer->declined_reason = $request->declined_reason;
+        }
+        else{
+            $farmer->declined_reason = null;
         }
         $farmer->verification_by = $user->id;
         $farmer->save();
