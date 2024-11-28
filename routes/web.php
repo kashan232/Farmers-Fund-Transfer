@@ -243,6 +243,11 @@ Route::post('/verifiy/farmer', [DistrictOfficerPanelController::class, 'verify_f
 
 
 
+
+
+Route::post('/verifiy/farmer/by/land/officer', [LandRevenueFarmerController::class, 'verify_farmer'])->name('verify-farmer-by-land-officer');
+
+
 // End District Officer Panel
 
 

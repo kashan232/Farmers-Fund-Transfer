@@ -248,7 +248,7 @@ class LandRevenueFarmerController extends Controller
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
             $tehsils = Tehsil::where('district', '=', Auth()->user()->district)->get();
-            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status',1)->where('user_type', '=', 'Agri_Officer')->where('district', '=', Auth()->user()->district)->paginate(5);
+            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status',0)->where('user_type', '=', 'Agri_Officer')->where('district', '=', Auth()->user()->district)->paginate(5);
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
                 'all_land_farmers' => $all_land_farmers,
@@ -260,23 +260,23 @@ class LandRevenueFarmerController extends Controller
     }
 
 
-    public function  district_farmers_list()
-    {
-        if (Auth::id()) {
-            $userId = Auth::id();
-            $user_id = Auth()->user()->user_id;
-            $user_name = Auth()->user()->name;
-            $tehsils = Tehsil::where('district', '=', Auth()->user()->district)->get();
-            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status',1)->where('user_type', '=', 'District_Officer')->where('district', '=', Auth()->user()->district)->paginate(5);
-            // dd($all_agriculture_farmers);
-            return view('land_revenue_panel.farmers_registration.all_land_farmers', [
-                'all_land_farmers' => $all_land_farmers,
-                'tehsils' => $tehsils
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
+    // public function  district_farmers_list()
+    // {
+    //     if (Auth::id()) {
+    //         $userId = Auth::id();
+    //         $user_id = Auth()->user()->user_id;
+    //         $user_name = Auth()->user()->name;
+    //         $tehsils = Tehsil::where('district', '=', Auth()->user()->district)->get();
+    //         $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status',1)->where('user_type', '=', 'District_Officer')->where('district', '=', Auth()->user()->district)->paginate(5);
+    //         // dd($all_agriculture_farmers);
+    //         return view('land_revenue_panel.farmers_registration.all_land_farmers', [
+    //             'all_land_farmers' => $all_land_farmers,
+    //             'tehsils' => $tehsils
+    //         ]);
+    //     } else {
+    //         return redirect()->back();
+    //     }
+    // }
 
 
     public function  self_farmers_list()
@@ -286,7 +286,7 @@ class LandRevenueFarmerController extends Controller
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
             $tehsils = Tehsil::where('district', '=', Auth()->user()->district)->get();
-            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status',1)->where('user_type', '=', 'Online')->where('district', '=', Auth()->user()->district)->paginate(5);
+            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status',0)->where('user_type', '=', 'Online')->where('district', '=', Auth()->user()->district)->paginate(5);
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
                 'all_land_farmers' => $all_land_farmers,
@@ -296,6 +296,21 @@ class LandRevenueFarmerController extends Controller
             return redirect()->back();
         }
     }
+
+    public function verify_farmer(request $request){
+        $user = User::find(Auth::id());
+        $farmer = LandRevenueFarmerRegistation::find($request->farmer_id);
+        // Update farmer verification status
+        $farmer->verification_status = $request->verification_status;
+        if ($request->verification_status == 0 || $request->verification_status == 1) {
+            $farmer->declined_reason = $request->declined_reason;
+        }
+        $farmer->verification_by = $user->id;
+        $farmer->save();
+        return redirect()->back()->with('farmers-registered', 'Done');
+    }
+
+
 
 
 

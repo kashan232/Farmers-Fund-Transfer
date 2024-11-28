@@ -35,6 +35,50 @@
             </div>
         </div>
         <!-- [ breadcrumb ] end -->
+
+        <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLiveLabel">Farmers Verification</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <form id="verifyfarmers" action="{{ route('verify-farmer-by-land-officer') }}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="statusSelect">Status</label>
+                                        <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
+                                        <select class="form-control" id="statusSelect" name="verification_status">
+                                            <option value="2">Verified</option>
+                                           @if($all_land_farmers[0]->user_type != 'Agri_Officer')
+                                           <option value="1">Unverified</option>
+                                           @else
+                                           <option value="0">Unverified</option>
+                                           @endif
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="reasonBox" style="display: none;">
+                                        <label for="reasonTextarea">Reason</label>
+                                        <select id="reasonTextarea" name="declined_reason" class="form-control">
+                                            <option value="Banks Details Not Valid">Banks Details Not Valid</option>
+                                            <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
+                                            <option value="Attachments are not cleared">Attachments are not cleared</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-3">Save</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <!-- [ Main Content ] start -->
         <div class="row">
             <div class="col-sm-12">
@@ -87,6 +131,7 @@
                                                         @if(isset($all_land_farmer->user_type))
                                                         <td>
                                                             <div class="d-flex">
+                                                                <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $all_land_farmer->id }}">Verify</button> &nbsp;
                                                                 <a href="{{ route('view-land-farmers', ['id' => $all_land_farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp;
                                                                 <a href="{{ route('edit-land-farmers', ['id' => $all_land_farmer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>&nbsp;
                                                                 {{-- <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>&nbsp; --}}
@@ -128,6 +173,31 @@
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
 
 <script>
+
+$(document).ready(function() {
+    // Event listener for opening the modal
+
+
+    $('.verifiy-btn').on('click', function() {
+            var farmerId = $(this).data('id');
+            $('#farmer_id').val(farmerId);
+            $('#exampleModalLive').modal('show');
+        });
+
+    // Event listener for changing the status
+    $('#statusSelect').on('change', function() {
+        var reasonBox = $('#reasonBox');
+        if ($(this).val() == '0' || $(this).val() == '1') {
+            reasonBox.show();
+            $('#reasonTextarea').prop('required', true);
+
+        } else {
+            reasonBox.hide();
+            $('#reasonTextarea').prop('required', false);
+        }
+    });
+});
+
     $(document).ready(function() {
 
        table =  $('#example').DataTable({
