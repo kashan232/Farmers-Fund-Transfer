@@ -18,9 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/login-api', [ProjectAPIController::class, 'login_api'])->name('login-api');
+
+
 Route::get('/get-districts', [ProjectAPIController::class, 'get_districts'])->name('get-districts');
 Route::get('/get-tehsil', [ProjectAPIController::class, 'get_tehsil'])->name('get-tehsil');
 Route::get('/get-uc', [ProjectAPIController::class, 'get_uc'])->name('get-uc');
 Route::get('/get-tappa', [ProjectAPIController::class, 'get_tappa'])->name('get-tappa');
 
 Route::post('/api-store-online-farmers-registration', [ProjectAPIController::class, 'api_store_online_farmers_registration'])->name('api-store-online-farmers-registration');
+

@@ -71,9 +71,9 @@ Route::get('/get-district-officers', function () {
 
 
 
-Route::get('/online-login-form', [OnlineFormController::class, 'index'])->middleware(['guest'])->name('online-login-form');
-Route::post('/online-login', [OnlineFormController::class, 'authenticate'])->name('online-login');
-Route::get('/online-dashboard-logout', [OnlineFormController::class, 'logout'])->name('online-dashboard-logout');
+// Route::get('/online-login-form', [OnlineFormController::class, 'index'])->middleware(['guest'])->name('online-login-form');
+// Route::post('/online-login', [OnlineFormController::class, 'authenticate'])->name('online-login');
+// Route::get('/online-dashboard-logout', [OnlineFormController::class, 'logout'])->name('online-dashboard-logout');
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 
 

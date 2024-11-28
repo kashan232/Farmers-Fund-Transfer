@@ -7,16 +7,50 @@ use App\Models\OnlineFarmerRegistration;
 use App\Models\Tappa;
 use App\Models\Tehsil;
 use App\Models\UC;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProjectAPIController extends Controller
 {
+
+    public function login_api(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $email = $request->email;
+        $password = $request->password;
+
+        // Fetch user by email
+        $user = User::where('email', $email)->first();
+
+        if ($user && Hash::check($password, $user->password)) {
+            // Generate token
+            $token = $user->createToken($request->email)->plainTextToken;
+
+            return response()->json([
+                'logged_user_data' => $user,
+                'token' => $token,
+                'message' => 'User Login Successfully',
+                'status' => 'Success'
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Credentials Incorrect',
+                'status' => 'Failed'
+            ], 401);
+        }
+    }
+
+
     public function get_districts(Request $request)
     {
         // Fetch all districts from the database
         $districts = District::all();
-
         // Return the districts as a JSON response
         return response()->json(['districts' => $districts], 200);
     }
