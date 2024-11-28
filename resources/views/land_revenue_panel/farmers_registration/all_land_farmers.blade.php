@@ -77,7 +77,7 @@
                                                         <td>{{ $all_land_farmer->village }}</td>
                                                         <td>
                                                             @if ($all_land_farmer->verification_status == 1)
-                                                            <span class="badge bg-success">Verified by District Officer</span>
+                                                            <span class="badge bg-success">Verified by AO</span>
                                                             @elseif ($all_land_farmer->declined_reason != '' && $all_land_farmer->verification_status == 2)
                                                             <span class="badge text-bg-danger">Rejected</span>
                                                             @else
