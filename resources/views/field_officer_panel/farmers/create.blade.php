@@ -71,7 +71,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Farmer Registration</h2>
+                            <h2 class="mb-0">FA Farmer Registration</h2>
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Registration</h5>
+                        <h5>Farmer Registration</h5>
                         @if (session()->has('farmers-registered'))
                             <div class="alert alert-success alert-dismissible fade show mt-4">
                                 <strong>Success!</strong> {{ session('farmers-registered') }}.
