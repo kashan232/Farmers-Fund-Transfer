@@ -9,33 +9,27 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <!-- <link rel="stylesheet" href="/online_farmers_assets/css/font-awesome.min.css"> -->
-<<<<<<< HEAD
     <link rel="stylesheet" href="https://cms.benazirharicard.gos.pk/online_farmers_assets/css/style.css">
     <link rel="stylesheet" href="https://cms.benazirharicard.gos.pk/online_farmers_assets/css/select2.min.css">
-=======
     <link rel="stylesheet" href="{{asset('online_farmers_assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('online_farmers_assets/css/select2.min.css')}}">
->>>>>>> 363bc0157b53ee86fd8f33829ba0b342790dc0dd
     <meta name="robots" content="noindex, follow">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
         #map {
-<<<<<<< HEAD
             height: 400px;
             /* Define map container height */
             width: 100%;
             /* Ensure the map takes full width */
-=======
             height: 400px; /* Define map container height */
             width: 100%;  /* Ensure the map takes full width */
->>>>>>> 363bc0157b53ee86fd8f33829ba0b342790dc0dd
         }
     </style>
     <style>
         @font-face {
             font-family: 'Poppins';
             font-style: normal;
-            font-weight: 500;
+            font-weight: 300;
             font-display: swap;
             src: url(https://colorlib.com/fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLDz8Z1xlEA.ttf) format('truetype');
         }
@@ -43,7 +37,7 @@
         @font-face {
             font-family: 'Poppins';
             font-style: normal;
-            font-weight: 600;
+            font-weight: 400;
             font-display: swap;
             src: url(https://colorlib.com/fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJfedw.ttf) format('truetype');
         }
@@ -157,54 +151,44 @@
             #content {
                 padding: 0 !important;
             }
-<<<<<<< HEAD
-
-=======
->>>>>>> 363bc0157b53ee86fd8f33829ba0b342790dc0dd
             #sidebar {
                 display: none !important;
             }
         }
-
-<<<<<<< HEAD
+        
         .logo-container {
-            text-align: center;
-            margin-bottom: 20px;
-            /* margin-left: 300px; */
+      text-align: center;
+      margin-bottom: 20px;
+      /* margin-left: 300px; */
+    }
+    .div{
+        margin: auto;
+    }
+    .nav-item button {
+        margin-left: 10px;
+        border-radius: 40px !important;
+        border: none;
+        background-color: rgb(223, 255, 223);
+        color: green;
+        font-weight: 600;
+        z-index: 1000;
+        margin-top: 10px;
+    }
+  
+    .button-back-line{
+        background-color: green;
+        width: 500px;
+        height: 3px;
+        position: absolute;
+        top: 260px;
+       left: 470px;
+        z-index: -1;
+    }
+    @media(min-width:200px) and (max-width:1550px){
+        .button-back-line{
+            display: none;
         }
-
-        .div {
-            margin: auto;
-        }
-
-        .nav-item button {
-            margin-left: 10px;
-            border-radius: 40px !important;
-            border: none;
-            background-color: rgb(223, 255, 223);
-            color: green;
-            font-weight: 600;
-            z-index: 1000;
-            margin-top: 10px;
-        }
-
-        .button-back-line {
-            background-color: green;
-            width: 500px;
-            height: 3px;
-            position: absolute;
-            top: 260px;
-            left: 470px;
-            z-index: -1;
-        }
-
-        @media(min-width:200px) and (max-width:1550px) {
-            .button-back-line {
-                display: none;
-            }
-        }
-=======
->>>>>>> 363bc0157b53ee86fd8f33829ba0b342790dc0dd
+    }
     </style>
 </head>
 
@@ -214,7 +198,6 @@
         <div class="wrapper d-flex align-items-stretch col-lg-11 m-auto">
 
             <div class="row">
-<<<<<<< HEAD
                 <div class="div ">
                     <div class="logo-container ">
                         <img src="{{asset('')}}/assets/images/Sindh_Hari_Card.png" alt="logo image" class="#logo-lg" style="max-width:120px;" />
@@ -244,7 +227,6 @@
                 <div id="content" class="p-4 p-md-5 pt-5">
                     <div class="row">
                         <div class="col-md-12">
-=======
                 <div class="col-md-12">
 
                     <div class="card">
@@ -368,8 +350,6 @@
                                             @enderror
                                         </div>
                                     </div>
->>>>>>> 363bc0157b53ee86fd8f33829ba0b342790dc0dd
-
                             <div class="card">
                                 <div class="card-body">
                                     <form id="registrationForm" action="{{ route('store-online-farmers-registration') }}" method="POST" enctype="multipart/form-data">
@@ -379,7 +359,6 @@
                                                 <div class="mb-12 col-md-12 d-flex ">
                                                     <img src="{{asset('')}}/login_assets/account.png" alt="" style="height: 25px;width: 25px;">
 
-<<<<<<< HEAD
                                                     <h4 class="card-title" style="line-height: 27px;margin-left: 10px;">Personal Details</h4>
                                                 </div>
                                                 <div class="mb-6 col-md-6">
@@ -479,7 +458,6 @@
                                                 </div>
                                             </div>
 
-=======
                                     <div class="row">
                                         <div class=" col-md-12">
                                             <h6 class="card-title">Next of Kin</h6>
@@ -849,8 +827,6 @@
                                     <button type="button" class="btn btn-secondary mt-3" onclick="prevStep(3)">Previous</button>
                                     <button type="button" class="btn btn-primary mt-3" onclick="nextStep(5)">Next</button>
                                 </div>
->>>>>>> 363bc0157b53ee86fd8f33829ba0b342790dc0dd
-
                                             <div class="row">
                                                 <div class=" col-md-12">
                                                     <h6 class="card-title">Next of Kin</h6>
@@ -992,7 +968,6 @@
 
                                             <button type="button" class="btn btn-primary mt-1" onclick="nextStep(2)">Next</button>
                                         </div>
-<<<<<<< HEAD
 
                                         <div class="step step-2" style="display: none;">
                                             <div class="row mt-2">
@@ -1216,7 +1191,6 @@
                                             <button type="submit" class="btn btn-primary mt-3">Submit</button>
                                         </div>
                                     </form>
-=======
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Upload Front ID Card Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="front_id_card" class="form-control">
@@ -1262,7 +1236,6 @@
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-3" onclick="prevStep(4)">Previous</button>
                                     <button type="submit" class="btn btn-primary mt-3">Submit</button>
->>>>>>> 363bc0157b53ee86fd8f33829ba0b342790dc0dd
                                 </div>
                             </div>
                         </div>
@@ -1271,62 +1244,19 @@
             </div>
 
         </div>
-<<<<<<< HEAD
-=======
     </div>
 
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let allTehsils = [];
-            let allUcs = [];
-            let allTappas = [];
->>>>>>> 363bc0157b53ee86fd8f33829ba0b342790dc0dd
 
-
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/popper.js"></script>
-        <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/bootstrap.min.js"></script>
-        <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/main.js"></script>
-        <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/select2.min.js"></script>
-        <script>
-            document.getElementById('gpsButton').addEventListener('focus', function(e) {
-
-
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        function(position) {
-                            const latitude = position.coords.latitude;
-                            const longitude = position.coords.longitude;
-                            // Optionally, you can fill the input with coordinates or display elsewhere
-                            document.getElementById('locationInput').innerHTML = `${latitude}, ${longitude}`;
-                        },
-                        function(error) {
-                            console.error('Error getting location:', error);
-                        }
-                    );
-                } else {
-                    console.error('Geolocation is not supported by this browser.');
-                }
-            });
-
-
-            $(document).ready(function() {
-                $('.js-example-basic-multiple').select2();
-            });
-
-<<<<<<< HEAD
-            $('#source_of_irrigation').change(function() {
-                if ($(this).val() == 'tube_wall') {
-                    $('#source_of_irrigation_section').append(`
-=======
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{asset('online_farmers_assets/js/popper.js')}}"></script>
-    <script src="{{asset('online_farmers_assets/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('online_farmers_assets/js/main.js')}}"></script>
-    <script src="{{asset('online_farmers_assets/js/select2.min.js')}}"></script>
+    <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/popper.js"></script>
+    <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/bootstrap.min.js"></script>
+    <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/main.js"></script>
+    <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/select2.min.js"></script>
     <script>
 
-document.getElementById('gpsButton').addEventListener('focus', function() {
+document.getElementById('gpsButton').addEventListener('focus', function(e) {
+
+
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     function(position) {
@@ -1352,7 +1282,6 @@ document.getElementById('gpsButton').addEventListener('focus', function() {
         $('#source_of_irrigation').change(function() {
             if ($(this).val() == 'tube_wall') {
                 $('#source_of_irrigation_section').append(`
->>>>>>> 363bc0157b53ee86fd8f33829ba0b342790dc0dd
             <div class="mb-6 col-md-6" id="source_of_energy_section">
                 <label class="form-label">Source of energy</label>
                 <select name="source_of_irrigation_engery"  class="form-control" id="source_of_energy">
@@ -1362,14 +1291,14 @@ document.getElementById('gpsButton').addEventListener('focus', function() {
                 </select>
             </div>
          `);
-                } else {
-                    $('#source_of_energy_section').remove();
-                }
-            });
+            } else {
+                $('#source_of_energy_section').remove();
+            }
+        });
 
-            $('#lined_unlined').change(function() {
-                if ($(this).val() == 'lined') {
-                    $('#status_of_water_section').append(`
+        $('#lined_unlined').change(function() {
+            if ($(this).val() == 'lined') {
+                $('#status_of_water_section').append(`
         <div class="mb-6 col-md-6" id="lined_section" >
             <div class="row">
             <div class="mb-6 col-md-6" >
@@ -1383,14 +1312,14 @@ document.getElementById('gpsButton').addEventListener('focus', function() {
             </div>
         </div>
         `);
-                } else {
-                    $('#lined_section').remove();
-                }
-            });
+            } else {
+                $('#lined_section').remove();
+            }
+        });
 
 
-            $('#add_title_row_Btn').click(function() {
-                const newRow = `
+        $('#add_title_row_Btn').click(function() {
+            const newRow = `
             <tr>
                 <td><input type="text" name="title_name[]" class="form-control"></td>
                 <td><input type="text" name="title_cnic[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
@@ -1399,16 +1328,16 @@ document.getElementById('gpsButton').addEventListener('focus', function() {
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;
-                $('#title_tableBody').append(newRow);
-            });
+            $('#title_tableBody').append(newRow);
+        });
 
-            // Delete row on clicking "Delete" button
-            $('#title_tableBody').on('click', '.delete-row', function() {
-                $(this).closest('tr').remove();
-            });
+        // Delete row on clicking "Delete" button
+        $('#title_tableBody').on('click', '.delete-row', function() {
+            $(this).closest('tr').remove();
+        });
 
-            $('#add_crop_row_Btn').click(function() {
-                const newRow = `
+        $('#add_crop_row_Btn').click(function() {
+            const newRow = `
             <tr>
                 <td><input type="text" name="crops[]" class="form-control"></td>
                 <td><input type="text" name="crop_area[]" class="form-control"></td>
@@ -1416,199 +1345,191 @@ document.getElementById('gpsButton').addEventListener('focus', function() {
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;
-                $('#crop_tableBody').append(newRow);
-            });
+            $('#crop_tableBody').append(newRow);
+        });
 
-            // Delete row on clicking "Delete" button
-            $('#crop_tableBody').on('click', '.delete-row', function() {
-                $(this).closest('tr').remove();
-            });
+        // Delete row on clicking "Delete" button
+        $('#crop_tableBody').on('click', '.delete-row', function() {
+            $(this).closest('tr').remove();
+        });
 
 
-            $('#add_poultry_assets_row_Btn').click(function() {
-                const newRow = `
+        $('#add_poultry_assets_row_Btn').click(function() {
+            const newRow = `
             <tr>
                 <td><input type="text" name="animal_name[]" class="form-control"></td>
                 <td><input type="text" name="animal_qty[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;
-                $('#poultry_assets_tableBody').append(newRow);
+            $('#poultry_assets_tableBody').append(newRow);
+        });
+
+        // Delete row on clicking "Delete" button
+        $('#poultry_assets_tableBody').on('click', '.delete-row', function() {
+            $(this).closest('tr').remove();
+        });
+
+
+        function nextStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.step').forEach(function(stepElement) {
+                stepElement.style.display = 'none';
             });
+            // Show the current step
+            document.querySelector('.step-' + step).style.display = 'block';
+            updateProgressIndicator(step);
+        }
 
-            // Delete row on clicking "Delete" button
-            $('#poultry_assets_tableBody').on('click', '.delete-row', function() {
-                $(this).closest('tr').remove();
+        function showStep(step) {
+            nextStep(step);
+        }
+
+        function prevStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.step').forEach(function(stepElement) {
+                stepElement.style.display = 'none';
             });
+            // Show the current step
+            document.querySelector('.step-' + step).style.display = 'block';
+            updateProgressIndicator(step);
+        }
 
-
-            function nextStep(step) {
-                // Hide all steps
-                document.querySelectorAll('.step').forEach(function(stepElement) {
-                    stepElement.style.display = 'none';
-                });
-                // Show the current step
-                document.querySelector('.step-' + step).style.display = 'block';
-                updateProgressIndicator(step);
-            }
-
-            function showStep(step) {
-                nextStep(step);
-            }
-
-            function prevStep(step) {
-                // Hide all steps
-                document.querySelectorAll('.step').forEach(function(stepElement) {
-                    stepElement.style.display = 'none';
-                });
-                // Show the current step
-                document.querySelector('.step-' + step).style.display = 'block';
-                updateProgressIndicator(step);
-            }
-
-            function updateProgressIndicator(step) {
-                document.querySelectorAll('.step-indicator').forEach(function(indicator) {
-                    indicator.classList.remove('active');
-                });
-                $('.step-indicator-' + step).addClass('active');
-            }
+        function updateProgressIndicator(step) {
+            document.querySelectorAll('.step-indicator').forEach(function(indicator) {
+                indicator.classList.remove('active');
+            });
+            $('.step-indicator-' + step).addClass('active');
+        }
 
 
 
-            $(document).ready(function() {
-                $('#districts').on('change', function() {
-                    var district = $(this).val();
-                    if (district) {
-                        $.ajax({
-                            url: 'https://cms.benazirharicard.gos.pk/get-tehsils',
-                            type: 'GET',
-                            data: {
-                                district: district
-                            },
-                            success: function(data) {
-                                $('#tehsils').empty();
-                                $.each(data, function(key, value) {
-                                    $('#tehsils').append('<option value="' +
-                                        value + '">' + value + '</option>');
-                                });
-                            }
-                        });
-                    } else {
+        $(document).ready(function() {
+        $('#districts').on('change', function() {
+            var district = $(this).val();
+            if (district) {
+                $.ajax({
+                    url: 'https://cms.benazirharicard.gos.pk/get-tehsils',
+                    type: 'GET',
+                    data: {
+                        district: district
+                    },
+                    success: function(data) {
                         $('#tehsils').empty();
-                    }
-                });
-
-                $('#tehsils').on('change', function() {
-                    var district = $('#districts').val();
-                    var tehsil = $(this).val();
-
-                    if (district && tehsil) {
-                        $.ajax({
-                            url: 'https://cms.benazirharicard.gos.pk/get-ucs',
-                            type: 'GET',
-                            data: {
-                                district: district,
-                                tehsil: tehsil
-                            },
-                            success: function(response) {
-                                // Populate UC dropdown
-                                var ucSelect = $('#ucs');
-                                ucSelect.empty();
-                                $.each(response.ucs, function(index, value) {
-                                    ucSelect.append('<option value="' + value + '">' + value + '</option>');
-                                });
-
-                                // Populate Tappa dropdown
-                                var tappaSelect = $('#tappas');
-                                tappaSelect.empty();
-                                $.each(response.Tappas, function(index, value) {
-                                    tappaSelect.append('<option value="' + value + '">' + value + '</option>');
-                                });
-                            },
-                            error: function(xhr, status, error) {
-                                console.error(error);
-                            }
+                        $.each(data, function(key, value) {
+                            $('#tehsils').append('<option value="' +
+                                value + '">' + value + '</option>');
                         });
-                    } else {
-                        $('#ucs').empty();
-                        $('#tappas').empty();
                     }
                 });
-            });
-        </script>
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+            } else {
+                $('#tehsils').empty();
+            }
+        });
 
-        <script>
-            // Initialize map to Hyderabad, Pakistan with zoom level 13
-            var map = L.map('map').setView([25.3960, 68.3578], 13); // Coordinates for Hyderabad, Pakistan
+        $('#tehsils').on('change', function() {
+            var district = $('#districts').val();
+            var tehsil = $(this).val();
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+            if (district && tehsil) {
+                $.ajax({
+                    url: 'https://cms.benazirharicard.gos.pk/get-ucs',
+                    type: 'GET',
+                    data: {
+                        district: district,
+                        tehsil: tehsil
+                    },
+                    success: function(response) {
+                        // Populate UC dropdown
+                        var ucSelect = $('#ucs');
+                        ucSelect.empty();
+                        $.each(response.ucs, function(index, value) {
+                            ucSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
 
-            var markers = [];
-            var lineCoordinates = [];
-            var polyline;
-
-            map.on('click', function(e) {
-                var lat = e.latlng.lat;
-                var lng = e.latlng.lng;
-
-                var marker = L.marker([lat, lng]).addTo(map);
-                marker.bindPopup('<b>You clicked at:</b><br>Latitude: ' + lat.toFixed(4) + '<br>Longitude: ' + lng.toFixed(4)).openPopup();
-
-                markers.push(marker);
-                lineCoordinates.push([lat, lng]);
-
-                // If a polyline exists, remove it
-                if (polyline) {
-                    map.removeLayer(polyline);
-                }
-
-                // If there are at least two markers, draw a polyline
-                if (lineCoordinates.length > 1) {
-                    polyline = L.polyline(lineCoordinates, {
-                        color: 'blue',
-                        weight: 4
-                    }).addTo(map);
-                }
-            });
-
-            // Bootstrap modal 'shown' event triggers map resizing
-            $('#exampleModal').on('shown.bs.modal', function() {
-                map.invalidateSize(); // This will force the map to recalculate its size once the modal is fully shown
-            });
-
-            // Add functionality to remove the last marker
-            document.getElementById('removeMarkerBtn').addEventListener('click', function() {
-                // If there are markers, remove the last one
-                if (markers.length > 0) {
-                    var lastMarker = markers.pop(); // Remove the last marker from the array
-                    map.removeLayer(lastMarker); // Remove it from the map
-
-                    lineCoordinates.pop(); // Remove the corresponding coordinate from the polyline
-
-                    // If there are remaining markers, redraw the polyline
-                    if (lineCoordinates.length > 1) {
-                        // Remove old polyline if it exists
-                        if (polyline) {
-                            map.removeLayer(polyline);
-                        }
-
-                        // Redraw polyline with remaining markers
-                        polyline = L.polyline(lineCoordinates, {
-                            color: 'blue',
-                            weight: 4
-                        }).addTo(map);
-                    } else if (polyline) {
-                        // If only one marker remains, remove the polyline
-                        map.removeLayer(polyline);
-                        polyline = null;
+                        // Populate Tappa dropdown
+                        var tappaSelect = $('#tappas');
+                        tappaSelect.empty();
+                        $.each(response.Tappas, function(index, value) {
+                            tappaSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
                     }
-                }
-            });
-        </script>
-</body>
-<!-- Mirrored from colorlib.com/etc/bootstrap-sidebar/sidebar-04/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 29 Jun 2024 10:27:48 GMT -->
+                });
+            } else {
+                $('#ucs').empty();
+                $('#tappas').empty();
+            }
+        });
+    });
+    </script>
+       <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
+       <script>
+           // Initialize map to Hyderabad, Pakistan with zoom level 13
+           var map = L.map('map').setView([25.3960, 68.3578], 13); // Coordinates for Hyderabad, Pakistan
+
+           L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+               attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+           }).addTo(map);
+
+           var markers = [];
+           var lineCoordinates = [];
+           var polyline;
+
+           map.on('click', function(e) {
+               var lat = e.latlng.lat;
+               var lng = e.latlng.lng;
+
+               var marker = L.marker([lat, lng]).addTo(map);
+               marker.bindPopup('<b>You clicked at:</b><br>Latitude: ' + lat.toFixed(4) + '<br>Longitude: ' + lng.toFixed(4)).openPopup();
+
+               markers.push(marker);
+               lineCoordinates.push([lat, lng]);
+
+               // If a polyline exists, remove it
+               if (polyline) {
+                   map.removeLayer(polyline);
+               }
+
+               // If there are at least two markers, draw a polyline
+               if (lineCoordinates.length > 1) {
+                   polyline = L.polyline(lineCoordinates, { color: 'blue', weight: 4 }).addTo(map);
+               }
+           });
+
+           // Bootstrap modal 'shown' event triggers map resizing
+           $('#exampleModal').on('shown.bs.modal', function () {
+               map.invalidateSize(); // This will force the map to recalculate its size once the modal is fully shown
+           });
+
+           // Add functionality to remove the last marker
+           document.getElementById('removeMarkerBtn').addEventListener('click', function() {
+               // If there are markers, remove the last one
+               if (markers.length > 0) {
+                   var lastMarker = markers.pop(); // Remove the last marker from the array
+                   map.removeLayer(lastMarker);    // Remove it from the map
+
+                   lineCoordinates.pop();         // Remove the corresponding coordinate from the polyline
+
+                   // If there are remaining markers, redraw the polyline
+                   if (lineCoordinates.length > 1) {
+                       // Remove old polyline if it exists
+                       if (polyline) {
+                           map.removeLayer(polyline);
+                       }
+
+                       // Redraw polyline with remaining markers
+                       polyline = L.polyline(lineCoordinates, { color: 'blue', weight: 4 }).addTo(map);
+                   } else if (polyline) {
+                       // If only one marker remains, remove the polyline
+                       map.removeLayer(polyline);
+                       polyline = null;
+                   }
+               }
+           });
+       </script>
+</body>
 </html>
