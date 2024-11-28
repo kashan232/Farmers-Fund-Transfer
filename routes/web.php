@@ -47,7 +47,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // git connect
-
+// connect
 Route::get('/', function () {
     return view('welcome');
 });
