@@ -187,11 +187,6 @@
                 <li class="step-indicator step-indicator-5" onclick="showStep(5)">
                     <a href="javascript:void(0)"><span class="fa fa-sticky-note mr-3"></span> Upload Documents </a>
                 </li>
-                <li>
-                    <a href="{{route('online-dashboard-logout')}}" class="dropdown-item">
-                        <span class="fa fa-door-open mr-3"></span> Logout
-                    </a>
-                </li>
 
             </ul>
         </nav>

@@ -17,67 +17,7 @@
                 </li>
 
 
-                {{-- <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fas fa-user-shield"></i>
-                        </span>
-                        <span class="pc-mtext">Agriculture Farmers</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-agri-farmers-by-land') }}">Agriculture Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('unverify-agri-farmers-by-land') }}">Unverify Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verify-agri-farmers-by-land') }}">Verified Farmers</a>
-                        </li>
-                    </ul>
-                </li>
 
-                <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fas fa-user"></i>
-
-                        </span>
-                        <span class="pc-mtext">Agriculture User Farmers</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-agriuser-farmers-by-land') }}">Agriculture User Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('unverify-agriuser-farmers-by-land') }}">Unverify Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verify-agriuser-farmers-by-land') }}">Verified Farmers</a>
-                        </li>
-                    </ul>
-                </li> --}}
-
-
-                {{-- <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fas fa-user-plus"></i>
-                        </span>
-                        <span class="pc-mtext">Farmers Registration</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('add-land-farmers') }}">Add Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-land-farmers') }}">All Farmers</a>
-                        </li>
-                    </ul>
-                </li> --}}
 
 
                 <li class="pc-item pc-hasmenu">
@@ -85,9 +25,21 @@
                         <span class="pc-micon">
                             <i class="fas fa-home"></i>
                         </span>
-                        <span class="pc-mtext">Field Officer Farmers</span>
+                        <span class="pc-mtext">F-A Farmers</span>
                     </a>
                 </li>
+
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('agri-officer-farmers-list-by-land-officer') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span class="pc-mtext">A-O Farmers</span>
+                    </a>
+                </li>
+
+
                 {{-- <li class="pc-item pc-hasmenu">
                     <a href="{{ route('district-officer-farmers-list-by-land-officer') }}" class="pc-link">
                         <span class="pc-micon">

@@ -237,6 +237,7 @@ Route::get('/view-farmers/{id}', [DistrictOfficerPanelController::class, 'view_f
 
 Route::get('/lrd/farmers', [DistrictOfficerPanelController::class, 'lrd_farmers'])->name('lrd-farmers');
 Route::get('/field/farmers', [DistrictOfficerPanelController::class, 'fields_farmers'])->name('field-farmers');
+Route::get('/agri/farmers', [DistrictOfficerPanelController::class, 'agri_farmers'])->name('agri-farmers');
 Route::get('/online/farmers', [DistrictOfficerPanelController::class, 'online_farmers'])->name('online-farmers');
 Route::post('/verifiy/farmer', [DistrictOfficerPanelController::class, 'verify_farmer'])->name('verify-farmer');
 
@@ -280,6 +281,7 @@ Route::get('/caller-user-edit/{id}', [CallerUserController::class, 'edit_caller_
 
 
 Route::get('/field-officer-farmers-list-by-land-officer', [LandRevenueFarmerController::class, 'field_farmers_list'])->name('field-officer-farmers-list-by-land-officer');
+Route::get('/agri-officer-farmers-list-by-land-officer', [LandRevenueFarmerController::class, 'agri_farmers_list'])->name('agri-officer-farmers-list-by-land-officer');
 Route::get('/district-officer-farmers-list-by-land-officer', [LandRevenueFarmerController::class, 'district_farmers_list'])->name('district-officer-farmers-list-by-land-officer');
 Route::get('/self-officer-farmers-list-by-land-officer', [LandRevenueFarmerController::class, 'self_farmers_list'])->name('self-officer-farmers-list-by-land-officer');
 

@@ -21,7 +21,7 @@
         <ul class="list-unstyled">
             <li class="dropdown pc-h-item">
                 <a class="text-dark pt-1" style="font-weight: 700;">
-                    District Officer
+                    Additional Director
                 </a>
             </li>
 
