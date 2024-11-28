@@ -14,68 +14,23 @@
     <meta name="robots" content="noindex, follow">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none !important;
+        }
+        body
+{
+  font-family: 'Laila', sans-serif!important;
+}
         #map {
             height: 400px;
             /* Define map container height */
             width: 100%;
             /* Ensure the map takes full width */
-        }
-    </style>
-    <style>
-        @font-face {
-            font-family: 'Poppins';
-            font-style: normal;
-            font-weight: 300;
-            font-display: swap;
-            src: url(https://colorlib.com/fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLDz8Z1xlEA.ttf) format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Poppins';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url(https://colorlib.com/fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJfedw.ttf) format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Poppins';
-            font-style: normal;
-            font-weight: 500;
-            font-display: swap;
-            src: url(https://colorlib.com/fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLGT9Z1xlEA.ttf) format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Poppins';
-            font-style: normal;
-            font-weight: 600;
-            font-display: swap;
-            src: url(https://colorlib.com/fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLEj6Z1xlEA.ttf) format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Poppins';
-            font-style: normal;
-            font-weight: 700;
-            font-display: swap;
-            src: url(https://colorlib.com/fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLCz7Z1xlEA.ttf) format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Poppins';
-            font-style: normal;
-            font-weight: 800;
-            font-display: swap;
-            src: url(https://colorlib.com/fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLDD4Z1xlEA.ttf) format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Poppins';
-            font-style: normal;
-            font-weight: 900;
-            font-display: swap;
-            src: url(https://colorlib.com/fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLBT5Z1xlEA.ttf) format('truetype');
         }
 
         #sidebar {
@@ -202,7 +157,7 @@
                     <div class="logo-container ">
                         <img src="{{asset('')}}/assets/images/Sindh_Hari_Card.png" alt="logo image" class="#logo-lg" style="max-width:120px;" />
 
-                        <h4 class="mt-2">Benazir Hari Card</h4>
+                        <h4 class="mt-2 font-weight-bold">Benazir Hari Card</h4>
                         <p>Please provide the following information to register for the Benazir Hari Card</p>
                     </div>
                     <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
@@ -227,7 +182,13 @@
                 <div id="content" class="p-4 p-md-5 pt-5">
                     <div class="row">
                         <div class="col-md-12">
-
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                @foreach ($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                                @endforeach
+                            </div>
+                            @endif
                             <div class="card">
                                 <div class="card-body">
                                     <form id="registrationForm" action="{{ route('store-online-farmers-registration') }}" method="POST" enctype="multipart/form-data">
@@ -237,22 +198,22 @@
                                                 <div class="mb-12 col-md-12 d-flex ">
                                                     <img src="{{asset('')}}/login_assets/account.png" alt="" style="height: 25px;width: 25px;">
 
-                                                    <h4 class="card-title" style="line-height: 27px;margin-left: 10px;">Personal Details</h4>
+                                                    <h4 class="card-title font-weight-bold" style="line-height: 27px;margin-left: 10px;">Personal Details</h4>
                                                 </div>
                                                 <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Name</label>
+                                                    <label class="form-label">Name <span class="text-danger">*</span></label>
                                                     <input type="text" name="name" class="form-control" value="">
                                                 </div>
                                                 <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Father Name</label>
+                                                    <label class="form-label">Father Name <span class="text-danger">*</span></label>
                                                     <input type="text" name="father_name" class="form-control" value="">
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
-                                                    <label class="form-label">CNIC</label>
+                                                    <label class="form-label">CNIC <span class="text-danger">*</span></label>
                                                     <input type="text" name="cnic" class="form-control" value="">
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
-                                                    <label class="form-label">Mobile</label>
+                                                    <label class="form-label">Mobile <span class="text-danger">*</span></label>
                                                     <input type="text" name="mobile" class="form-control" value="">
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
@@ -484,7 +445,7 @@
                                                 <div class="mb-12  col-md-12 d-flex">
                                                     <img src="{{asset('')}}/login_assets/assets.png" alt="" style="height: 25px;width: 25px;">
 
-                                                    <h6 class="card-title" style="line-height: 27px;margin-left: 10px;">
+                                                    <h6 class="card-title font-weight-bold" style="line-height: 27px;margin-left: 10px;">
                                                         Physical Assets Currently Owned</h6>
 
                                                 </div>
@@ -547,7 +508,7 @@
                                                 <div class="mb-12 col-md-12 d-flex">
                                                     <img src="{{asset('')}}/login_assets/survey.png" alt="" style="height: 25px;width: 25px;">
 
-                                                    <h6 class="card-title" style="line-height: 27px;margin-left: 10px;">
+                                                    <h6 class="card-title font-weight-bold" style="line-height: 27px;margin-left: 10px;">
                                                         Source of irrigation</h6>
                                                 </div>
                                                 <div class="row mb-12 col-md-12" id="source_of_irrigation_section">
@@ -588,16 +549,8 @@
                                                 <div class="mb-12 col-md-12 d-flex">
                                                     <img src="{{asset('')}}/login_assets/bank.png" alt="" style="height: 25px;width: 25px;">
 
-                                                    <h6 class="card-title" style="line-height: 27px;margin-left: 10px;">
+                                                    <h6 class="card-title font-weight-bold" style="line-height: 27px;margin-left: 10px;">
                                                         Bank & Account Details</h6>
-                                                </div>
-                                                <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Title of Account</label>
-                                                    <input type="text" name="account_title" class="form-control" value="">
-                                                </div>
-                                                <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Account No</label>
-                                                    <input type="text" name="account_no" class="form-control" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
                                                 </div>
                                                 <div class="mb-6 col-md-6">
                                                     <label class="form-label">Bank Name</label>
@@ -608,13 +561,25 @@
                                                     <input type="text" name="branch_name" value="" class="form-control">
                                                 </div>
                                                 <div class="mb-6 col-md-6">
+                                                    <label class="form-label">Branch Code</label>
+                                                    <input type="text" name="branch_code" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                                                </div>
+                                                <div class="mb-6 col-md-6">
                                                     <label class="form-label">IBAN</label>
                                                     <input type="text" name="IBAN_number" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
                                                 </div>
                                                 <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Branch Code</label>
-                                                    <input type="text" name="branch_code" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                                                    <label class="form-label">Title of Account</label>
+                                                    <input type="text" name="account_title" class="form-control" value="Sindh Bank">
                                                 </div>
+                                                <div class="mb-6 col-md-6">
+                                                    <label class="form-label">Account No</label>
+                                                    <input type="text" name="account_no" class="form-control" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
+                                                </div>
+
+
+
+
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="mb-12 col-md-12">

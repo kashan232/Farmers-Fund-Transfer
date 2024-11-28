@@ -114,20 +114,20 @@
                                     <div class="row mt-2">
                                         <h4 class="card-title">Personal Details</h4>
                                         <div class="mb-6 col-md-6">
-                                            <label class="form-label">Name</label>
-                                            <input type="text" name="name" class="form-control">
+                                            <label class="form-label">Name <span class="text-danger">*</span></label>
+                                            <input type="text" name="name" class="form-control" required>
                                         </div>
                                         <div class="mb-6 col-md-6">
-                                            <label class="form-label">Father Name</label>
-                                            <input type="text" name="father_name" class="form-control">
+                                            <label class="form-label">Father Name <span class="text-danger">*</span></label>
+                                            <input type="text" name="father_name" class="form-control" required>
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">CNIC <span class="text-danger">*</span></label>
-                                            <input type="text" id="cnic" name="cnic" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"  >
+                                            <input type="text" id="cnic" name="cnic" class="form-control" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"  >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Mobile <span class="text-danger">*</span></label>
-                                            <input type="text" id="mobile" name="mobile" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" >
+                                            <input type="text" id="mobile" name="mobile" class="form-control" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Dictrict</label>
