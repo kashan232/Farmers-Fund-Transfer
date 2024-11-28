@@ -271,7 +271,14 @@ class DistrictOfficerPanelController extends Controller
     public function fields_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->where('verification_status','verified_by_lo')->orWhere('verification_status','verified_by_do')->paginate(5);
+        // $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->where('verification_status','verified_by_lo')->orWhere('verification_status','verified_by_do')->paginate(5);
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)
+        ->where('user_type', 'Field_Officer') // Match the user_type
+        ->where(function($query) {
+            $query->where('verification_status', 'verified_by_lo')
+                  ->orWhere('verification_status', 'verified_by_do');
+        })
+        ->paginate(5);
         return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
@@ -279,7 +286,14 @@ class DistrictOfficerPanelController extends Controller
     public function agri_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Agri_Officer')->where('verification_status',2)->paginate(5);
+        // $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Agri_Officer')->where('verification_status','verified_by_lo')->orWhere('verification_status','verified_by_do')->paginate(5);
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)
+        ->where('user_type', 'Agri_Officer') // Match the user_type
+        ->where(function($query) {
+            $query->where('verification_status', 'verified_by_lo')
+                  ->orWhere('verification_status', 'verified_by_do');
+        })
+        ->paginate(5);
         return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 

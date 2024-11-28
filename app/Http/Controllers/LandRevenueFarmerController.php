@@ -248,7 +248,7 @@ class LandRevenueFarmerController extends Controller
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
             $tehsils = Tehsil::where('district', '=', Auth()->user()->district)->get();
-            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status',0)->where('user_type', '=', 'Agri_Officer')->where('district', '=', Auth()->user()->district)->paginate(5);
+            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status',null)->where('user_type', '=', 'Agri_Officer')->where('district', '=', Auth()->user()->district)->paginate(5);
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
                 'all_land_farmers' => $all_land_farmers,
@@ -286,7 +286,7 @@ class LandRevenueFarmerController extends Controller
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
             $tehsils = Tehsil::where('district', '=', Auth()->user()->district)->get();
-            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status',0)->where('user_type', '=', 'Online')->where('district', '=', Auth()->user()->district)->paginate(5);
+            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status','=','verified_by_ao')->where('user_type', '=', 'Online')->where('district', '=', Auth()->user()->district)->paginate(5);
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
                 'all_land_farmers' => $all_land_farmers,

@@ -280,7 +280,7 @@ class AgricultureOfficerPanelController extends Controller
     public function online_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Online')->paginate(5);
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Online')->where('verification_status','=','0')->paginate(5);
         return view('agri_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
