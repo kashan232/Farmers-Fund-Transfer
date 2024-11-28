@@ -33,13 +33,18 @@
                                 <label for="statusSelect">Status</label>
                                 <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
                                 <select class="form-control" id="statusSelect" name="verification_status">
-                                    <option value="1">Verified</option>
-                                    <option value="0">Unverified</option>
+                                    <option value="verified_by_do">Verified</option>
+                                    <option value="rejected_by_do">Unverified</option>
                                 </select>
                             </div>
                             <div class="form-group" id="reasonBox" style="display: none;">
                                 <label for="reasonTextarea">Reason</label>
-                                <textarea class="form-control" id="reasonTextarea" name="declined_reason" rows="3"></textarea>
+                                <select id="reasonTextarea" name="declined_reason" class="form-control">
+                                    <option value="Banks Details Not Valid">Banks Details Not Valid</option>
+                                    <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
+                                    <option value="Attachments are not cleared">Attachments are not cleared</option>
+                                    <option value="Others">Others</option>
+                                </select>
                             </div>
                             <button type="submit" class="btn btn-primary mt-3">Save</button>
                         </form>
@@ -106,18 +111,17 @@
                                                         <td>{{ $farmer->tappa }}</td>
                                                         <td>{{ $farmer->village }}</td>
                                                         <td>
-                                                            @if ($farmer->verification_status == '1')
+                                                            @if($farmer->verification_status == 'verified_by_do')
                                                             <span class="badge text-bg-success">Verified</span>
-                                                            @elseif ($farmer->declined_reason != '')
-                                                            <span class="badge text-bg-danger">Rejected</span>
                                                             @else
-                                                            <span class="badge text-bg-primary">Unverified</span>
+                                                            <span class="badge text-bg-primary">Verified By Land Officer</span>
                                                             @endif
                                                         </td>
                                                         <td>
                                                             <div style="display:flex">
-
+                                                                @if($farmer->verification_status != 'verified_by_do')
                                                                 <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $farmer->id }}">Verify</button> &nbsp;
+                                                                @endif
                                                                 {{-- <a class="btn btn-primary" href="{{route('do-edit-farmer',$farmer->id)}}">Edit</a> --}}
                                                             <a class="btn btn-primary btn-sm" href="{{route('view-farmers',$farmer->id)}}">View</a>
                                                             </div>
@@ -217,7 +221,7 @@
     // Event listener for changing the status
     $('#statusSelect').on('change', function() {
         var reasonBox = $('#reasonBox');
-        if ($(this).val() == '0') {
+        if ($(this).val() == 'rejected_by_do') {
             reasonBox.show();
             $('#reasonTextarea').prop('required', true);
 

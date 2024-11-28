@@ -271,7 +271,7 @@ class DistrictOfficerPanelController extends Controller
     public function fields_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->where('verification_status',0)->paginate(5);
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->where('verification_status','verified_by_lo')->orWhere('verification_status','verified_by_do')->paginate(5);
         return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
@@ -279,7 +279,7 @@ class DistrictOfficerPanelController extends Controller
     public function agri_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Agri_Officer')->where('verification_status',0)->paginate(5);
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Agri_Officer')->where('verification_status',2)->paginate(5);
         return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
@@ -295,9 +295,12 @@ class DistrictOfficerPanelController extends Controller
         $user = User::find(Auth::id());
         $farmer = LandRevenueFarmerRegistation::find($request->farmer_id);
         // Update farmer verification status
-        $farmer->verification_status = $request->verification_status ? 1 : 0;
-        if ($request->verification_status == 0) {
+        $farmer->verification_status = $request->verification_status;
+        if ($request->verification_status == 'rejected_by_do') {
             $farmer->declined_reason = $request->declined_reason;
+        }
+        else{
+            $farmer->declined_reason = null;
         }
         $farmer->verification_by = $user->id;
         $farmer->save();

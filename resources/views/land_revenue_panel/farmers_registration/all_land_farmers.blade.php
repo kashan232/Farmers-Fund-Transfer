@@ -52,12 +52,10 @@
                                         <label for="statusSelect">Status</label>
                                         <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
                                         <select class="form-control" id="statusSelect" name="verification_status">
-                                            <option value="2">Verified</option>
-                                           @if($all_land_farmers[0]->user_type != 'Agri_Officer')
-                                           <option value="1">Unverified</option>
-                                           @else
-                                           <option value="0">Unverified</option>
-                                           @endif
+                                            <option value="verified_by_lo">Verified</option>
+
+                                           <option value="rejected_by_lo">Unverified</option>
+
                                         </select>
                                     </div>
                                     <div class="form-group" id="reasonBox" style="display: none;">
@@ -120,8 +118,10 @@
                                                         <td>{{ $all_land_farmer->tappa }}</td>
                                                         <td>{{ $all_land_farmer->village }}</td>
                                                         <td>
-                                                            @if ($all_land_farmer->verification_status == 1)
+                                                            @if ($all_land_farmer->verification_status == 1 && $all_land_farmer->declined_reason == '')
                                                             <span class="badge bg-success">Verified by AO</span>
+                                                            @elseif($all_land_farmer->declined_reason != null || $all_land_farmer->declined_reason != '')
+                                                            <span class="badge bg-danger">Rejected</span>
                                                             @elseif ($all_land_farmer->declined_reason != '' && $all_land_farmer->verification_status == 2)
                                                             <span class="badge text-bg-danger">Rejected</span>
                                                             @else
@@ -187,7 +187,8 @@ $(document).ready(function() {
     // Event listener for changing the status
     $('#statusSelect').on('change', function() {
         var reasonBox = $('#reasonBox');
-        if ($(this).val() == '0' || $(this).val() == '1') {
+
+        if ($(this).val() == 'rejected_by_lo') {
             reasonBox.show();
             $('#reasonTextarea').prop('required', true);
 

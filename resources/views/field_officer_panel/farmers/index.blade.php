@@ -53,6 +53,7 @@
                                                         <th>UC</th>
                                                         <th>Tappa</th>
                                                         <th>Village</th>
+                                                        <th>Status</th>
                                                         {{-- <th>Status</th> --}}
                                                         <th>Action</th>
                                                     </tr>
@@ -69,13 +70,16 @@
                                                         <td>{{ $farmer->uc }}</td>
                                                         <td>{{ $farmer->tappa }}</td>
                                                         <td>{{ $farmer->village }}</td>
-                                                        {{-- <td>
-                                                            @if ($farmer->verification_status == 1)
-                                                            <span class="badge text-bg-success">Verified</span>
+
+                                                        <td>
+                                                            @if ($farmer->verification_status == 'verified_by_ao')
+                                                            <span class="badge text-bg-success">Verified By A-O</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_ao')
+                                                            <span class="badge text-bg-danger">Rejected By A-O</span>
                                                             @else
-                                                            <span class="badge text-bg-danger">Unverified</span>
+                                                            <span class="badge text-bg-success">Submitted to A-O</span>
                                                             @endif
-                                                        </td> --}}
+                                                        </td>
                                                         <td>
                                                             <div class="d-flex">
                                                                 {{-- <a href="{{ route('farmer-view-by-field-officer', ['id' => $farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp; --}}

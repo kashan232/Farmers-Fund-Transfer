@@ -27,19 +27,24 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="row">
-                        <form id="verifyfarmers" action="{{ route('verify-farmer') }}" method="POST">
+                        <form id="verifyfarmers" action="{{ route('verify-farmer-by-ao') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="statusSelect">Status</label>
                                 <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
                                 <select class="form-control" id="statusSelect" name="verification_status">
-                                    <option value="1">Verified</option>
-                                    <option value="0">Unverified</option>
+                                    <option value="verified_by_ao">Verified</option>
+                                    <option value="rejected_by_ao">Unverified</option>
                                 </select>
                             </div>
                             <div class="form-group" id="reasonBox" style="display: none;">
                                 <label for="reasonTextarea">Reason</label>
-                                <textarea class="form-control" id="reasonTextarea" name="declined_reason" rows="3"></textarea>
+                                <select id="reasonTextarea" name="declined_reason" class="form-control">
+                                    <option value="Banks Details Not Valid">Banks Details Not Valid</option>
+                                    <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
+                                    <option value="Attachments are not cleared">Attachments are not cleared</option>
+                                    <option value="Others">Others</option>
+                                </select>
                             </div>
                             <button type="submit" class="btn btn-primary mt-3">Save</button>
                         </form>
@@ -106,12 +111,8 @@
                                                         <td>{{ $farmer->tappa }}</td>
                                                         <td>{{ $farmer->village }}</td>
                                                         <td>
-                                                            @if ($farmer->verification_status == '1')
-                                                            <span class="badge text-bg-success">Verified</span>
-                                                            @elseif ($farmer->declined_reason != '')
-                                                            <span class="badge text-bg-danger">Rejected</span>
-                                                            @else
-                                                            <span class="badge text-bg-primary">Unverified</span>
+                                                            @if ($farmer->verification_status == 'rejected_by_lo')
+                                                            <span class="badge text-bg-danger">Rejected By Land Officer</span>
                                                             @endif
                                                         </td>
                                                         <td>
@@ -218,7 +219,7 @@
     // Event listener for changing the status
     $('#statusSelect').on('change', function() {
         var reasonBox = $('#reasonBox');
-        if ($(this).val() == '0') {
+        if ($(this).val() == 'rejected_by_ao') {
             reasonBox.show();
             $('#reasonTextarea').prop('required', true);
 
