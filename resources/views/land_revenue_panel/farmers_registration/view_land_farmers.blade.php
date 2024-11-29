@@ -25,6 +25,44 @@
             </div>
         </div>
         <!-- [ breadcrumb ] end -->
+
+<div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLiveLabel">Farmers Verification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <form id="verifyfarmers" action="{{ route('verify-farmer-by-land-officer') }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="statusSelect">Status</label>
+                                <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
+                                <select class="form-control" id="statusSelect" name="verification_status">
+                                    <option value="verified_by_lo">Verified</option>
+                                    <option value="rejected_by_lo">Unverified</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="reasonBox" style="display: none;">
+                                <label for="reasonTextarea">Reason</label>
+                                <select id="reasonTextarea" name="declined_reason" class="form-control">
+                                    <option value="Banks Details Not Valid">Banks Details Not Valid</option>
+                                    <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
+                                    <option value="Attachments are not cleared">Attachments are not cleared</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         <!-- [ Main Content ] start -->
         <div class="row">
             <div class="col-sm-12">
@@ -255,43 +293,10 @@
                                 <th>Upload Cheque Pic</th>
                                 <td colspan="6"><img src="{{ asset('land_farmers/upload_cheque_pic/' . $data->upload_cheque_pic) }}" alt="Upload Cheque Pic" width="100"></td>
                             </tr>
-
-                            {{-- <tr>
-                                <th colspan="6">SURVEYOR / ENUMERATOR DETAILS</th>
-                            </tr>
-
-                            <tr>
-                                <th>Verification Status</th>
-                                <td>
-                                    @if ($data->verification_status === 'Verified')
-                                    <span class="badge text-bg-success">Verified</span>
-                                    @else
-                                    <span class="badge text-bg-danger">Unverified</span>
-                                    @endif
-                                </td>
-                                <th>Declined Reason</th>
-                                @if ($data->verification_status === 'Unverified')
-                                @if (is_null($data->declined_reason))
-                                <td colspan="6">-</td>
-                                @else
-                                <td colspan="6">{{ $data->declined_reason }}</td>
-                                @endif
-                                @else
-                                <td colspan="6">-</td>
-                                @endif
-                            </tr>
-
-                            <tr>
-                                <th>Verification by</th>
-                                <td>{{ $data->verification_by }}</td>
-
-                                <th>Created At</th>
-                                <td>{{ $data->created_at->diffForHumans()}}</td>
-
-                                <th>Updated At</th>
-                                <td>{{ $data->updated_at->diffForHumans() }}</td>
-                            </tr> --}}
                         </table>
+                        @if($data->user_type != 'Agri_Officer' && $data->verification_status != 'verified_by_do')
+                            <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $data->id }}">Verify</button> &nbsp;
+                        @endif
                     </div>
                 </div>
             </div>
@@ -325,6 +330,33 @@
 
         doc.save('farmer_details.pdf');
     }
+
+
+    $(document).ready(function() {
+    // Event listener for opening the modal
+
+
+    $('.verifiy-btn').on('click', function() {
+            var farmerId = $(this).data('id');
+            $('#farmer_id').val(farmerId);
+            $('#exampleModalLive').modal('show');
+        });
+
+    // Event listener for changing the status
+    $('#statusSelect').on('change', function() {
+        var reasonBox = $('#reasonBox');
+        if ($(this).val() == 'rejected_by_lo') {
+            reasonBox.show();
+            $('#reasonTextarea').prop('required', true);
+
+        } else {
+            reasonBox.hide();
+            $('#reasonTextarea').prop('required', false);
+        }
+    });
+
+
+});
 </script>
 
 
