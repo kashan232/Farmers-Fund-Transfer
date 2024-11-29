@@ -25,11 +25,11 @@
                         <span class="pc-micon">
                             <i class="fas fa-users"></i>
                         </span>
-                        <span class="pc-mtext">F-A Farmers</span>
+                        <span class="pc-mtext">Farmers</span>
                     </a>
                 </li>
 
-
+{{--
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('agri-officer-farmers-list-by-land-officer') }}" class="pc-link">
                         <span class="pc-micon">
@@ -37,7 +37,7 @@
                         </span>
                         <span class="pc-mtext">A-O Farmers</span>
                     </a>
-                </li>
+                </li> --}}
 
 
                 {{-- <li class="pc-item pc-hasmenu">
@@ -49,14 +49,14 @@
                 </a>
                 </li> --}}
 
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="{{ route('self-officer-farmers-list-by-land-officer') }}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-globe-europe"></i>
                         </span>
                         <span class="pc-mtext">Online Farmers</span>
                     </a>
-                </li>
+                </li> --}}
 
                 {{-- <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">

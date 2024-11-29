@@ -29,14 +29,7 @@
                     <div class="col-md-12">
                         <div class="page-header-title">
                             <h2 class="mb-0">
-                                @if(!empty($all_land_farmers) && isset($all_land_farmers[0]) && $all_land_farmers[0] != null)
-                                @if($all_land_farmers[0]->user_type  == 'Agri_Officer') A-O Farmers list
-                                @elseif($all_land_farmers[0]->user_type  == 'Online') Online Farmers List
-                                @else
-                                F-A Farmers list
-                                @endif
                                 Farmers List
-                                @endif
                             </h2>
                         </div>
                     </div>
