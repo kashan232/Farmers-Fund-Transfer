@@ -107,7 +107,7 @@
                                 </div>
                             </div>
 
-                            <form id="registrationForm" action="{{ route('store-land-farmers') }}" method="POST" enctype="multipart/form-data">
+                            <form id="registrationForm" action="{{ route('ao-store-farmer') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" value="{{ $data->id }}" name="edit_id">
                                 <div class="step step-1">
@@ -322,20 +322,20 @@
                                                 <div class="mb-8 col-md-8">
                                                     <label class="form-label">Items</label>
                                                     <select name="physical_asset_item[]"  id="physical_asset_item" required class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
-                                                        <option value="car/jeep" {{ in_array('car/jeep', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Car/Jeep</option>
-                                                        <option value="pickup/loader" {{ in_array('pickup/loader', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Pickup/loader</option>
-                                                        <option value="motorcycle" {{ in_array('motorcycle', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Motorcycle</option>
-                                                        <option value="bicycles" {{ in_array('bicycles', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Bicycles</option>
-                                                        <option value="bullock_cart" {{ in_array('bullock_cart', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Bullock Cart</option>
-                                                        <option value="Tractor(4wheels)" {{ in_array('Tractor(4wheels)', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Tractor (4 wheels)</option>
-                                                        <option value="disk_harrow" {{ in_array('disk_harrow', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Disk Harrow</option>
-                                                        <option value="cultivator" {{ in_array('cultivator', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Cultivator</option>
-                                                        <option value="tractor_trolley" {{ in_array('tractor_trolley', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Tractor Trolley</option>
-                                                        <option value="plough" {{ in_array('plough', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Plough (wood or metal)</option>
-                                                        <option value="thresher" {{ in_array('thresher', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Thresher</option>
-                                                        <option value="harvester" {{ in_array('harvester', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Harvester</option>
-                                                        <option value="rotavetor" {{ in_array('rotavetor', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Rotavetor</option>
-                                                        <option value="laser_lever" {{ in_array('laser_lever', json_decode($data->physical_asset_item)) ? 'selected' : '' }}>Laser lever</option>
+                                                        <option value="car/jeep"@if(is_array($data->physical_asset_item)) {{ in_array('car/jeep', json_decode($data->physical_asset_item)) ? 'selected' : '' }} @endif>Car/Jeep</option>
+                                                        <option value="pickup/loader" @if(is_array($data->physical_asset_item)) {{ in_array('pickup/loader', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Pickup/loader</option>
+                                                        <option value="motorcycle" @if(is_array($data->physical_asset_item)) {{ in_array('motorcycle', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Motorcycle</option>
+                                                        <option value="bicycles" @if(is_array($data->physical_asset_item)) {{ in_array('bicycles', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Bicycles</option>
+                                                        <option value="bullock_cart" @if(is_array($data->physical_asset_item)) {{ in_array('bullock_cart', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Bullock Cart</option>
+                                                        <option value="Tractor(4wheels)" @if(is_array($data->physical_asset_item)) {{ in_array('Tractor(4wheels)', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Tractor (4 wheels)</option>
+                                                        <option value="disk_harrow" @if(is_array($data->physical_asset_item)) {{ in_array('disk_harrow', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Disk Harrow</option>
+                                                        <option value="cultivator" @if(is_array($data->physical_asset_item)) {{ in_array('cultivator', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Cultivator</option>
+                                                        <option value="tractor_trolley" @if(is_array($data->physical_asset_item)) {{ in_array('tractor_trolley', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Tractor Trolley</option>
+                                                        <option value="plough" @if(is_array($data->physical_asset_item)) {{ in_array('plough', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Plough (wood or metal)</option>
+                                                        <option value="thresher" @if(is_array($data->physical_asset_item)) {{ in_array('thresher', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Thresher</option>
+                                                        <option value="harvester" @if(is_array($data->physical_asset_item)) {{ in_array('harvester', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Harvester</option>
+                                                        <option value="rotavetor" @if(is_array($data->physical_asset_item)) {{ in_array('rotavetor', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Rotavetor</option>
+                                                        <option value="laser_lever" @if(is_array($data->physical_asset_item)) {{ in_array('laser_lever', json_decode($data->physical_asset_item)) ? 'selected' : ''  }} @endif>Laser lever</option>
                                                     </select>
                                                 </div>
                                             </div>

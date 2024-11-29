@@ -119,7 +119,8 @@ class AgricultureOfficerPanelController extends Controller
                 $data['animal_name'] = json_encode($request->animal_name);
                 $data['animal_qty'] = json_encode($request->animal_qty);
 
-                $data['verification_status'] = 0;
+                $data['verification_status'] = null;
+                $data['declined_reason'] = null;
 
 
                 // Handle front ID card image
@@ -194,7 +195,8 @@ class AgricultureOfficerPanelController extends Controller
                 $data['animal_name'] = json_encode($request->animal_name);
                 $data['animal_qty'] = json_encode($request->animal_qty);
 
-                $data['verification_status'] = 0;
+                $data['verification_status'] = null;
+                $data['declined_reason'] = null;
 
                 // Handle front ID card image
                 if ($request->hasFile('front_id_card')) {
@@ -256,7 +258,18 @@ class AgricultureOfficerPanelController extends Controller
     public function farmers_index(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Agri_Officer')->paginate(5);
+
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)
+        ->where('user_type', 'Agri_Officer') // Match the user_type
+        ->where(function($query) {
+            $query->where('verification_status', 'rejected_by_lo')
+                  ->orWhere('verification_status', 'verified_by_do')
+                  ->orWhere('verification_status', null);
+        })
+        ->paginate(5);
+
+
+
         return view('agri_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
@@ -279,7 +292,8 @@ class AgricultureOfficerPanelController extends Controller
         ->where('user_type', 'Field_Officer') // Match the user_type
         ->where(function($query) {
             $query->where('verification_status', 'rejected_by_lo')
-                  ->orWhere('verification_status', '0');
+            ->orWhere('verification_status', 'verified_by_do')
+                  ->orWhere('verification_status', null);
         })
         ->paginate(5);
 
@@ -290,7 +304,16 @@ class AgricultureOfficerPanelController extends Controller
     public function online_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Online')->where('verification_status','=','0')->paginate(5);
+
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)
+        ->where('user_type', 'Online') // Match the user_type
+        ->where(function($query) {
+            $query->where('verification_status', 'rejected_by_lo')
+            ->orWhere('verification_status', 'verified_by_do')
+            ->orWhere('verification_status', 'rejected_by_ao')
+                  ->orWhere('verification_status', null);
+        })
+        ->paginate(5);
         return view('agri_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 

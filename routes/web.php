@@ -191,6 +191,8 @@ Route::get('/reporting-farmers-by-ao', [AgricultureOfficerPanelController::class
 Route::post('/view/reporting-farmers-by-ao', [AgricultureOfficerPanelController::class, 'view_farmers_reporting'])->name('view.reporting-farmers-by-ao');
 
 
+Route::get('/ao/view-farmers/{id}', [AgricultureOfficerPanelController::class, 'view_farmers'])->name('ao-view-farmers');
+
 
 Route::get('/ao/field/farmers', [AgricultureOfficerPanelController::class, 'fields_farmers'])->name('ao-field-farmers');
 Route::get('/ao/online/farmers', [AgricultureOfficerPanelController::class, 'online_farmers'])->name('ao-online-farmers');

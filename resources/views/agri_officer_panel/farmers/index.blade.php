@@ -67,7 +67,13 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">AO Farmers list</h2>
+                            <h2 class="mb-0">
+                                @if($farmers[0]->user_type  == 'Agri_Officer') A-O Farmers list
+                                @elseif($farmers[0]->user_type  == 'Online') Online Farmers List
+                                @else
+                                F-A Farmers list
+                                @endif
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -119,8 +125,10 @@
                                                             <span class="badge text-bg-danger">Rejected By Additional Director</span>
                                                             @elseif($farmer->verification_status == 'verified_by_do')
                                                             <span class="badge text-bg-success">Verified</span>
-                                                            @elseif($farmer->user_type == 'Agri_Officer' && $farmer->verification_status == null)
+                                                            @elseif($farmer->user_type == 'Agri_Officer' && ($farmer->verification_status == null || $farmer->verification_status == 0))
                                                             <span class="badge text-bg-info">Unverify</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_ao')
+                                                            <span class="badge text-bg-danger">Rejected</span>
                                                             @endif
                                                         </td>
                                                         @if ($farmer->declined_reason != null || $farmer->declined_reason != '')
@@ -132,13 +140,13 @@
                                                         @endif
                                                         <td>
                                                             <div style="display:flex">
-                                                                @if($farmer->user_type != 'Agri_Officer')
+                                                                @if($farmer->user_type != 'Agri_Officer' && $farmer->verification_status != 'verified_by_do')
                                                                 <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $farmer->id }}">Verify</button> &nbsp;
                                                                 @endif
                                                                 @if($farmer->user_type == 'Agri_Officer' && $farmer->verification_status != 'verified_by_do')
-                                                                <a class="btn btn-primary" href="{{route('do-edit-farmer',$farmer->id)}}">Edit</a> &nbsp;
+                                                                <a class="btn btn-primary" href="{{route('ao-edit-farmer',$farmer->id)}}">Edit</a> &nbsp;
                                                                 @endif
-                                                            <a class="btn btn-primary btn-sm" href="{{route('view-farmers',$farmer->id)}}">View</a>
+                                                            <a class="btn btn-primary btn-sm" href="{{route('ao-view-farmers',$farmer->id)}}">View</a>
                                                             </div>
                                                         </td>
 
