@@ -96,6 +96,8 @@
                                                         <th>Tappa</th>
                                                         <th>Village</th>
                                                         <th>Status</th>
+
+                                                        <th>Reason</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -113,14 +115,29 @@
                                                         <td>
                                                             @if ($farmer->verification_status == 'rejected_by_lo')
                                                             <span class="badge text-bg-danger">Rejected By Land Officer</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_do')
+                                                            <span class="badge text-bg-danger">Rejected By Additional Director</span>
+                                                            @elseif($farmer->verification_status == 'verified_by_do')
+                                                            <span class="badge text-bg-success">Verified</span>
+                                                            @elseif($farmer->user_type == 'Agri_Officer' && $farmer->verification_status == null)
+                                                            <span class="badge text-bg-info">Unverify</span>
                                                             @endif
                                                         </td>
+                                                        @if ($farmer->declined_reason != null || $farmer->declined_reason != '')
+                                                        <td>
+                                                            {{ $farmer->declined_reason }}
+                                                        </td>
+                                                        @else
+                                                        <td></td>
+                                                        @endif
                                                         <td>
                                                             <div style="display:flex">
                                                                 @if($farmer->user_type != 'Agri_Officer')
                                                                 <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $farmer->id }}">Verify</button> &nbsp;
                                                                 @endif
-                                                                {{-- <a class="btn btn-primary" href="{{route('do-edit-farmer',$farmer->id)}}">Edit</a> --}}
+                                                                @if($farmer->user_type == 'Agri_Officer' && $farmer->verification_status != 'verified_by_do')
+                                                                <a class="btn btn-primary" href="{{route('do-edit-farmer',$farmer->id)}}">Edit</a> &nbsp;
+                                                                @endif
                                                             <a class="btn btn-primary btn-sm" href="{{route('view-farmers',$farmer->id)}}">View</a>
                                                             </div>
                                                         </td>

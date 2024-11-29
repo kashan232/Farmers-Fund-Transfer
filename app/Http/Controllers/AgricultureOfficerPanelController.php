@@ -273,7 +273,17 @@ class AgricultureOfficerPanelController extends Controller
     public function fields_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->where('verification_status','=','0')->orWhere('verification_status','=','rejected_by_lo')->paginate(5);
+        // $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->where('verification_status','=','0')->orWhere('verification_status','=','rejected_by_lo')->paginate(5);
+
+        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)
+        ->where('user_type', 'Field_Officer') // Match the user_type
+        ->where(function($query) {
+            $query->where('verification_status', 'rejected_by_lo')
+                  ->orWhere('verification_status', '0');
+        })
+        ->paginate(5);
+
+
         return view('agri_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
