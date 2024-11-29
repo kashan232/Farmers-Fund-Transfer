@@ -151,7 +151,7 @@
                 height: 400
             },
             labels: ['Registered Farmers', 'Verified Farmers', 'Rejected Farmers'],
-            colors: ['#4ba064', '#5cc183', '#d9534f'],
+            colors: ['#dfd930', '#d9534f', '#5cc183'],
             dataLabels: {
                 enabled: true,
                 formatter: (val) => val.toFixed(1) + '%'
@@ -204,7 +204,7 @@
                 endingShape: 'rounded'
             }
         },
-        colors: ['#4ba064', '#5cc183', '#d9534f'],
+        colors: ['#dfd930', '#d9534f', '#5cc183'],
         xaxis: {
             categories: ['Hyderabad City', 'Qasimabad', 'Latifabad'], // Replace with actual Tehsil names
         },

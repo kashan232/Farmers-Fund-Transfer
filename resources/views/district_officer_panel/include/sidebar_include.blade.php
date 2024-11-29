@@ -46,29 +46,37 @@
                     </a>
                 </li> --}}
 
-
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
+                    <a href="{{ route('all-field-officer-by-do') }}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-user-shield"></i>
+                        </span>
+                        <span class="pc-mtext">All Field Assistants</span>
+                    </a>
+                </li>
+
+
+                <!-- <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
+                        <span class="pc-micon">
                         </span>
                         <span class="pc-mtext">Field Assistant</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-field-officer-by-do') }}">All Field Assistants</a>
+                            <a class="pc-link" href=""></a>
                         </li>
                         <li class="pc-item">
                             <a class="pc-link" href="{{ route('create-field-officer-by-do') }}">Create Field Assistant</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('agri-farmers') }}" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-user-friends"></i>
                         </span>
                         <span class="pc-mtext">A-O Farmers</span>
                     </a>
@@ -77,7 +85,7 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('field-farmers') }}" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-user-shield"></i>
                         </span>
                         <span class="pc-mtext">F-A Farmers</span>
                     </a>
@@ -86,23 +94,16 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('online-farmers') }}" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-globe-europe"></i>
                         </span>
                         <span class="pc-mtext">Online Farmers</span>
                     </a>
                 </li>
 
-
-
-
-
-
-
-
             <li class="pc-item pc-hasmenu">
                 <a href="{{ route('reporting-farmers-by-do') }}" class="pc-link">
                     <span class="pc-micon">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-chart-bar"></i>
                     </span>
                     <span class="pc-mtext">Reporting</span>
                 </a>

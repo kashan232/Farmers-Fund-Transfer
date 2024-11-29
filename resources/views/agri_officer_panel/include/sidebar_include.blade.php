@@ -20,7 +20,8 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-user-shield"></i>
+                            <i class="fas fa-user-plus"></i>
+
                         </span>
                         <span class="pc-mtext">Farmers</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
@@ -41,11 +42,11 @@
                 {{--
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('verify-farmers') }}" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fas fa-home"></i>
-                        </span>
-                        <span class="pc-mtext">Verified Farmers</span>
-                    </a>
+                <span class="pc-micon">
+                    <i class="fas fa-home"></i>
+                </span>
+                <span class="pc-mtext">Verified Farmers</span>
+                </a>
                 </li>
 
                 <li class="pc-item pc-hasmenu">
@@ -61,7 +62,7 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('ao-field-farmers') }}" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-users"></i>
                         </span>
                         <span class="pc-mtext">F-A Farmers List</span>
                     </a>
@@ -70,7 +71,7 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('ao-online-farmers') }}" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-globe-europe"></i>
                         </span>
                         <span class="pc-mtext">Online Farmers</span>
                     </a>
@@ -79,18 +80,19 @@
 
 
 
-            <li class="pc-item pc-hasmenu">
-                <a href="{{ route('reporting-farmers-by-ao') }}" class="pc-link">
-                    <span class="pc-micon">
-                        <i class="fas fa-home"></i>
-                    </span>
-                    <span class="pc-mtext">Reporting</span>
-                </a>
-            </li>
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('reporting-farmers-by-ao') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-chart-bar"></i>
+
+                        </span>
+                        <span class="pc-mtext">Reporting</span>
+                    </a>
+                </li>
 
 
 
-{{--
+                {{--
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                         <span class="pc-micon">
@@ -102,31 +104,31 @@
                     <ul class="pc-submenu">
                         <li class="pc-item">
                             <a class="pc-link" href="{{ route('unverify-farmers-by-do') }}">Unverify Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verify-farmers-by-do') }}">Verified Farmers</a>
-                        </li>
-                    </ul>
                 </li>
+                <li class="pc-item">
+                    <a class="pc-link" href="{{ route('verify-farmers-by-do') }}">Verified Farmers</a>
+                </li>
+            </ul>
+            </li>
 
-                <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fas fa-user-check"></i>
+            <li class="pc-item pc-hasmenu">
+                <a href="#!" class="pc-link">
+                    <span class="pc-micon">
+                        <i class="fas fa-user-check"></i>
 
-                        </span>
-                        <span class="pc-mtext">Online Farmers</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('unverify-online-farmers-by-do') }}">Unverify Farmers</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('verify-online-farmers-by-do') }}">Verified Farmers</a>
-                        </li>
-                    </ul>
-                </li> --}}
+                    </span>
+                    <span class="pc-mtext">Online Farmers</span>
+                    <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                </a>
+                <ul class="pc-submenu">
+                    <li class="pc-item">
+                        <a class="pc-link" href="{{ route('unverify-online-farmers-by-do') }}">Unverify Farmers</a>
+                    </li>
+                    <li class="pc-item">
+                        <a class="pc-link" href="{{ route('verify-online-farmers-by-do') }}">Verified Farmers</a>
+                    </li>
+                </ul>
+            </li> --}}
             </ul>
         </div>
     </div>
