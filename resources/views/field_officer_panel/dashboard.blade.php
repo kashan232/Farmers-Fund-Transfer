@@ -62,7 +62,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Incomplete Farmers</p>
+                                                <p class="card-title text-title">Verified Farmers</p>
                                                 <h3 class="card-text text-amount">0</h3>
                                             </div>
                                             <div class="col-auto">
@@ -80,7 +80,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Complete Farmers</p>
+                                                <p class="card-title text-title">Unverified Farmers</p>
                                                 <h3 class="card-text text-amount">0</h3>
                                             </div>
                                             <div class="col-auto">
@@ -141,11 +141,11 @@
 
     const farmerStatusOptions = {
         series: [{
-                name: 'Complete Farmers',
+                name: 'Unverified Farmers',
                 data: [completeFarmers]
             },
             {
-                name: 'Incomplete Farmers',
+                name: 'Verified Farmers',
                 data: [incompleteFarmers]
             }
         ],
@@ -159,7 +159,7 @@
                 barHeight: '50%'
             }
         },
-        colors: ['#4a9668', '#5be969'],
+        colors: ['#d9534f', '#4ba064'],
         dataLabels: {
             enabled: true
         },
@@ -215,7 +215,7 @@
                 endingShape: 'rounded'
             }
         },
-        colors: ['#4ba064', '#5cc183', '#d9534f'],
+        colors: ['#dfd930', '#5cc183', '#d9534f'],
         dataLabels: {
             enabled: true,
             style: {

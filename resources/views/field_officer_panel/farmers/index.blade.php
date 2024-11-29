@@ -73,11 +73,11 @@
 
                                                         <td>
                                                             @if ($farmer->verification_status == 'verified_by_ao')
-                                                            <span class="badge text-bg-success">Verified By A-O</span>
+                                                            <span class="badge text-bg-success text-dark font-weight-bold">Verified By A-O</span>
                                                             @elseif($farmer->verification_status == 'rejected_by_ao')
-                                                            <span class="badge text-bg-danger">Rejected By A-O</span>
+                                                            <span class="badge text-bg-danger text-dark font-weight-bold">Rejected By A-O</span>
                                                             @else
-                                                            <span class="badge text-bg-success">Submitted to A-O</span>
+                                                            <span class="badge text-bg-success text-dark font-weight-bold">Submitted to A-O</span>
                                                             @endif
                                                         </td>
                                                         <td>

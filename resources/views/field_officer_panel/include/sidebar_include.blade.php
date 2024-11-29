@@ -22,7 +22,7 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('farmer-create-by-field-officer') }}" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-user-plus"></i>
                         </span>
                         <span class="pc-mtext">Add Farmers</span>
                     </a>
@@ -31,7 +31,7 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('farmers-list-field-officer') }}" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-users"></i>
                         </span>
                         <span class="pc-mtext">Farmers List</span>
                     </a>
@@ -41,7 +41,7 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('reporting-farmers-by-field-officer') }}" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-chart-bar"></i>
                         </span>
                         <span class="pc-mtext">Reporting</span>
                     </a>
