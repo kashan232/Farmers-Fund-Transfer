@@ -68,12 +68,13 @@
                     <div class="col-md-12">
                         <div class="page-header-title">
                             <h2 class="mb-0">
-                                @if(count($farmers) > 0)
+                                @if(!empty($farmers) && isset($farmers[0]) && $farmers[0] != null)
                                 @if($farmers[0]->user_type  == 'Agri_Officer') A-O Farmers list
                                 @elseif($farmers[0]->user_type  == 'Online') Online Farmers List
                                 @else
                                 F-A Farmers list
                                 @endif
+                                Farmers List
                                 @endif
                             </h2>
                         </div>
