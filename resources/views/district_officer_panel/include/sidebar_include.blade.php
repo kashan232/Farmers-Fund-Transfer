@@ -51,7 +51,7 @@
                         <span class="pc-micon">
                             <i class="fas fa-user-shield"></i>
                         </span>
-                        <span class="pc-mtext">All Field Assistants</span>
+                        <span class="pc-mtext">Field Assistants</span>
                     </a>
                 </li>
 
@@ -73,32 +73,32 @@
                     </ul>
                 </li> -->
 
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="{{ route('agri-farmers') }}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-user-friends"></i>
                         </span>
                         <span class="pc-mtext">A-O Farmers</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('field-farmers') }}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-user-shield"></i>
                         </span>
-                        <span class="pc-mtext">F-A Farmers</span>
+                        <span class="pc-mtext">Farmers</span>
                     </a>
                 </li>
 
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="{{ route('online-farmers') }}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-globe-europe"></i>
                         </span>
                         <span class="pc-mtext">Online Farmers</span>
                     </a>
-                </li>
+                </li> --}}
 
             <li class="pc-item pc-hasmenu">
                 <a href="{{ route('reporting-farmers-by-do') }}" class="pc-link">

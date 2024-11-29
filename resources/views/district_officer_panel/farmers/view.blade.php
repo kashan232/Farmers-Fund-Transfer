@@ -25,6 +25,44 @@
             </div>
         </div>
         <!-- [ breadcrumb ] end -->
+        <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLiveLabel">Farmers Verification</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <form id="verifyfarmers" action="{{ route('verify-farmer') }}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="statusSelect">Status</label>
+                                        <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
+                                        <select class="form-control" id="statusSelect" name="verification_status">
+                                            <option value="verified_by_do">Verified</option>
+                                            <option value="rejected_by_do">Unverified</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="reasonBox" style="display: none;">
+                                        <label for="reasonTextarea">Reason</label>
+                                        <select id="reasonTextarea" name="declined_reason" class="form-control">
+                                            <option value="Banks Details Not Valid">Banks Details Not Valid</option>
+                                            <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
+                                            <option value="Attachments are not cleared">Attachments are not cleared</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-3">Save</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- [ Main Content ] start -->
         <div class="row">
             <div class="col-sm-12">
@@ -292,6 +330,7 @@
                                 <td>{{ $data->updated_at->diffForHumans() }}</td>
                             </tr> --}}
                         </table>
+                        <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $data->id }}">Verify</button> &nbsp;
                     </div>
                 </div>
             </div>
@@ -325,6 +364,32 @@
 
         doc.save('farmer_details.pdf');
     }
+
+
+
+    $(document).ready(function() {
+    // Event listener for opening the modal
+
+
+    $('.verifiy-btn').on('click', function() {
+            var farmerId = $(this).data('id');
+            $('#farmer_id').val(farmerId);
+            $('#exampleModalLive').modal('show');
+        });
+
+    // Event listener for changing the status
+    $('#statusSelect').on('change', function() {
+        var reasonBox = $('#reasonBox');
+        if ($(this).val() == 'rejected_by_do') {
+            reasonBox.show();
+            $('#reasonTextarea').prop('required', true);
+
+        } else {
+            reasonBox.hide();
+            $('#reasonTextarea').prop('required', false);
+        }
+    });
+});
 </script>
 
 
