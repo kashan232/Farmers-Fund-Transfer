@@ -150,8 +150,8 @@
                 type: 'donut',
                 height: 400
             },
-            labels: ['Registered Farmers', 'Verified Farmers', 'Rejected Farmers'],
-            colors: ['#dfd930', '#d9534f', '#5cc183'],
+            labels: ['Registered Farmers', 'Rejected Farmers', ' Verified Farmers'],
+            colors: ['#dfd930', '#d9534f', '#3f8a5c'],
             dataLabels: {
                 enabled: true,
                 formatter: (val) => val.toFixed(1) + '%'
@@ -187,10 +187,10 @@
             name: 'Registered Farmers',
             data: [50, 70, 40]
         }, {
-            name: 'Verified Farmers',
+            name: 'Rejected Farmers',
             data: [30, 50, 20]
         }, {
-            name: 'Rejected Farmers',
+            name: 'Verified Farmers',
             data: [10, 5, 10]
         }],
         chart: {
@@ -204,7 +204,7 @@
                 endingShape: 'rounded'
             }
         },
-        colors: ['#dfd930', '#d9534f', '#5cc183'],
+        colors: ['#dfd930', '#d9534f', '#3f8a5c'],
         xaxis: {
             categories: ['Hyderabad City', 'Qasimabad', 'Latifabad'], // Replace with actual Tehsil names
         },

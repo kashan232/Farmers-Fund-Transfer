@@ -159,7 +159,7 @@
                 barHeight: '50%'
             }
         },
-        colors: ['#d9534f', '#4ba064'],
+        colors: ['#c93f3b', '#3f8a5c'],
         dataLabels: {
             enabled: true
         },
@@ -215,7 +215,7 @@
                 endingShape: 'rounded'
             }
         },
-        colors: ['#dfd930', '#5cc183', '#d9534f'],
+        colors: ['#dfd930', '#3f8a5c', '#c93f3b'],
         dataLabels: {
             enabled: true,
             style: {
