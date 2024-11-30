@@ -68,14 +68,7 @@
                     <div class="col-md-12">
                         <div class="page-header-title">
                             <h2 class="mb-0">
-                                @if(!empty($farmers) && isset($farmers[0]) && $farmers[0] != null)
-                                @if($farmers[0]->user_type  == 'Agri_Officer') A-O Farmers list
-                                @elseif($farmers[0]->user_type  == 'Online') Online Farmers List
-                                @else
-                                F-A Farmers list
-                                @endif
                                 Farmers List
-                                @endif
                             </h2>
                         </div>
                     </div>
@@ -96,6 +89,7 @@
                                             <table id="example" class="display" style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
                                                     <tr>
+                                                        <th>Register By</th>
                                                         <th>Name</th>
                                                         <th>CNIC</th>
                                                         <th>Mobile</th>
@@ -105,12 +99,22 @@
                                                         <th>Tappa</th>
                                                         <th>Village</th>
                                                         <th>Status</th>
+                                                        <th>Reason</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach($farmers as $farmer)
                                                     <tr>
+                                                        <td>
+                                                            @if ($farmer->user_type == 'Online')
+                                                            Online
+                                                            @elseif($farmer->user_type == 'Field_Officer')
+                                                            Field Assitant
+                                                            @else
+                                                            Agriculture Farmers
+                                                            @endif
+                                                        </td>
                                                         <td>{{ $farmer->name }}</td>
                                                         <td>{{ $farmer->cnic }}</td>
                                                         <td>{{ $farmer->mobile }}</td>
@@ -122,15 +126,24 @@
                                                         <td>
                                                             @if($farmer->verification_status == 'verified_by_do')
                                                             <span class="badge text-bg-success">Verified</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_do')
+                                                            <span class="badge text-bg-danger">Rejected</span>
                                                             @else
                                                             <span class="badge text-bg-primary">Verified By Land Officer</span>
                                                             @endif
                                                         </td>
+                                                        @if ($farmer->declined_reason != null || $farmer->declined_reason != '')
+                                                        <td>
+                                                            {{ $farmer->declined_reason }}
+                                                        </td>
+                                                        @else
+                                                        <td></td>
+                                                        @endif
                                                         <td>
                                                             <div style="display:flex">
-                                                                @if($farmer->verification_status != 'verified_by_do')
+                                                                {{-- @if($farmer->verification_status != 'verified_by_do')
                                                                 <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $farmer->id }}">Verify</button> &nbsp;
-                                                                @endif
+                                                                @endif --}}
                                                                 {{-- <a class="btn btn-primary" href="{{route('do-edit-farmer',$farmer->id)}}">Edit</a> --}}
                                                             <a class="btn btn-primary btn-sm" href="{{route('view-farmers',$farmer->id)}}">View</a>
                                                             </div>
@@ -203,6 +216,17 @@
             }
         });
 
+        $(document).on('change', '#user_type', function(e) {
+            e.preventDefault();
+            var searchValue = $(this).val();
+            if(searchValue !=  0){
+                table.column(0).search('^' + searchValue + '$', true, false).draw();
+            }
+            else{
+                table.column(0).search('').draw();
+            }
+        });
+
         $('#example_wrapper').before(`
             <div class="col-3" style="position: absolute; top:1%" >
                 <select name="tehsil" id="tehsil" class="form-control">
@@ -210,6 +234,13 @@
                     @foreach ($tehsils as $tehsil)
                         <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
                     @endforeach
+                </select>
+            </div>
+            <div class="col-3" style="position: absolute; top:1%; left:250px;" >
+                <select  id="user_type" class="form-control">
+                    <option value="">Select Type</option>
+                    <option value="Online">Online</option>
+                    <option value="Field Assitant">Field Assitant</option>
                 </select>
             </div>
         `);

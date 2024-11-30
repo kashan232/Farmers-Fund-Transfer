@@ -29,14 +29,7 @@
                     <div class="col-md-12">
                         <div class="page-header-title">
                             <h2 class="mb-0">
-                                @if(!empty($all_land_farmers) && isset($all_land_farmers[0]) && $all_land_farmers[0] != null)
-                                @if($all_land_farmers[0]->user_type  == 'Agri_Officer') A-O Farmers list
-                                @elseif($all_land_farmers[0]->user_type  == 'Online') Online Farmers List
-                                @else
-                                F-A Farmers list
-                                @endif
                                 Farmers List
-                                @endif
                             </h2>
                         </div>
                     </div>
@@ -100,7 +93,7 @@
                                             <table id="example"  style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
                                                     <tr>
-                                                        <th>Sno</th>
+                                                        <th>Register By</th>
                                                         <th>Name</th>
                                                         <th>CNIC</th>
                                                         <th>Mobile</th>
@@ -109,7 +102,8 @@
                                                         <th>UC</th>
                                                         <th>Tappa</th>
                                                         <th>Village</th>
-                                                        <th>Verification Status</th>
+                                                        <th>Status</th>
+                                                        <th>Reason</th>
                                                         @if(isset($all_land_farmers[0]->user_type))<th>Action</th>@endif
                                                     </tr>
                                                 </thead>
@@ -117,7 +111,18 @@
                                                     @foreach($all_land_farmers as $all_land_farmer)
 
                                                     <tr>
-                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>
+
+                                                                @if ($all_land_farmer->user_type == 'Online')
+                                                                Online
+                                                                @elseif($all_land_farmer->user_type == 'Field_Officer')
+                                                                Field Assitant
+                                                                @else
+                                                                Agriculture Farmers
+                                                                @endif
+
+
+                                                        </td>
                                                         <td>{{ $all_land_farmer->name }}</td>
                                                         <td>{{ $all_land_farmer->cnic }}</td>
                                                         <td>{{ $all_land_farmer->mobile }}</td>
@@ -137,10 +142,17 @@
                                                             <span class="badge text-bg-primary">Unverified</span>
                                                             @endif
                                                         </td>
+                                                        @if ($all_land_farmer->declined_reason != null || $all_land_farmer->declined_reason != '')
+                                                        <td>
+                                                            {{ $all_land_farmer->declined_reason }}
+                                                        </td>
+                                                        @else
+                                                        <td></td>
+                                                        @endif
                                                         @if(isset($all_land_farmer->user_type))
                                                         <td>
                                                             <div class="d-flex">
-                                                                <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $all_land_farmer->id }}">Verify</button> &nbsp;
+                                                                {{-- <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $all_land_farmer->id }}">Verify</button> &nbsp; --}}
                                                                 <a href="{{ route('view-land-farmers', ['id' => $all_land_farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp;
                                                                 <a href="{{ route('edit-land-farmers', ['id' => $all_land_farmer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>&nbsp;
                                                                 {{-- <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>&nbsp; --}}
@@ -241,6 +253,17 @@ $(document).ready(function() {
             }
         });
 
+        $(document).on('change', '#user_type', function(e) {
+            e.preventDefault();
+            var searchValue = $(this).val();
+            if(searchValue !=  0){
+                table.column(0).search('^' + searchValue + '$', true, false).draw();
+            }
+            else{
+                table.column(0).search('').draw();
+            }
+        });
+
         $('#example_wrapper').before(`
             <div class="col-3" style="position: absolute; top:1%" >
                 <select name="tehsil" id="tehsil" class="form-control">
@@ -248,6 +271,13 @@ $(document).ready(function() {
                     @foreach ($tehsils as $tehsil)
                         <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
                     @endforeach
+                </select>
+            </div>
+            <div class="col-3" style="position: absolute; top:1%; left:250px;" >
+                <select  id="user_type" class="form-control">
+                    <option value="">Select Type</option>
+                    <option value="Online">Online</option>
+                    <option value="Field Assitant">Field Assitant</option>
                 </select>
             </div>
         `);

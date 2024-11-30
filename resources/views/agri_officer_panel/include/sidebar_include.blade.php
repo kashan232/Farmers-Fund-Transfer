@@ -23,7 +23,7 @@
                             <i class="fas fa-user-plus"></i>
 
                         </span>
-                        <span class="pc-mtext">Farmers</span>
+                        <span class="pc-mtext">Registrations Farmers</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
@@ -64,18 +64,18 @@
                         <span class="pc-micon">
                             <i class="fas fa-users"></i>
                         </span>
-                        <span class="pc-mtext">F-A Farmers List</span>
+                        <span class="pc-mtext">Farmers</span>
                     </a>
                 </li>
 
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="{{ route('ao-online-farmers') }}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-globe-europe"></i>
                         </span>
                         <span class="pc-mtext">Online Farmers</span>
                     </a>
-                </li>
+                </li> --}}
 
 
 

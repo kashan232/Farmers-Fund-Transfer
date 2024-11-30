@@ -68,14 +68,7 @@
                     <div class="col-md-12">
                         <div class="page-header-title">
                             <h2 class="mb-0">
-                                @if(!empty($farmers) && isset($farmers[0]) && $farmers[0] != null)
-                                @if($farmers[0]->user_type  == 'Agri_Officer') A-O Farmers list
-                                @elseif($farmers[0]->user_type  == 'Online') Online Farmers List
-                                @else
-                                F-A Farmers list
-                                @endif
                                 Farmers List
-                                @endif
                             </h2>
                         </div>
                     </div>
@@ -96,6 +89,7 @@
                                             <table id="example" class="display" style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
                                                     <tr>
+                                                        <th>Register By</th>
                                                         <th>Name</th>
                                                         <th>CNIC</th>
                                                         <th>Mobile</th>
@@ -105,7 +99,6 @@
                                                         <th>Tappa</th>
                                                         <th>Village</th>
                                                         <th>Status</th>
-
                                                         <th>Reason</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -113,6 +106,14 @@
                                                 <tbody>
                                                     @foreach($farmers as $farmer)
                                                     <tr>
+                                                        <td>
+                                                            @if ($farmer->user_type == 'Online')
+                                                            Online
+                                                            @elseif($farmer->user_type == 'Field_Officer')
+                                                            Field Assitant
+                                                            @endif
+
+                                                        </td>
                                                         <td>{{ $farmer->name }}</td>
                                                         <td>{{ $farmer->cnic }}</td>
                                                         <td>{{ $farmer->mobile }}</td>
@@ -141,11 +142,12 @@
                                                         @else
                                                         <td></td>
                                                         @endif
+
                                                         <td>
                                                             <div style="display:flex">
-                                                                @if($farmer->user_type != 'Agri_Officer' && $farmer->verification_status != 'verified_by_do')
+                                                                {{-- @if($farmer->user_type != 'Agri_Officer' && $farmer->verification_status != 'verified_by_do')
                                                                 <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $farmer->id }}">Verify</button> &nbsp;
-                                                                @endif
+                                                                @endif --}}
                                                                 @if($farmer->user_type == 'Agri_Officer' && $farmer->verification_status != 'verified_by_do')
                                                                 <a class="btn btn-primary" href="{{route('ao-edit-farmer',$farmer->id)}}">Edit</a> &nbsp;
                                                                 @endif
@@ -213,10 +215,22 @@
             e.preventDefault();
             var searchValue = $(this).val();
             if(searchValue !=  0){
-                table.column(4).search('^' + searchValue + '$', true, false).draw();
+                table.column(5).search('^' + searchValue + '$', true, false).draw();
             }
             else{
-                table.column(4).search('').draw();
+                table.column(5).search('').draw();
+            }
+        });
+
+
+        $(document).on('change', '#user_type', function(e) {
+            e.preventDefault();
+            var searchValue = $(this).val();
+            if(searchValue !=  0){
+                table.column(0).search('^' + searchValue + '$', true, false).draw();
+            }
+            else{
+                table.column(0).search('').draw();
             }
         });
 
@@ -229,6 +243,17 @@
                     @endforeach
                 </select>
             </div>
+            @if(!empty($farmers) && isset($farmers[0]) && $farmers[0] != null)
+            @if($farmers[0]->user_type  != 'Agri_Officer')
+            <div class="col-3" style="position: absolute; top:1%; left:250px;" >
+                <select  id="user_type" class="form-control">
+                    <option value="">Select Type</option>
+                    <option value="Online">Online</option>
+                    <option value="Field Assitant">Field Assitant</option>
+                </select>
+            </div>
+            @endif
+            @endif
         `);
 
     });
@@ -256,6 +281,8 @@
             $('#reasonTextarea').prop('required', false);
         }
     });
+
+
 });
 
 </script>

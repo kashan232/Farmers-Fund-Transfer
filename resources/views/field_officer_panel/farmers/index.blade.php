@@ -54,6 +54,7 @@
                                                         <th>Tappa</th>
                                                         <th>Village</th>
                                                         <th>Status</th>
+                                                        <th>Reason</th>
                                                         {{-- <th>Status</th> --}}
                                                         <th>Action</th>
                                                     </tr>
@@ -80,6 +81,13 @@
                                                             <span class="badge text-bg-success text-dark font-weight-bold">Submitted to A-O</span>
                                                             @endif
                                                         </td>
+                                                        @if ($farmer->declined_reason != null || $farmer->declined_reason != '')
+                                                        <td>
+                                                            {{ $farmer->declined_reason }}
+                                                        </td>
+                                                        @else
+                                                        <td></td>
+                                                        @endif
                                                         <td>
                                                             <div class="d-flex">
                                                                 {{-- <a href="{{ route('farmer-view-by-field-officer', ['id' => $farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp; --}}
