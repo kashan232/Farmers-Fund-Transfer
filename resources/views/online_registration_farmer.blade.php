@@ -201,23 +201,23 @@
                                                     <h4 class="card-title font-weight-bold" style="line-height: 27px;margin-left: 10px;">Personal Details</h4>
                                                 </div>
                                                 <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Name <span class="text-danger">*</span></label>
+                                                    <label class="form-label">Q1. Name: <span class="text-danger">*</span></label>
                                                     <input type="text" name="name" class="form-control" value="">
                                                 </div>
                                                 <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Father Name <span class="text-danger">*</span></label>
+                                                    <label class="form-label">Q2. Father/Husband Name: <span class="text-danger">*</span></label>
                                                     <input type="text" name="father_name" class="form-control" value="">
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
-                                                    <label class="form-label">CNIC <span class="text-danger">*</span></label>
+                                                    <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
                                                     <input type="text" name="cnic" class="form-control" value="">
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
-                                                    <label class="form-label">Mobile <span class="text-danger">*</span></label>
+                                                    <label class="form-label">Q4. Mobile No.: <span class="text-danger">*</span></label>
                                                     <input type="text" name="mobile" class="form-control" value="">
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
-                                                    <label class="form-label">Dictrict</label>
+                                                    <label class="form-label">Q5. District</label>
                                                     <select id="districts" name="district" class="form-control">
                                                         <option value="">Select District</option>
                                                         <option value="HYDERABAD">HYDERABAD</option>
@@ -245,134 +245,178 @@
                                                     </select>
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
-                                                    <label class="form-label">Tehsil</label>
+                                                    <label class="form-label">Q6. Taluka: </label>
                                                     <select id="tehsils" name="tehsil" class="form-control">
-                                                        <option value="" disabled>Select Tehsil</option>
+                                                        <option value="" disabled>Select Taluka</option>
                                                         <!-- Options will be populated dynamically -->
                                                     </select>
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
-                                                    <label class="form-label">UC</label>
+                                                    <label class="form-label">Q7. Union Council: </label>
                                                     <select id="ucs" name="uc" class="form-control">
                                                         <option value="" selected disabled>Select UC</option>
                                                         <!-- Options will be populated dynamically -->
                                                     </select>
                                                 </div>
-                                                <div class="mb-6 col-md-6 py-2">
-                                                    <label class="form-label">Tappa</label>
+                                                <div class="mb-2 col-md-6 py-2">
+                                                    <label class="form-label">Q8. Tappa: </label>
                                                     <select id="tappas" name="tappa" class="form-control">
                                                         <option value="" selected disabled>Select Tappa</option>
                                                         <!-- Options will be populated dynamically -->
                                                     </select>
                                                 </div>
 
-                                                <div class="mb-6 col-md-6 py-2">
-                                                    <label class="form-label">DAH</label>
+                                                <div class="mb-2 col-md-6 py-2">
+                                                    <label class="form-label">Q9. Deh: </label>
                                                     <input type="text" name="dah" class="form-control" value="">
                                                 </div>
-                                                <div class="mb-6 col-md-6 mt-2">
-                                                    <label class="form-label">Village</label>
+                                                <div class="mb-2 col-md-6 mt-2">
+                                                    <label class="form-label">Q10. Village: </label>
                                                     <input type="text" name="village" class="form-control" value="">
                                                 </div>
                                                 <div class="mb-4 col-md-4 mt-2">
-                                                    <label class="form-label">Gender</label>
-                                                    <select name="gender" class="form-control">
-                                                        <option value="male">Male</option>
-                                                        <option value="female">Female</option>
-                                                    </select>
+                                                    <label class="form-label"><b>Q11. Gender (Tick):</b></label><br>
+                                                     &nbsp;<label>
+                                                        <input type="radio" name="gender" value="male"> Male
+                                                      </label>
+                                                      &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                                                      <label>
+                                                        <input type="radio" name="gender" value="female"> Female
+                                                      </label>
                                                 </div>
-                                                <div class="mb-4 col-md-4">
-                                                    <label class="form-label">House Type</label>
-                                                    <select name="house_type" id="house_type" class="form-control">
-                                                        <option value="pakka_house">Pakka House</option>
-                                                        <option value="kacha_house">Kacha House</option>
-                                                    </select>
+
+                                                <div class="mb-2 col-md-8">
+                                                    <label class="form-label"><b>Q12: Owner Type: </b></label>
+                                                        <br>
+                                                        &nbsp;
+                                                        <label>
+                                                            <input type="radio" name="owner_type" value="owner"> 1. Owner
+                                                        </label>
+                                                        &nbsp;
+                                                        <label>
+                                                            <input type="radio" name="owner_type" value="makadedar"> 2. Makadedar (Contractor/leasee)
+                                                        </label>
+                                                        &nbsp;
+                                                        <label>
+                                                            <input type="radio" name="owner_type" value="sharecropper"> 3. sharecropper/Tenant
+                                                        </label>
                                                 </div>
-                                                <div class="mb-4 col-md-4">
-                                                    <label class="form-label">Owner Type</label>
-                                                    <select name="owner_type" id="" class="form-control">
-                                                        <option value="owner">Owner</option>
-                                                        <option value="makandar">Makandar</option>
-                                                    </select>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class=" col-md-12">
+                                                    <h6 class="card-title">Q13: Family Compostion and age of respondent:</h6>
+                                                </div>
+
+                                                <div class=" col-md-4 mt-1" style="padding-right: 0 !important;  ">
+                                                    <div style="border:1px solid; display:flex;align-items: center; height: 40px; justify-content:center">
+                                                        <h6 class="text-center" style="margin: 0 !important;">Gender</h6>
+                                                    </div>
+                                                    <div style="border:1px solid; padding: 2%;">
+                                                        <input type="text" value="Female" readonly name="" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class=" col-md-4 mt-1" style="padding-right: 0 !important;  padding-left: 0 !important;">
+                                                    <div style="border:1px solid; display:flex;align-items: center; height: 40px; justify-content:center">
+                                                        <h6 class="text-center" style="margin: 0 !important;">Children < 18 years</h6>
+                                                    </div>
+                                                    <div style="border:1px solid; padding: 2%;">
+                                                        <input type="text" name="female_children_under16" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                    </div>
+                                                </div>
+
+                                                <div class=" col-md-4 mt-1" style="  padding-left: 0 !important;">
+                                                    <div style="border:1px solid; display:flex;align-items: center; height: 40px; justify-content:center">
+                                                        <h6 class="text-center" style="margin: 0 !important;">Adults > 18 years</h6>
+                                                    </div>
+                                                    <div style="border:1px solid; padding: 2%;">
+                                                        <input type="text" name="female_Adults_above16" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 col-md-4 " style="padding-right: 0 !important;  ">
+                                                    <div style="border:1px solid; padding: 2%;">
+                                                        <input type="text" value="Male" readonly name="" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 col-md-4 " style="padding-right: 0 !important;  padding-left: 0 !important;">
+                                                    <div style="border:1px solid; padding: 2%;">
+                                                        <input type="text" name="male_children_under16" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 col-md-4 " style="  padding-left: 0 !important;">
+                                                    <div style="border:1px solid; padding: 2%;">
+                                                        <input type="text" name="male_Adults_above16" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                    </div>
                                                 </div>
                                             </div>
 
 
                                             <div class="row">
-                                                <div class=" col-md-12">
-                                                    <h6 class="card-title">Next of Kin</h6>
-                                                </div>
+
                                                 <div class="mb-4 col-md-4 ">
-                                                    <label class="form-label">Full Name</label>
+                                                    <label class="form-label">Q14: Next of Kin:  Full Name: </label>
                                                     <input type="text" name="full_name_of_next_kin" class="form-control" value="">
                                                 </div>
                                                 <div class="mb-4 col-md-4 ">
-                                                    <label class="form-label">CNIC</label>
+                                                    <label class="form-label">CNIC NO:</label>
                                                     <input type="text" name="cnic_of_next_kin" class="form-control" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                 </div>
                                                 <div class="mb-4 col-md-4 ">
-                                                    <label class="form-label">Mobile No</label>
+                                                    <label class="form-label">Mobile No:</label>
                                                     <input type="text" name="mobile_of_next_kin" class="form-control" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)">
                                                 </div>
                                             </div>
 
 
-                                            <div class="row">
-                                                <div class=" col-md-12">
-                                                    <h6 class="card-title">Family Compostion</h6>
-                                                </div>
-                                                <div class="mb-4 col-md-4 mt-1">
-                                                    <h6 class="text-center">Gender</h6>
-                                                    <input type="text" value="Female" readonly name="" class="form-control">
-                                                </div>
-                                                <div class="mb-4 col-md-4 mt-1">
-                                                    <h6 class="text-center">Children < 16 </h6>
-                                                            <input type="text" name="female_children_under16" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
-                                                </div>
-                                                <div class="mb-4 col-md-4 mt-1">
-                                                    <h6 class="text-center">Adults > 16 </h6>
-                                                    <input type="text" name="female_Adults_above16" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
-                                                </div>
-                                                <div class="mb-4 col-md-4 ">
-                                                    <input type="text" value="Male" readonly name="" class="form-control">
-                                                </div>
-                                                <div class="mb-4 col-md-4 ">
-                                                    <input type="text" name="male_children_under16" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
-                                                </div>
-                                                <div class="mb-4 col-md-4 ">
-                                                    <input type="text" name="male_Adults_above16" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                            <div class="row" id="">
+                                                <div class="mb-6 col-6">
+                                                    <label class="form-label"><b>Q15. House Type:</b></label> &nbsp; &nbsp; &nbsp;
+                                                    <label>
+                                                    <input type="radio" name="house_type" value="pakka_house"> &nbsp; (1) Pakka House
+                                                    </label>
+                                                    &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                                                    <label>
+                                                    <input type="radio" name="house_type" value="kacha_house"> &nbsp; (2) Kacha House
+                                                    </label>
                                                 </div>
                                             </div>
+
+
                                             <div class="row" id="">
                                                 <div class="mb-12 col-md-12">
-                                                    <h6>Landholding & Cropping</h6>
+                                                    <h6>Q16: Landholding:</h6>
                                                 </div>
-                                                <div class="mb-3 col-md-3">
-                                                    <label class="form-label">Total Landholding (Acre)</label>
+                                                <div class="mb-6 col-md-6">
+                                                    <label class="form-label">(1) Total Landholding (Acres):</label>
                                                     <input type="text" name="total_landing_acre" value="" class="form-control">
                                                 </div>
-                                                <div class="mb-3 col-md-3">
-                                                    <label class="form-label">Total Area with Hari(s)</label>
+                                                <div class="mb-6 col-md-6">
+                                                    <label class="form-label">(2) Total Area with Hari(s) (Acres):</label>
                                                     <input type="text" name="total_area_with_hari" value="" class="form-control">
                                                 </div>
-                                                <div class="mb-3 col-md-3">
-                                                    <label class="form-label">Total self cultivated land</label>
+                                                <div class="mb-6 col-md-6">
+                                                    <label class="form-label">(3) Total self cultivated land (Acres):</label>
                                                     <input type="text" name="total_area_cultivated_land" value="" class="form-control">
                                                 </div>
-                                                <div class="mb-3 col-md-3">
-                                                    <label class="form-label">Total fallow land</label>
+                                                <div class="mb-6 col-md-6">
+                                                    <label class="form-label">(4) Total fallow land (Acres):</label>
                                                     <input type="text" name="total_fallow_land" value="" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="row " id="no_title_section">
-                                                <div class="mb-12 col-md-12">
-                                                    <h6>Titleee</h6>
+                                            <div class="row " class="" id="no_title_section">
+                                                <div class=" mt-2 mb-12 col-md-12">
+                                                    <h6>Particulars of Teuants / Sharecroppers</h6>
                                                 </div>
                                                 <div class="col-12">
                                                     <table id="title_table" class="table table-bordered">
                                                         <thead>
                                                             <tr>
-                                                                <th>Name</th>
+                                                                <th>Full Name</th>
                                                                 <th>CNIC Number</th>
                                                                 <th>Contact Number</th>
                                                                 <th>Total Area (Acre)</th>
@@ -395,6 +439,7 @@
                                                                 </td>
                                                                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                             </tr>
+
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -404,20 +449,30 @@
                                             </div>
                                             <div class="row" id="crops_section">
                                                 <div class="mb-12 col-md-12">
-                                                    <h6>Crop Status</h6>
+                                                    <h6>Q17: B. Crops Status</h6>
                                                 </div>
                                                 <div class="col-12">
                                                     <table id="crop_table" class="table table-bordered">
                                                         <thead>
                                                             <tr>
-                                                                <th>Crops</th>
-                                                                <th>Area</th>
-                                                                <th>Average Yeild</th>
+                                                                <th>Season</th>
+                                                                <th>Crop(s)</th>
+                                                                <th>Area (Acres)</th>
+                                                                <th>Average Yield (Per Acre)</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="crop_tableBody">
                                                             <tr>
+                                                                <td>
+                                                                    <select name="crop_season[]" id="" class="form-control">
+                                                                        <option value="">Select Season</option>
+                                                                        <option value="Rabi Season">Rabi Season</option>
+                                                                        <option value="Rabi Season">Kharif Season</option>
+                                                                        <option value="Rabi Season">Orchards</option>
+
+                                                                    </select>
+                                                                </td>
                                                                 <td>
                                                                     <input type="text" name="crops[]" value="" class="form-control">
                                                                 </td>
@@ -446,11 +501,11 @@
                                                     <img src="{{asset('')}}/login_assets/assets.png" alt="" style="height: 25px;width: 25px;">
 
                                                     <h6 class="card-title font-weight-bold" style="line-height: 27px;margin-left: 10px;">
-                                                        Physical Assets Currently Owned</h6>
+                                                        Assets Information</h6>
 
                                                 </div>
                                                 <div class="mb-8 col-md-8">
-                                                    <label class="form-label">Items</label>
+                                                    <label class="form-label"><b>Q18: Physical Assets (Farm machinery) - currently owned</b></label>
                                                     <select name="physical_asset_item[]" id="" class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
                                                         <option value="car/jeep">Car/Jeep </option>
                                                         <option value="pickup/loader">Pickup/loader</option>
@@ -462,23 +517,23 @@
                                                         <option value="cultivator">Cultivator</option>
                                                         <option value="tractor_trolley">Tractor Trolley</option>
                                                         <option value="plough">Plough (wood or metal)</option>
+                                                        <option value="laser_lever">Laser lever</option>
+                                                        <option value="rotavetor">Rotavetor</option>
                                                         <option value="thresher">Thresher</option>
                                                         <option value="harvester">Harvester</option>
-                                                        <option value="rotavetor">Rotavetor</option>
-                                                        <option value="laser_lever">Laser lever</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="row mt-2 " id="poultry_assets_section">
                                                 <div class="mt-3 col-md-12">
-                                                    <h6>Livestock and Poultry Assets Currently Owned</h6>
+                                                    <h6>Q19: Livestock and Poultry - assets currently owned</h6>
                                                 </div>
                                                 <div class="col-12 mt-2">
                                                     <table id="poultry_assets_table" class="table table-bordered">
                                                         <thead>
                                                             <tr>
-                                                                <th>Animal</th>
-                                                                <th>Numbers</th>
+                                                                <th>Type of Animal</th>
+                                                                <th>Numbers NOW</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
@@ -509,25 +564,31 @@
                                                     <img src="{{asset('')}}/login_assets/survey.png" alt="" style="height: 25px;width: 25px;">
 
                                                     <h6 class="card-title font-weight-bold" style="line-height: 27px;margin-left: 10px;">
-                                                        Source of irrigation</h6>
+                                                       Source of irrigation</h6>
                                                 </div>
                                                 <div class="row mb-12 col-md-12" id="source_of_irrigation_section">
                                                     <div class="mb-6 col-md-6">
-                                                        <label class="form-label">Source of irrigation</label>
+                                                        <label class="form-label">Q20:  Source of irrigation</label>
                                                         <select name="source_of_irrigation" class="form-control" id="source_of_irrigation">
-                                                            <option value="canal_wall">Canal System</option>
-                                                            <option value="tube_wall">Tube Wall</option>
+                                                            <option value="canal_wall">(1) Canal System</option>
+                                                            <option value="tube_wall">(2) Tube Wall</option>
+                                                            <option value="tube_wall">(3) Rain/Barrani</option>
+                                                            <option value="tube_wall">(4) Kaccha Area</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="mb-12 col-md-12">
-                                                    <h6>Status of water</h6>
+                                                    <h6>Q22: Status of water course,</h6>
                                                 </div>
                                                 <div class="row mb-12 col-md-12" id="status_of_water_section">
                                                     <div class="mb-3 col-md-3">
-                                                        <label class="form-label">Area length</label>
+                                                        <label class="form-label">Total length (Meter)</label>
+                                                        <input type="text" name="area_length" class="form-control" value="">
+                                                    </div>
+                                                    <div class="mb-3 col-md-3">
+                                                        <label class="form-label">Total Command Area (Acres)</label>
                                                         <input type="text" name="area_length" class="form-control" value="">
                                                     </div>
                                                     <div class="mb-3 col-md-3">
@@ -553,29 +614,32 @@
                                                         Bank & Account Details</h6>
                                                 </div>
                                                 <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Bank Name</label>
-                                                    <input type="text" name="bank_name" value="" class="form-control">
+                                                    <label class="form-label">Q23: Title of Account</label>
+                                                    <input type="text" name="account_title" class="form-control" >
                                                 </div>
                                                 <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Branch Name</label>
-                                                    <input type="text" name="branch_name" value="" class="form-control">
-                                                </div>
-                                                <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Branch Code</label>
-                                                    <input type="text" name="branch_code" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
-                                                </div>
-                                                <div class="mb-6 col-md-6">
-                                                    <label class="form-label">IBAN</label>
-                                                    <input type="text" name="IBAN_number" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
-                                                </div>
-                                                <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Title of Account</label>
-                                                    <input type="text" name="account_title" class="form-control" value="Sindh Bank">
-                                                </div>
-                                                <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Account No</label>
+                                                    <label class="form-label">Q24: Account No</label>
                                                     <input type="text" name="account_no" class="form-control" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
                                                 </div>
+                                                <div class="mb-6 col-md-6 mt-2">
+                                                    <label class="form-label">Q25: Bank Name</label>
+                                                    <input type="text" name="bank_name"  class="form-control" value="Sindh Bank">
+                                                </div>
+                                                <div class="mb-6 col-md-6 mt-2">
+                                                    <label class="form-label">Q26: Branch Name</label>
+                                                    <input type="text" name="branch_name" value="" class="form-control">
+                                                </div>
+                                                <div class="mb-6 col-md-6 mt-2">
+                                                    <label class="form-label">Q27: IBAN</label>
+                                                    <input type="text" name="IBAN_number" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
+                                                </div>
+                                                <div class="mb-6 col-md-6 mt-2">
+                                                    <label class="form-label">Q28: Branch Code</label>
+                                                    <input type="text" name="branch_code" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                                                </div>
+
+
+
 
 
 
@@ -635,32 +699,32 @@
                                                     <img src="{{asset('')}}/login_assets/contract.png" alt="" style="height: 25px;width: 25px;">
 
                                                     <h6 class="card-title" style="line-height: 27px;margin-left: 10px;">
-                                                        Uploaded Documents</h6>
+                                                        Q29: DOCUMENTS UPLOADED/ COLLECTED</h6>
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Upload Front ID Card Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
+                                                    <label class="form-label">CNIC <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                                     <input type="file" name="front_id_card" class="form-control">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Upload Back ID Card Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
+                                                    <label class="form-label">Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                                     <input type="file" name="back_id_card" class="form-control">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Upload Land Proof Pic Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
+                                                    <label class="form-label">Photo<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                                     <input type="file" name="upload_land_proof" class="form-control">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Upload Other Attachments Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
+                                                    <label class="form-label">Others<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                                     <input type="file" name="upload_other_attach" class="form-control">
                                                 </div>
-                                                <div class="mb-6 col-md-6 mt-3">
+                                                {{-- <div class="mb-6 col-md-6 mt-3">
                                                     <label class="form-label">Upload Farmer Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                                     <input type="file" name="upload_farmer_pic" class="form-control">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
                                                     <label class="form-label">Upload Cheque Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                                     <input type="file" name="upload_cheque_pic" class="form-control">
-                                                </div>
+                                                </div> --}}
                                             </div>
                                             <button type="button" class="btn btn-secondary mt-3" onclick="prevStep(4)">Previous</button>
                                             <button type="submit" class="btn btn-primary mt-3">Submit</button>
@@ -711,11 +775,12 @@
                 if ($(this).val() == 'tube_wall') {
                     $('#source_of_irrigation_section').append(`
             <div class="mb-6 col-md-6" id="source_of_energy_section">
-                <label class="form-label">Source of energy</label>
+                <label class="form-label">Q21: Source of energy</label>
                 <select name="source_of_irrigation_engery"  class="form-control" id="source_of_energy">
                     <option value="electricity">Electricity</option>
                     <option value="solar">Solar</option>
-                    <option value="fuel">Fuel</option>
+                    <option value="Petrol/Diesel/Gas">Petrol/Diesel/Gas</option>
+                    <option value="Any Other">Other</option>
                 </select>
             </div>
          `);
@@ -727,16 +792,13 @@
             $('#lined_unlined').change(function() {
                 if ($(this).val() == 'lined') {
                     $('#status_of_water_section').append(`
-        <div class="mb-6 col-md-6" id="lined_section" >
+        <div class="mb-3 col-md-3" id="lined_section" >
             <div class="row">
-            <div class="mb-6 col-md-6" >
-                <label class="form-label">Lined Length</label>
+            <div class="mb-12 col-md-12" >
+                <label class="form-label">Line length in (Meter)</label>
                 <input type="text" name="lined_length" class="form-control">
             </div>
-            <div class="mb-6 col-md-6" >
-                <label class="form-label">Total Command Area</label>
-                <input type="text" name="total_command_area" class="form-control">
-            </div>
+
             </div>
         </div>
         `);
@@ -767,6 +829,15 @@
             $('#add_crop_row_Btn').click(function() {
                 const newRow = `
             <tr>
+                <td>
+                    <select name="" id="" class="form-control">
+                        <option value="" name="crop_season[]">Select Season</option>
+                        <option value="Rabi Season">Rabi Season</option>
+                        <option value="Rabi Season">Kharif Season</option>
+                        <option value="Rabi Season">Orchards</option>
+
+                    </select>
+                </td>
                 <td><input type="text" name="crops[]" class="form-control"></td>
                 <td><input type="text" name="crop_area[]" class="form-control"></td>
                 <td><input type="text" name="crop_average_yeild[]" class="form-control"></td>
