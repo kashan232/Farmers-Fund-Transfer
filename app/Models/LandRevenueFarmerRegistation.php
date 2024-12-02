@@ -73,7 +73,9 @@ class LandRevenueFarmerRegistation extends Model
         'upload_cheque_pic',
         'verification_status',
         'declined_reason',
-        'verification_by'
+        'verification_by',
+        'GpsCordinates',
+        'FancingCoordinates'
     ];
 
 

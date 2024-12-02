@@ -179,7 +179,13 @@
                         </li>
                     </ul>
                 </div>
+
                 <div id="content" class="p-4 p-md-5 pt-5">
+                    @if (session()->has('farmers-registered'))
+                    <div class="alert alert-success alert-dismissible fade show ">
+                        <strong>Success!</strong> {{ session('farmers-registered') }}.
+                    </div>
+                @endif
                     <div class="row">
                         <div class="col-md-12">
                             @if ($errors->any())
@@ -190,6 +196,10 @@
                             </div>
                             @endif
                             <div class="card">
+                                <div class="card-header">
+                                    <h5>Registration</h5>
+
+                                </div>
                                 <div class="card-body">
                                     <form id="registrationForm" action="{{ route('store-online-farmers-registration') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
@@ -220,28 +230,9 @@
                                                     <label class="form-label">Q5. District</label>
                                                     <select id="districts" name="district" class="form-control">
                                                         <option value="">Select District</option>
-                                                        <option value="HYDERABAD">HYDERABAD</option>
-                                                        <option value="BADIN">BADIN</option>
-                                                        <option value="T.M KHAN">T.M KHAN</option>
-                                                        <option value="TANDO ALLAHYAR">TANDO ALLAHYAR</option>
-                                                        <option value="THATTO">THATTO</option>
-                                                        <option value="DADU">DADU</option>
-                                                        <option value="JAMSHORO">JAMSHORO</option>
-                                                        <option value="MATIARI">MATIARI</option>
-                                                        <option value="MIRPURKHAS">MIRPURKHAS</option>
-                                                        <option value="THARPARKAR">THARPARKAR</option>
-                                                        <option value="UMERKOT">UMERKOT</option>
-                                                        <option value="SUKKUR">SUKKUR</option>
-                                                        <option value="KHAIRPUR">KHAIRPUR</option>
-                                                        <option value="GHOTKI">GHOTKI</option>
-                                                        <option value="S. BENAZIRABAD">S. BENAZIRABAD</option>
-                                                        <option value="SANGHAR">SANGHAR</option>
-                                                        <option value="NAUSHEHRO FEROZE">NAUSHEHRO FEROZE</option>
-                                                        <option value="LARKANO">LARKANO</option>
-                                                        <option value="KAMBAR SHAHDADKOT">KAMBAR SHAHDADKOT</option>
-                                                        <option value="SHIKARPUR">SHIKARPUR</option>
-                                                        <option value="JACOBABAD">JACOBABAD</option>
-                                                        <option value="KASHMORE">KASHMORE</option>
+                                                        @foreach ($districts as $district)
+                                                            <option value="{{$district->district}}">{{$district->district}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
@@ -449,7 +440,7 @@
                                             </div>
                                             <div class="row" id="crops_section">
                                                 <div class="mb-12 col-md-12">
-                                                    <h6>Q17: B. Crops Status</h6>
+                                                    <label>Q17: B. Crops Status</label>
                                                 </div>
                                                 <div class="col-12">
                                                     <table id="crop_table" class="table table-bordered">
@@ -505,7 +496,7 @@
 
                                                 </div>
                                                 <div class="mb-8 col-md-8">
-                                                    <label class="form-label"><b>Q18: Physical Assets (Farm machinery) - currently owned</b></label>
+                                                    <label class="form-label">Q18: Physical Assets (Farm machinery) - currently owned</label>
                                                     <select name="physical_asset_item[]" id="" class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
                                                         <option value="car/jeep">Car/Jeep </option>
                                                         <option value="pickup/loader">Pickup/loader</option>
@@ -521,12 +512,13 @@
                                                         <option value="rotavetor">Rotavetor</option>
                                                         <option value="thresher">Thresher</option>
                                                         <option value="harvester">Harvester</option>
+                                                        <option value="Any Other">Any Other</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="row mt-2 " id="poultry_assets_section">
                                                 <div class="mt-3 col-md-12">
-                                                    <h6>Q19: Livestock and Poultry - assets currently owned</h6>
+                                                    <label>Q19: Livestock and Poultry - assets currently owned</label>
                                                 </div>
                                                 <div class="col-12 mt-2">
                                                     <table id="poultry_assets_table" class="table table-bordered">
@@ -540,7 +532,18 @@
                                                         <tbody id="poultry_assets_tableBody">
                                                             <tr>
                                                                 <td>
-                                                                    <input type="text" value="" name="animal_name[]" class="form-control">
+                                                                    <select name="animal_name[]" id="" class="form-control">
+                                                                        <option value="">Select Animal</option>
+                                                                        <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
+                                                                        <option value="Buffalo">Buffalo</option>
+                                                                        <option value="Cows">Cows</option>
+                                                                        <option value="Camels">Camels</option>
+                                                                        <option value="Goals">Goals</option>
+                                                                        <option value="Sheep">Sheep</option>
+                                                                        <option value="Horse / Mules">Horse / Mules</option>
+                                                                        <option value="Donkeys">Donkeys</option>
+                                                                        <option value="Any Other">Any Other</option>
+                                                                    </select>
                                                                 </td>
                                                                 <td>
                                                                     <input type="text" value="" name="animal_qty[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)">
@@ -572,15 +575,16 @@
                                                         <select name="source_of_irrigation" class="form-control" id="source_of_irrigation">
                                                             <option value="canal_wall">(1) Canal System</option>
                                                             <option value="tube_wall">(2) Tube Wall</option>
-                                                            <option value="tube_wall">(3) Rain/Barrani</option>
-                                                            <option value="tube_wall">(4) Kaccha Area</option>
+                                                            <option value="Rain/Barrani">(3) Rain/Barrani</option>
+                                                            <option value="Kaccha Area">(4) Kaccha Area</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="mb-12 col-md-12">
-                                                    <h6>Q22: Status of water course,</h6>
+
+                                                    <label class="form-label">Q22: Status of water course,</label>
                                                 </div>
                                                 <div class="row mb-12 col-md-12" id="status_of_water_section">
                                                     <div class="mb-3 col-md-3">
@@ -637,13 +641,6 @@
                                                     <label class="form-label">Q28: Branch Code</label>
                                                     <input type="text" name="branch_code" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
                                                 </div>
-
-
-
-
-
-
-
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="mb-12 col-md-12">
@@ -651,13 +648,15 @@
                                                 </div>
 
                                                 <div class="mb-6 col-md-6">
-                                                    <label class="form-label">GPS Coordinates (Optional)</label><br>
-                                                    <button id="gpsButton" class="btn btn-primary">GPS</button> &nbsp;
+                                                    <label class="form-label">GPS Coordinates</label><br>
+                                                    <a href="javascript::void()" id="gpsButton" class="btn btn-primary">GPS</a> &nbsp;
                                                     <span id="locationInput"></span>
+                                                    <input type="hidden" name="GpsCordinates" id="GpsCordinates">
                                                 </div>
                                                 <div class="mb-6 col-md-6">
                                                     <!-- Button trigger modal -->
                                                     <label class="form-label">Geo Fencing (Optional)</label><br>
+                                                    <input type="hidden" name="FancingCoordinates" id="FancingCoordinates">
                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                                         Click here
                                                     </button>
@@ -702,16 +701,20 @@
                                                         Q29: DOCUMENTS UPLOADED/ COLLECTED</h6>
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">CNIC <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
+                                                    <label class="form-label">CNIC FRONT <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                                     <input type="file" name="front_id_card" class="form-control">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
+                                                    <label class="form-label">CNIC BACK<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                                     <input type="file" name="back_id_card" class="form-control">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Photo<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
+                                                    <label class="form-label">Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                                     <input type="file" name="upload_land_proof" class="form-control">
+                                                </div>
+                                                <div class="mb-6 col-md-6 mt-3">
+                                                    <label class="form-label">Photo<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
+                                                    <input type="file" name="upload_farmer_pic" class="form-control">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
                                                     <label class="form-label">Others<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
@@ -727,7 +730,7 @@
                                                 </div> --}}
                                             </div>
                                             <button type="button" class="btn btn-secondary mt-3" onclick="prevStep(4)">Previous</button>
-                                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                            <button type="submit" class="btn btn-primary mt-3" id="submitbtn">Submit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -746,8 +749,14 @@
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/main.js"></script>
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/select2.min.js"></script>
         <script>
-            document.getElementById('gpsButton').addEventListener('focus', function(e) {
 
+            $('#registrationForm').on('submit', function(event) {
+                $('#submitbtn').attr('disabled', true); // Disable the submit button
+            });
+
+
+            document.getElementById('gpsButton').addEventListener('focus', function(e) {
+                e.preventDefault();
 
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
@@ -756,6 +765,7 @@
                             const longitude = position.coords.longitude;
                             // Optionally, you can fill the input with coordinates or display elsewhere
                             document.getElementById('locationInput').innerHTML = `${latitude}, ${longitude}`;
+                            document.getElementById('GpsCordinates').value = `${latitude}, ${longitude}`;
                         },
                         function(error) {
                             console.error('Error getting location:', error);
@@ -773,6 +783,7 @@
 
             $('#source_of_irrigation').change(function() {
                 if ($(this).val() == 'tube_wall') {
+                    $('#source_of_energy_section').remove();
                     $('#source_of_irrigation_section').append(`
             <div class="mb-6 col-md-6" id="source_of_energy_section">
                 <label class="form-label">Q21: Source of energy</label>
@@ -791,17 +802,17 @@
 
             $('#lined_unlined').change(function() {
                 if ($(this).val() == 'lined') {
+                    $('#lined_section').remove();
                     $('#status_of_water_section').append(`
-        <div class="mb-3 col-md-3" id="lined_section" >
-            <div class="row">
-            <div class="mb-12 col-md-12" >
-                <label class="form-label">Line length in (Meter)</label>
-                <input type="text" name="lined_length" class="form-control">
-            </div>
-
-            </div>
-        </div>
-        `);
+                    <div class="mb-3 col-md-3" id="lined_section" >
+                        <div class="row">
+                            <div class="mb-12 col-md-12" >
+                                <label class="form-label">Line length in (Meter)</label>
+                                <input type="text" name="lined_length" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    `);
                 } else {
                     $('#lined_section').remove();
                 }
@@ -835,7 +846,6 @@
                         <option value="Rabi Season">Rabi Season</option>
                         <option value="Kharif Season">Kharif Season</option>
                         <option value="Orchards">Orchards</option>
-
                     </select>
                 </td>
                 <td><input type="text" name="crops[]" class="form-control"></td>
@@ -856,7 +866,20 @@
             $('#add_poultry_assets_row_Btn').click(function() {
                 const newRow = `
             <tr>
-                <td><input type="text" name="animal_name[]" class="form-control"></td>
+                <td>
+                    <select name="animal_name[]" id="" class="form-control">
+                        <option value="">Select Animal</option>
+                        <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
+                        <option value="Buffalo">Buffalo</option>
+                        <option value="Cows">Cows</option>
+                        <option value="Camels">Camels</option>
+                        <option value="Goals">Goals</option>
+                        <option value="Sheep">Sheep</option>
+                        <option value="Horse / Mules">Horse / Mules</option>
+                        <option value="Donkeys">Donkeys</option>
+                        <option value="Any Other">Any Other</option>
+                    </select>
+                </td>
                 <td><input type="text" name="animal_qty[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
@@ -908,7 +931,7 @@
                     var district = $(this).val();
                     if (district) {
                         $.ajax({
-                            url: 'https://cms.benazirharicard.gos.pk/get-tehsils',
+                            url: '{{route("get-tehsils")}}',
                             type: 'GET',
                             data: {
                                 district: district
@@ -932,7 +955,7 @@
 
                     if (district && tehsil) {
                         $.ajax({
-                            url: 'https://cms.benazirharicard.gos.pk/get-ucs',
+                            url: '{{route("get-ucs")}}',
                             type: 'GET',
                             data: {
                                 district: district,
@@ -978,6 +1001,12 @@
             var lineCoordinates = [];
             var polyline;
 
+            // Function to update hidden input field with coordinates
+            function updateCoordinatesInput() {
+                // Convert coordinates array to a JSON string and update the hidden input
+                document.getElementById('FancingCoordinates').value = JSON.stringify(lineCoordinates);
+            }
+
             map.on('click', function(e) {
                 var lat = e.latlng.lat;
                 var lng = e.latlng.lng;
@@ -1000,6 +1029,7 @@
                         weight: 4
                     }).addTo(map);
                 }
+                updateCoordinatesInput();
             });
 
             // Bootstrap modal 'shown' event triggers map resizing
@@ -1033,6 +1063,7 @@
                         map.removeLayer(polyline);
                         polyline = null;
                     }
+                    updateCoordinatesInput();
                 }
             });
         </script>

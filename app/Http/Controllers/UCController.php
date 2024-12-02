@@ -65,6 +65,7 @@ class UCController extends Controller
     {
         $district = $request->input('district');
         $tehsils = Tehsil::where('district', $district)->pluck('tehsil')->toArray(); // Adjust according to your database schema
+
         return response()->json($tehsils);
     }
     public function get_ucs(Request $request)

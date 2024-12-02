@@ -101,6 +101,7 @@ class OnlineFormController extends Controller
         ]);
 
         $data = $request->all();
+        // dd($data);
         $data['user_type'] = 'Online';
         $data['title_name'] = json_encode($request->title_name);
         $data['title_cnic'] = json_encode($request->title_cnic);
