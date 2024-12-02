@@ -468,8 +468,8 @@
                                                                     <select name="crop_season[]" id="" class="form-control">
                                                                         <option value="">Select Season</option>
                                                                         <option value="Rabi Season">Rabi Season</option>
-                                                                        <option value="Rabi Season">Kharif Season</option>
-                                                                        <option value="Rabi Season">Orchards</option>
+                                                                        <option value="Kharif Season">Kharif Season</option>
+                                                                        <option value="Orchards">Orchards</option>
 
                                                                     </select>
                                                                 </td>
@@ -589,7 +589,7 @@
                                                     </div>
                                                     <div class="mb-3 col-md-3">
                                                         <label class="form-label">Total Command Area (Acres)</label>
-                                                        <input type="text" name="area_length" class="form-control" value="">
+                                                        <input type="text" name="total_command_area" class="form-control" value="">
                                                     </div>
                                                     <div class="mb-3 col-md-3">
                                                         <label class="form-label">Area length</label>
@@ -830,11 +830,11 @@
                 const newRow = `
             <tr>
                 <td>
-                    <select name="" id="" class="form-control">
-                        <option value="" name="crop_season[]">Select Season</option>
+                    <select name="crop_season[]" id="" class="form-control">
+                        <option value="" >Select Season</option>
                         <option value="Rabi Season">Rabi Season</option>
-                        <option value="Rabi Season">Kharif Season</option>
-                        <option value="Rabi Season">Orchards</option>
+                        <option value="Kharif Season">Kharif Season</option>
+                        <option value="Orchards">Orchards</option>
 
                     </select>
                 </td>

@@ -46,6 +46,7 @@ class LandRevenueFarmerRegistation extends Model
         'title_cnic',
         'title_number',
         'title_area',
+        'crop_season',
         'crops',
         'crop_area',
         'crop_average_yeild',
