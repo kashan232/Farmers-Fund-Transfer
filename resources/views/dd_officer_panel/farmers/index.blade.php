@@ -131,8 +131,8 @@
                                                             <span class="badge text-bg-success">Verified</span>
                                                             @elseif($farmer->user_type == 'Agri_Officer' && ($farmer->verification_status == null || $farmer->verification_status == 0))
                                                             <span class="badge text-bg-info">Unverify</span>
-                                                            @elseif($farmer->verification_status == 'rejected_by_ao')
-                                                            <span class="badge text-bg-danger">Rejected</span>
+                                                            @elseif($farmer->verification_status == 'verified_by_ao')
+                                                            <span class="badge text-bg-info">Verified by AO</span>
                                                             @endif
                                                         </td>
                                                         @if ($farmer->declined_reason != null || $farmer->declined_reason != '')

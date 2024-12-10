@@ -139,7 +139,7 @@
                                                             @elseif ($all_land_farmer->declined_reason != '' && $all_land_farmer->verification_status == 2)
                                                             <span class="badge text-bg-danger">Rejected</span>
                                                             @else
-                                                            <span class="badge text-bg-primary">Unverified</span>
+                                                            <span class="badge text-bg-primary">Forwarded by DD</span>
                                                             @endif
                                                         </td>
                                                         @if ($all_land_farmer->declined_reason != null || $all_land_farmer->declined_reason != '')
@@ -154,7 +154,7 @@
                                                             <div class="d-flex">
                                                                 {{-- <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $all_land_farmer->id }}">Verify</button> &nbsp; --}}
                                                                 <a href="{{ route('view-land-farmers', ['id' => $all_land_farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp;
-                                                                <a href="{{ route('edit-land-farmers', ['id' => $all_land_farmer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>&nbsp;
+                                                                {{-- <a href="{{ route('ed  it-land-farmers', ['id' => $all_land_farmer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>&nbsp; --}}
                                                                 {{-- <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>&nbsp; --}}
                                                             </div>
                                                         </td>
