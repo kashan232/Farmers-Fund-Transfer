@@ -330,7 +330,7 @@
                                 <td>{{ $data->updated_at->diffForHumans() }}</td>
                             </tr> --}}
                         </table>
-                        <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $data->id }}">Verify</button> &nbsp;
+                        {{-- <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $data->id }}">Verify</button> &nbsp; --}}
                     </div>
                 </div>
             </div>

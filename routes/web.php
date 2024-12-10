@@ -21,6 +21,8 @@ use App\Http\Controllers\TappaController;
 use App\Http\Controllers\TehsilController;
 use App\Http\Controllers\UCController;
 use App\Http\Controllers\DistrictOfficerController;
+use App\Http\Controllers\DDOfficerController;
+use App\Http\Controllers\DDOfficerPanelController;
 
 use App\Http\Controllers\OnlineFormController;
 
@@ -79,6 +81,15 @@ Route::get('/home', [HomeController::class, 'home'])->name('home');
 
 
 
+
+Route::get('/sms', function(){
+    return view('land_revenue_panel.sms');
+})->name('sms');
+
+
+Route::get('/admin/sms/', function(){
+    return view('admin_panel.sms');
+})->name('admin.sms');
 
 
 
@@ -172,13 +183,25 @@ Route::get('/district-officer-edit/{id}', [DistrictOfficerController::class, 'ed
 
 
 
-// District Officer
+// Agri Officer
 Route::get('/agri-officer-create', [AgricultureOfficerController::class, 'agri_officer_create'])->middleware(['auth', 'admin'])->name('agri-officer-create');
 Route::post('/store-agri-officer', [AgricultureOfficerController::class, 'store_agri_officer'])->name('store-agri-officer');
 Route::get('/all-agri-officer', [AgricultureOfficerController::class, 'all_agri_officer'])->middleware(['auth', 'admin'])->name('all-agri-officer');
 Route::get('/agri-officer-edit/{id}', [AgricultureOfficerController::class, 'edit_agri_officer'])->middleware(['auth', 'admin'])->name('agri-officer-edit');
 
 
+// DD Officer
+Route::get('/dd-officer-create', [DDOfficerController::class, 'dd_officer_create'])->middleware(['auth', 'admin'])->name('dd-officer-create');
+Route::post('/store-dd-officer', [DDOfficerController::class, 'store_dd_officer'])->name('store-dd-officer');
+Route::get('/all-dd-officer', [DDOfficerController::class, 'all_dd_officer'])->middleware(['auth', 'admin'])->name('all-dd-officer');
+Route::get('/dd-officer-edit/{id}', [DDOfficerController::class, 'edit_dd_officer'])->middleware(['auth', 'admin'])->name('dd-officer-edit');
+
+
+Route::get('/farmers/by/dd', [DDOfficerPanelController::class, 'farmers_index'])->name('farmers-by-dd');
+Route::get('/dd/edit/farmer/{id}', [DDOfficerPanelController::class, 'farmer_edit'])->name('dd-edit-farmer');
+Route::get('/dd/view-farmers/{id}', [DDOfficerPanelController::class, 'view_farmers'])->name('dd-view-farmers');
+Route::post('/dd/store/farmer', [DDOfficerPanelController::class, 'store_farmer'])->name('dd-store-farmer');
+Route::post('/verifiy/farmer/by/dd/officer', [DDOfficerPanelController::class, 'verify_farmer'])->name('verify-farmer-by-dd');
 
 
 Route::get('/ao/farmers', [AgricultureOfficerPanelController::class, 'farmers_index'])->name('ao-farmers');

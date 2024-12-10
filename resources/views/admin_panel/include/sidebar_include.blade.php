@@ -62,24 +62,25 @@
                     </ul>
                 </li> --}}
 
+
+
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-user-tie"></i>
                         </span>
-                        <span class="pc-mtext">LRD Officer</span>
+                        <span class="pc-mtext">Field Assistants</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('add-revenue-officer') }}">Create Officer</a>
+                            <a class="pc-link" href="{{ route('create-field-officer') }}">Create Field Assistants</a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-revenue-officer') }}">All Officer</a>
+                            <a class="pc-link" href="{{ route('all-field-officers') }}">All Field Assistants</a>
                         </li>
                     </ul>
                 </li>
-
 
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
@@ -98,6 +99,43 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-user-tie"></i>
+                        </span>
+                        <span class="pc-mtext">DD Officer</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('dd-officer-create') }}">Create Officer</a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('all-dd-officer') }}">All Officer</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-user-tie"></i>
+                        </span>
+                        <span class="pc-mtext">LRD Officer</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('add-revenue-officer') }}">Create Officer</a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="{{ route('all-revenue-officer') }}">All Officer</a>
+                        </li>
+                    </ul>
+                </li>
+
 
 
                 <li class="pc-item pc-hasmenu">
@@ -118,23 +156,7 @@
                     </ul>
                 </li>
 
-                <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fas fa-user-tie"></i>
-                        </span>
-                        <span class="pc-mtext">Field Assistants</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('create-field-officer') }}">Create Field Assistants</a>
-                        </li>
-                        <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-field-officers') }}">All Field Assistants</a>
-                        </li>
-                    </ul>
-                </li>
+
 
 
 
@@ -253,6 +275,18 @@
                         <span class="pc-mtext">Reports</span>
                     </a>
                 </li>
+
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('admin.sms') }}" class="nav-link-a pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-chart-bar"></i>
+                        </span>
+                        <span class="pc-mtext">SMS</span>
+                    </a>
+                </li>
+
+
 
                 {{-- <li class="pc-item pc-hasmenu">
                     <a href="{{ route('sms-reporting') }}" class="nav-link-a pc-link">

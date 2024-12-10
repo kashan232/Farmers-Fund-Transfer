@@ -6,7 +6,12 @@
         align-items: center;
         margin-bottom: 20px;
     }
-
+    #map {
+            height: 400px;
+            /* Define map container height */
+            width: 100%;
+            /* Ensure the map takes full width */
+        }
     .step-indicator-container {
         display: flex;
         align-items: center;
@@ -562,9 +567,27 @@
                                             </button>
                                         </div>
 
+                                        <div id="exampleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLiveLabel">Farmers Verification</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div id="map"></div> <!-- Map container -->
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger" id="removeMarkerBtn">Remove Last Marker</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Save changes</button>
 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -584,7 +607,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
@@ -646,6 +669,90 @@
 </footer>
 
 @include('field_officer_panel.include.footer_include')
+
+
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+        <script>
+            // Initialize map to Hyderabad, Pakistan with zoom level 13
+            var map = L.map('map').setView([25.3960, 68.3578], 13); // Coordinates for Hyderabad, Pakistan
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            var markers = [];
+            var lineCoordinates = [];
+            var polyline;
+
+            // Function to update hidden input field with coordinates
+            function updateCoordinatesInput() {
+                document.getElementById('FancingCoordinates').value = JSON.stringify(lineCoordinates);
+            }
+
+            map.on('click', function(e) {
+                var lat = e.latlng.lat;
+                var lng = e.latlng.lng;
+
+                var marker = L.marker([lat, lng]).addTo(map);
+                marker.bindPopup('<b>You clicked at:</b><br>Latitude: ' + lat.toFixed(4) + '<br>Longitude: ' + lng.toFixed(4)).openPopup();
+
+                markers.push(marker);
+                lineCoordinates.push([lat, lng]);
+
+                // If a polyline exists, remove it
+                if (polyline) {
+                    map.removeLayer(polyline);
+                }
+
+                // If there are at least two markers, draw a polyline
+                if (lineCoordinates.length > 1) {
+                    polyline = L.polyline(lineCoordinates, {
+                        color: 'blue',
+                        weight: 4
+                    }).addTo(map);
+                }
+                updateCoordinatesInput();
+            });
+
+            // Bootstrap modal 'shown' event triggers map resizing
+            $('#exampleModal').on('shown.bs.modal', function() {
+
+                map.invalidateSize(); // This will force the map to recalculate its size once the modal is fully shown
+            });
+
+            // Add functionality to remove the last marker
+            document.getElementById('removeMarkerBtn').addEventListener('click', function() {
+                // If there are markers, remove the last one
+                if (markers.length > 0) {
+                    var lastMarker = markers.pop(); // Remove the last marker from the array
+                    map.removeLayer(lastMarker); // Remove it from the map
+
+                    lineCoordinates.pop(); // Remove the corresponding coordinate from the polyline
+
+                    // If there are remaining markers, redraw the polyline
+                    if (lineCoordinates.length > 1) {
+                        // Remove old polyline if it exists
+                        if (polyline) {
+                            map.removeLayer(polyline);
+                        }
+
+                        // Redraw polyline with remaining markers
+                        polyline = L.polyline(lineCoordinates, {
+                            color: 'blue',
+                            weight: 4
+                        }).addTo(map);
+                    } else if (polyline) {
+                        // If only one marker remains, remove the polyline
+                        map.removeLayer(polyline);
+                        polyline = null;
+                    }
+                    updateCoordinatesInput();
+                }
+            });
+        </script>
+
 <script>
 
             $('#registrationForm').on('submit', function(event) {
@@ -840,41 +947,8 @@ $('select[name="tehsil"]').on('change', function() {
 
         function nextStep(step) {
 
-tehsil = $('#tehsil').val();
-mobile = $('#mobile').val();
-cnic = $('#cnic').val();
 
 
-
-if(tehsil == '' || tehsil == null || mobile == null || mobile == '' || cnic == null || cnic == ''){
-
-    if(tehsil == '' || tehsil == null){
-        msg  = 'Tehsil Field is Required..!';
-    }
-    if(mobile == '' || mobile == null){
-        msg  = 'Mobile Field is Required..!';
-    }
-    if(cnic == '' || cnic == null){
-        msg  = 'Cnic Field is Required..!';
-    }
-
-    if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '')){
-        msg  = 'Mobile Field is Required,\nTehsil Field is Required..!';
-    }
-    if((tehsil == '' || tehsil == null) && (cnic == null || cnic == '')){
-        msg  = 'Cnic Field is Required,\nTehsil Field is Required..!';
-    }
-    if((mobile == '' || mobile == null) && (cnic == null || cnic == '')){
-        msg  = 'Cnic Field is Required,\nMobile Field is Required..!';
-    }
-
-    if((tehsil == '' || tehsil == null) && (mobile == null || mobile == '') && (cnic == '' || cnic == null) )
-    {
-        msg = 'CNIC Field is Required,\nMobile Field is Required,\nTehsil Field is Required..!';
-    }
-    alert(msg);
-}
-else{
 // Hide all steps
 document.querySelectorAll('.step').forEach(function(stepElement) {
 stepElement.style.display = 'none';
@@ -885,7 +959,7 @@ updateProgressIndicator(step);
 }
 
 
-}
+
 
     function prevStep(step) {
         // Hide all steps
@@ -916,86 +990,6 @@ updateProgressIndicator(step);
 </script>
 
 
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
-        <script>
-            // Initialize map to Hyderabad, Pakistan with zoom level 13
-            var map = L.map('map').setView([25.3960, 68.3578], 13); // Coordinates for Hyderabad, Pakistan
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-
-            var markers = [];
-            var lineCoordinates = [];
-            var polyline;
-
-            // Function to update hidden input field with coordinates
-            function updateCoordinatesInput() {
-                // Convert coordinates array to a JSON string and update the hidden input
-                document.getElementById('FancingCoordinates').value = JSON.stringify(lineCoordinates);
-            }
-
-            map.on('click', function(e) {
-                var lat = e.latlng.lat;
-                var lng = e.latlng.lng;
-
-                var marker = L.marker([lat, lng]).addTo(map);
-                marker.bindPopup('<b>You clicked at:</b><br>Latitude: ' + lat.toFixed(4) + '<br>Longitude: ' + lng.toFixed(4)).openPopup();
-
-                markers.push(marker);
-                lineCoordinates.push([lat, lng]);
-
-                // If a polyline exists, remove it
-                if (polyline) {
-                    map.removeLayer(polyline);
-                }
-
-                // If there are at least two markers, draw a polyline
-                if (lineCoordinates.length > 1) {
-                    polyline = L.polyline(lineCoordinates, {
-                        color: 'blue',
-                        weight: 4
-                    }).addTo(map);
-                }
-                updateCoordinatesInput();
-            });
-
-            // Bootstrap modal 'shown' event triggers map resizing
-            $('#exampleModal').on('shown.bs.modal', function() {
-                map.invalidateSize(); // This will force the map to recalculate its size once the modal is fully shown
-            });
-
-            // Add functionality to remove the last marker
-            document.getElementById('removeMarkerBtn').addEventListener('click', function() {
-                // If there are markers, remove the last one
-                if (markers.length > 0) {
-                    var lastMarker = markers.pop(); // Remove the last marker from the array
-                    map.removeLayer(lastMarker); // Remove it from the map
-
-                    lineCoordinates.pop(); // Remove the corresponding coordinate from the polyline
-
-                    // If there are remaining markers, redraw the polyline
-                    if (lineCoordinates.length > 1) {
-                        // Remove old polyline if it exists
-                        if (polyline) {
-                            map.removeLayer(polyline);
-                        }
-
-                        // Redraw polyline with remaining markers
-                        polyline = L.polyline(lineCoordinates, {
-                            color: 'blue',
-                            weight: 4
-                        }).addTo(map);
-                    } else if (polyline) {
-                        // If only one marker remains, remove the polyline
-                        map.removeLayer(polyline);
-                        polyline = null;
-                    }
-                    updateCoordinatesInput();
-                }
-            });
-        </script>
 </body>
 
 </html>

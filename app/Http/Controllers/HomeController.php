@@ -50,6 +50,18 @@ class HomeController extends Controller
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
                 ]);
             }
+            else if ($usertype == 'DD_Officer') {
+                $userId = Auth::id();
+                $user_id = Auth()->user()->user_id;
+                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
+                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
+                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+                return view('dd_officer_panel.index', [
+                    'agriUserfarmersCount' => $agriUserfarmersCount,
+                    'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
+                    'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
+                ]);
+            }
              else if ($usertype == 'admin') {
                 // Fetching counts directly
                 $district_counts = District::count();

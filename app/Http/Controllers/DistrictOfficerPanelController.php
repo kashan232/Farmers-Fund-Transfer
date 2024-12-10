@@ -119,7 +119,6 @@ class DistrictOfficerPanelController extends Controller
 
                 $data['verification_status'] = null;
 
-
                 // Handle front ID card image
                 if ($request->hasFile('front_id_card')) {
                     $front_id_cardimage = $request->file('front_id_card');
@@ -275,9 +274,9 @@ class DistrictOfficerPanelController extends Controller
         $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)
          // Match the user_type
         ->where(function($query) {
-            $query->where('verification_status', 'verified_by_lo')
-                  ->orWhere('verification_status', 'verified_by_do')
-                  ->orWhere('verification_status', 'rejected_by_do');
+            $query->where('verification_status', 'verified_by_lo');
+                //   ->orWhere('verification_status', 'verified_by_do')
+                //   ->orWhere('verification_status', 'rejected_by_do');
         })
         ->paginate(5);
         return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);

@@ -1,11 +1,11 @@
-@include('district_officer_panel.include.header_include')
+@include('dd_officer_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
-@include('district_officer_panel.include.sidebar_include')
+@include('dd_officer_panel.include.sidebar_include')
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-@include('district_officer_panel.include.navbar_include')
+@include('dd_officer_panel.include.navbar_include')
 <!-- [ Header ] end -->
 
 <style>
@@ -27,14 +27,14 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="row">
-                        <form id="verifyfarmers" action="{{ route('verify-farmer') }}" method="POST">
+                        <form id="verifyfarmers" action="{{ route('verify-farmer-by-ao') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="statusSelect">Status</label>
                                 <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
                                 <select class="form-control" id="statusSelect" name="verification_status">
-                                    <option value="verified_by_do">Verified</option>
-                                    <option value="rejected_by_do">Unverified</option>
+                                    <option value="verified_by_ao">Verified</option>
+                                    <option value="rejected_by_ao">Unverified</option>
                                 </select>
                             </div>
                             <div class="form-group" id="reasonBox" style="display: none;">
@@ -111,9 +111,8 @@
                                                             Online
                                                             @elseif($farmer->user_type == 'Field_Officer')
                                                             Field Assitant
-                                                            @else
-                                                            Agriculture Farmers
                                                             @endif
+
                                                         </td>
                                                         <td>{{ $farmer->name }}</td>
                                                         <td>{{ $farmer->cnic }}</td>
@@ -124,8 +123,16 @@
                                                         <td>{{ $farmer->tappa }}</td>
                                                         <td>{{ $farmer->village }}</td>
                                                         <td>
-                                                            @if($farmer->verification_status == 'verified_by_lo')
-                                                                <span class="badge text-bg-success">Verified</span>
+                                                            @if ($farmer->verification_status == 'rejected_by_lo')
+                                                            <span class="badge text-bg-danger">Rejected By Land Officer</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_do')
+                                                            <span class="badge text-bg-danger">Rejected By Additional Director</span>
+                                                            @elseif($farmer->verification_status == 'verified_by_do')
+                                                            <span class="badge text-bg-success">Verified</span>
+                                                            @elseif($farmer->user_type == 'Agri_Officer' && ($farmer->verification_status == null || $farmer->verification_status == 0))
+                                                            <span class="badge text-bg-info">Unverify</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_ao')
+                                                            <span class="badge text-bg-danger">Rejected</span>
                                                             @endif
                                                         </td>
                                                         @if ($farmer->declined_reason != null || $farmer->declined_reason != '')
@@ -135,13 +142,16 @@
                                                         @else
                                                         <td></td>
                                                         @endif
+
                                                         <td>
                                                             <div style="display:flex">
-                                                                {{-- @if($farmer->verification_status != 'verified_by_do')
+                                                                {{-- @if($farmer->user_type != 'Agri_Officer' && $farmer->verification_status != 'verified_by_do')
                                                                 <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $farmer->id }}">Verify</button> &nbsp;
                                                                 @endif --}}
-                                                                {{-- <a class="btn btn-primary" href="{{route('do-edit-farmer',$farmer->id)}}">Edit</a> --}}
-                                                            <a class="btn btn-primary btn-sm" href="{{route('view-farmers',$farmer->id)}}">View</a>
+                                                                {{-- @if($farmer->user_type == 'Agri_Officer' && $farmer->verification_status != 'verified_by_do')
+                                                                <a class="btn btn-primary" href="{{route('dd-edit-farmer',$farmer->id)}}">Edit</a> &nbsp;
+                                                                @endif --}}
+                                                            <a class="btn btn-primary btn-sm" href="{{route('dd-view-farmers',$farmer->id)}}">View</a>
                                                             </div>
                                                         </td>
 
@@ -166,10 +176,10 @@
 </div>
 <!-- [ Main Content ] end -->
 <footer class="pc-footer">
-    @include('district_officer_panel.include.footer_copyright_include')
+    @include('dd_officer_panel.include.footer_copyright_include')
 </footer>
 
-@include('district_officer_panel.include.footer_include')
+@include('dd_officer_panel.include.footer_include')
 
  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
@@ -205,12 +215,13 @@
             e.preventDefault();
             var searchValue = $(this).val();
             if(searchValue !=  0){
-                table.column(4).search('^' + searchValue + '$', true, false).draw();
+                table.column(5).search('^' + searchValue + '$', true, false).draw();
             }
             else{
-                table.column(4).search('').draw();
+                table.column(5).search('').draw();
             }
         });
+
 
         $(document).on('change', '#user_type', function(e) {
             e.preventDefault();
@@ -232,6 +243,8 @@
                     @endforeach
                 </select>
             </div>
+            @if(!empty($farmers) && isset($farmers[0]) && $farmers[0] != null)
+            @if($farmers[0]->user_type  != 'Agri_Officer')
             <div class="col-3" style="position: absolute; top:1%; left:250px;" >
                 <select  id="user_type" class="form-control">
                     <option value="">Select Type</option>
@@ -239,6 +252,8 @@
                     <option value="Field Assitant">Field Assitant</option>
                 </select>
             </div>
+            @endif
+            @endif
         `);
 
     });
@@ -257,7 +272,7 @@
     // Event listener for changing the status
     $('#statusSelect').on('change', function() {
         var reasonBox = $('#reasonBox');
-        if ($(this).val() == 'rejected_by_do') {
+        if ($(this).val() == 'rejected_by_ao') {
             reasonBox.show();
             $('#reasonTextarea').prop('required', true);
 
@@ -266,6 +281,8 @@
             $('#reasonTextarea').prop('required', false);
         }
     });
+
+
 });
 
 </script>

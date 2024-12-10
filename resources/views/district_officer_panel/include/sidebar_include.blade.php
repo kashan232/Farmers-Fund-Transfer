@@ -46,14 +46,14 @@
                     </a>
                 </li> --}}
 
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="{{ route('all-field-officer-by-do') }}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-user-shield"></i>
                         </span>
                         <span class="pc-mtext">Field Assistants</span>
                     </a>
-                </li>
+                </li> --}}
 
 
                 <!-- <li class="pc-item pc-hasmenu">

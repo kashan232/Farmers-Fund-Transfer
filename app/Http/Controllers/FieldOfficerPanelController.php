@@ -147,6 +147,7 @@ class FieldOfficerPanelController extends Controller
 
     public function store(Request $request)
     {
+
         if (Auth::check()) {
 
 
@@ -165,6 +166,7 @@ class FieldOfficerPanelController extends Controller
                 $data['title_number'] = json_encode($request->title_number);
                 $data['title_area'] = json_encode($request->title_area);
 
+                $data['crop_season'] = json_encode($request->crop_season);
                 $data['crops'] = json_encode($request->crops);
                 $data['crop_area'] = json_encode($request->crop_area);
                 $data['crop_average_yeild'] = json_encode($request->crop_average_yeild);
@@ -239,6 +241,7 @@ class FieldOfficerPanelController extends Controller
                 $data['title_number'] = json_encode($request->title_number);
                 $data['title_area'] = json_encode($request->title_area);
 
+                $data['crop_season'] = json_encode($request->crop_season);
                 $data['crops'] = json_encode($request->crops);
                 $data['crop_area'] = json_encode($request->crop_area);
                 $data['crop_average_yeild'] = json_encode($request->crop_average_yeild);

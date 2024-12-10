@@ -294,7 +294,7 @@
                                 <td colspan="6"><img src="{{ asset('land_farmers/upload_cheque_pic/' . $data->upload_cheque_pic) }}" alt="Upload Cheque Pic" width="100"></td>
                             </tr>
                         </table>
-                        @if($data->user_type != 'Agri_Officer' && $data->verification_status != 'verified_by_do')
+                        @if($data->verification_status == 'verified_by_dd')
                             <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $data->id }}">Verify</button> &nbsp;
                         @endif
                     </div>

@@ -73,12 +73,12 @@
                                                         <td>{{ $farmer->village }}</td>
 
                                                         <td>
-                                                            @if ($farmer->verification_status == 'verified_by_ao')
-                                                            <span class="badge text-bg-success text-dark font-weight-bold">Verified By A-O</span>
+                                                            @if ($farmer->verification_status == 'verified_by_lo')
+                                                            <span class="badge text-bg-success text-dark font-weight-bold">Verified</span>
                                                             @elseif($farmer->verification_status == 'rejected_by_ao')
                                                             <span class="badge text-bg-danger text-dark font-weight-bold">Rejected By A-O</span>
                                                             @else
-                                                            <span class="badge text-bg-success text-dark font-weight-bold">Submitted to A-O</span>
+                                                            <span class="badge text-bg-success text-dark font-weight-bold">On Process</span>
                                                             @endif
                                                         </td>
                                                         @if ($farmer->declined_reason != null || $farmer->declined_reason != '')

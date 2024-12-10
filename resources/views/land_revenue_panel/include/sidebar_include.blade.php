@@ -29,6 +29,16 @@
                     </a>
                 </li>
 
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('sms') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        <span class="pc-mtext">SMS</span>
+                    </a>
+                </li>
+
 {{--
                 <li class="pc-item pc-hasmenu">
                     <a href="{{ route('agri-officer-farmers-list-by-land-officer') }}" class="pc-link">
