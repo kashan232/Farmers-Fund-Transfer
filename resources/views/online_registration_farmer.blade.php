@@ -158,6 +158,7 @@
                         <img src="{{asset('')}}/assets/images/Sindh_Hari_Card.png" alt="logo image" class="#logo-lg" style="max-width:120px;" />
 
                         <h4 class="mt-2 font-weight-bold">Benazir Hari Card</h4>
+                        <h5 class="mt-2 font-weight-bold">Registration Form</h5>
                         <p>Please provide the following information to register for the Benazir Hari Card</p>
                     </div>
                     <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
