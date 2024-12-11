@@ -479,7 +479,7 @@
                                                 <label class="form-label">Q20:  Source of irrigation</label>
                                                 <select name="source_of_irrigation" class="form-control" id="source_of_irrigation">
                                                     <option value="canal_wall">(1) Canal System</option>
-                                                    <option value="tube_wall">(2) Tube Wall</option>
+                                                    <option value="tube_wall">(2) Tube Well</option>
                                                     <option value="Rain/Barrani">(3) Rain/Barrani</option>
                                                     <option value="Kaccha Area">(4) Kaccha Area</option>
                                                 </select>

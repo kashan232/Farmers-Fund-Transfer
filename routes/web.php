@@ -197,6 +197,52 @@ Route::get('/all-dd-officer', [DDOfficerController::class, 'all_dd_officer'])->m
 Route::get('/dd-officer-edit/{id}', [DDOfficerController::class, 'edit_dd_officer'])->middleware(['auth', 'admin'])->name('dd-officer-edit');
 
 
+
+// DG Officer
+Route::get('/dg-officer-create', [DistrictOfficerController::class, 'dg_officer_create'])->middleware(['auth', 'admin'])->name('dg-officer-create');
+Route::post('/store-dg-officer', [DistrictOfficerController::class, 'store_dg_officer'])->name('store-dg-officer');
+Route::get('/all-dg-officer', [DistrictOfficerController::class, 'all_dg_officer'])->middleware(['auth', 'admin'])->name('all-dg-officer');
+Route::get('/dg-officer-edit/{id}', [DistrictOfficerController::class, 'edit_dg_officer'])->middleware(['auth', 'admin'])->name('dg-officer-edit');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/farmers/by/dd', [DDOfficerPanelController::class, 'farmers_index'])->name('farmers-by-dd');
 Route::get('/dd/edit/farmer/{id}', [DDOfficerPanelController::class, 'farmer_edit'])->name('dd-edit-farmer');
 Route::get('/dd/view-farmers/{id}', [DDOfficerPanelController::class, 'view_farmers'])->name('dd-view-farmers');
@@ -212,11 +258,7 @@ Route::get('/ao/unverify-farmers', [AgricultureOfficerPanelController::class, 'u
 Route::get('/ao/verify-farmers', [AgricultureOfficerPanelController::class, 'verify_farmers'])->name('verify-farmers');
 Route::get('/reporting-farmers-by-ao', [AgricultureOfficerPanelController::class, 'farmers_reporting'])->name('reporting-farmers-by-ao');
 Route::post('/view/reporting-farmers-by-ao', [AgricultureOfficerPanelController::class, 'view_farmers_reporting'])->name('view.reporting-farmers-by-ao');
-
-
 Route::get('/ao/view-farmers/{id}', [AgricultureOfficerPanelController::class, 'view_farmers'])->name('ao-view-farmers');
-
-
 Route::get('/ao/field/farmers', [AgricultureOfficerPanelController::class, 'fields_farmers'])->name('ao-field-farmers');
 Route::get('/ao/online/farmers', [AgricultureOfficerPanelController::class, 'online_farmers'])->name('ao-online-farmers');
 Route::post('/verifiy/farmer/by/ao/officer', [AgricultureOfficerPanelController::class, 'verify_farmer'])->name('verify-farmer-by-ao');
@@ -229,39 +271,24 @@ Route::get('/do/edit/farmer/{id}', [DistrictOfficerPanelController::class, 'farm
 Route::post('/do/store/farmer', [DistrictOfficerPanelController::class, 'store_farmer'])->name('do-store-farmer');
 Route::get('/do/unverify-farmers', [DistrictOfficerPanelController::class, 'unverify_farmers'])->name('do-unverify-farmers');
 Route::get('/do/verify-farmers', [DistrictOfficerPanelController::class, 'verify_farmers'])->name('verify-farmers');
-
 Route::get('/do/all/field-officers', [DistrictOfficerPanelController::class, 'all_field_officer'])->name('all-field-officer-by-do');
 Route::get('/do/create/field-officer', [DistrictOfficerPanelController::class, 'create_field_officer'])->name('create-field-officer-by-do');
 Route::post('/do/store/field-officer', [DistrictOfficerPanelController::class, 'store_field_officer'])->name('store-field-officer');
-
 Route::get('/do/field-officer-edit/{id}', [DistrictOfficerPanelController::class, 'edit_field_officer']);
-
 Route::get('/reporting-farmers-by-do', [DistrictOfficerPanelController::class, 'farmers_reporting'])->name('reporting-farmers-by-do');
 Route::post('/view/reporting-farmers-by-do', [DistrictOfficerPanelController::class, 'view_farmers_reporting'])->name('view.reporting-farmers-by-do');
-
-
 Route::get('/unverify-agri-farmers-by-do', [DistrictOfficerPanelController::class, 'unverify_agri_farmers'])->name('unverify-agri-farmers-by-do');
 Route::get('/verify-agri-farmers-by-do', [DistrictOfficerPanelController::class, 'verify_agri_farmers'])->name('verify-agri-farmers-by-do');
 Route::post('/verify-unverify-agri-farmers-by-do', [DistrictOfficerPanelController::class, 'verify_unverify_agri_farmers'])->name('verify-unverify-agri-farmers-by-do');
-
 Route::get('/unverify-agriuser-farmers-by-do', [DistrictOfficerPanelController::class, 'unverify_agriuser_farmers'])->name('unverify-agriuser-farmers-by-do');
 Route::get('/verify-agriuser-farmers-by-do', [DistrictOfficerPanelController::class, 'verify_agriuser_farmers'])->name('verify-agriuser-farmers-by-do');
 Route::post('/verify-unverify-agriuser-farmers-by-do', [DistrictOfficerPanelController::class, 'verify_unverify_agriuser_farmers'])->name('verify-unverify-agriuser-farmers-by-do');
-
-
-
 Route::get('/unverify-farmers-by-do', [DistrictOfficerPanelController::class, 'unverify_farmers'])->name('unverify-farmers-by-do');
 Route::get('/verify-farmers-by-do', [DistrictOfficerPanelController::class, 'verify_farmers'])->name('verify-farmers-by-do');
 Route::get('/view-do-farmers/{id}', [DistrictOfficerPanelController::class, 'view_do_farmers'])->name('view-do-farmers');
-
-
-
 Route::get('/unverify-online-farmers-by-do', [DistrictOfficerPanelController::class, 'unverify_online_farmers'])->name('unverify-online-farmers-by-do');
 Route::get('/verify-online-farmers-by-do', [DistrictOfficerPanelController::class, 'verify_online_farmers'])->name('verify-online-farmers-by-do');
-
-
 Route::get('/view-farmers/{id}', [DistrictOfficerPanelController::class, 'view_farmers'])->name('view-farmers');
-
 Route::get('/lrd/farmers', [DistrictOfficerPanelController::class, 'lrd_farmers'])->name('lrd-farmers');
 Route::get('/field/farmers', [DistrictOfficerPanelController::class, 'fields_farmers'])->name('field-farmers');
 Route::get('/agri/farmers', [DistrictOfficerPanelController::class, 'agri_farmers'])->name('agri-farmers');
@@ -277,13 +304,6 @@ Route::post('/verifiy/farmer/by/land/officer', [LandRevenueFarmerController::cla
 // End District Officer Panel
 
 
-Route::get('/lrd/farmer', [FieldOfficerPanelController::class, 'lrd_farmers'])->name('lrd-farmers-by-field-officer');
-
-Route::get('/view/farmers/{id}', [FieldOfficerPanelController::class, 'view_farmers'])->name('view-farmers-by-field-officer');
-
-
-Route::get('/district/farmer', [FieldOfficerPanelController::class, 'district_farmers'])->name('district-farmers-by-field-officer');
-
 
 
 // Field Officer Panel
@@ -295,7 +315,9 @@ Route::get('/farmer-view-by-field-officer/{id}',[FieldOfficerPanelController::cl
 Route::get('/farmer-edit-by-field-officer/{id}',[FieldOfficerPanelController::class,'edit'])->name('farmer-edit-by-field-officer');
 Route::get('/farmer-create-by-field-officer',[FieldOfficerPanelController::class,'create'])->name('farmer-create-by-field-officer');
 Route::post('/farmer-store-by-field-officer',[FieldOfficerPanelController::class,'store'])->name('farmer-store-by-field-officer');
-
+Route::get('/lrd/farmer', [FieldOfficerPanelController::class, 'lrd_farmers'])->name('lrd-farmers-by-field-officer');
+Route::get('/view/farmers/{id}', [FieldOfficerPanelController::class, 'view_farmers'])->name('view-farmers-by-field-officer');
+Route::get('/district/farmer', [FieldOfficerPanelController::class, 'district_farmers'])->name('district-farmers-by-field-officer');
 Route::get('/reporting-farmers-by-field-officer', [FieldOfficerPanelController::class, 'farmers_reporting'])->name('reporting-farmers-by-field-officer');
 Route::post('/view/reporting-farmers-by-field-officer', [FieldOfficerPanelController::class, 'view_farmers_reporting'])->name('view.reporting-farmers-by-field-officer');
 
@@ -353,45 +375,39 @@ Route::post('/import-excel-file', [LandRevenueController::class, 'upload_excel_i
 
 
 // agriculture department panel
-Route::get('/add-agri-farmers', [AgricultureFarmerRegistrationController::class, 'add_agri_farmers'])->name('add-agri-farmers');
-Route::post('/store-agri-farmers', [AgricultureFarmerRegistrationController::class, 'store_agri_farmers'])->name('store-agri-farmers');
-Route::get('/all-agri-farmers', [AgricultureFarmerRegistrationController::class, 'all_agri_farmers'])->name('all-agri-farmers');
-Route::get('/view-agri-farmers/{id}', [AgricultureFarmerRegistrationController::class, 'view_agri_farmers'])->name('view-agri-farmers');
-Route::get('/edit-agri-farmers/{id}', [AgricultureFarmerRegistrationController::class, 'edit_agri_farmers'])->name('edit-agri-farmers');
-Route::post('/update-agri-farmers/{id}', [AgricultureFarmerRegistrationController::class, 'update_agri_farmers'])->name('update-agri-farmers');
+// Route::get('/add-agri-farmers', [AgricultureFarmerRegistrationController::class, 'add_agri_farmers'])->name('add-agri-farmers');
+// Route::post('/store-agri-farmers', [AgricultureFarmerRegistrationController::class, 'store_agri_farmers'])->name('store-agri-farmers');
+// Route::get('/all-agri-farmers', [AgricultureFarmerRegistrationController::class, 'all_agri_farmers'])->name('all-agri-farmers');
+// Route::get('/view-agri-farmers/{id}', [AgricultureFarmerRegistrationController::class, 'view_agri_farmers'])->name('view-agri-farmers');
+// Route::get('/edit-agri-farmers/{id}', [AgricultureFarmerRegistrationController::class, 'edit_agri_farmers'])->name('edit-agri-farmers');
+// Route::post('/update-agri-farmers/{id}', [AgricultureFarmerRegistrationController::class, 'update_agri_farmers'])->name('update-agri-farmers');
 
-Route::get('/agri-unverify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_unverify_farmers'])->name('agri-unverify-farmers');
-Route::get('/agri-verify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_verify_farmers'])->name('agri-verify-farmers');
-
-
-
-Route::get('/farmers-reporting', [AgricultureFarmerRegistrationController::class, 'farmers_reporting'])->name('agri-officer-reporting');
+// Route::get('/agri-unverify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_unverify_farmers'])->name('agri-unverify-farmers');
+// Route::get('/agri-verify-farmers', [AgricultureFarmerRegistrationController::class, 'agri_verify_farmers'])->name('agri-verify-farmers');
 
 
-// AgricultureUser
 
-Route::get('/add-agriuser-farmers', [AgricultureUserFarmersController::class, 'add_agriuser_farmers'])->name('add-agriuser-farmers');
-Route::post('/store-agriuser-farmers', [AgricultureUserFarmersController::class, 'store_agriuser_farmers'])->name('store-agriuser-farmers');
-Route::get('/all-agriuser-farmers', [AgricultureUserFarmersController::class, 'all_agriuser_farmers'])->name('all-agriuser-farmers');
-Route::get('/view-agriuser-farmers/{id}', [AgricultureUserFarmersController::class, 'view_agriuser_farmers'])->name('view-agriuser-farmers');
-Route::get('/edit-agriuser-farmers/{id}', [AgricultureUserFarmersController::class, 'edit_agriuser_farmers'])->name('edit-agriuser-farmers');
-Route::post('/update-agriuser-farmers/{id}', [AgricultureUserFarmersController::class, 'update_agriuser_farmers'])->name('update-agriuser-farmers');
-
-Route::get('/agri-users-farmers-reporting', [AgricultureUserFarmersController::class, 'farmers_reporting'])->name('agriuser-farmers-reporting');
+// Route::get('/farmers-reporting', [AgricultureFarmerRegistrationController::class, 'farmers_reporting'])->name('agri-officer-reporting');
 
 
-Route::get('/agriuser-unverify-farmers', [AgricultureUserFarmersController::class, 'agriuser_unverify_farmers'])->name('agriuser-unverify-farmers');
-Route::get('/agriuser-verify-farmers', [AgricultureUserFarmersController::class, 'agriuser_verify_farmers'])->name('agriuser-verify-farmers');
+// // AgricultureUser
+
+// Route::get('/add-agriuser-farmers', [AgricultureUserFarmersController::class, 'add_agriuser_farmers'])->name('add-agriuser-farmers');
+// Route::post('/store-agriuser-farmers', [AgricultureUserFarmersController::class, 'store_agriuser_farmers'])->name('store-agriuser-farmers');
+// Route::get('/all-agriuser-farmers', [AgricultureUserFarmersController::class, 'all_agriuser_farmers'])->name('all-agriuser-farmers');
+// Route::get('/view-agriuser-farmers/{id}', [AgricultureUserFarmersController::class, 'view_agriuser_farmers'])->name('view-agriuser-farmers');
+// Route::get('/edit-agriuser-farmers/{id}', [AgricultureUserFarmersController::class, 'edit_agriuser_farmers'])->name('edit-agriuser-farmers');
+// Route::post('/update-agriuser-farmers/{id}', [AgricultureUserFarmersController::class, 'update_agriuser_farmers'])->name('update-agriuser-farmers');
+// Route::get('/agri-users-farmers-reporting', [AgricultureUserFarmersController::class, 'farmers_reporting'])->name('agriuser-farmers-reporting');
+// Route::get('/agriuser-unverify-farmers', [AgricultureUserFarmersController::class, 'agriuser_unverify_farmers'])->name('agriuser-unverify-farmers');
+// Route::get('/agriuser-verify-farmers', [AgricultureUserFarmersController::class, 'agriuser_verify_farmers'])->name('agriuser-verify-farmers');
 
 //Land Revenue Department verify agriculture farmers
 Route::get('/all-agriuser-farmers-by-land', [LandRevenueController::class, 'all_agriuser_farmers_by_land'])->name('all-agriuser-farmers-by-land');
 Route::get('/unverify-agriuser-farmers-by-land', [LandRevenueController::class, 'unverify_agriuser_farmers_by_land'])->name('unverify-agriuser-farmers-by-land');
 Route::get('/verify-agriuser-farmers-by-land', [LandRevenueController::class, 'verify_agriuser_farmers_by_land'])->name('verify-agriuser-farmers-by-land');
-
 Route::post('/verify-unverify-agriuser-farmers-by-land', [LandRevenueController::class, 'verify_unverify_agriuser_farmers_by_land'])->name('verify-unverify-agriuser-farmers-by-land');
-
 Route::get('/reporting-farmers-by-landOfficer', [LandRevenueController::class, 'farmers_reporting'])->name('reporting-farmers-by-land-officer');
-
 Route::post('/view/reporting-farmers-by-landOfficer', [LandRevenueController::class, 'view_farmers_reporting'])->name('view.reporting-farmers-by-land-officer');
 
 

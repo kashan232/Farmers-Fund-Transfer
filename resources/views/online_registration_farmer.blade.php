@@ -147,6 +147,13 @@
     </style>
 </head>
 
+<script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
+" rel="stylesheet">
+
 <body style="background-color: white;">
 
     <div class="container-fluid">
@@ -183,9 +190,14 @@
 
                 <div id="content" class="p-4 p-md-5 pt-5">
                     @if (session()->has('farmers-registered'))
-                    <div class="alert alert-success alert-dismissible fade show ">
-                        <strong>Success!</strong> {{ session('farmers-registered') }}.
-                    </div>
+                    <script>
+                        Swal.fire({
+                        title: "Success!",
+                        text: "Farmer Registered Succesfully!",
+                        icon: "success"
+                        });
+                    </script>
+
                 @endif
                     <div class="row">
                         <div class="col-md-12">
@@ -702,24 +714,24 @@
                                                         Q29: DOCUMENTS UPLOADED/ COLLECTED</h6>
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">CNIC FRONT <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
-                                                    <input type="file" name="front_id_card" class="form-control">
+                                                    <label class="form-label">CNIC FRONT <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                                    <input type="file" name="front_id_card" class="form-control" onchange="checkFiles()">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">CNIC BACK<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
-                                                    <input type="file" name="back_id_card" class="form-control">
+                                                    <label class="form-label">CNIC BACK <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                                    <input type="file" name="back_id_card" class="form-control" onchange="checkFiles()">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
-                                                    <input type="file" name="upload_land_proof" class="form-control">
+                                                    <label class="form-label">Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents)  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                                    <input type="file" name="upload_land_proof" class="form-control" onchange="checkFiles()">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Photo<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
-                                                    <input type="file" name="upload_farmer_pic" class="form-control">
+                                                    <label class="form-label">Photo  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                                    <input type="file" name="upload_farmer_pic" class="form-control" onchange="checkFiles()">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Others<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
-                                                    <input type="file" name="upload_other_attach" class="form-control">
+                                                    <label class="form-label">Others<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                                    <input type="file" name="upload_other_attach" class="form-control" >
                                                 </div>
                                                 {{-- <div class="mb-6 col-md-6 mt-3">
                                                     <label class="form-label">Upload Farmer Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
@@ -731,7 +743,7 @@
                                                 </div> --}}
                                             </div>
                                             <button type="button" class="btn btn-secondary mt-3" onclick="prevStep(4)">Previous</button>
-                                            <button type="submit" class="btn btn-primary mt-3" id="submitbtn">Submit</button>
+                                            <button type="submit" class="btn btn-primary mt-3" id="submitbtn" disabled>Submit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -750,6 +762,27 @@
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/main.js"></script>
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/select2.min.js"></script>
         <script>
+            function checkFiles() {
+                // Get all the file input elements
+                const fileInputs = document.querySelectorAll('input[type="file"]');
+                let allFilesSelected = true;
+
+                // Check if all file inputs have files selected
+                fileInputs.forEach(input => {
+                    if (!input.files.length) {
+                        allFilesSelected = false;
+                    }
+                });
+
+                // Enable or disable the submit button based on file selection
+                const submitButton = document.getElementById('submitbtn');
+                if (allFilesSelected) {
+                    submitButton.disabled = false; // Enable the submit button
+                } else {
+                    submitButton.disabled = true; // Keep the submit button disabled
+                }
+            }
+
 
             $('#registrationForm').on('submit', function(event) {
                 $('#submitbtn').attr('disabled', true); // Disable the submit button
