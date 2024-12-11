@@ -19,7 +19,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Additional Director Officer</h2>
+                            <h2 class="mb-0">DG Officer</h2>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Additional Director </h5>
+                        <h5>DG Officer </h5>
                     </div>
                     <div class="card-body">
                         @if (session()->has('officer-added'))
@@ -41,7 +41,7 @@
                         @endif
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="{{ route('store-district-officer') }}" method="post">
+                                <form action="{{ route('store-dg-officer') }}" method="post">
                                     @csrf
                                     <div class="row">
                                         <div class="mb-12 col-md-12">
@@ -70,7 +70,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
+                                    {{-- <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select District</label>
                                             <select name="district" id="district" class="form-control" required>
@@ -105,7 +105,7 @@
                                             <select name="tappa[]" id="tappa"  class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Username</label>
@@ -118,6 +118,19 @@
                                             <input type="password" class="form-control" required name="password">
                                         </div>
                                     </div>
+
+                                    <div class="row mt-2">
+                                        <div class="mb-12 col-md-12">
+                                            <label class="form-label">USER TYPE</label>
+                                            <select name="usertype" id="" class="form-control">
+                                                <option value="DG_Officer">DG(Ext)/</option>
+                                                <option value="PD_Officer">PD</option>
+                                                <option value="PMS_Officer">PMS(ADU-SWAT)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
                                     <button type="submit" class="btn btn-success mt-4">Submit</button>
                                 </form>
                             </div>

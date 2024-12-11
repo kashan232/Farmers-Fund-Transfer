@@ -26,7 +26,7 @@ class HomeController extends Controller
             // if ($usertype == 'online_user') {
             //     return view('dashboard');
             // }
-            if ($usertype == 'District_Officer') {
+            if ($usertype == 'District_Officer' || $usertype == 'DG_Officer' ) {
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
                 $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();

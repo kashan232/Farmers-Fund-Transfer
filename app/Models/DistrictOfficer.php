@@ -23,5 +23,6 @@ class DistrictOfficer extends Model
         'username',
         'password',
         'img',
+        'usertype'
     ];
 }

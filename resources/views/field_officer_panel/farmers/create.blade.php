@@ -316,7 +316,7 @@
                                                             <th>Full Name</th>
                                                             <th>CNIC Number</th>
                                                             <th>Contact Number</th>
-                                                            <th>Total Area (Acre)</th>
+                                                            <th>Total Area (Acres)</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -361,11 +361,12 @@
                                                     <tbody id="crop_tableBody">
                                                         <tr>
                                                             <td>
-                                                                <select name="crop_season[]" id="" class="form-control">
+                                                                <select name="crop_season[]" id="" class="crop_season form-control">
                                                                     <option value="">Select Season</option>
                                                                     <option value="Rabi Season">Rabi Season</option>
                                                                     <option value="Kharif Season">Kharif Season</option>
                                                                     <option value="Orchards">Orchards</option>
+                                                                    <option value="any_other">Any Other</option>
 
                                                                 </select>
                                                             </td>
@@ -623,24 +624,24 @@
                                                 Q29: DOCUMENTS UPLOADED/ COLLECTED</h6>
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">CNIC FRONT <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
-                                            <input type="file" name="front_id_card" class="form-control">
+                                            <label class="form-label">CNIC FRONT <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                            <input type="file" name="front_id_card" class="form-control checkfiles" onchange="checkFiles()">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">CNIC BACK<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
-                                            <input type="file" name="back_id_card" class="form-control">
+                                            <label class="form-label">CNIC BACK <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                            <input type="file" name="back_id_card" class="form-control checkfiles" onchange="checkFiles()">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
-                                            <input type="file" name="upload_land_proof" class="form-control">
+                                            <label class="form-label">Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents)  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                            <input type="file" name="upload_land_proof" class="form-control checkfiles" onchange="checkFiles()">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Photo<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
-                                            <input type="file" name="upload_farmer_pic" class="form-control">
+                                            <label class="form-label">Photo  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                            <input type="file" name="upload_farmer_pic" class="form-control checkfiles" onchange="checkFiles()">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Others<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
-                                            <input type="file" name="upload_other_attach" class="form-control">
+                                            <label class="form-label">Others<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                            <input type="file" name="upload_other_attach" class="form-control" >
                                         </div>
                                         {{-- <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Upload Farmer Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
@@ -652,7 +653,8 @@
                                         </div> --}}
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
-                                    <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                                    <button type="submit" class="btn btn-primary mt-5" id="submitbtn" disabled>Submit</button>
+
                                 </div>
                             </form>
                         </div>
@@ -675,6 +677,9 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
         <script>
+
+
+
             // Initialize map to Hyderabad, Pakistan with zoom level 13
             var map = L.map('map').setView([25.3960, 68.3578], 13); // Coordinates for Hyderabad, Pakistan
 
@@ -755,6 +760,67 @@
 
 <script>
 
+$(document).ready(function() {
+    $('body').on('change','.crop_season', function() {
+        const selectedValue = $(this).val();
+        const $selectElement = $(this);
+
+        // Find the closest <td> element (the one containing the <select>)
+        const $closestTd = $selectElement.closest('td');
+
+        // Find the appended input field inside the <td>
+        let $nextInput = $closestTd.find('input');
+
+        // Clear any existing input field if the selection is not 'any_other'
+        if (selectedValue !== 'any_other') {
+            if ($nextInput.length) {
+                $nextInput.remove(); // Remove the appended input if it exists
+            }
+        }
+
+        // If 'any_other' is selected, append a new input field in the same <td>
+        if (selectedValue === 'any_other') {
+            // If an input field is already appended, don't append again
+            if (!$nextInput.length) {
+                const inputField = $('<input>', {
+                    type: 'text',
+                    name: 'other_crop_season[]',
+                    class: 'form-control mt-2',
+                    placeholder: 'Please specify other season'
+                });
+
+                // Append the new input field in the same <td> as the <select>
+                $closestTd.append(inputField);
+            }
+        }
+    });
+});
+
+
+
+
+            function checkFiles() {
+                // Get all the file input elements
+                const fileInputs = document.querySelectorAll('.checkfiles');
+                let allFilesSelected = true;
+
+                // Check if all file inputs have files selected
+                fileInputs.forEach(input => {
+                    if (!input.files.length) {
+                        allFilesSelected = false;
+                    }
+                });
+
+                // Enable or disable the submit button based on file selection
+                const submitButton = document.getElementById('submitbtn');
+                if (allFilesSelected) {
+                    submitButton.disabled = false; // Enable the submit button
+                } else {
+                    submitButton.disabled = true; // Keep the submit button disabled
+                }
+            }
+
+
             $('#registrationForm').on('submit', function(event) {
                 $('#submitbtn').attr('disabled', true); // Disable the submit button
             });
@@ -806,11 +872,12 @@ $('#abc').on('click',function(){
         const newRow = `
             <tr>
                 <td>
-                    <select name="crop_season[]" id="" class="form-control">
+                    <select name="crop_season[]" id="" class="crop_season form-control">
                         <option value="" >Select Season</option>
                         <option value="Rabi Season">Rabi Season</option>
                         <option value="Kharif Season">Kharif Season</option>
                         <option value="Orchards">Orchards</option>
+                        <option value="any_other">Any Other</option>
                     </select>
                 </td>
                 <td><input type="text" name="crops[]" class="form-control"></td>
