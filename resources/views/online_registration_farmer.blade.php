@@ -469,12 +469,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                         <tbody id="crop_tableBody">
                                                             <tr>
                                                                 <td>
-                                                                    <select name="crop_season[]" id="" class="form-control">
+                                                                    <select name="crop_season[]" id="crop_season" class=" crop_season form-control">
                                                                         <option value="">Select Season</option>
                                                                         <option value="Rabi Season">Rabi Season</option>
                                                                         <option value="Kharif Season">Kharif Season</option>
                                                                         <option value="Orchards">Orchards</option>
-
+                                                                        <option value="any_other">Any Other</option>
                                                                     </select>
                                                                 </td>
                                                                 <td>
@@ -587,7 +587,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                         <label class="form-label">Q20:  Source of irrigation</label>
                                                         <select name="source_of_irrigation" class="form-control" id="source_of_irrigation">
                                                             <option value="canal_wall">(1) Canal System</option>
-                                                            <option value="tube_wall">(2) Tube Wall</option>
+                                                            <option value="tube_well">(2) Tube Well</option>
                                                             <option value="Rain/Barrani">(3) Rain/Barrani</option>
                                                             <option value="Kaccha Area">(4) Kaccha Area</option>
                                                         </select>
@@ -715,19 +715,19 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
                                                     <label class="form-label">CNIC FRONT <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                                    <input type="file" name="front_id_card" class="form-control" onchange="checkFiles()">
+                                                    <input type="file" name="front_id_card" class="form-control checkfiles" onchange="checkFiles()">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
                                                     <label class="form-label">CNIC BACK <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                                    <input type="file" name="back_id_card" class="form-control" onchange="checkFiles()">
+                                                    <input type="file" name="back_id_card" class="form-control checkfiles" onchange="checkFiles()">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
                                                     <label class="form-label">Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents)  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                                    <input type="file" name="upload_land_proof" class="form-control" onchange="checkFiles()">
+                                                    <input type="file" name="upload_land_proof" class="form-control checkfiles" onchange="checkFiles()">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
                                                     <label class="form-label">Photo  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                                    <input type="file" name="upload_farmer_pic" class="form-control" onchange="checkFiles()">
+                                                    <input type="file" name="upload_farmer_pic" class="form-control checkfiles" onchange="checkFiles()">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
                                                     <label class="form-label">Others<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
@@ -762,9 +762,48 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/main.js"></script>
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/select2.min.js"></script>
         <script>
+$(document).ready(function() {
+    $('body').on('change','.crop_season', function() {
+        const selectedValue = $(this).val();
+        const $selectElement = $(this);
+
+        // Find the closest <td> element (the one containing the <select>)
+        const $closestTd = $selectElement.closest('td');
+
+        // Find the appended input field inside the <td>
+        let $nextInput = $closestTd.find('input');
+
+        // Clear any existing input field if the selection is not 'any_other'
+        if (selectedValue !== 'any_other') {
+            if ($nextInput.length) {
+                $nextInput.remove(); // Remove the appended input if it exists
+            }
+        }
+
+        // If 'any_other' is selected, append a new input field in the same <td>
+        if (selectedValue === 'any_other') {
+            // If an input field is already appended, don't append again
+            if (!$nextInput.length) {
+                const inputField = $('<input>', {
+                    type: 'text',
+                    name: 'other_crop_season[]',
+                    class: 'form-control mt-2',
+                    placeholder: 'Please specify other season'
+                });
+
+                // Append the new input field in the same <td> as the <select>
+                $closestTd.append(inputField);
+            }
+        }
+    });
+});
+
+
+
+
             function checkFiles() {
                 // Get all the file input elements
-                const fileInputs = document.querySelectorAll('input[type="file"]');
+                const fileInputs = document.querySelectorAll('.checkfiles');
                 let allFilesSelected = true;
 
                 // Check if all file inputs have files selected
@@ -816,7 +855,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
             });
 
             $('#source_of_irrigation').change(function() {
-                if ($(this).val() == 'tube_wall') {
+                if ($(this).val() == 'tube_well') {
                     $('#source_of_energy_section').remove();
                     $('#source_of_irrigation_section').append(`
             <div class="mb-6 col-md-6" id="source_of_energy_section">
@@ -875,11 +914,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                 const newRow = `
             <tr>
                 <td>
-                    <select name="crop_season[]" id="" class="form-control">
+                    <select name="crop_season[]" id="" class="crop_season form-control">
                         <option value="" >Select Season</option>
                         <option value="Rabi Season">Rabi Season</option>
                         <option value="Kharif Season">Kharif Season</option>
-                        <option value="Orchards">Orchards</option>
+                        <option value="any_other">Orchards</option>
+                        <option value="any_other">Any Other</option>
                     </select>
                 </td>
                 <td><input type="text" name="crops[]" class="form-control"></td>

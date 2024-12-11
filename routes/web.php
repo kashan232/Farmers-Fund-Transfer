@@ -22,6 +22,7 @@ use App\Http\Controllers\TehsilController;
 use App\Http\Controllers\UCController;
 use App\Http\Controllers\DistrictOfficerController;
 use App\Http\Controllers\DDOfficerController;
+use App\Http\Controllers\DGOfficerController;
 use App\Http\Controllers\DDOfficerPanelController;
 
 use App\Http\Controllers\OnlineFormController;
@@ -199,10 +200,10 @@ Route::get('/dd-officer-edit/{id}', [DDOfficerController::class, 'edit_dd_office
 
 
 // DG Officer
-Route::get('/dg-officer-create', [DistrictOfficerController::class, 'dg_officer_create'])->middleware(['auth', 'admin'])->name('dg-officer-create');
-Route::post('/store-dg-officer', [DistrictOfficerController::class, 'store_dg_officer'])->name('store-dg-officer');
-Route::get('/all-dg-officer', [DistrictOfficerController::class, 'all_dg_officer'])->middleware(['auth', 'admin'])->name('all-dg-officer');
-Route::get('/dg-officer-edit/{id}', [DistrictOfficerController::class, 'edit_dg_officer'])->middleware(['auth', 'admin'])->name('dg-officer-edit');
+Route::get('/dg-officer-create', [DGOfficerController::class, 'dg_officer_create'])->middleware(['auth', 'admin'])->name('dg-officer-create');
+Route::post('/store-dg-officer', [DGOfficerController::class, 'store_dg_officer'])->name('store-dg-officer');
+Route::get('/all-dg-officer', [DGOfficerController::class, 'all_dg_officer'])->middleware(['auth', 'admin'])->name('all-dg-officer');
+Route::get('/dg-officer-edit/{id}', [DGOfficerController::class, 'edit_dg_officer'])->middleware(['auth', 'admin'])->name('dg-officer-edit');
 
 
 
