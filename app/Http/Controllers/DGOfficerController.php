@@ -83,12 +83,10 @@ class DGOfficerController extends Controller
                     'contact_number'          => $request->contact_number,
                     'address'          => $request->address,
                     'email_address'          => $request->email_address,
-                    'district'          => $request->district,
-                    'tehsil'          => $tehsil,
-                    'ucs'               => $ucs,
-                    'tappas'          => $tappa,
+
                     'username'          => $request->username,
                     'password'          => $request->password,
+                    'usertype'           => $request->usertype,
                     'created_at'        => Carbon::now(),
                     'updated_at'        => Carbon::now(),
                 ]);
@@ -102,7 +100,7 @@ class DGOfficerController extends Controller
                     'ucs'               => $ucs,
                     'tappas'          => $tappa,
                     'password' => bcrypt($request->password), // Make sure to hash the password
-                    'usertype' => 'DG_Officer', // Set the usertype to 'employee'
+                    'usertype' => $request->usertype, // Set the usertype to 'employee'
                 ]);
 
                 return redirect()->back()->with('officer-added', 'DG Officer Created Successfully');
@@ -121,9 +119,9 @@ class DGOfficerController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            // dd($userId);
 
-            $all_agri = DistrictOfficer::where('admin_or_user_id', '=', $userId)->get();
+
+            $all_agri = DistrictOfficer::where('usertype', '=','PMS_Officer')->get();
             return view('admin_panel.dg_officer.all_dg_officer', [
                 'all_agri' => $all_agri,
             ]);
@@ -145,7 +143,7 @@ class DGOfficerController extends Controller
                 $all_district = District::where('admin_or_user_id', '=', $userId)->get();
                 $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
             }
-            return view('admin_panel.district_officer.edit_district_officer', [
+            return view('admin_panel.dg_officer.edit_dg_officer', [
                 'all_district' => $all_district,
                 'all_tehsil' => $all_tehsil,
                 'data' => $data

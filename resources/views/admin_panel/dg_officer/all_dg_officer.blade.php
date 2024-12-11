@@ -19,7 +19,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">All Additional Director</h2>
+                            <h2 class="mb-0">DG Officers</h2>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                                                         <td>{{ $agri->username }}</td>
                                                         <td>
                                                             <div class="d-flex">
-                                                                <a href="{{route('district-officer-edit',$agri->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                                                <a href="{{route('dg-officer-edit',$agri->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                                             </div>
                                                         </td>
                                                     </tr>
