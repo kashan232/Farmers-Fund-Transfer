@@ -363,9 +363,9 @@
                                                             <td>
                                                                 <select name="crop_season[]" id="" class="crop_season form-control">
                                                                     <option value="">Select Season</option>
-                                                                    <option value="Rabi Season">Rabi Season</option>
-                                                                    <option value="Kharif Season">Kharif Season</option>
-                                                                    <option value="Orchards">Orchards</option>
+                                                                    <option value="rabi_season">Rabi Season</option>
+                                                                    <option value="kharif_season">Kharif Season</option>
+                                                                    <option value="orchards">Orchards</option>
                                                                     <option value="any_other">Any Other</option>
 
                                                                 </select>

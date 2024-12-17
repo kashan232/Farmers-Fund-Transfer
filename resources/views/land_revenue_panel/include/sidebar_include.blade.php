@@ -30,14 +30,14 @@
                 </li>
 
 
-                <li class="pc-item pc-hasmenu">
+                {{-- <li class="pc-item pc-hasmenu">
                     <a href="{{ route('sms') }}" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-users"></i>
                         </span>
                         <span class="pc-mtext">SMS</span>
                     </a>
-                </li>
+                </li> --}}
 
 {{--
                 <li class="pc-item pc-hasmenu">

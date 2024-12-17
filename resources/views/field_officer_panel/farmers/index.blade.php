@@ -49,7 +49,7 @@
                                                         <th>CNIC</th>
                                                         <th>Mobile</th>
                                                         <th>District</th>
-                                                        <th>Tehsil</th>
+                                                        <th>Taluka</th>
                                                         <th>UC</th>
                                                         <th>Tappa</th>
                                                         <th>Village</th>

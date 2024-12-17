@@ -52,6 +52,38 @@ use Illuminate\Support\Facades\Route;
 // git connect
 // connect
 // connect
+
+
+
+use Twilio\Rest\Client;
+use App\Http\Controllers\SmsTwilioController;
+
+
+
+Route::get('sms/send', function () {
+    $receiverNumber = '+923103730089'; // Replace with the recipient's phone number
+    $message = 'hi testing'; // Replace with your desired message
+
+    $sid = env('TWILIO_SID');
+    $token = env('TWILIO_TOKEN');
+    $fromNumber = env('TWILIO_FROM');
+
+    try {
+        $client = new Client($sid, $token);
+        $client->messages->create($receiverNumber, [
+            'from' => $fromNumber,
+            'body' => $message
+        ]);
+
+        return 'SMS Sent Successfully.';
+    } catch (Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
