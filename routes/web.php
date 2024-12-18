@@ -129,8 +129,7 @@ Route::get('/admin/sms/', function(){
 
 Route::get('/farmers/registrations', function(){
 
-    $districts = \App\Models\District::all();
-
+    $districts = District::all();
     return view('online_registration_farmer' ,[
         'districts' => $districts
     ]);

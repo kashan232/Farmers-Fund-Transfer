@@ -11,8 +11,6 @@ class District extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = [
-        'admin_or_user_id',
-        'district'
-    ];
+    protected $guarded = [];
+
 }
