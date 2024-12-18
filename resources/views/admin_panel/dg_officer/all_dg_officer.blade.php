@@ -40,6 +40,7 @@
                                             <thead>
                                                 <tr>
                                                     <th><strong>Sno</strong></th>
+                                                    <th><strong>UserType</strong></th>
                                                     <th><strong>Full Name</strong></th>
                                                     <th><strong>Contact Number</strong></th>
                                                     <th><strong>Address</strong></th>
@@ -56,6 +57,7 @@
                                                 @foreach ($all_agri as $agri)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ ($agri->usertype == 'PMS_Officer') ? 'PMS':'' }}</td>
                                                     <td>{{ $agri->full_name }}</td>
                                                     <td>{{ $agri->contact_number }}</td>
                                                     <td>{{ $agri->address }}</td>

@@ -13,6 +13,12 @@
 .dt-buttons{
     display: none !important;
 }
+
+.table-responsive{
+        position: relative !important;
+        padding-top: 5% !important;
+    }
+
 </style>
 
 <!-- [ Main Content ] start -->
@@ -41,7 +47,7 @@
                                 <div class="row mt-2 justify-content-md-center">
                                     <div class="col-12">
                                         <div class="table-responsive">
-                                            <table id="example" class="display" style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
+                                            <table id="example1" class="display" style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
                                                     <tr>
                                                         <th>Sno</th>
@@ -119,5 +125,95 @@
 @include('field_officer_panel.include.footer_include')
 
 </body>
+<script>
+     $(document).ready(function() {
 
+table =  $('#example1').DataTable({
+     "pageLength": 100, // Default number of rows per page
+     "dom": 'frt', // Only include the filter (search box), table, and pagination
+     "processing": true, // Optional: for large datasets
+     "deferRender": true, // Improves performance by rendering rows only when needed
+     "order": [
+         [0, 'asc']
+     ], // Default ordering of the first column (optional)
+     "buttons": [
+         'copyHtml5',
+         'excelHtml5',
+         'csvHtml5',
+         'pdfHtml5'
+     ],
+     "language": {
+         "search": "Search:" // Customize the search box label (optional)
+     }
+ });
+
+ // Attach the change event listener after the dropdown is created
+ $(document).on('change', '#tehsil', function(e) {
+     e.preventDefault();
+     var searchValue = $(this).val();
+     if(searchValue !=  0){
+         table.column(4).search('^' + searchValue + '$', true, false).draw();
+     }
+     else{
+         table.column(4).search('').draw();
+     }
+ });
+
+ $(document).on('change', '#user_type', function(e) {
+     e.preventDefault();
+     var searchValue = $(this).val();
+     if(searchValue !=  0){
+         table.column(0).search('^' + searchValue + '$', true, false).draw();
+     }
+     else{
+         table.column(0).search('').draw();
+     }
+ });
+
+ $('#example1_wrapper').before(`
+     <div class="col-3" style="position: absolute; top:1%" >
+         <select name="tehsil" id="tehsil" class="form-control">
+             <option value="0">Please Select Tehsil</option>
+             @foreach ($tehsils as $tehsil)
+                 <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
+             @endforeach
+         </select>
+     </div>
+     <div class="col-3" style="position: absolute; top:1%; left:250px;" >
+         <select  id="user_type" class="form-control">
+             <option value="">Select Type</option>
+             <option value="Online">Online</option>
+             <option value="Field Assitant">Field Assitant</option>
+         </select>
+     </div>
+ `);
+
+});
+
+
+$(document).ready(function() {
+// Event listener for opening the modal
+
+
+$('.verifiy-btn').on('click', function() {
+     var farmerId = $(this).data('id');
+     $('#farmer_id').val(farmerId);
+     $('#exampleModalLive').modal('show');
+ });
+
+// Event listener for changing the status
+$('#statusSelect').on('change', function() {
+ var reasonBox = $('#reasonBox');
+ if ($(this).val() == 'rejected_by_do') {
+     reasonBox.show();
+     $('#reasonTextarea').prop('required', true);
+
+ } else {
+     reasonBox.hide();
+     $('#reasonTextarea').prop('required', false);
+ }
+});
+});
+
+</script>
 </html>
