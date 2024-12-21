@@ -149,7 +149,7 @@ class FieldOfficerPanelController extends Controller
 
     public function store(Request $request)
     {
-
+// dd($request->all());
         if (Auth::check()) {
 
 
@@ -243,7 +243,15 @@ class FieldOfficerPanelController extends Controller
                 $data['title_number'] = json_encode($request->title_number);
                 $data['title_area'] = json_encode($request->title_area);
 
-                $data['crop_season'] = json_encode($request->crop_season);
+
+                if (in_array("any_other", $request->crop_season)) {
+                    // If it has "any_other", use other_crop_season
+                    $data['crop_season'] = json_encode($request->other_crop_season);
+                } else {
+                    // Otherwise, use the original crop_season
+                    $data['crop_season'] = json_encode($request->crop_season);
+                }
+
                 $data['crops'] = json_encode($request->crops);
                 $data['crop_area'] = json_encode($request->crop_area);
                 $data['crop_average_yeild'] = json_encode($request->crop_average_yeild);

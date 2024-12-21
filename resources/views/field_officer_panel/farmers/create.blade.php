@@ -55,6 +55,23 @@
         background-color: #f1f1f1;
         color: #333;
     }
+
+
+    .select2-selection--single {
+        height: 40px !important;
+    }
+
+    .select2-selection--single .select2-selection__rendered{
+        line-height: 40px !important;
+    }
+    .select2-selection--single .select2-selection__arrow{
+        top: 8px !important;
+    }
+
+
+    .select2-container--default .select2-selection--multiple {
+        padding-top: 5px !important;
+    }
 </style>
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
@@ -289,19 +306,31 @@
                                             </div>
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label">(1) Total Landholding (Acres):</label>
-                                                <input type="text" name="total_landing_acre" value="" class="form-control">
+                                                <input type="text" name="total_landing_acre" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label">(2) Total Area with Hari(s) (Acres):</label>
-                                                <input type="text" name="total_area_with_hari" value="" class="form-control">
+                                                <input type="text" name="total_area_with_hari" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
-                                            <div class="mb-6 col-md-6">
+                                            <div class="mt-2 col-md-6">
                                                 <label class="form-label">(3) Total self cultivated land (Acres):</label>
-                                                <input type="text" name="total_area_cultivated_land" value="" class="form-control">
+                                                <input type="text" name="total_area_cultivated_land" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
-                                            <div class="mb-6 col-md-6">
+                                            <div class="mt-2 col-md-6">
                                                 <label class="form-label">(4) Total fallow land (Acres):</label>
-                                                <input type="text" name="total_fallow_land" value="" class="form-control">
+                                                <input type="text" name="total_fallow_land" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                            </div>
+                                            <div class="mt-2 col-md-4">
+                                                <label class="form-label">(5) Share:</label>
+                                                <input type="text" name="land_share" value="" class="form-control" >
+                                            </div>
+                                            <div class="mt-2 col-md-4">
+                                                <label class="form-label">(6) Area as per share:</label>
+                                                <input type="text" name="land_area_as_per_share" value="" class="form-control" >
+                                            </div>
+                                            <div class="mt-2 col-md-4">
+                                                <label class="form-label">(7) Survey No:</label>
+                                                <input type="text" name="survey_no" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
                                         </div>
 
@@ -332,7 +361,7 @@
                                                                 <input type="text" name="title_number[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="title_area[]" value="" class="form-control">
+                                                                <input type="text" name="title_area[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                             </td>
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
@@ -361,12 +390,11 @@
                                                     <tbody id="crop_tableBody">
                                                         <tr>
                                                             <td>
-                                                                <select name="crop_season[]" id="" class="crop_season form-control">
+                                                                <select name="crop_season[]" style="width:200px" id="" class="crop_season form-control js-example-basic-single" >
                                                                     <option value="">Select Season</option>
-                                                                    <option value="rabi_season">Rabi Season</option>
-                                                                    <option value="kharif_season">Kharif Season</option>
+                                                                    <option value="rabi season" >Rabi Season</option>
+                                                                    <option value="kharif season">Kharif Season</option>
                                                                     <option value="orchards">Orchards</option>
-                                                                    <option value="any_other">Any Other</option>
 
                                                                 </select>
                                                             </td>
@@ -374,10 +402,10 @@
                                                                 <input type="text" name="crops[]" value="" class="form-control">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="crop_area[]" value="" class="form-control">
+                                                                <input type="text" name="crop_area[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="crop_average_yeild[]" value="" class="form-control">
+                                                                <input type="text" name="crop_average_yeild[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                             </td>
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
@@ -408,17 +436,16 @@
                                                 <option value="pickup/loader">Pickup/loader</option>
                                                 <option value="motorcycle">Motorcycle</option>
                                                 <option value="bicycles">Bicycles</option>
-                                                <option value="bullock_cart">Bullock Cart</option>
+                                                <option value="bullock cart">Bullock Cart</option>
                                                 <option value="Tractor(4wheels)">Tractor (4 wheels)</option>
                                                 <option value="disk_harrow">Disk Harrow</option>
                                                 <option value="cultivator">Cultivator</option>
-                                                <option value="tractor_trolley">Tractor Trolley</option>
+                                                <option value="tractor trolley">Tractor Trolley</option>
                                                 <option value="plough">Plough (wood or metal)</option>
-                                                <option value="laser_lever">Laser lever</option>
+                                                <option value="laser lever">Laser lever</option>
                                                 <option value="rotavetor">Rotavetor</option>
                                                 <option value="thresher">Thresher</option>
                                                 <option value="harvester">Harvester</option>
-                                                <option value="Any Other">Any Other</option>
                                             </select>
                                         </div>
                                     </div>
@@ -437,8 +464,8 @@
                                                 </thead>
                                                 <tbody id="poultry_assets_tableBody">
                                                     <tr>
-                                                        <td>
-                                                            <select name="animal_name[]" id="" class="form-control">
+                                                        <td style="width:300px">
+                                                            <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single">
                                                                 <option value="">Select Animal</option>
                                                                 <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
                                                                 <option value="Buffalo">Buffalo</option>
@@ -448,7 +475,6 @@
                                                                 <option value="Sheep">Sheep</option>
                                                                 <option value="Horse / Mules">Horse / Mules</option>
                                                                 <option value="Donkeys">Donkeys</option>
-                                                                <option value="Any Other">Any Other</option>
                                                             </select>
                                                         </td>
                                                         <td>
@@ -480,7 +506,7 @@
                                                 <label class="form-label">Q20:  Source of irrigation</label>
                                                 <select name="source_of_irrigation" class="form-control" id="source_of_irrigation">
                                                     <option value="canal_wall">(1) Canal System</option>
-                                                    <option value="tube_wall">(2) Tube Well</option>
+                                                    <option value="tube_well">(2) Tube Well</option>
                                                     <option value="Rain/Barrani">(3) Rain/Barrani</option>
                                                     <option value="Kaccha Area">(4) Kaccha Area</option>
                                                 </select>
@@ -495,11 +521,11 @@
                                         <div class="row mb-12 col-md-12" id="status_of_water_section">
                                             <div class="mb-3 col-md-3">
                                                 <label class="form-label">Total length (Meter)</label>
-                                                <input type="text" name="area_length" class="form-control" value="">
+                                                <input type="text" name="area_length" class="form-control" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
                                             <div class="mb-3 col-md-3">
                                                 <label class="form-label">Total Command Area (Acres)</label>
-                                                <input type="text" name="total_command_area" class="form-control" value="">
+                                                <input type="text" name="total_command_area" class="form-control" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
                                             <div class="mb-3 col-md-3">
                                                 <label class="form-label">Area length</label>
@@ -541,7 +567,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Q27: IBAN</label>
-                                            <input type="text" name="IBAN_number" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
+                                            <input type="text" name="IBAN_number" value="" class="form-control" >
                                         </div>
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Q28: Branch Code</label>
@@ -856,7 +882,7 @@ $('#abc').on('click',function(){
                 <td><input type="text" name="title_name[]" class="form-control"></td>
                 <td><input type="text" name="title_cnic[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" class="form-control"></td>
                 <td><input type="text" name="title_number[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" class="form-control"></td>
-                <td><input type="text" name="title_area[]" class="form-control"></td>
+                <td><input type="text" name="title_area[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;
@@ -872,21 +898,23 @@ $('#abc').on('click',function(){
         const newRow = `
             <tr>
                 <td>
-                    <select name="crop_season[]" id="" class="crop_season form-control">
+                    <select name="crop_season[]" id="" style="width:200px" class="crop_season form-control js-example-basic-single">
                         <option value="" >Select Season</option>
-                        <option value="Rabi Season">Rabi Season</option>
-                        <option value="Kharif Season">Kharif Season</option>
-                        <option value="Orchards">Orchards</option>
-                        <option value="any_other">Any Other</option>
+                        <option value="rabi season" >Rabi Season</option>
+                        <option value="kharif season">Kharif Season</option>
+                        <option value="orchards">Orchards</option>
                     </select>
                 </td>
                 <td><input type="text" name="crops[]" class="form-control"></td>
-                <td><input type="text" name="crop_area[]" class="form-control"></td>
-                <td><input type="text" name="crop_average_yeild[]" class="form-control"></td>
+                <td><input type="text" name="crop_area[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
+                <td><input type="text" name="crop_average_yeild[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;
         $('#crop_tableBody').append(newRow);
+        $('#crop_tableBody').find('.js-example-basic-single').last().select2({
+            tags: true, // Enable the user to add custom tags
+        });
     });
 
     // Delete row on clicking "Delete" button
@@ -899,8 +927,8 @@ $('#abc').on('click',function(){
         const newRow = `
             <tr>
                  <td>
-                    <select name="animal_name[]" id="" class="form-control">
-                        <option value="">Select Animal</option>
+                    <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single">
+                       <option value="">Select Animal</option>
                         <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
                         <option value="Buffalo">Buffalo</option>
                         <option value="Cows">Cows</option>
@@ -909,7 +937,6 @@ $('#abc').on('click',function(){
                         <option value="Sheep">Sheep</option>
                         <option value="Horse / Mules">Horse / Mules</option>
                         <option value="Donkeys">Donkeys</option>
-                        <option value="Any Other">Any Other</option>
                     </select>
                 </td>
                 <td><input type="text" name="animal_qty[]"  class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)"></td>
@@ -917,6 +944,9 @@ $('#abc').on('click',function(){
             </tr>
         `;
         $('#poultry_assets_tableBody').append(newRow);
+        $('#poultry_assets_tableBody').find('.js-example-basic-single').last().select2({
+            tags: true, // Enable the user to add custom tags
+        });
     });
 
     // Delete row on clicking "Delete" button
@@ -929,22 +959,25 @@ $('#abc').on('click',function(){
 
 
 $('#source_of_irrigation').change(function() {
-    if($(this).val() == 'tube_wall')
+    if($(this).val() == 'tube_well')
     {
          $('#source_of_irrigation_section').append(`
          <div class="mb-6 col-md-6" id="source_of_energy_section">
                 <label class="form-label">Q21: Source of energy</label>
-                <select name="source_of_irrigation_engery"  class="form-control" id="source_of_energy">
+                <select name="source_of_irrigation_engery"  class="form-control js-example-basic-single" id="source_of_energy">
                     <option value="electricity">Electricity</option>
                     <option value="solar">Solar</option>
                     <option value="Petrol/Diesel/Gas">Petrol/Diesel/Gas</option>
-                    <option value="Any Other">Other</option>
                 </select>
             </div>
          `);
+         $('#source_of_energy_section').find('.js-example-basic-single').last().select2({
+            tags: true, // Enable the user to add custom tags
+        });
     }
     else{
         $('#source_of_energy_section').remove();
+
     }
 });
 
@@ -956,7 +989,7 @@ $('#lined_unlined').change(function() {
             <div class="row">
                 <div class="mb-12 col-md-12" >
                     <label class="form-label">Line length in (Meter)</label>
-                    <input type="text" name="lined_length" class="form-control">
+                    <input type="text" name="lined_length" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                 </div>
             </div>
         </div>
