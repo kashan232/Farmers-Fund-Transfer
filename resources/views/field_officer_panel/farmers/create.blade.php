@@ -111,6 +111,13 @@
                                 <strong>Success!</strong> {{ session('farmers-registered') }}.
                             </div>
                         @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger " style="margin-top: 20px">
+                                @foreach ($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                                @endforeach
+                            </div>
+                            @endif
                     </div>
                     <div class="card-body">
                         <div class="basic-form">
@@ -137,27 +144,27 @@
                                         <h4 class="card-title">Personal Details</h4>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Q1. Name: <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" class="form-control" required>
+                                            <input type="text" name="name" class="form-control" >
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Q2. Father/Husband Name: <span class="text-danger">*</span></label>
-                                            <input type="text" name="father_name" class="form-control" required>
+                                            <input type="text" name="father_name" class="form-control" >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
-                                            <input type="text" id="cnic" name="cnic" class="form-control" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"  >
+                                            <input type="text" id="cnic" name="cnic" class="form-control"  oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"  >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q4. Mobile No.: <span class="text-danger">*</span></label>
-                                            <input type="text" id="mobile" name="mobile" class="form-control" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" >
+                                            <input type="text" id="mobile" name="mobile" class="form-control"  oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q5. District</label>
                                             <input type="text" name="district" value="{{ $district }}" id="district" class="form-control" value="" readonly>
                                         </div>
-                                        <div class="mb-6 col-md-6">
+                                        <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q6. Taluka: </label>
-                                            <select name="tehsil" id="tehsil" class="form-control" required>
+                                            <select name="tehsil" id="tehsil" class="form-control" >
                                                 <option value="">Select Taluka</option>
                                                 @foreach(json_decode($tehsils) as $tehsil)
                                                     <option value="{{ $tehsil }}" > {{ $tehsil }} </option>
@@ -165,14 +172,14 @@
                                             </select>
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-6 col-md-6 py-2">
                                             <label for="uc">Q7. Union Council: </label>
                                             <select name="uc" id="uc" class="form-control">
                                             </select>
                                         </div>
 
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-6 col-md-6 py-2">
                                             <label for="tappa">Q8. Tappa: </label>
                                             <select name="tappa" id="tappa" class="form-control">
                                             </select>

@@ -160,7 +160,7 @@
                                             <label class="form-label">Q5. District</label>
                                             <input type="text" name="district" value="{{ $district }}" id="district" class="form-control" value="" readonly>
                                         </div>
-                                        <div class="mb-6 col-md-6">
+                                        <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q6. Taluka: </label>
                                             <select name="tehsil" id="tehsil" class="form-control" required>
                                                 @foreach(json_decode($tehsil) as $option)
@@ -180,6 +180,13 @@
                                             <label for="uc">UC</label>
                                             <select name="uc" id="uc" class="form-control">
                                                 <option  value="{{ $data->uc }}" selected >{{ $data->uc }}</option>
+                                            </select>
+                                        </div>
+                                        @else
+                                        <div class="mb-3 col-md-6">
+                                            <label for="uc">UC</label>
+                                            <select name="uc" id="uc" class="form-control">
+                                                <option  value=""  ></option>
                                             </select>
                                         </div>
                                         @endif
@@ -404,6 +411,7 @@
                                                     </thead>
 
                                                     <tbody id="crop_tableBody">
+                                                        @if (json_decode($data->crops) != null)
                                                         @foreach (json_decode($data->crops) as $index => $crops)
                                                         <tr>
                                                             <td>
@@ -439,6 +447,7 @@
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
                                                         @endforeach
+                                                        @endif
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -492,14 +501,11 @@
                                                 <option value="rotavetor">Rotavetor</option>
                                                 <option value="thresher">Thresher</option>
                                                 <option value="harvester">Harvester</option>
-
-                                                @foreach (json_decode($data->physical_asset_item) as $physical_asset_item)
-
-                                                <option value="{{ $physical_asset_item }}" selected>{{ $physical_asset_item }}</option>
-                                                @endforeach
-
-
-
+                                                @if (json_decode($data->physical_asset_item) != null)
+                                                    @foreach (json_decode($data->physical_asset_item) as $physical_asset_item)
+                                                        <option value="{{ $physical_asset_item }}" selected>{{ $physical_asset_item }}</option>
+                                                    @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
@@ -517,6 +523,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="poultry_assets_tableBody">
+                                                    @if (json_decode($data->animal_name) != null)
                                                     @foreach (json_decode($data->animal_name) as $index => $animal_name)
                                                     <tr>
                                                         <td>
@@ -551,6 +558,7 @@
                                                         <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                     </tr>
                                                     @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
