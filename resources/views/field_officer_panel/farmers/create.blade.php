@@ -72,6 +72,12 @@
     .select2-container--default .select2-selection--multiple {
         padding-top: 5px !important;
     }
+
+
+
+    .select2-container--default {
+        width: 100% !important;
+    }
 </style>
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
@@ -138,6 +144,10 @@
 
                             <form id="registrationForm" action="{{ route('farmer-store-by-field-officer') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @if(isset($data))
+                                <input type="hidden" value="{{ $data->id ?? '' }}" name="edit_id">
+                                <input type="hidden" value="{{ $data->user_type ?? '' }}" name="user_type">
+                                @endif
                                 <div class="step step-1">
                                     <div class="row mt-2">
                                         <h4 class="card-title">Personal Details</h4>
@@ -212,7 +222,7 @@
                                             </label>
                                         </div>
 
-
+{{-- {{asset('public/'.$data->front_id_card)}} --}}
 
                                         <div class="mb-8 col-md-8 mt-3">
                                             <label class="form-label"><b>Q12: Owner Type: </b></label>
@@ -414,6 +424,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody id="crop_tableBody">
+
                                                         @if (isset($data) && json_decode($data->crops) != null)
                                                         @foreach (json_decode($data->crops) as $index => $crops)
                                                         <tr>
@@ -488,7 +499,7 @@
                                             <select name="physical_asset_item[]" id="" class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
                                                 @if (isset($data) && json_decode($data->physical_asset_item) != null)
 
-                                                @php
+                                                {{-- @php
                                                     // Decode the JSON and remove duplicates if exists
                                                     $physical_asset_items = json_decode($data->physical_asset_item);
                                                     $unique_items = is_array($physical_asset_items) ? array_unique($physical_asset_items) : [];
@@ -515,6 +526,24 @@
                                                         @if(in_array($value, $unique_items)) selected @endif>
                                                         {{ $label }}
                                                     </option>
+                                                @endforeach --}}
+
+                                                <option value="car/jeep">Car/Jeep </option>
+                                                <option value="pickup/loader">Pickup/loader</option>
+                                                <option value="motorcycle">Motorcycle</option>
+                                                <option value="bicycles">Bicycles</option>
+                                                <option value="bullock cart">Bullock Cart</option>
+                                                <option value="Tractor(4wheels)">Tractor (4 wheels)</option>
+                                                <option value="disk_harrow">Disk Harrow</option>
+                                                <option value="cultivator">Cultivator</option>
+                                                <option value="tractor trolley">Tractor Trolley</option>
+                                                <option value="plough">Plough (wood or metal)</option>
+                                                <option value="laser lever">Laser lever</option>
+                                                <option value="rotavetor">Rotavetor</option>
+                                                <option value="thresher">Thresher</option>
+                                                <option value="harvester">Harvester</option>
+                                                @foreach (json_decode($data->physical_asset_item) as $physical_asset_item)
+                                                    <option value="{{$physical_asset_item}}" selected>{{$physical_asset_item}} </option>
                                                 @endforeach
                                                 @else
                                                 <option value="car/jeep">Car/Jeep </option>
@@ -636,18 +665,18 @@
                                         <div class="row mb-12 col-md-12" id="status_of_water_section">
                                             <div class="mb-3 col-md-3">
                                                 <label class="form-label">Total length (Meter)</label>
-                                                <input type="text" name="area_length" class="form-control" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                <input type="text" name="area_length" class="form-control" value="{{ $data->area_length ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
                                             <div class="mb-3 col-md-3">
                                                 <label class="form-label">Total Command Area (Acres)</label>
-                                                <input type="text" name="total_command_area" class="form-control" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                <input type="text" name="total_command_area" class="form-control" value="{{ $data->total_command_area ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
                                             <div class="mb-3 col-md-3">
                                                 <label class="form-label">Area length</label>
                                                 <select class="form-control" id="lined_unlined" name="line_status">
                                                     <option value="">Select Lined/Unlined</option>
-                                                    <option value="lined">lined</option>
-                                                    <option value="unlined">Unlind</option>
+                                                    <option value="lined" @if(isset($data->line_status)) {{ ($data->line_status == 'lined') ? 'selected':'' }} @endif>lined</option>
+                                                    <option value="unlined" @if(isset($data->line_status)) {{ ($data->line_status == 'unlined') ? 'selected':'' }} @endif>Unlind</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -666,27 +695,27 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Q23: Title of Account</label>
-                                            <input type="text" name="account_title" class="form-control" >
+                                            <input type="text" name="account_title" class="form-control" value="{{$data->account_title ?? ''}}" >
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Q24: Account No</label>
-                                            <input type="text" name="account_no" class="form-control" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
+                                            <input type="text" name="account_no" class="form-control" value="{{$data->account_no ?? ''}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Q25: Bank Name</label>
-                                            <input type="text" name="bank_name"  class="form-control" value="Sindh Bank">
+                                            <input type="text" name="bank_name"  class="form-control" value=" {{$data->bank_name ?? 'Sindh Bank'}}">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Q26: Branch Name</label>
-                                            <input type="text" name="branch_name" value="" class="form-control">
+                                            <input type="text" name="branch_name" value="{{$data->branch_name ?? ''}}" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Q27: IBAN</label>
-                                            <input type="text" name="IBAN_number" value="" class="form-control" >
+                                            <input type="text" name="IBAN_number" value="{{$data->IBAN_number ?? ''}}" class="form-control" >
                                         </div>
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Q28: Branch Code</label>
-                                            <input type="text" name="branch_code" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                                            <input type="text" name="branch_code" value="{{$data->branch_code ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
                                         </div>
                                     </div>
                                     <div class="row mt-2">
@@ -728,29 +757,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Modal -->
-                                        {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Geofencing</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div id="map"></div> <!-- Map container -->
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger" id="removeMarkerBtn">Remove Last Marker</button>
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> --}}
-
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(3)">Previous</button>
                                     <button type="button" class="btn btn-primary mt-5" onclick="nextStep(5)">Next</button>
