@@ -201,13 +201,30 @@ class FieldOfficerPanelController extends Controller
              'branch_code' => 'required',
 
              // File uploads
-             'front_id_card' => 'required',
-             'back_id_card' => 'required',
-             'upload_land_proof' => 'required',
-             'upload_other_attach' => 'required',
-             'upload_farmer_pic' => 'required',
+            'front_id_card' => 'required|file|mimes:jpg,png,jpeg|max:500',
+            'back_id_card' => 'required|file|mimes:jpg,png,jpeg|max:500',
+            'upload_land_proof' => 'required|file|mimes:jpg,png,jpeg|max:500',
+            'upload_farmer_pic' => 'required|file|mimes:jpg,png,jpeg|max:500',
         ];
-        $validator = Validator::make($request->all(), $rules);
+
+        $messages = [
+            'front_id_card.max' => 'The ID card file size must not exceed 500KB.',
+            'back_id_card.max' => 'The ID card file size must not exceed 500KB.',
+            'upload_land_proof.max' => 'The land proof file size must not exceed 500KB.',
+            'upload_farmer_pic.max' => 'The farmer photo file size must not exceed 500KB.',
+            'upload_land_proof.required' => 'Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) is required.',
+            'upload_farmer_pic.required' => 'Photo of the farmer is required.',
+
+            'front_id_card.mimes' => 'The ID card must be a file of type: jpg, jpeg, png.',
+            'back_id_card.mimes' => 'The ID card must be a file of type: jpg, jpeg, png.',
+            'upload_land_proof.mimes' => 'The land proof file must be of type: jpg, jpeg, png.',
+            'upload_farmer_pic.mimes' => 'The farmer photo must be of type: jpg, jpeg, png.',
+
+
+        ];
+
+
+        $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
             return ['errors' => $validator->errors()];
         }
