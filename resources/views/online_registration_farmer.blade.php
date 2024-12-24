@@ -22,10 +22,11 @@
             box-sizing: border-box;
             text-decoration: none !important;
         }
-        body
-{
-  font-family: 'Laila', sans-serif!important;
-}
+
+        body {
+            font-family: 'Laila', sans-serif !important;
+        }
+
         #map {
             height: 400px;
             /* Define map container height */
@@ -192,13 +193,13 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                     @if (session()->has('farmers-registered'))
                     <script>
                         Swal.fire({
-                        title: "Success!",
-                        text: "Farmer Registered Succesfully!",
-                        icon: "success"
+                            title: "Success!",
+                            text: "Farmer Registered Succesfully!",
+                            icon: "success"
                         });
                     </script>
 
-                @endif
+                    @endif
                     <div class="row">
                         <div class="col-md-12">
                             @if ($errors->any())
@@ -244,7 +245,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <select id="districts" name="district" class="form-control">
                                                         <option value="">Select District</option>
                                                         @foreach ($districts as $district)
-                                                            <option value="{{$district->district}}">{{$district->district}}</option>
+                                                        <option value="{{$district->district}}">{{$district->district}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -280,30 +281,30 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
                                                 <div class="mb-4 col-md-4 mt-2">
                                                     <label class="form-label"><b>Q11. Gender (Tick):</b></label><br>
-                                                     &nbsp;<label>
+                                                    &nbsp;<label>
                                                         <input type="radio" name="gender" value="male"> Male
-                                                      </label>
-                                                      &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-                                                      <label>
+                                                    </label>
+                                                    &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                                                    <label>
                                                         <input type="radio" name="gender" value="female"> Female
-                                                      </label>
+                                                    </label>
                                                 </div>
 
                                                 <div class="mb-2 col-md-8">
                                                     <label class="form-label"><b>Q12: Owner Type: </b></label>
-                                                        <br>
-                                                        &nbsp;
-                                                        <label>
-                                                            <input type="radio" name="owner_type" value="owner"> 1. Owner
-                                                        </label>
-                                                        &nbsp;
-                                                        <label>
-                                                            <input type="radio" name="owner_type" value="makadedar"> 2. Makadedar (Contractor/leasee)
-                                                        </label>
-                                                        &nbsp;
-                                                        <label>
-                                                            <input type="radio" name="owner_type" value="sharecropper"> 3. sharecropper/Tenant
-                                                        </label>
+                                                    <br>
+                                                    &nbsp;
+                                                    <label>
+                                                        <input type="radio" name="owner_type" value="owner"> 1. Owner
+                                                    </label>
+                                                    &nbsp;
+                                                    <label>
+                                                        <input type="radio" name="owner_type" value="makadedar"> 2. Makadedar (Contractor/leasee)
+                                                    </label>
+                                                    &nbsp;
+                                                    <label>
+                                                        <input type="radio" name="owner_type" value="sharecropper"> 3. sharecropper/Tenant
+                                                    </label>
                                                 </div>
                                             </div>
 
@@ -363,7 +364,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                             <div class="row">
 
                                                 <div class="mb-4 col-md-4 ">
-                                                    <label class="form-label">Q14: Next of Kin:  Full Name: </label>
+                                                    <label class="form-label">Q14: Next of Kin: Full Name: </label>
                                                     <input type="text" name="full_name_of_next_kin" class="form-control" value="">
                                                 </div>
                                                 <div class="mb-4 col-md-4 ">
@@ -381,11 +382,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="mb-6 col-6">
                                                     <label class="form-label"><b>Q15. House Type:</b></label> &nbsp; &nbsp; &nbsp;
                                                     <label>
-                                                    <input type="radio" name="house_type" value="pakka_house"> &nbsp; (1) Pakka House
+                                                        <input type="radio" name="house_type" value="pakka_house"> &nbsp; (1) Pakka House
                                                     </label>
                                                     &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
                                                     <label>
-                                                    <input type="radio" name="house_type" value="kacha_house"> &nbsp; (2) Kacha House
+                                                        <input type="radio" name="house_type" value="kacha_house"> &nbsp; (2) Kacha House
                                                     </label>
                                                 </div>
                                             </div>
@@ -580,11 +581,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <img src="{{asset('')}}/login_assets/survey.png" alt="" style="height: 25px;width: 25px;">
 
                                                     <h6 class="card-title font-weight-bold" style="line-height: 27px;margin-left: 10px;">
-                                                       Source of irrigation</h6>
+                                                        Source of irrigation</h6>
                                                 </div>
                                                 <div class="row mb-12 col-md-12" id="source_of_irrigation_section">
                                                     <div class="mb-6 col-md-6">
-                                                        <label class="form-label">Q20:  Source of irrigation</label>
+                                                        <label class="form-label">Q20: Source of irrigation</label>
                                                         <select name="source_of_irrigation" class="form-control" id="source_of_irrigation">
                                                             <option value="canal_wall">(1) Canal System</option>
                                                             <option value="tube_well">(2) Tube Well</option>
@@ -632,7 +633,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
                                                 <div class="mb-6 col-md-6">
                                                     <label class="form-label">Q23: Title of Account</label>
-                                                    <input type="text" name="account_title" class="form-control" >
+                                                    <input type="text" name="account_title" class="form-control">
                                                 </div>
                                                 <div class="mb-6 col-md-6">
                                                     <label class="form-label">Q24: Account No</label>
@@ -640,7 +641,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-2">
                                                     <label class="form-label">Q25: Bank Name</label>
-                                                    <input type="text" name="bank_name"  class="form-control" value="Sindh Bank">
+                                                    <input type="text" name="bank_name" class="form-control" value="Sindh Bank">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-2">
                                                     <label class="form-label">Q26: Branch Name</label>
@@ -714,24 +715,24 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                         Q29: DOCUMENTS UPLOADED/ COLLECTED</h6>
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">CNIC FRONT <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                                    <label class="form-label">CNIC FRONT <span class="text-danger"> *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
                                                     <input type="file" name="front_id_card" class="form-control checkfiles" onchange="checkFiles()">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">CNIC BACK <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                                    <label class="form-label">CNIC BACK <span class="text-danger"> *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
                                                     <input type="file" name="back_id_card" class="form-control checkfiles" onchange="checkFiles()">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents)  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                                    <label class="form-label">Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) <span class="text-danger"> *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
                                                     <input type="file" name="upload_land_proof" class="form-control checkfiles" onchange="checkFiles()">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Photo  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                                    <label class="form-label">Photo <span class="text-danger"> *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
                                                     <input type="file" name="upload_farmer_pic" class="form-control checkfiles" onchange="checkFiles()">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
                                                     <label class="form-label">Others<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                                    <input type="file" name="upload_other_attach" class="form-control" >
+                                                    <input type="file" name="upload_other_attach" class="form-control">
                                                 </div>
                                                 {{-- <div class="mb-6 col-md-6 mt-3">
                                                     <label class="form-label">Upload Farmer Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
@@ -762,41 +763,41 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/main.js"></script>
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/select2.min.js"></script>
         <script>
-$(document).ready(function() {
-    $('body').on('change','.crop_season', function() {
-        const selectedValue = $(this).val();
-        const $selectElement = $(this);
+            $(document).ready(function() {
+                $('body').on('change', '.crop_season', function() {
+                    const selectedValue = $(this).val();
+                    const $selectElement = $(this);
 
-        // Find the closest <td> element (the one containing the <select>)
-        const $closestTd = $selectElement.closest('td');
+                    // Find the closest <td> element (the one containing the <select>)
+                    const $closestTd = $selectElement.closest('td');
 
-        // Find the appended input field inside the <td>
-        let $nextInput = $closestTd.find('input');
+                    // Find the appended input field inside the <td>
+                    let $nextInput = $closestTd.find('input');
 
-        // Clear any existing input field if the selection is not 'any_other'
-        if (selectedValue !== 'any_other') {
-            if ($nextInput.length) {
-                $nextInput.remove(); // Remove the appended input if it exists
-            }
-        }
+                    // Clear any existing input field if the selection is not 'any_other'
+                    if (selectedValue !== 'any_other') {
+                        if ($nextInput.length) {
+                            $nextInput.remove(); // Remove the appended input if it exists
+                        }
+                    }
 
-        // If 'any_other' is selected, append a new input field in the same <td>
-        if (selectedValue === 'any_other') {
-            // If an input field is already appended, don't append again
-            if (!$nextInput.length) {
-                const inputField = $('<input>', {
-                    type: 'text',
-                    name: 'other_crop_season[]',
-                    class: 'form-control mt-2',
-                    placeholder: 'Please specify other season'
+                    // If 'any_other' is selected, append a new input field in the same <td>
+                    if (selectedValue === 'any_other') {
+                        // If an input field is already appended, don't append again
+                        if (!$nextInput.length) {
+                            const inputField = $('<input>', {
+                                type: 'text',
+                                name: 'other_crop_season[]',
+                                class: 'form-control mt-2',
+                                placeholder: 'Please specify other season'
+                            });
+
+                            // Append the new input field in the same <td> as the <select>
+                            $closestTd.append(inputField);
+                        }
+                    }
                 });
-
-                // Append the new input field in the same <td> as the <select>
-                $closestTd.append(inputField);
-            }
-        }
-    });
-});
+            });
 
 
 
