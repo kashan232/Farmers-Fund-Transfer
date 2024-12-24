@@ -311,7 +311,7 @@
                                                         // Decoding the JSON if it's a JSON string
                                                         $cropSeasons = is_string($data->crop_season) ? json_decode($data->crop_season) : $data->crop_season;
                                                     @endphp
-                                                    @if(in_array('any_other', json_decode($data->crop_season)))
+                                                    @if(!in_array('any_other', json_decode($data->crop_season)))
                                                     @foreach (json_decode($data->crops) as $crop)
                                                     <tr>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crops)[$index]}}</td>
@@ -463,7 +463,7 @@
                                     @if($data->front_id_card != null)
                                         @php
                                             // Assuming front_id_card contains the path to the image file
-                                            $imagePath = public_path('land_farmers/front_id_card/' . $data->front_id_card);
+                                            $imagePath = public_path('fa_farmers/front_id_card/' . $data->front_id_card);
 
                                             // Check if the image exists before encoding
                                             if (file_exists($imagePath)) {
@@ -485,7 +485,7 @@
                                 @if($data->back_id_card != null)
                                         @php
                                             // Assuming front_id_card contains the path to the image file
-                                            $imagePath = public_path('land_farmers/back_id_card/' . $data->back_id_card);
+                                            $imagePath = public_path('fa_farmers/back_id_card/' . $data->back_id_card);
 
                                             // Check if the image exists before encoding
                                             if (file_exists($imagePath)) {
@@ -514,7 +514,7 @@
                                @if($data->upload_land_proof != null)
                                         @php
                                             // Assuming upload_land_proof contains the path to the image file
-                                            $imagePath = public_path('land_farmers/upload_land_proof/' . $data->upload_land_proof);
+                                            $imagePath = public_path('fa_farmers/upload_land_proof/' . $data->upload_land_proof);
 
                                             // Check if the image exists before encoding
                                             if (file_exists($imagePath)) {
@@ -539,7 +539,7 @@
                                 @if($data->upload_farmer_pic != null)
                                         @php
                                             // Assuming upload_farmer_pic contains the path to the image file
-                                            $imagePath = public_path('land_farmers/upload_farmer_pic/' . $data->upload_farmer_pic);
+                                            $imagePath = public_path('fa_farmers/upload_farmer_pic/' . $data->upload_farmer_pic);
 
                                             // Check if the image exists before encoding
                                             if (file_exists($imagePath)) {
@@ -566,7 +566,7 @@
                                 @if($data->upload_other_attach != null)
                                         @php
                                             // Assuming upload_other_attach contains the path to the image file
-                                            $imagePath = public_path('land_farmers/upload_other_attach/' . $data->upload_other_attach);
+                                            $imagePath = public_path('fa_farmers/upload_other_attach/' . $data->upload_other_attach);
 
                                             // Check if the image exists before encoding
                                             if (file_exists($imagePath)) {

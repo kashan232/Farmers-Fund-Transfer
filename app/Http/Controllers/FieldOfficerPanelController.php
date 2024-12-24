@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use function PHPUnit\Framework\returnSelf;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class FieldOfficerPanelController extends Controller
 {
@@ -156,57 +157,74 @@ class FieldOfficerPanelController extends Controller
              'father_name' => 'required',
              'cnic' => 'required|digits:13',
              'mobile' => 'required',
-             // 'district' => 'required',
-             // 'tehsil' => 'required',
-             // 'uc' => 'required',
-             // 'tappa' => 'required',
-             // 'dah' => 'required',
-             // 'village' => 'required',
-             // 'gender' => 'required',
-             // 'house_type' => 'required',
-             // 'owner_type' => 'required',
-             // 'full_name_of_next_kin' => 'required',
-             // 'cnic_of_next_kin' => 'required',
-             // 'mobile_of_next_kin' => 'required',
-             // 'female_children_under16' => 'required',
-             // 'female_Adults_above16' => 'required',
-             // 'male_children_under16' => 'required',
-             // 'male_Adults_above16' => 'required',
-             // 'total_landing_acre' => 'required',
-             // 'total_area_with_hari' => 'required',
-             // 'total_area_cultivated_land' => 'required',
-             // 'total_fallow_land' => 'required',
-             // 'title_name.*' => 'required',
-             // 'title_cnic.*' => 'required',
-             // 'title_number.*' => 'required',
-             // 'title_area.*' => 'required',
-             // 'crops.*' => 'required',
-             // 'crop_area.*' => 'required',
-             // 'crop_average_yeild.*' => 'required',
-             // 'physical_asset_item' => 'required',
-             // 'animal_name.*' => 'required',
-             // 'animal_qty.*' => 'required',
-             // 'source_of_irrigation' => 'required',
-             // 'source_of_irrigation_engery' => 'required',
-             // 'area_length' => 'required',
-             // 'line_status' => 'required',
-             // 'lined_length' => 'required',
-             // 'total_command_area' => 'required',
-             // 'account_title' => 'required',
-             // 'account_no' => 'required',
-             // 'bank_name' => 'required',
-             // 'branch_name' => 'required',
-             // 'IBAN_number' => 'required',
-             // 'branch_code' => 'required',
+             'district' => 'required',
+             'tehsil' => 'required',
+            //  'uc' => 'required',
+             'tappa' => 'required',
+             'dah' => 'required',
+             'village' => 'required',
+             'gender' => 'required',
+             'house_type' => 'required',
+             'owner_type' => 'required',
+             'full_name_of_next_kin' => 'required',
+             'cnic_of_next_kin' => 'required',
+             'mobile_of_next_kin' => 'required',
+             'female_children_under16' => 'required',
+             'female_Adults_above16' => 'required',
+             'male_children_under16' => 'required',
+             'male_Adults_above16' => 'required',
+             'total_landing_acre' => 'required',
+             'total_area_with_hari' => 'required',
+             'total_area_cultivated_land' => 'required',
+             'total_fallow_land' => 'required',
+             'title_name.*' => 'required',
+             'title_cnic.*' => 'required',
+             'title_number.*' => 'required',
+             'title_area.*' => 'required',
+             'crops.*' => 'required',
+             'crop_area.*' => 'required',
+             'crop_average_yeild.*' => 'required',
+             'physical_asset_item' => 'required',
+             'animal_name.*' => 'required',
+             'animal_qty.*' => 'required',
+             'source_of_irrigation' => 'required',
+             'source_of_irrigation_engery' => 'required',
+             'area_length' => 'required',
+             'line_status' => 'required',
+             'lined_length' => 'required',
+             'total_command_area' => 'required',
+             'account_title' => 'required',
+             'account_no' => 'required',
+             'bank_name' => 'required',
+             'branch_name' => 'required',
+             'IBAN_number' => 'required',
+             'branch_code' => 'required',
 
              // File uploads
-             'front_id_card' => 'required',
-             'back_id_card' => 'required',
-             'upload_land_proof' => 'required',
-             'upload_other_attach' => 'required',
-             'upload_farmer_pic' => 'required',
+            'front_id_card' => 'required|file|mimes:jpg,png,jpeg|max:500',
+            'back_id_card' => 'required|file|mimes:jpg,png,jpeg|max:500',
+            'upload_land_proof' => 'required|file|mimes:jpg,png,jpeg|max:500',
+            'upload_farmer_pic' => 'required|file|mimes:jpg,png,jpeg|max:500',
         ];
-        $validator = Validator::make($request->all(), $rules);
+
+        $messages = [
+            'front_id_card.max' => 'The ID card file size must not exceed 500KB.',
+            'back_id_card.max' => 'The ID card file size must not exceed 500KB.',
+            'upload_land_proof.max' => 'The land proof file size must not exceed 500KB.',
+            'upload_farmer_pic.max' => 'The farmer photo file size must not exceed 500KB.',
+            'upload_land_proof.required' => 'Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) is required.',
+            'upload_farmer_pic.required' => 'Photo of the farmer is required.',
+
+            'front_id_card.mimes' => 'The ID card must be a file of type: jpg, jpeg, png.',
+            'back_id_card.mimes' => 'The ID card must be a file of type: jpg, jpeg, png.',
+            'upload_land_proof.mimes' => 'The land proof file must be of type: jpg, jpeg, png.',
+            'upload_farmer_pic.mimes' => 'The farmer photo must be of type: jpg, jpeg, png.',
+
+
+        ];
+
+
+        $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
             return ['errors' => $validator->errors()];
         }
@@ -238,13 +256,24 @@ class FieldOfficerPanelController extends Controller
             $data['animal_qty'] = json_encode($request->animal_qty);
 
             $data['verification_status'] = null;
+            $data['declined_reason'] = null;
 
+            // // Handle front ID card image
+            // if ($request->hasFile('front_id_card')) {
+            //     $front_id_cardimage = $request->file('front_id_card');
+            //     $front_id_cardimageName = 'fa_farmers/upload_other_attach/' . time() . '_' . uniqid() . '.' . $front_id_cardimage->getClientOriginalExtension();
+            //     // Store the file in the storage/app folder and make it publicly accessible
+            //     $path = $front_id_cardimage->storeAs('public/' . $front_id_cardimageName);
+            //     $data['front_id_card'] = $path;
 
-            // Handle front ID card image
+            //     // dd($path);
+            // }
+
+             // Handle front ID card image
             if ($request->hasFile('front_id_card')) {
                 $front_id_cardimage = $request->file('front_id_card');
                 $front_id_cardimageName = time() . '_' . uniqid() . '.' . $front_id_cardimage->getClientOriginalExtension();
-                $front_id_cardimage->move(public_path('land_farmers/front_id_card'), $front_id_cardimageName);
+                $front_id_cardimage->move(public_path('fa_farmers/front_id_card'), $front_id_cardimageName);
                 $data['front_id_card'] = $front_id_cardimageName;
             }
 
@@ -252,7 +281,7 @@ class FieldOfficerPanelController extends Controller
             if ($request->hasFile('back_id_card')) {
                 $back_id_cardimage = $request->file('back_id_card');
                 $back_id_cardimageName = time() . '_' . uniqid() . '.' . $back_id_cardimage->getClientOriginalExtension();
-                $back_id_cardimage->move(public_path('land_farmers/back_id_card'), $back_id_cardimageName);
+                $back_id_cardimage->move(public_path('fa_farmers/back_id_card'), $back_id_cardimageName);
                 $data['back_id_card'] = $back_id_cardimageName;
             }
 
@@ -260,7 +289,7 @@ class FieldOfficerPanelController extends Controller
             if ($request->hasFile('upload_land_proof')) {
                 $upload_land_proofimage = $request->file('upload_land_proof');
                 $upload_land_proofimageName = time() . '_' . uniqid() . '.' . $upload_land_proofimage->getClientOriginalExtension();
-                $upload_land_proofimage->move(public_path('land_farmers/upload_land_proof'), $upload_land_proofimageName);
+                $upload_land_proofimage->move(public_path('fa_farmers/upload_land_proof'), $upload_land_proofimageName);
                 $data['upload_land_proof'] = $upload_land_proofimageName;
             }
 
@@ -268,7 +297,7 @@ class FieldOfficerPanelController extends Controller
             if ($request->hasFile('upload_other_attach')) {
                 $upload_other_attachimage = $request->file('upload_other_attach');
                 $upload_other_attachimageName = time() . '_' . uniqid() . '.' . $upload_other_attachimage->getClientOriginalExtension();
-                $upload_other_attachimage->move(public_path('land_farmers/upload_other_attach'), $upload_other_attachimageName);
+                $upload_other_attachimage->move(public_path('fa_farmers/upload_other_attach'), $upload_other_attachimageName);
                 $data['upload_other_attach'] = $upload_other_attachimageName;
             }
 
@@ -276,7 +305,7 @@ class FieldOfficerPanelController extends Controller
             if ($request->hasFile('upload_farmer_pic')) {
                 $upload_farmer_picimage = $request->file('upload_farmer_pic');
                 $upload_farmer_picimageName = time() . '_' . uniqid() . '.' . $upload_farmer_picimage->getClientOriginalExtension();
-                $upload_farmer_picimage->move(public_path('land_farmers/upload_farmer_pic'), $upload_farmer_picimageName);
+                $upload_farmer_picimage->move(public_path('fa_farmers/upload_farmer_pic'), $upload_farmer_picimageName);
                 $data['upload_farmer_pic'] = $upload_farmer_picimageName;
             }
 
@@ -284,7 +313,7 @@ class FieldOfficerPanelController extends Controller
             if ($request->hasFile('upload_cheque_pic')) {
                 $upload_cheque_picimage = $request->file('upload_cheque_pic');
                 $upload_cheque_picimageName = time() . '_' . uniqid() . '.' . $upload_cheque_picimage->getClientOriginalExtension();
-                $upload_cheque_picimage->move(public_path('land_farmers/upload_cheque_pic'), $upload_cheque_picimageName);
+                $upload_cheque_picimage->move(public_path('fa_farmers/upload_cheque_pic'), $upload_cheque_picimageName);
                 $data['upload_cheque_pic'] = $upload_cheque_picimageName;
             }
 
