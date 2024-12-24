@@ -162,15 +162,15 @@
                         <span class="pc-micon">
                             <i class="fas fa-user-tie"></i>
                         </span>
-                        <span class="pc-mtext">DG(Ext) Officers</span>
+                        <span class="pc-mtext " style="font-size: 11px">DG(Ext)/PD/PMS(ADU-SWAT)</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('dg-officer-create') }}">Create DG(Ext)</a>
+                            <a class="pc-link" href="{{ route('dg-officer-create') }}">Create</a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="{{ route('all-dg-officer') }}">All DG(Ext)</a>
+                            <a class="pc-link" href="{{ route('all-dg-officer') }}">All</a>
                         </li>
                     </ul>
                 </li>

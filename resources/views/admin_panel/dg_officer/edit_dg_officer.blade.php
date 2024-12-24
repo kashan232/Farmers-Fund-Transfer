@@ -87,11 +87,13 @@
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select Tehsil</label>
                                             <select name="tehsil[]" id="tehsil" class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple" required>
+                                                @if($data->tehsil != null && is_array(json_decode($data->tehsil)))
                                                 @foreach (json_decode($data->tehsil) as $tehsil)
                                                 <option value="{{ $tehsil }}" selected>
                                                     {{ $tehsil }}
                                                 </option>
                                                 @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>

@@ -23,7 +23,18 @@
 <script src="{{asset('select2.min.js')}}"></script>
 <script>
     $(document).ready(function() {
-        $('.js-example-basic-multiple').select2();
+        // $('.js-example-basic-multiple').select2();
+
+        $('.js-example-basic-multiple').select2({
+            tags: true, // Enable typing custom values
+            placeholder: "Select or type to add a new option", // Optional placeholder
+            tokenSeparators: [',', ' '] // Optional, allows separation by comma or space
+        });
+
+        $('.js-example-basic-single').select2({
+            tags: true, // Enable typing custom values
+            placeholder: "Select or type to add a new option", // Optional placeholder
+        });
     });
 </script>
 
