@@ -94,7 +94,7 @@
                                                         <th>CNIC</th>
                                                         <th>Mobile</th>
                                                         <th>District</th>
-                                                        <th>Tehsil</th>
+                                                        <th>Taluka</th>
                                                         <th>UC</th>
                                                         <th>Tappa</th>
                                                         <th>Village</th>
@@ -237,7 +237,7 @@
         $('#example_wrapper').before(`
             <div class="col-3" style="position: absolute; top:1%" >
                 <select name="tehsil" id="tehsil" class="form-control">
-                    <option value="0">Please Select Tehsil</option>
+                    <option value="0">Please Select Taluka</option>
                     @foreach ($tehsils as $tehsil)
                         <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
                     @endforeach
@@ -245,7 +245,7 @@
             </div>
             @if(!empty($farmers) && isset($farmers[0]) && $farmers[0] != null)
             @if($farmers[0]->user_type  != 'Agri_Officer')
-            <div class="col-3" style="position: absolute; top:1%; left:250px;" >
+            <div class="col-3" style="position: absolute; top:1%; left:27%;" >
                 <select  id="user_type" class="form-control">
                     <option value="">Select Type</option>
                     <option value="Online">Online</option>

@@ -289,7 +289,6 @@ class AgricultureOfficerPanelController extends Controller
         // $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->where('verification_status','=','0')->orWhere('verification_status','=','rejected_by_lo')->paginate(5);
 
         $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)
-        ->where('user_type','!=', 'Agri_Officer') // Match the user_type
         ->where(function($query) {
             $query->where('verification_status', 'rejected_by_lo')
             ->orWhere('verification_status', 'verified_by_do')

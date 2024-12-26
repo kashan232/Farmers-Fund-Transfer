@@ -559,6 +559,7 @@
 
                             </td>
                           </tr>
+
                           <tr>
                             <td colspan="8" style="border: none;"><span> <b>5 Others </b></span> <br>
 

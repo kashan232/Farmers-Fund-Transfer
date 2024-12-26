@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{{asset('select2.min.css')}}">
 
 </head>
 <style>
@@ -81,6 +82,30 @@
             pointer-events: none; /* Disable clicks on the body */
         }
 
+
+
+    .select2-selection--single {
+        height: 40px !important;
+    }
+
+    .select2-selection--single .select2-selection__rendered{
+        line-height: 40px !important;
+    }
+    .select2-selection--single .select2-selection__arrow{
+        top: 8px !important;
+    }
+
+
+    .select2-container--default .select2-selection--multiple {
+        padding-top: 5px !important;
+    }
+
+
+
+    .select2-container--default {
+        width: 100% !important;
+    }
+
 </style>
 <body>
 
@@ -103,9 +128,9 @@
                                     <option value="rejected_by_ao">Unverified</option>
                                 </select>
                             </div>
-                            <div class="form-group" id="reasonBox" style="display: none;">
+                            <div class="form-group" id="reasonBox" >
                                 <label for="reasonTextarea">Reason</label>
-                                <select id="reasonTextarea" name="declined_reason" class="form-control">
+                                <select id="reasonTextarea" name="declined_reason" class="form-control basic-single" >
                                     <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                     <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                     <option value="Attachments are not cleared">Attachments are not cleared</option>
@@ -351,7 +376,7 @@
                                                         // Decoding the JSON if it's a JSON string
                                                         $cropSeasons = is_string($data->crop_season) ? json_decode($data->crop_season) : $data->crop_season;
                                                     @endphp
-                                                    @if(in_array('any_other', json_decode($data->crop_season)))
+                                                    @if(!in_array('any_other', json_decode($data->crop_season)))
                                                     @foreach (json_decode($data->crops) as $crop)
                                                     <tr>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crops)[$index]}}</td>
@@ -503,7 +528,7 @@
                                     @if($data->front_id_card != null)
                                         @php
                                             // Assuming front_id_card contains the path to the image file
-                                            $imagePath = public_path('land_farmers/front_id_card/' . $data->front_id_card);
+                                            $imagePath = public_path('fa_farmers/front_id_card/' . $data->front_id_card);
 
                                             // Check if the image exists before encoding
                                             if (file_exists($imagePath)) {
@@ -525,7 +550,7 @@
                                 @if($data->back_id_card != null)
                                         @php
                                             // Assuming front_id_card contains the path to the image file
-                                            $imagePath = public_path('land_farmers/back_id_card/' . $data->back_id_card);
+                                            $imagePath = public_path('fa_farmers/back_id_card/' . $data->back_id_card);
 
                                             // Check if the image exists before encoding
                                             if (file_exists($imagePath)) {
@@ -554,7 +579,7 @@
                                @if($data->upload_land_proof != null)
                                         @php
                                             // Assuming upload_land_proof contains the path to the image file
-                                            $imagePath = public_path('land_farmers/upload_land_proof/' . $data->upload_land_proof);
+                                            $imagePath = public_path('fa_farmers/upload_land_proof/' . $data->upload_land_proof);
 
                                             // Check if the image exists before encoding
                                             if (file_exists($imagePath)) {
@@ -579,7 +604,7 @@
                                 @if($data->upload_farmer_pic != null)
                                         @php
                                             // Assuming upload_farmer_pic contains the path to the image file
-                                            $imagePath = public_path('land_farmers/upload_farmer_pic/' . $data->upload_farmer_pic);
+                                            $imagePath = public_path('fa_farmers/upload_farmer_pic/' . $data->upload_farmer_pic);
 
                                             // Check if the image exists before encoding
                                             if (file_exists($imagePath)) {
@@ -606,7 +631,7 @@
                                 @if($data->upload_other_attach != null)
                                         @php
                                             // Assuming upload_other_attach contains the path to the image file
-                                            $imagePath = public_path('land_farmers/upload_other_attach/' . $data->upload_other_attach);
+                                            $imagePath = public_path('fa_farmers/upload_other_attach/' . $data->upload_other_attach);
 
                                             // Check if the image exists before encoding
                                             if (file_exists($imagePath)) {
@@ -637,7 +662,18 @@
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="{{asset('')}}assets/js/plugins/popper.min.js"></script>
+<script src="{{asset('select2.min.js')}}"></script>
+
     <script>
+        $('.basic-single').select2({
+            dropdownParent: $('#exampleModalLive'),
+            tags: true, // Enable typing custom values
+            placeholder: "Select or type to add a new option", // Optional placeholder
+        });
+
+
+
+
         function downloadPDF() {
 
 
@@ -730,11 +766,17 @@
 
 
     $('.verifiy-btn').on('click', function() {
+        var farmerId = $(this).data('id');
+        $('#farmer_id').val(farmerId);
+        $('#exampleModalLive').modal('show');
+    });
 
-            var farmerId = $(this).data('id');
-            $('#farmer_id').val(farmerId);
-            $('#exampleModalLive').modal('show');
+
+        $('#exampleModalLive').on('shown.bs.modal', function () {
+            $('.select2').select2('destroy').select2();
         });
+
+
 
     // Event listener for changing the status
     $('#statusSelect').on('change', function() {
@@ -742,6 +784,7 @@
         if ($(this).val() == 'rejected_by_ao') {
             reasonBox.show();
             $('#reasonTextarea').prop('required', true);
+
 
         } else {
             reasonBox.hide();
