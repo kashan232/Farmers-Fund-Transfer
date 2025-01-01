@@ -306,21 +306,20 @@
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Area (Acres)</b></td>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Average Yield (Per Acre)</b></td>
                                                     </tr>
-                                                    @if(is_array($data->crop_season) || is_string($data->crop_season))
+                                                    {{-- @if(is_array($data->crop_season) || is_string($data->crop_season))
                                                     @php
                                                         // Decoding the JSON if it's a JSON string
                                                         $cropSeasons = is_string($data->crop_season) ? json_decode($data->crop_season) : $data->crop_season;
-                                                    @endphp
-                                                    @if(!in_array('any_other', json_decode($data->crop_season)))
+                                                    @endphp --}}
+
                                                     @foreach (json_decode($data->crops) as $crop)
                                                     <tr>
-                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crops)[$index]}}</td>
-                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crop_area)[$index]}}</td>
-                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crop_average_yeild)[$index]}}</td>
+                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crops)[$index] ?? ''}}</td>
+                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crop_area)[$index] ?? ''}}</td>
+                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crop_average_yeild)[$index] ?? ''}}</td>
                                                     </tr>
                                                     @endforeach
-                                                    @endif
-                                                    @endif
+                                                    {{-- @endif --}}
 
                                                 </table>
                                             </td>

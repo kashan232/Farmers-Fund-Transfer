@@ -151,11 +151,12 @@ class FieldOfficerPanelController extends Controller
 
     public function store(Request $request)
     {
+
         $rules = [
              // Text fields
              'name' => 'required',
              'father_name' => 'required',
-             'cnic' => 'required|digits:13',
+             'cnic' => 'required|min:13',
              'mobile' => 'required',
              'district' => 'required',
              'tehsil' => 'required',
@@ -182,6 +183,7 @@ class FieldOfficerPanelController extends Controller
              'title_number.*' => 'required',
              'title_area.*' => 'required',
              'crops.*' => 'required',
+             'crops_orchard.*' => 'required',
              'crop_area.*' => 'required',
              'crop_average_yeild.*' => 'required',
              'physical_asset_item' => 'required',
@@ -247,6 +249,7 @@ class FieldOfficerPanelController extends Controller
 
             $data['crop_season'] = json_encode($request->crop_season);
             $data['crops'] = json_encode($request->crops);
+            $data['crops_orchard'] = json_encode($request->crops_orchard);
             $data['crop_area'] = json_encode($request->crop_area);
             $data['crop_average_yeild'] = json_encode($request->crop_average_yeild);
 
@@ -315,6 +318,14 @@ class FieldOfficerPanelController extends Controller
                 $upload_cheque_picimageName = time() . '_' . uniqid() . '.' . $upload_cheque_picimage->getClientOriginalExtension();
                 $upload_cheque_picimage->move(public_path('fa_farmers/upload_cheque_pic'), $upload_cheque_picimageName);
                 $data['upload_cheque_pic'] = $upload_cheque_picimageName;
+            }
+
+            // Handle cheque picture image
+            if ($request->hasFile('form_seven_pic')) {
+                $form_seven_pic_image = $request->file('form_seven_pic');
+                $form_seven_pic_image_name = time() . '_' . uniqid() . '.' . $form_seven_pic_image->getClientOriginalExtension();
+                $form_seven_pic_image->move(public_path('fa_farmers/form_seven_pic'), $form_seven_pic_image_name);
+                $data['form_seven_pic'] = $form_seven_pic_image_name;
             }
 
             if ($request->edit_id && $request->edit_id != '') {

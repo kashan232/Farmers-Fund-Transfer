@@ -78,6 +78,21 @@
     .select2-container--default {
         width: 100% !important;
     }
+
+
+    @media only screen and (max-width: 600px) {
+        .step-indicator {
+            height: 35px !important;
+            width: 35px !important;
+            font-size: 7px !important;
+        }
+        .connector{
+            width: 10px !important;
+        }
+    }
+
+
+
 </style>
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
@@ -99,7 +114,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">Farmer Registration By FA</h2>
+                            <h2 class="mb-0">Farmer Registration Form</h2>
                         </div>
                     </div>
                 </div>
@@ -161,11 +176,11 @@
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
-                                            <input type="text" id="cnic" name="cnic" class="form-control" value="{{$data->cnic ?? ''}}"  oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"  >
+                                            <input type="text" id="cnic" name="cnic" class="form-control" value="{{$data->cnic ?? ''}}"   data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"   >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q4. Mobile No.: <span class="text-danger">*</span></label>
-                                            <input type="text" id="mobile" name="mobile" class="form-control" value="{{$data->mobile ?? ''}}"  oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" >
+                                            <input type="text" id="mobile" name="mobile" class="form-control" value="{{$data->mobile ?? ''}}"  data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXXX" maxlength="12" >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q5. District</label>
@@ -301,11 +316,11 @@
                                             </div>
                                             <div class="mb-4 col-md-4 ">
                                                 <label class="form-label">CNIC NO:</label>
-                                                <input type="text" name="cnic_of_next_kin" class="form-control" value="{{$data->cnic_of_next_kin ?? ''}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                <input type="text" name="cnic_of_next_kin" class="form-control" value="{{$data->cnic_of_next_kin ?? ''}}" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X" >
                                             </div>
                                             <div class="mb-4 col-md-4 ">
                                                 <label class="form-label">Mobile No:</label>
-                                                <input type="text" name="mobile_of_next_kin" class="form-control" value="{{$data->mobile_of_next_kin ?? ''}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)">
+                                                <input type="text" name="mobile_of_next_kin" class="form-control" value="{{$data->mobile_of_next_kin ?? ''}}" data-inputmask="'mask': '0399-99999999'" maxlength="12">
                                             </div>
                                         </div>
 
@@ -318,6 +333,10 @@
                                                 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
                                                 <label>
                                                 <input type="radio" name="house_type" value="kacha_house"  @if(isset($data->house_type)) {{ ($data->house_type == 'kacha_house') ? 'checked':'' }} @endif> &nbsp; (2) Kacha House
+                                                </label>
+                                                &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                                                <label>
+                                                <input type="radio" name="house_type" value="both_pakka_house_kacha_house"  @if(isset($data->house_type)) {{ ($data->house_type == 'both_pakka_house_kacha_house') ? 'checked':'' }} @endif> &nbsp; (3) Both Pakka & Kacha House
                                                 </label>
                                             </div>
                                         </div>
@@ -358,7 +377,7 @@
 
                                         <div class="row " class="" id="no_title_section">
                                             <div class=" mt-2 mb-12 col-md-12">
-                                                <h6>Particulars of Teuants / Sharecroppers</h6>
+                                                <h6>Particulars of Tenants / Sharecroppers</h6>
                                             </div>
                                             <div class="col-12">
                                                 <table id="title_table" class="table table-bordered">
@@ -378,8 +397,8 @@
                                                         @foreach (json_decode($data->title_name) as $index => $title_name)
                                                         <tr>
                                                             <td><input type="text" name="title_name[]" value="{{$title_name}}" class="form-control"></td>
-                                                            <td><input type="text" name="title_cnic[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
-                                                            <td><input type="text" name="title_number[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
+                                                            <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
+                                                            <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'"  placeholder="XXXX-XXXXXXX"  maxlength="12" value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
                                                             <td><input type="text" name="title_area[]" value="{{json_decode($data->title_area)[$index]}}" class="form-control"></td>
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
@@ -390,10 +409,10 @@
                                                                 <input type="text" name="title_name[]" value="" class="form-control">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="title_cnic[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                                <input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  >
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="title_number[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)">
+                                                                <input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXXX" maxlength="12">
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="title_area[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
@@ -417,9 +436,10 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Season</th>
+                                                            <th>Orchard</th>
                                                             <th>Crop(s)</th>
                                                             <th>Area (Acres)</th>
-                                                            <th>Average Yield (Per Acre)</th>
+                                                            <th>Average Yield (Per Mds)</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -433,11 +453,12 @@
                                                                     <option value="">Select Season</option>
                                                                     <option value="rabi season" >Rabi Season</option>
                                                                     <option value="kharif season">Kharif Season</option>
-                                                                    <option value="orchards">Orchards</option>
+                                                                    {{-- <option value="orchards">Orchards</option> --}}
                                                                     <option value="{{ json_decode($data->crop_season)[$index] }}" selected>{{ json_decode($data->crop_season)[$index] }}</option>
                                                                 </select>
 
                                                             </td>
+                                                            <td><input type="text" name="crops_orchard[]" value="{{json_decode($data->crops_orchard)[$index]}}" class="form-control"></td>
                                                             <td>
                                                                 <input type="text" name="crops[]" value="{{$crops}}" class="form-control">
                                                             </td>
@@ -457,10 +478,12 @@
                                                                     <option value="">Select Season</option>
                                                                     <option value="rabi season" >Rabi Season</option>
                                                                     <option value="kharif season">Kharif Season</option>
-                                                                    <option value="orchards">Orchards</option>
+                                                                    {{-- <option value="orchards">Orchards</option> --}}
 
                                                                 </select>
                                                             </td>
+                                                            <td><input type="text" name="crops_orchard[]" class="form-control"></td>
+
                                                             <td>
                                                                 <input type="text" name="crops[]" value="" class="form-control">
                                                             </td>
@@ -589,7 +612,7 @@
                                                                 <option value="Buffalo">Buffalo</option>
                                                                 <option value="Cows">Cows</option>
                                                                 <option value="Camels">Camels</option>
-                                                                <option value="Goals">Goals</option>
+                                                                <option value="Goats">Goats</option>
                                                                 <option value="Sheep">Sheep</option>
                                                                 <option value="Horse / Mules">Horse / Mules</option>
                                                                 <option value="Donkeys">Donkeys</option>
@@ -613,7 +636,7 @@
                                                                 <option value="Buffalo">Buffalo</option>
                                                                 <option value="Cows">Cows</option>
                                                                 <option value="Camels">Camels</option>
-                                                                <option value="Goals">Goals</option>
+                                                                <option value="Goats">Goats</option>
                                                                 <option value="Sheep">Sheep</option>
                                                                 <option value="Horse / Mules">Horse / Mules</option>
                                                                 <option value="Donkeys">Donkeys</option>
@@ -647,7 +670,7 @@
                                         <div class="row mb-12 col-md-12" id="source_of_irrigation_section">
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label">Q20:  Source of irrigation</label>
-                                                <select name="source_of_irrigation" class="form-control" id="source_of_irrigation">
+                                                <select name="source_of_irrigation[]" multiple="multiple" class="form-control js-example-basic-multiple" id="source_of_irrigation">
                                                     <option value="canal_wall" @if(isset($data->source_of_irrigation)) {{ ($data->source_of_irrigation == 'canal_wall') ? 'selected':'' }} @endif>(1) Canal System</option>
                                                     <option value="tube_well" @if(isset($data->source_of_irrigation)) {{ ($data->source_of_irrigation == 'tube_well') ? 'selected':'' }} @endif>(2) Tube Well</option>
                                                     <option value="rain_barrani" @if(isset($data->source_of_irrigation)) {{ ($data->source_of_irrigation == 'rain_barrani') ? 'selected':'' }} @endif>(3) Rain/Barrani</option>
@@ -664,7 +687,7 @@
                                         </div>
                                         <div class="row mb-12 col-md-12" id="status_of_water_section">
                                             <div class="mb-3 col-md-3">
-                                                <label class="form-label">Total length (Meter)</label>
+                                                <label class="form-label">Total length (Meters)</label>
                                                 <input type="text" name="area_length" class="form-control" value="{{ $data->area_length ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
                                             <div class="mb-3 col-md-3">
@@ -675,8 +698,8 @@
                                                 <label class="form-label">Area length</label>
                                                 <select class="form-control" id="lined_unlined" name="line_status">
                                                     <option value="">Select Lined/Unlined</option>
-                                                    <option value="lined" @if(isset($data->line_status)) {{ ($data->line_status == 'lined') ? 'selected':'' }} @endif>lined</option>
-                                                    <option value="unlined" @if(isset($data->line_status)) {{ ($data->line_status == 'unlined') ? 'selected':'' }} @endif>Unlind</option>
+                                                    <option value="lined" @if(isset($data->line_status)) {{ ($data->line_status == 'lined') ? 'selected':'' }} @endif>Lined</option>
+                                                    <option value="unlined" @if(isset($data->line_status)) {{ ($data->line_status == 'unlined') ? 'selected':'' }} @endif>Unlined</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -790,14 +813,16 @@
                                             <label class="form-label">Others<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
                                             <input type="file" name="upload_other_attach" class="form-control" >
                                         </div>
-                                        {{-- <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Upload Farmer Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
-                                            <input type="file" name="upload_farmer_pic" class="form-control">
+                                        <div class="mb-6 col-md-6 mt-3">
+                                            <label class="form-label">Forms VII (Mandatory)<span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                            <input type="file" name="form_seven_pic" class="form-control checkfiles" onchange="checkFiles()">
                                         </div>
+                                        {{--
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Upload Cheque Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
                                             <input type="file" name="upload_cheque_pic" class="form-control">
-                                        </div> --}}
+                                        </div>
+                                        --}}
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
                                     <button type="submit" class="btn btn-primary mt-5" id="submitbtn" >Submit</button>
@@ -828,8 +853,42 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
 
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
+<script src="{{asset('assets/js/inputMask.js')}}"></script>
+<script>
+$(":input").inputmask();
+</script>
 
 
+{{-- <script>
+     function formatCNIC(input) {
+        // Remove all non-numeric characters
+        let value = input.value.replace(/[^0-9]/g, '');
+
+        // Apply formatting: 5 digits, 7 digits, and 1 digit with dashes
+        if (value.length > 5) {
+            value = value.replace(/^(\d{5})(\d{0,7})(\d{0,1})/, '$1-$2-$3');
+        } else {
+            value = value.replace(/^(\d{5})(\d{0,7})/, '$1-$2');
+        }
+
+        // Set the formatted value back to the input
+        input.value = value.slice(0, 15); // Limit the length to a max of 15 characters
+    }
+
+    function formatMobile(input) {
+        // Remove all non-numeric characters
+        let value = input.value.replace(/[^0-9]/g, '');
+
+        // Ensure the first 4 digits are followed by a dash
+        if (value.length > 4) {
+            value = value.replace(/^(\d{4})(\d{0,7})/, '$1-$2');
+        }
+
+        // Set the formatted value back to the input
+        input.value = value.slice(0, 13); // Limit the length to a max of 13 characters (e.g., 0323-2342343)
+    }
+
+</script> --}}
 
 
 
@@ -966,41 +1025,41 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
 
 <script>
 
-$(document).ready(function() {
-    $('body').on('change','.crop_season', function() {
-        const selectedValue = $(this).val();
-        const $selectElement = $(this);
+// $(document).ready(function() {
+//     $('body').on('change','.crop_season', function() {
+//         const selectedValue = $(this).val();
+//         const $selectElement = $(this);
 
-        // Find the closest <td> element (the one containing the <select>)
-        const $closestTd = $selectElement.closest('td');
+//         // Find the closest <td> element (the one containing the <select>)
+//         const $closestTd = $selectElement.closest('td');
 
-        // Find the appended input field inside the <td>
-        let $nextInput = $closestTd.find('input');
+//         // Find the appended input field inside the <td>
+//         let $nextInput = $closestTd.find('input');
 
-        // Clear any existing input field if the selection is not 'any_other'
-        if (selectedValue !== 'any_other') {
-            if ($nextInput.length) {
-                $nextInput.remove(); // Remove the appended input if it exists
-            }
-        }
+//         // Clear any existing input field if the selection is not 'any_other'
+//         if (selectedValue !== 'any_other') {
+//             if ($nextInput.length) {
+//                 $nextInput.remove(); // Remove the appended input if it exists
+//             }
+//         }
 
-        // If 'any_other' is selected, append a new input field in the same <td>
-        if (selectedValue === 'any_other') {
-            // If an input field is already appended, don't append again
-            if (!$nextInput.length) {
-                const inputField = $('<input>', {
-                    type: 'text',
-                    name: 'other_crop_season[]',
-                    class: 'form-control mt-2',
-                    placeholder: 'Please specify other season'
-                });
+//         // If 'any_other' is selected, append a new input field in the same <td>
+//         if (selectedValue === 'any_other') {
+//             // If an input field is already appended, don't append again
+//             if (!$nextInput.length) {
+//                 const inputField = $('<input>', {
+//                     type: 'text',
+//                     name: 'other_crop_season[]',
+//                     class: 'form-control mt-2',
+//                     placeholder: 'Please specify other season'
+//                 });
 
-                // Append the new input field in the same <td> as the <select>
-                $closestTd.append(inputField);
-            }
-        }
-    });
-});
+//                 // Append the new input field in the same <td> as the <select>
+//                 $closestTd.append(inputField);
+//             }
+//         }
+//     });
+// });
 
 
 
@@ -1058,13 +1117,14 @@ $('#abc').on('click',function(){
         const newRow = `
             <tr>
                 <td><input type="text" name="title_name[]" class="form-control"></td>
-                <td><input type="text" name="title_cnic[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" class="form-control"></td>
-                <td><input type="text" name="title_number[]" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" class="form-control"></td>
+                <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  class="form-control"></td>
+                <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'" maxlength="12" class="form-control"></td>
                 <td><input type="text" name="title_area[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
         `;
         $('#title_tableBody').append(newRow);
+        $(":input").inputmask();
     });
 
     // Delete row on clicking "Delete" button
@@ -1080,9 +1140,10 @@ $('#abc').on('click',function(){
                         <option value="" >Select Season</option>
                         <option value="rabi season" >Rabi Season</option>
                         <option value="kharif season">Kharif Season</option>
-                        <option value="orchards">Orchards</option>
+
                     </select>
                 </td>
+                <td><input type="text" name="crops_orchard[]" class="form-control"></td>
                 <td><input type="text" name="crops[]" class="form-control"></td>
                 <td><input type="text" name="crop_area[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
                 <td><input type="text" name="crop_average_yeild[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
@@ -1137,19 +1198,22 @@ $('#abc').on('click',function(){
 
 
 $('#source_of_irrigation').change(function() {
-    if($(this).val() == 'tube_well')
+
+
+    if($(this).val().includes('tube_well'))
     {
+        $('#source_of_energy_section').remove();
          $('#source_of_irrigation_section').append(`
          <div class="mb-6 col-md-6" id="source_of_energy_section">
                 <label class="form-label">Q21: Source of energy</label>
-                <select name="source_of_irrigation_engery"  class="form-control js-example-basic-single" id="source_of_energy">
+                <select multiple="multiple" name="source_of_irrigation_engery"  class="form-control js-example-basic-multiple" id="source_of_energy">
                     <option value="electricity" >Electricity</option>
                     <option value="solar">Solar</option>
                     <option value="Petrol/Diesel/Gas">Petrol/Diesel/Gas</option>
                 </select>
             </div>
          `);
-         $('#source_of_energy_section').find('.js-example-basic-single').last().select2({
+         $('#source_of_energy_section').find('.js-example-basic-multiple').last().select2({
             tags: true, // Enable the user to add custom tags
         });
     }
@@ -1183,7 +1247,7 @@ if('{{$data->line_status}}' == 'lined'){
     <div class="mb-3 col-md-3" id="lined_section" >
         <div class="row">
             <div class="mb-12 col-md-12" >
-                <label class="form-label">Line length in (Meter)</label>
+                <label class="form-label">Line length in (Meters)</label>
                 <input type="text" name="lined_length" value="{{$data->lined_length}}" class="form-control">
             </div>
         </div>
@@ -1201,7 +1265,7 @@ $('#lined_unlined').change(function() {
         <div class="mb-3 col-md-3" id="lined_section" >
             <div class="row">
                 <div class="mb-12 col-md-12" >
-                    <label class="form-label">Line length in (Meter)</label>
+                    <label class="form-label">Line length in (Meters)</label>
                     <input type="text" name="lined_length" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                 </div>
             </div>
