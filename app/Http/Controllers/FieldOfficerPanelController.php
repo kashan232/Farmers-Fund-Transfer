@@ -151,54 +151,55 @@ class FieldOfficerPanelController extends Controller
 
     public function store(Request $request)
     {
+
         $rules = [
              // Text fields
              'name' => 'required',
              'father_name' => 'required',
-             'cnic' => 'required|digits:13',
+             'cnic' => 'required|min:13',
              'mobile' => 'required',
              'district' => 'required',
              'tehsil' => 'required',
             //  'uc' => 'required',
-            //  'tappa' => 'required',
-            //  'dah' => 'required',
-            //  'village' => 'required',
-            //  'gender' => 'required',
-            //  'house_type' => 'required',
-            //  'owner_type' => 'required',
-            //  'full_name_of_next_kin' => 'required',
-            //  'cnic_of_next_kin' => 'required',
-            //  'mobile_of_next_kin' => 'required',
-            //  'female_children_under16' => 'required',
-            //  'female_Adults_above16' => 'required',
-            //  'male_children_under16' => 'required',
-            //  'male_Adults_above16' => 'required',
-            //  'total_landing_acre' => 'required',
-            //  'total_area_with_hari' => 'required',
-            //  'total_area_cultivated_land' => 'required',
-            //  'total_fallow_land' => 'required',
-            //  'title_name.*' => 'required',
-            //  'title_cnic.*' => 'required',
-            //  'title_number.*' => 'required',
-            //  'title_area.*' => 'required',
-            //  'crops.*' => 'required',
-            //  'crop_area.*' => 'required',
-            //  'crop_average_yeild.*' => 'required',
-            //  'physical_asset_item' => 'required',
-            //  'animal_name.*' => 'required',
-            //  'animal_qty.*' => 'required',
-            //  'source_of_irrigation' => 'required',
-            //  'source_of_irrigation_engery' => 'required',
-            //  'area_length' => 'required',
-            //  'line_status' => 'required',
-            //  'lined_length' => 'required',
-            //  'total_command_area' => 'required',
-            //  'account_title' => 'required',
-            //  'account_no' => 'required',
-            //  'bank_name' => 'required',
-            //  'branch_name' => 'required',
-            //  'IBAN_number' => 'required',
-            //  'branch_code' => 'required',
+             'tappa' => 'required',
+             'dah' => 'required',
+             'village' => 'required',
+             'gender' => 'required',
+             'house_type' => 'required',
+             'owner_type' => 'required',
+             'full_name_of_next_kin' => 'required',
+             'cnic_of_next_kin' => 'required',
+             'mobile_of_next_kin' => 'required',
+             'female_children_under16' => 'required',
+             'female_Adults_above16' => 'required',
+             'male_children_under16' => 'required',
+             'male_Adults_above16' => 'required',
+             'total_landing_acre' => 'required',
+             'total_area_with_hari' => 'required',
+             'total_area_cultivated_land' => 'required',
+             'total_fallow_land' => 'required',
+             'title_name.*' => 'required',
+             'title_cnic.*' => 'required',
+             'title_number.*' => 'required',
+             'title_area.*' => 'required',
+             'crops.*' => 'required',
+             'crop_area.*' => 'required',
+             'crop_average_yeild.*' => 'required',
+             'physical_asset_item' => 'required',
+             'animal_name.*' => 'required',
+             'animal_qty.*' => 'required',
+             'source_of_irrigation' => 'required',
+             'source_of_irrigation_engery' => 'required',
+             'area_length' => 'required',
+             'line_status' => 'required',
+             'lined_length' => 'required',
+             'total_command_area' => 'required',
+             'account_title' => 'required',
+             'account_no' => 'required',
+             'bank_name' => 'required',
+             'branch_name' => 'required',
+             'IBAN_number' => 'required',
+             'branch_code' => 'required',
 
              // File uploads
             'front_id_card' => 'required|file|mimes:jpg,png,jpeg|max:500',
@@ -247,6 +248,7 @@ class FieldOfficerPanelController extends Controller
 
             $data['crop_season'] = json_encode($request->crop_season);
             $data['crops'] = json_encode($request->crops);
+            $data['crops_orchard'] = json_encode($request->crops_orchard);
             $data['crop_area'] = json_encode($request->crop_area);
             $data['crop_average_yeild'] = json_encode($request->crop_average_yeild);
 
@@ -315,6 +317,14 @@ class FieldOfficerPanelController extends Controller
                 $upload_cheque_picimageName = time() . '_' . uniqid() . '.' . $upload_cheque_picimage->getClientOriginalExtension();
                 $upload_cheque_picimage->move(public_path('fa_farmers/upload_cheque_pic'), $upload_cheque_picimageName);
                 $data['upload_cheque_pic'] = $upload_cheque_picimageName;
+            }
+
+            // Handle cheque picture image
+            if ($request->hasFile('form_seven_pic')) {
+                $form_seven_pic_image = $request->file('form_seven_pic');
+                $form_seven_pic_image_name = time() . '_' . uniqid() . '.' . $form_seven_pic_image->getClientOriginalExtension();
+                $form_seven_pic_image->move(public_path('fa_farmers/form_seven_pic'), $form_seven_pic_image_name);
+                $data['form_seven_pic'] = $form_seven_pic_image_name;
             }
 
             if ($request->edit_id && $request->edit_id != '') {

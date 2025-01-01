@@ -44,7 +44,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Total Farmers</p>
+                                                <p class="card-title text-title" style="font-size: 12px">Total Registered Farmers</p>
                                                 <h3 class="card-text text-amount">0</h3>
                                             </div>
                                             <div class="col-auto">
