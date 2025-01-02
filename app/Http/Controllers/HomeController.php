@@ -265,17 +265,17 @@ class HomeController extends Controller
                     }
 
                     // Decode and count UCs
-                    if ($user->ucs) {
-                        if($user->tappas != null && is_array(json_decode($user->tappas)))
-                        {
-                            $ucs = json_decode($user->ucs, true);
-                            $ucCount = count($ucs);
-                        }
-                        else
-                        {
-                            $ucCount = 0;
-                        }
-                    }
+                    // if ($user->ucs) {
+                    //     if($user->tappas != null && is_array(json_decode($user->tappas)))
+                    //     {
+                    //         $ucs = json_decode($user->ucs, true);
+                    //         $ucCount = count($ucs);
+                    //     }
+                    //     else
+                    //     {
+                    //         $ucCount = 0;
+                    //     }
+                    // }
                 }
                 $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
                 $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
