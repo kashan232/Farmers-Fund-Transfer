@@ -166,11 +166,11 @@
                             </tr>
                             <tr> <th class="question" > Q15.</th>
 
-                                <td colspan="8" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);"><span> <b>House type: </b> {!! ($data->house_type == 'pakka_house' ? '<i class="fa-solid fa-check"></i>' : '') !!} (1) Paka House </span> <span style="border-bottom: 1px solid black;"></span>&nbsp&nbsp&nbsp<span>  {!! ($data->house_type == 'kacha_house' ? '<i class="fa-solid fa-check"></i>' : '') !!}(2) Kacha House </span> <span style="border-bottom: 1px solid black;"></span>&nbsp&nbsp&nbsp</td>
+                                <td colspan="8" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);"><span> <b>House type: </b> {!! ($data->house_type == 'pakka_house' ? '<i class="fa-solid fa-check"></i>' : '') !!} (1) Paka House </span> <span style="border-bottom: 1px solid black;"></span>&nbsp&nbsp&nbsp<span>  {!! ($data->house_type == 'kacha_house' ? '<i class="fa-solid fa-check"></i>' : '') !!}(2) Kacha House </span> <span style="border-bottom: 1px solid black;"></span> &nbsp &nbsp &nbsp {!! ($data->house_type == 'both_pakka_house_kacha_house' ? '<i class="fa-solid fa-check"></i>' : '') !!}(3)  Both Paka House & Kacha House </span> <span style="border-bottom: 1px solid black;"></span></td>
 
                             </tr>
                             <tr>
-                                <th class="question" rowspan="5" > Q16.</th>
+                                <th class="question" rowspan="6" > Q16.</th>
                                 <td colspan="8"><b>Landholding</b></td>
                             </tr>
                             <tr>
@@ -183,6 +183,14 @@
 
                                 <td colspan="4" style="border: none;"><span> <b>(3)Total self-cultivated land (Acres)  : </b></span> <span style="border-bottom: 1px solid black;">{{$data->total_area_cultivated_land}}</span></td>
                                 <td colspan="4" style="border: none;"><span> <b>(4)Total fallow land  (Acres)   : </b> </span>  <span style="border-bottom: 1px solid black;">{{$data->total_fallow_land}}</span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td colspan="4" style="border: none;"><span> <b>(5) Share  : </b></span> <span style="border-bottom: 1px solid black;">{{$data->land_share}}</span></td>
+                                <td colspan="2" style="border: none;"><span> <b>(6) Area as per share: </b> </span>  <span style="border-bottom: 1px solid black;">{{$data->land_area_as_per_share}}</span></td>
+                                <td  style="border: none;"><span> <b>(7) Survey No   : </b> </span>  <span style="border-bottom: 1px solid black;">{{$data->survey_no}}</span></td>
 
                             </tr>
                             <tr>
@@ -216,7 +224,7 @@
                                         <tr>
                                             <td style="width: 12.5%; border: 1px solid rgb(192, 192, 192); text-align: center; padding: 10px;"><b>Rabi Season</b></td>
                                             <td style="width: 12.5%; border: 1px solid rgb(192, 192, 192); text-align: center; padding: 10px;"><b>Kharif Season</b></td>
-                                            <td style="width: 12.5%; border: 1px solid rgb(192, 192, 192); text-align: center; padding: 10px;"><b>Orchards</b></td>
+                                            {{-- <td style="width: 12.5%; border: 1px solid rgb(192, 192, 192); text-align: center; padding: 10px;"><b>Orchards</b></td> --}}
                                             <td style="width: 12.5%; border: 1px solid rgb(192, 192, 192); text-align: center; padding: 10px;"><b>Other</b></td>
 
                                         </tr>
@@ -225,6 +233,7 @@
                                                 <table style="width: 100%; border-collapse: collapse;">
                                                     <tr>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Crop(s)</b></td>
+                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Orchard</b></td>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Area (Acres)</b></td>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Average Yield (Per Acre)</b></td>
                                                     </tr>
@@ -233,17 +242,17 @@
                                                         // Decoding the JSON if it's a JSON string
                                                         $cropSeasons = is_string($data->crop_season) ? json_decode($data->crop_season) : $data->crop_season;
                                                     @endphp
-                                                    @if(in_array('rabi_season', json_decode($data->crop_season)))
-
-
                                                     @foreach (json_decode($data->crops) as $index => $crop)
+                                                    @if(json_decode($data->crop_season)[$index] == 'rabi_season')
                                                     <tr>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crops)[$index]}}</td>
+                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crops_orchard)[$index]}}</td>
+
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crop_area)[$index]}}</td>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crop_average_yeild)[$index]}}</td>
                                                     </tr>
-                                                    @endforeach
                                                     @endif
+                                                    @endforeach
                                                     @endif
 
 
@@ -253,6 +262,8 @@
                                                 <table style="width: 100%; border-collapse: collapse;">
                                                     <tr>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Crop(s)</b></td>
+                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Orchard</b></td>
+
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Area (Acres)</b></td>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Average Yield (Per Acre)</b></td>
                                                     </tr>
@@ -261,48 +272,27 @@
                                                         // Decoding the JSON if it's a JSON string
                                                         $cropSeasons = is_string($data->crop_season) ? json_decode($data->crop_season) : $data->crop_season;
                                                     @endphp
-                                                    @if(in_array('kharif_season', json_decode($data->crop_season)))
-                                                    @foreach (json_decode($data->crops) as $crop)
+                                                    @foreach (json_decode($data->crops) as  $index => $crop)
+                                                    @if(json_decode($data->crop_season)[$index] == 'kharif_season')
                                                     <tr>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crops)[$index]}}</td>
+                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crops_orchard)[$index]}}</td>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crop_area)[$index]}}</td>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crop_average_yeild)[$index]}}</td>
                                                     </tr>
-                                                    @endforeach
                                                     @endif
+                                                    @endforeach
                                                     @endif
 
                                                 </table>
                                             </td>
-                                            <td style="width: 12.5%;">
-                                                <table style="width: 100%; border-collapse: collapse;">
-                                                    <tr>
-                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Fruit(s)</b></td>
-                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Area (Acres)</b></td>
-                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Average Yield (Per Acre)</b></td>
-                                                    </tr>
-                                                    @if(is_array($data->crop_season) || is_string($data->crop_season))
-                                                    @php
-                                                        // Decoding the JSON if it's a JSON string
-                                                        $cropSeasons = is_string($data->crop_season) ? json_decode($data->crop_season) : $data->crop_season;
-                                                    @endphp
-                                                    @if(in_array('orchards', json_decode($data->crop_season)))
-                                                    @foreach (json_decode($data->crops) as $crop)
-                                                    <tr>
-                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crops)[$index]}}</td>
-                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crop_area)[$index]}}</td>
-                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crop_average_yeild)[$index]}}</td>
-                                                    </tr>
-                                                    @endforeach
-                                                    @endif
-                                                    @endif
 
-                                                </table>
-                                            </td>
                                             <td style="width: 12.5%;">
                                                 <table style="width: 100%; border-collapse: collapse;">
                                                     <tr>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Crop(s)</b></td>
+                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Orchard</b></td>
+
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Area (Acres)</b></td>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;"><b>Average Yield (Per Acre)</b></td>
                                                     </tr>
@@ -311,13 +301,17 @@
                                                         // Decoding the JSON if it's a JSON string
                                                         $cropSeasons = is_string($data->crop_season) ? json_decode($data->crop_season) : $data->crop_season;
                                                     @endphp --}}
+                                                    @foreach (json_decode($data->crops) as $index => $crop)
+                                                    @if(json_decode($data->crop_season)[$index] != 'kharif_season' && json_decode($data->crop_season)[$index] != 'rabi_season' )
 
-                                                    @foreach (json_decode($data->crops) as $crop)
                                                     <tr>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crops)[$index] ?? ''}}</td>
+                                                        <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crops_orchard)[$index]}}</td>
+
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crop_area)[$index] ?? ''}}</td>
                                                         <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">{{json_decode($data->crop_average_yeild)[$index] ?? ''}}</td>
                                                     </tr>
+                                                    @endif
                                                     @endforeach
                                                     {{-- @endif --}}
 
@@ -408,24 +402,35 @@
                             </tr>
 
                             <tr> <th class="question" > Q20.</th>
-                                <td colspan="8" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);"><span> <b>Source of irrigation: {!! ($data->source_of_irrigation == 'tube_well' ? '<i class="fa-solid fa-check"></i>' : '') !!} (1) Tube well : </b></span> <span></span>&nbsp&nbsp&nbsp<span> <b> {!! ($data->source_of_irrigation == 'canal_system' ? '<i class="fa-solid fa-check"></i>' : '') !!}  (2) canal system : </b></span> <span ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span> <b> {!! ($data->source_of_irrigation == 'rain_barrani' ? '<i class="fa-solid fa-check"></i>' : '') !!}  (3) Rain/Barrani </b></span> <span ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span> <b> {!! ($data->source_of_irrigation == 'kaccha_area' ? '<i class="fa-solid fa-check"></i>' : '') !!}  (4) Kaccha Area </b></span> <span ></span> </td>
+                                <td colspan="8" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);"><span> <b>Source of irrigation:
+                                    {{-- @if(is_array(json_decode($data->source_of_irrigation))) {!! in_array('tube_well', json_decode($data->source_of_irrigation)) ? '<i class="fa-solid fa-check"></i>' : '' !!}  @endif   (1) Tube well  </b></span> <span></span>&nbsp&nbsp&nbsp<span> <b>   @if(is_array(json_decode($data->source_of_irrigation))) {!! in_array('canal_system', json_decode($data->source_of_irrigation)) ? '<i class="fa-solid fa-check"></i>' : '' !!}  @endif   (2) canal system  </b></span> <span ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span> <b> @if(is_array(json_decode($data->source_of_irrigation))) {!! in_array('rain_barrani', json_decode($data->source_of_irrigation)) ? '<i class="fa-solid fa-check"></i>' : '' !!}  @endif  (3) Rain/Barrani </b></span> <span ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span> <b> @if(is_array(json_decode($data->source_of_irrigation))) {!! in_array('kaccha_area', json_decode($data->source_of_irrigation)) ? '<i class="fa-solid fa-check"></i>' : '' !!}  @endif    (4) Kaccha Area </b></span> <span ></span> --}}
+
+                                    @if(is_array(json_decode($data->source_of_irrigation)))
+                                    @foreach (json_decode($data->source_of_irrigation) as $index => $source_of_irrigation)
+                                        <span > <i class="fa-solid fa-check"></i> {{ $source_of_irrigation }} </span>  &nbsp &nbsp &nbsp
+                                    @endforeach
+                                    @endif
+
+                                </td>
                             </tr>
                             <tr> <th class="question" > Q21.</th>
 
                                 <td colspan="8" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);"><span> <b>Source of energy:
-                                    (1) Electricity : </b></span> <span >{!! ($data->source_of_irrigation_engery == 'solar' ? '<i class="fa-solid fa-check"></i>' : '') !!}</span>&nbsp&nbsp&nbsp<span> <b>
-                                    (2) solar : </b></span><span style="">{!! ($data->source_of_irrigation_engery == 'electricity' ? '<i class="fa-solid fa-check"></i>' : '') !!}</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span> <b>
-                                    (3) Petrol /Diesel/gas </b></span> <span style="">{!! ($data->source_of_irrigation_engery == 'Petrol/Diesel/Gas' ? '<i class="fa-solid fa-check"></i>' : '') !!}</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span> <b>
-                                    (4) any other </b></span> <span >{!! ($data->source_of_irrigation_engery == 'any_other' ? '<i class="fa-solid fa-check"></i>' : '') !!}</span> </td>
+                                    @if(is_array(json_decode($data->source_of_irrigation_engery)))
+                                    @foreach (json_decode($data->source_of_irrigation_engery) as $index => $source_of_irrigation_engery)
+                                        <span > <i class="fa-solid fa-check"></i> {{ $source_of_irrigation_engery }} </span>  &nbsp &nbsp &nbsp
+                                    @endforeach
+                                    @endif
+
 
                             </tr>
                             <tr> <th class="question"  rowspan="2"> Q22.</th>
 
-                                <td colspan="8" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);"><span ><b>Status of water course total lenth(meter) &nbsp&nbsp&nbsp <u>{{$data->line_length}}</u> </b></span>&nbsp&nbsp&nbsp<span> <b> Total command area (acres) &nbsp&nbsp&nbsp <u>{{ $data->total_command_area}}</u> </b></span></td>
+                                <td colspan="8" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);"><span ><b>Status of water course total lenth(Meters) </b>  <u> &nbsp;  &nbsp;  {{$data->area_length}} &nbsp &nbsp &nbsp  </u> </span> <span> <b> Total command area (acres) </b> &nbsp&nbsp&nbsp <u> &nbsp &nbsp &nbsp  {{ $data->total_command_area}} &nbsp &nbsp &nbsp  </u> </span></td>
 
                             </tr>
                             <tr>
-                                <td colspan="8" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);"><span> <b> (1) lined </b></span> <span style="border-bottom: 1px solid black;">{!! ($data->line_status == 'lined' ? '<i class="fa-solid fa-check"></i>' : '') !!}</span>&nbsp&nbsp&nbsp<span> <b> (2) unlined : </b></span> <span style="border-bottom: 1px solid black;">{!! ($data->line_status != 'lined' ? '<i class="fa-solid fa-check"></i>' : '') !!}</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span> <b> (3) if lined how much length is lined(meter)</b></span> <span style="border-bottom: 1px solid black;">{{$data->lined_length}}</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>
+                                <td colspan="8" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);"><span> <b> (1) lined </b></span> <span style="border-bottom: 1px solid black;">{!! ($data->line_status == 'lined' ? '<i class="fa-solid fa-check"></i>' : '') !!}</span>&nbsp&nbsp&nbsp<span> <b> (2) unlined : </b></span> <span style="border-bottom: 1px solid black;">{!! ($data->line_status != 'lined' ? '<i class="fa-solid fa-check"></i>' : '') !!}</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span> <b> (3) if lined how much length is lined(meters)</b></span> <span > <u> &nbsp &nbsp &nbsp {{$data->lined_length}} &nbsp &nbsp &nbsp </u> </span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>
 
                             </tr>
                             <tr>

@@ -31,6 +31,10 @@
             tokenSeparators: [',', ' '] // Optional, allows separation by comma or space
         });
 
+        $('.js-example-basic-multiple2').select2({
+
+        });
+
         $('.js-example-basic-single').select2({
             tags: true, // Enable typing custom values
             placeholder: "Select or type to add a new option", // Optional placeholder

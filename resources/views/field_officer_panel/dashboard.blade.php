@@ -8,7 +8,13 @@
 @include('field_officer_panel.include.navbar_include')
 <!-- [ Header ] end -->
 
-
+<style>
+    @media only screen and (max-width: 600px) {
+        .dashboard-btns{
+            display: unset !important;
+        }
+    }
+</style>
 
 <!-- [ Main Content ] start -->
 <div class="pc-container">
@@ -39,7 +45,14 @@
                 <div class="dashboard">
                     <div class="all-card">
                         <div class="row">
+
                             <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class=" dashboard-btns" style="display: none">
+                                    <button class="btn btn-sm btn-primary mb-4">Add Farmer</button>
+                                    <button class="btn btn-sm btn-primary mb-4">Farmers List</button>
+                                    <button class="btn btn-sm btn-primary mb-4">Reporting</button>
+                                </div>
+
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -99,7 +112,7 @@
 
 
             <!-- Farmer Status Chart -->
-            <div class="col-lg-12 mt-3">
+            <div class="col-lg-12 ">
                 <div class="box--sec">
                     <div class="top-heading">
                         <div>

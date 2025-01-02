@@ -79,6 +79,9 @@
         width: 100% !important;
     }
 
+    .house_type_label{
+        margin-right: 2%;
+    }
 
     @media only screen and (max-width: 600px) {
         .step-indicator {
@@ -88,6 +91,13 @@
         }
         .connector{
             width: 10px !important;
+        }
+
+        .house_type_label{
+            width: 100% !important;
+        }
+        .heading-farmer{
+            text-align: center;
         }
     }
 
@@ -112,7 +122,7 @@
         <div class="page-header">
             <div class="page-block">
                 <div class="row align-items-center">
-                    <div class="col-md-12">
+                    <div class="col-md-12 heading-farmer">
                         <div class="page-header-title">
                             <h2 class="mb-0">Farmer Registration Form</h2>
                         </div>
@@ -226,7 +236,7 @@
                                             <input type="text"  name="village" value="{{$data->village ?? ''}}" class="form-control">
                                         </div>
 
-                                        <div class="mb-4 col-md-4 mt-3">
+                                        <div class=" col-md-4 mt-3">
                                             <label class="form-label"><b>Q11. Gender (Tick):</b></label><br>
                                             &nbsp;<label>
                                             <input type="radio" name="gender" value="male" @if(isset($data->gender)) {{ ($data->gender == 'male') ? 'checked':'' }} @endif> Male
@@ -239,10 +249,10 @@
 
 {{-- {{asset('public/'.$data->front_id_card)}} --}}
 
-                                        <div class="mb-8 col-md-8 mt-3">
+                                        <div class=" col-md-8 mt-3">
                                             <label class="form-label"><b>Q12: Owner Type: </b></label>
                                             <br>
-                                            &nbsp;
+
                                             <label>
                                                 <input type="radio" name="owner_type" value="owner" @if(isset($data->owner_type)) {{ ($data->owner_type == 'owner') ? 'checked':'' }} @endif> 1. Owner
                                             </label>
@@ -256,54 +266,56 @@
                                             </label>
                                         </div>
 
-                                        <div class="row">
+                                        <div class="row mt-3">
 
                                             <div class=" col-md-12">
                                                 <h6 class="card-title">Q13: Family Compostion and age of respondent:</h6>
                                             </div>
-
-                                            <div class=" col-md-4 mt-1" style="padding-right: 0 !important;  ">
-                                                <div style="border:1px solid; display:flex;align-items: center; height: 40px; justify-content:center">
-                                                    <h6 class="text-center" style="margin: 0 !important;">Gender</h6>
+                                            <div style="display:flex">
+                                                <div class=" col-md-4 mt-1" style="padding-right: 0 !important;  ">
+                                                    <div style="border:1px solid; display:flex;align-items: center; height: 40px; justify-content:center">
+                                                        <h6 class="text-center" style="margin: 0 !important;">Gender</h6>
+                                                    </div>
+                                                    <div style="border:1px solid; padding: 2%;">
+                                                        <input type="text" value="Female" readonly name="" class="form-control" >
+                                                    </div>
                                                 </div>
-                                                <div style="border:1px solid; padding: 2%;">
-                                                    <input type="text" value="Female" readonly name="" class="form-control" >
+
+                                                <div class=" col-md-4 mt-1" style="padding-right: 0 !important;  padding-left: 0 !important;">
+                                                    <div style="border:1px solid; display:flex;align-items: center; height: 40px; justify-content:center">
+                                                        <h6 class="text-center" style="margin: 0 !important;">Children < 18 years</h6>
+                                                    </div>
+                                                    <div style="border:1px solid; padding: 2%;">
+                                                        <input type="text" name="female_children_under16" value="{{$data->female_children_under16 ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                    </div>
+                                                </div>
+
+                                                <div class=" col-md-4 mt-1" style="  padding-left: 0 !important;">
+                                                    <div style="border:1px solid; display:flex;align-items: center; height: 40px; justify-content:center">
+                                                        <h6 class="text-center" style="margin: 0 !important;">Adults > 18 years</h6>
+                                                    </div>
+                                                    <div style="border:1px solid; padding: 2%;">
+                                                        <input type="text" name="female_Adults_above16" value="{{$data->female_Adults_above16 ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div style="display:flex">
+                                                <div class="mb-4 col-md-4 " style="padding-right: 0 !important;  ">
+                                                    <div style="border:1px solid; padding: 2%;">
+                                                        <input type="text" value="Male" readonly name="" class="form-control">
+                                                    </div>
+                                                </div>
 
-                                            <div class=" col-md-4 mt-1" style="padding-right: 0 !important;  padding-left: 0 !important;">
-                                                <div style="border:1px solid; display:flex;align-items: center; height: 40px; justify-content:center">
-                                                    <h6 class="text-center" style="margin: 0 !important;">Children < 18 years</h6>
+                                                <div class="mb-4 col-md-4 " style="padding-right: 0 !important;  padding-left: 0 !important;">
+                                                    <div style="border:1px solid; padding: 2%;">
+                                                        <input type="text" name="male_children_under16" value="{{$data->male_children_under16 ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                    </div>
                                                 </div>
-                                                <div style="border:1px solid; padding: 2%;">
-                                                    <input type="text" name="female_children_under16" value="{{$data->female_children_under16 ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
-                                                </div>
-                                            </div>
 
-                                            <div class=" col-md-4 mt-1" style="  padding-left: 0 !important;">
-                                                <div style="border:1px solid; display:flex;align-items: center; height: 40px; justify-content:center">
-                                                    <h6 class="text-center" style="margin: 0 !important;">Adults > 18 years</h6>
-                                                </div>
-                                                <div style="border:1px solid; padding: 2%;">
-                                                    <input type="text" name="female_Adults_above16" value="{{$data->female_Adults_above16 ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-4 col-md-4 " style="padding-right: 0 !important;  ">
-                                                <div style="border:1px solid; padding: 2%;">
-                                                    <input type="text" value="Male" readonly name="" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-4 col-md-4 " style="padding-right: 0 !important;  padding-left: 0 !important;">
-                                                <div style="border:1px solid; padding: 2%;">
-                                                    <input type="text" name="male_children_under16" value="{{$data->male_children_under16 ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-4 col-md-4 " style="  padding-left: 0 !important;">
-                                                <div style="border:1px solid; padding: 2%;">
-                                                    <input type="text" name="male_Adults_above16" value="{{$data->male_Adults_above16 ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                <div class="mb-4 col-md-4 " style="  padding-left: 0 !important;">
+                                                    <div style="border:1px solid; padding: 2%;">
+                                                        <input type="text" name="male_Adults_above16" value="{{$data->male_Adults_above16 ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -311,7 +323,7 @@
                                         <div class="row">
 
                                             <div class="mb-4 col-md-4 ">
-                                                <label class="form-label">Q14: Next of Kin:  Full Name: </label>
+                                                <label class="form-label"><b>Q14: Next of Kin:  </b>Full Name: </label>
                                                 <input type="text" name="full_name_of_next_kin" class="form-control" value="{{$data->full_name_of_next_kin ?? ''}}">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
@@ -326,7 +338,7 @@
 
                                         <div class="row" id="">
                                             <div class="mb-12 col-12">
-                                                <label class="form-label"><b>Q15. House Type:</b></label> &nbsp; &nbsp; &nbsp;
+                                                <label class="form-label house_type_label"><b>Q15. House Type:</b></label>
                                                 <label>
                                                 <input type="radio" name="house_type" value="pakka_house"  @if(isset($data->house_type)) {{ ($data->house_type == 'pakka_house') ? 'checked':'' }} @endif> &nbsp; (1) Pakka House
                                                 </label>
@@ -341,15 +353,15 @@
                                             </div>
                                         </div>
 
-                                        <div class="row" id="">
+                                        <div class="row mt-3" id="">
                                             <div class="mb-12 col-md-12">
                                                 <h6>Q16: Landholding:</h6>
                                             </div>
-                                            <div class="mb-6 col-md-6">
+                                            <div class="mb-6 col-md-6 mt-3">
                                                 <label class="form-label">(1) Total Landholding (Acres):</label>
                                                 <input type="text" name="total_landing_acre" value="{{$data->total_landing_acre ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
-                                            <div class="mb-6 col-md-6">
+                                            <div class="mb-6 col-md-6 mt-3">
                                                 <label class="form-label">(2) Total Area with Hari(s) (Acres):</label>
                                                 <input type="text" name="total_area_with_hari" value="{{$data->total_area_with_hari ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
@@ -371,16 +383,16 @@
                                             </div>
                                             <div class="mt-2 col-md-4">
                                                 <label class="form-label">(7) Survey No:</label>
-                                                <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)">
                                             </div>
                                         </div>
 
-                                        <div class="row " class="" id="no_title_section">
+                                        <div class="row mt-3" class="" id="no_title_section">
                                             <div class=" mt-2 mb-12 col-md-12">
                                                 <h6>Particulars of Tenants / Sharecroppers</h6>
                                             </div>
-                                            <div class="col-12">
-                                                <table id="title_table" class="table table-bordered">
+                                            <div class="col-12" style="overflow-x:auto;">
+                                                <table id="title_table" class="table table-bordered ">
                                                     <thead>
                                                         <tr>
                                                             <th>Full Name</th>
@@ -424,14 +436,14 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="col-12" style="justify-content: right; display: flex;">
+                                            <div class="col-12 mt-2" style="justify-content: right; display: flex;">
                                                 <button type="button" class="btn btn-primary" id="add_title_row_Btn">Add More</button>
                                             </div>
                                         </div>
 
                                         <div class="row" id="crops_section">
                                             <h6>Crop Status</h6>
-                                            <div class="col-12">
+                                            <div class="col-12" style="overflow-x:auto;">
                                                 <table id="crop_table" class="table table-bordered">
                                                     <thead>
                                                         <tr>
@@ -451,8 +463,8 @@
                                                             <td>
                                                                 <select name="crop_season[]" style="width:200px" id="" class="crop_season form-control js-example-basic-single">
                                                                     <option value="">Select Season</option>
-                                                                    <option value="rabi season" >Rabi Season</option>
-                                                                    <option value="kharif season">Kharif Season</option>
+                                                                    <option value="rabi_season" >Rabi Season</option>
+                                                                    <option value="kharif_season">Kharif Season</option>
                                                                     {{-- <option value="orchards">Orchards</option> --}}
                                                                     <option value="{{ json_decode($data->crop_season)[$index] }}" selected>{{ json_decode($data->crop_season)[$index] }}</option>
                                                                 </select>
@@ -476,8 +488,8 @@
                                                             <td>
                                                                 <select name="crop_season[]" style="width:200px" id="" class="crop_season form-control js-example-basic-single" >
                                                                     <option value="">Select Season</option>
-                                                                    <option value="rabi season" >Rabi Season</option>
-                                                                    <option value="kharif season">Kharif Season</option>
+                                                                    <option value="rabi_season" >Rabi Season</option>
+                                                                    <option value="kharif_season">Kharif Season</option>
                                                                     {{-- <option value="orchards">Orchards</option> --}}
 
                                                                 </select>
@@ -500,7 +512,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="col-12" style="justify-content: right; display: flex;">
+                                            <div class="col-12 mt-2" style="justify-content: right; display: flex;">
                                                 <button type="button"  class="btn btn-primary" id="add_crop_row_Btn">Add More</button>
                                             </div>
                                         </div>
@@ -591,7 +603,7 @@
                                         <div class="mt-3 col-md-12">
                                             <label>Q19: Livestock and Poultry - assets currently owned</label>
                                         </div>
-                                        <div class="col-12 mt-2">
+                                        <div class="col-12 mt-2" style="overflow-x:auto;">
                                             <table id="poultry_assets_table" class="table table-bordered">
                                                 <thead>
                                                     <tr>
@@ -651,7 +663,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="col-12" style="justify-content: right; display: flex;">
+                                        <div class="col-12 mt-2" style="justify-content: right; display: flex;">
                                             <button type="button" class="btn btn-primary" id="add_poultry_assets_row_Btn">Add More</button>
                                         </div>
                                     </div>
@@ -670,17 +682,17 @@
                                         <div class="row mb-12 col-md-12" id="source_of_irrigation_section">
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label">Q20:  Source of irrigation</label>
-                                                <select name="source_of_irrigation[]" multiple="multiple" class="form-control js-example-basic-multiple" id="source_of_irrigation">
-                                                    <option value="canal_wall" @if(isset($data->source_of_irrigation)) {{ ($data->source_of_irrigation == 'canal_wall') ? 'selected':'' }} @endif>(1) Canal System</option>
-                                                    <option value="tube_well" @if(isset($data->source_of_irrigation)) {{ ($data->source_of_irrigation == 'tube_well') ? 'selected':'' }} @endif>(2) Tube Well</option>
-                                                    <option value="rain_barrani" @if(isset($data->source_of_irrigation)) {{ ($data->source_of_irrigation == 'rain_barrani') ? 'selected':'' }} @endif>(3) Rain/Barrani</option>
-                                                    <option value="kaccha_area" @if(isset($data->source_of_irrigation)) {{ ($data->source_of_irrigation == 'kaccha_area') ? 'selected':'' }} @endif>(4) Kaccha Area</option>
+                                                <select name="source_of_irrigation[]" multiple="multiple" class="form-control js-example-basic-multiple2" id="source_of_irrigation">
+                                                    <option value="canal well" @if(isset($data)) @if(is_array(json_decode($data->source_of_irrigation))) {{ in_array('canal well', json_decode($data->source_of_irrigation)) ? 'selected' : '' }}  @endif @endif  >(1) Canal System</option>
+                                                    <option value="tube well" @if(isset($data)) @if(is_array(json_decode($data->source_of_irrigation))) {{ in_array('tube well', json_decode($data->source_of_irrigation)) ? 'selected' : '' }}  @endif @endif >(2) Tube Well</option>
+                                                    <option value="rain barrani" @if(isset($data)) @if(is_array(json_decode($data->source_of_irrigation))) {{ in_array('rain barrani', json_decode($data->source_of_irrigation)) ? 'selected' : '' }}  @endif @endif  >(3) Rain/Barrani</option>
+                                                    <option value="kaccha area" @if(isset($data)) @if(is_array(json_decode($data->source_of_irrigation))) {{ in_array('kaccha area', json_decode($data->source_of_irrigation)) ? 'selected' : '' }}  @endif @endif  >(4) Kaccha Area</option>
                                                 </select>
                                             </div>
 
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
+                                    <div class="row mt-3">
                                         <div class="mb-12 col-md-12">
 
                                             <label class="form-label">Q22: Status of water course,</label>
@@ -741,7 +753,7 @@
                                             <input type="text" name="branch_code" value="{{$data->branch_code ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
+                                    <div class="row mt-3">
                                         <div class="mb-12 col-md-12">
                                             <h6>GPS Cordinates</h6>
                                         </div>
@@ -752,7 +764,7 @@
                                             <span id="locationInput"></span>
                                             <input type="hidden" name="GpsCordinates" id="GpsCordinates">
                                         </div>
-                                        <div class="mb-6 col-md-6">
+                                        <div class="mb-6 col-md-6 mt-3">
                                             <!-- Button trigger modal -->
                                             <label class="form-label">Geo Fencing (Optional)</label><br>
                                             <input type="hidden" name="FancingCoordinates" id="FancingCoordinates">
@@ -802,8 +814,12 @@
                                             <input type="file" name="back_id_card" class="form-control checkfiles" onchange="checkFiles()">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents)  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                            <label class="form-label">Forms VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents)  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
                                             <input type="file" name="upload_land_proof" class="form-control checkfiles" onchange="checkFiles()">
+                                        </div>
+                                        <div class="mb-6 col-md-6 mt-3">
+                                            <label class="form-label">Forms VII (Mandatory)<span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                            <input type="file" name="form_seven_pic" class="form-control checkfiles" onchange="checkFiles()">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Photo  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
@@ -811,12 +827,9 @@
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Others<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                            <input type="file" name="upload_other_attach" class="form-control" >
+                                            <input type="file" name="upload_other_attach" class="form-control checkfiles" onchange="checkFiles()">
                                         </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Forms VII (Mandatory)<span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                            <input type="file" name="form_seven_pic" class="form-control checkfiles" onchange="checkFiles()">
-                                        </div>
+
                                         {{--
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Upload Cheque Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
@@ -825,7 +838,7 @@
                                         --}}
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
-                                    <button type="submit" class="btn btn-primary mt-5" id="submitbtn" >Submit</button>
+                                    <button type="submit" class="btn btn-primary mt-5" id="submitbtn" disabled >Submit</button>
 
                                 </div>
                             </form>
@@ -1138,9 +1151,8 @@ $('#abc').on('click',function(){
                 <td>
                     <select name="crop_season[]" id="" style="width:200px" class="crop_season form-control js-example-basic-single">
                         <option value="" >Select Season</option>
-                        <option value="rabi season" >Rabi Season</option>
-                        <option value="kharif season">Kharif Season</option>
-
+                        <option value="rabi_season" >Rabi Season</option>
+                        <option value="kharif_season">Kharif Season</option>
                     </select>
                 </td>
                 <td><input type="text" name="crops_orchard[]" class="form-control"></td>
@@ -1200,13 +1212,13 @@ $('#abc').on('click',function(){
 $('#source_of_irrigation').change(function() {
 
 
-    if($(this).val().includes('tube_well'))
+    if($(this).val().includes('tube well'))
     {
         $('#source_of_energy_section').remove();
          $('#source_of_irrigation_section').append(`
          <div class="mb-6 col-md-6" id="source_of_energy_section">
                 <label class="form-label">Q21: Source of energy</label>
-                <select multiple="multiple" name="source_of_irrigation_engery"  class="form-control js-example-basic-multiple" id="source_of_energy">
+                <select multiple="multiple" name="source_of_irrigation_engery[]"  class="form-control js-example-basic-multiple" id="source_of_energy">
                     <option value="electricity" >Electricity</option>
                     <option value="solar">Solar</option>
                     <option value="Petrol/Diesel/Gas">Petrol/Diesel/Gas</option>
@@ -1225,15 +1237,15 @@ $('#source_of_irrigation').change(function() {
 
 @if(isset($data))
 
-if('{{$data->source_of_irrigation}}' == 'tube_well'){
+if('{{$data->source_of_irrigation}}'.includes('tube well')){
     $('#source_of_irrigation_section').append(`
         <div class="mb-6 col-md-6" id="source_of_energy_section">
             <label class="form-label">Q21: Source of energy</label><br>
-            <select name="source_of_irrigation_engery"  class="form-control js-example-basic-single" id="source_of_energy">
-             <option value="electricity" {{ ($data->source_of_irrigation_engery == 'electricity') ? 'selected':''}}>Electricity</option>
-                    <option value="solar" {{ ($data->source_of_irrigation_engery == 'solar') ? 'selected':''}}>Solar</option>
-                    <option value="petrol_diesel_gas" {{ ($data->source_of_irrigation_engery == 'petrol_diesel_gas') ? 'selected':''}}>Petrol/Diesel/Gas</option>
-               </select>
+            <select name="source_of_irrigation_engery[]" multiple="multiple"  class="form-control js-example-basic-multiple" id="source_of_energy">
+            @foreach (json_decode($data->source_of_irrigation_engery) as $source_of_irrigation_engery)
+                <option value=" {{$source_of_irrigation_engery}}" selected> {{$source_of_irrigation_engery}}</option>
+            @endforeach
+            </select>
         </div>
      `);
      $('#source_of_energy_section').find('.js-example-basic-single').last().select2({
