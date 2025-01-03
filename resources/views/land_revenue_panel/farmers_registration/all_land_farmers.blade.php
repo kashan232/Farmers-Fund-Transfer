@@ -104,7 +104,7 @@
                                                         <th>Village</th>
                                                         <th>Status</th>
                                                         <th>Reason</th>
-                                                        @if(isset($all_land_farmers[0]->user_type))<th>Action</th>@endif
+                                                       <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -149,16 +149,18 @@
                                                         @else
                                                         <td></td>
                                                         @endif
-                                                        @if(isset($all_land_farmer->user_type))
+
                                                         <td>
                                                             <div class="d-flex">
+                                                            <a class="btn btn-primary btn-sm" href="{{route('view-farmers-by-field-officer',$all_land_farmer->id)}}">View</a>
+
                                                                 {{-- <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $all_land_farmer->id }}">Verify</button> &nbsp; --}}
-                                                                <a href="{{ route('view-land-farmers', ['id' => $all_land_farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp;
+                                                                {{-- <a href="{{ route('view-land-farmers', ['id' => $all_land_farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp; --}}
                                                                 {{-- <a href="{{ route('ed  it-land-farmers', ['id' => $all_land_farmer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>&nbsp; --}}
                                                                 {{-- <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>&nbsp; --}}
                                                             </div>
                                                         </td>
-                                                        @endif
+
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

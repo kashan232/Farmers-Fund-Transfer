@@ -151,7 +151,9 @@
                                                                 {{-- @if($farmer->user_type == 'Agri_Officer' && $farmer->verification_status != 'verified_by_do')
                                                                 <a class="btn btn-primary" href="{{route('dd-edit-farmer',$farmer->id)}}">Edit</a> &nbsp;
                                                                 @endif --}}
-                                                            <a class="btn btn-primary btn-sm" href="{{route('dd-view-farmers',$farmer->id)}}">View</a>
+                                                            {{-- <a class="btn btn-primary btn-sm" href="{{route('dd-view-farmers',$farmer->id)}}">View</a> --}}
+                                                            <a class="btn btn-primary btn-sm" href="{{route('view-farmers-by-field-officer',$farmer->id)}}">View</a>
+
                                                             </div>
                                                         </td>
 

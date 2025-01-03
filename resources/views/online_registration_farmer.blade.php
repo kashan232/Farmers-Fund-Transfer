@@ -234,11 +234,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
-                                                    <input type="text" name="cnic" class="form-control" value="">
+                                                    <input type="text" name="cnic" class="form-control" value="" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X" >
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label class="form-label">Q4. Mobile No.: <span class="text-danger">*</span></label>
-                                                    <input type="text" name="mobile" class="form-control" value="">
+                                                    <input type="text" name="mobile" class="form-control" value="" data-inputmask="'mask': '0399-99999999'"  placeholder="XXXX-XXXXXXX"  maxlength="12">
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label class="form-label">Q5. District</label>
@@ -369,11 +369,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
                                                 <div class="mb-4 col-md-4 ">
                                                     <label class="form-label">CNIC NO:</label>
-                                                    <input type="text" name="cnic_of_next_kin" class="form-control" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                    <input type="text" name="cnic_of_next_kin" class="form-control" value="" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X" >
                                                 </div>
                                                 <div class="mb-4 col-md-4 ">
                                                     <label class="form-label">Mobile No:</label>
-                                                    <input type="text" name="mobile_of_next_kin" class="form-control" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)">
+                                                    <input type="text" name="mobile_of_next_kin" class="form-control" value="" data-inputmask="'mask': '0399-99999999'"  placeholder="XXXX-XXXXXXX"  maxlength="12">
                                                 </div>
                                             </div>
 
@@ -412,6 +412,18 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <label class="form-label">(4) Total fallow land (Acres):</label>
                                                     <input type="text" name="total_fallow_land" value="" class="form-control">
                                                 </div>
+                                                <div class="mt-2 col-md-4">
+                                                    <label class="form-label">(5) Share:</label>
+                                                    <input type="text" name="land_share" value="" class="form-control" >
+                                                </div>
+                                                <div class="mt-2 col-md-4">
+                                                    <label class="form-label">(6) Area as per share:</label>
+                                                    <input type="text" name="land_area_as_per_share" value="" class="form-control" >
+                                                </div>
+                                                <div class="mt-2 col-md-4">
+                                                    <label class="form-label">(7) Survey No:</label>
+                                                    <input type="text" name="survey_no" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)">
+                                                </div>
                                             </div>
                                             <div class="row " class="" id="no_title_section">
                                                 <div class=" mt-2 mb-12 col-md-12">
@@ -434,10 +446,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                                     <input type="text" name="title_name[]" value="" class="form-control">
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" name="title_cnic[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                                    <input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X" >
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" name="title_number[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)">
+                                                                    <input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-99999999'"  placeholder="XXXX-XXXXXXX"  maxlength="12">
                                                                 </td>
                                                                 <td>
                                                                     <input type="text" name="title_area[]" value="" class="form-control">
@@ -762,6 +774,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/bootstrap.min.js"></script>
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/main.js"></script>
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/select2.min.js"></script>
+        <script src="{{asset('assets/js/inputMask.js')}}"></script>
+<script>
+$(":input").inputmask();
+</script>
+
         <script>
             $(document).ready(function() {
                 $('body').on('change', '.crop_season', function() {
@@ -897,8 +914,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                 const newRow = `
             <tr>
                 <td><input type="text" name="title_name[]" class="form-control"></td>
-                <td><input type="text" name="title_cnic[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
-                <td><input type="text" name="title_number[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)"></td>
+                <td><input type="text" name="title_cnic[]" class="form-control" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X" ></td>
+                <td><input type="text" name="title_number[]" class="form-control" data-inputmask="'mask': '0399-99999999'"  placeholder="XXXX-XXXXXXX"  maxlength="12"></td>
                 <td><input type="text" name="title_area[]" class="form-control"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>

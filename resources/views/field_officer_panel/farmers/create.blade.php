@@ -1242,9 +1242,11 @@ if('{{$data->source_of_irrigation}}'.includes('tube well')){
         <div class="mb-6 col-md-6" id="source_of_energy_section">
             <label class="form-label">Q21: Source of energy</label><br>
             <select name="source_of_irrigation_engery[]" multiple="multiple"  class="form-control js-example-basic-multiple" id="source_of_energy">
+            @if(is_array(json_decode($data->source_of_irrigation_engery)))
             @foreach (json_decode($data->source_of_irrigation_engery) as $source_of_irrigation_engery)
                 <option value=" {{$source_of_irrigation_engery}}" selected> {{$source_of_irrigation_engery}}</option>
             @endforeach
+            @endif
             </select>
         </div>
      `);
