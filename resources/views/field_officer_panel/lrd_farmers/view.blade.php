@@ -269,7 +269,7 @@
                                 <th class="question"> Q3.</th>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
                                     <span> <b> CNIC No:</b></span> <span
-                                        style="border-bottom: 1px solid black;">{{ $data->cnic }}</span></td>
+                                        style="border-bottom: 1px solid black; padding-right:5%">{{ $data->cnic }}</span> <b>Issue Date:</b> <u>{{ $data->cnic_issue_date }}</u>  &nbsp; &nbsp; <b>EXP Date:</b>  <u>{{ $data->cnic_expiry_date }}</u></td>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
                                     <span> <b>Q4.&nbsp&nbsp Mobile No : </b> </span> <span
                                         style="border-bottom: 1px solid black;">{{ $data->mobile }}</span></td>
@@ -306,8 +306,8 @@
 
                                 <td colspan="3" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
                                     <span> <b>Gender :&nbsp&nbsp&nbsp {!! $data->gender == 'male' ? '<i class="fa-solid fa-check"></i>' : '' !!}
-                                            Male </b>&nbsp &nbsp&nbsp<b> {!! $data->gender == 'female' ? '<i class="fa-solid fa-check"></i>' : '' !!}
-                                            Female </b>&nbsp&nbsp<span></span></span> </td>
+                                            </b> Male&nbsp &nbsp&nbsp<b> {!! $data->gender == 'female' ? '<i class="fa-solid fa-check"></i>' : '' !!}
+                                            </b>Female &nbsp&nbsp<span></span></span> </td>
                                 <td colspan="5" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
                                     <span> <b>Q12.&nbsp&nbsp Owner Type: </b>&nbsp&nbsp&nbsp {!! $data->owner_type == 'owner' ? '<i class="fa-solid fa-check"></i>' : '' !!}
                                         1.Owner &nbsp&nbsp&nbsp&nbsp&nbsp{!! $data->owner_type == 'makadedar' ? '<i class="fa-solid fa-check"></i>' : '' !!}2.
@@ -616,7 +616,7 @@
                                         <div class="col-lg-3 border text-center p-2"><b>Yes or No</b></div>
                                         <div class="col-lg-3 border text-center p-2 p-2"><b>Car / jeep</b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
+                                                @if (is_array(json_decode($data->physical_asset_item)))
                                                     {!! in_array('car/jeep', json_decode($data->physical_asset_item)) ? '<i class="fa-solid fa-check"></i>' : '' !!}
                                                 @endif
                                             </b></div>
@@ -625,7 +625,7 @@
                                         <div class="col-lg-3 border text-center p-2"><b></b></div>
                                         <div class="col-lg-3 border text-center p-2 p-2"><b>Pickup /loader</b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
+                                                @if (is_array(json_decode($data->physical_asset_item)))
                                                     {!! in_array('pickup/loader', json_decode($data->physical_asset_item))
                                                         ? '<i class="fa-solid fa-check"></i>'
                                                         : '' !!}
@@ -633,84 +633,109 @@
                                             </b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>laser lever</b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
+                                                @if (is_array(json_decode($data->physical_asset_item)))
                                                     {!! in_array('laser_lever', json_decode($data->physical_asset_item)) ? '<i class="fa-solid fa-check"></i>' : '' !!}
                                                 @endif
                                             </b></div>
                                         <div class="col-lg-3 border text-center p-2 p-2"><b>Motorcycle</b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
+                                                @if (is_array(json_decode($data->physical_asset_item)))
                                                     {!! in_array('motorcycle', json_decode($data->physical_asset_item)) ? '<i class="fa-solid fa-check"></i>' : '' !!}
                                                 @endif
                                             </b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>rotavator</b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
+                                                @if (is_array(json_decode($data->physical_asset_item)))
                                                     {!! in_array('rotavetor', json_decode($data->physical_asset_item)) ? '<i class="fa-solid fa-check"></i>' : '' !!}
                                                 @endif
                                             </b></div>
                                         <div class="col-lg-3 border text-center p-2 p-2"><b>Bicycles</b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
+                                                @if (is_array(json_decode($data->physical_asset_item)))
                                                     {!! in_array('bicycles', json_decode($data->physical_asset_item)) ? '<i class="fa-solid fa-check"></i>' : '' !!}
                                                 @endif
                                             </b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>Thresher</b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
+                                                @if (is_array(json_decode($data->physical_asset_item)))
                                                     {!! in_array('thresher', json_decode($data->physical_asset_item)) ? '<i class="fa-solid fa-check"></i>' : '' !!}
                                                 @endif
                                             </b></div>
                                         <div class="col-lg-3 border text-center p-2 p-2"><b>Bullock cart</b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
+                                                @if (is_array(json_decode($data->physical_asset_item)))
                                                     {!! in_array('bullock_cart', json_decode($data->physical_asset_item)) ? '<i class="fa-solid fa-check"></i>' : '' !!}
                                                 @endif
                                             </b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>Harverter</b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
+                                                @if (is_array(json_decode($data->physical_asset_item)))
                                                     {!! in_array('harvester', json_decode($data->physical_asset_item)) ? '<i class="fa-solid fa-check"></i>' : '' !!}
                                                 @endif
                                             </b></div>
                                         <div class="col-lg-3 border text-center p-2 p-2"><b>Tractor (4 wheels)</b>
                                         </div>
                                         <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
+                                                @if (is_array(json_decode($data->physical_asset_item)))
                                                     {!! in_array('Tractor(4wheels)', json_decode($data->physical_asset_item))
                                                         ? '<i class="fa-solid fa-check"></i>'
                                                         : '' !!}
                                                 @endif
                                             </b></div>
-                                        <div class="col-lg-3 border text-center p-2"><b>any other</b></div>
-                                        <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
-                                                    {!! in_array('any_other', json_decode($data->physical_asset_item)) ? '<i class="fa-solid fa-check"></i>' : '' !!}
-                                                @endif
-                                            </b></div>
+
                                         <div class="col-lg-3 border text-center p-2 p-2"><b>disk harrow</b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
+                                                @if (is_array(json_decode($data->physical_asset_item)))
                                                     {!! in_array('disk_harrow', json_decode($data->physical_asset_item)) ? '<i class="fa-solid fa-check"></i>' : '' !!}
                                                 @endif
                                             </b></div>
 
                                         <div class="col-lg-3 border text-center p-2 p-2"><b>Cultivator</b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
+                                                @if (is_array(json_decode($data->physical_asset_item)))
                                                     {!! in_array('cultivator', json_decode($data->physical_asset_item)) ? '<i class="fa-solid fa-check"></i>' : '' !!}
                                                 @endif
                                             </b></div>
 
                                         <div class="col-lg-3 border text-center p-2 p-2"><b>Tractor Trolley</b></div>
                                         <div class="col-lg-3 border text-center p-2"><b>
-                                                @if (is_array($data->physical_asset_item))
+                                                @if (is_array(json_decode($data->physical_asset_item)))
                                                     {!! in_array('tractor_trolley', json_decode($data->physical_asset_item))
                                                         ? '<i class="fa-solid fa-check"></i>'
                                                         : '' !!}
                                                 @endif
                                             </b></div>
 
+                                            @php
+
+                                            $vehicles = [
+                                            "car/jeep",
+                                            "pickup/loader",
+                                            "motorcycle",
+                                            "bicycles",
+                                            "bullock cart",
+                                            "Tractor(4wheels)",
+                                            "disk_harrow",
+                                            "cultivator",
+                                            "tractor trolley",
+                                            "plough",
+                                            "laser lever",
+                                            "rotavetor",
+                                            "thresher",
+                                            "harvester"
+                                            ];
+
+                                            @endphp
+
+                                            @if (is_array(json_decode($data->physical_asset_item)))
+                                            @foreach (json_decode($data->physical_asset_item) as $physical_item)
+
+                                            @if(!in_array($physical_item,$vehicles))
+                                            <div class="col-lg-3 border text-center p-2 p-2"><b>{{$physical_item}}</b></div>
+                                            <div class="col-lg-3 border text-center p-2"><b><i class="fa-solid fa-check"></i></b></div>
+                                            @endif
+                                            @endforeach
+                                            @endif
 
 
                                     </div>
@@ -843,7 +868,7 @@
 
                             <tr>
 
-                                <td colspan="4" style="border: none;"><span> <b>1 CNIC Front : </b></span> <br>
+                                <td colspan="4" style="border: none;"><span> <b>1 CNIC Front: </b></span> <br>
                                     @if ($data->front_id_card != null)
                                         @php
                                             // Assuming front_id_card contains the path to the image file
@@ -868,7 +893,7 @@
                                         @endif
                                     @endif
 
-                                <td colspan="4" style="border: none;"><span> <b>2 CNIC Back : </b></span> <br>
+                                <td colspan="4" style="border: none;"><span> <b>2 CNIC Back: </b></span> <br>
                                     @if ($data->back_id_card != null)
                                         @php
                                             // Assuming front_id_card contains the path to the image file
@@ -896,8 +921,35 @@
 
                             </tr>
                             <tr>
-                                <td colspan="8" style="border: none;"><span> <b>3 Forms VII/VIII
-                                            A/Affidavit/Heirship/Registry from micro (land Documents) : </b></span> <br>
+                                 <td colspan="4" style="border: none;"><span> <b>3 Form VII: </b></span> <br>
+                                    {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
+
+                                    @if ($data->form_seven_pic != null)
+                                        @php
+                                            // Assuming form_seven_pic contains the path to the image file
+                                            $imagePath = public_path(
+                                                'fa_farmers/form_seven_pic/' . $data->form_seven_pic,
+                                            );
+
+                                            // Check if the image exists before encoding
+                                            if (file_exists($imagePath)) {
+                                                $imageData = base64_encode(file_get_contents($imagePath));
+                                                $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+                                            } else {
+                                                $imageSrc = '';
+                                            }
+                                        @endphp
+
+                                        @if ($imageSrc)
+                                            <img src="{{ $imageSrc }}" alt="Front ID Card"
+                                                style="width:300px;height:180px">
+                                        @else
+                                            <p>Image not found</p>
+                                        @endif
+                                    @endif
+                                </td>
+                                <td colspan="4" style="border: none;"><span> <b>4 Forms VIII
+                                            A/Affidavit/Heirship/Registry from micro (land Documents): </b></span> <br>
                                     {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
 
                                     @if ($data->upload_land_proof != null)
@@ -926,7 +978,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="8" style="border: none;"><span> <b>4 Photo </b></span> <br>
+                                <td colspan="4" style="border: none;"><span> <b>5 Photo: </b></span> <br>
                                     {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
                                     @if ($data->upload_farmer_pic != null)
                                         @php
@@ -953,10 +1005,8 @@
                                     @endif
 
                                 </td>
-                            </tr>
 
-                            <tr>
-                                <td colspan="8" style="border: none;"><span> <b>5 Others </b></span> <br>
+                                 <td colspan="4" style="border: none;"><span> <b>6 Others: </b></span> <br>
 
                                     {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
                                     @if ($data->upload_other_attach != null)
@@ -983,7 +1033,9 @@
                                         @endif
                                     @endif
                                 </td>
+
                             </tr>
+
 
 
 

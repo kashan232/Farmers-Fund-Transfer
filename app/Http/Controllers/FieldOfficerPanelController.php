@@ -245,10 +245,14 @@ class FieldOfficerPanelController extends Controller
             $data['land_emp_id'] = Auth()->user()->user_id;
             $data['land_emp_name'] = Auth()->user()->name;
 
+
             $data['title_name'] = json_encode($request->title_name);
+            $data['title_father_name'] = json_encode($request->title_name);
             $data['title_cnic'] = json_encode($request->title_cnic);
             $data['title_number'] = json_encode($request->title_number);
             $data['title_area'] = json_encode($request->title_area);
+
+            $data['owner_type'] = json_encode($request->owner_type);
 
             $data['crop_season'] = json_encode($request->crop_season);
             $data['crops'] = json_encode($request->crops);

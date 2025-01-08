@@ -178,15 +178,23 @@
                                         <h4 class="card-title">Personal Details</h4>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Q1. Name: <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" class="form-control" value="{{$data->name ?? ''}}"  >
+                                            <input type="text" name="name" class="form-control" value="{{$data->name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 30)" >
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Q2. Father/Husband Name: <span class="text-danger">*</span></label>
-                                            <input type="text" name="father_name" class="form-control" value="{{$data->father_name ?? ''}}" >
+                                            <input type="text" name="father_name" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 30)" >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
                                             <input type="text" id="cnic" name="cnic" class="form-control" value="{{$data->cnic ?? ''}}"   data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"   >
+                                        </div>
+                                        <div class="mb-6 col-md-3 py-2">
+                                            <label class="form-label">CNIC Issue Date.: <span class="text-danger">*</span></label>
+                                            <input type="date" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="{{$data->cnic_issue_date ?? ''}}"     >
+                                        </div>
+                                        <div class="mb-6 col-md-3 py-2">
+                                            <label class="form-label">CNIC Expiry Date.: <span class="text-danger">*</span></label>
+                                            <input type="date" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="{{$data->cnic_expiry_date ?? ''}}"     >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q4. Mobile No.: <span class="text-danger">*</span></label>
@@ -254,15 +262,15 @@
                                             <br>
 
                                             <label>
-                                                <input type="radio" name="owner_type" value="owner" @if(isset($data->owner_type)) {{ ($data->owner_type == 'owner') ? 'checked':'' }} @endif> 1. Owner
+                                                <input type="checkbox" name="owner_type[]" value="owner" @if(isset($data->owner_type)) {{ ($data->owner_type == 'owner') ? 'checked':'' }} @endif> 1. Owner
                                             </label>
                                             &nbsp;
                                             <label>
-                                                <input type="radio" name="owner_type" value="makadedar" @if(isset($data->owner_type)) {{ ($data->owner_type == 'makadedar') ? 'checked':'' }} @endif> 2. Makadedar (Contractor/leasee)
+                                                <input type="checkbox" name="owner_type[]" value="makadedar" @if(isset($data->owner_type)) {{ ($data->owner_type == 'makadedar') ? 'checked':'' }} @endif> 2. Makadedar (Contractor/leasee)
                                             </label>
                                             &nbsp;
                                             <label>
-                                                <input type="radio" name="owner_type" value="sharecropper" @if(isset($data->owner_type)) {{ ($data->owner_type == 'sharecropper') ? 'checked':'' }} @endif> 3. sharecropper/Tenant
+                                                <input type="checkbox" name="owner_type[]" value="sharecropper" @if(isset($data->owner_type)) {{ ($data->owner_type == 'sharecropper') ? 'checked':'' }} @endif> 3. sharecropper/Tenant
                                             </label>
                                         </div>
 
@@ -348,7 +356,7 @@
                                                 </label>
                                                 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
                                                 <label>
-                                                <input type="radio" name="house_type" value="both_pakka_house_kacha_house"  @if(isset($data->house_type)) {{ ($data->house_type == 'both_pakka_house_kacha_house') ? 'checked':'' }} @endif> &nbsp; (3) Both Pakka & Kacha House
+                                                {{-- <input type="radio" name="house_type" value="both_pakka_house_kacha_house"  @if(isset($data->house_type)) {{ ($data->house_type == 'both_pakka_house_kacha_house') ? 'checked':'' }} @endif> &nbsp; (3) Both Pakka & Kacha House --}}
                                                 </label>
                                             </div>
                                         </div>
@@ -382,7 +390,7 @@
                                                 <input type="text" name="land_area_as_per_share" value="{{$data->land_area_as_per_share ?? ''}}" class="form-control" >
                                             </div>
                                             <div class="mt-2 col-md-4">
-                                                <label class="form-label">(7) Survey No:</label>
+                                                <label class="form-label">(7) Survey No(s):</label>
                                                 <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)">
                                             </div>
                                         </div>
@@ -396,6 +404,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Full Name</th>
+                                                            <th>Father Name</th>
                                                             <th>CNIC Number</th>
                                                             <th>Contact Number</th>
                                                             <th>Total Area (Acres)</th>
@@ -409,6 +418,8 @@
                                                         @foreach (json_decode($data->title_name) as $index => $title_name)
                                                         <tr>
                                                             <td><input type="text" name="title_name[]" value="{{$title_name}}" class="form-control"></td>
+                                                            <td><input type="text" name="title_father_name[]"  value="{{json_decode($data->title_father_name)[$index]}}" class="form-control"></td>
+
                                                             <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
                                                             <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'"  placeholder="XXXX-XXXXXXX"  maxlength="12" value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
                                                             <td><input type="text" name="title_area[]" value="{{json_decode($data->title_area)[$index]}}" class="form-control"></td>
@@ -419,6 +430,9 @@
                                                         <tr>
                                                             <td>
                                                                 <input type="text" name="title_name[]" value="" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="title_father_name[]"  value="" class="form-control">
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  >
@@ -451,7 +465,7 @@
                                                             <th>Orchard</th>
                                                             <th>Crop(s)</th>
                                                             <th>Area (Acres)</th>
-                                                            <th>Average Yield (Per Mds)</th>
+                                                            <th>Average Yield (Per Acres)</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -460,7 +474,7 @@
                                                         @if (isset($data) && json_decode($data->crops) != null)
                                                         @foreach (json_decode($data->crops) as $index => $crops)
                                                         <tr>
-                                                            <td>
+                                                            <td class="crop_season_td">
                                                                 <select name="crop_season[]" style="width:200px" id="" class="crop_season form-control js-example-basic-single">
                                                                     <option value="">Select Season</option>
                                                                     <option value="rabi_season" >Rabi Season</option>
@@ -470,7 +484,7 @@
                                                                 </select>
 
                                                             </td>
-                                                            <td><input type="text" name="crops_orchard[]" value="{{json_decode($data->crops_orchard)[$index]}}" class="form-control"></td>
+                                                            <td class="crops_orchard_td"><input type="text" name="crops_orchard[]" value="{{json_decode($data->crops_orchard)[$index]}}" class="form-control"></td>
                                                             <td>
                                                                 <input type="text" name="crops[]" value="{{$crops}}" class="form-control">
                                                             </td>
@@ -485,7 +499,7 @@
                                                         @endforeach
                                                         @else
                                                         <tr>
-                                                            <td>
+                                                            <td class="crop_season_td">
                                                                 <select name="crop_season[]" style="width:200px" id="" class="crop_season form-control js-example-basic-single" >
                                                                     <option value="">Select Season</option>
                                                                     <option value="rabi_season" >Rabi Season</option>
@@ -494,7 +508,9 @@
 
                                                                 </select>
                                                             </td>
-                                                            <td><input type="text" name="crops_orchard[]" class="form-control"></td>
+                                                            <td class="crops_orchard_td">
+                                                                <input type="text" name="crops_orchard[]" class=" form-control">
+                                                            </td>
 
                                                             <td>
                                                                 <input type="text" name="crops[]" value="" class="form-control">
@@ -595,6 +611,7 @@
                                                 <option value="rotavetor">Rotavetor</option>
                                                 <option value="thresher">Thresher</option>
                                                 <option value="harvester">Harvester</option>
+                                                <option value="-">Nill</option>
                                                 @endif
                                             </select>
                                         </div>
@@ -686,7 +703,7 @@
                                                     <option value="canal well" @if(isset($data)) @if(is_array(json_decode($data->source_of_irrigation))) {{ in_array('canal well', json_decode($data->source_of_irrigation)) ? 'selected' : '' }}  @endif @endif  >(1) Canal System</option>
                                                     <option value="tube well" @if(isset($data)) @if(is_array(json_decode($data->source_of_irrigation))) {{ in_array('tube well', json_decode($data->source_of_irrigation)) ? 'selected' : '' }}  @endif @endif >(2) Tube Well</option>
                                                     <option value="rain barrani" @if(isset($data)) @if(is_array(json_decode($data->source_of_irrigation))) {{ in_array('rain barrani', json_decode($data->source_of_irrigation)) ? 'selected' : '' }}  @endif @endif  >(3) Rain/Barrani</option>
-                                                    <option value="kaccha area" @if(isset($data)) @if(is_array(json_decode($data->source_of_irrigation))) {{ in_array('kaccha area', json_decode($data->source_of_irrigation)) ? 'selected' : '' }}  @endif @endif  >(4) Kaccha Area</option>
+                                                    <option value="kaccha area" @if(isset($data)) @if(is_array(json_decode($data->source_of_irrigation))) {{ in_array('kaccha area', json_decode($data->source_of_irrigation)) ? 'selected' : '' }}  @endif @endif  >(4) Kaccha/Selabi Area</option>
                                                 </select>
                                             </div>
 
@@ -695,7 +712,7 @@
                                     <div class="row mt-3">
                                         <div class="mb-12 col-md-12">
 
-                                            <label class="form-label">Q22: Status of water course,</label>
+                                            <label class="form-label">Q22: Status of Watercourse,</label>
                                         </div>
                                         <div class="row mb-12 col-md-12" id="status_of_water_section">
                                             <div class="mb-3 col-md-3">
@@ -746,7 +763,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Q27: IBAN</label>
-                                            <input type="text" name="IBAN_number" value="{{$data->IBAN_number ?? ''}}" class="form-control" >
+                                            <input type="text" name="IBAN_number" value="{{$data->IBAN_number ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').slice(0, 24)" >
                                         </div>
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Q28: Branch Code</label>
@@ -814,20 +831,21 @@
                                             <input type="file" name="back_id_card" class="form-control checkfiles" onchange="checkFiles()">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Forms VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents)  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                            <input type="file" name="upload_land_proof" class="form-control checkfiles" onchange="checkFiles()">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Forms VII (Mandatory)<span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                            <label class="form-label">Form VII / Registry from Micro (Mandatory)<span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
                                             <input type="file" name="form_seven_pic" class="form-control checkfiles" onchange="checkFiles()">
                                         </div>
+                                        <div class="mb-6 col-md-6 mt-3">
+                                            <label class="form-label">Forms VII A/ Affidavit/ Heirship (Land Documents)  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
+                                            <input type="file" name="upload_land_proof" class="form-control checkfiles" onchange="checkFiles()">
+                                        </div>
+
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Photo  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
                                             <input type="file" name="upload_farmer_pic" class="form-control checkfiles" onchange="checkFiles()">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
                                             <label class="form-label">Others<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                            <input type="file" name="upload_other_attach" class="form-control checkfiles" onchange="checkFiles()">
+                                            <input type="file" name="upload_other_attach" class="form-control " >
                                         </div>
 
                                         {{--
@@ -909,12 +927,42 @@ $(":input").inputmask();
 
         <script>
 
+
+
+        $(document).on('change','.crop_season', function(event) {
+            event.preventDefault();
+            $(this).closest('tr').find('.crops_orchard_td').remove();
+            if($(this).val() == 'kharif_season'){
+                $(this).closest('tr').find('.crop_season_td').after(`
+                <td class="crops_orchard_td">
+                    <select name="crops_orchard[]" class=" form-control">
+                        <option>Select Orchard</option>
+                    </select>
+                </td>`);
+            }
+            else if($(this).val() == 'rabi_season'){
+               $(this).closest('tr').find('.crop_season_td').after(`
+                <td class="crops_orchard_td">
+                    <select name="crops_orchard[]" class=" form-control">
+                        <option>Select Orchard</option>
+                    </select>
+                </td>`);
+            }
+            else{
+               $(this).closest('tr').find('.crop_season_td').after(`
+                <td class="crops_orchard_td">
+                    <input type="text" name="crops_orchard[]" class=" form-control">
+                </td>`);
+            }
+        });
+
+
          $('#registrationForm').on('submit', function(event) {
             $('#submitbtn').attr('disabled', true); // Disable the submit button
             event.preventDefault();
                 var url = $(this).attr('action');
                 var formData = new FormData(this);
-                data =
+                // data =
                 $.ajax({
                     url: url,
                     method: 'post',
@@ -1130,6 +1178,7 @@ $('#abc').on('click',function(){
         const newRow = `
             <tr>
                 <td><input type="text" name="title_name[]" class="form-control"></td>
+                <td><input type="text" name="title_father_name[]"   class="form-control"></td>
                 <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  class="form-control"></td>
                 <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'" maxlength="12" class="form-control"></td>
                 <td><input type="text" name="title_area[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
@@ -1148,14 +1197,14 @@ $('#abc').on('click',function(){
     $('#add_crop_row_Btn').click(function() {
         const newRow = `
             <tr>
-                <td>
+                <td class="crop_season_td">
                     <select name="crop_season[]" id="" style="width:200px" class="crop_season form-control js-example-basic-single">
                         <option value="" >Select Season</option>
                         <option value="rabi_season" >Rabi Season</option>
                         <option value="kharif_season">Kharif Season</option>
                     </select>
                 </td>
-                <td><input type="text" name="crops_orchard[]" class="form-control"></td>
+                <td class="crops_orchard_td"><input type="text" name="crops_orchard[]" class="form-control"></td>
                 <td><input type="text" name="crops[]" class="form-control"></td>
                 <td><input type="text" name="crop_area[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
                 <td><input type="text" name="crop_average_yeild[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
@@ -1184,7 +1233,7 @@ $('#abc').on('click',function(){
                         <option value="Buffalo">Buffalo</option>
                         <option value="Cows">Cows</option>
                         <option value="Camels">Camels</option>
-                        <option value="Goals">Goals</option>
+                        <option value="Goats">Goals</option>
                         <option value="Sheep">Sheep</option>
                         <option value="Horse / Mules">Horse / Mules</option>
                         <option value="Donkeys">Donkeys</option>
@@ -1214,6 +1263,10 @@ $('#source_of_irrigation').change(function() {
 
     if($(this).val().includes('tube well'))
     {
+
+        var oldValues = $('#source_of_energy').val() || [];
+
+
         $('#source_of_energy_section').remove();
          $('#source_of_irrigation_section').append(`
          <div class="mb-6 col-md-6" id="source_of_energy_section">
@@ -1225,6 +1278,9 @@ $('#source_of_irrigation').change(function() {
                 </select>
             </div>
          `);
+         if (oldValues.length > 0) {
+            $('#source_of_energy').val(oldValues).trigger('change');
+        }
          $('#source_of_energy_section').find('.js-example-basic-multiple').last().select2({
             tags: true, // Enable the user to add custom tags
         });
