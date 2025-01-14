@@ -23,6 +23,63 @@
 <script src="{{asset('select2.min.js')}}"></script>
 <script>
     $(document).ready(function() {
+
+$('.upload-image').on('click', function() {
+    $(this).siblings('.image-input').click();
+});
+
+$('.image-input').on('change', function(event) {
+    checkFiles();
+
+    const file = event.target.files[0];
+    const $input = $(this);
+    const $preview = $input.siblings('.preview');
+    const $removeButton = $input.siblings('.remove-button');
+    const $uploadButton = $input.siblings('.upload-image');
+    const $imageArea = $input.siblings('.img-area');
+
+    if (file) {
+        @if(isset($data))
+        // Clear the old image value if data exists
+        $input.siblings('.old_image').val(1);
+        @endif
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            $preview.attr('src', e.target.result).show();
+            $removeButton.show();
+            $uploadButton.hide();
+            $imageArea.hide();
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+$('.remove-button').on('click', function() {
+    const $removeButton = $(this);
+    const $input = $removeButton.siblings('.image-input');
+    const $preview = $removeButton.siblings('.preview');
+    const $uploadButton = $input.siblings('.upload-image');
+    const $imageArea = $input.siblings('.img-area');
+    $input.val(''); // Clear the input
+    $preview.attr('src', '').hide();
+    $removeButton.hide();
+    $uploadButton.show();
+    $imageArea.show();
+
+    @if(isset($data))
+
+        // Clear the old image value if data exists
+        $input.siblings('.old_image').val('');
+        if($removeButton.siblings('.image-input').attr('name') != 'upload_other_attach'){
+            checkFiles();
+        }
+    @endif
+});
+});
+
+</script>
+<script>
+    $(document).ready(function() {
         // $('.js-example-basic-multiple').select2();
 
         $('.js-example-basic-multiple').select2({

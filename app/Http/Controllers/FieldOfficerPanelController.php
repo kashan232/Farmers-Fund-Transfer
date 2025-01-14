@@ -205,25 +205,50 @@ class FieldOfficerPanelController extends Controller
 
 
              // File uploads
-            'front_id_card' => 'required|file|mimes:jpg,png,jpeg|max:500',
-            'back_id_card' => 'required|file|mimes:jpg,png,jpeg|max:500',
-            'form_seven_pic' => 'required|file|mimes:jpg,png,jpeg|max:500',
-            'upload_farmer_pic' => 'required|file|mimes:jpg,png,jpeg|max:500',
+            // 'front_id_card' => 'required|file|mimes:jpg,png,jpeg|max:500',
+            // 'back_id_card' => 'required|file|mimes:jpg,png,jpeg|max:500',
+            // 'form_seven_pic' => 'required|file|mimes:jpg,png,jpeg|max:500',
+            // 'upload_farmer_pic' => 'required|file|mimes:jpg,png,jpeg|max:500',
 
         ];
+
+
+        if ($request->old_front_id_card != 1){
+            $rules['front_id_card'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+        }
+        if ($request->old_back_id_card != 1){
+            $rules['back_id_card'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+        }
+        if ($request->old_form_seven_pic != 1){
+            $rules['form_seven_pic'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+        }
+        if ($request->old_upload_farmer_pic != 1){
+            $rules['upload_farmer_pic'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+        }
+        if ($request->old_upload_land_proof != 1){
+            $rules['upload_land_proof'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+        }
+
+
+
 
         $messages = [
             'front_id_card.max' => 'The ID card file size must not exceed 500KB.',
             'back_id_card.max' => 'The ID card file size must not exceed 500KB.',
             'form_seven_pic.max' => 'The Form VII proof file size must not exceed 500KB.',
             'upload_farmer_pic.max' => 'The farmer photo file size must not exceed 500KB.',
-            'form_seven_pic.required' => 'Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) is required.',
+            'form_seven_pic.required' => 'Forms VII / Registry from Micro (Land Documents) is required.',
+            'upload_land_proof.required' => 'Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) is required.',
+
             'upload_farmer_pic.required' => 'Photo of the farmer is required.',
 
             'front_id_card.mimes' => 'The ID card must be a file of type: jpg, jpeg, png.',
             'back_id_card.mimes' => 'The ID card must be a file of type: jpg, jpeg, png.',
             'form_seven_pic.mimes' => 'The Form VII proof file must be of type: jpg, jpeg, png.',
             'upload_farmer_pic.mimes' => 'The farmer photo must be of type: jpg, jpeg, png.',
+
+            'upload_land_proof.mimes' => 'The Form VIII proof file must be of type: jpg, jpeg, png.',
+
 
 
         ];
@@ -237,7 +262,7 @@ class FieldOfficerPanelController extends Controller
         if (Auth::check()) {
 
             $data = $request->all();
-            $data = $request->except(['_token', 'edit_id']);
+            $data = $request->except(['_token', 'edit_id', 'old_front_id_card','old_back_id_card','old_form_seven_pic','old_upload_land_proof','old_upload_farmer_pic','old_upload_other_attach']);
 
 
             $data['user_type'] = $request->user_type;
@@ -273,16 +298,7 @@ class FieldOfficerPanelController extends Controller
             $data['verification_status'] = null;
             $data['declined_reason'] = null;
 
-            // // Handle front ID card image
-            // if ($request->hasFile('front_id_card')) {
-            //     $front_id_cardimage = $request->file('front_id_card');
-            //     $front_id_cardimageName = 'fa_farmers/upload_other_attach/' . time() . '_' . uniqid() . '.' . $front_id_cardimage->getClientOriginalExtension();
-            //     // Store the file in the storage/app folder and make it publicly accessible
-            //     $path = $front_id_cardimage->storeAs('public/' . $front_id_cardimageName);
-            //     $data['front_id_card'] = $path;
 
-            //     // dd($path);
-            // }
 
              // Handle front ID card image
             if ($request->hasFile('front_id_card')) {
