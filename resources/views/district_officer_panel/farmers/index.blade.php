@@ -141,7 +141,10 @@
                                                                 <button type="button" class="btn btn-sm btn-success verifiy-btn "   data-id="{{ $farmer->id }}">Verify</button> &nbsp;
                                                                 @endif --}}
                                                                 {{-- <a class="btn btn-primary" href="{{route('do-edit-farmer',$farmer->id)}}">Edit</a> --}}
-                                                            <a class="btn btn-primary btn-sm" href="{{route('view-farmers',$farmer->id)}}">View</a>
+                                                            {{-- <a class="btn btn-primary btn-sm" href="{{route('view-farmers',$farmer->id)}}">View</a> --}}
+
+                                                            <a class="btn btn-primary btn-sm" href="{{route('view-farmers-by-field-officer',$farmer->id)}}">View</a>
+
                                                             </div>
                                                         </td>
 

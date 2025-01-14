@@ -262,15 +262,15 @@
                                             <br>
 
                                             <label>
-                                                <input type="checkbox" name="owner_type[]" value="owner" @if(isset($data->owner_type)) {{ ($data->owner_type == 'owner') ? 'checked':'' }} @endif> 1. Owner
+                                                <input type="checkbox" name="owner_type[]" value="owner" @if(isset($data->owner_type))   @if(is_array(json_decode($data->owner_type))) {{ in_array('owner', json_decode($data->owner_type)) ? 'checked' : '' }}  @endif @endif> 1. Owner
                                             </label>
                                             &nbsp;
                                             <label>
-                                                <input type="checkbox" name="owner_type[]" value="makadedar" @if(isset($data->owner_type)) {{ ($data->owner_type == 'makadedar') ? 'checked':'' }} @endif> 2. Makadedar (Contractor/leasee)
+                                                <input type="checkbox" name="owner_type[]" value="makadedar" @if(isset($data->owner_type))  @if(is_array(json_decode($data->owner_type))) {{ in_array('makadedar', json_decode($data->owner_type)) ? 'checked' : '' }}  @endif @endif> 2. Makadedar (Contractor/leasee)
                                             </label>
                                             &nbsp;
                                             <label>
-                                                <input type="checkbox" name="owner_type[]" value="sharecropper" @if(isset($data->owner_type)) {{ ($data->owner_type == 'sharecropper') ? 'checked':'' }} @endif> 3. sharecropper/Tenant
+                                                <input type="checkbox" name="owner_type[]" value="sharecropper" @if(isset($data->owner_type))  @if(is_array(json_decode($data->owner_type))) {{ in_array('sharecropper', json_decode($data->owner_type)) ? 'checked' : '' }}  @endif @endif> 3. sharecropper/Tenant
                                             </label>
                                         </div>
 
@@ -611,7 +611,7 @@
                                                 <option value="rotavetor">Rotavetor</option>
                                                 <option value="thresher">Thresher</option>
                                                 <option value="harvester">Harvester</option>
-                                                <option value="-">Nill</option>
+                                                <option value="Nill">Nill</option>
                                                 @endif
                                             </select>
                                         </div>
@@ -890,39 +890,6 @@ $(":input").inputmask();
 </script>
 
 
-{{-- <script>
-     function formatCNIC(input) {
-        // Remove all non-numeric characters
-        let value = input.value.replace(/[^0-9]/g, '');
-
-        // Apply formatting: 5 digits, 7 digits, and 1 digit with dashes
-        if (value.length > 5) {
-            value = value.replace(/^(\d{5})(\d{0,7})(\d{0,1})/, '$1-$2-$3');
-        } else {
-            value = value.replace(/^(\d{5})(\d{0,7})/, '$1-$2');
-        }
-
-        // Set the formatted value back to the input
-        input.value = value.slice(0, 15); // Limit the length to a max of 15 characters
-    }
-
-    function formatMobile(input) {
-        // Remove all non-numeric characters
-        let value = input.value.replace(/[^0-9]/g, '');
-
-        // Ensure the first 4 digits are followed by a dash
-        if (value.length > 4) {
-            value = value.replace(/^(\d{4})(\d{0,7})/, '$1-$2');
-        }
-
-        // Set the formatted value back to the input
-        input.value = value.slice(0, 13); // Limit the length to a max of 13 characters (e.g., 0323-2342343)
-    }
-
-</script> --}}
-
-
-
 
 
         <script>
@@ -937,6 +904,8 @@ $(":input").inputmask();
                 <td class="crops_orchard_td">
                     <select name="crops_orchard[]" class=" form-control">
                         <option>Select Orchard</option>
+                        <option value="test1">test1</option>
+                        <option value="test2">test2</option>
                     </select>
                 </td>`);
             }
@@ -945,6 +914,8 @@ $(":input").inputmask();
                 <td class="crops_orchard_td">
                     <select name="crops_orchard[]" class=" form-control">
                         <option>Select Orchard</option>
+                        <option value="test1">test1</option>
+                        <option value="test2">test2</option>
                     </select>
                 </td>`);
             }

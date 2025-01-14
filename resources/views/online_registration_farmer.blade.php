@@ -706,7 +706,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                         <option value="rotavetor">Rotavetor</option>
                                                         <option value="thresher">Thresher</option>
                                                         <option value="harvester">Harvester</option>
-                                                        <option value="-">Nill</option>
+                                                        <option value="Nill">Nill</option>
                                                         @endif
                                                     </select>
                                                 </div>

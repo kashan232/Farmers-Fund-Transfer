@@ -180,9 +180,7 @@
                             <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
                             <select class="form-control" id="statusSelect" name="verification_status">
                                 <option value="verified_by_lo">Verified</option>
-
-                               <option value="rejected_by_lo">Unverified</option>
-
+                                <option value="rejected_by_lo">Unverified</option>  
                             </select>
                         </div>
                         <div class="form-group" id="reasonBox" style="display: none;">
@@ -269,7 +267,7 @@
                                 <th class="question"> Q3.</th>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
                                     <span> <b> CNIC No:</b></span> <span
-                                        style="border-bottom: 1px solid black; padding-right:5%">{{ $data->cnic }}</span> <b>Issue Date:</b> <u>{{ $data->cnic_issue_date }}</u>  &nbsp; &nbsp; <b>EXP Date:</b>  <u>{{ $data->cnic_expiry_date }}</u></td>
+                                        style="border-bottom: 1px solid black; padding-right:3%">{{ $data->cnic }}</span> <b>Issue Date:</b> <u>{{ $data->cnic_issue_date }}</u>  &nbsp; &nbsp; <b>EXP Date:</b>  <u>{{ $data->cnic_expiry_date }}</u></td>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
                                     <span> <b>Q4.&nbsp&nbsp Mobile No : </b> </span> <span
                                         style="border-bottom: 1px solid black;">{{ $data->mobile }}</span></td>
@@ -309,10 +307,10 @@
                                             </b> Male&nbsp &nbsp&nbsp<b> {!! $data->gender == 'female' ? '<i class="fa-solid fa-check"></i>' : '' !!}
                                             </b>Female &nbsp&nbsp<span></span></span> </td>
                                 <td colspan="5" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
-                                    <span> <b>Q12.&nbsp&nbsp Owner Type: </b>&nbsp&nbsp&nbsp {!! $data->owner_type == 'owner' ? '<i class="fa-solid fa-check"></i>' : '' !!}
-                                        1.Owner &nbsp&nbsp&nbsp&nbsp&nbsp{!! $data->owner_type == 'makadedar' ? '<i class="fa-solid fa-check"></i>' : '' !!}2.
+                                    <span> <b>Q12.&nbsp&nbsp Owner Type: </b>&nbsp&nbsp&nbsp @if(is_array(json_decode($data->owner_type))) {!! in_array('owner', json_decode($data->owner_type)) ? '<i class="fa-solid fa-check"></i>' : '' !!}  @endif
+                                        1.Owner &nbsp&nbsp&nbsp&nbsp&nbsp @if(is_array(json_decode($data->owner_type))) {!! in_array('makadedar', json_decode($data->owner_type)) ? '<i class="fa-solid fa-check"></i>' : '' !!}  @endif 2.
                                         Makadedar(Contractor/leasee)
-                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! $data->owner_type == 'sharecropper' ? '<i class="fa-solid fa-check"></i>' : '' !!}3. Sharecropper/Tenant
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp @if(is_array(json_decode($data->owner_type))) {!! in_array('sharecropper', json_decode($data->owner_type)) ? '<i class="fa-solid fa-check"></i>' : '' !!}  @endif 3. Sharecropper/Tenant
                                     </span> </td>
 
                             </tr>
@@ -357,12 +355,10 @@
                                 <th class="question"> Q15.</th>
 
                                 <td colspan="8" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
-                                    <span> <b>House type: </b> {!! $data->house_type == 'pakka_house' ? '<i class="fa-solid fa-check"></i>' : '' !!} (1) Paka House </span> <span
+                                    <span> <b>House type: &nbsp&nbsp&nbsp </b> {!! $data->house_type == 'pakka_house' ? '<i class="fa-solid fa-check"></i>' : '' !!} (1) Paka House </span> <span
                                         style="border-bottom: 1px solid black;"></span>&nbsp&nbsp&nbsp<span>
                                         {!! $data->house_type == 'kacha_house' ? '<i class="fa-solid fa-check"></i>' : '' !!}(2) Kacha House </span> <span
-                                        style="border-bottom: 1px solid black;"></span> &nbsp &nbsp &nbsp
-                                    {!! $data->house_type == 'both_pakka_house_kacha_house' ? '<i class="fa-solid fa-check"></i>' : '' !!}(3) Both Paka House & Kacha House </span> <span
-                                        style="border-bottom: 1px solid black;"></span></td>
+                                        style="border-bottom: 1px solid black;"></span>
 
                             </tr>
                             <tr>

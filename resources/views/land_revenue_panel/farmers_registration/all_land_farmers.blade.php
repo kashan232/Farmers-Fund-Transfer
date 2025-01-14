@@ -134,6 +134,8 @@
                                                         <td>
                                                             @if ($all_land_farmer->verification_status == 1 && $all_land_farmer->declined_reason == '')
                                                             <span class="badge bg-success">Verified by AO</span>
+                                                            @elseif($all_land_farmer->verification_status == 'verified_by_lo')
+                                                            <span class="badge text-bg-success">Approved Farmers</span>
                                                             @elseif($all_land_farmer->declined_reason != null || $all_land_farmer->declined_reason != '')
                                                             <span class="badge bg-danger">Rejected</span>
                                                             @elseif ($all_land_farmer->declined_reason != '' && $all_land_farmer->verification_status == 2)

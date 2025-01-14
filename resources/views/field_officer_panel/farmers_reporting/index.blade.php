@@ -59,25 +59,9 @@
                                 <div class="col-md-12">
                                     <form action="{{ route('view.reporting-farmers-by-field-officer') }}" method="post" enctype="multipart/form-data">
                                         @csrf
-                                        <div class="row">
 
-                                            <!-- Select District -->
-                                            <div class="col-6 mt-2">
-                                                <div class="mb-12 col-md-12">
-                                                    <label class="form-label" style="font-weight: 600;">Select District</label>
-                                                        <input class="form-control" type="text" readonly value="{{ $district }}" name="district">
-                                                </div>
-                                            </div>
-
-                                             <!-- Select Tehsil -->
-                                             <div class="col-6 mt-2">
-                                                <div class="mb-12 col-md-12">
-                                                    <label class="form-label" style="font-weight: 600;">Select Tehsil</label>
-                                                        <input class="form-control" type="text" readonly value="{{ $tehsil[0] }}" name="tehsil">
-                                                </div>
-                                            </div>
-
-                                        </div>
+                                        <input class="form-control" type="hidden" readonly value="{{ $district }}" name="district">
+                                        <input class="form-control" type="hidden" readonly value="{{ $tehsil[0] }}" name="tehsil">
 
                                         <div class="row mt-2">
 

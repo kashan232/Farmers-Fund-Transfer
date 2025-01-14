@@ -229,7 +229,7 @@ class LandRevenueFarmerController extends Controller
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
             $tehsils = Tehsil::where('district', '=', Auth()->user()->district)->get();
-            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status','verified_by_dd')->where('district', '=', Auth()->user()->district)->paginate();
+            $all_land_farmers = LandRevenueFarmerRegistation::where('verification_status','verified_by_dd')->orWhere('verification_status','verified_by_lo')->where('district', '=', Auth()->user()->district)->paginate();
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
                 'all_land_farmers' => $all_land_farmers,
