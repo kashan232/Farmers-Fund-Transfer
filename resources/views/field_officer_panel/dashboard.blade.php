@@ -123,20 +123,6 @@
                 </div>
             </div>
 
-            <!-- Tehsil-wise Farmer Count Chart -->
-            <div class="col-lg-12 mt-3">
-                <div class="box--sec">
-                    <div class="top-heading">
-                        <div>
-                            <p> Tehsil-Wise Farmer Count </p>
-                        </div>
-                    </div>
-                    <div id="tehsilWiseFarmerChart"></div>
-                </div>
-            </div>
-
-
-
         </div>
         <!-- [ Main Content ] end -->
     </div>
@@ -195,70 +181,5 @@
     new ApexCharts(document.querySelector("#farmerStatusHorizontalBarChart"), farmerStatusOptions).render();
 </script>
 
-
-<!-- Tehsil-Wise Farmer Count Chart Script -->
-<script>
-    const tehsilNames = ['Tehsil 1', 'Tehsil 2', 'Tehsil 3'];
-    const totalFarmers = [100, 150, 120];
-    const verifiedFarmers = [70, 100, 80];
-    const unverifiedFarmers = [30, 50, 40];
-
-    const tehsilWiseOptions = {
-        series: [{
-                name: 'Total Farmers',
-                data: totalFarmers
-            },
-            {
-                name: 'Verified Farmers',
-                data: verifiedFarmers
-            },
-            {
-                name: 'Unverified Farmers',
-                data: unverifiedFarmers
-            }
-        ],
-        chart: {
-            type: 'bar',
-            height: 400
-        },
-        plotOptions: {
-            bar: {
-                horizontal: true,
-                barHeight: '60%',
-                endingShape: 'rounded'
-            }
-        },
-        colors: ['#dfd930', '#3f8a5c', '#c93f3b'],
-        dataLabels: {
-            enabled: true,
-            style: {
-                fontSize: '12px',
-                colors: ["#304758"]
-            }
-        },
-        xaxis: {
-            categories: ['Hyderabad City', 'Qasimabad', 'Latifabad'], // Replace with actual Tehsil names
-        },
-        yaxis: {
-            categories: tehsilNames,
-            title: {
-                text: 'Tehsils'
-            }
-        },
-        legend: {
-            position: 'top'
-        },
-        tooltip: {
-            y: {
-                formatter: val => `${val} farmers`
-            }
-        }
-    };
-
-    new ApexCharts(document.querySelector("#tehsilWiseFarmerChart"), tehsilWiseOptions).render();
-</script>
-
-
 </body>
-
 </html>
