@@ -10,7 +10,7 @@
 
 <style>
     @media only screen and (max-width: 600px) {
-        .dashboard-btns{
+        .dashboard-btns {
             display: unset !important;
         }
     }
@@ -19,40 +19,18 @@
 <!-- [ Main Content ] start -->
 <div class="pc-container">
     <div class="pc-content">
-        <!-- [ breadcrumb ] start -->
-        <!-- <div class="page-header">
-            <div class="page-block">
-                <div class="row align-items-center">
-                    <div class="col-md-12">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Home</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="page-header-title">
-                            <h2 class="mb-0">Agriculture Officer Dashboard</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- [ breadcrumb ] end -->
         <!-- [ Main Content ] start -->
         <div class="row">
             <div class="col-md-12 col-lg-12">
                 <div class="dashboard">
                     <div class="all-card">
                         <div class="row">
-
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class=" dashboard-btns" style="display: none">
                                     <button class="btn btn-sm btn-primary mb-4">Add Farmer</button>
                                     <button class="btn btn-sm btn-primary mb-4">Farmers List</button>
                                     <button class="btn btn-sm btn-primary mb-4">Reporting</button>
                                 </div>
-
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -62,7 +40,7 @@
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-city" aria-hidden="true"></i>
+                                                    <i class="fas fa-users" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -80,7 +58,7 @@
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-city" aria-hidden="true"></i>
+                                                    <i class="fas fa-user-check" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,7 +76,7 @@
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-city" aria-hidden="true"></i>
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -116,13 +94,12 @@
                 <div class="box--sec">
                     <div class="top-heading">
                         <div>
-                            <p> Farmer Completion Status </p>
+                            <p> Farmers Rejection Status Overview </p>
                         </div>
                     </div>
-                    <div id="farmerStatusHorizontalBarChart"></div>
+                    <div id="farmerRejectionStatusBarChart"></div>
                 </div>
             </div>
-
         </div>
         <!-- [ Main Content ] end -->
     </div>
@@ -135,17 +112,23 @@
 @include('field_officer_panel.include.footer_include')
 <!-- Farmer Completion Status Chart Script -->
 <script>
-    const completeFarmers = 80;
-    const incompleteFarmers = 20;
+    const rejectedByAO = 15;
+    const rejectedByDD = 10;
+    const rejectedByLRD = 5;
 
-    const farmerStatusOptions = {
-        series: [{
-                name: 'Unverified Farmers',
-                data: [completeFarmers]
+    const rejectionStatusOptions = {
+        series: [
+            {
+                name: 'Rejected by AO',
+                data: [rejectedByAO]
             },
             {
-                name: 'Verified Farmers',
-                data: [incompleteFarmers]
+                name: 'Rejected by DD',
+                data: [rejectedByDD]
+            },
+            {
+                name: 'Rejected by LRD',
+                data: [rejectedByLRD]
             }
         ],
         chart: {
@@ -158,19 +141,19 @@
                 barHeight: '50%'
             }
         },
-        colors: ['#c93f3b', '#3f8a5c'],
+        colors: ['#5bbf83', '#d9534f', '#dfd930'],
         dataLabels: {
             enabled: true
         },
         xaxis: {
-            categories: ['Farmers'],
+            categories: ['Rejection Status'],
             title: {
                 text: 'Number of Farmers'
             }
         },
         yaxis: {
             title: {
-                text: 'Farmer Status'
+                text: 'Rejection Category'
             }
         },
         legend: {
@@ -178,8 +161,7 @@
         }
     };
 
-    new ApexCharts(document.querySelector("#farmerStatusHorizontalBarChart"), farmerStatusOptions).render();
+    new ApexCharts(document.querySelector("#farmerRejectionStatusBarChart"), rejectionStatusOptions).render();
 </script>
-
 </body>
 </html>
