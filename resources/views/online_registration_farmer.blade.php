@@ -266,7 +266,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                         @csrf
                                         @if(isset($data))
                                         <input type="hidden" value="{{ $data->id ?? '' }}" name="edit_id">
-                                        <input type="hidden" value="{{ $data->user_type ?? '' }}" name="user_type">
+                                        <input type="hidden" value="{{ $data->user_type ?? 'Online' }}" name="user_type">
                                         @endif
                                         <div class="step step-1">
                                             <div class="row mt-2">
