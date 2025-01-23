@@ -310,7 +310,7 @@ class LandRevenueFarmerController extends Controller
         }
         $farmer->verification_by = $user->id;
         $farmer->save();
-        return redirect()->back()->with('farmers-registered', 'Done');
+        return redirect()->route('field-officer-farmers-list-by-land-officer')->with('farmers-registered', 'Done');
     }
 
 

@@ -65,6 +65,32 @@
 
                                         <div class="row mt-2">
 
+                                            <div class="col-6 mt-2">
+                                                <div class="mb-12 col-md-12">
+                                                    <label class="form-label" style="font-weight: 600;">House Type</label>
+                                                    <div class="d-flex">
+                                                        <select name="house_type" id="" class="form-control">
+                                                            <option value="">Choose House Type</option>
+                                                            <option value="kacha_house">Kacha</option>
+                                                            <option value="pakka_house">Pakka</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6 mt-2">
+                                                <div class="mb-12 col-md-12">
+                                                    <label class="form-label" style="font-weight: 600;">Owner Type</label>
+                                                    <div class="d-flex">
+                                                        <select name="owner_type" id="" class="form-control">
+                                                            <option value="">Choose Owner Type</option>
+                                                            <option value="owner">owner</option>
+                                                            <option value="makadedar">makadedar</option>
+                                                            <option value="sharecropper">sharecropper</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <!-- Acreage Range -->
                                             <div class="col-6 mt-2">
@@ -74,11 +100,13 @@
                                                         <input type="text" name="min_acre" class="form-control" placeholder="Min Acre" oninput="if (!/[0-9]/.test(this.value)) { this.value = this.value.replace(/\./g, ''); } this.value = this.value.replace(/[^0-9.]/g, '').replace(/(?!^)(\..*)\..*/g, '$1').slice(0, 20)"> &nbsp;
                                                         <input type="text" name="max_acre" class="form-control ml-2" placeholder="Max Acre" oninput="if (!/[0-9]/.test(this.value)) { this.value = this.value.replace(/\./g, ''); } this.value = this.value.replace(/[^0-9.]/g, '').replace(/(?!^)(\..*)\..*/g, '$1').slice(0, 20)">
                                                     </div>
-
                                                 </div>
                                             </div>
 
                                             <!-- Date Range -->
+
+
+
                                             <div class="col-6 mt-2">
                                                 <div class="mb-12 col-md-12">
                                                     <label class="form-label" style="font-weight: 600;">Date Range</label>
@@ -87,14 +115,9 @@
                                                         <input type="hidden" name="end_date" id="end_date" >
                                                         <input type="text" id="daterange" name="" class="form-control"> &nbsp;
                                                     </div>
-
                                                 </div>
                                             </div>
-
                                         </div>
-
-
-
 
                                         <div class="row mt-4">
                                             <div class="col-md-12">

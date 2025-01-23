@@ -171,7 +171,7 @@
                         </tbody>
                     </table>
                     <!-- Pagination links -->
-                    <div class="py-5">
+                    <div class="py-1">
                         {{ $data->appends(request()->input())->links() }}
                     </div>
                 </div>

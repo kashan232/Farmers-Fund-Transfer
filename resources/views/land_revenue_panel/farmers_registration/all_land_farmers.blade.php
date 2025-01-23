@@ -93,6 +93,7 @@
                                             <table id="example"  style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
                                                     <tr>
+                                                        <th>S#</th>
                                                         <th>Register By</th>
                                                         <th>Name</th>
                                                         <th>CNIC</th>
@@ -111,6 +112,7 @@
                                                     @foreach($all_land_farmers as $all_land_farmer)
 
                                                     <tr>
+                                                        <td>{{$loop->index+1}}</td>
                                                         <td>
 
                                                                 @if ($all_land_farmer->user_type == 'Online')

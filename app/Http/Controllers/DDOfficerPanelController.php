@@ -89,6 +89,6 @@ class DDOfficerPanelController extends Controller
         }
         $farmer->verification_by = $user->id;
         $farmer->save();
-        return redirect()->back()->with('farmers-registered', 'Done');
+        return redirect()->route('farmers-by-dd')->with('farmers-registered', 'Done');
     }
 }
