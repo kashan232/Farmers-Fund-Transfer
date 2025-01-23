@@ -41,7 +41,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Verified Farmers</p>
+                                                <p class="card-title text-title">DD Verified Farmers</p>
                                                 <h3 class="card-text text-amount">{{ $Verifiedfarmeragiruser }}</h3>
                                             </div>
                                             <div class="col-auto">
@@ -59,7 +59,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Rejected Farmers</p>
+                                                <p class="card-title text-title">DD Rejected Farmers</p>
                                                 <h3 class="card-text text-amount">{{ $Verifiedfarmeragiruser }}</h3>
                                             </div>
                                             <div class="col-auto">
@@ -83,22 +83,18 @@
                         <p>Farmer Registration</p>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 p-3">
-                            <div class="chart-heading text-center pt-2 pb-2" style="font-weight: bold;">Online Farmer Registration</div>
-                            <div class="chart-wrapper">
-                                <div class="chart" id="onlinefarmers"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 p-3">
-                            <div class="chart-heading text-center pt-2 pb-2" style="font-weight: bold;">Land Revenue Department</div>
-                            <div class="chart-wrapper">
-                                <div class="chart" id="landRevenueChart"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 p-3">
+                       
+                        <div class="col-md-6 p-3">
                             <div class="chart-heading text-center pt-2 pb-2" style="font-weight: bold;">Field Officer</div>
                             <div class="chart-wrapper">
                                 <div class="chart" id="fieldOfficerRegistrationChart"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 p-3">
+                            <div class="chart-heading text-center pt-2 pb-2" style="font-weight: bold;">Online Farmer Registration</div>
+                            <div class="chart-wrapper">
+                                <div class="chart" id="onlinefarmers"></div>
                             </div>
                         </div>
                     </div>
@@ -114,21 +110,9 @@
                     <div id="districtOfficerTehsilWiseRegistrationChart"></div>
                 </div>
             </div>
-
-            <!-- Field Officer Count Chart -->
-            <div class="col-12 mt-3">
-                <div class="box--sec">
-                    <div class="top-heading">
-                        <p>Field Officer</p>
-                    </div>
-                    <div id="fieldOfficerChart"></div>
-                </div>
-            </div>
         </div>
-        <!-- [ Main Content ] end -->
     </div>
 </div>
-<!-- [ Main Content ] end -->
 
 <footer class="pc-footer">
     @include('dd_officer_panel.include.footer_copyright_include')
@@ -179,7 +163,6 @@
     }
 
     renderDonutChart("#onlinefarmers", ownFarmerData, 100);
-    renderDonutChart("#landRevenueChart", landRevenueData, 120);
     renderDonutChart("#fieldOfficerRegistrationChart", fieldOfficerData, 90);
 
     const districtOfficerOptions = {
@@ -224,41 +207,7 @@
     };
 
     new ApexCharts(document.querySelector("#districtOfficerTehsilWiseRegistrationChart"), districtOfficerOptions).render();
-    // Field Officer Count Chart Data and Configurations
-    const fieldOfficerOptions = {
-        series: [{
-            name: 'Field Officers',
-            data: [10, 7, 5]
-        }],
-        chart: {
-            type: 'bar',
-            height: 350
-        },
-        plotOptions: {
-            bar: {
-                horizontal: true,
-                borderRadius: 8,
-                barHeight: '60%'
-            }
-        },
-        colors: ['#3e7350'],
-        dataLabels: {
-            enabled: true,
-            formatter: (val) => `${val} officers`
-        },
-        xaxis: {
-            categories: ['Hyderabad City', 'Qasimabad', 'Latifabad'],
-            title: {
-                text: 'Field Officer Count'
-            }
-        },
-        yaxis: {
-            title: {
-                text: 'Tehsil'
-            }
-        }
-    };
-    new ApexCharts(document.querySelector("#fieldOfficerChart"), fieldOfficerOptions).render();
+    
 </script>
 
 </body>
