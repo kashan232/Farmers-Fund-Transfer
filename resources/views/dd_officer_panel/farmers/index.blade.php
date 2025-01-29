@@ -89,6 +89,7 @@
                                             <table id="example" class="display" style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
                                                     <tr>
+                                                        <th>S#</th>
                                                         <th>Register By</th>
                                                         <th>Name</th>
                                                         <th>CNIC</th>
@@ -106,6 +107,7 @@
                                                 <tbody>
                                                     @foreach($farmers as $farmer)
                                                     <tr>
+                                                        <td>{{$loop->index+1}}</td>
                                                         <td>
                                                             @if ($farmer->user_type == 'Online')
                                                             Online
@@ -124,7 +126,7 @@
                                                         <td>{{ $farmer->village }}</td>
                                                         <td>
                                                             @if ($farmer->verification_status == 'rejected_by_lo')
-                                                            <span class="badge text-bg-danger">Rejected By Land Officer</span>
+                                                            <span class="badge text-bg-danger">Rejected By LRD</span>
                                                             @elseif($farmer->verification_status == 'rejected_by_do')
                                                             <span class="badge text-bg-danger">Rejected By Additional Director</span>
                                                             @elseif($farmer->verification_status == 'verified_by_do')

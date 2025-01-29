@@ -112,6 +112,34 @@
         pointer-events: none;
         /* Disable clicks on the body */
     }
+
+
+
+    .select2-selection--single {
+        height: 40px !important;
+    }
+
+    .select2-selection--single .select2-selection__rendered{
+        line-height: 40px !important;
+    }
+    .select2-selection--single .select2-selection__arrow{
+        top: 8px !important;
+    }
+
+
+    .select2-container--default .select2-selection--multiple {
+        padding-top: 5px !important;
+    }
+
+
+
+    .select2-container--default {
+        width: 100% !important;
+    }
+    #reasonBox
+    {
+        display: none;
+    }
 </style>
 
 <body>
@@ -135,13 +163,13 @@
                             <label for="statusSelect">Status</label>
                             <input type="hidden" id="farmer_id" name="farmer_id" value="" readonly>
                             <select class="form-control" id="statusSelect" name="verification_status">
-                                <option value="verified_by_ao">Verified</option>
-                                <option value="rejected_by_ao">Unverified</option>
+                                <option value="verified_by_ao" selected>Verified</option>
+                                <option value="rejected_by_ao" >Unverified</option>
                             </select>
                         </div>
-                        <div class="form-group" id="reasonBox">
+                        <div class="form-group" id="reasonBox" >
                             <label for="reasonTextarea">Reason</label>
-                            <select id="reasonTextarea" name="declined_reason" class="form-control basic-single">
+                            <select id="reasonTextarea" name="declined_reason" class="form-control js-example-basic-single">
                                 <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                 <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                 <option value="Attachments are not cleared">Attachments are not cleared</option>
@@ -163,7 +191,7 @@
                         </div>
                         <div class="form-group" id="reasonBox" style="display: none;">
                             <label for="reasonTextarea">Reason</label>
-                            <select id="reasonTextarea" name="declined_reason" class="form-control">
+                            <select id="reasonTextarea" name="declined_reason" class="form-control js-example-basic-single" >
                                 <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                 <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                 <option value="Attachments are not cleared">Attachments are not cleared</option>
@@ -180,12 +208,12 @@
                             <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
                             <select class="form-control" id="statusSelect" name="verification_status">
                                 <option value="verified_by_lo">Verified</option>
-                                <option value="rejected_by_lo">Unverified</option>  
+                                <option value="rejected_by_lo">Unverified</option>
                             </select>
                         </div>
                         <div class="form-group" id="reasonBox" style="display: none;">
                             <label for="reasonTextarea">Reason</label>
-                            <select id="reasonTextarea" name="declined_reason" class="form-control">
+                            <select id="reasonTextarea" name="declined_reason" class="form-control js-example-basic-single">
                                 <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                 <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                 <option value="Attachments are not cleared">Attachments are not cleared</option>
@@ -1043,6 +1071,27 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="{{ asset('') }}assets/js/plugins/popper.min.js"></script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<script src="{{asset('select2.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        // $('.js-example-basic-multiple').select2();
+
+        $('.js-example-basic-single').select2({
+            tags: true, // Enable typing custom values
+            placeholder: "Select or type to add a new option", // Optional placeholder
+            tokenSeparators: [',', ' '], // Optional, allows separation by comma or space
+
+            dropdownParent: $('#exampleModalLive')
+        });
+    });
+</script>
+
+
     <script>
         $(document).ready(function() {
             // Event listener for opening the modal
@@ -1059,7 +1108,7 @@
                 var reasonBox = $('#reasonBox');
 
 
-                if ($(this).val() == 'rejected_by_ao' || $(this).val() == 'rejected_by_dd' ) {
+                if ($(this).val() == 'rejected_by_ao' || $(this).val() == 'rejected_by_dd' || $(this).val() == 'rejected_by_lo' ) {
                     reasonBox.show();
                     $('#reasonTextarea').prop('required', true);
 
@@ -1069,7 +1118,6 @@
                 }
             });
         });
-
 
 
 

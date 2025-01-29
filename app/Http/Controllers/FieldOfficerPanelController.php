@@ -48,15 +48,36 @@ class FieldOfficerPanelController extends Controller
         $minAcre = intval($request->input('min_acre'));
         $maxAcre = intval($request->input('max_acre'));
 
-        $registrations = LandRevenueFarmerRegistation::where('district', $district)
+        $query = LandRevenueFarmerRegistation::where('district', $district)
             ->where('admin_or_user_id' , Auth::user()->id)
-            ->where('tehsil', $tehsilArray)
-            ->where('total_landing_acre', '>=', $minAcre)
-            ->where('total_landing_acre', '<=', $maxAcre)
-            ->whereBetween('created_at', [$start_date, $end_date]);
+            ->where('tehsil', $tehsilArray);
 
-        $data = $registrations->paginate(10);
+            if($request->input('min_acre') && $request->input('min_acre') != ''){
+                $query->where('total_landing_acre', '>=', $minAcre)
+                ->where('total_landing_acre', '<=', $maxAcre);
+            }
 
+            if($request->start_date && $request->start_date != ''){
+                $query->whereBetween('created_at', [$start_date, $end_date]);
+            }
+
+            if($request->house_type && $request->house_type != ''){
+                $query->where('house_type', $request->input('house_type'));
+            }
+
+            // Correct handling of owner_type
+            if($request->owner_type && $request->owner_type != '') {
+                // Dynamically set the owner_types based on the request
+                $ownerTypes = is_array($request->owner_type) ? $request->owner_type : [$request->owner_type];
+                // Apply the whereIn condition using the values from the request
+
+                $query->whereJsonContains('owner_type', $ownerTypes);
+
+            }
+
+
+
+        $data = $query->paginate(10);
         // dd($data);
         return view('field_officer_panel.farmers_reporting.view',['data' => $data]);
     }

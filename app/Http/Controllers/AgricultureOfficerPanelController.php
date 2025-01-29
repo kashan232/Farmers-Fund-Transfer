@@ -330,7 +330,7 @@ class AgricultureOfficerPanelController extends Controller
         }
         $farmer->verification_by = $user->id;
         $farmer->save();
-        return redirect()->back()->with('farmers-registered', 'Done');
+        return redirect()->route('ao-field-farmers')->with('farmers-registered', 'Done');
     }
 
 

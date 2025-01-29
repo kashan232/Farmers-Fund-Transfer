@@ -97,7 +97,11 @@
                                                         <td>
                                                             <div class="d-flex">
                                                                 {{-- <a href="{{ route('farmer-view-by-field-officer', ['id' => $farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp; --}}
+
+                                                                @if ($farmer->verification_status != 'verified_by_lo')
                                                                 <a href="{{ route('farmer-edit-by-field-officer', ['id' => $farmer->id]) }}" class="btn  btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>&nbsp;
+                                                                @endif
+
                                                                 <a href="{{route('view-farmers-by-field-officer',$farmer->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                                                             </div>
                                                         </td>
