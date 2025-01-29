@@ -215,12 +215,12 @@ class HomeController extends Controller
                         }
                     }
                 }
-                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
+                $fa_total_Registered_Farmers = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
                 $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
                 $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
-
+                // dd($fa_total_Registered_Farmers);
                 return view('field_officer_panel.dashboard', [
-                    'agriUserfarmersCount' => $agriUserfarmersCount,
+                    'fa_total_Registered_Farmers' => $fa_total_Registered_Farmers,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
                     'districtCount' => $districtCount,

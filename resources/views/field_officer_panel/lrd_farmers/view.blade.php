@@ -911,7 +911,7 @@
 
                                         @if ($imageSrc)
                                             <img src="{{ $imageSrc }}" alt="Front ID Card"
-                                                style="width:300px;height:180px">
+                                                style="width:380px;height:200px">
                                         @else
                                             <p>Image not found</p>
                                         @endif
@@ -934,7 +934,7 @@
 
                                         @if ($imageSrc)
                                             <img src="{{ $imageSrc }}" alt="Front ID Card"
-                                                style="width:300px;height:180px">
+                                                style="width:380px;height:200px">
                                         @else
                                             <p>Image not found</p>
                                         @endif
@@ -966,7 +966,7 @@
 
                                         @if ($imageSrc)
                                             <img src="{{ $imageSrc }}" alt="Front ID Card"
-                                                style="width:300px;height:180px">
+                                                style="width:300px;height:auto">
                                         @else
                                             <p>Image not found</p>
                                         @endif
@@ -994,7 +994,7 @@
 
                                         @if ($imageSrc)
                                             <img src="{{ $imageSrc }}" alt="Front ID Card"
-                                                style="width:300px;height:180px">
+                                                style="width:300px;height:auto">
                                         @else
                                             <p>Image not found</p>
                                         @endif
@@ -1022,7 +1022,7 @@
 
                                         @if ($imageSrc)
                                             <img src="{{ $imageSrc }}" alt="Front ID Card"
-                                                style="width:300px;height:180px">
+                                                style="width:300px;height:230px">
                                         @else
                                             <p>Image not found</p>
                                         @endif
@@ -1051,7 +1051,7 @@
 
                                         @if ($imageSrc)
                                             <img src="{{ $imageSrc }}" alt="Front ID Card"
-                                                style="width:300px;height:180px">
+                                                style="width:380px;height:200px">
                                         @else
                                             <p>Image not found</p>
                                         @endif
