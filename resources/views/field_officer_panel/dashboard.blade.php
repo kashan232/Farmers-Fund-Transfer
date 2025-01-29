@@ -36,7 +36,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title" style="font-size: 12px">Total Registered Farmers</p>
-                                                <h3 class="card-text text-amount">0</h3>
+                                                <h3 class="card-text text-amount">{{ $fa_total_Registered_Farmers }}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">

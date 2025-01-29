@@ -13,92 +13,23 @@
 <div class="pc-container">
     <div class="pc-content">
         <div class="row">
-            <div class="col-12">
-                <div class="dashboard">
-                    <div class="all-card">
-                        <div class="row">
-                            <!-- Total Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">Total Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $agriUserfarmersCount }}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Verified Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">Verified Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $Verifiedfarmeragiruser }}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-check" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Rejected Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">Rejected Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $Verifiedfarmeragiruser }}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Farmer Registration Charts -->
             <div class="col-12 mt-3">
                 <div class="box--sec">
                     <div class="top-heading">
-                        <p>Farmer Registration</p>
+                        <p>Farmer Registration Source Overview (Field Officer & Online Farmers)</p>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 p-3">
-                            <div class="chart-heading text-center pt-2 pb-2" style="font-weight: bold;">Online Farmer Registration</div>
-                            <div class="chart-wrapper">
-                                <div class="chart" id="onlinefarmers"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 p-3">
-                            <div class="chart-heading text-center pt-2 pb-2" style="font-weight: bold;">Land Revenue Department</div>
-                            <div class="chart-wrapper">
-                                <div class="chart" id="landRevenueChart"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 p-3">
+                        <div class="col-md-6 p-3">
                             <div class="chart-heading text-center pt-2 pb-2" style="font-weight: bold;">Field Officer</div>
                             <div class="chart-wrapper">
                                 <div class="chart" id="fieldOfficerRegistrationChart"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 p-3">
+                            <div class="chart-heading text-center pt-2 pb-2" style="font-weight: bold;">Online Farmer Registration</div>
+                            <div class="chart-wrapper">
+                                <div class="chart" id="onlinefarmers"></div>
                             </div>
                         </div>
                     </div>
@@ -109,7 +40,7 @@
             <div class="col-12 mt-3">
                 <div class="box--sec">
                     <div class="top-heading">
-                        <p>Farmers Statistics</p>
+                        <p> Tehsil-wise Farmers Statistics</p>
                     </div>
                     <div id="districtOfficerTehsilWiseRegistrationChart"></div>
                 </div>
@@ -140,7 +71,6 @@
 <script>
     // Donut Charts Data and Configurations
     const ownFarmerData = [100, 80, 20];
-    const landRevenueData = [120, 90, 30];
     const fieldOfficerData = [90, 70, 20];
 
     function renderDonutChart(elementId, data, total) {
@@ -151,7 +81,7 @@
                 height: 400
             },
             labels: ['Registered Farmers', 'Verified Farmers', 'Rejected Farmers'],
-            colors: ['#dfd930', '#d9534f', '#5cc183'],
+            colors: ['#dfd930', '#5cc183', '#d9534f'],
             dataLabels: {
                 enabled: true,
                 formatter: (val) => val.toFixed(1) + '%'
@@ -179,7 +109,6 @@
     }
 
     renderDonutChart("#onlinefarmers", ownFarmerData, 100);
-    renderDonutChart("#landRevenueChart", landRevenueData, 120);
     renderDonutChart("#fieldOfficerRegistrationChart", fieldOfficerData, 90);
 
     const districtOfficerOptions = {
@@ -204,7 +133,7 @@
                 endingShape: 'rounded'
             }
         },
-        colors: ['#dfd930', '#d9534f', '#5cc183'],
+        colors: ['#dfd930', '#5cc183', '#d9534f'],
         xaxis: {
             categories: ['Hyderabad City', 'Qasimabad', 'Latifabad'], // Replace with actual Tehsil names
         },
