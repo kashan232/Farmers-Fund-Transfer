@@ -38,6 +38,8 @@ use App\Models\DistrictOfficer;
 use App\Models\FieldOfficer;
 use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Route;
+use App\Models\LandRevenueFarmerRegistation;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,6 +125,22 @@ Route::get('/sms', function(){
 Route::get('/admin/sms/', function(){
     return view('admin_panel.sms');
 })->name('admin.sms');
+
+
+
+
+Route::get('/pdf/report/{id}', function($id){
+
+    $farmer = LandRevenueFarmerRegistation::where('id', '=', $id)->first();
+// return view('field_officer_panel.lrd_farmers.pdf', ['data' => $farmer]);
+    $pdf = PDF::loadView('field_officer_panel.lrd_farmers.pdf', ['data' => $farmer])->setPaper([0, 0, 1200, 1700]);;
+    // return $pdf->stream('fdgf.pdf');
+
+    return $pdf->download('fdgf.pdf');
+})->name('pdf.report');
+
+
+
 
 
 

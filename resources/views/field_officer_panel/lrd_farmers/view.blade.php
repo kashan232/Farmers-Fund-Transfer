@@ -247,7 +247,7 @@
                 <div class="card-body">
                     <button class="btn btn-primary btn-sm" onclick="history.back()">Back</button>
                     <button class="btn btn-success btn-sm" onclick="downloadPDF()">Download PDF</button>
-
+                    <a href="{{route('pdf.report',$data->id)}}">Download</a>
                     @if (Auth::user()->usertype != 'Field_Officer' && Auth::user()->usertype == 'Agri_Officer')
                         @if ( $data->verification_status != 'verified_by_do')
                             <button type="button" class="btn btn-sm btn-success verifiy-btn "
@@ -1008,7 +1008,7 @@
 
         @if ($imageSrc)
             <img src="{{ $imageSrc }}"  alt="Front ID Card"
-                style="">
+            style="width:80%">
         @else
             <p>Image not found</p>
         @endif
@@ -1039,7 +1039,7 @@
 
                                 @if ($imageSrc)
                                     <img src="{{ $imageSrc }}"   alt="Front ID Card"
-                                        style="">
+                                    style="width:80%">
                                 @else
                                     <p>Image not found</p>
                                 @endif
@@ -1070,7 +1070,7 @@
 
  @if ($imageSrc)
      <img src="{{ $imageSrc }}"  alt="Front ID Card"
-         style="">
+     style="width:80%">
  @else
      <p>Image not found</p>
  @endif
