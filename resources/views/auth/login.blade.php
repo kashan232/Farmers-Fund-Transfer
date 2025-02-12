@@ -77,7 +77,7 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('password.request') }}" class="txt1">
+                            <a href="{{ route('password.request') }}" class="txt1" style="text-decoration: none!important;">
                                 Forgot Password?
                             </a>
                         </div>
