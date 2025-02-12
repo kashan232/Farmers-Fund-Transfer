@@ -26,7 +26,14 @@ class HomeController extends Controller
             // if ($usertype == 'online_user') {
             //     return view('dashboard');
             // }
-            if ($usertype == 'District_Officer' || $usertype == 'DG_Officer' ) {
+            if ( $usertype == 'DG_Officer' || $usertype == 'PD_Officer') {
+                $userId = Auth::id();
+                $user_id = Auth()->user()->user_id;
+
+                return view('pd_officer_panel.index');
+            }
+            /// DIStrict Officer means A-D OFFICER
+            if ($usertype == 'District_Officer' ) {
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
                 $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();

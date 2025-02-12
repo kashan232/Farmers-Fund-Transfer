@@ -51,7 +51,9 @@
     td {
         font-size: 12px;
     }
-
+    .page-break {
+        page-break-after: always; /* Forces a page break after the element */
+    }
     @media print {
         .question {
             width: 100%;
@@ -245,7 +247,7 @@
                 <div class="card-body">
                     <button class="btn btn-primary btn-sm" onclick="history.back()">Back</button>
                     <button class="btn btn-success btn-sm" onclick="downloadPDF()">Download PDF</button>
-
+                    <a href="{{route('pdf.report',$data->id)}}">Download</a>
                     @if (Auth::user()->usertype != 'Field_Officer' && Auth::user()->usertype == 'Agri_Officer')
                         @if ( $data->verification_status != 'verified_by_do')
                             <button type="button" class="btn btn-sm btn-success verifiy-btn "
@@ -892,7 +894,7 @@
 
                             <tr>
 
-                                <td colspan="4" style="border: none;"><span> <b>1 CNIC Front: </b></span> <br>
+                                <td colspan="4" style="border: none;"><span> <b>1. CNIC Front: </b></span> <br>
                                     @if ($data->front_id_card != null)
                                         @php
                                             // Assuming front_id_card contains the path to the image file
@@ -911,13 +913,13 @@
 
                                         @if ($imageSrc)
                                             <img src="{{ $imageSrc }}" alt="Front ID Card"
-                                                style="width:380px;height:200px">
+                                                style="width:420px;height:220px">
                                         @else
                                             <p>Image not found</p>
                                         @endif
                                     @endif
 
-                                <td colspan="4" style="border: none;"><span> <b>2 CNIC Back: </b></span> <br>
+                                <td colspan="4" style="border: none;"><span> <b>2. CNIC Back: </b></span> <br>
                                     @if ($data->back_id_card != null)
                                         @php
                                             // Assuming front_id_card contains the path to the image file
@@ -934,7 +936,7 @@
 
                                         @if ($imageSrc)
                                             <img src="{{ $imageSrc }}" alt="Front ID Card"
-                                                style="width:380px;height:200px">
+                                                style="width:420px;height:220px">
                                         @else
                                             <p>Image not found</p>
                                         @endif
@@ -943,127 +945,141 @@
 
                                 </td>
 
+
+
                             </tr>
+
+
                             <tr>
-                                 <td colspan="4" style="border: none;"><span> <b>3 Form VII: </b></span> <br>
-                                    {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
-
-                                    @if ($data->form_seven_pic != null)
-                                        @php
-                                            // Assuming form_seven_pic contains the path to the image file
-                                            $imagePath = public_path(
-                                                'fa_farmers/form_seven_pic/' . $data->form_seven_pic,
-                                            );
-
-                                            // Check if the image exists before encoding
-                                            if (file_exists($imagePath)) {
-                                                $imageData = base64_encode(file_get_contents($imagePath));
-                                                $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-                                            } else {
-                                                $imageSrc = '';
-                                            }
-                                        @endphp
-
-                                        @if ($imageSrc)
-                                            <img src="{{ $imageSrc }}" alt="Front ID Card"
-                                                style="width:300px;height:auto">
-                                        @else
-                                            <p>Image not found</p>
-                                        @endif
-                                    @endif
-                                </td>
-                                <td colspan="4" style="border: none;"><span> <b>4 Forms VIII
-                                            A/Affidavit/Heirship/Registry from micro (land Documents): </b></span> <br>
-                                    {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
-
-                                    @if ($data->upload_land_proof != null)
-                                        @php
-                                            // Assuming upload_land_proof contains the path to the image file
-                                            $imagePath = public_path(
-                                                'fa_farmers/upload_land_proof/' . $data->upload_land_proof,
-                                            );
-
-                                            // Check if the image exists before encoding
-                                            if (file_exists($imagePath)) {
-                                                $imageData = base64_encode(file_get_contents($imagePath));
-                                                $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-                                            } else {
-                                                $imageSrc = '';
-                                            }
-                                        @endphp
-
-                                        @if ($imageSrc)
-                                            <img src="{{ $imageSrc }}" alt="Front ID Card"
-                                                style="width:300px;height:auto">
-                                        @else
-                                            <p>Image not found</p>
-                                        @endif
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" style="border: none;"><span> <b>5 Photo: </b></span> <br>
+                                <td colspan="8" style="border: none;"><span> <b>3. Photo: </b></span> <br>
                                     {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
                                     @if ($data->upload_farmer_pic != null)
-                                        @php
-                                            // Assuming upload_farmer_pic contains the path to the image file
-                                            $imagePath = public_path(
-                                                'fa_farmers/upload_farmer_pic/' . $data->upload_farmer_pic,
-                                            );
+                                    @php
+                                        // Assuming upload_farmer_pic contains the path to the image file
+                                        $imagePath = public_path(
+                                            'fa_farmers/upload_farmer_pic/' . $data->upload_farmer_pic,
+                                        );
 
-                                            // Check if the image exists before encoding
-                                            if (file_exists($imagePath)) {
-                                                $imageData = base64_encode(file_get_contents($imagePath));
-                                                $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-                                            } else {
-                                                $imageSrc = '';
-                                            }
-                                        @endphp
+                                        // Check if the image exists before encoding
+                                        if (file_exists($imagePath)) {
+                                            $imageData = base64_encode(file_get_contents($imagePath));
+                                            $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+                                        } else {
+                                            $imageSrc = '';
+                                        }
+                                    @endphp
 
-                                        @if ($imageSrc)
-                                            <img src="{{ $imageSrc }}" alt="Front ID Card"
-                                                style="width:300px;height:230px">
-                                        @else
-                                            <p>Image not found</p>
-                                        @endif
+                                    @if ($imageSrc)
+                                        <img src="{{ $imageSrc }}" style="width:200px" alt="Front ID Card"
+                                            style="">
+                                    @else
+                                        <p>Image not found</p>
                                     @endif
-
-                                </td>
-
-                                 <td colspan="4" style="border: none;"><span> <b>6 Others: </b></span> <br>
-
-                                    {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
-                                    @if ($data->upload_other_attach != null)
-                                        @php
-                                            // Assuming upload_other_attach contains the path to the image file
-                                            $imagePath = public_path(
-                                                'fa_farmers/upload_other_attach/' . $data->upload_other_attach,
-                                            );
-
-                                            // Check if the image exists before encoding
-                                            if (file_exists($imagePath)) {
-                                                $imageData = base64_encode(file_get_contents($imagePath));
-                                                $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-                                            } else {
-                                                $imageSrc = '';
-                                            }
-                                        @endphp
-
-                                        @if ($imageSrc)
-                                            <img src="{{ $imageSrc }}" alt="Front ID Card"
-                                                style="width:380px;height:200px">
-                                        @else
-                                            <p>Image not found</p>
-                                        @endif
                                     @endif
                                 </td>
-
                             </tr>
 
 
 
 
-                        </table>
+                            <tr>
+
+
+<td colspan="8" style="border: none;"><b>4. Form VII / Registry from Micro (Mandatory): </b></span> <br>
+
+
+    {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
+
+    @if ($data->form_seven_pic != null)
+        @php
+            // Assuming form_seven_pic contains the path to the image file
+            $imagePath = public_path(
+                'fa_farmers/form_seven_pic/' . $data->form_seven_pic,
+            );
+
+            // Check if the image exists before encoding
+            if (file_exists($imagePath)) {
+                $imageData = base64_encode(file_get_contents($imagePath));
+                $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+            } else {
+                $imageSrc = '';
+            }
+        @endphp
+
+        @if ($imageSrc)
+            <img src="{{ $imageSrc }}"  alt="Front ID Card"
+            style="width:80%">
+        @else
+            <p>Image not found</p>
+        @endif
+    @endif
+</td>
+
+
+                            </tr>
+
+
+                           <tr>
+                            <td colspan="8" style="border: none;"> <b>5. Forms VIII A/ Affidavit/ Heirship (Land Documents): </b></span> <br>
+                                @if ($data->upload_land_proof != null)
+                                @php
+                                    // Assuming upload_land_proof contains the path to the image file
+                                    $imagePath = public_path(
+                                        'fa_farmers/upload_land_proof/' . $data->upload_land_proof,
+                                    );
+
+                                    // Check if the image exists before encoding
+                                    if (file_exists($imagePath)) {
+                                        $imageData = base64_encode(file_get_contents($imagePath));
+                                        $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+                                    } else {
+                                        $imageSrc = '';
+                                    }
+                                @endphp
+
+                                @if ($imageSrc)
+                                    <img src="{{ $imageSrc }}"   alt="Front ID Card"
+                                    style="width:80%">
+                                @else
+                                    <p>Image not found</p>
+                                @endif
+                            @endif
+                            </td>
+                           </tr>
+
+
+
+                           <tr>
+                            <td colspan="8" style="border: none;"> <b>6. Others: </b></span> <br>
+ {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
+ @if ($data->upload_other_attach != null)
+ @php
+     // Assuming upload_other_attach contains the path to the image file
+     $imagePath = public_path(
+         'fa_farmers/upload_other_attach/' . $data->upload_other_attach,
+     );
+
+     // Check if the image exists before encoding
+     if (file_exists($imagePath)) {
+         $imageData = base64_encode(file_get_contents($imagePath));
+         $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+     } else {
+         $imageSrc = '';
+     }
+ @endphp
+
+ @if ($imageSrc)
+     <img src="{{ $imageSrc }}"  alt="Front ID Card"
+     style="width:80%">
+ @else
+     <p>Image not found</p>
+ @endif
+@endif
+                            </td>
+                           </tr>
+
+
+                            </table>
                     </div>
                 </div>
             </div>
