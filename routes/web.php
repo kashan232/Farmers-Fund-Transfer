@@ -135,7 +135,7 @@ Route::get('/pdf/report/{id}', function($id){
 // return view('field_officer_panel.lrd_farmers.pdf', ['data' => $farmer]);
     $pdf = PDF::loadView('field_officer_panel.lrd_farmers.pdf', ['data' => $farmer])->setPaper([0, 0, 1200, 1700]);;
     // return $pdf->stream('fdgf.pdf');
-
+ // return view('field_officer_panel.lrd_farmers.pdf', ['data' => $farmer]);
     return $pdf->download('fdgf.pdf');
 })->name('pdf.report');
 
