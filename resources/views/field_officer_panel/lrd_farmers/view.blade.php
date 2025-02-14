@@ -142,9 +142,16 @@
     {
         display: none;
     }
+
+
+
+
+
+
 </style>
 
 <body>
+
 
 
     <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog"
@@ -235,6 +242,24 @@
     </div>
 
 
+@php
+    // Assuming front_id_card contains the path to the image file
+    $imagePath = public_path(
+        'check.png'
+    );
+
+    // Check if the image exists before encoding
+    if (file_exists($imagePath)) {
+        $imageData = base64_encode(file_get_contents($imagePath));
+        $check = 'data:image/jpeg;base64,' . $imageData;
+    } else {
+        $check = '';
+    }
+@endphp
+
+
+
+
     <!-- Full-page loader with fade background -->
     <div class="overlay" id="loader-overlay">
         <div class="spinner-border" role="status">
@@ -246,8 +271,11 @@
             <div class="col-sm-12 text-right">
                 <div class="card-body">
                     <button class="btn btn-primary btn-sm" onclick="history.back()">Back</button>
-                    <button class="btn btn-success btn-sm" onclick="downloadPDF()">Download PDF</button>
-                    <a href="{{route('pdf.report',$data->id)}}">Download</a>
+                    {{-- <button class="btn btn-success btn-sm" onclick="downloadPDF()">Download PDF</button> --}}
+                    <a  class="btn btn-success btn-sm" href="{{route('pdf.report',$data->id)}}">Download PDF</a>
+
+
+
                     @if (Auth::user()->usertype != 'Field_Officer' && Auth::user()->usertype == 'Agri_Officer')
                         @if ( $data->verification_status != 'verified_by_do')
                             <button type="button" class="btn btn-sm btn-success verifiy-btn "
@@ -385,9 +413,9 @@
                                 <th class="question"> Q15.</th>
 
                                 <td colspan="8" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
-                                    <span> <b>House type: &nbsp&nbsp&nbsp </b> {!! $data->house_type == 'pakka_house' ? '<i class="fa-solid fa-check"></i>' : '' !!} (1) Paka House </span> <span
-                                        style="border-bottom: 1px solid black;"></span>&nbsp&nbsp&nbsp<span>
-                                        {!! $data->house_type == 'kacha_house' ? '<i class="fa-solid fa-check"></i>' : '' !!}(2) Kacha House </span> <span
+                                    <span> <b>House type: &nbsp; &nbsp; &nbsp; </b> @if($data->house_type == 'pakka_house') <i class="fa-solid fa-check"></i> @endif (1) Paka House </span> <span
+                                        style="border-bottom: 1px solid black;"></span>&nbsp; &nbsp; &nbsp; <span>
+                                        @if($data->house_type == 'kacha_house') <i class="fa-solid fa-check"></i> @endif (2) Kacha House </span> <span
                                         style="border-bottom: 1px solid black;"></span>
 
                             </tr>
