@@ -377,18 +377,18 @@
                                             </label>
                                             &nbsp;
                                             <label>
-                                                <input type="checkbox" name="owner_type[]" value="makadedar" @if(isset($data->owner_type))  @if(is_array(json_decode($data->owner_type))) {{ in_array('makadedar', json_decode($data->owner_type)) ? 'checked' : '' }}  @endif @endif> 2. Makadedar (Contractor/leasee)
+                                                <input type="checkbox" name="owner_type[]" value="makadedar" @if(isset($data->owner_type))  @if(is_array(json_decode($data->owner_type))) {{ in_array('makadedar', json_decode($data->owner_type)) ? 'checked' : '' }}  @endif @endif> 2. Makadedar (Contractor/Leasee)
                                             </label>
                                             &nbsp;
                                             <label>
-                                                <input type="checkbox" name="owner_type[]" value="sharecropper" @if(isset($data->owner_type))  @if(is_array(json_decode($data->owner_type))) {{ in_array('sharecropper', json_decode($data->owner_type)) ? 'checked' : '' }}  @endif @endif> 3. sharecropper/Tenant
+                                                <input type="checkbox" name="owner_type[]" value="sharecropper" @if(isset($data->owner_type))  @if(is_array(json_decode($data->owner_type))) {{ in_array('sharecropper', json_decode($data->owner_type)) ? 'checked' : '' }}  @endif @endif> 3. Sharecropper/Tenant
                                             </label>
                                         </div>
 
                                         <div class="row mt-3">
 
                                             <div class=" col-md-12">
-                                                <h6 class="card-title">Q13: Family Compostion and age of respondent:</h6>
+                                                <h6 class="card-title">Q13: Family Compostion and age of dependent:</h6>
                                             </div>
                                             <div style="display:flex">
                                                 <div class=" col-md-4 mt-1" style="padding-right: 0 !important;  ">
@@ -446,7 +446,7 @@
                                                 <input type="text" name="full_name_of_next_kin" class="form-control" value="{{$data->full_name_of_next_kin ?? ''}}">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
-                                                <label class="form-label">CNIC NO:</label>
+                                                <label class="form-label">CNIC NO:<span class="text-danger">*</span></label>
                                                 <input type="text" name="cnic_of_next_kin" class="form-control" value="{{$data->cnic_of_next_kin ?? ''}}" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X" >
                                             </div>
                                             <div class="mb-4 col-md-4 ">
@@ -736,7 +736,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Type of Animal</th>
-                                                        <th>Numbers NOW</th>
+                                                        <th>Number</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -866,7 +866,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Q25: Bank Name</label>
-                                            <input type="text" name="bank_name"  class="form-control" value=" {{$data->bank_name ?? 'Sindh Bank'}}">
+                                            <input type="text" name="bank_name"  class="form-control" value=" {{$data->bank_name ?? ''}}">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Q26: Branch Name</label>
@@ -883,13 +883,15 @@
                                     </div>
                                     <div class="row mt-3">
                                         <div class="mb-12 col-md-12">
-                                            <h6>GPS Cordinates</h6>
+                                            <h6>GPS Cordinates <span class="text-danger">*</span></h6>
                                         </div>
 
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">GPS Coordinates</label><br>
-                                            <a href="javascript::void()" id="gpsButton" class="btn btn-primary">GPS</a> &nbsp;
-                                            <span id="locationInput"></span>
+                                            <div class="d-flex"  style="justify-content: space-between; ">
+                                                <a href="javascript::void()" id="gpsButton" class="btn btn-primary" style="    display: flex; align-items: center;">GPS</a> &nbsp;
+                                                <input type="text" id="locationInput" class="form-control">
+                                            </div>
                                             <input type="hidden" name="GpsCordinates" id="GpsCordinates">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-3">
@@ -1104,43 +1106,48 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
 $(":input").inputmask();
 </script>
 
-
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let today = new Date().toISOString().split("T")[0];
+        document.getElementById("cnic_expiry_date").setAttribute("min", today);
+    });
+</script>
 
 
         <script>
 
 
 
-        $(document).on('change','.crop_season', function(event) {
-            event.preventDefault();
-            $(this).closest('tr').find('.crops_orchard_td').remove();
-            if($(this).val() == 'kharif season'){
-                $(this).closest('tr').find('.crop_season_td').after(`
-                <td class="crops_orchard_td">
-                    <select name="crops_orchard[]" class=" form-control">
-                        <option>Select Orchard</option>
-                        <option value="test1">test1</option>
-                        <option value="test2">test2</option>
-                    </select>
-                </td>`);
-            }
-            else if($(this).val() == 'rabi season'){
-               $(this).closest('tr').find('.crop_season_td').after(`
-                <td class="crops_orchard_td">
-                    <select name="crops_orchard[]" class=" form-control">
-                        <option>Select Orchard</option>
-                        <option value="test1">test1</option>
-                        <option value="test2">test2</option>
-                    </select>
-                </td>`);
-            }
-            else{
-               $(this).closest('tr').find('.crop_season_td').after(`
-                <td class="crops_orchard_td">
-                    <input type="text" name="crops_orchard[]" class=" form-control">
-                </td>`);
-            }
-        });
+        // $(document).on('change','.crop_season', function(event) {
+        //     event.preventDefault();
+        //     $(this).closest('tr').find('.crops_orchard_td').remove();
+        //     if($(this).val() == 'kharif season'){
+        //         $(this).closest('tr').find('.crop_season_td').after(`
+        //         <td class="crops_orchard_td">
+        //             <select name="crops_orchard[]" class=" form-control">
+        //                 <option>Select Orchard</option>
+        //                 <option value="test1">test1</option>
+        //                 <option value="test2">test2</option>
+        //             </select>
+        //         </td>`);
+        //     }
+        //     else if($(this).val() == 'rabi season'){
+        //        $(this).closest('tr').find('.crop_season_td').after(`
+        //         <td class="crops_orchard_td">
+        //             <select name="crops_orchard[]" class=" form-control">
+        //                 <option>Select Orchard</option>
+        //                 <option value="test1">test1</option>
+        //                 <option value="test2">test2</option>
+        //             </select>
+        //         </td>`);
+        //     }
+        //     else{
+        //        $(this).closest('tr').find('.crop_season_td').after(`
+        //         <td class="crops_orchard_td">
+        //             <input type="text" name="crops_orchard[]" class=" form-control">
+        //         </td>`);
+        //     }
+        // });
 
 
          $('#registrationForm').on('submit', function(event) {
@@ -1372,7 +1379,7 @@ $(":input").inputmask();
                             const latitude = position.coords.latitude;
                             const longitude = position.coords.longitude;
                             // Optionally, you can fill the input with coordinates or display elsewhere
-                            document.getElementById('locationInput').innerHTML = `${latitude}, ${longitude}`;
+                            document.getElementById('locationInput').value = `${latitude}, ${longitude}`;
                             document.getElementById('GpsCordinates').value = `${latitude}, ${longitude}`;
                         },
                         function(error) {
