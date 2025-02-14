@@ -26,14 +26,14 @@ class HomeController extends Controller
             // if ($usertype == 'online_user') {
             //     return view('dashboard');
             // }
-            if ( $usertype == 'DG_Officer' || $usertype == 'PD_Officer') {
+            if ($usertype == 'DG_Officer' || $usertype == 'PD_Officer') {
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
 
                 return view('pd_officer_panel.index');
             }
             /// DIStrict Officer means A-D OFFICER
-            if ($usertype == 'District_Officer' ) {
+            if ($usertype == 'District_Officer') {
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
                 $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
@@ -44,8 +44,7 @@ class HomeController extends Controller
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
                 ]);
-            }
-            else if ($usertype == 'Agri_Officer') {
+            } else if ($usertype == 'Agri_Officer') {
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
                 $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
@@ -56,8 +55,7 @@ class HomeController extends Controller
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
                 ]);
-            }
-            else if ($usertype == 'DD_Officer') {
+            } else if ($usertype == 'DD_Officer') {
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
                 $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
@@ -68,8 +66,7 @@ class HomeController extends Controller
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
                 ]);
-            }
-             else if ($usertype == 'admin') {
+            } else if ($usertype == 'admin') {
                 // Fetching counts directly
                 $district_counts = District::count();
                 $tehsil_counts = Tehsil::count();
@@ -160,7 +157,7 @@ class HomeController extends Controller
                     'TotalVerifiedfarmers' => $TotalVerifiedfarmers,
                     'subsidyfarmers' => $subsidyfarmers,
                 ]);
-            }  else if ($usertype == 'Field_Officer') {
+            } else if ($usertype == 'Field_Officer') {
 
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
@@ -191,34 +188,48 @@ class HomeController extends Controller
 
                     // Decode and count tappas
                     if ($user->tappas) {
-                        if($user->tappas != null && is_array(json_decode($user->tappas)))
-                        {
+                        if ($user->tappas != null && is_array(json_decode($user->tappas))) {
                             $tappas = json_decode($user->tappas, true);
                             $tappaCount = count($tappas);
-                        }
-                        else
-                        {
+                        } else {
                             $tappaCount = 0;
                         }
                     }
 
                     // Decode and count UCs
                     if ($user->ucs) {
-                        if($user->ucs != null && is_array(json_decode($user->ucs)))
-                        {
+                        if ($user->ucs != null && is_array(json_decode($user->ucs))) {
                             $ucs = json_decode($user->ucs, true);
                             $ucCount = count($ucs);
-                        }
-                        else
-                        {
+                        } else {
                             $ucCount =  0;
                         }
                     }
                 }
                 $fa_total_Registered_Farmers = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
-                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
-                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
-                // dd($fa_total_Registered_Farmers);
+                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')
+                    ->where('land_emp_id', $user_id)
+                    ->whereNull('verification_status') // Correct way to check NULL
+                    ->count();
+
+                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'verified_by_lo')->count();
+
+                $rejectedByAO = DB::table('land_revenue_farmer_registations')
+                    ->where('land_emp_id', $user_id)
+                    ->where('verification_status', 'rejected_by_ao')
+                    ->count();
+
+                $rejectedByDD = DB::table('land_revenue_farmer_registations')
+                    ->where('land_emp_id', $user_id)
+                    ->where('verification_status', 'rejected_by_dd')
+                    ->count();
+
+                $rejectedByLRD = DB::table('land_revenue_farmer_registations')
+                    ->where('land_emp_id', $user_id)
+                    ->where('verification_status', 'rejected_by_lo')
+                    ->count();
+
+                // dd($rejectedByAO,$rejectedByDD,$rejectedByLRD);
                 return view('field_officer_panel.dashboard', [
                     'fa_total_Registered_Farmers' => $fa_total_Registered_Farmers,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
@@ -227,9 +238,11 @@ class HomeController extends Controller
                     'tehsilCount' => $tehsilCount,
                     'tappaCount' => $tappaCount,
                     'ucCount' => $ucCount,
+                    'rejectedByAO' => $rejectedByAO,
+                    'rejectedByDD' => $rejectedByDD,
+                    'rejectedByLRD' => $rejectedByLRD,
                 ]);
-            }
-            else if ($usertype == 'Land_Revenue_Officer') {
+            } else if ($usertype == 'Land_Revenue_Officer') {
 
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
@@ -260,13 +273,10 @@ class HomeController extends Controller
 
                     // Decode and count tappas
                     if ($user->tappas) {
-                        if($user->tappas != null && is_array(json_decode($user->tappas)))
-                        {
+                        if ($user->tappas != null && is_array(json_decode($user->tappas))) {
                             $tappas = json_decode($user->tappas, true);
                             $tappaCount = count($tappas);
-                        }
-                        else
-                        {
+                        } else {
                             $tappaCount = 0;
                         }
                     }
@@ -298,8 +308,6 @@ class HomeController extends Controller
                     'ucCount' => $ucCount,
                 ]);
             }
-
-
         } else {
             // return redirect()->back();
 
