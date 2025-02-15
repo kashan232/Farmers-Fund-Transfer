@@ -1103,7 +1103,19 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
 
 <script src="{{asset('assets/js/inputMask.js')}}"></script>
 <script>
-$(":input").inputmask();
+
+$(document).ready(function () {
+    $("input").inputmask(); // Apply mask only to input fields
+
+
+    $(":input").inputmask({
+    inputEventOnly: true  // Forces Inputmask to work on mobile
+});
+
+
+
+});
+
 </script>
 
 <script>
