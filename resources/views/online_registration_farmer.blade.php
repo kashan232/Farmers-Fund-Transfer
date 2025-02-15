@@ -193,7 +193,16 @@
         .nav {
         justify-content: space-around !important;
         }
+        .nav-item button {
+             margin-left: 0px !important;
+        }
 
+        .col_img{
+            width: 100% !important;
+        }
+        .preview{
+            width: 200px;
+        }
     }
 
 
@@ -887,7 +896,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="mb-6 col-md-6">
                                                     <label class="form-label">GPS Coordinates of Agriculture land</label><br>
                                                     <div class="d-flex"  style="justify-content: space-between; ">
-                                                        <a href="javascript::void()" id="gpsButton" class="btn btn-primary" style="    display: flex; align-items: center;">GPS</a> &nbsp;
+
+                                                         <a href="javascript:void(0)" id="gpsButton" class="btn btn-primary" style="    display: flex; align-items: center;">GPS</a> &nbsp;
+
                                                         <input type="text" id="locationInput" class="form-control">
                                                     </div>
                                                     <input type="hidden" name="GpsCordinates" id="GpsCordinates">
@@ -927,36 +938,106 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                         <div class="step step-5" style="display: none;">
                                             <div class="row mt-2">
-                                                <div class="mb-12 col-md-12 d-flex">
-                                                    <img src="{{asset('')}}/login_assets/contract.png" alt="" style="height: 25px;width: 25px;">
-
-                                                    <h6 class="card-title" style="line-height: 27px;margin-left: 10px;">
-                                                        Q29: DOCUMENTS UPLOADED/ COLLECTED</h6>
-                                                </div>
-                                                <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">CNIC FRONT <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                                    <input type="file" name="front_id_card" class="form-control checkfiles" onchange="checkFiles()">
-                                                </div>
-                                                <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">CNIC BACK <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                                    <input type="file" name="back_id_card" class="form-control checkfiles" onchange="checkFiles()">
-                                                </div>
-                                                <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Form VII / Registry from Micro (Mandatory)<span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                                    <input type="file" name="form_seven_pic" class="form-control checkfiles" onchange="checkFiles()">
-                                                </div>
-                                                <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Forms VII A/ Affidavit/ Heirship (Land Documents)  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                                    <input type="file" name="upload_land_proof" class="form-control checkfiles" onchange="checkFiles()">
+                                                <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px;">
+                                                      <div class="text-center image-upload-card">
+                                                          <h6 class="mb-4">CNIC FRONT <span class="text-danger" > *</span></h6>
+                                                          @if(isset($data) && $data->front_id_card != null) <input type="hidden"  class="old_image  old_checkfiles old_checkfile_front_id_card" name="old_front_id_card" value="1" > @endif
+                                                          <input type="file"  class="image-input checkfiles checkfile_front_id_card" name="front_id_card" accept="image/*" hidden>
+                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->front_id_card != null) style="display: none " @endif   >
+                                                              <i class='bx bxs-cloud-upload icon' ></i>
+                                                              <p>Image size must be <span>500KB</span></p>
+                                                          </div>
+                                                          <img class="preview" src=" @if(isset($data) && $data->front_id_card != null) {{asset('').'fa_farmers/front_id_card/'.$data->front_id_card}} @endif"  @if(isset($data) && $data->front_id_card != null) style="display: unset " @endif>
+                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->front_id_card != null) style="display: none " @endif>Upload</button>
+                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->front_id_card != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
+                                                      </div>
+                                                    </div>
                                                 </div>
 
-                                                <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Photo  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                                    <input type="file" name="upload_farmer_pic" class="form-control checkfiles" onchange="checkFiles()">
+                                                <div class="card mb-4 col_img " style="margin: 1%; width:30%">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px;">
+                                                      <div class="text-center image-upload-card">
+                                                          <h6 class="mb-4">CNIC BACK <span class="text-danger" > *</span></h6>
+                                                          @if(isset($data) && $data->back_id_card != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_back_id_card" name="old_back_id_card" value="1" > @endif
+                                                          <input type="file"  class="image-input checkfiles checkfile_back_id_card" name="back_id_card" accept="image/*" hidden>
+                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->back_id_card != null) style="display: none " @endif   >
+                                                              <i class='bx bxs-cloud-upload icon' ></i>
+                                                              <p>Image size must be <span>500KB</span></p>
+                                                          </div>
+                                                          <img class="preview" src=" @if(isset($data) && $data->back_id_card != null) {{asset('').'fa_farmers/back_id_card/'.$data->back_id_card}} @endif"  @if(isset($data) && $data->back_id_card != null) style="display: unset " @endif>
+                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->back_id_card != null) style="display: none " @endif>Upload</button>
+                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->back_id_card != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
+                                                      </div>
+                                                    </div>
                                                 </div>
-                                                <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Others<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                                    <input type="file" name="upload_other_attach" class="form-control " >
+
+                                                <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px;">
+                                                      <div class="text-center image-upload-card">
+                                                          <h6 class="mb-4">Form VII / Registry from Micro (Mandatory) <span class="text-danger" > *</span></h6>
+                                                          @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
+                                                          <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" accept="image/*" hidden>
+                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
+                                                              <i class='bx bxs-cloud-upload icon' ></i>
+                                                              <p>Image size must be <span>500KB</span></p>
+                                                          </div>
+                                                          <img class="preview" src=" @if(isset($data) && $data->form_seven_pic != null) {{asset('').'fa_farmers/form_seven_pic/'.$data->form_seven_pic}} @endif"  @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @endif>
+                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif>Upload</button>
+                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
+                                                      </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px;">
+                                                      <div class="text-center image-upload-card">
+                                                          <h6 class="mb-4">Forms VIII A/ Affidavit/ Heirship (Land Documents) <span class="text-danger" > *</span></h6>
+                                                          @if(isset($data) && $data->upload_land_proof != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_land_proof" name="old_upload_land_proof" value="1" > @endif
+                                                          <input type="file"  class="image-input checkfiles checkfile_upload_land_proof" name="upload_land_proof" accept="image/*" hidden>
+                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif   >
+                                                              <i class='bx bxs-cloud-upload icon' ></i>
+                                                              <p>Image size must be <span>500KB</span></p>
+                                                          </div>
+                                                          <img class="preview" src=" @if(isset($data) && $data->upload_land_proof != null) {{asset('').'fa_farmers/upload_land_proof/'.$data->upload_land_proof}} @endif"  @if(isset($data) && $data->upload_land_proof != null) style="display: unset " @endif>
+                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif>Upload</button>
+                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->upload_land_proof != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
+                                                      </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px;">
+                                                      <div class="text-center image-upload-card">
+                                                          <h6 class="mb-4">Photo <span class="text-danger" > *</span></h6>
+                                                          @if(isset($data) && $data->upload_farmer_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_farmer_pic" name="old_upload_farmer_pic" value="1" > @endif
+                                                          <input type="file"  class="image-input checkfiles checkfile_upload_farmer_pic" name="upload_farmer_pic" accept="image/*" hidden>
+                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_farmer_pic != null) style="display: none " @endif   >
+                                                              <i class='bx bxs-cloud-upload icon' ></i>
+                                                              <p>Image size must be <span>500KB</span></p>
+                                                          </div>
+                                                          <img class="preview" src=" @if(isset($data) && $data->upload_farmer_pic != null) {{asset('').'fa_farmers/upload_farmer_pic/'.$data->upload_farmer_pic}} @endif"  @if(isset($data) && $data->upload_farmer_pic != null) style="display: unset " @endif>
+                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_farmer_pic != null) style="display: none " @endif>Upload</button>
+                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->upload_farmer_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
+                                                      </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px;">
+                                                      <div class="text-center image-upload-card">
+                                                          <h6 class="mb-4">Others</h6>
+                                                          @if(isset($data) && $data->upload_other_attach != null) <input type="hidden"  class="old_image " name="old_upload_other_attach" value="1" > @endif
+                                                          <input type="file"  class="image-input" name="upload_other_attach" accept="image/*" hidden>
+                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_other_attach != null) style="display: none " @endif   >
+                                                              <i class='bx bxs-cloud-upload icon' ></i>
+                                                              <p>Image size must be <span>500KB</span></p>
+                                                          </div>
+                                                          <img class="preview" src=" @if(isset($data) && $data->upload_other_attach != null) {{asset('').'fa_farmers/upload_other_attach/'.$data->upload_other_attach}} @endif"  @if(isset($data) && $data->upload_other_attach != null) style="display: unset " @endif>
+                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_other_attach != null) style="display: none " @endif>Upload</button>
+                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->upload_other_attach != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
+                                                      </div>
+                                                    </div>
                                                 </div>
 
                                                 {{--
@@ -987,7 +1068,63 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/main.js"></script>
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/select2.min.js"></script>
         <script src="{{asset('assets/js/inputMask.js')}}"></script>
+        <script>
+            $(document).ready(function() {
 
+        $('.upload-image').on('click', function() {
+            $(this).siblings('.image-input').click();
+        });
+
+        $('.image-input').on('change', function(event) {
+            checkFiles();
+
+            const file = event.target.files[0];
+            const $input = $(this);
+            const $preview = $input.siblings('.preview');
+            const $removeButton = $input.siblings('.remove-button');
+            const $uploadButton = $input.siblings('.upload-image');
+            const $imageArea = $input.siblings('.img-area');
+
+            if (file) {
+                @if(isset($data))
+                // Clear the old image value if data exists
+                $input.siblings('.old_image').val(1);
+                @endif
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $preview.attr('src', e.target.result).show();
+                    $removeButton.show();
+                    $uploadButton.hide();
+                    $imageArea.hide();
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        $('.remove-button').on('click', function() {
+            const $removeButton = $(this);
+            const $input = $removeButton.siblings('.image-input');
+            const $preview = $removeButton.siblings('.preview');
+            const $uploadButton = $input.siblings('.upload-image');
+            const $imageArea = $input.siblings('.img-area');
+            $input.val(''); // Clear the input
+            $preview.attr('src', '').hide();
+            $removeButton.hide();
+            $uploadButton.show();
+            $imageArea.show();
+
+            @if(isset($data))
+
+                // Clear the old image value if data exists
+                $input.siblings('.old_image').val('');
+                if($removeButton.siblings('.image-input').attr('name') != 'upload_other_attach'){
+                    checkFiles();
+                }
+            @endif
+        });
+        });
+
+        </script>
        <script>
 
 
@@ -1079,7 +1216,7 @@ $(document).ready(function () {
             });
 
 
-            document.getElementById('gpsButton').addEventListener('focus', function(e) {
+            document.getElementById('gpsButton').addEventListener('click', function(e) {
                 e.preventDefault();
 
                 if (navigator.geolocation) {
@@ -1088,7 +1225,7 @@ $(document).ready(function () {
                             const latitude = position.coords.latitude;
                             const longitude = position.coords.longitude;
                             // Optionally, you can fill the input with coordinates or display elsewhere
-                            document.getElementById('locationInput').innerHTML = `${latitude}, ${longitude}`;
+                            document.getElementById('locationInput').value = `${latitude}, ${longitude}`;
                             document.getElementById('GpsCordinates').value = `${latitude}, ${longitude}`;
                         },
                         function(error) {
