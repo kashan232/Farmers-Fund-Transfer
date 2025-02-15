@@ -175,9 +175,9 @@
 
     @media only screen and (max-width: 600px) {
         .step-indicator {
-            height: 35px !important;
-            width: 35px !important;
-            font-size: 7px !important;
+            height: 37px !important;
+        width: 85px !important;
+        font-size: 7px !important;
         }
         .connector{
             width: 10px !important;
@@ -189,6 +189,11 @@
         .heading-farmer{
             text-align: center;
         }
+
+        .nav {
+        justify-content: space-around !important;
+        }
+
     }
 
 
