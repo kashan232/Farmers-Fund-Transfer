@@ -299,7 +299,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label class="form-label">Q4. Mobile No.: <span class="text-danger">*</span></label>
-                                                    <input type="text" id="mobile" name="mobile" class="form-control" value="{{$data->mobile ?? ''}}"  data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXXX" maxlength="12" >
+                                                    <input type="text" id="mobile" name="mobile" class="form-control" value="{{$data->mobile ?? ''}}"  data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXXX"  >
                                                 </div>
 
 
