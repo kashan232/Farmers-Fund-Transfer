@@ -880,7 +880,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
 
                                                 <div class="mb-6 col-md-6">
-                                                    <label class="form-label">GPS Coordinates</label><br>
+                                                    <label class="form-label">GPS Coordinates of Agriculture land</label><br>
                                                     <div class="d-flex"  style="justify-content: space-between; ">
                                                         <a href="javascript::void()" id="gpsButton" class="btn btn-primary" style="    display: flex; align-items: center;">GPS</a> &nbsp;
                                                         <input type="text" id="locationInput" class="form-control">
@@ -984,7 +984,23 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <script src="{{asset('assets/js/inputMask.js')}}"></script>
 
        <script>
-            $(":input").inputmask();
+
+
+$(document).ready(function () {
+    $("input").inputmask(); // Apply mask only to input fields
+
+
+    $(":input").inputmask({
+    inputEventOnly: true  // Forces Inputmask to work on mobile
+});
+
+
+
+});
+
+
+
+            // $(":input").inputmask();
             document.addEventListener("DOMContentLoaded", function () {
                 let today = new Date().toISOString().split("T")[0];
                 document.getElementById("cnic_expiry_date").setAttribute("min", today);
