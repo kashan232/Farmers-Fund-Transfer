@@ -309,7 +309,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q4. Mobile No.: <span class="text-danger">*</span></label>
-                                            <input type="text" id="mobile" name="mobile" class="form-control" value="{{$data->mobile ?? ''}}"  data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXXX" maxlength="12" >
+                                            <input type="text" id="mobile" name="mobile" class="form-control" value="{{$data->mobile ?? ''}}"  data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"  >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q5. District</label>
@@ -451,7 +451,7 @@
                                             </div>
                                             <div class="mb-4 col-md-4 ">
                                                 <label class="form-label">Mobile No:</label>
-                                                <input type="text" name="mobile_of_next_kin" class="form-control" value="{{$data->mobile_of_next_kin ?? ''}}" data-inputmask="'mask': '0399-99999999'" maxlength="12">
+                                                <input type="text" name="mobile_of_next_kin" class="form-control" value="{{$data->mobile_of_next_kin ?? ''}}" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"  >
                                             </div>
                                         </div>
 
@@ -549,7 +549,7 @@
                                                                 <input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  >
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXXX" maxlength="12">
+                                                                <input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXX" >
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="title_area[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
