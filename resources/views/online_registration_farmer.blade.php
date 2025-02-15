@@ -450,7 +450,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <div class="mb-4 col-md-4 ">
                                                         <label class="form-label">Mobile No:</label>
-                                                        <input type="text" name="mobile_of_next_kin" class="form-control" value="{{$data->mobile_of_next_kin ?? ''}}" data-inputmask="'mask': '0399-99999999'" maxlength="12">
+                                                        <input type="text" name="mobile_of_next_kin" class="form-control" value="{{$data->mobile_of_next_kin ?? ''}}" data-inputmask="'mask': '0399-9999999'" >
                                                     </div>
                                                 </div>
 
