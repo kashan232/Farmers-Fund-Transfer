@@ -173,6 +173,12 @@
         margin-right: 2%;
     }
 
+
+    .preview{
+            width: 100%;
+
+        }
+
     @media only screen and (max-width: 600px) {
         .step-indicator {
             height: 37px !important;
@@ -202,6 +208,7 @@
         }
         .preview{
             width: 200px;
+
         }
     }
 
@@ -278,10 +285,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                 <div class="card-body">
                                     <form id="registrationForm" action="{{ route('farmer-store-by-field-officer') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        @if(isset($data))
-                                        <input type="hidden" value="{{ $data->id ?? '' }}" name="edit_id">
+
                                         <input type="hidden" value="{{ $data->user_type ?? 'Online' }}" name="user_type">
-                                        @endif
                                         <div class="step step-1">
                                             <div class="row mt-2">
                                                 <div class="mb-6 col-md-12">
@@ -939,7 +944,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                         <div class="step step-5" style="display: none;">
                                             <div class="row mt-2">
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
-                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px;">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
                                                           <h6 class="mb-4">CNIC FRONT <span class="text-danger" > *</span></h6>
                                                           @if(isset($data) && $data->front_id_card != null) <input type="hidden"  class="old_image  old_checkfiles old_checkfile_front_id_card" name="old_front_id_card" value="1" > @endif
@@ -956,7 +961,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
 
                                                 <div class="card mb-4 col_img " style="margin: 1%; width:30%">
-                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px;">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
                                                           <h6 class="mb-4">CNIC BACK <span class="text-danger" > *</span></h6>
                                                           @if(isset($data) && $data->back_id_card != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_back_id_card" name="old_back_id_card" value="1" > @endif
@@ -973,7 +978,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
 
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
-                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px;">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
                                                           <h6 class="mb-4">Form VII / Registry from Micro (Mandatory) <span class="text-danger" > *</span></h6>
                                                           @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
@@ -990,7 +995,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
 
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
-                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px;">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
                                                           <h6 class="mb-4">Forms VIII A/ Affidavit/ Heirship (Land Documents) <span class="text-danger" > *</span></h6>
                                                           @if(isset($data) && $data->upload_land_proof != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_land_proof" name="old_upload_land_proof" value="1" > @endif
@@ -1007,7 +1012,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
 
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
-                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px;">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
                                                           <h6 class="mb-4">Photo <span class="text-danger" > *</span></h6>
                                                           @if(isset($data) && $data->upload_farmer_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_farmer_pic" name="old_upload_farmer_pic" value="1" > @endif
@@ -1024,7 +1029,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
 
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
-                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px;">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
                                                           <h6 class="mb-4">Others</h6>
                                                           @if(isset($data) && $data->upload_other_attach != null) <input type="hidden"  class="old_image " name="old_upload_other_attach" value="1" > @endif
@@ -1060,7 +1065,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
             </div>
 
         </div>
-
+        <script src="
+        https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.all.min.js
+        "></script>
+        <link href="
+        https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
+        " rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/popper.js"></script>
@@ -1211,9 +1221,60 @@ $(document).ready(function () {
             }
 
 
+            // $('#registrationForm').on('submit', function(event) {
+            //     $('#submitbtn').attr('disabled', true); // Disable the submit button
+            // });
+
+
             $('#registrationForm').on('submit', function(event) {
-                $('#submitbtn').attr('disabled', true); // Disable the submit button
+            $('#submitbtn').attr('disabled', true); // Disable the submit button
+            event.preventDefault();
+                var url = $(this).attr('action');
+                var formData = new FormData(this);
+                // data =
+                $.ajax({
+                    url: url,
+                    method: 'post',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    complete: function () {
+                    },
+                    success: function (data) {
+                        if (data['errors'] !== undefined) {
+                            errors = data['errors']
+                            $_html = "";
+                            for (error in errors) {
+                                $_html += "<p class='m-1 text-danger'><strong>" + errors[error][0] + "</strong></p>";
+                            }
+                            Swal.fire({
+                                title: "Errors!",
+                                // text: "You clicked the button!",
+                                icon: "error",
+                                html: $_html
+                            });
+                        }
+
+                        if(data['success'] !== undefined){
+                            Swal.fire({
+                                title: "Success!",
+                                text: data['success'],
+                                icon: "success",
+                            });
+                            setTimeout(function () {
+                                window.location.reload(true);
+                            }, 600);
+                        }
+                    }
+                });
+            $('#submitbtn').attr('disabled', false); // Disable the submit button
+
             });
+
 
 
             document.getElementById('gpsButton').addEventListener('click', function(e) {

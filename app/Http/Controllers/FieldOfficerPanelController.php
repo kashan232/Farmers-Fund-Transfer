@@ -19,7 +19,10 @@ class FieldOfficerPanelController extends Controller
         // $user = User::find(Auth::id());
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        $farmers = LandRevenueFarmerRegistation::where('admin_or_user_id' , Auth::user()->id)->get();
+        $farmers = LandRevenueFarmerRegistation::where('admin_or_user_id', Auth::user()->id)
+        ->orWhere('user_type', 'Online')
+        ->get();
+
         return view('field_officer_panel.farmers.index',['farmers'=>$farmers , 'tehsils' => $tehsils]);
     }
 
@@ -280,16 +283,19 @@ class FieldOfficerPanelController extends Controller
             return ['errors' => $validator->errors()];
         }
 
-        if (Auth::check()) {
 
             $data = $request->all();
             $data = $request->except(['_token', 'edit_id', 'old_front_id_card','old_back_id_card','old_form_seven_pic','old_upload_land_proof','old_upload_farmer_pic','old_upload_other_attach']);
 
 
             $data['user_type'] = $request->user_type;
-            $data['admin_or_user_id'] = Auth::id();
-            $data['land_emp_id'] = Auth()->user()->user_id;
-            $data['land_emp_name'] = Auth()->user()->name;
+            if( $data['user_type'] != 'Online'){
+
+                $data['admin_or_user_id'] = Auth::id();
+                $data['land_emp_id'] = Auth()->user()->user_id;
+
+                $data['land_emp_name'] = Auth()->user()->name;
+            }
 
 
             $data['title_name'] = json_encode($request->title_name);
@@ -388,7 +394,7 @@ class FieldOfficerPanelController extends Controller
                 // return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Registered');
                 return ['success' => 'Farmer Data Submitted Succesfully..!'];
             }
-        }
+
     }
 
 }
