@@ -289,11 +289,11 @@
                                         <h4 class="card-title">Personal Details</h4>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Q1. Name: <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" class="form-control" value="{{$data->name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 30)">
+                                            <input type="text" name="name" class="form-control" value="{{$data->name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Q2. Father/Husband Name: <span class="text-danger">*</span></label>
-                                            <input type="text" name="father_name" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 30)">
+                                            <input type="text" name="father_name" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
@@ -443,7 +443,7 @@
 
                                             <div class="mb-4 col-md-4 ">
                                                 <label class="form-label"><b>Q14: Next of Kin:  </b>Full Name: </label>
-                                                <input type="text" name="full_name_of_next_kin" class="form-control" value="{{$data->full_name_of_next_kin ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 30)">
+                                                <input type="text" name="full_name_of_next_kin" class="form-control" value="{{$data->full_name_of_next_kin ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
                                             </div>
                                             <div class="mb-4 col-md-4 ">
                                                 <label class="form-label">CNIC NO:<span class="text-danger">*</span></label>
@@ -528,8 +528,8 @@
                                                         @if (isset($data) && $data->title_name != '')
                                                         @foreach (json_decode($data->title_name) as $index => $title_name)
                                                         <tr>
-                                                            <td><input type="text" name="title_name[]" value="{{$title_name}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 30)"></td>
-                                                            <td><input type="text" name="title_father_name[]"  value="{{json_decode($data->title_father_name)[$index]}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 30)"> </td>
+                                                            <td><input type="text" name="title_name[]" value="{{$title_name}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
+                                                            <td><input type="text" name="title_father_name[]"  value="{{json_decode($data->title_father_name)[$index]}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"> </td>
 
                                                             <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
                                                             <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'"  placeholder="XXXX-XXXXXXX"  maxlength="12" value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
@@ -540,10 +540,10 @@
                                                         @else
                                                         <tr>
                                                             <td>
-                                                                <input type="text" name="title_name[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 30)">
+                                                                <input type="text" name="title_name[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="title_father_name[]"  value="" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 30)">
+                                                                <input type="text" name="title_father_name[]"  value="" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  >
@@ -770,7 +770,7 @@
                                                     @else
                                                     <tr>
                                                         <td style="width:300px">
-                                                            <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single">
+                                                            <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single_animal">
                                                                 <option value="">Select Animal</option>
                                                                 <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
                                                                 <option value="Buffalo">Buffalo</option>
@@ -862,7 +862,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6">
                                             <label class="form-label">Q24: Account No</label>
-                                            <input type="text" name="account_no" class="form-control" value="{{$data->account_no ?? ''}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
+                                            <input type="text" name="account_no" class="form-control" value="{{$data->account_no ?? ''}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16)">
                                         </div>
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Q25: Bank Name</label>
@@ -878,7 +878,7 @@
                                         </div>
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Q28: Branch Code</label>
-                                            <input type="text" name="branch_code" value="{{$data->branch_code ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                                            <input type="text" name="branch_code" value="{{$data->branch_code ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4)">
                                         </div>
                                     </div>
                                     <div class="row mt-3">
@@ -1409,8 +1409,8 @@ $('#abc').on('click',function(){
     $('#add_title_row_Btn').click(function() {
         const newRow = `
             <tr>
-                <td><input type="text" name="title_name[]" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 30)"></td>
-                <td><input type="text" name="title_father_name[]"   class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 30)"></td>
+                <td><input type="text" name="title_name[]" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
+                <td><input type="text" name="title_father_name[]"   class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
                 <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  class="form-control"></td>
                 <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'" maxlength="12" class="form-control"></td>
                 <td><input type="text" name="title_area[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
@@ -1455,36 +1455,93 @@ $('#abc').on('click',function(){
     });
 
 
-    $('#add_poultry_assets_row_Btn').click(function() {
-        const newRow = `
-            <tr>
-                 <td>
-                    <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single">
-                       <option value="">Select Animal</option>
-                        <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
-                        <option value="Buffalo">Buffalo</option>
-                        <option value="Cows">Cows</option>
-                        <option value="Camels">Camels</option>
-                        <option value="Goats">Goals</option>
-                        <option value="Sheep">Sheep</option>
-                        <option value="Horse / Mules">Horse / Mules</option>
-                        <option value="Donkeys">Donkeys</option>
-                    </select>
-                </td>
-                <td><input type="text" name="animal_qty[]"  class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)"></td>
-                <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
-            </tr>
-        `;
-        $('#poultry_assets_tableBody').append(newRow);
-        $('#poultry_assets_tableBody').find('.js-example-basic-single').last().select2({
+    let selectedValues = [];
+
+// Function to handle the selection of animals
+function updateSelectedValues() {
+    selectedValues = [];
+    $('.js-example-basic-single_animal').each(function() {
+        let val = $(this).val();
+        if (val && !selectedValues.includes(val)) {
+            selectedValues.push(val);
+        }
+    });
+}
+$('#poultry_assets_tableBody').find('.js-example-basic-single_animal').last().select2({
             tags: true, // Enable the user to add custom tags
         });
+// Add new row on button click
+$('#add_poultry_assets_row_Btn').click(function() {
+    const newRow = `
+        <tr>
+            <td>
+                <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single_animal">
+                    <option value="">Select Animal</option>
+                    <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
+                    <option value="Buffalo">Buffalo</option>
+                    <option value="Cows">Cows</option>
+                    <option value="Camels">Camels</option>
+                    <option value="Goats">Goats</option>
+                    <option value="Sheep">Sheep</option>
+                    <option value="Horse / Mules">Horse / Mules</option>
+                    <option value="Donkeys">Donkeys</option>
+                </select>
+            </td>
+            <td><input type="text" name="animal_qty[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)"></td>
+            <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+        </tr>
+    `;
+    $('#poultry_assets_tableBody').append(newRow);
+
+    // Re-initialize select2
+    $('#poultry_assets_tableBody').find('.js-example-basic-single_animal').last().select2({
+        tags: true,
     });
 
-    // Delete row on clicking "Delete" button
-    $('#poultry_assets_tableBody').on('click', '.delete-row', function() {
-        $(this).closest('tr').remove();
+    // Update selected values after adding the row
+    updateSelectedValues();
+
+    // Disable already selected options in the new row
+    $('#poultry_assets_tableBody').find('.js-example-basic-single_animal').last().find('option').each(function() {
+        let optionValue = $(this).val();
+        if (selectedValues.includes(optionValue)) {
+            $(this).prop('disabled', true);
+        } else {
+            $(this).prop('disabled', false);
+        }
     });
+});
+
+// Delete row on clicking "Delete" button
+$('#poultry_assets_tableBody').on('click', '.delete-row', function() {
+    $(this).closest('tr').remove();
+    updateSelectedValues(); // Update selected values when a row is deleted
+});
+
+// Disable options on select change
+$('#poultry_assets_tableBody').on('change', '.js-example-basic-single_animal', function() {
+    updateSelectedValues();
+
+    // Disable options that are already selected elsewhere
+    $('.js-example-basic-single_animal').each(function() {
+        let currentSelect = $(this);
+        let currentValue = currentSelect.val();
+
+        currentSelect.find('option').each(function() {
+            let optionValue = $(this).val();
+
+            if (optionValue && selectedValues.includes(optionValue) && optionValue !== currentValue) {
+                $(this).prop('disabled', true);
+            } else {
+                $(this).prop('disabled', false);
+            }
+        });
+
+        // Trigger select2 update
+        currentSelect.trigger('change.select2');
+    });
+});
+
 
 
 

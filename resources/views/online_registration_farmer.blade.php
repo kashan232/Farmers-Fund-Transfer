@@ -1385,56 +1385,93 @@ $(document).ready(function () {
     });
 
 
-    $('#add_poultry_assets_row_Btn').click(function() {
-        const newRow = `
-            <tr>
-                 <td>
-                    <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single_animal">
-                       <option value="">Select Animal</option>
-                        <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
-                        <option value="Buffalo">Buffalo</option>
-                        <option value="Cows">Cows</option>
-                        <option value="Camels">Camels</option>
-                        <option value="Goats">Goats</option>
-                        <option value="Sheep">Sheep</option>
-                        <option value="Horse / Mules">Horse / Mules</option>
-                        <option value="Donkeys">Donkeys</option>
-                    </select>
-                </td>
-                <td><input type="text" name="animal_qty[]"  class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)"></td>
-                <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
-            </tr>
-        `;
-        $('#poultry_assets_tableBody').append(newRow);
-        $('#poultry_assets_tableBody').find('.js-example-basic-single').last().select2({
+    let selectedValues = [];
+
+// Function to handle the selection of animals
+function updateSelectedValues() {
+    selectedValues = [];
+    $('.js-example-basic-single_animal').each(function() {
+        let val = $(this).val();
+        if (val && !selectedValues.includes(val)) {
+            selectedValues.push(val);
+        }
+    });
+}
+$('#poultry_assets_tableBody').find('.js-example-basic-single_animal').last().select2({
             tags: true, // Enable the user to add custom tags
         });
+// Add new row on button click
+$('#add_poultry_assets_row_Btn').click(function() {
+    const newRow = `
+        <tr>
+            <td>
+                <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single_animal">
+                    <option value="">Select Animal</option>
+                    <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
+                    <option value="Buffalo">Buffalo</option>
+                    <option value="Cows">Cows</option>
+                    <option value="Camels">Camels</option>
+                    <option value="Goats">Goats</option>
+                    <option value="Sheep">Sheep</option>
+                    <option value="Horse / Mules">Horse / Mules</option>
+                    <option value="Donkeys">Donkeys</option>
+                </select>
+            </td>
+            <td><input type="text" name="animal_qty[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)"></td>
+            <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+        </tr>
+    `;
+    $('#poultry_assets_tableBody').append(newRow);
+
+    // Re-initialize select2
+    $('#poultry_assets_tableBody').find('.js-example-basic-single_animal').last().select2({
+        tags: true,
     });
 
-    // Delete row on clicking "Delete" button
-    $('#poultry_assets_tableBody').on('click', '.delete-row', function() {
-        $(this).closest('tr').remove();
+    // Update selected values after adding the row
+    updateSelectedValues();
+
+    // Disable already selected options in the new row
+    $('#poultry_assets_tableBody').find('.js-example-basic-single_animal').last().find('option').each(function() {
+        let optionValue = $(this).val();
+        if (selectedValues.includes(optionValue)) {
+            $(this).prop('disabled', true);
+        } else {
+            $(this).prop('disabled', false);
+        }
     });
+});
 
+// Delete row on clicking "Delete" button
+$('#poultry_assets_tableBody').on('click', '.delete-row', function() {
+    $(this).closest('tr').remove();
+    updateSelectedValues(); // Update selected values when a row is deleted
+});
 
- // Prevent duplicate selections
- $('.js-example-basic-single_animal').on('change', function() {
-        let selectedValues = [];
-        $('.js-example-basic-single').each(function() {
-            let val = $(this).val();
-            if (val) selectedValues.push(val);
+// Disable options on select change
+$('#poultry_assets_tableBody').on('change', '.js-example-basic-single_animal', function() {
+    updateSelectedValues();
+
+    // Disable options that are already selected elsewhere
+    $('.js-example-basic-single_animal').each(function() {
+        let currentSelect = $(this);
+        let currentValue = currentSelect.val();
+
+        currentSelect.find('option').each(function() {
+            let optionValue = $(this).val();
+
+            if (optionValue && selectedValues.includes(optionValue) && optionValue !== currentValue) {
+                $(this).prop('disabled', true);
+            } else {
+                $(this).prop('disabled', false);
+            }
         });
 
-        $('.js-example-basic-single').each(function() {
-            $(this).find('option').each(function() {
-                if ($(this).val() && selectedValues.includes($(this).val()) && $(this).val() !== $(this).closest('select').val()) {
-                    $(this).prop('disabled', true);
-                } else {
-                    $(this).prop('disabled', false);
-                }
-            });
-        });
+        // Trigger select2 update
+        currentSelect.trigger('change.select2');
     });
+});
+
 
 
 
