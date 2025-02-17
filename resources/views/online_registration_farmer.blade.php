@@ -782,7 +782,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                             @else
                                                             <tr>
                                                                 <td style="width:300px">
-                                                                    <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single">
+                                                                    <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single_animal">
                                                                         <option value="">Select Animal</option>
                                                                         <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
                                                                         <option value="Buffalo">Buffalo</option>
@@ -874,7 +874,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
                                                 <div class="mb-6 col-md-6">
                                                     <label class="form-label">Q24: Account No</label>
-                                                    <input type="text" name="account_no" class="form-control" value="{{$data->account_no ?? ''}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 20)">
+                                                    <input type="text" name="account_no" class="form-control" value="{{$data->account_no ?? ''}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16)">
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-2">
                                                     <label class="form-label">Q25: Bank Name</label>
@@ -890,7 +890,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-2">
                                                     <label class="form-label">Q28: Branch Code</label>
-                                                    <input type="text" name="branch_code" value="{{$data->branch_code ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                                                    <input type="text" name="branch_code" value="{{$data->branch_code ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4)">
                                                 </div>
                                             </div>
                                             <div class="row mt-3">
@@ -1389,7 +1389,7 @@ $(document).ready(function () {
         const newRow = `
             <tr>
                  <td>
-                    <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single">
+                    <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single_animal">
                        <option value="">Select Animal</option>
                         <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
                         <option value="Buffalo">Buffalo</option>
@@ -1417,6 +1417,24 @@ $(document).ready(function () {
     });
 
 
+ // Prevent duplicate selections
+ $('.js-example-basic-single_animal').on('change', function() {
+        let selectedValues = [];
+        $('.js-example-basic-single').each(function() {
+            let val = $(this).val();
+            if (val) selectedValues.push(val);
+        });
+
+        $('.js-example-basic-single').each(function() {
+            $(this).find('option').each(function() {
+                if ($(this).val() && selectedValues.includes($(this).val()) && $(this).val() !== $(this).closest('select').val()) {
+                    $(this).prop('disabled', true);
+                } else {
+                    $(this).prop('disabled', false);
+                }
+            });
+        });
+    });
 
 
 
