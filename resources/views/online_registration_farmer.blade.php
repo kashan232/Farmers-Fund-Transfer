@@ -293,11 +293,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <h4 class="card-title">Personal Details</h4></div>
                                                 <div class="mb-6 col-md-6">
                                                     <label class="form-label">Q1. Name: <span class="text-danger">*</span></label>
-                                                    <input type="text" name="name" class="form-control" value="{{$data->name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 30)" >
+                                                    <input type="text" name="name" class="form-control" value="{{$data->name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
                                                 </div>
                                                 <div class="mb-6 col-md-6">
                                                     <label class="form-label">Q2. Father/Husband Name: <span class="text-danger">*</span></label>
-                                                    <input type="text" name="father_name" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 30)" >
+                                                    <input type="text" name="father_name" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
@@ -456,7 +456,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                     <div class="mb-4 col-md-4 ">
                                                         <label class="form-label"><b>Q14: Next of Kin:  </b>Full Name: </label>
-                                                        <input type="text" name="full_name_of_next_kin" class="form-control" value="{{$data->full_name_of_next_kin ?? ''}}">
+                                                        <input type="text" name="full_name_of_next_kin" class="form-control" value="{{$data->full_name_of_next_kin ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
                                                     </div>
                                                     <div class="mb-4 col-md-4 ">
                                                         <label class="form-label">CNIC NO: <span class="text-danger">*</span></label>
@@ -541,8 +541,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                                 @if (isset($data) && $data->title_name != '')
                                                                 @foreach (json_decode($data->title_name) as $index => $title_name)
                                                                 <tr>
-                                                                    <td><input type="text" name="title_name[]" value="{{$title_name}}" class="form-control"></td>
-                                                                    <td><input type="text" name="title_father_name[]"  value="{{json_decode($data->title_father_name)[$index]}}" class="form-control"></td>
+                                                                    <td><input type="text" name="title_name[]" value="{{$title_name}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
+                                                                    <td><input type="text" name="title_father_name[]"  value="{{json_decode($data->title_father_name)[$index]}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
 
                                                                     <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
                                                                     <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'"  placeholder="XXXX-XXXXXXX"  maxlength="12" value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
@@ -553,9 +553,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                                 @else
                                                                 <tr>
                                                                     <td>
-                                                                        <input type="text" name="title_name[]" value="" class="form-control">
+                                                                        <input type="text" name="title_name[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
                                                                     </td>
-                                                                    <td><input type="text" name="title_father_name[]"  value="" class="form-control"></td>
+                                                                    <td><input type="text" name="title_father_name[]"  value="" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
 
                                                                     <td>
                                                                         <input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  >
@@ -1339,8 +1339,8 @@ $(document).ready(function () {
     $('#add_title_row_Btn').click(function() {
         const newRow = `
             <tr>
-                <td><input type="text" name="title_name[]" class="form-control"></td>
-                <td><input type="text" name="title_father_name[]"  value="" class="form-control"></td>
+                <td><input type="text" name="title_name[]" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
+                <td><input type="text" name="title_father_name[]"  value="" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
                 <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  class="form-control"></td>
                 <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'" maxlength="12" class="form-control"></td>
                 <td><input type="text" name="title_area[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
@@ -1395,7 +1395,7 @@ $(document).ready(function () {
                         <option value="Buffalo">Buffalo</option>
                         <option value="Cows">Cows</option>
                         <option value="Camels">Camels</option>
-                        <option value="Goats">Goals</option>
+                        <option value="Goats">Goats</option>
                         <option value="Sheep">Sheep</option>
                         <option value="Horse / Mules">Horse / Mules</option>
                         <option value="Donkeys">Donkeys</option>
