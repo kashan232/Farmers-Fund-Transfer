@@ -532,7 +532,7 @@
                                                             <td><input type="text" name="title_father_name[]"  value="{{json_decode($data->title_father_name)[$index]}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"> </td>
 
                                                             <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
-                                                            <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'"  placeholder="XXXX-XXXXXXX"  maxlength="12" value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
+                                                            <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXX"   value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
                                                             <td><input type="text" name="title_area[]" value="{{json_decode($data->title_area)[$index]}}" class="form-control"></td>
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
@@ -576,7 +576,7 @@
                                                             <th>Orchard</th>
                                                             <th>Crop(s)</th>
                                                             <th>Area (Acres)</th>
-                                                            <th>Average Yield (Per Acres)</th>
+                                                            <th>Average Yield (Mds Per Acres)</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -666,7 +666,7 @@
                                                     $physical_asset_items = json_decode($data->physical_asset_item);
                                                     $unique_items = is_array($physical_asset_items) ? array_unique($physical_asset_items) : [];
                                                     $default_options = [
-                                                        'car/jeep' => 'Car/Jeep',
+                                                        'jeep' => 'Jeep',
                                                         'pickup/loader' => 'Pickup/Loader',
                                                         'motorcycle' => 'Motorcycle',
                                                         'bicycles' => 'Bicycles',
@@ -690,7 +690,7 @@
                                                     </option>
                                                 @endforeach --}}
 
-                                                <option value="car/jeep">Car/Jeep </option>
+                                                <option value="jeep">Jeep </option>
                                                 <option value="pickup/loader">Pickup/loader</option>
                                                 <option value="motorcycle">Motorcycle</option>
                                                 <option value="bicycles">Bicycles</option>
@@ -708,7 +708,7 @@
                                                     <option value="{{$physical_asset_item}}" selected>{{$physical_asset_item}} </option>
                                                 @endforeach
                                                 @else
-                                                <option value="car/jeep">Car/Jeep </option>
+                                                <option value="jeep">Jeep </option>
                                                 <option value="pickup/loader">Pickup/loader</option>
                                                 <option value="motorcycle">Motorcycle</option>
                                                 <option value="bicycles">Bicycles</option>
@@ -748,14 +748,14 @@
 
                                                             <select name="animal_name[]" style="width:400px" class="form-control js-example-basic-single">
                                                               <option value="">Select Animal</option>
-                                                                <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
+                                                                <option value="Poultry (chicken , duck, etc.)">Poultry (chicken , duck, etc.)</option>
                                                                 <option value="Buffalo">Buffalo</option>
-                                                                <option value="Cows">Cows</option>
-                                                                <option value="Camels">Camels</option>
-                                                                <option value="Goats">Goats</option>
+                                                                <option value="Cow">Cow</option>
+                                                                <option value="Camel">Camel</option>
+                                                                <option value="Goat">Goat</option>
                                                                 <option value="Sheep">Sheep</option>
                                                                 <option value="Horse / Mules">Horse / Mules</option>
-                                                                <option value="Donkeys">Donkeys</option>
+                                                                <option value="Donkey">Donkey</option>
                                                                 <option value="{{ json_decode($data->animal_name)[$index] }}" selected>{{ json_decode($data->animal_name)[$index] }}</option>
 
                                                             </select>
@@ -772,14 +772,14 @@
                                                         <td style="width:300px">
                                                             <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single_animal">
                                                                 <option value="">Select Animal</option>
-                                                                <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
+                                                                <option value="Poultry (chicken , duck, etc.)">Poultry (chicken , duck, etc.)</option>
                                                                 <option value="Buffalo">Buffalo</option>
-                                                                <option value="Cows">Cows</option>
-                                                                <option value="Camels">Camels</option>
-                                                                <option value="Goats">Goats</option>
+                                                                <option value="Cow">Cow</option>
+                                                                <option value="Camel">Camel</option>
+                                                                <option value="Goat">Goat</option>
                                                                 <option value="Sheep">Sheep</option>
-                                                                <option value="Horse / Mules">Horse / Mules</option>
-                                                                <option value="Donkeys">Donkeys</option>
+                                                                <option value="Horse / Mule">Horse / Mule</option>
+                                                                <option value="Donkey">Donkey</option>
                                                             </select>
                                                         </td>
                                                         <td>
@@ -1016,7 +1016,7 @@
                                         <div class="card mb-4 " style="margin: 1%; width:30%">
                                             <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px;">
                                               <div class="text-center image-upload-card">
-                                                  <h6 class="mb-4">Forms VIII A/ Affidavit/ Heirship (Land Documents) <span class="text-danger" > *</span></h6>
+                                                  <h6 class="mb-4">Forms VIII A/ Affidavit/ Heirship (Land Documents) <span class="text-danger" > </span></h6>
                                                   @if(isset($data) && $data->upload_land_proof != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_land_proof" name="old_upload_land_proof" value="1" > @endif
                                                   <input type="file"  class="image-input checkfiles checkfile_upload_land_proof" name="upload_land_proof" accept="image/*" hidden>
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif   >
@@ -1477,14 +1477,14 @@ $('#add_poultry_assets_row_Btn').click(function() {
             <td>
                 <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single_animal">
                     <option value="">Select Animal</option>
-                    <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
+                    <option value="Poultry (chicken , duck, etc.)">Poultry (chicken , duck, etc.)</option>
                     <option value="Buffalo">Buffalo</option>
-                    <option value="Cows">Cows</option>
-                    <option value="Camels">Camels</option>
-                    <option value="Goats">Goats</option>
+                    <option value="Cow">Cow</option>
+                    <option value="Camel">Camel</option>
+                    <option value="Goat">Goat</option>
                     <option value="Sheep">Sheep</option>
-                    <option value="Horse / Mules">Horse / Mules</option>
-                    <option value="Donkeys">Donkeys</option>
+                    <option value="Horse / Mule">Horse / Mule</option>
+                    <option value="Donkey">Donkey</option>
                 </select>
             </td>
             <td><input type="text" name="animal_qty[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)"></td>
@@ -1552,10 +1552,7 @@ $('#source_of_irrigation').change(function() {
 
     if($(this).val().includes('tube well'))
     {
-
         var oldValues = $('#source_of_energy').val() || [];
-
-
         $('#source_of_energy_section').remove();
          $('#source_of_irrigation_section').append(`
          <div class="mb-6 col-md-6" id="source_of_energy_section">

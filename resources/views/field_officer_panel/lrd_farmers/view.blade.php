@@ -182,7 +182,7 @@
                                 <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                 <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                 <option value="Attachments are not cleared">Attachments are not cleared</option>
-                                <option value="Others">Others</option>
+
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Save</button>
@@ -204,7 +204,7 @@
                                 <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                 <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                 <option value="Attachments are not cleared">Attachments are not cleared</option>
-                                <option value="Others">Others</option>
+
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Save</button>
@@ -226,7 +226,7 @@
                                 <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                 <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                 <option value="Attachments are not cleared">Attachments are not cleared</option>
-                                <option value="Others">Others</option>
+
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Save</button>
@@ -413,10 +413,10 @@
                                 <th class="question"> Q15.</th>
 
                                 <td colspan="8" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
-                                    <span> <b>House type: &nbsp; &nbsp; &nbsp; </b> @if($data->house_type == 'pakka_house') <i class="fa-solid fa-check"></i> @endif (1) Paka House </span> <span
-                                        style="border-bottom: 1px solid black;"></span>&nbsp; &nbsp; &nbsp; <span>
-                                        @if($data->house_type == 'kacha_house') <i class="fa-solid fa-check"></i> @endif (2) Kacha House </span> <span
-                                        style="border-bottom: 1px solid black;"></span>
+                                    <span> <b>House type: &nbsp; &nbsp; &nbsp; </b> @if($data->house_type == 'pakka_house') <i class="fa-solid fa-check"></i> @endif (1) Paka House </span>
+                                    <span style="border-bottom: 1px solid black;"></span>&nbsp; &nbsp; &nbsp; <span>
+                                        @if($data->house_type == 'kacha_house') <i class="fa-solid fa-check"></i> @endif (2) Kacha House </span>
+                                    <span style="border-bottom: 1px solid black;"></span>
 
                             </tr>
                             <tr>
@@ -1128,8 +1128,6 @@
         $('.js-example-basic-single').select2({
             tags: true, // Enable typing custom values
             placeholder: "Select or type to add a new option", // Optional placeholder
-            tokenSeparators: [',', ' '], // Optional, allows separation by comma or space
-
             dropdownParent: $('#exampleModalLive')
         });
     });

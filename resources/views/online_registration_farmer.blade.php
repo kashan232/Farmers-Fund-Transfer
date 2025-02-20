@@ -213,6 +213,73 @@
     }
 
 
+
+    .leaflet-control-geocoder {
+    max-width: 300px !important; /* Adjust the width */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Prevent overflow */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow */
+}
+
+.leaflet-control-geocoder input {
+    padding: 10px !important;
+    font-size: 14px;
+    width: 100%;
+    border: 2px solid #007bff; /* Blue border */
+    border-radius: 10px;
+    outline: none;
+}
+
+.leaflet-control-geocoder input::placeholder {
+    color: #666 !important;
+    font-style: italic;
+}
+
+.leaflet-control-geocoder .leaflet-control-geocoder-icon {
+    background-color: #007bff !important;
+    border-radius: 50%;
+    width: 30px !important;
+    height: 30px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.leaflet-control-geocoder .leaflet-control-geocoder-icon:hover {
+    background-color: #0056b3 !important;
+}
+/* Remove line breaks and make result inline */
+.leaflet-control-geocoder-results li {
+    display: flex !important; /* Use flexbox for alignment */
+    align-items: center; /* Align text in center */
+    white-space: nowrap !important; /* Prevent line break */
+    overflow: hidden; /* Prevent extra text overflow */
+    text-overflow: ellipsis; /* Add '...' if text is too long */
+    padding: 8px 12px; /* Add spacing */
+}
+
+/* Make the result text in one line */
+.leaflet-control-geocoder-results li a {
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Merge city name and region in one line */
+.leaflet-control-geocoder-results li a span {
+    display: inline !important; /* Inline text */
+    margin-right: 5px; /* Add small space */
+}
+
+/* Optional: Add hover effect */
+.leaflet-control-geocoder-results li:hover {
+    background-color: #f0f0f0 !important;
+}
+
+
     </style>
 </head>
 
@@ -545,7 +612,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                                     <td><input type="text" name="title_father_name[]"  value="{{json_decode($data->title_father_name)[$index]}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
 
                                                                     <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
-                                                                    <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'"  placeholder="XXXX-XXXXXXX"  maxlength="12" value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
+                                                                    <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXX" value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
                                                                     <td><input type="text" name="title_area[]" value="{{json_decode($data->title_area)[$index]}}" class="form-control"></td>
                                                                     <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                                 </tr>
@@ -588,7 +655,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                                     <th>Orchard</th>
                                                                     <th>Crop(s)</th>
                                                                     <th>Area (Acres)</th>
-                                                                    <th>Average Yield (Per Acres)</th>
+                                                                    <th>Average Yield (Mds Per Acres)</th>
                                                                     <th>Action</th>
                                                                 </tr>
                                                             </thead>
@@ -702,7 +769,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                             </option>
                                                         @endforeach --}}
 
-                                                        <option value="car/jeep">Car/Jeep </option>
+                                                        <option value="jeep">Jeep</option>
                                                         <option value="pickup/loader">Pickup/loader</option>
                                                         <option value="motorcycle">Motorcycle</option>
                                                         <option value="bicycles">Bicycles</option>
@@ -720,7 +787,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                             <option value="{{$physical_asset_item}}" selected>{{$physical_asset_item}} </option>
                                                         @endforeach
                                                         @else
-                                                        <option value="car/jeep">Car/Jeep </option>
+                                                        <option value="jeep">Jeep</option>
                                                         <option value="pickup/loader">Pickup/loader</option>
                                                         <option value="motorcycle">Motorcycle</option>
                                                         <option value="bicycles">Bicycles</option>
@@ -760,14 +827,14 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                                     <select name="animal_name[]" style="width:400px" class="form-control js-example-basic-single">
                                                                       <option value="">Select Animal</option>
-                                                                        <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
+                                                                        <option value="Poultry (chicken , duck, etc.)">Poultry (chicken , duck, etc.)</option>
                                                                         <option value="Buffalo">Buffalo</option>
-                                                                        <option value="Cows">Cows</option>
-                                                                        <option value="Camels">Camels</option>
-                                                                        <option value="Goats">Goats</option>
+                                                                        <option value="Cow">Cow</option>
+                                                                        <option value="Camel">Camel</option>
+                                                                        <option value="Goat">Goat</option>
                                                                         <option value="Sheep">Sheep</option>
-                                                                        <option value="Horse / Mules">Horse / Mules</option>
-                                                                        <option value="Donkeys">Donkeys</option>
+                                                                        <option value="Horse / Mule">Horse / Mule</option>
+                                                                        <option value="Donkey">Donkey</option>
                                                                         <option value="{{ json_decode($data->animal_name)[$index] }}" selected>{{ json_decode($data->animal_name)[$index] }}</option>
 
                                                                     </select>
@@ -784,14 +851,14 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                                 <td style="width:300px">
                                                                     <select name="animal_name[]" style="width:300px" class="form-control js-example-basic-single_animal">
                                                                         <option value="">Select Animal</option>
-                                                                        <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
+                                                                        <option value="Poultry (chicken , duck, etc.)">Poultry (chicken , duck, etc.)</option>
                                                                         <option value="Buffalo">Buffalo</option>
-                                                                        <option value="Cows">Cows</option>
-                                                                        <option value="Camels">Camels</option>
-                                                                        <option value="Goats">Goats</option>
+                                                                        <option value="Cow">Cow</option>
+                                                                        <option value="Camel">Camel</option>
+                                                                        <option value="Goat">Goat</option>
                                                                         <option value="Sheep">Sheep</option>
-                                                                        <option value="Horse / Mules">Horse / Mules</option>
-                                                                        <option value="Donkeys">Donkeys</option>
+                                                                        <option value="Horse / Mule">Horse / Mule</option>
+                                                                        <option value="Donkey">Donkey</option>
                                                                     </select>
                                                                 </td>
                                                                 <td>
@@ -997,7 +1064,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4">Forms VIII A/ Affidavit/ Heirship (Land Documents) <span class="text-danger" > *</span></h6>
+                                                          <h6 class="mb-4">Forms VIII A/ Affidavit/ Heirship (Land Documents) <span class="text-danger" > </span></h6>
                                                           @if(isset($data) && $data->upload_land_proof != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_land_proof" name="old_upload_land_proof" value="1" > @endif
                                                           <input type="file"  class="image-input checkfiles checkfile_upload_land_proof" name="upload_land_proof" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif   >
@@ -1410,7 +1477,7 @@ $('#add_poultry_assets_row_Btn').click(function() {
                     <option value="Poultry (chicken , ducks, etc.)">Poultry (chicken , ducks, etc.)</option>
                     <option value="Buffalo">Buffalo</option>
                     <option value="Cows">Cows</option>
-                    <option value="Camels">Camels</option>
+                    <option value="Camel">Camel</option>
                     <option value="Goats">Goats</option>
                     <option value="Sheep">Sheep</option>
                     <option value="Horse / Mules">Horse / Mules</option>
@@ -1659,7 +1726,7 @@ $('#lined_unlined').change(function() {
                 });
             });
         </script>
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
 
         <script src="{{asset('select2.min.js')}}"></script>
         <script>
@@ -1682,84 +1749,106 @@ $('#lined_unlined').change(function() {
                 });
             });
         </script>
-        <script>
-            // Initialize map to Hyderabad, Pakistan with zoom level 13
-            var map = L.map('map').setView([25.3960, 68.3578], 13); // Coordinates for Hyderabad, Pakistan
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
 
-            var markers = [];
-            var lineCoordinates = [];
-            var polyline;
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
-            // Function to update hidden input field with coordinates
-            function updateCoordinatesInput() {
-                // Convert coordinates array to a JSON string and update the hidden input
-                document.getElementById('FancingCoordinates').value = JSON.stringify(lineCoordinates);
-            }
 
-            map.on('click', function(e) {
-                var lat = e.latlng.lat;
-                var lng = e.latlng.lng;
+<script>
+    var map = L.map('map').setView([25.3960, 68.3578], 13); // Hyderabad, Pakistan
 
-                var marker = L.marker([lat, lng]).addTo(map);
-                marker.bindPopup('<b>You clicked at:</b><br>Latitude: ' + lat.toFixed(4) + '<br>Longitude: ' + lng.toFixed(4)).openPopup();
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-                markers.push(marker);
-                lineCoordinates.push([lat, lng]);
+    var markers = [];
+    var lineCoordinates = [];
+    var polyline;
 
-                // If a polyline exists, remove it
+    function updateCoordinatesInput() {
+        document.getElementById('FancingCoordinates').value = JSON.stringify(lineCoordinates);
+    }
+
+    map.on('click', function(e) {
+        var lat = e.latlng.lat;
+        var lng = e.latlng.lng;
+
+        var marker = L.marker([lat, lng]).addTo(map);
+        marker.bindPopup('<b>You clicked at:</b><br>Latitude: ' + lat.toFixed(4) + '<br>Longitude: ' + lng.toFixed(4)).openPopup();
+
+        markers.push(marker);
+        lineCoordinates.push([lat, lng]);
+
+        if (polyline) {
+            map.removeLayer(polyline);
+        }
+
+        if (lineCoordinates.length > 1) {
+            polyline = L.polyline(lineCoordinates, { color: 'blue', weight: 4 }).addTo(map);
+        }
+        updateCoordinatesInput();
+    });
+
+    // Add search control to map
+    L.Control.geocoder({
+        defaultMarkGeocode: false
+    })
+    .on('markgeocode', function(e) {
+        var latlng = e.geocode.center;
+        map.setView(latlng, 15); // Zoom to the searched location
+
+        var marker = L.marker(latlng).addTo(map);
+        marker.bindPopup('<b>Searched Location:</b><br>Latitude: ' + latlng.lat.toFixed(4) + '<br>Longitude: ' + latlng.lng.toFixed(4)).openPopup();
+
+        markers.push(marker);
+        lineCoordinates.push([latlng.lat, latlng.lng]);
+
+        if (polyline) {
+            map.removeLayer(polyline);
+        }
+
+        if (lineCoordinates.length > 1) {
+            polyline = L.polyline(lineCoordinates, { color: 'blue', weight: 4 }).addTo(map);
+        }
+        updateCoordinatesInput();
+    })
+    .addTo(map);
+
+
+
+     // Fix Map Issue When Modal Opens
+     $('#exampleModal').on('shown.bs.modal', function() {
+        setTimeout(function() {
+            map.invalidateSize();
+        }, 300); // Delay to allow modal transition
+    });
+
+
+
+
+    // Remove last marker functionality
+    document.getElementById('removeMarkerBtn').addEventListener('click', function() {
+        if (markers.length > 0) {
+            var lastMarker = markers.pop();
+            map.removeLayer(lastMarker);
+            lineCoordinates.pop();
+
+            if (lineCoordinates.length > 1) {
                 if (polyline) {
                     map.removeLayer(polyline);
                 }
-
-                // If there are at least two markers, draw a polyline
-                if (lineCoordinates.length > 1) {
-                    polyline = L.polyline(lineCoordinates, {
-                        color: 'blue',
-                        weight: 4
-                    }).addTo(map);
-                }
-                updateCoordinatesInput();
-            });
-
-            // Bootstrap modal 'shown' event triggers map resizing
-            $('#exampleModal').on('shown.bs.modal', function() {
-                map.invalidateSize(); // This will force the map to recalculate its size once the modal is fully shown
-            });
-
-            // Add functionality to remove the last marker
-            document.getElementById('removeMarkerBtn').addEventListener('click', function() {
-                // If there are markers, remove the last one
-                if (markers.length > 0) {
-                    var lastMarker = markers.pop(); // Remove the last marker from the array
-                    map.removeLayer(lastMarker); // Remove it from the map
-
-                    lineCoordinates.pop(); // Remove the corresponding coordinate from the polyline
-
-                    // If there are remaining markers, redraw the polyline
-                    if (lineCoordinates.length > 1) {
-                        // Remove old polyline if it exists
-                        if (polyline) {
-                            map.removeLayer(polyline);
-                        }
-
-                        // Redraw polyline with remaining markers
-                        polyline = L.polyline(lineCoordinates, {
-                            color: 'blue',
-                            weight: 4
-                        }).addTo(map);
-                    } else if (polyline) {
-                        // If only one marker remains, remove the polyline
-                        map.removeLayer(polyline);
-                        polyline = null;
-                    }
-                    updateCoordinatesInput();
-                }
-            });
-        </script>
+                polyline = L.polyline(lineCoordinates, { color: 'blue', weight: 4 }).addTo(map);
+            } else if (polyline) {
+                map.removeLayer(polyline);
+                polyline = null;
+            }
+            updateCoordinatesInput();
+        }
+    });
+</script>
 </body>
 
 </html>
