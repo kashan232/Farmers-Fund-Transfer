@@ -278,7 +278,18 @@
 .leaflet-control-geocoder-results li:hover {
     background-color: #f0f0f0 !important;
 }
+/* Force default arrow cursor on map */
+.leaflet-container {
+    cursor: default !important;
+}
 
+/* Force default arrow cursor on markers and interactive elements */
+.leaflet-marker-icon,
+.leaflet-interactive,
+.leaflet-clickable,
+.leaflet-marker-shadow {
+    cursor: default !important;
+}
 
     </style>
 </head>
@@ -969,11 +980,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
                                             </div>
                                             <div class="row mt-3">
-                                                <div class="mb-12 col-md-12">
-                                                    <h6>GPS Cordinates</h6>
-                                                </div>
+                                                {{-- <div class="mb-12 col-md-12">
+
+                                                </div> --}}
 
                                                 <div class="mb-6 col-md-6">
+                                                    <h6>GPS Cordinates <span class="text-danger">*</span></h6>
                                                     <label class="form-label">GPS Coordinates of Agriculture land</label><br>
                                                     <div class="d-flex"  style="justify-content: space-between; ">
 
@@ -983,29 +995,97 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <input type="hidden" name="GpsCordinates" id="GpsCordinates">
                                                 </div>
-                                                <div class="mb-6 col-md-6 mt-3">
-                                                    <!-- Button trigger modal -->
-                                                    <label class="form-label">Geo Fencing <span class="text-danger">*</span></label><br>
+                                                <div class="mb-6 col-md-6">
+                                                    <!-- Button trigger modal --><h6>Geo Fencing <span class="text-danger">*</span></h6>
+                                                    <label class="form-label">Geo Fencing of Agriculture land</label><br>
                                                     <input type="hidden" name="FancingCoordinates" id="FancingCoordinates">
                                                     <button type="button" class="btn btn-primary" id="abc" data-toggle="modal" data-target="#exampleModal">
                                                         Click here
                                                     </button>
                                                 </div>
+                                                <style>
+                                                    #map {
+                                                        height: 500px;
+                                                        width: 100%;
+                                                    }
+                                                    .search-container {
+                                                        position: relative;
+                                                        max-width: 100%;
+                                                        /* margin-bottom: 10px; */
+                                                    }
+                                                    #locationSearch {
+                                                        width: 100%;
+                                                        padding: 8px;
+                                                        border: 1px solid #ccc;
+                                                        border-radius: 4px;
+                                                    }
+                                                    .search-results {
+                                                        position: absolute;
+                                                        width: 94%;
+                                                        background: white;
+                                                        /* border: 1px solid #ddd; */
+                                                        max-height: 200px;
+                                                        overflow-y: auto;
+                                                        z-index: 999999999999;
+                                                    }
+                                                    .search-item {
+                                                        padding: 10px;
+                                                        cursor: pointer;
+                                                        border-bottom: 1px solid #ddd;
+                                                    }
+                                                    .search-item:hover {
+                                                        background: #f1f1f1;
+                                                    }
 
-                                                <div id="exampleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
+
+                                                    /* Loader CSS */
+    .mini-loader {
+        display: none; /* Hidden by default */
+        position: absolute;
+        right: 30px;
+        top: 30%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+                                                </style>
+                                                <div id="exampleModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document" style="        max-width: 600px;">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLiveLabel">Farmers Verification</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <div class="search-container col-12 col-md-12">
+                                                                    <input type="text" id="locationSearch" placeholder="Search location...">
+                                                                    <div id="searchResults" class="search-results"></div>
+                                                                    <div id="mini-loader" class="mini-loader"></div> <!-- Loader -->
+                                                                </div>
+                                                                {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                                                             </div>
                                                             <div class="modal-body">
+
                                                                 <div id="map"></div> <!-- Map container -->
+                                                                <div style="display: flex ;     justify-content: space-between;     font-size: 15px;     margin-top: 2%;     margin-bottom: 0%;">
+                                                                    <p id="sq_meters" style="    margin-bottom: -2%;"></p>
+                                                                    <p id="sq_yards" style="    margin-bottom: -2%;"> </p>
+                                                                    <p id="acres" style="    margin-bottom: -2%;"></p>
+                                                                </div>
                                                             </div>
-                                                            <div class="modal-footer">
+                                                            <div class="modal-footer" style="    justify-content: space-between;">
+                                                                <button type="button"  id="calculateAreaBtn" class="btn btn-info" onclick="calculateArea()">Calculate Area</button>
+
                                                                 <button type="button" class="btn btn-danger" id="removeMarkerBtn">Remove Last Marker</button>
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                                                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Save changes</button>
+                                                                <button type="button" class="btn btn-secondary close-modal" data-bs-dismiss="modal">Close</button>
+
+                                                                <button type="button" class="btn btn-primary save-modal" data-bs-dismiss="modal">Save changes</button>
 
                                                             </div>
                                                         </div>
@@ -1765,7 +1845,9 @@ $('#lined_unlined').change(function() {
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.5.0/turf.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     var map = L.map('map').setView([25.3960, 68.3578], 13); // Hyderabad, Pakistan
@@ -1786,8 +1868,17 @@ $('#lined_unlined').change(function() {
         var lat = e.latlng.lat;
         var lng = e.latlng.lng;
 
-        var marker = L.marker([lat, lng]).addTo(map);
-        marker.bindPopup('<b>You clicked at:</b><br>Latitude: ' + lat.toFixed(4) + '<br>Longitude: ' + lng.toFixed(4)).openPopup();
+        // var marker = L.marker([lat, lng]).addTo(map);
+
+           // Create small circle marker
+    var marker = L.circleMarker([lat, lng], {
+        radius: 5,  // Small circle size
+        color: 'blue',
+        fillColor: 'blue',
+        fillOpacity: 1
+    }).addTo(map);
+
+        // marker.bindPopup('<b>You clicked at:</b><br>Latitude: ' + lat.toFixed(4) + '<br>Longitude: ' + lng.toFixed(4)).openPopup();
 
         markers.push(marker);
         lineCoordinates.push([lat, lng]);
@@ -1802,32 +1893,69 @@ $('#lined_unlined').change(function() {
         updateCoordinatesInput();
     });
 
-    // Add search control to map
-    L.Control.geocoder({
-        defaultMarkGeocode: false
-    })
-    .on('markgeocode', function(e) {
-        var latlng = e.geocode.center;
-        map.setView(latlng, 15); // Zoom to the searched location
+    document.getElementById('locationSearch').addEventListener('input', function () {
+            var query = this.value.trim();
+            if (query.length < 3) return; // Minimum 3 characters to search
 
-        var marker = L.marker(latlng).addTo(map);
-        marker.bindPopup('<b>Searched Location:</b><br>Latitude: ' + latlng.lat.toFixed(4) + '<br>Longitude: ' + latlng.lng.toFixed(4)).openPopup();
-
-        markers.push(marker);
-        lineCoordinates.push([latlng.lat, latlng.lng]);
-
-        if (polyline) {
-            map.removeLayer(polyline);
-        }
-
-        if (lineCoordinates.length > 1) {
-            polyline = L.polyline(lineCoordinates, { color: 'blue', weight: 4 }).addTo(map);
-        }
-        updateCoordinatesInput();
-    })
-    .addTo(map);
+            var bbox = "60.872,23.634,71.180,28.468"; // Sindh's approximate bounding box
 
 
+            var loader = document.getElementById('mini-loader'); // Get loader element
+            loader.style.display = 'inline-block'; // Show loader
+
+
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}&countrycodes=PK&viewbox=${bbox}&bounded=1`)
+                .then(response => response.json())
+                .then(data => {
+                    var resultList = document.getElementById('searchResults');
+                    resultList.innerHTML = ''; // Clear previous results
+
+                    data.forEach(place => {
+                        var listItem = document.createElement('div');
+                        listItem.textContent = place.display_name;
+                        listItem.classList.add('search-item');
+                        listItem.dataset.lat = place.lat;
+                        listItem.dataset.lon = place.lon;
+
+                        listItem.addEventListener('click', function () {
+                            var lat = parseFloat(this.dataset.lat);
+                            var lon = parseFloat(this.dataset.lon);
+
+                            // Move the map to the selected location
+                            map.setView([lat, lon], 20);
+
+                            // Add marker
+                            // var marker = L.marker([lat, lon]).addTo(map);
+                            // marker.bindPopup(`<b>${place.display_name}</b>`).openPopup();
+
+                            // markers.push(marker);
+                            // lineCoordinates.push([lat, lon]);
+
+                            // if (polyline) {
+                            //     map.removeLayer(polyline);
+                            // }
+
+                            // if (lineCoordinates.length > 1) {
+                            //     polyline = L.polyline(lineCoordinates, { color: 'blue', weight: 4 }).addTo(map);
+                            // }
+                            // updateCoordinatesInput();
+
+                            resultList.innerHTML = ''; // Clear search results
+                            document.getElementById('locationSearch').value = ''; // Clear input field
+                        });
+
+                        resultList.appendChild(listItem);
+                    });
+                    setTimeout(() => {
+                        loader.style.display = 'none'; // Hide loader after results are loaded
+                    }, 10000); // 200ms delay before closing
+
+            })
+            .catch(error => {
+                console.error('Error fetching locations:', error);
+                loader.style.display = 'none'; // Hide loader if there's an error
+            });
+        });
 
      // Fix Map Issue When Modal Opens
      $('#exampleModal').on('shown.bs.modal', function() {
@@ -1836,6 +1964,36 @@ $('#lined_unlined').change(function() {
         }, 300); // Delay to allow modal transition
     });
 
+    function calculateArea() {
+    if (lineCoordinates.length < 3) {
+        alert("At least 3 points are required to calculate the area!");
+        return;
+    }
+
+    // Close the shape (first point same as last point)
+    let closedCoordinates = [...lineCoordinates, lineCoordinates[0]];
+
+    // Convert to GeoJSON format
+    let polygon = turf.polygon([closedCoordinates]);
+
+    // Calculate area in square meters
+    let areaSqMeters = turf.area(polygon);
+
+    // Convert area to acres and square yards
+    let areaAcres = areaSqMeters * 0.000247105; // 1 sq meter = 0.000247105 acres
+    let areaSqYards = areaSqMeters * 1.19599; // 1 sq meter = 1.19599 square yards
+
+
+    $('#sq_meters').html('Sq Meters: '+areaSqMeters.toFixed(2));
+    $('#sq_yards').html('Sq Yards: '+areaSqYards.toFixed(2));
+    $('#acres').html('Acres: '+areaAcres.toFixed(4));
+
+    // // Show result
+    // alert(`Calculated Area:
+    //  ${areaSqMeters.toFixed(2)} sq meters
+    //  ${areaAcres.toFixed(4)} acres
+    //  ${areaSqYards.toFixed(2)} square yards`);
+}
 
 
 
@@ -1858,6 +2016,38 @@ $('#lined_unlined').change(function() {
             updateCoordinatesInput();
         }
     });
+
+
+    document.querySelector(".close-modal").addEventListener("click", function() {
+        var modal = document.getElementById('exampleModal');
+
+    // Hide modal
+    var bootstrapModal = bootstrap.Modal.getInstance(modal);
+    if (bootstrapModal) {
+        bootstrapModal.hide();
+    }
+
+    // Remove backdrop manually
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+    document.body.classList.remove('modal-open'); // Remove the body scroll lock
+    });
+
+
+    document.querySelector(".save-modal").addEventListener("click", function() {
+        var modal = document.getElementById('exampleModal');
+
+    // Hide modal
+    var bootstrapModal = bootstrap.Modal.getInstance(modal);
+    if (bootstrapModal) {
+        bootstrapModal.hide();
+    }
+
+    // Remove backdrop manually
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+    document.body.classList.remove('modal-open'); // Remove the body scroll lock
+    });
+
+
 </script>
 </body>
 
