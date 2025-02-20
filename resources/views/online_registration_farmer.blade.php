@@ -628,7 +628,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                                         <input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  >
                                                                     </td>
                                                                     <td>
-                                                                        <input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXXX" maxlength="12">
+                                                                        <input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXXX" >
                                                                     </td>
                                                                     <td>
                                                                         <input type="text" name="title_area[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
