@@ -132,7 +132,7 @@
 
         .button-back-line {
             background-color: green;
-            width: 500px;
+            width: 45%;
             height: 3px;
             position: absolute;
             top: 260px;
@@ -358,12 +358,16 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                             <div class="row mt-2">
                                                 <div class="mb-6 col-md-12">
                                                 <h4 class="card-title">Personal Details</h4></div>
-                                                <div class="mb-6 col-md-6">
+                                                <div class="mb-6 col-md-4">
                                                     <label class="form-label">Q1. Name: <span class="text-danger">*</span></label>
                                                     <input type="text" name="name" class="form-control" value="{{$data->name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
                                                 </div>
-                                                <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Q2. Father/Husband Name: <span class="text-danger">*</span></label>
+                                                <div class="mb-6 col-md-4">
+                                                    <label class="form-label">Q2.(A) Father/Husband Name: <span class="text-danger">*</span></label>
+                                                    <input type="text" name="father_name" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
+                                                </div>
+                                                <div class="mb-6 col-md-4">
+                                                    <label class="form-label">Q2.(B) Surname: <span class="text-danger">*</span></label>
                                                     <input type="text" name="father_name" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
@@ -612,7 +616,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                                     <td><input type="text" name="title_father_name[]"  value="{{json_decode($data->title_father_name)[$index]}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
 
                                                                     <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
-                                                                    <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXX" value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
+                                                                    <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXX" value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
                                                                     <td><input type="text" name="title_area[]" value="{{json_decode($data->title_area)[$index]}}" class="form-control"></td>
                                                                     <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                                 </tr>
@@ -628,7 +632,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                                         <input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  >
                                                                     </td>
                                                                     <td>
-                                                                        <input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXXX" >
+                                                                        <input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX" >
                                                                     </td>
                                                                     <td>
                                                                         <input type="text" name="title_area[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
@@ -921,6 +925,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                             <option value="unlined" @if(isset($data->line_status)) {{ ($data->line_status == 'unlined') ? 'selected':'' }} @endif>Unlined</option>
                                                         </select>
                                                     </div>
+                                                    <div class="mb-3 col-md-2 partially_line_div">
+                                                        <label class="form-label">Partially Line </label>
+                                                        <input type="text" name="partially_line" class="form-control" value="{{ $data->partially_line ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                    </div>
                                                 </div>
                                             </div>
                                             <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(2)">Previous</button>
@@ -977,7 +985,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
                                                 <div class="mb-6 col-md-6 mt-3">
                                                     <!-- Button trigger modal -->
-                                                    <label class="form-label">Geo Fencing (Optional)</label><br>
+                                                    <label class="form-label">Geo Fencing <span class="text-danger">*</span></label><br>
                                                     <input type="hidden" name="FancingCoordinates" id="FancingCoordinates">
                                                     <button type="button" class="btn btn-primary" id="abc" data-toggle="modal" data-target="#exampleModal">
                                                         Click here
@@ -1334,11 +1342,13 @@ $(document).ready(function () {
                             });
                             setTimeout(function () {
                                 window.location.reload(true);
-                            }, 600);
+                            }, 200);
+
                         }
+                        $('#submitbtn').attr('disabled', false);
                     }
                 });
-            $('#submitbtn').attr('disabled', false); // Disable the submit button
+            // Disable the submit button
 
             });
 
@@ -1598,7 +1608,7 @@ if('{{$data->source_of_irrigation}}'.includes('tube well')){
 
 if('{{$data->line_status}}' == 'lined'){
     $('#status_of_water_section').append(`
-    <div class="mb-3 col-md-3" id="lined_section" >
+    <div class="mb-2 col-md-2" id="lined_section" >
         <div class="row">
             <div class="mb-12 col-md-12" >
                 <label class="form-label">Line length in (Meters)</label>
