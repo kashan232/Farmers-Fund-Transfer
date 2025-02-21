@@ -249,9 +249,9 @@ class FieldOfficerPanelController extends Controller
         if ($request->old_upload_farmer_pic != 1){
             $rules['upload_farmer_pic'] = 'required|max:500|file|mimes:jpg,png,jpeg';
         }
-        if ($request->old_upload_land_proof != 1){
-            $rules['upload_land_proof'] = 'required|max:500|file|mimes:jpg,png,jpeg';
-        }
+        // if ($request->old_upload_land_proof != 1){
+        //     $rules['upload_land_proof'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+        // }
 
 
 

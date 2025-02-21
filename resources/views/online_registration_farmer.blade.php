@@ -371,15 +371,15 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <h4 class="card-title">Personal Details</h4></div>
                                                 <div class="mb-6 col-md-4">
                                                     <label class="form-label">Q1. Name: <span class="text-danger">*</span></label>
-                                                    <input type="text" name="name" class="form-control" value="{{$data->name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
+                                                    <input type="text" name="name" id="name" class="form-control" value="{{$data->name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
                                                 </div>
                                                 <div class="mb-6 col-md-4">
                                                     <label class="form-label">Q2.(A) Father/Husband Name: <span class="text-danger">*</span></label>
-                                                    <input type="text" name="father_name" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
+                                                    <input type="text" name="father_name" id="father_name" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
                                                 </div>
                                                 <div class="mb-6 col-md-4">
                                                     <label class="form-label">Q2.(B) Surname: <span class="text-danger">*</span></label>
-                                                    <input type="text" name="father_name" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
+                                                    <input type="text" name="surname" id="surname" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
@@ -1103,7 +1103,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                       <div class="text-center image-upload-card">
                                                           <h6 class="mb-4">CNIC FRONT <span class="text-danger" > *</span></h6>
                                                           @if(isset($data) && $data->front_id_card != null) <input type="hidden"  class="old_image  old_checkfiles old_checkfile_front_id_card" name="old_front_id_card" value="1" > @endif
-                                                          <input type="file"  class="image-input checkfiles checkfile_front_id_card" name="front_id_card" accept="image/*" hidden>
+                                                          <input type="file"  class="image-input checkfiles checkfile_front_id_card" name="front_id_card" id="front_id_card"  accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->front_id_card != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
                                                               <p>Image size must be <span>500KB</span></p>
@@ -1120,7 +1120,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                       <div class="text-center image-upload-card">
                                                           <h6 class="mb-4">CNIC BACK <span class="text-danger" > *</span></h6>
                                                           @if(isset($data) && $data->back_id_card != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_back_id_card" name="old_back_id_card" value="1" > @endif
-                                                          <input type="file"  class="image-input checkfiles checkfile_back_id_card" name="back_id_card" accept="image/*" hidden>
+                                                          <input type="file"  class="image-input checkfiles checkfile_back_id_card" name="back_id_card" id="back_id_card" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->back_id_card != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
                                                               <p>Image size must be <span>500KB</span></p>
@@ -1137,7 +1137,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                       <div class="text-center image-upload-card">
                                                           <h6 class="mb-4">Form VII / Registry from Micro (Mandatory) <span class="text-danger" > *</span></h6>
                                                           @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
-                                                          <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" accept="image/*" hidden>
+                                                          <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
                                                               <p>Image size must be <span>500KB</span></p>
@@ -1154,7 +1154,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                       <div class="text-center image-upload-card">
                                                           <h6 class="mb-4">Forms VIII A/ Affidavit/ Heirship (Land Documents) <span class="text-danger" > </span></h6>
                                                           @if(isset($data) && $data->upload_land_proof != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_land_proof" name="old_upload_land_proof" value="1" > @endif
-                                                          <input type="file"  class="image-input checkfiles checkfile_upload_land_proof" name="upload_land_proof" accept="image/*" hidden>
+                                                          <input type="file"  class="image-input  checkfile_upload_land_proof" name="upload_land_proof" id="upload_land_proof" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
                                                               <p>Image size must be <span>500KB</span></p>
@@ -1171,7 +1171,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                       <div class="text-center image-upload-card">
                                                           <h6 class="mb-4">Photo <span class="text-danger" > *</span></h6>
                                                           @if(isset($data) && $data->upload_farmer_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_farmer_pic" name="old_upload_farmer_pic" value="1" > @endif
-                                                          <input type="file"  class="image-input checkfiles checkfile_upload_farmer_pic" name="upload_farmer_pic" accept="image/*" hidden>
+                                                          <input type="file"  class="image-input checkfiles checkfile_upload_farmer_pic" name="upload_farmer_pic" id="upload_farmer_pic" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_farmer_pic != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
                                                               <p>Image size must be <span>500KB</span></p>
@@ -1723,13 +1723,127 @@ $('#lined_unlined').change(function() {
 
 
             function nextStep(step) {
-                // Hide all steps
+
+                formstep = step - 1;
+                errors = '';
+
+                let step1_formdata = {
+                    name: $('#name').val(),
+                    father_name: $('#father_name').val(),
+                    surname: $('#surname').val(),
+                    cnic: $('#cnic').val(),
+                    cnic_issue_date: $('#cnic_issue_date').val(),
+                    cnic_expiry_date: $('#cnic_expiry_date').val(),
+                    mobile: $('#mobile').val(),
+                };
+
+                if (formstep == 1) {
+
+
+                    // Check if any field is empty
+                    for (const key in step1_formdata) {
+                        if (step1_formdata[key] === "" || step1_formdata[key] === null) {
+                            let formattedKey = key.replace(/_/g, " ");
+                            errors += `<b><span class="text-danger" > ${formattedKey} field is required. </span> </b> <br>`;
+
+                        }
+                    }
+                    if(errors != '')
+                    {
+                        Swal.fire({
+                            title: "Errors!",
+                            // text: "You clicked the button!",
+                            icon: "error",
+                            html: errors
+                        });
+                    }
+
+
+                }
+
+                let step4_formdata = {
+                    FancingCoordinates: $('#FancingCoordinates').val(),
+                    GpsCordinates: $('#GpsCordinates').val(),
+                };
+
+                if (formstep == 4) {
+
+
+                    // Check if any field is empty
+                    for (const key in step4_formdata) {
+                        if (step4_formdata[key] === "" || step1_formdata[key] === null) {
+                            let formattedKey = key.replace(/_/g, " ");
+                            errors += `<b><span class="text-danger" > ${formattedKey} field is required. </span> </b> <br>`;
+
+                        }
+                    }
+                    if(errors != '')
+                    {
+                        Swal.fire({
+                            title: "Errors!",
+                            // text: "You clicked the button!",
+                            icon: "error",
+                            html: errors
+                        });
+                    }
+
+
+                }
+
+
+
+
+                let step5_formdata = {
+                    front_id_card: $('#front_id_card').val(),
+                    back_id_card: $('#back_id_card').val(),
+                    upload_farmer_pic: $('#upload_farmer_pic').val(),
+                    form_seven_pic: $('#form_seven_pic').val(),
+                };
+
+                if (formstep == 5) {
+
+
+                    // Check if any field is empty
+                    for (const key in step5_formdata) {
+                        if (step5_formdata[key] === "" || step1_formdata[key] === null) {
+                            let formattedKey = key.replace(/_/g, " ");
+                            errors += `<b><span class="text-danger" > ${formattedKey} field is required. </span> </b> <br>`;
+
+                        }
+                    }
+                    if(errors != '')
+                    {
+                        Swal.fire({
+                            title: "Errors!",
+                            // text: "You clicked the button!",
+                            icon: "error",
+                            html: errors
+                        });
+                    }
+
+
+                }
+
+
+
+
+
+
+
+
+                if(errors == ''){
+
+                     // Hide all steps
                 document.querySelectorAll('.step').forEach(function(stepElement) {
                     stepElement.style.display = 'none';
                 });
                 // Show the current step
                 document.querySelector('.step-' + step).style.display = 'block';
                 updateProgressIndicator(step);
+
+                }
+
+
             }
 
             function showStep(step) {
@@ -1767,6 +1881,7 @@ $('#lined_unlined').change(function() {
                             },
                             success: function(data) {
                                 $('#tehsils').empty();
+                                $('#tehsils').append('<option value="">Please Select Taluka</option>');
                                 $.each(data, function(key, value) {
                                     $('#tehsils').append('<option value="' +
                                         value + '">' + value + '</option>');
@@ -1794,6 +1909,7 @@ $('#lined_unlined').change(function() {
                                 // Populate UC dropdown
                                 var ucSelect = $('#ucs');
                                 ucSelect.empty();
+                                ucSelect.append('<option value="">Please Select Union Council</option>');
                                 $.each(response.ucs, function(index, value) {
                                     ucSelect.append('<option value="' + value + '">' + value + '</option>');
                                 });
@@ -1801,6 +1917,7 @@ $('#lined_unlined').change(function() {
                                 // Populate Tappa dropdown
                                 var tappaSelect = $('#tappas');
                                 tappaSelect.empty();
+                                tappaSelect.append('<option value="">Please Select Tappa</option>');
                                 $.each(response.Tappas, function(index, value) {
                                     tappaSelect.append('<option value="' + value + '">' + value + '</option>');
                                 });
