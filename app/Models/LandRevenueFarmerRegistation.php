@@ -83,7 +83,13 @@ class LandRevenueFarmerRegistation extends Model
         'declined_reason',
         'verification_by',
         'GpsCordinates',
-        'FancingCoordinates'
+        'FancingCoordinates',
+        'sq_meters',
+        'sq_yards',
+        'acres',
+        'partially_line',
+        'surname'
+
     ];
 
 

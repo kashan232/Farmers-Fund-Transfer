@@ -327,6 +327,20 @@ class FieldOfficerPanelController extends Controller
 
 
 
+
+            $data['acres'] = $request->acres_hidden;
+            $data['sq_yards'] = $request->sq_yards_hidden;
+            $data['sq_meters'] = $request->sq_meters_hidden;
+
+
+
+
+
+
+
+
+
+
              // Handle front ID card image
             if ($request->hasFile('front_id_card')) {
                 $front_id_cardimage = $request->file('front_id_card');

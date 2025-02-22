@@ -542,7 +542,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <div class="mb-4 col-md-4 ">
                                                         <label class="form-label">CNIC NO: <span class="text-danger">*</span></label>
-                                                        <input type="text" name="cnic_of_next_kin" class="form-control" value="{{$data->cnic_of_next_kin ?? ''}}" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X" >
+                                                        <input type="text" name="cnic_of_next_kin" id="cnic_of_next_kin" class="form-control" value="{{$data->cnic_of_next_kin ?? ''}}" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X" >
                                                     </div>
                                                     <div class="mb-4 col-md-4 ">
                                                         <label class="form-label">Mobile No:</label>
@@ -998,10 +998,22 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="mb-6 col-md-6">
                                                     <!-- Button trigger modal --><h6>Geo Fencing <span class="text-danger">*</span></h6>
                                                     <label class="form-label">Geo Fencing of Agriculture land</label><br>
-                                                    <input type="hidden" name="FancingCoordinates" id="FancingCoordinates">
-                                                    <button type="button" class="btn btn-primary" id="abc" data-toggle="modal" data-target="#exampleModal">
-                                                        Click here
-                                                    </button>
+
+                                                    <div class="d-flex"  style="justify-content: space-between; ">
+                                                        <input type="hidden" name="FancingCoordinates" id="FancingCoordinates">
+                                                        <button type="button" class="btn btn-primary mr-2" id="abc" data-toggle="modal" data-target="#exampleModal">
+                                                            Click
+                                                        </button>
+
+                                                        <input type="hidden" name="sq_meters_hidden" id="sq_meters_hidden">
+                                                        <input type="hidden" name="sq_yards_hidden" id="sq_yards_hidden">
+                                                        <input type="hidden" name="acres_hidden" id="acres_hidden">
+
+
+                                                        <input type="readonly" id="FancingCoordinatesLocationInput"  class="form-control">
+                                                    </div>
+
+
                                                 </div>
                                                 <style>
                                                     #map {
@@ -1039,24 +1051,24 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 
                                                     /* Loader CSS */
-    .mini-loader {
-        display: none; /* Hidden by default */
-        position: absolute;
-        right: 30px;
-        top: 30%;
-        transform: translateY(-50%);
-        width: 18px;
-        height: 18px;
-        border: 3px solid #f3f3f3;
-        border-top: 3px solid #3498db;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-    }
+                                                        .mini-loader {
+                                                            display: none; /* Hidden by default */
+                                                            position: absolute;
+                                                            right: 30px;
+                                                            top: 30%;
+                                                            transform: translateY(-50%);
+                                                            width: 18px;
+                                                            height: 18px;
+                                                            border: 3px solid #f3f3f3;
+                                                            border-top: 3px solid #3498db;
+                                                            border-radius: 50%;
+                                                            animation: spin 1s linear infinite;
+                                                        }
 
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
+                                                        @keyframes spin {
+                                                            0% { transform: rotate(0deg); }
+                                                            100% { transform: rotate(360deg); }
+                                                        }
 
                                                 </style>
                                                 <div id="exampleModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1085,7 +1097,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                                 <button type="button" class="btn btn-danger" id="removeMarkerBtn">Remove Last Marker</button>
                                                                 <button type="button" class="btn btn-secondary close-modal" data-bs-dismiss="modal">Close</button>
 
-                                                                <button type="button" class="btn btn-primary save-modal" data-bs-dismiss="modal">Save changes</button>
+                                                                <button type="button" class="btn btn-primary save-modal" id="geoFancingModalSaveBtn" data-bs-dismiss="modal">Save changes</button>
 
                                                             </div>
                                                         </div>
@@ -1735,10 +1747,11 @@ $('#lined_unlined').change(function() {
                     cnic_issue_date: $('#cnic_issue_date').val(),
                     cnic_expiry_date: $('#cnic_expiry_date').val(),
                     mobile: $('#mobile').val(),
+                    cnic_of_next_kin: $('#cnic_of_next_kin').val(),
                 };
 
-                if (formstep == 1) {
 
+                if (formstep == 1) {
 
                     // Check if any field is empty
                     for (const key in step1_formdata) {
@@ -1748,6 +1761,34 @@ $('#lined_unlined').change(function() {
 
                         }
                     }
+
+                    if (step1_formdata.cnic.includes('_')) {
+                        errors += `<b><span class="text-danger">CNIC NUMBER IS INVALID.</span></b><br>`;
+                    }
+
+                    if (step1_formdata.mobile.includes('_')) {
+                        errors += `<b><span class="text-danger">MOBILE NUMBER IS INVALID</span></b><br>`;
+                    }
+
+                    if (step1_formdata.cnic_of_next_kin.includes('_')) {
+                        errors += `<b><span class="text-danger">CNIC OF NEXT KIN IS INVALID</span></b><br>`;
+                    }
+
+
+                       // Validate mobile number (should not have more than one '-')
+                        // let mobileHyphenCount = (step1_formdata.mobile.match(/-/g) || []).length;
+                        // if (mobileHyphenCount > 1) {
+                        //     errors += `<b><span class="text-danger">Mobile number should not contain more than one '-' symbol.</span></b><br>`;
+                        // }
+
+                        // // Validate CNIC format (should have exactly two '-')
+                        // let cnicHyphenCount = (step1_formdata.cnic.match(/-/g) || []).length;
+                        // if (cnicHyphenCount !== 2) {
+                        //     errors += `<b><span class="text-danger">CNIC should contain exactly two '-' symbols.</span></b><br>`;
+                        // }
+
+                         // Ensure CNIC does not contain '_'
+
                     if(errors != '')
                     {
                         Swal.fire({
@@ -1967,7 +2008,7 @@ $('#lined_unlined').change(function() {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    var map = L.map('map').setView([25.3960, 68.3578], 13); // Hyderabad, Pakistan
+    var map = L.map('map').setView([25.3960, 68.3578], 20); // Hyderabad, Pakistan
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -2105,6 +2146,11 @@ $('#lined_unlined').change(function() {
     $('#sq_yards').html('Sq Yards: '+areaSqYards.toFixed(2));
     $('#acres').html('Acres: '+areaAcres.toFixed(4));
 
+
+    $('#sq_meters_hidden').val(areaSqMeters.toFixed(2));
+    $('#sq_yards_hidden').val(areaSqYards.toFixed(2));
+    $('#acres_hidden').val(areaAcres.toFixed(4));
+
     // // Show result
     // alert(`Calculated Area:
     //  ${areaSqMeters.toFixed(2)} sq meters
@@ -2112,6 +2158,10 @@ $('#lined_unlined').change(function() {
     //  ${areaSqYards.toFixed(2)} square yards`);
 }
 
+
+$('#geoFancingModalSaveBtn').on('click', function(){
+    $('#FancingCoordinatesLocationInput').val($('#sq_meters').html()+' , '+$('#sq_yards').html()+' , '+$('#acres').html());
+})
 
 
     // Remove last marker functionality
