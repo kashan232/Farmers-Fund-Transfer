@@ -140,11 +140,15 @@ table{
                             </tr>
                             <tr>
                                 <th class="question"> Q1.</th>
-                                <td colspan="4">
+                                <td colspan="3">
                                     <span> <b>Name : </b></span> <span style="border-bottom: 1px solid black;">{{ $data->name ?? '' }}</span>
                                 </td>
-                                <td colspan="4">
-                                    <span> <b> Q2.&nbsp;&nbsp; Father/Husband Name : </b> </span> <span
+                                <td colspan="3">
+                                    <span> <b> Q2(A).&nbsp;&nbsp; Father/Husband Name : </b> </span> <span
+                                        style="border-bottom: 1px solid black;">{{ $data->father_name ?? '' }}</span>
+                                </td>
+                                <td colspan="2">
+                                    <span> <b> Q2(B). &nbsp;&nbsp; Surname : </b> </span> <span
                                         style="border-bottom: 1px solid black;">{{ $data->father_name ?? '' }}</span>
                                 </td>
 
@@ -153,8 +157,8 @@ table{
                                 <th class="question"> Q3.</th>
                                 <td colspan="4">
                                     <span> <b> CNIC No:</b></span> <span
-                                        style="border-bottom: 1px solid black; padding-right:3%">{{ $data->cnic ?? '' }}</span>
-                                    <b>Issue Date:</b> <u>{{ $data->cnic_issue_date ?? '' }}</u> &nbsp; &nbsp; <b>EXP Date:</b> <u>{{ $data->cnic_expiry_date ?? '' }}</u>
+                                        style="border-bottom: 1px solid black; padding-right:3%;padding-left:3%">{{ $data->cnic ?? '' }}</span>
+                                    <b>Issue Date:</b> <u style=" padding-right:3%;padding-left:3%">{{ $data->cnic_issue_date ?? '' }}</u> &nbsp; &nbsp; <b>EXP Date:</b> <u style=" padding-right:3%;padding-left:3%">{{ $data->cnic_expiry_date ?? '' }}</u>
                                 </td>
                                 <td colspan="4">
                                     <span> <b>Q4.&nbsp;&nbsp; Mobile No : </b> </span> <span
@@ -806,6 +810,24 @@ table{
                                         style="border-bottom: 1px solid black;">{{ $data->branch_code }}</span>
                                 </td>
                             </tr>
+
+
+                            <tr>
+                                <th colspan="9 " class="p-3" style="text-align:left ">Coordinates: </th>
+                            </tr>
+                            <tr>
+                                <th class="question" > Q23.</th>
+                                <td colspan="4" style="border: none !important">
+                                    <span> <b>GPS Coordinates : </b></span> <span
+                                        style="border-bottom: 1px solid black;">{{ $data->GpsCordinates }}</span>
+                                </td>
+                                <td colspan="4" style="border: none !important">
+                                    <span> <b>Q24. &nbsp;&nbsp; GEO Fancing : </b> </span> <span
+                                        >{{ 'Sq Yards: '. $data->sq_yards .' ,  Sq Meters: '.$data->sq_meters.' , Acres: '.$data->acres}}</span>
+                                </td>
+
+                            </tr>
+
 
                                <div class="page-break"></div>
                             <tr>

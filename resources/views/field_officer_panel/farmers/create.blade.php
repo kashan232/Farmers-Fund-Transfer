@@ -287,13 +287,17 @@
                                 <div class="step step-1">
                                     <div class="row mt-2">
                                         <h4 class="card-title">Personal Details</h4>
-                                        <div class="mb-6 col-md-6">
+                                        <div class="mb-6 col-md-4">
                                             <label class="form-label">Q1. Name: <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" class="form-control" value="{{$data->name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
+                                            <input type="text" name="name" id="name" class="form-control" value="{{$data->name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
                                         </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Q2. Father/Husband Name: <span class="text-danger">*</span></label>
-                                            <input type="text" name="father_name" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
+                                        <div class="mb-6 col-md-4">
+                                            <label class="form-label">Q2.(A) Father/Husband Name: <span class="text-danger">*</span></label>
+                                            <input type="text" name="father_name" id="father_name" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
+                                        </div>
+                                        <div class="mb-6 col-md-4">
+                                            <label class="form-label">Q2.(B) Surname: <span class="text-danger">*</span></label>
+                                            <input type="text" name="surname" id="surname" class="form-control">
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
@@ -447,7 +451,7 @@
                                             </div>
                                             <div class="mb-4 col-md-4 ">
                                                 <label class="form-label">CNIC NO:<span class="text-danger">*</span></label>
-                                                <input type="text" name="cnic_of_next_kin" class="form-control" value="{{$data->cnic_of_next_kin ?? ''}}" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X" >
+                                                <input type="text" name="cnic_of_next_kin" id="cnic_of_next_kin" class="form-control" value="{{$data->cnic_of_next_kin ?? ''}}" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X" >
                                             </div>
                                             <div class="mb-4 col-md-4 ">
                                                 <label class="form-label">Mobile No:</label>
@@ -532,7 +536,7 @@
                                                             <td><input type="text" name="title_father_name[]"  value="{{json_decode($data->title_father_name)[$index]}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"> </td>
 
                                                             <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
-                                                            <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXX"   value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
+                                                            <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"   value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
                                                             <td><input type="text" name="title_area[]" value="{{json_decode($data->title_area)[$index]}}" class="form-control"></td>
                                                             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                         </tr>
@@ -549,7 +553,7 @@
                                                                 <input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  >
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-99999999'" placeholder="XXXX-XXXXXX" >
+                                                                <input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"  >
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="title_area[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
@@ -842,6 +846,10 @@
                                                     <option value="unlined" @if(isset($data->line_status)) {{ ($data->line_status == 'unlined') ? 'selected':'' }} @endif>Unlined</option>
                                                 </select>
                                             </div>
+                                            <div class="mb-3 col-md-3 partially_line_div">
+                                                <label class="form-label">Partially Line </label>
+                                                <input type="text" name="partially_line" class="form-control" value="{{ $data->partially_line ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                            </div>
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(2)">Previous</button>
@@ -882,41 +890,120 @@
                                         </div>
                                     </div>
                                     <div class="row mt-3">
-                                        <div class="mb-12 col-md-12">
-                                            <h6>GPS Cordinates <span class="text-danger">*</span></h6>
-                                        </div>
-
                                         <div class="mb-6 col-md-6">
-                                            <label class="form-label">GPS Coordinates</label><br>
+                                            <h6>GPS Cordinates <span class="text-danger">*</span></h6>
+                                            <label class="form-label">GPS Coordinates of Agriculture land</label><br>
                                             <div class="d-flex"  style="justify-content: space-between; ">
-                                                <a href="javascript::void()" id="gpsButton" class="btn btn-primary" style="    display: flex; align-items: center;">GPS</a> &nbsp;
+
+                                                 <a href="javascript:void(0)" id="gpsButton" class="btn btn-primary" style="    display: flex; align-items: center;">GPS</a> &nbsp;
+
                                                 <input type="text" id="locationInput" class="form-control">
                                             </div>
                                             <input type="hidden" name="GpsCordinates" id="GpsCordinates">
                                         </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <!-- Button trigger modal -->
-                                            <label class="form-label">Geo Fencing (Optional)</label><br>
-                                            <input type="hidden" name="FancingCoordinates" id="FancingCoordinates">
-                                            <button type="button" class="btn btn-primary" id="abc" data-toggle="modal" data-target="#exampleModal">
-                                                Click here
-                                            </button>
-                                        </div>
+                                        <div class="mb-6 col-md-6">
+                                            <!-- Button trigger modal --><h6>Geo Fencing <span class="text-danger">*</span></h6>
+                                            <label class="form-label">Geo Fencing of Agriculture land</label><br>
 
-                                        <div id="exampleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
+                                            <div class="d-flex"  style="justify-content: space-between; ">
+                                                <input type="hidden" name="FancingCoordinates" id="FancingCoordinates">
+                                                <button type="button" class="btn btn-primary " style="    margin-right: 1%;" id="abc" data-toggle="modal" data-target="#exampleModal">
+                                                    Click
+                                                </button>
+
+                                                <input type="hidden" name="sq_meters_hidden" id="sq_meters_hidden">
+                                                <input type="hidden" name="sq_yards_hidden" id="sq_yards_hidden">
+                                                <input type="hidden" name="acres_hidden" id="acres_hidden">
+
+
+                                                <input type="readonly" id="FancingCoordinatesLocationInput"  class="form-control ">
+                                            </div>
+
+
+                                        </div>
+                                        <style>
+                                            #map {
+                                                height: 500px;
+                                                width: 100%;
+                                            }
+                                            .search-container {
+                                                position: relative;
+                                                max-width: 100%;
+                                                /* margin-bottom: 10px; */
+                                            }
+                                            #locationSearch {
+                                                width: 100%;
+                                                padding: 8px;
+                                                border: 1px solid #ccc;
+                                                border-radius: 4px;
+                                            }
+                                            .search-results {
+                                                position: absolute;
+                                                width: 94%;
+                                                background: white;
+                                                /* border: 1px solid #ddd; */
+                                                max-height: 200px;
+                                                overflow-y: auto;
+                                                z-index: 999999999999;
+                                            }
+                                            .search-item {
+                                                padding: 10px;
+                                                cursor: pointer;
+                                                border-bottom: 1px solid #ddd;
+                                            }
+                                            .search-item:hover {
+                                                background: #f1f1f1;
+                                            }
+
+
+                                            /* Loader CSS */
+                                                .mini-loader {
+                                                    display: none; /* Hidden by default */
+                                                    position: absolute;
+                                                    right: 30px;
+                                                    top: 30%;
+                                                    transform: translateY(-50%);
+                                                    width: 18px;
+                                                    height: 18px;
+                                                    border: 3px solid #f3f3f3;
+                                                    border-top: 3px solid #3498db;
+                                                    border-radius: 50%;
+                                                    animation: spin 1s linear infinite;
+                                                }
+
+                                                @keyframes spin {
+                                                    0% { transform: rotate(0deg); }
+                                                    100% { transform: rotate(360deg); }
+                                                }
+
+                                        </style>
+                                        <div id="exampleModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog" role="document" style="        max-width: 600px;">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLiveLabel">Farmers Verification</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <div class="search-container col-12 col-md-12">
+                                                            <input type="text" id="locationSearch" placeholder="Search location...">
+                                                            <div id="searchResults" class="search-results"></div>
+                                                            <div id="mini-loader" class="mini-loader"></div> <!-- Loader -->
+                                                        </div>
+                                                        {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                                                     </div>
                                                     <div class="modal-body">
+
                                                         <div id="map"></div> <!-- Map container -->
+                                                        <div style="display: flex ;     justify-content: space-between;     font-size: 15px;     margin-top: 2%;     margin-bottom: 0%;">
+                                                            <p id="sq_meters" style="    margin-bottom: -2%;"></p>
+                                                            <p id="sq_yards" style="    margin-bottom: -2%;"> </p>
+                                                            <p id="acres" style="    margin-bottom: -2%;"></p>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-footer">
+                                                    <div class="modal-footer" style="    justify-content: space-between;">
+                                                        <button type="button"  id="calculateAreaBtn" class="btn btn-info" onclick="calculateArea()">Calculate Area</button>
+
                                                         <button type="button" class="btn btn-danger" id="removeMarkerBtn">Remove Last Marker</button>
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Save changes</button>
+                                                        <button type="button" class="btn btn-secondary close-modal" data-bs-dismiss="modal">Close</button>
+
+                                                        <button type="button" class="btn btn-primary save-modal" id="geoFancingModalSaveBtn" data-bs-dismiss="modal">Save changes</button>
 
                                                     </div>
                                                 </div>
@@ -1211,82 +1298,82 @@ $(document).ready(function () {
 
             });
 
-            // Initialize map to Hyderabad, Pakistan with zoom level 13
-            var map = L.map('map').setView([25.3960, 68.3578], 13); // Coordinates for Hyderabad, Pakistan
+            // // Initialize map to Hyderabad, Pakistan with zoom level 13
+            // var map = L.map('map').setView([25.3960, 68.3578], 13); // Coordinates for Hyderabad, Pakistan
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+            // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            // }).addTo(map);
 
-            var markers = [];
-            var lineCoordinates = [];
-            var polyline;
+            // var markers = [];
+            // var lineCoordinates = [];
+            // var polyline;
 
-            // Function to update hidden input field with coordinates
-            function updateCoordinatesInput() {
-                document.getElementById('FancingCoordinates').value = JSON.stringify(lineCoordinates);
-            }
+            // // Function to update hidden input field with coordinates
+            // function updateCoordinatesInput() {
+            //     document.getElementById('FancingCoordinates').value = JSON.stringify(lineCoordinates);
+            // }
 
-            map.on('click', function(e) {
-                var lat = e.latlng.lat;
-                var lng = e.latlng.lng;
+            // map.on('click', function(e) {
+            //     var lat = e.latlng.lat;
+            //     var lng = e.latlng.lng;
 
-                var marker = L.marker([lat, lng]).addTo(map);
-                marker.bindPopup('<b>You clicked at:</b><br>Latitude: ' + lat.toFixed(4) + '<br>Longitude: ' + lng.toFixed(4)).openPopup();
+            //     var marker = L.marker([lat, lng]).addTo(map);
+            //     marker.bindPopup('<b>You clicked at:</b><br>Latitude: ' + lat.toFixed(4) + '<br>Longitude: ' + lng.toFixed(4)).openPopup();
 
-                markers.push(marker);
-                lineCoordinates.push([lat, lng]);
+            //     markers.push(marker);
+            //     lineCoordinates.push([lat, lng]);
 
-                // If a polyline exists, remove it
-                if (polyline) {
-                    map.removeLayer(polyline);
-                }
+            //     // If a polyline exists, remove it
+            //     if (polyline) {
+            //         map.removeLayer(polyline);
+            //     }
 
-                // If there are at least two markers, draw a polyline
-                if (lineCoordinates.length > 1) {
-                    polyline = L.polyline(lineCoordinates, {
-                        color: 'blue',
-                        weight: 4
-                    }).addTo(map);
-                }
-                updateCoordinatesInput();
-            });
+            //     // If there are at least two markers, draw a polyline
+            //     if (lineCoordinates.length > 1) {
+            //         polyline = L.polyline(lineCoordinates, {
+            //             color: 'blue',
+            //             weight: 4
+            //         }).addTo(map);
+            //     }
+            //     updateCoordinatesInput();
+            // });
 
-            // Bootstrap modal 'shown' event triggers map resizing
-            $('#exampleModal').on('shown.bs.modal', function() {
+            // // Bootstrap modal 'shown' event triggers map resizing
+            // $('#exampleModal').on('shown.bs.modal', function() {
 
-                map.invalidateSize(); // This will force the map to recalculate its size once the modal is fully shown
-            });
+            //     map.invalidateSize(); // This will force the map to recalculate its size once the modal is fully shown
+            // });
 
-            // Add functionality to remove the last marker
-            document.getElementById('removeMarkerBtn').addEventListener('click', function() {
-                // If there are markers, remove the last one
-                if (markers.length > 0) {
-                    var lastMarker = markers.pop(); // Remove the last marker from the array
-                    map.removeLayer(lastMarker); // Remove it from the map
+            // // Add functionality to remove the last marker
+            // document.getElementById('removeMarkerBtn').addEventListener('click', function() {
+            //     // If there are markers, remove the last one
+            //     if (markers.length > 0) {
+            //         var lastMarker = markers.pop(); // Remove the last marker from the array
+            //         map.removeLayer(lastMarker); // Remove it from the map
 
-                    lineCoordinates.pop(); // Remove the corresponding coordinate from the polyline
+            //         lineCoordinates.pop(); // Remove the corresponding coordinate from the polyline
 
-                    // If there are remaining markers, redraw the polyline
-                    if (lineCoordinates.length > 1) {
-                        // Remove old polyline if it exists
-                        if (polyline) {
-                            map.removeLayer(polyline);
-                        }
+            //         // If there are remaining markers, redraw the polyline
+            //         if (lineCoordinates.length > 1) {
+            //             // Remove old polyline if it exists
+            //             if (polyline) {
+            //                 map.removeLayer(polyline);
+            //             }
 
-                        // Redraw polyline with remaining markers
-                        polyline = L.polyline(lineCoordinates, {
-                            color: 'blue',
-                            weight: 4
-                        }).addTo(map);
-                    } else if (polyline) {
-                        // If only one marker remains, remove the polyline
-                        map.removeLayer(polyline);
-                        polyline = null;
-                    }
-                    updateCoordinatesInput();
-                }
-            });
+            //             // Redraw polyline with remaining markers
+            //             polyline = L.polyline(lineCoordinates, {
+            //                 color: 'blue',
+            //                 weight: 4
+            //             }).addTo(map);
+            //         } else if (polyline) {
+            //             // If only one marker remains, remove the polyline
+            //             map.removeLayer(polyline);
+            //             polyline = null;
+            //         }
+            //         updateCoordinatesInput();
+            //     }
+            // });
         </script>
 
 <script>
@@ -1680,18 +1767,156 @@ $('select[name="tehsil"]').on('change', function() {
 
         function nextStep(step) {
 
+formstep = step - 1;
+errors = '';
+
+let step1_formdata = {
+    name: $('#name').val(),
+    father_name: $('#father_name').val(),
+    surname: $('#surname').val(),
+    cnic: $('#cnic').val(),
+    cnic_issue_date: $('#cnic_issue_date').val(),
+    cnic_expiry_date: $('#cnic_expiry_date').val(),
+    mobile: $('#mobile').val(),
+    cnic_of_next_kin: $('#cnic_of_next_kin').val(),
+};
 
 
-// Hide all steps
+if (formstep == 1) {
+
+    // Check if any field is empty
+    for (const key in step1_formdata) {
+        if (step1_formdata[key] === "" || step1_formdata[key] === null) {
+            let formattedKey = key.replace(/_/g, " ");
+            errors += `<b><span class="text-danger" > ${formattedKey} field is required. </span> </b> <br>`;
+
+        }
+    }
+
+    if (step1_formdata.cnic.includes('_')) {
+        errors += `<b><span class="text-danger">CNIC NUMBER IS INVALID.</span></b><br>`;
+    }
+
+    if (step1_formdata.mobile.includes('_')) {
+        errors += `<b><span class="text-danger">MOBILE NUMBER IS INVALID</span></b><br>`;
+    }
+
+    if (step1_formdata.cnic_of_next_kin.includes('_')) {
+        errors += `<b><span class="text-danger">CNIC OF NEXT KIN IS INVALID</span></b><br>`;
+    }
+
+
+       // Validate mobile number (should not have more than one '-')
+        // let mobileHyphenCount = (step1_formdata.mobile.match(/-/g) || []).length;
+        // if (mobileHyphenCount > 1) {
+        //     errors += `<b><span class="text-danger">Mobile number should not contain more than one '-' symbol.</span></b><br>`;
+        // }
+
+        // // Validate CNIC format (should have exactly two '-')
+        // let cnicHyphenCount = (step1_formdata.cnic.match(/-/g) || []).length;
+        // if (cnicHyphenCount !== 2) {
+        //     errors += `<b><span class="text-danger">CNIC should contain exactly two '-' symbols.</span></b><br>`;
+        // }
+
+         // Ensure CNIC does not contain '_'
+
+    if(errors != '')
+    {
+        Swal.fire({
+            title: "Errors!",
+            // text: "You clicked the button!",
+            icon: "error",
+            html: errors
+        });
+    }
+
+
+}
+
+let step4_formdata = {
+    FancingCoordinates: $('#FancingCoordinates').val(),
+    GpsCordinates: $('#GpsCordinates').val(),
+};
+
+if (formstep == 4) {
+
+
+    // Check if any field is empty
+    for (const key in step4_formdata) {
+        if (step4_formdata[key] === "" || step1_formdata[key] === null) {
+            let formattedKey = key.replace(/_/g, " ");
+            errors += `<b><span class="text-danger" > ${formattedKey} field is required. </span> </b> <br>`;
+
+        }
+    }
+    if(errors != '')
+    {
+        Swal.fire({
+            title: "Errors!",
+            // text: "You clicked the button!",
+            icon: "error",
+            html: errors
+        });
+    }
+
+
+}
+
+
+
+
+let step5_formdata = {
+    front_id_card: $('#front_id_card').val(),
+    back_id_card: $('#back_id_card').val(),
+    upload_farmer_pic: $('#upload_farmer_pic').val(),
+    form_seven_pic: $('#form_seven_pic').val(),
+};
+
+if (formstep == 5) {
+
+
+    // Check if any field is empty
+    for (const key in step5_formdata) {
+        if (step5_formdata[key] === "" || step1_formdata[key] === null) {
+            let formattedKey = key.replace(/_/g, " ");
+            errors += `<b><span class="text-danger" > ${formattedKey} field is required. </span> </b> <br>`;
+
+        }
+    }
+    if(errors != '')
+    {
+        Swal.fire({
+            title: "Errors!",
+            // text: "You clicked the button!",
+            icon: "error",
+            html: errors
+        });
+    }
+
+
+}
+
+
+
+
+
+
+
+
+if(errors == ''){
+
+     // Hide all steps
 document.querySelectorAll('.step').forEach(function(stepElement) {
-stepElement.style.display = 'none';
+    stepElement.style.display = 'none';
 });
 // Show the current step
 document.querySelector('.step-' + step).style.display = 'block';
 updateProgressIndicator(step);
+
 }
 
 
+}
 
 
     function prevStep(step) {
@@ -1722,6 +1947,232 @@ updateProgressIndicator(step);
     // nextStep(1);
 </script>
 
+
+
+
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.5.0/turf.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    var map = L.map('map').setView([25.3960, 68.3578], 20); // Hyderabad, Pakistan
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var markers = [];
+    var lineCoordinates = [];
+    var polyline;
+
+    function updateCoordinatesInput() {
+        document.getElementById('FancingCoordinates').value = JSON.stringify(lineCoordinates);
+    }
+
+    map.on('click', function(e) {
+        var lat = e.latlng.lat;
+        var lng = e.latlng.lng;
+
+        // var marker = L.marker([lat, lng]).addTo(map);
+
+           // Create small circle marker
+    var marker = L.circleMarker([lat, lng], {
+        radius: 5,  // Small circle size
+        color: 'blue',
+        fillColor: 'blue',
+        fillOpacity: 1
+    }).addTo(map);
+
+        // marker.bindPopup('<b>You clicked at:</b><br>Latitude: ' + lat.toFixed(4) + '<br>Longitude: ' + lng.toFixed(4)).openPopup();
+
+        markers.push(marker);
+        lineCoordinates.push([lat, lng]);
+
+        if (polyline) {
+            map.removeLayer(polyline);
+        }
+
+        if (lineCoordinates.length > 1) {
+            polyline = L.polyline(lineCoordinates, { color: 'blue', weight: 4 }).addTo(map);
+        }
+        updateCoordinatesInput();
+    });
+
+    document.getElementById('locationSearch').addEventListener('input', function () {
+            var query = this.value.trim();
+            if (query.length < 3) return; // Minimum 3 characters to search
+
+            var bbox = "60.872,23.634,71.180,28.468"; // Sindh's approximate bounding box
+
+
+            var loader = document.getElementById('mini-loader'); // Get loader element
+            loader.style.display = 'inline-block'; // Show loader
+
+
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}&countrycodes=PK&viewbox=${bbox}&bounded=1`)
+                .then(response => response.json())
+                .then(data => {
+                    var resultList = document.getElementById('searchResults');
+                    resultList.innerHTML = ''; // Clear previous results
+
+                    data.forEach(place => {
+                        var listItem = document.createElement('div');
+                        listItem.textContent = place.display_name;
+                        listItem.classList.add('search-item');
+                        listItem.dataset.lat = place.lat;
+                        listItem.dataset.lon = place.lon;
+
+                        listItem.addEventListener('click', function () {
+                            var lat = parseFloat(this.dataset.lat);
+                            var lon = parseFloat(this.dataset.lon);
+
+                            // Move the map to the selected location
+                            map.setView([lat, lon], 20);
+
+                            // Add marker
+                            // var marker = L.marker([lat, lon]).addTo(map);
+                            // marker.bindPopup(`<b>${place.display_name}</b>`).openPopup();
+
+                            // markers.push(marker);
+                            // lineCoordinates.push([lat, lon]);
+
+                            // if (polyline) {
+                            //     map.removeLayer(polyline);
+                            // }
+
+                            // if (lineCoordinates.length > 1) {
+                            //     polyline = L.polyline(lineCoordinates, { color: 'blue', weight: 4 }).addTo(map);
+                            // }
+                            // updateCoordinatesInput();
+
+                            resultList.innerHTML = ''; // Clear search results
+                            document.getElementById('locationSearch').value = ''; // Clear input field
+                        });
+
+                        resultList.appendChild(listItem);
+                    });
+                    setTimeout(() => {
+                        loader.style.display = 'none'; // Hide loader after results are loaded
+                    }, 10000); // 200ms delay before closing
+
+            })
+            .catch(error => {
+                console.error('Error fetching locations:', error);
+                loader.style.display = 'none'; // Hide loader if there's an error
+            });
+        });
+
+     // Fix Map Issue When Modal Opens
+     $('#exampleModal').on('shown.bs.modal', function() {
+        setTimeout(function() {
+            map.invalidateSize();
+        }, 300); // Delay to allow modal transition
+    });
+
+    function calculateArea() {
+    if (lineCoordinates.length < 3) {
+        alert("At least 3 points are required to calculate the area!");
+        return;
+    }
+
+    // Close the shape (first point same as last point)
+    let closedCoordinates = [...lineCoordinates, lineCoordinates[0]];
+
+    // Convert to GeoJSON format
+    let polygon = turf.polygon([closedCoordinates]);
+
+    // Calculate area in square meters
+    let areaSqMeters = turf.area(polygon);
+
+    // Convert area to acres and square yards
+    let areaAcres = areaSqMeters * 0.000247105; // 1 sq meter = 0.000247105 acres
+    let areaSqYards = areaSqMeters * 1.19599; // 1 sq meter = 1.19599 square yards
+
+
+    $('#sq_meters').html('Sq Meters: '+areaSqMeters.toFixed(2));
+    $('#sq_yards').html('Sq Yards: '+areaSqYards.toFixed(2));
+    $('#acres').html('Acres: '+areaAcres.toFixed(4));
+
+
+    $('#sq_meters_hidden').val(areaSqMeters.toFixed(2));
+    $('#sq_yards_hidden').val(areaSqYards.toFixed(2));
+    $('#acres_hidden').val(areaAcres.toFixed(4));
+
+    // // Show result
+    // alert(`Calculated Area:
+    //  ${areaSqMeters.toFixed(2)} sq meters
+    //  ${areaAcres.toFixed(4)} acres
+    //  ${areaSqYards.toFixed(2)} square yards`);
+}
+
+
+$('#geoFancingModalSaveBtn').on('click', function(){
+
+    calculateArea();
+    if($('#sq_meters').html() != ''){
+
+        $('#FancingCoordinatesLocationInput').val($('#sq_meters').html()+' , '+$('#sq_yards').html()+' , '+$('#acres').html());
+    }
+})
+
+
+    // Remove last marker functionality
+    document.getElementById('removeMarkerBtn').addEventListener('click', function() {
+        if (markers.length > 0) {
+            var lastMarker = markers.pop();
+            map.removeLayer(lastMarker);
+            lineCoordinates.pop();
+
+            if (lineCoordinates.length > 1) {
+                if (polyline) {
+                    map.removeLayer(polyline);
+                }
+                polyline = L.polyline(lineCoordinates, { color: 'blue', weight: 4 }).addTo(map);
+            } else if (polyline) {
+                map.removeLayer(polyline);
+                polyline = null;
+            }
+            updateCoordinatesInput();
+        }
+    });
+
+
+    document.querySelector(".close-modal").addEventListener("click", function() {
+        var modal = document.getElementById('exampleModal');
+
+    // Hide modal
+    var bootstrapModal = bootstrap.Modal.getInstance(modal);
+    if (bootstrapModal) {
+        bootstrapModal.hide();
+    }
+
+    // Remove backdrop manually
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+    document.body.classList.remove('modal-open'); // Remove the body scroll lock
+    });
+
+
+    document.querySelector(".save-modal").addEventListener("click", function() {
+        var modal = document.getElementById('exampleModal');
+
+    // Hide modal
+    var bootstrapModal = bootstrap.Modal.getInstance(modal);
+    if (bootstrapModal) {
+        bootstrapModal.hide();
+    }
+
+    // Remove backdrop manually
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+    document.body.classList.remove('modal-open'); // Remove the body scroll lock
+    });
+
+
+</script>
 
 </body>
 

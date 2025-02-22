@@ -2010,9 +2010,19 @@ $('#lined_unlined').change(function() {
 <script>
     var map = L.map('map').setView([25.3960, 68.3578], 20); // Hyderabad, Pakistan
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+   L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+    attribution: 'Google Hybrid',
+    maxZoom: 23
+}).addTo(map);
+
+
+map.options.maxZoom = 22; // Allow zoom up to 22
+
+
+
+map.setMinZoom(10);  // Minimum zoom level
+map.setMaxZoom(22);  // Maximum zoom level
+
 
     var markers = [];
     var lineCoordinates = [];
