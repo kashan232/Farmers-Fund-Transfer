@@ -287,7 +287,7 @@ class AgricultureOfficerPanelController extends Controller
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
         // $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->where('verification_status','=','0')->orWhere('verification_status','=','rejected_by_lo')->paginate(5);
-
+dd($user);
         $farmers = LandRevenueFarmerRegistation::where('district', $user->district)
         ->where('tehsil', $user->tehsil)
         ->where('tappa', $user->tappas)
