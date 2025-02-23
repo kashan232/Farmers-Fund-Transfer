@@ -118,6 +118,7 @@ class FieldOfficerPanelController extends Controller
 
                 'district' => $district,
                 'tehsils' => $tehsils,
+                'tappa' => $tappa,
             ]);
         } else {
             return redirect()->back();
