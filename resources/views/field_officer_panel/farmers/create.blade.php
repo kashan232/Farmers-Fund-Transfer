@@ -319,13 +319,13 @@
                                             <label class="form-label">Q5. District</label>
                                             <input type="text" name="district" value="{{ $district }}" value="{{$data->district ?? ''}}" id="district" class="form-control " value="" readonly>
                                         </div>
-                                        <div class="mb-6 col-md-6 py-2">
+                                        {{-- <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q6. Taluka: </label>
                                             <select name="tehsil" id="tehsil" class="form-control js-example-basic-single-no-tag" >
                                                 <option value="">Select Taluka</option>
                                                     <option value="{{ $tehsil }}" @if(isset($data->tehsil)) {{ ($tehsil == $data->tehsil) ? 'selected':'' }} @endif > {{ $tehsil }} </option>
                                             </select>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="mb-6 col-md-6 py-2">
                                             <label for="uc">Q7. Union Council: </label>
