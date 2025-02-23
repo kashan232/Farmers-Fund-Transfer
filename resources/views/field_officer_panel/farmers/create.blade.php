@@ -2001,13 +2001,15 @@ let step1_formdata = {
             html: errors
         });
     }
-
-
-
-
-
+    else{
 
         nextStep(step);
+    }
+
+
+
+
+
     }
 
     function updateProgressIndicator(step) {
