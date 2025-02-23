@@ -20,7 +20,7 @@ class FieldOfficerPanelController extends Controller
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
 
-dd($user);
+
 
         $farmers = LandRevenueFarmerRegistation::where('admin_or_user_id', Auth::user()->id)
         ->where('district', $user->district)

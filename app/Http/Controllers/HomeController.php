@@ -182,15 +182,15 @@ class HomeController extends Controller
 
                     // Decode and count tehsils
                     if ($user->tehsil) {
-                        $tehsils = json_decode($user->tehsil, true);
-                        $tehsilCount = count($tehsils);
+                        // $tehsils = json_decode($user->tehsil, true);
+                        $tehsilCount = count($user->tehsil);
                     }
 
                     // Decode and count tappas
                     if ($user->tappas) {
-                        if ($user->tappas != null && is_array(json_decode($user->tappas))) {
-                            $tappas = json_decode($user->tappas, true);
-                            $tappaCount = count($tappas);
+                        if ($user->tappas != null ) {
+                            // $tappas = json_decode($user->tappas, true);
+                            $tappaCount = count($user->tappas);
                         } else {
                             $tappaCount = 0;
                         }
@@ -198,9 +198,9 @@ class HomeController extends Controller
 
                     // Decode and count UCs
                     if ($user->ucs) {
-                        if ($user->ucs != null && is_array(json_decode($user->ucs))) {
-                            $ucs = json_decode($user->ucs, true);
-                            $ucCount = count($ucs);
+                        if ($user->ucs != null ) {
+                            // $ucs = json_decode($user->ucs, true);
+                            $ucCount = count($user->ucs);
                         } else {
                             $ucCount =  0;
                         }
