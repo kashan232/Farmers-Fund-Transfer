@@ -59,9 +59,9 @@ class AgricultureOfficerController extends Controller
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
-            $tehsil = json_encode($request->input('tehsil'));
-            $ucs = json_encode($request->input('ucs'));
-            $tappa = json_encode($request->input('tappa'));
+            $tehsil = $request->input('tehsil');
+            $ucs = $request->input('ucs');
+            $tappa = $request->input('tappa');
 
             if($request->edit_id && $request->edit_id != '')
             {

@@ -291,17 +291,15 @@ class AgricultureOfficerPanelController extends Controller
         $farmers = LandRevenueFarmerRegistation::where('district', $user->district)
         ->where('tehsil', $user->tehsil)
         ->where('tappa', $user->tappas)
-
+        ->where(function($query) {
+            $query->where('verification_status', 'rejected_by_lo')
+            ->orWhere('verification_status', 'verified_by_do')
+            ->orWhere('verification_status', 'rejected_by_ao')
+                  ->orWhere('verification_status', null);
+        })
         ->paginate(10);
 
 
-        dd($farmers);
-        // ->where(function($query) {
-        //     $query->where('verification_status', 'rejected_by_lo')
-        //     ->orWhere('verification_status', 'verified_by_do')
-        //     ->orWhere('verification_status', 'rejected_by_ao')
-        //           ->orWhere('verification_status', null);
-        // })
         return view('agri_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
