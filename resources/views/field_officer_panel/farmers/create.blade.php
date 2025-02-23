@@ -339,10 +339,9 @@
 
                                         <div class="mb-6 col-md-6 py-2">
                                             <label for="tappa">Q8. Tappa: </label>
-                                            <select name="tappa" id="tappa" class="form-control js-example-basic-single-no-tag">
-                                                @if(isset($data->tappa) && $data->tappa != '')
-                                                <option value="{{$data->tappa}}">{{$data->tappa}}</option>
-                                                @endif
+                                            <select name="tappa" id="tapspa" class="form-control js-example-basic-single-no-tag">
+                                                <option value="{{ $tappa }}" @if(isset($data->tappa)) {{ ($tappa == $data->tappa) ? 'selected':'' }} @endif > {{ $tappa }} </option>
+
                                             </select>
                                         </div>
 
