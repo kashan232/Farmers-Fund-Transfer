@@ -1756,11 +1756,11 @@ $('select[name="tehsil"]').on('change', function() {
                         });
 
                         // Populate Tappa dropdown
-                        var tappaSelect = $('select[name="tappa"]');
-                        tappaSelect.empty();
-                        $.each(response.Tappas, function(index, value) {
-                            tappaSelect.append('<option value="' + value + '">' + value + '</option>');
-                        });
+                        // var tappaSelect = $('select[name="tappa"]');
+                        // tappaSelect.empty();
+                        // $.each(response.Tappas, function(index, value) {
+                        //     tappaSelect.append('<option value="' + value + '">' + value + '</option>');
+                        // });
                     },
                     error: function(xhr, status, error) {
                         console.error(error);
