@@ -323,7 +323,7 @@
                                             <label class="form-label">Q6. Taluka: </label>
                                             <select name="tehsil" id="tehsil" class="form-control js-example-basic-single-no-tag" >
                                                 <option value="">Select Taluka</option>
-                                                    <option value="{{ $data->tehsil }}" @if(isset($data->tehsil)) {{ ($data->tehsil == $data->tehsil) ? 'selected':'' }} @endif > {{ $data->tehsil }} </option>
+                                                    <option value="{{ $tehsil }}" @if(isset($data->tehsil)) {{ ($tehsil == $data->tehsil) ? 'selected':'' }} @endif > {{ $tehsil }} </option>
                                             </select>
                                         </div>
 
