@@ -1768,7 +1768,7 @@ $('select[name="tehsil"]').on('change', function() {
                 });
             } else {
                 $('select[name="uc"]').empty();
-                $('select[name="tappa"]').empty();
+                // $('select[name="tappa"]').empty();
             }
         });
 
