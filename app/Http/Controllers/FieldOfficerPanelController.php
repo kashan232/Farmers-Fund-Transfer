@@ -22,8 +22,7 @@ class FieldOfficerPanelController extends Controller
 
 
 
-        $farmers = LandRevenueFarmerRegistation::where('admin_or_user_id', Auth::user()->id)
-        ->where('district', $user->district)
+        $farmers = LandRevenueFarmerRegistation::where('district', $user->district)
         ->where('tehsil', $user->tehsil)
         ->where('tappa', $user->tappas)
         ->get();
