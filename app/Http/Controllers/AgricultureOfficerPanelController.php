@@ -294,6 +294,8 @@ class AgricultureOfficerPanelController extends Controller
 
         ->paginate(10);
 
+
+        dd($farmers);
         // ->where(function($query) {
         //     $query->where('verification_status', 'rejected_by_lo')
         //     ->orWhere('verification_status', 'verified_by_do')
