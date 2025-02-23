@@ -112,7 +112,7 @@ class FieldOfficerPanelController extends Controller
 
             $district = Auth()->user()->district;
             $tehsils = Auth()->user()->tehsil;
-            $tappa = Auth()->user()->tappa;
+            $tappa = Auth()->user()->tappas;
 
             return view('field_officer_panel.farmers.create', [
 
