@@ -8,7 +8,30 @@
     @include('admin_panel.include.navbar_include')
 <!-- [ Header ] end -->
 
+<style>
+     .select2-selection--single {
+        height: 40px !important;
+    }
 
+    .select2-selection--single .select2-selection__rendered{
+        line-height: 40px !important;
+    }
+    .select2-selection--single .select2-selection__arrow{
+        top: 8px !important;
+    }
+
+
+    .select2-container--default .select2-selection--multiple {
+        padding-top: 5px !important;
+    }
+
+
+
+    .select2-container--default {
+        width: 100% !important;
+    }
+
+</style>
 
 <!-- [ Main Content ] start -->
 <div class="pc-container">
@@ -101,7 +124,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>Select Tehsil</label><br>
-                                            <select name="tehsil[]" id="tehsil" required class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            <select name="tehsil" id="tehsil" required class="form-control--input js-example-basic-single" style="width:100%;" >
                                                 @if(isset($field_officer))
                                                 @foreach ($tehsils as $tehsil)
                                                     <option {{ (in_array($tehsil->tehsil,json_decode($field_officer->tehsil))) ? 'selected':'' }} value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
@@ -120,7 +143,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>UC</label><br>
-                                            <select name="ucs[]" id="uc"  class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            <select name="ucs" id="uc"  class="form-control--input js-example-basic-single" style="width:100%;" >
                                                 @if(isset($field_officer))
                                                 @if($field_officer->ucs != null && is_array(json_decode($field_officer->ucs)))
                                                 @foreach (json_decode($field_officer->ucs) as $uc )
@@ -135,7 +158,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>Tappa</label><br>
-                                            <select name="tappa[]" id="tappa"  class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
+                                            <select name="tappa" id="tappa"  class="form-control--input js-example-basic-single " style="width:100%;" >
                                                 @if(isset($field_officer) )
                                                     @if($field_officer->tappas != null && is_array(json_decode($field_officer->tappas)))
                                                         @foreach (json_decode($field_officer->tappas) as $tappa )
@@ -177,7 +200,14 @@
 @include('admin_panel.include.footer_include')
 
 <script>
+
+
     $(document).ready(function() {
+
+        $('.js-example-basic-single').select2({
+
+});
+
         $('select[name="district"]').on('change', function() {
             var district = $(this).val();
             if (district) {
@@ -209,9 +239,9 @@
                         district: district
                     },
                     success: function(data) {
-                        $('select[name="tehsil[]"]').empty();
+                        $('select[name="tehsil"]').empty();
                         $.each(data, function(key, value) {
-                            $('select[name="tehsil[]"]').append('<option value="' +
+                            $('select[name="tehsil"]').append('<option value="' +
                                 value + '">' + value + '</option>');
                         });
                     }
@@ -221,7 +251,7 @@
             }
         });
 
-        $('select[name="tehsil[]"]').on('change', function() {
+        $('select[name="tehsil"]').on('change', function() {
             var district = $('select[name="district"]').val();
             var tehsil = $(this).val();
 
@@ -235,14 +265,14 @@
                     },
                     success: function(response) {
                         // Populate UC dropdown
-                        var ucSelect = $('select[name="ucs[]"]');
+                        var ucSelect = $('select[name="ucs"]');
                         ucSelect.empty();
                         $.each(response.ucs, function(index, value) {
                             ucSelect.append('<option value="' + value + '">' + value + '</option>');
                         });
 
                         // Populate Tappa dropdown
-                        var tappaSelect = $('select[name="tappa[]"]');
+                        var tappaSelect = $('select[name="tappa"]');
                         tappaSelect.empty();
                         $.each(response.Tappas, function(index, value) {
                             tappaSelect.append('<option value="' + value + '">' + value + '</option>');

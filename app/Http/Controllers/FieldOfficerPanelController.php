@@ -19,8 +19,13 @@ class FieldOfficerPanelController extends Controller
         // $user = User::find(Auth::id());
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
+
+dd($user);
+
         $farmers = LandRevenueFarmerRegistation::where('admin_or_user_id', Auth::user()->id)
-        ->orWhere('user_type', 'Online')
+        ->where('district', $user->district)
+        ->where('tehsil', $user->tehsil)
+        ->where('tappa', $user->tappas)
         ->get();
 
         return view('field_officer_panel.farmers.index',['farmers'=>$farmers , 'tehsils' => $tehsils]);

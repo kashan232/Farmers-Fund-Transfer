@@ -317,11 +317,11 @@
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q5. District</label>
-                                            <input type="text" name="district" value="{{ $district }}" value="{{$data->district ?? ''}}" id="district" class="form-control" value="" readonly>
+                                            <input type="text" name="district" value="{{ $district }}" value="{{$data->district ?? ''}}" id="district" class="form-control " value="" readonly>
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q6. Taluka: </label>
-                                            <select name="tehsil" id="tehsil" class="form-control" >
+                                            <select name="tehsil" id="tehsil" class="form-control js-example-basic-single-no-tag" >
                                                 <option value="">Select Taluka</option>
                                                 @foreach(json_decode($tehsils) as $tehsil)
                                                     <option value="{{ $tehsil }}" @if(isset($data->tehsil)) {{ ($tehsil == $data->tehsil) ? 'selected':'' }} @endif > {{ $tehsil }} </option>
@@ -331,7 +331,7 @@
 
                                         <div class="mb-6 col-md-6 py-2">
                                             <label for="uc">Q7. Union Council: </label>
-                                            <select name="uc" id="uc" class="form-control">
+                                            <select name="uc" id="uc" class="form-control js-example-basic-single">
                                                 @if(isset($data->uc) && $data->uc != '')
                                                 <option value="{{$data->uc}}">{{$data->uc}}</option>
                                                 @endif
@@ -341,7 +341,7 @@
 
                                         <div class="mb-6 col-md-6 py-2">
                                             <label for="tappa">Q8. Tappa: </label>
-                                            <select name="tappa" id="tappa" class="form-control">
+                                            <select name="tappa" id="tappa" class="form-control js-example-basic-single-no-tag">
                                                 @if(isset($data->tappa) && $data->tappa != '')
                                                 <option value="{{$data->tappa}}">{{$data->tappa}}</option>
                                                 @endif
@@ -1413,6 +1413,17 @@ $(document).ready(function () {
 //         }
 //     });
 // });
+
+
+$('.js-example-basic-single-no-tag').select2({
+
+});
+
+$('.js-example-basic-single').select2({
+                    tags: true, // Enable typing custom values
+                    placeholder: "Select or type to add a new option", // Optional placeholder
+                });
+
 
             checkFiles();
 

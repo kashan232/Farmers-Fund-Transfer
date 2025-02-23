@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cms.benazirharicard.gos.pk/online_farmers_assets/css/select2.min.css">
     <meta name="robots" content="noindex, follow">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    {{-- <link rel="stylesheet" href="{{asset('')}}assets/css/style.css" id="main-style-link"> --}}
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
@@ -401,7 +402,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label class="form-label">Q5. District</label>
-                                                    <select name="district" id="district" class="form-control" >
+                                                    <select name="district" id="district" class="form-control js-example-basic-single-no-tag" >
                                                         <option value="">Select District</option>
                                                         @foreach($districts as $district)
                                                             <option value="{{ $district->district }}" > {{ $district->district }} </option>
@@ -412,7 +413,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label class="form-label">Q6. Taluka: </label>
-                                                    <select name="tehsil" id="tehsils" class="form-control" >
+                                                    <select name="tehsil" id="tehsils" class="form-control js-example-basic-single-no-tag" >
                                                         <option value="">Select Taluka</option>
                                                         {{-- @foreach(json_decode($tehsils) as $tehsil)
                                                             <option value="{{ $tehsil }}" @if(isset($data->tehsil)) {{ ($tehsil == $data->tehsil) ? 'selected':'' }} @endif > {{ $tehsil }} </option>
@@ -422,7 +423,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label for="uc">Q7. Union Council: </label>
-                                                    <select name="uc" id="ucs" class="form-control">
+                                                    <select name="uc" id="ucs" class="form-control js-example-basic-single">
                                                         @if(isset($data->uc) && $data->uc != '')
                                                         <option value="{{$data->uc}}">{{$data->uc}}</option>
                                                         @endif
@@ -432,7 +433,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label for="tappa">Q8. Tappa: </label>
-                                                    <select name="tappa" id="tappas" class="form-control">
+                                                    <select name="tappa" id="tappas" class="form-control js-example-basic-single-no-tag">
                                                         @if(isset($data->tappa) && $data->tappa != '')
                                                         <option value="{{$data->tappa}}">{{$data->tappa}}</option>
                                                         @endif
@@ -1095,7 +1096,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                                 <button type="button"  id="calculateAreaBtn" class="btn btn-info" onclick="calculateArea()">Calculate Area</button>
 
                                                                 <button type="button" class="btn btn-danger" id="removeMarkerBtn">Remove Last Marker</button>
-                                                                <button type="button" class="btn btn-secondary close-modal" data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-secondary close-modal"  data-bs-dismiss="modal" >Close</button>
 
                                                                 <button type="button" class="btn btn-primary save-modal" id="geoFancingModalSaveBtn" data-bs-dismiss="modal">Save changes</button>
 
@@ -1991,6 +1992,13 @@ $('#lined_unlined').change(function() {
 
                 });
 
+
+
+
+                $('.js-example-basic-single-no-tag').select2({
+
+                });
+
                 $('.js-example-basic-single').select2({
                     tags: true, // Enable typing custom values
                     placeholder: "Select or type to add a new option", // Optional placeholder
@@ -2170,7 +2178,13 @@ map.setMaxZoom(22);  // Maximum zoom level
 
 
 $('#geoFancingModalSaveBtn').on('click', function(){
-    $('#FancingCoordinatesLocationInput').val($('#sq_meters').html()+' , '+$('#sq_yards').html()+' , '+$('#acres').html());
+
+    calculateArea();
+    if($('#sq_meters').html() != ''){
+
+        $('#FancingCoordinatesLocationInput').val($('#sq_meters').html()+' , '+$('#sq_yards').html()+' , '+$('#acres').html());
+    }
+
 })
 
 
@@ -2193,8 +2207,6 @@ $('#geoFancingModalSaveBtn').on('click', function(){
             updateCoordinatesInput();
         }
     });
-
-
     document.querySelector(".close-modal").addEventListener("click", function() {
         var modal = document.getElementById('exampleModal');
 
@@ -2223,6 +2235,36 @@ $('#geoFancingModalSaveBtn').on('click', function(){
     document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
     document.body.classList.remove('modal-open'); // Remove the body scroll lock
     });
+
+    // document.querySelector(".close-modal").addEventListener("click", function() {
+    //     var modal = document.getElementById('exampleModal');
+
+    // // Hide modal
+    // var bootstrapModal = bootstrap.Modal.getInstance(modal);
+    // if (bootstrapModal) {
+    //     bootstrapModal.hide();
+    // }
+
+    // // Remove backdrop manually
+    // document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+    // document.body.classList.remove('modal-open'); // Remove the body scroll lock
+
+    // });
+
+
+    // document.querySelector(".save-modal").addEventListener("click", function() {
+    //     var modal = document.getElementById('exampleModal');
+
+    // // Hide modal
+    // var bootstrapModal = bootstrap.Modal.getInstance(modal);
+    // if (bootstrapModal) {
+    //     bootstrapModal.hide();
+    // }
+
+    // // Remove backdrop manually
+    // document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+    // document.body.classList.remove('modal-open'); // Remove the body scroll lock
+    // });
 
 
 </script>
