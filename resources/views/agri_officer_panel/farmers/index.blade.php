@@ -238,14 +238,7 @@
         });
 
         $('#example_wrapper').before(`
-            <div class="col-3" style="position: absolute; top:1%" >
-                <select name="tehsil" id="tehsil" class="form-control">
-                    <option value="0">Please Select Taluka</option>
-                    @foreach ($tehsils as $tehsil)
-                        <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
-                    @endforeach
-                </select>
-            </div>
+         
             @if(!empty($farmers) && isset($farmers[0]) && $farmers[0] != null)
             @if($farmers[0]->user_type  != 'Agri_Officer')
             <div class="col-3" style="position: absolute; top:1%; left:27%;" >
@@ -260,8 +253,24 @@
         `);
 
     });
+    // <div class="col-3" style="position: absolute; top:1%" >
+    //             <select name="tehsil" id="tehsil" class="form-control">
+    //                 <option value="0">Please Select Taluka</option>
+    //                 @foreach ($tehsils as $tehsil)
+    //                     <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
+    //                 @endforeach
+    //             </select>
+    //         </div>
 
 
+    <div class="col-3" style="position: absolute; top:1%" >
+                <select name="tehsil" id="tehsil" class="form-control">
+                    <option value="0">Please Select Taluka</option>
+                    @foreach ($tehsils as $tehsil)
+                        <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
+                    @endforeach
+                </select>
+            </div>
     $(document).ready(function() {
     // Event listener for opening the modal
 
