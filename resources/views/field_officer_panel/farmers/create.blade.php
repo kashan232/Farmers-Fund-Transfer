@@ -1938,6 +1938,75 @@ updateProgressIndicator(step);
     }
 
     function showStep(step) {
+
+
+        errors = '';
+
+let step1_formdata = {
+    name: $('#name').val(),
+    father_name: $('#father_name').val(),
+    surname: $('#surname').val(),
+    cnic: $('#cnic').val(),
+    cnic_issue_date: $('#cnic_issue_date').val(),
+    cnic_expiry_date: $('#cnic_expiry_date').val(),
+    mobile: $('#mobile').val(),
+    cnic_of_next_kin: $('#cnic_of_next_kin').val(),
+};
+
+
+
+
+    // Check if any field is empty
+    for (const key in step1_formdata) {
+        if (step1_formdata[key] === "" || step1_formdata[key] === null) {
+            let formattedKey = key.replace(/_/g, " ");
+            errors += `<b><span class="text-danger" > ${formattedKey} field is required. </span> </b> <br>`;
+
+        }
+    }
+
+    if (step1_formdata.cnic.includes('_')) {
+        errors += `<b><span class="text-danger">CNIC NUMBER IS INVALID.</span></b><br>`;
+    }
+
+    if (step1_formdata.mobile.includes('_')) {
+        errors += `<b><span class="text-danger">MOBILE NUMBER IS INVALID</span></b><br>`;
+    }
+
+    if (step1_formdata.cnic_of_next_kin.includes('_')) {
+        errors += `<b><span class="text-danger">CNIC OF NEXT KIN IS INVALID</span></b><br>`;
+    }
+
+
+       // Validate mobile number (should not have more than one '-')
+        // let mobileHyphenCount = (step1_formdata.mobile.match(/-/g) || []).length;
+        // if (mobileHyphenCount > 1) {
+        //     errors += `<b><span class="text-danger">Mobile number should not contain more than one '-' symbol.</span></b><br>`;
+        // }
+
+        // // Validate CNIC format (should have exactly two '-')
+        // let cnicHyphenCount = (step1_formdata.cnic.match(/-/g) || []).length;
+        // if (cnicHyphenCount !== 2) {
+        //     errors += `<b><span class="text-danger">CNIC should contain exactly two '-' symbols.</span></b><br>`;
+        // }
+
+         // Ensure CNIC does not contain '_'
+
+    if(errors != '')
+    {
+        Swal.fire({
+            title: "Errors!",
+            // text: "You clicked the button!",
+            icon: "error",
+            html: errors
+        });
+    }
+
+
+
+
+
+
         nextStep(step);
     }
 
