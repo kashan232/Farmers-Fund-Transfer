@@ -747,6 +747,9 @@ table{
                                         {{ $data->area_length }}  &nbsp; &nbsp; &nbsp; </u> </span> <span> <b> Total
                                             command area (acres) </b> &nbsp;&nbsp;&nbsp; <u> &nbsp; &nbsp; &nbsp;
                                                 {{ $data->total_command_area }} &nbsp; &nbsp; &nbsp; </u> </span>
+
+                                                <span> <b> Partially Line </b> &nbsp;&nbsp;&nbsp; <u> &nbsp; &nbsp; &nbsp;
+                                                        {{ $data->partially_line }} &nbsp; &nbsp; &nbsp; </u> </span>
                                 </td>
 
                             </tr>
