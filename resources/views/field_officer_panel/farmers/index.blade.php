@@ -49,6 +49,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Sno</th>
+                                                        <th>Type</th>
                                                         <th>Name</th>
                                                         <th>CNIC</th>
                                                         <th>Mobile</th>
