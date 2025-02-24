@@ -216,20 +216,20 @@ table{
                                 <td colspan="5" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
                                     <span> <b>Q12.&nbsp;&nbsp; Owner Type: </b>&nbsp;&nbsp;&nbsp;
 
-                                        @if(in_array('owner', json_decode($data->owner_type)))
+                                        @if(in_array('owner', json_decode($data->owner_type, true) ?? []))
                                            <input type="checkbox" name="vehicle1" value="Bike" checked>
                                         @endif
 
                                         1.Owner &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                                        @if(in_array('makadedar', json_decode($data->owner_type)))
+                                        @if(in_array('makadedar', json_decode($data->owner_type, true) ?? []))
                                            <input type="checkbox" name="vehicle1" value="Bike" checked>
                                         @endif
 
                                         2. Makadedar(Contractor/leasee)
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                                        @if(in_array('sharecropper', json_decode($data->owner_type)))
+                                        @if(in_array('sharecropper', json_decode($data->owner_type, true) ?? []))
                                            <input type="checkbox" name="vehicle1" value="Bike" checked>
                                         @endif
                                         3. Sharecropper/Tenant
