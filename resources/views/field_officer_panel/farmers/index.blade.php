@@ -67,6 +67,7 @@
                                                     @foreach($farmers as $farmer)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $farmer->user_type }}</td>
                                                         <td>{{ $farmer->name }}</td>
                                                         <td>{{ $farmer->cnic }}</td>
                                                         <td>{{ $farmer->mobile }}</td>
@@ -164,9 +165,9 @@
             e.preventDefault();
             var searchValue = $(this).val();
             if (searchValue != 0) {
-                table.column(0).search('^' + searchValue + '$', true, false).draw();
+                table.column(1).search('^' + searchValue + '$', true, false).draw();
             } else {
-                table.column(0).search('').draw();
+                table.column(1).search('').draw();
             }
         });
         //  <div class="col-3" style="position: absolute; top:1%" >
