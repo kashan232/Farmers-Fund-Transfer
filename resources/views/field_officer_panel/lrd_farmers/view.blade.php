@@ -312,12 +312,17 @@
                             </tr>
                             <tr>
                                 <th class="question"> Q1.</th>
-                                <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
+                                <td colspan="3" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
                                     <span> <b>Name : </b></span> <span
                                         style="border-bottom: 1px solid black;">{{ $data->name }}</span></td>
-                                <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
+                                <td colspan="3" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
                                     <span> <b>Q2.&nbsp&nbsp Father/Husband Name : </b> </span> <span
                                         style="border-bottom: 1px solid black;">{{ $data->father_name }}</span></td>
+
+                                        <td colspan="2">
+                                            <span> <b> Q2(B). &nbsp;&nbsp; Surname : </b> </span> <span
+                                                style="border-bottom: 1px solid black;">{{ $data->surname ?? '' }}</span>
+                                        </td>
 
                             </tr>
                             <tr>
@@ -326,7 +331,7 @@
                                     <span> <b> CNIC No:</b></span> <span
                                         style="border-bottom: 1px solid black; padding-right:3%">{{ $data->cnic }}</span> <b>Issue Date:</b> <u>{{ $data->cnic_issue_date }}</u>  &nbsp; &nbsp; <b>EXP Date:</b>  <u>{{ $data->cnic_expiry_date }}</u></td>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
-                                    <span> <b>Q4.&nbsp&nbsp Mobile No : </b> </span> <span
+                                    <span> <b>Q4.&nbsp; &nbsp; Mobile No : </b> </span> <span
                                         style="border-bottom: 1px solid black;">{{ $data->mobile }}</span></td>
                             </tr>
                             <tr>
@@ -911,6 +916,25 @@
                                     <span> <b>Q28. &nbsp;&nbsp; Branch code : </b> </span> <span
                                         style="border-bottom: 1px solid black;">{{ $data->branch_code }}</span></td>
                             </tr>
+
+
+                            <tr>
+                                <th colspan="9 " class="p-3" style="text-align:left ">Coordinates: </th>
+                            </tr>
+                            <tr>
+                                <th class="question" > Q23.</th>
+                                <td colspan="4" style="border: none !important">
+                                    <span> <b>GPS Coordinates : </b></span> <span
+                                        style="border-bottom: 1px solid black;">{{ $data->GpsCordinates }}</span>
+                                </td>
+                                <td colspan="4" style="border: none !important">
+                                    <span> <b>Q24. &nbsp;&nbsp; GEO Fancing : </b> </span> <span
+                                        >{{ 'Sq Yards: '. $data->sq_yards .' ,  Sq Meters: '.$data->sq_meters.' , Acres: '.$data->acres}}</span>
+                                </td>
+
+                            </tr>
+
+
                             <tr>
                                 <th colspan="8" class="p-3">SECTION II. DOCUMENT UPLOADED / COLLECTED</th>
                             </tr>

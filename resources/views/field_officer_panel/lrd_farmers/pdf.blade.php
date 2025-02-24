@@ -149,7 +149,7 @@ table{
                                 </td>
                                 <td colspan="2">
                                     <span> <b> Q2(B). &nbsp;&nbsp; Surname : </b> </span> <span
-                                        style="border-bottom: 1px solid black;">{{ $data->father_name ?? '' }}</span>
+                                        style="border-bottom: 1px solid black;">{{ $data->surname ?? '' }}</span>
                                 </td>
 
                             </tr>
