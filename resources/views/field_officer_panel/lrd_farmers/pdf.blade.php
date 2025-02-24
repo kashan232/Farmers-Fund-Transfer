@@ -158,7 +158,7 @@ table{
                                 <td colspan="4">
                                     <span> <b> CNIC No:</b></span> <span
                                         style="border-bottom: 1px solid black; padding-right:3%;padding-left:3%">{{ $data->cnic ?? '' }}</span>
-                                    <b>Issue Date:</b> <u style=" padding-right:3%;padding-left:3%">{{ $data->cnic_issue_date ?? '' }}</u> &nbsp; &nbsp; <b>EXP Date:</b> <u style=" padding-right:3%;padding-left:3%">{{ $data->cnic_expiry_date ?? '' }}</u>
+                                    <b>Issue Date:</b> <u style=" padding-right:1%;padding-left:1%">{{ $data->cnic_issue_date ?? '' }}</u> &nbsp; &nbsp; <b>EXP Date:</b> <u style=" padding-right:1%;padding-left:1%">{{ $data->cnic_expiry_date ?? '' }}</u>
                                 </td>
                                 <td colspan="4">
                                     <span> <b>Q4.&nbsp;&nbsp; Mobile No : </b> </span> <span
