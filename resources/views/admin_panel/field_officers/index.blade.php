@@ -42,7 +42,7 @@
                                                         <th><strong>Sno</strong></th>
                                                         <th><strong>Full Name</strong></th>
                                                         <th><strong>Contact Number</strong></th>
-                                                        <th><strong>Address</strong></th>
+                                                        <th><strong>Cnic</strong></th>
                                                         <th><strong>Email Address</strong></th>
                                                         <th><strong>District <br> Tehsil</strong></th>
                                                         <th><strong>UC</strong></th>
@@ -57,7 +57,7 @@
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $field_officer->full_name }}</td>
                                                         <td>{{ $field_officer->contact_number }}</td>
-                                                        <td>{{ $field_officer->address }}</td>
+                                                        <td>{{ $field_officer->cnic }}</td>
                                                         <td>{{ $field_officer->email_address }}</td>
                                                         <td>
                                                             @php

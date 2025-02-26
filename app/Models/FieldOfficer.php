@@ -17,7 +17,7 @@ class FieldOfficer extends Model
         'admin_or_user_id',
         'full_name',
         'contact_number',
-        'address',
+        'cnic',
         'email_address',
         'district',
         'tehsil',

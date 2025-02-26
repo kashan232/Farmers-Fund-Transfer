@@ -94,8 +94,8 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
-                                            <label class="form-label">Address</label>
-                                            <textarea class="form-control" name="address" rows="3" required >  {{$field_officer->address ?? ''}} </textarea>
+                                            <label class="form-label"></label>
+                                            <input type="text" class="form-control" name="cnic"  value="{{ $field_officer->cnic ?? '' }}" >
                                         </div>
                                     </div>
 
@@ -139,7 +139,7 @@
 
 
 
-
+{{--
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>UC</label><br>
@@ -153,7 +153,7 @@
                                                 @endif
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
@@ -169,12 +169,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
-                                        <div class="mb-12 col-md-12">
-                                            <label class="form-label">Username</label>
-                                            <input type="text" class="form-control" required name="username" value="@if(isset($data)) {{$data->username}} @endif">
-                                        </div>
-                                    </div>
+
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Password</label>
