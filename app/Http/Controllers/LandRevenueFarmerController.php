@@ -231,7 +231,15 @@ class LandRevenueFarmerController extends Controller
 
             dd(Auth()->user()->district);
             $tehsils = Tehsil::where('district', '=', Auth()->user()->district)->get();
-            $all_land_farmers = LandRevenueFarmerRegistation::where('district', '=', Auth()->user()->district)->where('verification_status','verified_by_dd')->orWhere('verification_status','verified_by_ao')->orWhere('verification_status','verified_by_lo')->paginate();
+            // $all_land_farmers = LandRevenueFarmerRegistation::where('district', '=', Auth()->user()->district)->where('verification_status','verified_by_dd')->orWhere('verification_status','verified_by_ao')->orWhere('verification_status','verified_by_lo')->paginate();
+
+            $all_land_farmers = LandRevenueFarmerRegistation::where('district', Auth::user()->district)
+            ->where(function ($query) {
+                $query->where('verification_status', 'verified_by_dd')
+                    ->orWhere('verification_status', 'verified_by_ao')
+                    ->orWhere('verification_status', 'verified_by_lo');
+            })
+            ->paginate();
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
                 'all_land_farmers' => $all_land_farmers,
