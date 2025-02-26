@@ -100,15 +100,15 @@
                                     </div>
 
                                     <div class="row mt-2">
-                                        <div class="mb-6 col-md-6">
+                                        {{-- <div class="mb-6 col-md-6">
                                             <label class="form-label">Select District</label>
                                             <select name="district" id="district" class="form-control">
                                                 @foreach ($districts as $district)
                                                     <option value="{{$district->district}}"  @if(isset($field_officer)) {{ ($district->district == $field_officer->district) ? 'selected':'' }}  @endif>{{$district->district}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
-                                        <div class="mb-6 col-md-6">
+                                        </div> --}}
+                                        <div class="mb-6 col-md-12">
                                             <label class="form-label">Select District Officer</label>
                                             <select name="district_officer" id="district_officer" class="form-control">
                                                 @if(isset($field_officer))

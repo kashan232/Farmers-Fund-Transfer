@@ -75,7 +75,7 @@ class FieldOfficerController extends Controller
             if($request->edit_id && $request->edit_id != '')
             {
                 $FieldOfficer = FieldOfficer::where('id',$request->edit_id)->update([
-                    'admin_or_user_id'  => $request->district_officer,
+                    // 'admin_or_user_id'  => $request->district_officer,
                     'full_name'         => $request->full_name,
                     'contact_number'    => $request->contact_number,
                     'cnic'           => $request->cnic,
@@ -92,7 +92,7 @@ class FieldOfficerController extends Controller
             else
             {
                 $FieldOfficer = FieldOfficer::create([
-                    'admin_or_user_id'    => $request->district_officer,
+                    // 'admin_or_user_id'    => $request->district_officer,
                     'full_name'          => $request->full_name,
                     'contact_number'          => $request->contact_number,
                     'cnic'          => $request->cnic,
