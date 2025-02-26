@@ -186,6 +186,31 @@
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Save</button>
                     </form>
+
+                    @elseif (Auth::user()->usertype == 'Field_Officer')
+                    <form id="verifyfarmers" action="{{ route('verify-farmer-by-fa') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="statusSelect">Status</label>
+                            <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
+                            <select class="form-control" id="statusSelect" name="verification_status">
+                                <option value="verified_by_fa">Verified</option>
+                                <option value="rejected_by_fa">Unverified</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="reasonBox" style="display: none;">
+                            <label for="reasonTextarea">Reason</label>
+                            <select id="reasonTextarea" name="declined_reason" class="form-control js-example-basic-single" >
+                                <option value="Banks Details Not Valid">Banks Details Not Valid</option>
+                                <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
+                                <option value="Attachments are not cleared">Attachments are not cleared</option>
+
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Save</button>
+                    </form>
+
+
                     @elseif (Auth::user()->usertype == 'DD_Officer')
                     <form id="verifyfarmers" action="{{ route('verify-farmer-by-dd') }}" method="POST">
                         @csrf
@@ -273,6 +298,13 @@
                     {{-- <button class="btn btn-success btn-sm" onclick="downloadPDF()">Download PDF</button> --}}
                     <a  class="btn btn-success btn-sm" href="{{route('pdf.report',$data->id)}}">Download PDF</a>
 
+
+                    @if (Auth::user()->usertype == 'Field_Officer')
+                        @if ( $data->usertype != 'Online')
+                            <button type="button" class="btn btn-sm btn-success verifiy-btn "
+                                data-id="{{ $data->id }}">Verify</button> &nbsp;
+                        @endif
+                    @endif
 
 
                     @if (Auth::user()->usertype != 'Field_Officer' && Auth::user()->usertype == 'Agri_Officer')

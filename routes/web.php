@@ -286,6 +286,7 @@ Route::get('/dg-officer-edit/{id}', [DGOfficerController::class, 'edit_dg_office
 
 
 
+Route::post('/verifiy/farmer/by/fa/officer', [FieldOfficerPanelController::class, 'verify_farmer'])->name('verify-farmer-by-fa');
 
 
 

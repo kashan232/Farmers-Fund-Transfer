@@ -282,7 +282,6 @@ class AgricultureOfficerPanelController extends Controller
     }
 
 
-
     public function fields_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
@@ -294,7 +293,9 @@ class AgricultureOfficerPanelController extends Controller
         ->where(function($query) {
             $query->where('verification_status', 'rejected_by_lo')
             ->orWhere('verification_status', 'verified_by_do')
-            ->orWhere('verification_status', 'rejected_by_ao');
+            ->orWhere('verification_status', 'rejected_by_ao')
+            ->orWhere('verification_status', 'verified_by_fa');
+
                 //   ->orWhere('verification_status', null);
         })
         ->paginate(10);
