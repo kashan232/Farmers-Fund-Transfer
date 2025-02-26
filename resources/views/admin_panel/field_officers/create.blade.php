@@ -94,7 +94,7 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
-                                            <label class="form-label"></label>
+                                            <label class="form-label">Cnic</label>
                                             <input type="text" class="form-control" name="cnic"  value="{{ $field_officer->cnic ?? '' }}" >
                                         </div>
                                     </div>
