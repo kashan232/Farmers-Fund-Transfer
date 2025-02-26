@@ -235,7 +235,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-3" style="position: absolute; top:1%; left:250px;" >
+            <div class="col-3" style="position: absolute; top:1%; left:26%;" >
                 <select  id="user_type" class="form-control">
                     <option value="">Select Type</option>
                     <option value="Online">Online</option>
