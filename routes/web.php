@@ -86,11 +86,11 @@ Route::get('sms/send', function () {
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/get-district-officers', function () {
     $district = request()->query('district');
