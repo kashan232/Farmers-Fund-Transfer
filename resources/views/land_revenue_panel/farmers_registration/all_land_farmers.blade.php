@@ -134,16 +134,15 @@
                                                         <td>{{ $all_land_farmer->tappa }}</td>
                                                         <td>{{ $all_land_farmer->village }}</td>
                                                         <td>
-                                                            @if ($all_land_farmer->verification_status == 1 && $all_land_farmer->declined_reason == '')
+                                                            @if($all_land_farmer->verification_status == 'verified_by_ao' && $all_land_farmer->declined_reason == '')
                                                             <span class="badge bg-success">Verified by AO</span>
+                                                            @elseif($all_land_farmer->verification_status == 'verified_by_dd' && $all_land_farmer->declined_reason == '')
+                                                            <span class="badge bg-success">Verified by DD</span>
                                                             @elseif($all_land_farmer->verification_status == 'verified_by_lo')
                                                             <span class="badge text-bg-success">Approved Farmers</span>
                                                             @elseif($all_land_farmer->declined_reason != null || $all_land_farmer->declined_reason != '')
                                                             <span class="badge bg-danger">Rejected</span>
-                                                            @elseif ($all_land_farmer->declined_reason != '' && $all_land_farmer->verification_status == 2)
-                                                            <span class="badge text-bg-danger">Rejected</span>
                                                             @else
-                                                            <span class="badge text-bg-primary">Forwarded by DD</span>
                                                             @endif
                                                         </td>
                                                         @if ($all_land_farmer->declined_reason != null || $all_land_farmer->declined_reason != '')
@@ -279,7 +278,7 @@ $(document).ready(function() {
                     @endforeach
                 </select>
             </div>
-            <div class="col-3" style="position: absolute; top:1%; left:250px;" >
+            <div class="col-3" style="position: absolute; top:1%; left:26%;" >
                 <select  id="user_type" class="form-control">
                     <option value="">Select Type</option>
                     <option value="Online">Online</option>
