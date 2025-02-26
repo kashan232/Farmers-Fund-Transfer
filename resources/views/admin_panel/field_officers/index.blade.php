@@ -44,10 +44,9 @@
                                                         <th><strong>Contact Number</strong></th>
                                                         <th><strong>Cnic</strong></th>
                                                         <th><strong>Email Address</strong></th>
-                                                        <th><strong>District <br> Tehsil</strong></th>
-                                                        <th><strong>UC</strong></th>
+                                                        <th><strong>District</strong></th>
+                                                        <th><strong>Taluka</strong></th>
                                                         <th><strong>Tappa</strong></th>
-                                                        <th><strong>Username</strong></th>
                                                         <th class="text-end"><strong>Action</strong></th>
                                                     </tr>
                                                 </thead>
@@ -59,37 +58,11 @@
                                                         <td>{{ $field_officer->contact_number }}</td>
                                                         <td>{{ $field_officer->cnic }}</td>
                                                         <td>{{ $field_officer->email_address }}</td>
-                                                        <td>
-                                                            @php
-                                                            $tehsil = json_decode($field_officer->tehsil);
-                                                            @endphp
-                                                            @if(is_array($tehsil))
-                                                            @foreach($tehsil as $tehsil)
-                                                            {{ $tehsil }}<br>
-                                                            @endforeach
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            @php
-                                                            $userUcArray = json_decode($field_officer->ucs);
-                                                            @endphp
-                                                            @if(is_array($userUcArray))
-                                                            @foreach($userUcArray as $uc)
-                                                            {{ $uc }}<br>
-                                                            @endforeach
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            @php
-                                                            $usertappaArray = json_decode($field_officer->tappas);
-                                                            @endphp
-                                                            @if(is_array($usertappaArray))
-                                                            @foreach($usertappaArray as $tappa)
-                                                            {{ $tappa }}<br>
-                                                            @endforeach
-                                                            @endif
-                                                        </td>
-                                                        <td>{{ $field_officer->username }}</td>
+                                                        <td>{{ $field_officer->district }}</td>
+                                                        <td>{{ $field_officer->tehsil }}</td>
+                                                        <td>{{ $field_officer->tappas }}</td>
+                                                        
+                                    
                                                         <td>
                                                             <div class="d-flex">
                                                                 <a href="{{route('edit-field-officer',$field_officer->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
