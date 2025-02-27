@@ -386,15 +386,29 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
                                                     <input type="text" id="cnic" name="cnic" class="form-control" value="{{$data->cnic ?? ''}}"   data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"   >
                                                 </div>
-                                                <div class="mb-6 col-md-3 py-2">
-                                                    <label class="form-label">CNIC Issue Date.: <span class="text-danger">*</span></label>
+
+                                                <div class="mb-6 col-md-2 py-2">
+                                                    <label class="form-label">CNIC Status: <span class="text-danger">*</span></label>
+                                                    <select name="cnic_status" id="cnic_status" class="form-control">
+                                                        <option value="valid_till" selected>Valid Till</option>
+                                                        <option value="life_time">Life Time</option>
+                                                    </select>
+                                                </div>
+
+
+
+                                                <div class="mb-6 col-md-2 py-2 cnic_issue_date_div">
+                                                    <label class="form-label">CNIC Issue Date: <span class="text-danger">*</span></label>
                                                     <input type="date" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="{{$data->cnic_issue_date ?? ''}}"     >
                                                 </div>
-                                                <div class="mb-6 col-md-3 py-2">
-                                                    <label class="form-label">CNIC Expiry Date.: <span class="text-danger">*</span></label>
+                                                <div class="mb-6 col-md-2 py-2 cnic_expiry_date_div">
+                                                    <label class="form-label">CNIC Expiry Date: <span class="text-danger">*</span></label>
                                                     <input type="date" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="{{$data->cnic_expiry_date ?? ''}}"     >
                                                 </div>
-                                                <div class="mb-6 col-md-6 py-2">
+
+
+
+                                                <div class="mb-6 col-md-6 py-2 ">
                                                     <label class="form-label">Q4. Mobile No.: <span class="text-danger">*</span></label>
                                                     <input type="text" id="mobile" name="mobile" class="form-control" value="{{$data->mobile ?? ''}}"  data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"  >
                                                 </div>
@@ -1389,9 +1403,15 @@ $(document).ready(function () {
             }
 
 
-            // $('#registrationForm').on('submit', function(event) {
-            //     $('#submitbtn').attr('disabled', true); // Disable the submit button
-            // });
+            $('#cnic_status').on('change', function(event) {
+               if($(this).val() == 'life_time'){
+                    $('.cnic_issue_date_div').css('display','none');
+                    $('.cnic_expiry_date_div').css('display','none');
+               }else{
+                    $('.cnic_issue_date_div').css('display','unset');
+                    $('.cnic_expiry_date_div').css('display','unset');
+               }
+            });
 
 
             $('#registrationForm').on('submit', function(event) {
@@ -1745,11 +1765,20 @@ $('#lined_unlined').change(function() {
                     father_name: $('#father_name').val(),
                     surname: $('#surname').val(),
                     cnic: $('#cnic').val(),
-                    cnic_issue_date: $('#cnic_issue_date').val(),
-                    cnic_expiry_date: $('#cnic_expiry_date').val(),
+
                     mobile: $('#mobile').val(),
                     cnic_of_next_kin: $('#cnic_of_next_kin').val(),
                 };
+
+
+
+                if ($('#cnic_status').val() !== 'life_time') {
+                    const issueDate = $('#cnic_issue_date').val();
+                    const expiryDate = $('#cnic_expiry_date').val();
+
+                    step1_formdata.cnic_issue_date = issueDate;
+                    step1_formdata.cnic_expiry_date = expiryDate;
+                }
 
 
                 if (formstep == 1) {
