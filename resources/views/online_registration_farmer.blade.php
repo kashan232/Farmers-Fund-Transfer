@@ -1405,10 +1405,8 @@ $(document).ready(function () {
 
             $('#cnic_status').on('change', function(event) {
                if($(this).val() == 'life_time'){
-                    $('.cnic_issue_date_div').css('display','none');
                     $('.cnic_expiry_date_div').css('display','none');
                }else{
-                    $('.cnic_issue_date_div').css('display','unset');
                     $('.cnic_expiry_date_div').css('display','unset');
                }
             });
@@ -1765,7 +1763,7 @@ $('#lined_unlined').change(function() {
                     father_name: $('#father_name').val(),
                     surname: $('#surname').val(),
                     cnic: $('#cnic').val(),
-
+                    cnic_issue_date: $('#cnic_issue_date').val(),
                     mobile: $('#mobile').val(),
                     cnic_of_next_kin: $('#cnic_of_next_kin').val(),
                 };
@@ -1773,10 +1771,8 @@ $('#lined_unlined').change(function() {
 
 
                 if ($('#cnic_status').val() !== 'life_time') {
-                    const issueDate = $('#cnic_issue_date').val();
                     const expiryDate = $('#cnic_expiry_date').val();
 
-                    step1_formdata.cnic_issue_date = issueDate;
                     step1_formdata.cnic_expiry_date = expiryDate;
                 }
 
