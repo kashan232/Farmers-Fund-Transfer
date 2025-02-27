@@ -127,7 +127,7 @@
                                             <select name="tehsil" id="tehsil" required class="form-control--input js-example-basic-single" style="width:100%;" >
                                                 @if(isset($field_officer))
                                                 @foreach ($tehsils as $tehsil)
-                                                    <option {{ (in_array($tehsil->tehsil,json_decode($field_officer->tehsil))) ? 'selected':'' }} value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
+                                                    <option {{ ($tehsil->tehsil == $field_officer->tehsil) ? 'selected':'' }} value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
                                                 @endforeach
                                                 @endif
                                             </select>
@@ -160,10 +160,10 @@
                                             <label>Tappa</label><br>
                                             <select name="tappa" id="tappa"  class="form-control--input js-example-basic-single " style="width:100%;" >
                                                 @if(isset($field_officer) )
-                                                    @if($field_officer->tappas != null && is_array(json_decode($field_officer->tappas)))
-                                                        @foreach (json_decode($field_officer->tappas) as $tappa )
-                                                            <option selected value="{{$tappa}}">{{$tappa}}</option>
-                                                        @endforeach
+                                                    @if($field_officer->tappas != null )
+
+                                                            <option selected value="{{$field_officer->tappas}}">{{$field_officer->tappas}}</option>
+
                                                     @endif
                                                 @endif
                                             </select>

@@ -61,8 +61,8 @@
                                                         <td>{{ $field_officer->district }}</td>
                                                         <td>{{ $field_officer->tehsil }}</td>
                                                         <td>{{ $field_officer->tappas }}</td>
-                                                        
-                                    
+
+
                                                         <td>
                                                             <div class="d-flex">
                                                                 <a href="{{route('edit-field-officer',$field_officer->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
