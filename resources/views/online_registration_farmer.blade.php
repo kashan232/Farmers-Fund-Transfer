@@ -612,7 +612,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <div class="mt-2 col-md-4">
                                                         <label class="form-label">(7) Survey No(s):</label>
-                                                        <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9,]/g, '').slice(0, 6)">
+                                                        <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9,]/g, '').slice(0, 50)">
                                                     </div>
                                                 </div>
 
