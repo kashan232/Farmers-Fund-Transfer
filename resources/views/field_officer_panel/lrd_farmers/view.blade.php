@@ -181,9 +181,16 @@
                                 <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                 <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                 <option value="Attachments are not cleared">Attachments are not cleared</option>
-
+                                <option value="other">Other</option>
                             </select>
                         </div>
+                        <div class="form-group" id="reasonBox" >
+                            <label for="reasonTextarea">Reason</label>
+                            <textarea name="other_reason" id="other_reason" style="display: none">
+
+                            </textarea>
+                        </div>
+
                         <button type="submit" class="btn btn-primary mt-3">Save</button>
                     </form>
 
@@ -1218,6 +1225,19 @@
                     $('#reasonTextarea').prop('required', false);
                 }
             });
+
+
+            $('#reasonTextarea').on('change', function() {
+
+                if ($(this).val() == 'other' ) {
+                    $('#other_reason').css('display', 'flex');
+
+                } else {
+                    $('#other_reason').css('required', 'none');
+                }
+            });
+
+
         });
 
 
