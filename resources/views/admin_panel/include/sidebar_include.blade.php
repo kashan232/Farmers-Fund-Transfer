@@ -74,6 +74,9 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
+                            <a class="pc-link" href="{{ route('FA-upload-excel') }}">Upload Excel</a>
+                        </li>
+                        <li class="pc-item">
                             <a class="pc-link" href="{{ route('create-field-officer') }}">Create Field Assistants</a>
                         </li>
                         <li class="pc-item">

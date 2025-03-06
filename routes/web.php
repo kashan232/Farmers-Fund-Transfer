@@ -174,7 +174,8 @@ Route::get('/create-field-officer', [FieldOfficerController::class, 'create'])->
 Route::post('/store-field-officer-by-admin', [FieldOfficerController::class, 'store'])->name('store-field-officer-by-admin');
 Route::get('/edit-field-officer/{id}', [FieldOfficerController::class, 'edit'])->name('edit-field-officer');
 
-
+Route::get('/FA-upload-excel', [FieldOfficerController::class, 'upload_excel'])->name('FA-upload-excel');
+Route::post('/store-field-officer-by-admin', [FieldOfficerController::class, 'storeFieldOfficer'])->name('store-field-officer-by-admin');
 
 //tehsil
 Route::get('/add-tehsil', [TehsilController::class, 'add_tehsil'])->name('add-tehsil');
