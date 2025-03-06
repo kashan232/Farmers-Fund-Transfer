@@ -181,15 +181,9 @@
                                 <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                 <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                 <option value="Attachments are not cleared">Attachments are not cleared</option>
-                                <option value="other">Other</option>
                             </select>
                         </div>
-                        <div class="form-group" id="reasonBox" >
-                            <label for="reasonTextarea">Reason</label>
-                            <textarea name="other_reason" id="other_reason" style="display: none">
 
-                            </textarea>
-                        </div>
 
                         <button type="submit" class="btn btn-primary mt-3">Save</button>
                     </form>
@@ -198,7 +192,7 @@
                     <form id="verifyfarmers" action="{{ route('verify-farmer-by-fa') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="statusSelect">Status</label>
+                            <label for="statusSelect">Status:</label>
                             <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
                             <select class="form-control" id="statusSelect" name="verification_status">
                                 <option value="verified_by_fa">Verified</option>
@@ -206,13 +200,20 @@
                             </select>
                         </div>
                         <div class="form-group" id="reasonBox" style="display: none;">
-                            <label for="reasonTextarea">Reason</label>
+                            <label for="reasonTextarea">Reason:</label>
                             <select id="reasonTextarea" name="declined_reason" class="form-control js-example-basic-single" >
                                 <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                 <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                 <option value="Attachments are not cleared">Attachments are not cleared</option>
+                                <option value="other">Other</option>
 
                             </select>
+                        </div>
+                        <div class="form-group" id="other_reason_Box" style="display: none">
+                            <label for="reasonTextarea">Other Reason:</label>
+                            <textarea name="other_reason" id="other_reason" class="form-control">
+
+                            </textarea>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Save</button>
                     </form>
@@ -1216,7 +1217,7 @@
                 var reasonBox = $('#reasonBox');
 
 
-                if ($(this).val() == 'rejected_by_ao' || $(this).val() == 'rejected_by_dd' || $(this).val() == 'rejected_by_lo' ) {
+                if ($(this).val() == 'rejected_by_fa' || $(this).val() == 'rejected_by_ao' || $(this).val() == 'rejected_by_dd' || $(this).val() == 'rejected_by_lo' ) {
                     reasonBox.show();
                     $('#reasonTextarea').prop('required', true);
 
@@ -1227,13 +1228,13 @@
             });
 
 
-            $('#reasonTextarea').on('change', function() {
+            $('body').on('change','#reasonTextarea', function() {
 
                 if ($(this).val() == 'other' ) {
-                    $('#other_reason').css('display', 'flex');
-
+                    $('#other_reason_Box').show(); // Uses inline style display:block (not flex)
                 } else {
-                    $('#other_reason').css('required', 'none');
+                    $('#other_reason_Box').hide(); // Uses inline style display:block (not flex)
+
                 }
             });
 

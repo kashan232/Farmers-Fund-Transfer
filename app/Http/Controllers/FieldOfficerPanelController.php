@@ -150,13 +150,28 @@ class FieldOfficerPanelController extends Controller
         $user = User::find(Auth::id());
         $farmer = LandRevenueFarmerRegistation::find($request->farmer_id);
         // Update farmer verification status
+
+
+
         $farmer->verification_status = $request->verification_status;
         if ($request->verification_status == 'rejected_by_fa') {
-            $farmer->declined_reason = $request->declined_reason;
+
+            if($request->declined_reason == 'other')
+            {
+                $farmer->declined_reason = $request->declined_reason;
+            }
+            else{
+                $farmer->declined_reason = $request->declined_reason;
+            }
+
+
         }
         else{
             $farmer->declined_reason = null;
         }
+
+
+
         $farmer->verification_by = $user->id;
         $farmer->save();
         return redirect()->route('farmers-list-field-officer')->with('farmers-registered', 'Done');

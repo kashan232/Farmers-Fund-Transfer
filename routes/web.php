@@ -147,7 +147,8 @@ Route::get('/pdf/report/{id}', function($id){
 
 Route::get('/farmers/registrations', function(){
 
-    $districts = District::all();
+    $districts = District::orderBy('district', 'asc')->get(); // Assuming you want to sort by name
+
     // dd($districts);
     return view('online_registration_farmer' ,[
         'districts' => $districts

@@ -27,6 +27,9 @@
         body {
             font-family: 'Laila', sans-serif !important;
         }
+        option {
+    text-transform: capitalize;
+}
 
         #map {
             height: 400px;
@@ -419,7 +422,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <select name="district" id="district" class="form-control js-example-basic-single-no-tag" >
                                                         <option value="">Select District</option>
                                                         @foreach($districts as $district)
-                                                            <option value="{{ $district->district }}" > {{ $district->district }} </option>
+                                                            <option value="{{ $district->district }}" > {{ ucwords(strtolower($district->district)) }} </option>
                                                         @endforeach
                                                     </select>
                                                 </div>

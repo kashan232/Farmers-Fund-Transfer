@@ -64,7 +64,7 @@ class UCController extends Controller
     public function getTehsils(Request $request)
     {
         $district = $request->input('district');
-        $tehsils = Tehsil::where('district', $district)->pluck('tehsil')->toArray(); // Adjust according to your database schema
+        $tehsils = Tehsil::where('district', $district)->orderBy('tehsil', 'asc')->pluck('tehsil')->toArray(); // Adjust according to your database schema
 
         return response()->json($tehsils);
     }
@@ -82,8 +82,8 @@ class UCController extends Controller
         }
 
 
-        $ucs = UC::where('district', $district)->whereIn('tehsil', $tehsil)->pluck('uc')->toArray(); // Adjust according to your database schema
-        $Tappas = Tappa::where('district', $district)->whereIn('tehsil', $tehsil)->pluck('tappa')->toArray(); // Adjust according to your database schema
+        $ucs = UC::where('district', $district)->whereIn('tehsil', $tehsil)->sort()->pluck('uc')->toArray(); // Adjust according to your database schema
+        $Tappas = Tappa::where('district', $district)->whereIn('tehsil', $tehsil)->sort()->pluck('tappa')->toArray(); // Adjust according to your database schema
 
         return response()->json([
             'ucs' => $ucs,
@@ -95,9 +95,9 @@ class UCController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             // dd($userId);
-            $all_district = District::where('admin_or_user_id', '=', $userId)->get();
-            $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
-            $all_uc = UC::where('admin_or_user_id', '=', $userId)->get();
+            $all_district = District::where('admin_or_user_id', '=', $userId)->sort()->get();
+            $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->sort()->get();
+            $all_uc = UC::where('admin_or_user_id', '=', $userId)->sort()->get();
             return view('admin_panel.UC.all_uc', [
                 'all_uc' => $all_uc,
                 'all_district' => $all_district,
