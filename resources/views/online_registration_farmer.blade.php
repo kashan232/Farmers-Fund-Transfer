@@ -447,7 +447,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label for="tappa">Q8. Tappa: </label>
-                                                    <select name="tappa" id="tappas" class="form-control js-example-basic-single-no-tag">
+                                                    <select name="tappa" id="tappas" class="form-control js-example-basic-single">
                                                         @if(isset($data->tappa) && $data->tappa != '')
                                                         <option value="{{$data->tappa}}">{{$data->tappa}}</option>
                                                         @endif
@@ -612,7 +612,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <div class="mt-2 col-md-4">
                                                         <label class="form-label">(7) Survey No(s):</label>
-                                                        <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)">
+                                                        <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9,]/g, '').slice(0, 6)">
                                                     </div>
                                                 </div>
 

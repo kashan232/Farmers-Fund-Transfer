@@ -19,8 +19,6 @@ class FieldOfficerController extends Controller
 {
     public function index()
     {
-
-
         if (Auth::user()->usertype == 'admin') {
             $field_officers = FieldOfficer::get();
         } else {
@@ -98,7 +96,7 @@ class FieldOfficerController extends Controller
                         // 'admin_or_user_id'  => $request->district_officer,
                         'full_name'         => $request->full_name,
                         'contact_number'    => $request->contact_number,
-                        'cnic'           => $request->cnic,
+                        'cnic'              => $request->cnic,
                         'email_address'     => $request->email_address,
                         'district'          => $request->district,
                         'tehsil'            => $tehsil,
@@ -106,6 +104,19 @@ class FieldOfficerController extends Controller
                         'created_at'        => Carbon::now(),
                         'updated_at'        => Carbon::now(),
                     ]);
+
+                    $user = User::where('id', $FieldOfficer->id)->update([
+                        'name' => $request->full_name,
+                        'user_id' => $FieldOfficer->id,
+                        'email' => $request->email_address,
+                        'district' => $request->district,
+                        'tehsil' => $tehsil,
+                        'tappas' => $tappa,
+                        'password' => Hash::make($request->password), // Make sure to hash the password
+                        'usertype' => 'Field_Officer', // Set the usertype to 'employee'
+                    ]);
+
+
                     return redirect()->back()->with('officer-added', 'Field Officer Updated Successfully');
                 } else {
                     $FieldOfficer = FieldOfficer::create([
