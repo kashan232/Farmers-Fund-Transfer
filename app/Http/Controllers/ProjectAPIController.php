@@ -11,16 +11,27 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Validator;
 class ProjectAPIController extends Controller
 {
 
     public function login_api(Request $request)
     {
-        $request->validate([
+        // $request->validate([
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+        // ]);
+
+        //valid credential
+        $validator = Validator::make($credentials, [
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|string|min:6|max:50'
         ]);
+
+        //Send failed response if request is not valid
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()], 200);
+        }
 
         $email = $request->email;
         $password = $request->password;
