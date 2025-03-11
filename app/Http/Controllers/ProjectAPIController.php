@@ -22,10 +22,12 @@ class ProjectAPIController extends Controller
         //     'password' => 'required',
         // ]);
 
+        $credentials = $request->only('email', 'password');
+
         //valid credential
         $validator = Validator::make($credentials, [
             'email' => 'required|email',
-            'password' => 'required|string|min:6|max:50'
+            'password' => 'required'
         ]);
 
         //Send failed response if request is not valid
