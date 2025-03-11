@@ -96,6 +96,197 @@ class ProjectAPIController extends Controller
     }
 
 
+
+
+    public function store_farmer(Request $request)
+    {
+
+        $rules = [
+             // Text fields
+             'name' => 'required',
+             'father_name' => 'required',
+             'cnic' => 'required|min:13',
+             'mobile' => 'required',
+        ];
+
+
+        if ($request->old_front_id_card != 1){
+            $rules['front_id_card'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+        }
+        if ($request->old_back_id_card != 1){
+            $rules['back_id_card'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+        }
+        if ($request->old_form_seven_pic != 1){
+            $rules['form_seven_pic'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+        }
+        if ($request->old_upload_farmer_pic != 1){
+            $rules['upload_farmer_pic'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+        }
+        // if ($request->old_upload_land_proof != 1){
+        //     $rules['upload_land_proof'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+        // }
+
+
+
+
+        $messages = [
+            'front_id_card.max' => 'The ID card file size must not exceed 500KB.',
+            'back_id_card.max' => 'The ID card file size must not exceed 500KB.',
+            'form_seven_pic.max' => 'The Form VII proof file size must not exceed 500KB.',
+            'upload_farmer_pic.max' => 'The farmer photo file size must not exceed 500KB.',
+            'form_seven_pic.required' => 'Forms VII / Registry from Micro (Land Documents) is required.',
+            'upload_land_proof.required' => 'Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) is required.',
+
+            'upload_farmer_pic.required' => 'Photo of the farmer is required.',
+
+            'front_id_card.mimes' => 'The ID card must be a file of type: jpg, jpeg, png.',
+            'back_id_card.mimes' => 'The ID card must be a file of type: jpg, jpeg, png.',
+            'form_seven_pic.mimes' => 'The Form VII proof file must be of type: jpg, jpeg, png.',
+            'upload_farmer_pic.mimes' => 'The farmer photo must be of type: jpg, jpeg, png.',
+
+            'upload_land_proof.mimes' => 'The Form VIII proof file must be of type: jpg, jpeg, png.',
+
+
+
+        ];
+
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return ['errors' => $validator->errors()];
+        }
+
+
+            $data = $request->all();
+            $data = $request->except(['_token', 'edit_id', 'old_front_id_card','old_back_id_card','old_form_seven_pic','old_upload_land_proof','old_upload_farmer_pic','old_upload_other_attach']);
+
+
+            $data['user_type'] = $request->user_type;
+            if( $data['user_type'] != 'Online'){
+
+                $data['admin_or_user_id'] = Auth::id();
+                $data['land_emp_id'] = Auth()->user()->user_id;
+
+                $data['land_emp_name'] = Auth()->user()->name;
+            }
+
+
+            $data['title_name'] = json_encode($request->title_name);
+            $data['title_father_name'] = json_encode($request->title_name);
+            $data['title_cnic'] = json_encode($request->title_cnic);
+            $data['title_number'] = json_encode($request->title_number);
+            $data['title_area'] = json_encode($request->title_area);
+
+            $data['owner_type'] = json_encode($request->owner_type);
+
+            $data['crop_season'] = json_encode($request->crop_season);
+            $data['crops'] = json_encode($request->crops);
+            $data['crops_orchard'] = json_encode($request->crops_orchard);
+            $data['crop_area'] = json_encode($request->crop_area);
+            $data['crop_average_yeild'] = json_encode($request->crop_average_yeild);
+
+            $data['physical_asset_item'] = json_encode($request->physical_asset_item);
+
+            $data['animal_name'] = json_encode($request->animal_name);
+            $data['animal_qty'] = json_encode($request->animal_qty);
+
+
+            $data['source_of_irrigation'] = json_encode($request->source_of_irrigation);
+            $data['source_of_irrigation_engery'] = json_encode($request->source_of_irrigation_engery);
+
+
+            $data['verification_status'] = null;
+            $data['declined_reason'] = null;
+
+
+
+
+            $data['acres'] = $request->acres_hidden;
+            $data['sq_yards'] = $request->sq_yards_hidden;
+            $data['sq_meters'] = $request->sq_meters_hidden;
+
+
+
+
+
+
+
+
+
+
+             // Handle front ID card image
+            if ($request->hasFile('front_id_card')) {
+                $front_id_cardimage = $request->file('front_id_card');
+                $front_id_cardimageName = time() . '_' . uniqid() . '.' . $front_id_cardimage->getClientOriginalExtension();
+                $front_id_cardimage->move(public_path('fa_farmers/front_id_card'), $front_id_cardimageName);
+                $data['front_id_card'] = $front_id_cardimageName;
+            }
+
+            // Handle back ID card image
+            if ($request->hasFile('back_id_card')) {
+                $back_id_cardimage = $request->file('back_id_card');
+                $back_id_cardimageName = time() . '_' . uniqid() . '.' . $back_id_cardimage->getClientOriginalExtension();
+                $back_id_cardimage->move(public_path('fa_farmers/back_id_card'), $back_id_cardimageName);
+                $data['back_id_card'] = $back_id_cardimageName;
+            }
+
+            // Handle upload land proof image
+            if ($request->hasFile('upload_land_proof')) {
+                $upload_land_proofimage = $request->file('upload_land_proof');
+                $upload_land_proofimageName = time() . '_' . uniqid() . '.' . $upload_land_proofimage->getClientOriginalExtension();
+                $upload_land_proofimage->move(public_path('fa_farmers/upload_land_proof'), $upload_land_proofimageName);
+                $data['upload_land_proof'] = $upload_land_proofimageName;
+            }
+
+            // Handle other attachments image
+            if ($request->hasFile('upload_other_attach')) {
+                $upload_other_attachimage = $request->file('upload_other_attach');
+                $upload_other_attachimageName = time() . '_' . uniqid() . '.' . $upload_other_attachimage->getClientOriginalExtension();
+                $upload_other_attachimage->move(public_path('fa_farmers/upload_other_attach'), $upload_other_attachimageName);
+                $data['upload_other_attach'] = $upload_other_attachimageName;
+            }
+
+            // Handle farmer picture image
+            if ($request->hasFile('upload_farmer_pic')) {
+                $upload_farmer_picimage = $request->file('upload_farmer_pic');
+                $upload_farmer_picimageName = time() . '_' . uniqid() . '.' . $upload_farmer_picimage->getClientOriginalExtension();
+                $upload_farmer_picimage->move(public_path('fa_farmers/upload_farmer_pic'), $upload_farmer_picimageName);
+                $data['upload_farmer_pic'] = $upload_farmer_picimageName;
+            }
+
+            // Handle cheque picture image
+            if ($request->hasFile('upload_cheque_pic')) {
+                $upload_cheque_picimage = $request->file('upload_cheque_pic');
+                $upload_cheque_picimageName = time() . '_' . uniqid() . '.' . $upload_cheque_picimage->getClientOriginalExtension();
+                $upload_cheque_picimage->move(public_path('fa_farmers/upload_cheque_pic'), $upload_cheque_picimageName);
+                $data['upload_cheque_pic'] = $upload_cheque_picimageName;
+            }
+
+            // Handle cheque picture image
+            if ($request->hasFile('form_seven_pic')) {
+                $form_seven_pic_image = $request->file('form_seven_pic');
+                $form_seven_pic_image_name = time() . '_' . uniqid() . '.' . $form_seven_pic_image->getClientOriginalExtension();
+                $form_seven_pic_image->move(public_path('fa_farmers/form_seven_pic'), $form_seven_pic_image_name);
+                $data['form_seven_pic'] = $form_seven_pic_image_name;
+            }
+
+            // dd($data);
+
+            if ($request->edit_id && $request->edit_id != '') {
+                LandRevenueFarmerRegistation::where('id', $request->edit_id)->update($data);
+                // return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Updated');
+                return ['success' => 'Farmer Data Updated Succesfully..!'];
+            } else {
+                LandRevenueFarmerRegistation::create($data);
+                // return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Registered');
+                return ['success' => 'Farmer Data Submitted Succesfully..!'];
+            }
+
+    }
+
+
+
+
     public function api_store_online_farmers_registration(Request $request)
     {
         // Initialize variables for file names

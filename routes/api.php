@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProjectAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FieldOfficerPanelController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,5 +27,10 @@ Route::get('/get-tehsil', [ProjectAPIController::class, 'get_tehsil'])->name('ge
 Route::get('/get-uc', [ProjectAPIController::class, 'get_uc'])->name('get-uc');
 Route::get('/get-tappa', [ProjectAPIController::class, 'get_tappa'])->name('get-tappa');
 
-Route::post('/api-store-online-farmers-registration', [ProjectAPIController::class, 'api_store_online_farmers_registration'])->name('api-store-online-farmers-registration');
+
+
+Route::post('/farmer-store',[ProjectAPIController::class,'store_farmer']);
+
+
+// Route::post('/api-store-online-farmers-registration', [ProjectAPIController::class, 'api_store_online_farmers_registration'])->name('api-store-online-farmers-registration');
 
