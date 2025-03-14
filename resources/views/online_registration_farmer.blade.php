@@ -419,7 +419,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label class="form-label">Q5. District</label>
-                                                    <select name="district" id="district" class="form-control js-example-basic-single-no-tag" >
+                                                    <select name="district" id="district" class="form-control js-example-basic-single-no-tag"  >
                                                         <option value="">Select District</option>
                                                         @foreach($districts as $district)
                                                             <option value="{{ $district->district }}" > {{ ucwords(strtolower($district->district)) }} </option>
@@ -1567,6 +1567,17 @@ $(document).ready(function () {
         $('#crop_tableBody').append(newRow);
         $('#crop_tableBody').find('.js-example-basic-single').last().select2({
             tags: true, // Enable the user to add custom tags
+            createTag: function(params) {
+              var term = params.term;
+
+              // Allow only letters (A-Z, a-z), no numbers or special characters
+              if (/^[A-Za-z\s]+$/.test(term)) {
+                  return { id: term, text: term };
+              }
+
+              // Return null if the input contains numbers or special characters
+              return null;
+          }
         });
     });
 
@@ -1716,6 +1727,17 @@ if('{{$data->source_of_irrigation}}'.includes('tube well')){
      `);
      $('#source_of_energy_section').find('.js-example-basic-single').last().select2({
         tags: true, // Enable the user to add custom tags
+        createTag: function(params) {
+              var term = params.term;
+
+              // Allow only letters (A-Z, a-z), no numbers or special characters
+              if (/^[A-Za-z\s]+$/.test(term)) {
+                  return { id: term, text: term };
+              }
+
+              // Return null if the input contains numbers or special characters
+              return null;
+          }
     });
 }
 
@@ -1842,7 +1864,11 @@ $('#lined_unlined').change(function() {
                     // Check if any field is empty
                     for (const key in step4_formdata) {
                         if (step4_formdata[key] === "" || step1_formdata[key] === null) {
-                            let formattedKey = key.replace(/_/g, " ");
+                            let formattedKey = key
+            .replace(/_/g, " ")                      // Replace underscores with spaces
+            .replace(/([a-z])([A-Z])/g, '$1 $2')    // Add space between lowercase and uppercase letters
+            .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2'); // Add space between two consecutive uppercase letters if followed by lowercase
+
                             errors += `<b><span class="text-danger" > ${formattedKey} field is required. </span> </b> <br>`;
 
                         }
@@ -2021,7 +2047,12 @@ $('#lined_unlined').change(function() {
                 });
 
 
-
+                $(document).on('keypress', '.select2-search__field', function(e) {
+                    var charCode = e.which ? e.which : e.keyCode;
+                    if (charCode >= 48 && charCode <= 57) { // 48-57 are ASCII codes for 0-9
+                        return false; // Block numbers
+                    }
+                });
 
                 $('.js-example-basic-single-no-tag').select2({
 
@@ -2030,6 +2061,17 @@ $('#lined_unlined').change(function() {
                 $('.js-example-basic-single').select2({
                     tags: true, // Enable typing custom values
                     placeholder: "Select or type to add a new option", // Optional placeholder
+                    createTag: function(params) {
+                        var term = params.term;
+
+                        // Allow only letters (A-Z, a-z), no numbers or special characters
+                        if (/^[A-Za-z\s]+$/.test(term)) {
+                            return { id: term, text: term };
+                        }
+
+                        // Return null if the input contains numbers or special characters
+                        return null;
+                    }
                 });
             });
         </script>

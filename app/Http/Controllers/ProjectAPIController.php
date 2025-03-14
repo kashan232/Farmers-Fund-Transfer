@@ -102,58 +102,118 @@ class ProjectAPIController extends Controller
     {
 
         $rules = [
-             // Text fields
-             'name' => 'required',
-             'father_name' => 'required',
-             'cnic' => 'required|min:13',
-             'mobile' => 'required',
+            // Required fields
+            'name' => 'required|string',
+            'father_name' => 'required|string',
+            'cnic' => 'required|string|min:13|max:13',
+            'cnic_issue_date' => 'required|date',
+            'cnic_expiry_date' => 'required|date',
+            'mobile' => 'required|string',
+            'district' => 'required|string',
+            'tehsil' => 'required|string',
+            'uc' => 'required|string',
+            'tappa' => 'required|string',
+            'dah' => 'required|string',
+            'village' => 'required|string',
+            'gender' => 'required|in:male,female,other',
+            'house_type' => 'required|string',
+            'owner_type' => 'required|string',
+            'full_name_of_next_kin' => 'required|string',
+            'cnic_of_next_kin' => 'required|string|min:13|max:13',
+            'mobile_of_next_kin' => 'required|string',
+
+            // Numeric fields (nullable but must be a number if provided)
+            'female_children_under16' => 'sometimes|nullable|integer',
+            'female_Adults_above16' => 'sometimes|nullable|integer',
+            'male_children_under16' => 'sometimes|nullable|integer',
+            'male_Adults_above16' => 'sometimes|nullable|integer',
+            'total_landing_acre' => 'sometimes|nullable|numeric',
+            'total_area_with_hari' => 'sometimes|nullable|numeric',
+            'total_area_cultivated_land' => 'sometimes|nullable|numeric',
+            'total_fallow_land' => 'sometimes|nullable|numeric',
+            'land_share' => 'sometimes|nullable|string',
+            'land_area_as_per_share' => 'sometimes|nullable|numeric',
+
+            // Title information
+            'survey_no' => 'sometimes|nullable|string',
+            'title_name' => 'sometimes|nullable|string',
+            'title_father_name' => 'sometimes|nullable|string',
+            'title_cnic' => 'sometimes|nullable|string|min:13|max:13',
+            'title_number' => 'sometimes|nullable|string',
+            'title_area' => 'sometimes|nullable|string',
+
+            // Crop details
+            'crop_season' => 'sometimes|nullable|string',
+            'crops' => 'sometimes|nullable|string',
+            'crops_orchard' => 'sometimes|nullable|string',
+            'crop_area' => 'sometimes|nullable|string',
+            'crop_average_yeild' => 'sometimes|nullable|string',
+
+            // Assets & animals
+            'physical_asset_item' => 'sometimes|nullable|string',
+            'animal_name' => 'sometimes|nullable|string',
+            'animal_qty' => 'sometimes|nullable|integer',
+
+            // Irrigation
+            'source_of_irrigation' => 'sometimes|nullable|string',
+            'source_of_irrigation_engery' => 'sometimes|nullable|string',
+
+            // Area & line status
+            'area_length' => 'sometimes|nullable|numeric',
+            'line_status' => 'sometimes|nullable|string',
+            'lined_length' => 'sometimes|nullable|numeric',
+            'total_command_area' => 'sometimes|nullable|numeric',
+
+            // Banking details
+            'account_title' => 'sometimes|nullable|string',
+            'account_no' => 'sometimes|nullable|string',
+            'bank_name' => 'sometimes|nullable|string',
+            'branch_name' => 'sometimes|nullable|string',
+            'IBAN_number' => 'sometimes|nullable|string',
+            'branch_code' => 'sometimes|nullable|string',
+
+            // File uploads (conditionally required if old values are not set)
+            'front_id_card' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            'back_id_card' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            'upload_land_proof' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            'upload_other_attach' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            'upload_farmer_pic' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            'upload_cheque_pic' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            'form_seven_pic' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+
+            // Verification
+            'verification_status' => 'sometimes|nullable|string',
+            'declined_reason' => 'sometimes|nullable|string',
+            'verification_by' => 'sometimes|nullable|string',
+
+            // Coordinates
+            'GpsCordinates' => 'sometimes|nullable|string',
+            'FancingCoordinates' => 'sometimes|nullable|string',
+
+            // Measurement units
+            'sq_meters' => 'sometimes|nullable|numeric',
+            'sq_yards' => 'sometimes|nullable|numeric',
+            'acres' => 'sometimes|nullable|numeric',
+
+            // Miscellaneous
+            'partially_line' => 'sometimes|nullable|string',
+            'surname' => 'sometimes|nullable|string',
         ];
 
+        // Validation
+        $validator = Validator::make($request->all(), $rules);
 
-        if ($request->old_front_id_card != 1){
-            $rules['front_id_card'] = 'required|max:500|file|mimes:jpg,png,jpeg';
-        }
-        if ($request->old_back_id_card != 1){
-            $rules['back_id_card'] = 'required|max:500|file|mimes:jpg,png,jpeg';
-        }
-        if ($request->old_form_seven_pic != 1){
-            $rules['form_seven_pic'] = 'required|max:500|file|mimes:jpg,png,jpeg';
-        }
-        if ($request->old_upload_farmer_pic != 1){
-            $rules['upload_farmer_pic'] = 'required|max:500|file|mimes:jpg,png,jpeg';
-        }
-        // if ($request->old_upload_land_proof != 1){
-        //     $rules['upload_land_proof'] = 'required|max:500|file|mimes:jpg,png,jpeg';
-        // }
-
-
-
-
-        $messages = [
-            'front_id_card.max' => 'The ID card file size must not exceed 500KB.',
-            'back_id_card.max' => 'The ID card file size must not exceed 500KB.',
-            'form_seven_pic.max' => 'The Form VII proof file size must not exceed 500KB.',
-            'upload_farmer_pic.max' => 'The farmer photo file size must not exceed 500KB.',
-            'form_seven_pic.required' => 'Forms VII / Registry from Micro (Land Documents) is required.',
-            'upload_land_proof.required' => 'Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) is required.',
-
-            'upload_farmer_pic.required' => 'Photo of the farmer is required.',
-
-            'front_id_card.mimes' => 'The ID card must be a file of type: jpg, jpeg, png.',
-            'back_id_card.mimes' => 'The ID card must be a file of type: jpg, jpeg, png.',
-            'form_seven_pic.mimes' => 'The Form VII proof file must be of type: jpg, jpeg, png.',
-            'upload_farmer_pic.mimes' => 'The farmer photo must be of type: jpg, jpeg, png.',
-
-            'upload_land_proof.mimes' => 'The Form VIII proof file must be of type: jpg, jpeg, png.',
-
-
-
-        ];
-
-
-        $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
-            return ['errors' => $validator->errors()];
+            $errors = $validator->errors()->toArray();
+
+            // Ensure all fields appear in the response even if no error
+            foreach (array_keys($rules) as $field) {
+                if (!isset($errors[$field])) {
+                    $errors[$field] = [];
+                }
+            }
+
+            return response()->json(['errors' => $errors], 422);
         }
 
 
