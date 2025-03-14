@@ -603,7 +603,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <div class="mt-2 col-md-6">
                                                         <label class="form-label">(4) Total fallow land (Acres):</label>
-                                                        <input type="text" name="total_fallow_land" value="{{$data->total_fallow_land ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                        <input type="text" name="total_fallow_land" id="total_fallow_land" value="{{$data->total_fallow_land ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                     </div>
                                                     <div class="mt-2 col-md-4">
                                                         <label class="form-label">(5) Share:</label>
@@ -1791,6 +1791,7 @@ $('#lined_unlined').change(function() {
                     cnic_issue_date: $('#cnic_issue_date').val(),
                     mobile: $('#mobile').val(),
                     cnic_of_next_kin: $('#cnic_of_next_kin').val(),
+                    total_fallow_land: $('#total_fallow_land').val(),
                 };
 
 
@@ -2212,7 +2213,13 @@ map.setMaxZoom(22);  // Maximum zoom level
 
     function calculateArea() {
     if (lineCoordinates.length < 3) {
-        alert("At least 3 points are required to calculate the area!");
+        $_html = "At least 3 points are required to calculate the area!";
+        Swal.fire({
+            title: "Errors!",
+            // text: "You clicked the button!",
+            icon: "error",
+            html: $_html
+        });
         return;
     }
 
@@ -2229,10 +2236,24 @@ map.setMaxZoom(22);  // Maximum zoom level
     let areaAcres = areaSqMeters * 0.000247105; // 1 sq meter = 0.000247105 acres
     let areaSqYards = areaSqMeters * 1.19599; // 1 sq meter = 1.19599 square yards
 
+    input_acre  = $('#total_fallow_land').val();
+
+    if (parseInt(areaAcres.toFixed(0)) > input_acre) {
+        // alert();
+        Swal.fire({
+            title: "Errors!",
+            // text: "You clicked the button!",
+            icon: "error",
+            html: `Your Total Fallow Land is ${input_acre} Acre, but you have selected an area of ${areaAcres.toFixed(0)} acres. Please ensure you select the correct geo-fencing points.`
+        });
+        return;
+    }
+
 
     $('#sq_meters').html('Sq Meters: '+areaSqMeters.toFixed(2));
     $('#sq_yards').html('Sq Yards: '+areaSqYards.toFixed(2));
     $('#acres').html('Acres: '+areaAcres.toFixed(4));
+
 
 
     $('#sq_meters_hidden').val(areaSqMeters.toFixed(2));
