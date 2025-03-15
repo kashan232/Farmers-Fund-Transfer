@@ -98,10 +98,8 @@ class ProjectAPIController extends Controller
 
     public function get_farmer()
     {
-        $farmers = LandRevenueFarmerRegistation::all();
-
+        $farmers = LandRevenueFarmerRegistation::paginate(10);
         return response()->json(['farmers' => $farmers], 200);
-
     }
 
 
