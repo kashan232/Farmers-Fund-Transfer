@@ -326,6 +326,8 @@ class FieldOfficerPanelController extends Controller
 
 
             $data = $request->all();
+
+            // dd($data);
             $data = $request->except(['_token', 'edit_id', 'old_front_id_card','old_back_id_card','old_form_seven_pic','old_upload_land_proof','old_upload_farmer_pic','old_upload_other_attach']);
 
 

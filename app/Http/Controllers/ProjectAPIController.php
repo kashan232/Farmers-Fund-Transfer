@@ -6,6 +6,7 @@ use App\Models\District;
 use App\Models\OnlineFarmerRegistration;
 use App\Models\Tappa;
 use App\Models\Tehsil;
+use App\Models\LandRevenueFarmerRegistation;
 use App\Models\UC;
 use App\Models\User;
 use Carbon\Carbon;
@@ -95,6 +96,13 @@ class ProjectAPIController extends Controller
         return response()->json(['tehsils' => $tehsils], 200);
     }
 
+    public function get_farmer()
+    {
+        $farmers = LandRevenueFarmerRegistation::all();
+
+        return response()->json(['farmers' => $farmers], 200);
+
+    }
 
 
 
@@ -136,23 +144,23 @@ class ProjectAPIController extends Controller
 
             // Title information
             'survey_no' => 'sometimes|nullable|string',
-            'title_name' => 'sometimes|nullable|string',
-            'title_father_name' => 'sometimes|nullable|string',
-            'title_cnic' => 'sometimes|nullable|string|min:13|max:13',
-            'title_number' => 'sometimes|nullable|string',
-            'title_area' => 'sometimes|nullable|string',
+            // 'title_name' => 'sometimes|nullable|array',
+            // 'title_father_name' => 'sometimes|nullable|array',
+            // 'title_cnic' => 'sometimes|nullable|array',
+            // 'title_number' => 'sometimes|nullable|array',
+            // 'title_area' => 'sometimes|nullable|array',
 
-            // Crop details
-            'crop_season' => 'sometimes|nullable|string',
-            'crops' => 'sometimes|nullable|string',
-            'crops_orchard' => 'sometimes|nullable|string',
-            'crop_area' => 'sometimes|nullable|string',
-            'crop_average_yeild' => 'sometimes|nullable|string',
+            // // Crop details
+            // 'crop_season' => 'sometimes|nullable|array',
+            // 'crops' => 'sometimes|nullable|array',
+            // 'crops_orchard' => 'sometimes|nullable|array',
+            // 'crop_area' => 'sometimes|nullable|array',
+            // 'crop_average_yeild' => 'sometimes|nullable|array',
 
-            // Assets & animals
-            'physical_asset_item' => 'sometimes|nullable|string',
-            'animal_name' => 'sometimes|nullable|string',
-            'animal_qty' => 'sometimes|nullable|integer',
+            // // Assets & animals
+            // 'physical_asset_item' => 'sometimes|nullable|array',
+            // 'animal_name' => 'sometimes|nullable|array',
+            // 'animal_qty' => 'sometimes|nullable|array',
 
             // Irrigation
             'source_of_irrigation' => 'sometimes|nullable|string',
@@ -222,12 +230,14 @@ class ProjectAPIController extends Controller
 
 
             $data['user_type'] = $request->user_type;
+
+
             if( $data['user_type'] != 'Online'){
 
-                $data['admin_or_user_id'] = Auth::id();
-                $data['land_emp_id'] = Auth()->user()->user_id;
+                $data['admin_or_user_id'] = $request->user_id;
+                $data['land_emp_id'] = $request->user_id;
 
-                $data['land_emp_name'] = Auth()->user()->name;
+                $data['land_emp_name'] = $request->username;
             }
 
 
