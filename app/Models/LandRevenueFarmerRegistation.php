@@ -88,7 +88,8 @@ class LandRevenueFarmerRegistation extends Model
         'sq_yards',
         'acres',
         'partially_line',
-        'surname'
+        'surname',
+        'no_objection_affidavit_pic'
 
     ];
 

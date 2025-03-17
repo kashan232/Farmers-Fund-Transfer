@@ -61,7 +61,7 @@
                                         @csrf
 
                                         <input class="form-control" type="hidden" readonly value="{{ $district }}" name="district">
-                                        <input class="form-control" type="hidden" readonly value="{{ $tehsil[0] }}" name="tehsil">
+                                        <input class="form-control" type="hidden" readonly value="{{ $tehsil }}" name="tehsil">
 
                                         <div class="row mt-2">
 
