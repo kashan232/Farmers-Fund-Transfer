@@ -172,11 +172,11 @@ Route::post('/update-district/{id}', [DistrictController::class, 'update_distric
 //FieldOfficer
 Route::get('/all-field-officers', [FieldOfficerController::class, 'index'])->name('all-field-officers');
 Route::get('/create-field-officer', [FieldOfficerController::class, 'create'])->name('create-field-officer');
-Route::post('/store-field-officer-by-admin', [FieldOfficerController::class, 'store'])->name('store-field-officer-by-admin');
+Route::post('/store-field-officer-by-admin', [FieldOfficerController::class, 'store'])->name('stores-field-officer-by-admin');
 Route::get('/edit-field-officer/{id}', [FieldOfficerController::class, 'edit'])->name('edit-field-officer');
 
 Route::get('/FA-upload-excel', [FieldOfficerController::class, 'upload_excel'])->name('FA-upload-excel');
-Route::post('/store-field-officer-by-admin', [FieldOfficerController::class, 'storeFieldOfficer'])->name('store-field-officer-by-admin');
+Route::post('/store-field-officers-by-admin', [FieldOfficerController::class, 'storeFieldOfficer'])->name('store-field-officer-by-admin');
 
 //tehsil
 Route::get('/add-tehsil', [TehsilController::class, 'add_tehsil'])->name('add-tehsil');
