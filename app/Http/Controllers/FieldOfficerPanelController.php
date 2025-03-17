@@ -440,6 +440,15 @@ class FieldOfficerPanelController extends Controller
                 $data['form_seven_pic'] = $form_seven_pic_image_name;
             }
 
+            if ($request->hasFile('no_objection_affidavit_pic')) {
+                $no_objection_affidavit_pic_image = $request->file('no_objection_affidavit_pic');
+                $no_objection_affidavit_pic_image_name = time() . '_' . uniqid() . '.' . $no_objection_affidavit_pic_image->getClientOriginalExtension();
+                $no_objection_affidavit_pic_image->move(public_path('fa_farmers/no_objection_affidavit_pic'), $no_objection_affidavit_pic_image_name);
+                $data['no_objection_affidavit_pic'] = $no_objection_affidavit_pic_image_name;
+            }
+
+
+
             // dd($data);
 
             if ($request->edit_id && $request->edit_id != '') {

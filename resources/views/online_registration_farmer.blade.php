@@ -1013,7 +1013,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <input type="hidden" name="GpsCordinates" id="GpsCordinates">
                                                 </div>
-                                                <div class="mb-6 col-md-6">
+                                                {{-- <div class="mb-6 col-md-6">
                                                     <!-- Button trigger modal --><h6>Geo Fencing <span class="text-danger">*</span></h6>
                                                     <label class="form-label">Geo Fencing of Agriculture land</label><br>
 
@@ -1032,7 +1032,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
 
 
-                                                </div>
+                                                </div> --}}
                                                 <style>
                                                     #map {
                                                         height: 500px;
@@ -1226,6 +1226,24 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                           <img class="preview" src=" @if(isset($data) && $data->upload_other_attach != null) {{asset('').'fa_farmers/upload_other_attach/'.$data->upload_other_attach}} @endif"  @if(isset($data) && $data->upload_other_attach != null) style="display: unset " @endif>
                                                           <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_other_attach != null) style="display: none " @endif>Upload</button>
                                                           <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->upload_other_attach != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
+                                                      </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
+                                                      <div class="text-center image-upload-card">
+                                                          <h6 class="mb-4">No Objection Affidavit in case of joint ownership / khata</h6>
+                                                          @if(isset($data) && $data->no_objection_affidavit_pic != null) <input type="hidden"  class="old_image " name="old_no_objection_affidavit_pic" value="1" > @endif
+                                                          <input type="file"  class="image-input" name="no_objection_affidavit_pic" accept="image/*" hidden>
+                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: none " @endif   >
+                                                              <i class='bx bxs-cloud-upload icon' ></i>
+                                                              <p>Image size must be <span>500KB</span></p>
+                                                          </div>
+                                                          <img class="preview" src=" @if(isset($data) && $data->no_objection_affidavit_pic != null) {{asset('').'fa_farmers/no_objection_affidavit_pic/'.$data->no_objection_affidavit_pic}} @endif"  @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: unset " @endif>
+                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: none " @endif>Upload</button>
+                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
                                                       </div>
                                                     </div>
                                                 </div>
@@ -1791,7 +1809,7 @@ $('#lined_unlined').change(function() {
                     cnic_issue_date: $('#cnic_issue_date').val(),
                     mobile: $('#mobile').val(),
                     cnic_of_next_kin: $('#cnic_of_next_kin').val(),
-                    total_fallow_land: $('#total_fallow_land').val(),
+                    // total_fallow_land: $('#total_fallow_land').val(),
                 };
 
 
@@ -1855,7 +1873,7 @@ $('#lined_unlined').change(function() {
                 }
 
                 let step4_formdata = {
-                    FancingCoordinates: $('#FancingCoordinates').val(),
+                 // FancingCoordinates: $('#FancingCoordinates').val(),
                     GpsCordinates: $('#GpsCordinates').val(),
                 };
 
