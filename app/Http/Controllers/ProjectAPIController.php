@@ -224,7 +224,7 @@ class ProjectAPIController extends Controller
 
 
             $data = $request->all();
-            $data = $request->except(['_token', 'edit_id', 'old_front_id_card','old_back_id_card','old_form_seven_pic','old_upload_land_proof','old_upload_farmer_pic','old_upload_other_attach']);
+            $data = $request->except(['_token', 'edit_id', 'old_front_id_card','old_back_id_card','old_form_seven_pic','old_upload_land_proof','old_upload_farmer_pic','old_upload_other_attach','old_no_objection_affidavit_pic']);
 
 
             $data['user_type'] = $request->user_type;
@@ -269,14 +269,19 @@ class ProjectAPIController extends Controller
 
 
 
-            $data['acres'] = $request->acres_hidden;
-            $data['sq_yards'] = $request->sq_yards_hidden;
-            $data['sq_meters'] = $request->sq_meters_hidden;
+            // $data['acres'] = $request->acres_hidden;
+            // $data['sq_yards'] = $request->sq_yards_hidden;
+            // $data['sq_meters'] = $request->sq_meters_hidden;
 
 
 
 
-
+            if ($request->hasFile('no_objection_affidavit_pic')) {
+                $no_objection_affidavit_pic_image = $request->file('no_objection_affidavit_pic');
+                $no_objection_affidavit_pic_image_name = time() . '_' . uniqid() . '.' . $no_objection_affidavit_pic_image->getClientOriginalExtension();
+                $no_objection_affidavit_pic_image->move(public_path('fa_farmers/no_objection_affidavit_pic'), $no_objection_affidavit_pic_image_name);
+                $data['no_objection_affidavit_pic'] = $no_objection_affidavit_pic_image_name;
+            }
 
 
 
