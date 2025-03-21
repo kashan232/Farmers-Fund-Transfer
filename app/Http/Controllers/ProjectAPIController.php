@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Validator;
 class ProjectAPIController extends Controller
 {
 
-    public function app_login(Request $request)
+    public function login_api(Request $request)
     {
         // $request->validate([
         //     'email' => 'required|email',
