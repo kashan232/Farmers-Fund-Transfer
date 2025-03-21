@@ -1258,6 +1258,7 @@
                     reasonBox.hide();
                     $('#reasonTextarea').prop('required', false);
                     $('#other_reason_Box').hide();
+                    $('#reasonTextarea').val('');
                 }
             });
 
