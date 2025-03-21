@@ -12,7 +12,7 @@ class BankBranchController extends Controller
 {
     public function index(){
         $cities = City::all();
-        $data = BankBranch::paginate();
+        $data = BankBranch::all();
         return view('admin_panel.bankbranches.index',['data' => $data, 'cities' => $cities]);
     }
 

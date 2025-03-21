@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class CityController extends Controller
 {
     public function index(){
-        $data = City::paginate();
+        $data = City::all();
         return view('admin_panel.city.index',['data' => $data]);
     }
 
