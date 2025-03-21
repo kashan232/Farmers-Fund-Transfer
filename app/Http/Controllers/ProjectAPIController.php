@@ -116,6 +116,7 @@ class ProjectAPIController extends Controller
 
     public function store_farmer(Request $request)
     {
+        \Log::info($request->all);
 
         $rules = [
             // Required fields
