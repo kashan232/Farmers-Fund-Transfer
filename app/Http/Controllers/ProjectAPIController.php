@@ -256,7 +256,7 @@ class ProjectAPIController extends Controller
             $data['title_number'] = json_encode($request->title_number);
             $data['title_area'] = json_encode($request->title_area);
 
-            $data['owner_type'] = json_encode($request->owner_type);
+            $data['owner_type'] = $request->owner_type;
 
             $data['crop_season'] = json_encode($request->crop_season);
             $data['crops'] = json_encode($request->crops);
