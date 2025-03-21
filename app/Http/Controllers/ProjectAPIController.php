@@ -6,21 +6,35 @@ use App\Models\District;
 use App\Models\OnlineFarmerRegistration;
 use App\Models\Tappa;
 use App\Models\Tehsil;
+use App\Models\LandRevenueFarmerRegistation;
 use App\Models\UC;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Validator;
 class ProjectAPIController extends Controller
 {
 
     public function app_login(Request $request)
     {
-        $request->validate([
+        // $request->validate([
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+        // ]);
+
+        $credentials = $request->only('email', 'password');
+
+        //valid credential
+        $validator = Validator::make($credentials, [
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required'
         ]);
+
+        //Send failed response if request is not valid
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()], 200);
+        }
 
         $email = $request->email;
         $password = $request->password;
@@ -81,6 +95,298 @@ class ProjectAPIController extends Controller
         // Return the tehsils as a JSON response
         return response()->json(['tehsils' => $tehsils], 200);
     }
+
+
+
+    public function get_farmer($search = null)
+    {
+        $query = LandRevenueFarmerRegistation::query();
+
+        if ($search) {
+            $query->where('cnic', $search);
+        }
+
+        $farmers = $search ? $query->get() : $query->paginate(10);
+
+        return response()->json(['farmers' => $farmers], 200);
+    }
+
+
+
+
+    public function store_farmer(Request $request)
+    {
+
+        $rules = [
+            // Required fields
+            'name' => 'required|string',
+            'father_name' => 'required|string',
+            'cnic' => 'required|string',
+            'cnic_issue_date' => 'required|date',
+            'cnic_expiry_date' => 'required|date',
+            'mobile' => 'required|string',
+            'district' => 'required|string',
+            'tehsil' => 'required|string',
+            'uc' => 'required|string',
+            'tappa' => 'required|string',
+            'dah' => 'required|string',
+            'village' => 'required|string',
+            'gender' => 'required|in:male,female,other',
+            'house_type' => 'required|string',
+            'owner_type' => 'required|string',
+            'full_name_of_next_kin' => 'required|string',
+            'cnic_of_next_kin' => 'required|string',
+            'mobile_of_next_kin' => 'required|string',
+
+            // Numeric fields (nullable but must be a number if provided)
+            'female_children_under16' => 'sometimes|nullable|integer',
+            'female_Adults_above16' => 'sometimes|nullable|integer',
+            'male_children_under16' => 'sometimes|nullable|integer',
+            'male_Adults_above16' => 'sometimes|nullable|integer',
+            'total_landing_acre' => 'sometimes|nullable|numeric',
+            'total_area_with_hari' => 'sometimes|nullable|numeric',
+            'total_area_cultivated_land' => 'sometimes|nullable|numeric',
+            'total_fallow_land' => 'sometimes|nullable|numeric',
+            'land_share' => 'sometimes|nullable|string',
+            'land_area_as_per_share' => 'sometimes|nullable|numeric',
+
+            // Title information
+            'survey_no' => 'sometimes|nullable|string',
+            // 'title_name' => 'sometimes|nullable|array',
+            // 'title_father_name' => 'sometimes|nullable|array',
+            // 'title_cnic' => 'sometimes|nullable|array',
+            // 'title_number' => 'sometimes|nullable|array',
+            // 'title_area' => 'sometimes|nullable|array',
+
+            // // Crop details
+            // 'crop_season' => 'sometimes|nullable|array',
+            // 'crops' => 'sometimes|nullable|array',
+            // 'crops_orchard' => 'sometimes|nullable|array',
+            // 'crop_area' => 'sometimes|nullable|array',
+            // 'crop_average_yeild' => 'sometimes|nullable|array',
+
+            // // Assets & animals
+            // 'physical_asset_item' => 'sometimes|nullable|array',
+            // 'animal_name' => 'sometimes|nullable|array',
+            // 'animal_qty' => 'sometimes|nullable|array',
+
+            // Irrigation
+            'source_of_irrigation' => 'sometimes|nullable|string',
+            'source_of_irrigation_engery' => 'sometimes|nullable|string',
+
+            // Area & line status
+            'area_length' => 'sometimes|nullable|numeric',
+            'line_status' => 'sometimes|nullable|string',
+            'lined_length' => 'sometimes|nullable|numeric',
+            'total_command_area' => 'sometimes|nullable|numeric',
+
+            // Banking details
+            'account_title' => 'sometimes|nullable|string',
+            'account_no' => 'sometimes|nullable|string',
+            'bank_name' => 'sometimes|nullable|string',
+            'branch_name' => 'sometimes|nullable|string',
+            'IBAN_number' => 'sometimes|nullable|string',
+            'branch_code' => 'sometimes|nullable|string',
+
+            // File uploads (conditionally required if old values are not set)
+            'front_id_card' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            'back_id_card' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            'upload_land_proof' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            'upload_other_attach' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            'upload_farmer_pic' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            'upload_cheque_pic' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            'form_seven_pic' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+
+            // Verification
+            'verification_status' => 'sometimes|nullable|string',
+            'declined_reason' => 'sometimes|nullable|string',
+            'verification_by' => 'sometimes|nullable|string',
+
+            // Coordinates
+            'GpsCordinates' => 'sometimes|nullable|string',
+            'FancingCoordinates' => 'sometimes|nullable|string',
+
+            // Measurement units
+            'sq_meters' => 'sometimes|nullable|numeric',
+            'sq_yards' => 'sometimes|nullable|numeric',
+            'acres' => 'sometimes|nullable|numeric',
+
+            // Miscellaneous
+            'partially_line' => 'sometimes|nullable|string',
+            'surname' => 'sometimes|nullable|string',
+        ];
+
+        // Validation
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors()->toArray();
+
+            // Ensure all fields appear in the response even if no error
+            foreach (array_keys($rules) as $field) {
+                if (!isset($errors[$field])) {
+                    $errors[$field] = [];
+                }
+            }
+
+            return response()->json(['errors' => $errors], 422);
+        }
+
+
+            $data = $request->all();
+            $data = $request->except(['_token', 'edit_id', 'old_front_id_card','old_back_id_card','old_form_seven_pic','old_upload_land_proof','old_upload_farmer_pic','old_upload_other_attach','old_no_objection_affidavit_pic']);
+
+
+            $data['user_type'] = $request->user_type;
+
+
+            if( $data['user_type'] != 'Online'){
+
+                $data['admin_or_user_id'] = $request->user_id;
+                $data['land_emp_id'] = $request->user_id;
+
+                $data['land_emp_name'] = $request->username;
+            }
+
+
+            $data['title_name'] = json_encode($request->title_name);
+            $data['title_father_name'] = json_encode($request->title_name);
+            $data['title_cnic'] = json_encode($request->title_cnic);
+            $data['title_number'] = json_encode($request->title_number);
+            $data['title_area'] = json_encode($request->title_area);
+
+            $data['owner_type'] = json_encode($request->owner_type);
+
+            $data['crop_season'] = json_encode($request->crop_season);
+            $data['crops'] = json_encode($request->crops);
+            $data['crops_orchard'] = json_encode($request->crops_orchard);
+            $data['crop_area'] = json_encode($request->crop_area);
+            $data['crop_average_yeild'] = json_encode($request->crop_average_yeild);
+
+            $data['physical_asset_item'] = json_encode($request->physical_asset_item);
+
+            $data['animal_name'] = json_encode($request->animal_name);
+            $data['animal_qty'] = json_encode($request->animal_qty);
+
+
+            $data['source_of_irrigation'] = json_encode($request->source_of_irrigation);
+            $data['source_of_irrigation_engery'] = json_encode($request->source_of_irrigation_engery);
+
+
+            $data['verification_status'] = null;
+            $data['declined_reason'] = null;
+
+
+
+
+            // $data['acres'] = $request->acres_hidden;
+            // $data['sq_yards'] = $request->sq_yards_hidden;
+            // $data['sq_meters'] = $request->sq_meters_hidden;
+
+
+
+
+            if ($request->hasFile('no_objection_affidavit_pic')) {
+                $no_objection_affidavit_pic_image = $request->file('no_objection_affidavit_pic');
+                $no_objection_affidavit_pic_image_name = time() . '_' . uniqid() . '.' . $no_objection_affidavit_pic_image->getClientOriginalExtension();
+                $no_objection_affidavit_pic_image->move(public_path('fa_farmers/no_objection_affidavit_pic'), $no_objection_affidavit_pic_image_name);
+                $data['no_objection_affidavit_pic'] = $no_objection_affidavit_pic_image_name;
+            }
+
+
+
+
+
+             // Handle front ID card image
+            if ($request->hasFile('front_id_card')) {
+                $front_id_cardimage = $request->file('front_id_card');
+                $front_id_cardimageName = time() . '_' . uniqid() . '.' . $front_id_cardimage->getClientOriginalExtension();
+                $front_id_cardimage->move(public_path('fa_farmers/front_id_card'), $front_id_cardimageName);
+                $data['front_id_card'] = $front_id_cardimageName;
+            }
+
+            // Handle back ID card image
+            if ($request->hasFile('back_id_card')) {
+                $back_id_cardimage = $request->file('back_id_card');
+                $back_id_cardimageName = time() . '_' . uniqid() . '.' . $back_id_cardimage->getClientOriginalExtension();
+                $back_id_cardimage->move(public_path('fa_farmers/back_id_card'), $back_id_cardimageName);
+                $data['back_id_card'] = $back_id_cardimageName;
+            }
+
+            // Handle upload land proof image
+            if ($request->hasFile('upload_land_proof')) {
+                $upload_land_proofimage = $request->file('upload_land_proof');
+                $upload_land_proofimageName = time() . '_' . uniqid() . '.' . $upload_land_proofimage->getClientOriginalExtension();
+                $upload_land_proofimage->move(public_path('fa_farmers/upload_land_proof'), $upload_land_proofimageName);
+                $data['upload_land_proof'] = $upload_land_proofimageName;
+            }
+
+            // Handle other attachments image
+            if ($request->hasFile('upload_other_attach')) {
+                $upload_other_attachimage = $request->file('upload_other_attach');
+                $upload_other_attachimageName = time() . '_' . uniqid() . '.' . $upload_other_attachimage->getClientOriginalExtension();
+                $upload_other_attachimage->move(public_path('fa_farmers/upload_other_attach'), $upload_other_attachimageName);
+                $data['upload_other_attach'] = $upload_other_attachimageName;
+            }
+
+            // Handle farmer picture image
+            if ($request->hasFile('upload_farmer_pic')) {
+                $upload_farmer_picimage = $request->file('upload_farmer_pic');
+                $upload_farmer_picimageName = time() . '_' . uniqid() . '.' . $upload_farmer_picimage->getClientOriginalExtension();
+                $upload_farmer_picimage->move(public_path('fa_farmers/upload_farmer_pic'), $upload_farmer_picimageName);
+                $data['upload_farmer_pic'] = $upload_farmer_picimageName;
+            }
+
+            // Handle cheque picture image
+            if ($request->hasFile('upload_cheque_pic')) {
+                $upload_cheque_picimage = $request->file('upload_cheque_pic');
+                $upload_cheque_picimageName = time() . '_' . uniqid() . '.' . $upload_cheque_picimage->getClientOriginalExtension();
+                $upload_cheque_picimage->move(public_path('fa_farmers/upload_cheque_pic'), $upload_cheque_picimageName);
+                $data['upload_cheque_pic'] = $upload_cheque_picimageName;
+            }
+
+            // Handle cheque picture image
+            if ($request->hasFile('form_seven_pic')) {
+                $form_seven_pic_image = $request->file('form_seven_pic');
+                $form_seven_pic_image_name = time() . '_' . uniqid() . '.' . $form_seven_pic_image->getClientOriginalExtension();
+                $form_seven_pic_image->move(public_path('fa_farmers/form_seven_pic'), $form_seven_pic_image_name);
+                $data['form_seven_pic'] = $form_seven_pic_image_name;
+            }
+
+            // dd($data);
+
+
+
+
+            try {
+
+                if ($request->edit_id && $request->edit_id != '') {
+                    LandRevenueFarmerRegistation::where('id', $request->edit_id)->update($data);
+                    // return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Updated');
+                    return ['success' => 'Farmer Data Updated Succesfully..!'];
+                } else {
+                    $farmer = LandRevenueFarmerRegistation::create($data);
+                    // return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Registered');
+                    if ($farmer) {
+                        return response()->json(['success' => 'Farmer Data Submitted Successfully..!'], 200);
+                    } else {
+                        return response()->json(['error' => 'Failed to store farmer data.'], 500);
+                    }
+                }
+
+
+
+            } catch (\Exception $e) {
+                \Log::error('Farmer Store Error: ' . $e->getMessage());
+                return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+            }
+
+
+
+
+    }
+
+
 
 
     public function api_store_online_farmers_registration(Request $request)

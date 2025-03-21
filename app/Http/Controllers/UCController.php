@@ -64,7 +64,7 @@ class UCController extends Controller
     public function getTehsils(Request $request)
     {
         $district = $request->input('district');
-        $tehsils = Tehsil::where('district', $district)->pluck('tehsil')->toArray(); // Adjust according to your database schema
+        $tehsils = Tehsil::where('district', $district)->orderBy('tehsil', 'asc')->pluck('tehsil')->toArray(); // Adjust according to your database schema
 
         return response()->json($tehsils);
     }

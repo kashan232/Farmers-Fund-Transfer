@@ -150,13 +150,28 @@ class FieldOfficerPanelController extends Controller
         $user = User::find(Auth::id());
         $farmer = LandRevenueFarmerRegistation::find($request->farmer_id);
         // Update farmer verification status
+
+
+
         $farmer->verification_status = $request->verification_status;
         if ($request->verification_status == 'rejected_by_fa') {
-            $farmer->declined_reason = $request->declined_reason;
+
+            if($request->declined_reason == 'other')
+            {
+                $farmer->declined_reason = $request->declined_reason;
+            }
+            else{
+                $farmer->declined_reason = $request->declined_reason;
+            }
+
+
         }
         else{
             $farmer->declined_reason = null;
         }
+
+
+
         $farmer->verification_by = $user->id;
         $farmer->save();
         return redirect()->route('farmers-list-field-officer')->with('farmers-registered', 'Done');
@@ -311,7 +326,9 @@ class FieldOfficerPanelController extends Controller
 
 
             $data = $request->all();
-            $data = $request->except(['_token', 'edit_id', 'old_front_id_card','old_back_id_card','old_form_seven_pic','old_upload_land_proof','old_upload_farmer_pic','old_upload_other_attach']);
+
+            // dd($data);
+            $data = $request->except(['_token', 'edit_id', 'old_front_id_card','old_back_id_card','old_form_seven_pic','old_upload_land_proof','old_upload_farmer_pic','old_upload_other_attach','old_no_objection_affidavit_pic']);
 
 
             $data['user_type'] = $request->user_type;
@@ -422,6 +439,15 @@ class FieldOfficerPanelController extends Controller
                 $form_seven_pic_image->move(public_path('fa_farmers/form_seven_pic'), $form_seven_pic_image_name);
                 $data['form_seven_pic'] = $form_seven_pic_image_name;
             }
+
+            if ($request->hasFile('no_objection_affidavit_pic')) {
+                $no_objection_affidavit_pic_image = $request->file('no_objection_affidavit_pic');
+                $no_objection_affidavit_pic_image_name = time() . '_' . uniqid() . '.' . $no_objection_affidavit_pic_image->getClientOriginalExtension();
+                $no_objection_affidavit_pic_image->move(public_path('fa_farmers/no_objection_affidavit_pic'), $no_objection_affidavit_pic_image_name);
+                $data['no_objection_affidavit_pic'] = $no_objection_affidavit_pic_image_name;
+            }
+
+
 
             // dd($data);
 

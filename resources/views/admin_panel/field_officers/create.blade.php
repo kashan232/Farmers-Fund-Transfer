@@ -64,7 +64,7 @@
                         @endif
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="{{ route('store-field-officer-by-admin') }}" method="post">
+                                <form action="{{ route('stores-field-officer-by-admin') }}" method="post">
                                     @csrf
 
                                     @if(isset($field_officer))

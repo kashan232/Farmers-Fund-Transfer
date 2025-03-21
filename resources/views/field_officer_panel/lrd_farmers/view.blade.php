@@ -181,9 +181,16 @@
                                 <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                 <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                 <option value="Attachments are not cleared">Attachments are not cleared</option>
-
+                                <option value="other">Other</option>
                             </select>
                         </div>
+                        <div class="form-group" id="other_reason_Box" style="display: none">
+                            <label for="reasonTextarea">Other Reason:</label>
+                            <textarea name="other_reason" id="other_reason" class="form-control">
+
+                            </textarea>
+                        </div>
+
                         <button type="submit" class="btn btn-primary mt-3">Save</button>
                     </form>
 
@@ -191,7 +198,7 @@
                     <form id="verifyfarmers" action="{{ route('verify-farmer-by-fa') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="statusSelect">Status</label>
+                            <label for="statusSelect">Status:</label>
                             <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
                             <select class="form-control" id="statusSelect" name="verification_status">
                                 <option value="verified_by_fa">Verified</option>
@@ -199,13 +206,20 @@
                             </select>
                         </div>
                         <div class="form-group" id="reasonBox" style="display: none;">
-                            <label for="reasonTextarea">Reason</label>
+                            <label for="reasonTextarea">Reason:</label>
                             <select id="reasonTextarea" name="declined_reason" class="form-control js-example-basic-single" >
                                 <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                 <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                 <option value="Attachments are not cleared">Attachments are not cleared</option>
+                                <option value="other">Other</option>
 
                             </select>
+                        </div>
+                        <div class="form-group" id="other_reason_Box" style="display: none">
+                            <label for="reasonTextarea">Other Reason:</label>
+                            <textarea name="other_reason" id="other_reason" class="form-control">
+
+                            </textarea>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Save</button>
                     </form>
@@ -963,10 +977,10 @@
                                     <span> <b>GPS Coordinates : </b></span> <span
                                         style="border-bottom: 1px solid black;">{{ $data->GpsCordinates }}</span>
                                 </td>
-                                <td colspan="4" style="border: none !important">
+                                {{-- <td colspan="4" style="border: none !important">
                                     <span> <b>Q24. &nbsp;&nbsp; GEO Fancing : </b> </span> <span
                                         >{{ 'Sq Yards: '. $data->sq_yards .' ,  Sq Meters: '.$data->sq_meters.' , Acres: '.$data->acres}}</span>
-                                </td>
+                                </td> --}}
 
                             </tr>
 
@@ -975,7 +989,7 @@
                                 <th colspan="8" class="p-3">SECTION II. DOCUMENT UPLOADED / COLLECTED</th>
                             </tr>
                             <tr>
-                                <th class="question" rowspan="6"> Q29.</th>
+                                <th class="question" rowspan="7"> Q29.</th>
                                 <td colspan="8"><b>Documents Collected :</b></td>
                             </tr>
 
@@ -1165,7 +1179,34 @@
                             </td>
                            </tr>
 
+ <tr>
+                            <td colspan="8" style="border: none;"> <b>7. No Objection Affidavit in case of joint ownership / khata: </b></span> <br>
+ {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
+ @if ($data->no_objection_affidavit_pic != null)
+ @php
+     // Assuming no_objection_affidavit_pic contains the path to the image file
+     $imagePath = public_path(
+         'fa_farmers/no_objection_affidavit_pic/' . $data->no_objection_affidavit_pic,
+     );
 
+     // Check if the image exists before encoding
+     if (file_exists($imagePath)) {
+         $imageData = base64_encode(file_get_contents($imagePath));
+         $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+     } else {
+         $imageSrc = '';
+     }
+ @endphp
+
+ @if ($imageSrc)
+     <img src="{{ $imageSrc }}"  alt="Front ID Card"
+     style="width:80%">
+ @else
+     <p>Image not found</p>
+ @endif
+@endif
+                            </td>
+                           </tr>
                             </table>
                     </div>
                 </div>
@@ -1209,7 +1250,7 @@
                 var reasonBox = $('#reasonBox');
 
 
-                if ($(this).val() == 'rejected_by_ao' || $(this).val() == 'rejected_by_dd' || $(this).val() == 'rejected_by_lo' ) {
+                if ($(this).val() == 'rejected_by_fa' || $(this).val() == 'rejected_by_ao' || $(this).val() == 'rejected_by_dd' || $(this).val() == 'rejected_by_lo' ) {
                     reasonBox.show();
                     $('#reasonTextarea').prop('required', true);
 
@@ -1218,6 +1259,19 @@
                     $('#reasonTextarea').prop('required', false);
                 }
             });
+
+
+            $('body').on('change','#reasonTextarea', function() {
+
+                if ($(this).val() == 'other' ) {
+                    $('#other_reason_Box').show(); // Uses inline style display:block (not flex)
+                } else {
+                    $('#other_reason_Box').hide(); // Uses inline style display:block (not flex)
+
+                }
+            });
+
+
         });
 
 

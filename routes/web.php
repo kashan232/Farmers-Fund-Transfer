@@ -34,26 +34,19 @@ use App\Http\Controllers\FieldOfficerPanelController;
 use App\Http\Controllers\AgricultureOfficerPanelController;
 use App\Models\AgricultureOfficer;
 use App\Models\District;
+use App\Models\City;
 use App\Models\DistrictOfficer;
 use App\Models\FieldOfficer;
 use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Route;
 use App\Models\LandRevenueFarmerRegistation;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\CityController;
+use App\Models\BankBranch;
+use App\Http\Controllers\BankBranchController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-// git connect
-// connect
-// connect
+
+
 
 
 
@@ -142,15 +135,20 @@ Route::get('/pdf/report/{id}', function($id){
 
 
 
-
+Route::get('/get-branches/{city_id}', function ($city_id) {
+    $branches = BankBranch::where('city_id', $city_id)->get();
+    return response()->json($branches);
+})->name('get-branches');
 
 
 Route::get('/farmers/registrations', function(){
 
-    $districts = District::all();
+    $districts = District::orderBy('district', 'asc')->get(); // Assuming you want to sort by name
+    $cities = City::all();
     // dd($districts);
     return view('online_registration_farmer' ,[
-        'districts' => $districts
+        'districts' => $districts,
+        'cities' => $cities
     ]);
 });
 
@@ -160,6 +158,17 @@ Route::post('/store-online-farmers-registration', [OnlineFormController::class, 
 
 
 Route::get('/admin-dashboard', [HomeController::class, 'adminpage'])->name('admin-dashboard');
+
+
+//City
+Route::post('/store-city', [CityController::class, 'store'])->name('cities.store');
+Route::get('/all-city', [CityController::class, 'index'])->name('cities');
+
+
+//Branches
+Route::post('/store-bankbranches', [BankBranchController::class, 'store'])->name('bankbranches.store');
+Route::get('/all-bankbranches', [BankBranchController::class, 'index'])->name('bankbranches');
+
 
 //District
 Route::get('/add-district', [DistrictController::class, 'add_district'])->name('add-district');
@@ -171,11 +180,11 @@ Route::post('/update-district/{id}', [DistrictController::class, 'update_distric
 //FieldOfficer
 Route::get('/all-field-officers', [FieldOfficerController::class, 'index'])->name('all-field-officers');
 Route::get('/create-field-officer', [FieldOfficerController::class, 'create'])->name('create-field-officer');
-Route::post('/store-field-officer-by-admin', [FieldOfficerController::class, 'store'])->name('store-field-officer-by-admin');
+Route::post('/store-field-officer-by-admin', [FieldOfficerController::class, 'store'])->name('stores-field-officer-by-admin');
 Route::get('/edit-field-officer/{id}', [FieldOfficerController::class, 'edit'])->name('edit-field-officer');
 
 Route::get('/FA-upload-excel', [FieldOfficerController::class, 'upload_excel'])->name('FA-upload-excel');
-Route::post('/store-field-officer-by-admin', [FieldOfficerController::class, 'storeFieldOfficer'])->name('store-field-officer-by-admin');
+Route::post('/store-field-officers-by-admin', [FieldOfficerController::class, 'storeFieldOfficer'])->name('store-field-officer-by-admin');
 
 //tehsil
 Route::get('/add-tehsil', [TehsilController::class, 'add_tehsil'])->name('add-tehsil');

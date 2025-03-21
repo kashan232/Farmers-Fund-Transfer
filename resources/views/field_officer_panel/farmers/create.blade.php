@@ -280,10 +280,10 @@
 
                             <form id="registrationForm" action="{{ route('farmer-store-by-field-officer') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                @if(isset($data))
+                                
                                 <input type="hidden" value="{{ $data->id ?? '' }}" name="edit_id">
                                 <input type="hidden" value="{{ $data->user_type ?? 'Field_Officer' }}" name="user_type">
-                                @endif
+                                
                                 <div class="step step-1">
                                     <div class="row mt-2">
                                         <h4 class="card-title">Personal Details</h4>
@@ -299,15 +299,28 @@
                                             <label class="form-label">Q2.(B) Surname: <span class="text-danger">*</span></label>
                                             <input type="text" name="surname" id="surname" class="form-control">
                                         </div>
+
+
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
                                             <input type="text" id="cnic" name="cnic" class="form-control" value="{{$data->cnic ?? ''}}"   data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"   >
                                         </div>
-                                        <div class="mb-6 col-md-3 py-2">
+
+                                        <div class="mb-6 col-md-2 py-2">
+                                            <label class="form-label">CNIC Status: <span class="text-danger">*</span></label>
+                                            <select name="cnic_status" id="cnic_status" class="form-control">
+                                                <option value="valid_till" selected>Valid Till</option>
+                                                <option value="life_time">Life Time</option>
+                                            </select>
+                                        </div>
+
+
+
+                                        <div class="mb-6 col-md-2 py-2">
                                             <label class="form-label">CNIC Issue Date.: <span class="text-danger">*</span></label>
                                             <input type="date" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="{{$data->cnic_issue_date ?? ''}}"     >
                                         </div>
-                                        <div class="mb-6 col-md-3 py-2">
+                                        <div class="mb-6 col-md-2 py-2 cnic_expiry_date_div">
                                             <label class="form-label">CNIC Expiry Date.: <span class="text-danger">*</span></label>
                                             <input type="date" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="{{$data->cnic_expiry_date ?? ''}}"     >
                                         </div>
@@ -898,7 +911,7 @@
                                             </div>
                                             <input type="hidden" name="GpsCordinates" id="GpsCordinates">
                                         </div>
-                                        <div class="mb-6 col-md-6">
+                                        {{-- <div class="mb-6 col-md-6">
                                             <!-- Button trigger modal --><h6>Geo Fencing <span class="text-danger">*</span></h6>
                                             <label class="form-label">Geo Fencing of Agriculture land</label><br>
 
@@ -917,7 +930,7 @@
                                             </div>
 
 
-                                        </div>
+                                        </div> --}}
                                         <style>
                                             #map {
                                                 height: 500px;
@@ -1019,31 +1032,6 @@
                                             <h6 class="card-title" style="line-height: 27px;margin-left: 10px;">
                                                 Q29: DOCUMENTS UPLOADED/ COLLECTED</h6>
                                         </div>
-                                        {{-- <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">CNIC FRONT <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                            <input type="file" name="front_id_card" class="form-control checkfiles" onchange="checkFiles()">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">CNIC BACK <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                            <input type="file" name="back_id_card" class="form-control checkfiles" onchange="checkFiles()">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Form VII / Registry from Micro (Mandatory)<span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                            <input type="file" name="form_seven_pic" class="form-control checkfiles" onchange="checkFiles()">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Forms VII A/ Affidavit/ Heirship (Land Documents)  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                            <input type="file" name="upload_land_proof" class="form-control checkfiles" onchange="checkFiles()">
-                                        </div>
-
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Photo  <span class="text-danger" > *</span> <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                            <input type="file" name="upload_farmer_pic" class="form-control checkfiles" onchange="checkFiles()">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-3">
-                                            <label class="form-label">Others<br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg" (IMAGE SIZE MUST BE 500KB)</span> </label>
-                                            <input type="file" name="upload_other_attach" class="form-control " >
-                                        </div> --}}
 
 
                                         <div class="card mb-4 " style="margin: 1%; width:30%">
@@ -1147,7 +1135,22 @@
                                               </div>
                                             </div>
                                         </div>
-
+                                        <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                            <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
+                                              <div class="text-center image-upload-card">
+                                                  <h6 class="mb-4">No Objection Affidavit in case of joint ownership / khata</h6>
+                                                  @if(isset($data) && $data->no_objection_affidavit_pic != null) <input type="hidden"  class="old_image " name="old_no_objection_affidavit_pic" value="1" > @endif
+                                                  <input type="file"  class="image-input" name="no_objection_affidavit_pic" accept="image/*" hidden>
+                                                  <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: none " @endif   >
+                                                      <i class='bx bxs-cloud-upload icon' ></i>
+                                                      <p>Image size must be <span>500KB</span></p>
+                                                  </div>
+                                                  <img class="preview" src=" @if(isset($data) && $data->no_objection_affidavit_pic != null) {{asset('').'fa_farmers/no_objection_affidavit_pic/'.$data->no_objection_affidavit_pic}} @endif"  @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: unset " @endif>
+                                                  <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: none " @endif>Upload</button>
+                                                  <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
+                                              </div>
+                                            </div>
+                                        </div>
 
                                         {{--
                                         <div class="mb-6 col-md-6 mt-3">
@@ -1214,38 +1217,6 @@ $(document).ready(function () {
 
 
 
-        // $(document).on('change','.crop_season', function(event) {
-        //     event.preventDefault();
-        //     $(this).closest('tr').find('.crops_orchard_td').remove();
-        //     if($(this).val() == 'kharif season'){
-        //         $(this).closest('tr').find('.crop_season_td').after(`
-        //         <td class="crops_orchard_td">
-        //             <select name="crops_orchard[]" class=" form-control">
-        //                 <option>Select Orchard</option>
-        //                 <option value="test1">test1</option>
-        //                 <option value="test2">test2</option>
-        //             </select>
-        //         </td>`);
-        //     }
-        //     else if($(this).val() == 'rabi season'){
-        //        $(this).closest('tr').find('.crop_season_td').after(`
-        //         <td class="crops_orchard_td">
-        //             <select name="crops_orchard[]" class=" form-control">
-        //                 <option>Select Orchard</option>
-        //                 <option value="test1">test1</option>
-        //                 <option value="test2">test2</option>
-        //             </select>
-        //         </td>`);
-        //     }
-        //     else{
-        //        $(this).closest('tr').find('.crop_season_td').after(`
-        //         <td class="crops_orchard_td">
-        //             <input type="text" name="crops_orchard[]" class=" form-control">
-        //         </td>`);
-        //     }
-        // });
-
-
          $('#registrationForm').on('submit', function(event) {
             $('#submitbtn').attr('disabled', true); // Disable the submit button
             event.preventDefault();
@@ -1295,131 +1266,41 @@ $(document).ready(function () {
 
             });
 
-            // // Initialize map to Hyderabad, Pakistan with zoom level 13
-            // var map = L.map('map').setView([25.3960, 68.3578], 13); // Coordinates for Hyderabad, Pakistan
-
-            // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            // }).addTo(map);
-
-            // var markers = [];
-            // var lineCoordinates = [];
-            // var polyline;
-
-            // // Function to update hidden input field with coordinates
-            // function updateCoordinatesInput() {
-            //     document.getElementById('FancingCoordinates').value = JSON.stringify(lineCoordinates);
-            // }
-
-            // map.on('click', function(e) {
-            //     var lat = e.latlng.lat;
-            //     var lng = e.latlng.lng;
-
-            //     var marker = L.marker([lat, lng]).addTo(map);
-            //     marker.bindPopup('<b>You clicked at:</b><br>Latitude: ' + lat.toFixed(4) + '<br>Longitude: ' + lng.toFixed(4)).openPopup();
-
-            //     markers.push(marker);
-            //     lineCoordinates.push([lat, lng]);
-
-            //     // If a polyline exists, remove it
-            //     if (polyline) {
-            //         map.removeLayer(polyline);
-            //     }
-
-            //     // If there are at least two markers, draw a polyline
-            //     if (lineCoordinates.length > 1) {
-            //         polyline = L.polyline(lineCoordinates, {
-            //             color: 'blue',
-            //             weight: 4
-            //         }).addTo(map);
-            //     }
-            //     updateCoordinatesInput();
-            // });
-
-            // // Bootstrap modal 'shown' event triggers map resizing
-            // $('#exampleModal').on('shown.bs.modal', function() {
-
-            //     map.invalidateSize(); // This will force the map to recalculate its size once the modal is fully shown
-            // });
-
-            // // Add functionality to remove the last marker
-            // document.getElementById('removeMarkerBtn').addEventListener('click', function() {
-            //     // If there are markers, remove the last one
-            //     if (markers.length > 0) {
-            //         var lastMarker = markers.pop(); // Remove the last marker from the array
-            //         map.removeLayer(lastMarker); // Remove it from the map
-
-            //         lineCoordinates.pop(); // Remove the corresponding coordinate from the polyline
-
-            //         // If there are remaining markers, redraw the polyline
-            //         if (lineCoordinates.length > 1) {
-            //             // Remove old polyline if it exists
-            //             if (polyline) {
-            //                 map.removeLayer(polyline);
-            //             }
-
-            //             // Redraw polyline with remaining markers
-            //             polyline = L.polyline(lineCoordinates, {
-            //                 color: 'blue',
-            //                 weight: 4
-            //             }).addTo(map);
-            //         } else if (polyline) {
-            //             // If only one marker remains, remove the polyline
-            //             map.removeLayer(polyline);
-            //             polyline = null;
-            //         }
-            //         updateCoordinatesInput();
-            //     }
-            // });
         </script>
 
 <script>
 
-// $(document).ready(function() {
-//     $('body').on('change','.crop_season', function() {
-//         const selectedValue = $(this).val();
-//         const $selectElement = $(this);
-
-//         // Find the closest <td> element (the one containing the <select>)
-//         const $closestTd = $selectElement.closest('td');
-
-//         // Find the appended input field inside the <td>
-//         let $nextInput = $closestTd.find('input');
-
-//         // Clear any existing input field if the selection is not 'any_other'
-//         if (selectedValue !== 'any_other') {
-//             if ($nextInput.length) {
-//                 $nextInput.remove(); // Remove the appended input if it exists
-//             }
-//         }
-
-//         // If 'any_other' is selected, append a new input field in the same <td>
-//         if (selectedValue === 'any_other') {
-//             // If an input field is already appended, don't append again
-//             if (!$nextInput.length) {
-//                 const inputField = $('<input>', {
-//                     type: 'text',
-//                     name: 'other_crop_season[]',
-//                     class: 'form-control mt-2',
-//                     placeholder: 'Please specify other season'
-//                 });
-
-//                 // Append the new input field in the same <td> as the <select>
-//                 $closestTd.append(inputField);
-//             }
-//         }
-//     });
-// });
 
 
 $('.js-example-basic-single-no-tag').select2({
 
 });
 
+
+$(document).on('keypress', '.select2-search__field', function(e) {
+    var charCode = e.which ? e.which : e.keyCode;
+    if (charCode >= 48 && charCode <= 57) { // 48-57 are ASCII codes for 0-9
+        return false; // Block numbers
+    }
+});
+
+
+
 $('.js-example-basic-single').select2({
-                    tags: true, // Enable typing custom values
-                    placeholder: "Select or type to add a new option", // Optional placeholder
-                });
+    tags: true, // Enable typing custom values
+    placeholder: "Select or type to add a new option", // Optional placeholder
+    createTag: function(params) {
+        var term = params.term;
+
+        // Allow only letters (A-Z, a-z), no numbers or special characters
+        if (/^[A-Za-z\s]+$/.test(term)) {
+            return { id: term, text: term };
+        }
+
+        // Return null if the input contains numbers or special characters
+        return null;
+    }
+});
 
 
             checkFiles();
@@ -1728,7 +1609,13 @@ $('#lined_unlined').change(function() {
     }
 });
 
-
+$('#cnic_status').on('change', function(event) {
+               if($(this).val() == 'life_time'){
+                    $('.cnic_expiry_date_div').css('display','none');
+               }else{
+                    $('.cnic_expiry_date_div').css('display','unset');
+               }
+            });
 
 
 
@@ -1775,20 +1662,25 @@ $('select[name="tehsil"]').on('change', function() {
 
         function nextStep(step) {
 
-formstep = step - 1;
-errors = '';
+            formstep = step - 1;
+                errors = '';
 
-let step1_formdata = {
-    name: $('#name').val(),
-    father_name: $('#father_name').val(),
-    surname: $('#surname').val(),
-    cnic: $('#cnic').val(),
-    cnic_issue_date: $('#cnic_issue_date').val(),
-    cnic_expiry_date: $('#cnic_expiry_date').val(),
-    mobile: $('#mobile').val(),
-    cnic_of_next_kin: $('#cnic_of_next_kin').val(),
-};
+                let step1_formdata = {
+                    name: $('#name').val(),
+                    father_name: $('#father_name').val(),
+                    surname: $('#surname').val(),
+                    cnic: $('#cnic').val(),
+                    cnic_issue_date: $('#cnic_issue_date').val(),
+                    mobile: $('#mobile').val(),
+                    cnic_of_next_kin: $('#cnic_of_next_kin').val(),
+                    // total_fallow_land: $('#total_fallow_land').val(),
+                };
 
+                if ($('#cnic_status').val() !== 'life_time') {
+                    const expiryDate = $('#cnic_expiry_date').val();
+
+                    step1_formdata.cnic_expiry_date = expiryDate;
+                }
 
 if (formstep == 1) {
 
@@ -1842,7 +1734,7 @@ if (formstep == 1) {
 }
 
 let step4_formdata = {
-    FancingCoordinates: $('#FancingCoordinates').val(),
+    // FancingCoordinates: $('#FancingCoordinates').val(),
     GpsCordinates: $('#GpsCordinates').val(),
 };
 
@@ -1852,7 +1744,11 @@ if (formstep == 4) {
     // Check if any field is empty
     for (const key in step4_formdata) {
         if (step4_formdata[key] === "" || step1_formdata[key] === null) {
-            let formattedKey = key.replace(/_/g, " ");
+            let formattedKey = key
+            .replace(/_/g, " ")                      // Replace underscores with spaces
+            .replace(/([a-z])([A-Z])/g, '$1 $2')    // Add space between lowercase and uppercase letters
+            .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2'); // Add space between two consecutive uppercase letters if followed by lowercase
+
             errors += `<b><span class="text-danger" > ${formattedKey} field is required. </span> </b> <br>`;
 
         }
@@ -2021,6 +1917,9 @@ let step1_formdata = {
             }
         });
     }
+
+
+
 
     // Initialize the first step
     // nextStep(1);

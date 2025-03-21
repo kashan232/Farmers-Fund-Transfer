@@ -824,10 +824,10 @@ table{
                                     <span> <b>GPS Coordinates : </b></span> <span
                                         style="border-bottom: 1px solid black;">{{ $data->GpsCordinates }}</span>
                                 </td>
-                                <td colspan="4" style="border: none !important">
+                                {{-- <td colspan="4" style="border: none !important">
                                     <span> <b>Q24. &nbsp;&nbsp; GEO Fancing : </b> </span> <span
                                         >{{ 'Sq Yards: '. $data->sq_yards .' ,  Sq Meters: '.$data->sq_meters.' , Acres: '.$data->acres}}</span>
-                                </td>
+                                </td> --}}
 
                             </tr>
 
@@ -1007,6 +1007,38 @@ table{
      // Assuming upload_other_attach contains the path to the image file
      $imagePath = public_path(
          'fa_farmers/upload_other_attach/' . $data->upload_other_attach,
+     );
+
+     // Check if the image exists before encoding
+     if (file_exists($imagePath)) {
+         $imageData = base64_encode(file_get_contents($imagePath));
+         $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+     } else {
+         $imageSrc = '';
+     }
+ @endphp
+
+ @if ($imageSrc)
+     <img src="{{ $imageSrc }}"  alt="Front ID Card"
+     style="width:80%">
+ @else
+     <p>Image not found</p>
+ @endif
+@endif
+                            </td>
+                           </tr>
+
+
+
+
+                           <tr>
+                            <td colspan="8" style="border: none;"> <b>7. No Objection Affidavit in case of joint ownership / khata: </b></span> <br>
+ {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
+ @if ($data->no_objection_affidavit_pic != null)
+ @php
+     // Assuming no_objection_affidavit_pic contains the path to the image file
+     $imagePath = public_path(
+         'fa_farmers/no_objection_affidavit_pic/' . $data->no_objection_affidavit_pic,
      );
 
      // Check if the image exists before encoding

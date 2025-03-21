@@ -27,6 +27,9 @@
         body {
             font-family: 'Laila', sans-serif !important;
         }
+        option {
+    text-transform: capitalize;
+}
 
         #map {
             height: 400px;
@@ -416,10 +419,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label class="form-label">Q5. District</label>
-                                                    <select name="district" id="district" class="form-control js-example-basic-single-no-tag" >
+                                                    <select name="district" id="district" class="form-control js-example-basic-single-no-tag"  >
                                                         <option value="">Select District</option>
                                                         @foreach($districts as $district)
-                                                            <option value="{{ $district->district }}" > {{ $district->district }} </option>
+                                                            <option value="{{ $district->district }}" > {{ ucwords(strtolower($district->district)) }} </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -447,7 +450,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label for="tappa">Q8. Tappa: </label>
-                                                    <select name="tappa" id="tappas" class="form-control js-example-basic-single-no-tag">
+                                                    <select name="tappa" id="tappas" class="form-control js-example-basic-single">
                                                         @if(isset($data->tappa) && $data->tappa != '')
                                                         <option value="{{$data->tappa}}">{{$data->tappa}}</option>
                                                         @endif
@@ -600,7 +603,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <div class="mt-2 col-md-6">
                                                         <label class="form-label">(4) Total fallow land (Acres):</label>
-                                                        <input type="text" name="total_fallow_land" value="{{$data->total_fallow_land ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                        <input type="text" name="total_fallow_land" id="total_fallow_land" value="{{$data->total_fallow_land ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                     </div>
                                                     <div class="mt-2 col-md-4">
                                                         <label class="form-label">(5) Share:</label>
@@ -612,7 +615,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <div class="mt-2 col-md-4">
                                                         <label class="form-label">(7) Survey No(s):</label>
-                                                        <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)">
+                                                        <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9,]/g, '').slice(0, 50)">
                                                     </div>
                                                 </div>
 
@@ -1010,7 +1013,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <input type="hidden" name="GpsCordinates" id="GpsCordinates">
                                                 </div>
-                                                <div class="mb-6 col-md-6">
+                                                {{-- <div class="mb-6 col-md-6">
                                                     <!-- Button trigger modal --><h6>Geo Fencing <span class="text-danger">*</span></h6>
                                                     <label class="form-label">Geo Fencing of Agriculture land</label><br>
 
@@ -1029,7 +1032,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
 
 
-                                                </div>
+                                                </div> --}}
                                                 <style>
                                                     #map {
                                                         height: 500px;
@@ -1223,6 +1226,24 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                           <img class="preview" src=" @if(isset($data) && $data->upload_other_attach != null) {{asset('').'fa_farmers/upload_other_attach/'.$data->upload_other_attach}} @endif"  @if(isset($data) && $data->upload_other_attach != null) style="display: unset " @endif>
                                                           <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_other_attach != null) style="display: none " @endif>Upload</button>
                                                           <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->upload_other_attach != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
+                                                      </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
+                                                      <div class="text-center image-upload-card">
+                                                          <h6 class="mb-4">No Objection Affidavit in case of joint ownership / khata</h6>
+                                                          @if(isset($data) && $data->no_objection_affidavit_pic != null) <input type="hidden"  class="old_image " name="old_no_objection_affidavit_pic" value="1" > @endif
+                                                          <input type="file"  class="image-input" name="no_objection_affidavit_pic" accept="image/*" hidden>
+                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: none " @endif   >
+                                                              <i class='bx bxs-cloud-upload icon' ></i>
+                                                              <p>Image size must be <span>500KB</span></p>
+                                                          </div>
+                                                          <img class="preview" src=" @if(isset($data) && $data->no_objection_affidavit_pic != null) {{asset('').'fa_farmers/no_objection_affidavit_pic/'.$data->no_objection_affidavit_pic}} @endif"  @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: unset " @endif>
+                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: none " @endif>Upload</button>
+                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
                                                       </div>
                                                     </div>
                                                 </div>
@@ -1564,6 +1585,17 @@ $(document).ready(function () {
         $('#crop_tableBody').append(newRow);
         $('#crop_tableBody').find('.js-example-basic-single').last().select2({
             tags: true, // Enable the user to add custom tags
+            createTag: function(params) {
+              var term = params.term;
+
+              // Allow only letters (A-Z, a-z), no numbers or special characters
+              if (/^[A-Za-z\s]+$/.test(term)) {
+                  return { id: term, text: term };
+              }
+
+              // Return null if the input contains numbers or special characters
+              return null;
+          }
         });
     });
 
@@ -1713,6 +1745,17 @@ if('{{$data->source_of_irrigation}}'.includes('tube well')){
      `);
      $('#source_of_energy_section').find('.js-example-basic-single').last().select2({
         tags: true, // Enable the user to add custom tags
+        createTag: function(params) {
+              var term = params.term;
+
+              // Allow only letters (A-Z, a-z), no numbers or special characters
+              if (/^[A-Za-z\s]+$/.test(term)) {
+                  return { id: term, text: term };
+              }
+
+              // Return null if the input contains numbers or special characters
+              return null;
+          }
     });
 }
 
@@ -1766,6 +1809,7 @@ $('#lined_unlined').change(function() {
                     cnic_issue_date: $('#cnic_issue_date').val(),
                     mobile: $('#mobile').val(),
                     cnic_of_next_kin: $('#cnic_of_next_kin').val(),
+                    // total_fallow_land: $('#total_fallow_land').val(),
                 };
 
 
@@ -1829,7 +1873,7 @@ $('#lined_unlined').change(function() {
                 }
 
                 let step4_formdata = {
-                    FancingCoordinates: $('#FancingCoordinates').val(),
+                 // FancingCoordinates: $('#FancingCoordinates').val(),
                     GpsCordinates: $('#GpsCordinates').val(),
                 };
 
@@ -1839,7 +1883,11 @@ $('#lined_unlined').change(function() {
                     // Check if any field is empty
                     for (const key in step4_formdata) {
                         if (step4_formdata[key] === "" || step1_formdata[key] === null) {
-                            let formattedKey = key.replace(/_/g, " ");
+                            let formattedKey = key
+            .replace(/_/g, " ")                      // Replace underscores with spaces
+            .replace(/([a-z])([A-Z])/g, '$1 $2')    // Add space between lowercase and uppercase letters
+            .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2'); // Add space between two consecutive uppercase letters if followed by lowercase
+
                             errors += `<b><span class="text-danger" > ${formattedKey} field is required. </span> </b> <br>`;
 
                         }
@@ -2018,7 +2066,12 @@ $('#lined_unlined').change(function() {
                 });
 
 
-
+                $(document).on('keypress', '.select2-search__field', function(e) {
+                    var charCode = e.which ? e.which : e.keyCode;
+                    if (charCode >= 48 && charCode <= 57) { // 48-57 are ASCII codes for 0-9
+                        return false; // Block numbers
+                    }
+                });
 
                 $('.js-example-basic-single-no-tag').select2({
 
@@ -2027,6 +2080,17 @@ $('#lined_unlined').change(function() {
                 $('.js-example-basic-single').select2({
                     tags: true, // Enable typing custom values
                     placeholder: "Select or type to add a new option", // Optional placeholder
+                    createTag: function(params) {
+                        var term = params.term;
+
+                        // Allow only letters (A-Z, a-z), no numbers or special characters
+                        if (/^[A-Za-z\s]+$/.test(term)) {
+                            return { id: term, text: term };
+                        }
+
+                        // Return null if the input contains numbers or special characters
+                        return null;
+                    }
                 });
             });
         </script>
@@ -2167,7 +2231,13 @@ map.setMaxZoom(22);  // Maximum zoom level
 
     function calculateArea() {
     if (lineCoordinates.length < 3) {
-        alert("At least 3 points are required to calculate the area!");
+        $_html = "At least 3 points are required to calculate the area!";
+        Swal.fire({
+            title: "Errors!",
+            // text: "You clicked the button!",
+            icon: "error",
+            html: $_html
+        });
         return;
     }
 
@@ -2184,10 +2254,24 @@ map.setMaxZoom(22);  // Maximum zoom level
     let areaAcres = areaSqMeters * 0.000247105; // 1 sq meter = 0.000247105 acres
     let areaSqYards = areaSqMeters * 1.19599; // 1 sq meter = 1.19599 square yards
 
+    input_acre  = $('#total_fallow_land').val();
+
+    if (parseInt(areaAcres.toFixed(0)) > input_acre) {
+        // alert();
+        Swal.fire({
+            title: "Errors!",
+            // text: "You clicked the button!",
+            icon: "error",
+            html: `Your Total Fallow Land is ${input_acre} Acre, but you have selected an area of ${areaAcres.toFixed(0)} acres. Please ensure you select the correct geo-fencing points.`
+        });
+        return;
+    }
+
 
     $('#sq_meters').html('Sq Meters: '+areaSqMeters.toFixed(2));
     $('#sq_yards').html('Sq Yards: '+areaSqYards.toFixed(2));
     $('#acres').html('Acres: '+areaAcres.toFixed(4));
+
 
 
     $('#sq_meters_hidden').val(areaSqMeters.toFixed(2));
