@@ -121,7 +121,7 @@ class ProjectAPIController extends Controller
             // Required fields
             'name' => 'required|string',
             'father_name' => 'required|string',
-            'cnic' => 'required|string|min:13|max:13',
+            'cnic' => 'required|string',
             'cnic_issue_date' => 'required|date',
             'cnic_expiry_date' => 'required|date',
             'mobile' => 'required|string',
