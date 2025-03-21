@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 class ProjectAPIController extends Controller
 {
 
-    public function login_api(Request $request)
+    public function app_login(Request $request)
     {
         $request->validate([
             'email' => 'required|email',

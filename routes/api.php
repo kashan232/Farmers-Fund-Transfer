@@ -27,5 +27,7 @@ Route::get('/get-tehsil', [ProjectAPIController::class, 'get_tehsil'])->name('ge
 Route::get('/get-uc', [ProjectAPIController::class, 'get_uc'])->name('get-uc');
 Route::get('/get-tappa', [ProjectAPIController::class, 'get_tappa'])->name('get-tappa');
 
+Route::post('/app-login', [ProjectAPIController::class, 'app_login'])->name('app-login');
+
 Route::post('/api-store-online-farmers-registration', [ProjectAPIController::class, 'api_store_online_farmers_registration'])->name('api-store-online-farmers-registration');
 
