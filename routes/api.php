@@ -33,7 +33,10 @@ Route::post('/farmer-store',[ProjectAPIController::class,'store_farmer']);
 
 
 
-Route::get('/farmers',[ProjectAPIController::class,'get_farmer']);
+Route::get('/farmers/{search?}',[ProjectAPIController::class,'get_farmer']);
+
+
+
 
 
 // Route::post('/api-store-online-farmers-registration', [ProjectAPIController::class, 'api_store_online_farmers_registration'])->name('api-store-online-farmers-registration');

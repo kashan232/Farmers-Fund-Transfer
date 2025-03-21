@@ -96,11 +96,21 @@ class ProjectAPIController extends Controller
         return response()->json(['tehsils' => $tehsils], 200);
     }
 
-    public function get_farmer()
+
+
+    public function get_farmer($search = null)
     {
-        $farmers = LandRevenueFarmerRegistation::paginate(10);
+        $query = LandRevenueFarmerRegistation::query();
+
+        if ($search) {
+            $query->where('cnic', $search);
+        }
+
+        $farmers = $search ? $query->get() : $query->paginate(10);
+
         return response()->json(['farmers' => $farmers], 200);
     }
+
 
 
 

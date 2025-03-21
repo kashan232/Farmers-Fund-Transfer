@@ -308,6 +308,26 @@
                 </li>
 
 
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('cities') }}" class="nav-link-a pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-chart-bar"></i>
+                        </span>
+                        <span class="pc-mtext">CITY</span>
+                    </a>
+                </li>
+
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('bankbranches') }}" class="nav-link-a pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-chart-bar"></i>
+                        </span>
+                        <span class="pc-mtext">BANK BRANCHES</span>
+                    </a>
+                </li>
+
+
 
                 {{-- <li class="pc-item pc-hasmenu">
                     <a href="{{ route('sms-reporting') }}" class="nav-link-a pc-link">
