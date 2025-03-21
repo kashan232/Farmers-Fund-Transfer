@@ -355,15 +355,34 @@ class ProjectAPIController extends Controller
 
             // dd($data);
 
-            if ($request->edit_id && $request->edit_id != '') {
-                LandRevenueFarmerRegistation::where('id', $request->edit_id)->update($data);
-                // return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Updated');
-                return ['success' => 'Farmer Data Updated Succesfully..!'];
-            } else {
-                LandRevenueFarmerRegistation::create($data);
-                // return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Registered');
-                return ['success' => 'Farmer Data Submitted Succesfully..!'];
+
+
+
+            try {
+
+                if ($request->edit_id && $request->edit_id != '') {
+                    LandRevenueFarmerRegistation::where('id', $request->edit_id)->update($data);
+                    // return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Updated');
+                    return ['success' => 'Farmer Data Updated Succesfully..!'];
+                } else {
+                    $farmer = LandRevenueFarmerRegistation::create($data);
+                    // return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Registered');
+                    if ($farmer) {
+                        return response()->json(['success' => 'Farmer Data Submitted Successfully..!'], 200);
+                    } else {
+                        return response()->json(['error' => 'Failed to store farmer data.'], 500);
+                    }
+                }
+
+
+
+            } catch (\Exception $e) {
+                \Log::error('Farmer Store Error: ' . $e->getMessage());
+                return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
             }
+
+
+
 
     }
 
