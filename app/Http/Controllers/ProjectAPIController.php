@@ -135,7 +135,7 @@ class ProjectAPIController extends Controller
             'house_type' => 'required|string',
             'owner_type' => 'required|string',
             'full_name_of_next_kin' => 'required|string',
-            'cnic_of_next_kin' => 'required|string|min:13|max:13',
+            'cnic_of_next_kin' => 'required|string',
             'mobile_of_next_kin' => 'required|string',
 
             // Numeric fields (nullable but must be a number if provided)
