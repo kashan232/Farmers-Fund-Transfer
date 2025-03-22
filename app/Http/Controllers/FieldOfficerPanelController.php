@@ -56,7 +56,7 @@ class FieldOfficerPanelController extends Controller
         $maxAcre = intval($request->input('max_acre'));
 
         $query = LandRevenueFarmerRegistation::where('district', $district)
-            ->where('admin_or_user_id' , Auth::user()->id)
+            ->where('user_id' , Auth::user()->id)
             ->where('tehsil', $tehsilArray);
 
             if($request->input('min_acre') && $request->input('min_acre') != ''){
@@ -334,7 +334,7 @@ class FieldOfficerPanelController extends Controller
             $data['user_type'] = $request->user_type;
             if( $data['user_type'] != 'Online'){
 
-                $data['admin_or_user_id'] = Auth::id();
+                $data['user_id'] = Auth::id();
                 // $data['land_emp_id'] = Auth()->user()->user_id;
 
                 // $data['land_emp_name'] = Auth()->user()->name;

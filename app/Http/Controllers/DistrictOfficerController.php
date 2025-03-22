@@ -23,8 +23,8 @@ class DistrictOfficerController extends Controller
                 $all_district = District::get();
                 $all_tehsil = Tehsil::get();
             }else{
-                $all_district = District::where('admin_or_user_id', '=', $userId)->get();
-                $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
+                $all_district = District::where('user_id', '=', $userId)->get();
+                $all_tehsil = Tehsil::where('user_id', '=', $userId)->get();
             }
             return view('admin_panel.district_officer.add_district_officer', [
                 'all_district' => $all_district,
@@ -59,7 +59,7 @@ class DistrictOfficerController extends Controller
             if($request->edit_id && $request->edit_id != '')
             {
                 $DistrictOfficer = DistrictOfficer::where('id',$request->edit_id)->update([
-                    'admin_or_user_id'    => $userId,
+                    'user_id'    => $userId,
                     'full_name'          => $request->full_name,
                     'contact_number'          => $request->contact_number,
                     'address'          => $request->address,
@@ -77,7 +77,7 @@ class DistrictOfficerController extends Controller
             else
             {
                 $DistrictOfficer = DistrictOfficer::create([
-                    'admin_or_user_id'    => $userId,
+                    'user_id'    => $userId,
                     'full_name'          => $request->full_name,
                     'contact_number'          => $request->contact_number,
                     'address'          => $request->address,
@@ -122,7 +122,7 @@ class DistrictOfficerController extends Controller
             $userId = Auth::id();
             // dd($userId);
 
-            $all_agri = DistrictOfficer::where('admin_or_user_id', '=', $userId)->get();
+            $all_agri = DistrictOfficer::where('user_id', '=', $userId)->get();
             return view('admin_panel.district_officer.all_district_officer', [
                 'all_agri' => $all_agri,
             ]);
@@ -141,8 +141,8 @@ class DistrictOfficerController extends Controller
                 $all_district = District::get();
                 $all_tehsil = Tehsil::get();
             }else{
-                $all_district = District::where('admin_or_user_id', '=', $userId)->get();
-                $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
+                $all_district = District::where('user_id', '=', $userId)->get();
+                $all_tehsil = Tehsil::where('user_id', '=', $userId)->get();
             }
             return view('admin_panel.district_officer.edit_district_officer', [
                 'all_district' => $all_district,

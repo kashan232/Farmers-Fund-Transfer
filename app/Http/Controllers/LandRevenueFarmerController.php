@@ -36,8 +36,8 @@ class LandRevenueFarmerController extends Controller
             $tehsil = Auth()->user()->tehsil;
 
             // dd($userId);
-            // $all_district = District::where('admin_or_user_id', '=', $userId)->get();
-            // $all_tehsil = Tehsil::where('admin_or_user_id', '=', $userId)->get();
+            // $all_district = District::where('user_id', '=', $userId)->get();
+            // $all_tehsil = Tehsil::where('user_id', '=', $userId)->get();
             return view('land_revenue_panel.farmers_registration.add_land_farmers', [
                 'district' => $district,
                 'tehsil' => $tehsil,
@@ -128,7 +128,7 @@ class LandRevenueFarmerController extends Controller
             } else {
                 $data = $request->all();
                 $data['user_type'] = Auth()->user()->usertype;
-                $data['admin_or_user_id'] = Auth::id();
+                $data['user_id'] = Auth::id();
                 $data['land_emp_id'] = Auth()->user()->user_id;
                 $data['land_emp_name'] = Auth()->user()->name;
 

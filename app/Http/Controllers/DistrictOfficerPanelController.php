@@ -99,7 +99,7 @@ class DistrictOfficerPanelController extends Controller
                 $data = $request->all();
                 $data = $request->except(['_token', 'edit_id']);
                 $data['user_type'] = Auth()->user()->usertype;
-                $data['admin_or_user_id'] = Auth::id();
+                $data['user_id'] = Auth::id();
                 $data['land_emp_id'] = Auth()->user()->user_id;
                 $data['land_emp_name'] = Auth()->user()->name;
 
@@ -173,7 +173,7 @@ class DistrictOfficerPanelController extends Controller
                 $data = $request->all();
 
                 $data['user_type'] = Auth()->user()->usertype;
-                $data['admin_or_user_id'] = Auth::id();
+                $data['user_id'] = Auth::id();
                 $data['land_emp_id'] = Auth()->user()->user_id;
                 $data['land_emp_name'] = Auth()->user()->name;
 
@@ -400,7 +400,7 @@ class DistrictOfficerPanelController extends Controller
             if($request->edit_id && $request->edit_id != '')
             {
                 $FieldOfficer = FieldOfficer::where('id',$request->edit_id)->update([
-                    'admin_or_user_id'    => $userId,
+                    'user_id'    => $userId,
                     'full_name'          => $request->full_name,
                     'contact_number'          => $request->contact_number,
                     'address'          => $request->address,
@@ -419,7 +419,7 @@ class DistrictOfficerPanelController extends Controller
             else
             {
                 $FieldOfficer = FieldOfficer::create([
-                    'admin_or_user_id'    => $userId,
+                    'user_id'    => $userId,
                     'full_name'          => $request->full_name,
                     'contact_number'          => $request->contact_number,
                     'address'          => $request->address,
