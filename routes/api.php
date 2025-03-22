@@ -4,16 +4,41 @@ use App\Http\Controllers\ProjectAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FieldOfficerPanelController;
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
+
+
+Route::middleware('auth:sanctum')->post('/update-password', function(Request $request) {
+    // Validate input
+    $request->validate([
+        'oldPassword' => 'required',
+        'password' => 'required|min:6|confirmed', // `confirmed` checks against `password_confirmation`
+    ]);
+
+    $user = Auth::user(); // Get the authenticated user
+
+    if (!$user) {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+
+    // Check if old password matches the current password
+    if (!Hash::check($request->oldPassword, $user->password)) {
+        return response()->json(['error' => 'Old password is incorrect'], 400);
+    }
+
+    // Update new password
+    $user->update([
+        'password' => Hash::make($request->password),
+    ]);
+
+    return response()->json(['message' => 'Password updated successfully'], 200);
+});
+
+
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

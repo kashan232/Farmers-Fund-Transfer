@@ -124,29 +124,6 @@ class ProjectAPIController extends Controller
 
 
 
-    public function total_registered_farmers($user_id)
-    {
-        $data = LandRevenueFarmerRegistation::where('user_id',$user_id)->count();
-        return response()->json(['data' => $data], 200);
-    }
-
-
-    public function verified_farmers($user_id)
-    {
-        $data = LandRevenueFarmerRegistation::where('user_id', $user_id)
-        ->where('verification_status', 'verified_by_lrd')
-        ->count();
-        return response()->json(['data' => $data], 200);
-    }
-
-    public function unverified_farmers($user_id)
-    {
-        $data = LandRevenueFarmerRegistation::where('user_id', $user_id)
-        ->where('verification_status','!=' ,'verified_by_lrd')
-        ->count();
-        return response()->json(['data' => $data], 200);
-    }
-
 
 
 

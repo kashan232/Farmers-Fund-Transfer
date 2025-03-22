@@ -19,8 +19,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h2 class="mb-0">List Cities</h2>
-                            <button id="create_city">Create</button>
+                            <h2 class="mb-0">Change Password</h2>
                         </div>
 
                     </div>
@@ -42,9 +41,36 @@
                             @endif
                             <div id="dom-jqry_wrapper" class="dt-container dt-bootstrap5">
                                 <div class="row mt-2 justify-content-md-center">
-                                    <div class="col-12 ">
-                                       
-                                    </div>
+                                    <form action="{{ route('updatePassword') }}" method="post">
+                                        @csrf
+                                        <div class="col-12">
+                                            <div class="col-md-12">
+                                                <label class="form-label">Old Password <span class="text-danger">*</span></label>
+                                                <input type="password" class="form-control mt-1 mb-2" name="oldPassword">
+                                                @error('oldPassword') <p class="text-danger">{{ $message }}</p> @enderror
+                                            </div>
+                                    
+                                            <div class="col-md-12">
+                                                <label class="form-label">New Password <span class="text-danger">*</span></label>
+                                                <input type="password" class="form-control mt-1 mb-2" name="password">
+                                                @error('password') <p class="text-danger">{{ $message }}</p> @enderror
+                                            </div>
+                                    
+                                            <div class="col-md-12">
+                                                <label class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                                                <input type="password" class="form-control mt-1 mb-2" name="password_confirmation">
+                                            </div>
+                                    
+                                            <div class="col-md-2">
+                                                <input class="form-control mt-4 btn btn-primary" type="submit" value="Update">
+                                            </div>
+                                        </div>
+                                    
+                                        @if(session('success'))
+                                            <p class="text-success mt-2">{{ session('success') }}</p>
+                                        @endif
+                                    </form>
+                                    
                                 </div>
                             </div>
                         </div>

@@ -26,7 +26,14 @@
                     </a>
                 </li>
 
-
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('passwordChange') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-chart-bar"></i>
+                        </span>
+                        <span class="pc-mtext">Change Password</span>
+                    </a>
+                </li>
 
 
                 {{-- <li class="pc-item pc-hasmenu">

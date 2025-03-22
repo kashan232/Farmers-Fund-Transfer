@@ -46,8 +46,10 @@ use App\Models\BankBranch;
 use App\Http\Controllers\BankBranchController;
 
 
-
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 use Twilio\Rest\Client;
@@ -121,10 +123,6 @@ Route::get('/admin/sms/', function(){
 
 
 
-
-Route::get('/change/password', function(){
-    return view('passwordChange');
-})->name('passwordChange');
 
 
 
@@ -499,6 +497,45 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+
+
+
+
+Route::get('/change/password', function(){
+    return view('passwordChange');
+})->name('passwordChange');
+
+
+
+Route::post('/update/password', function(Request $request) {
+    // Validate input
+    $request->validate([
+        'oldPassword' => 'required',
+        'password' => 'required|min:6|confirmed', // `confirmed` checks against `password_confirmation`
+    ]);
+
+
+
+    $user = Auth::user(); // Get logged-in user
+
+    // Check if old password matches the current password
+    if (!Hash::check($request->oldPassword, $user->password)) {
+        return back()->withErrors(['oldPassword' => 'Old password is incorrect']);
+    }
+
+    // Update new password
+    $user->update([
+        'password' => Hash::make($request->password),
+    ]);
+
+    return back()->with('success', 'Password updated successfully');
+})->name('updatePassword');
+
+
+
+
 });
 
 require __DIR__ . '/auth.php';
