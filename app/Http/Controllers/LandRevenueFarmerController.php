@@ -55,9 +55,9 @@ class LandRevenueFarmerController extends Controller
                 $data = $request->all();
                 $data = $request->except(['_token', 'edit_id']);
                 $data['user_type'] = Auth()->user()->usertype;
-                $data['admin_or_user_id'] = Auth::id();
-                $data['land_emp_id'] = Auth()->user()->user_id;
-                $data['land_emp_name'] = Auth()->user()->name;
+                $data['user_id'] = Auth::id();
+                // $data['land_emp_id'] = Auth()->user()->user_id;
+                // $data['land_emp_name'] = Auth()->user()->name;
 
                 $data['title_name'] = json_encode($request->title_name);
                 $data['title_cnic'] = json_encode($request->title_cnic);

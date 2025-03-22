@@ -98,6 +98,33 @@ class ProjectAPIController extends Controller
 
 
 
+    public function total_registered_farmers($user_id)
+    {
+        $data = LandRevenueFarmerRegistation::where('user_id',$user_id)->count();
+        return response()->json(['data' => $data], 200);
+    }
+
+
+    public function verified_farmers($user_id)
+    {
+        $data = LandRevenueFarmerRegistation::where('user_id', $user_id)
+        ->where('verification_status', 'verified_by_lrd')
+        ->count();
+        return response()->json(['data' => $data], 200);
+    }
+
+    public function unverified_farmers($user_id)
+    {
+        $data = LandRevenueFarmerRegistation::where('user_id', $user_id)
+        ->where('verification_status','!=' ,'verified_by_lrd')
+        ->count();
+        return response()->json(['data' => $data], 200);
+    }
+
+
+
+
+
     public function get_farmer($search = null)
     {
         $query = LandRevenueFarmerRegistation::query();
@@ -120,24 +147,25 @@ class ProjectAPIController extends Controller
 
         $rules = [
             // Required fields
-            'name' => 'required|string',
-            'father_name' => 'required|string',
-            'cnic' => 'required|string',
+            'name' => 'required',
+            'user_id' => 'required',
+            'father_name' => 'required',
+            'cnic' => 'required',
             'cnic_issue_date' => 'required|date',
             'cnic_expiry_date' => 'required|date',
-            'mobile' => 'required|string',
-            'district' => 'required|string',
-            'tehsil' => 'required|string',
-            'uc' => 'required|string',
-            'tappa' => 'required|string',
-            'dah' => 'required|string',
-            'village' => 'required|string',
+            'mobile' => 'required',
+            'district' => 'required',
+            'tehsil' => 'required',
+            'uc' => 'required',
+            'tappa' => 'required',
+            'dah' => 'required',
+            'village' => 'required',
             'gender' => 'required|in:male,female,other',
-            'house_type' => 'required|string',
-            'owner_type' => 'required|string',
-            'full_name_of_next_kin' => 'required|string',
-            'cnic_of_next_kin' => 'required|string',
-            'mobile_of_next_kin' => 'required|string',
+            'house_type' => 'required',
+            'owner_type' => 'required',
+            'full_name_of_next_kin' => 'required',
+            'cnic_of_next_kin' => 'required',
+            'mobile_of_next_kin' => 'required',
 
             // Numeric fields (nullable but must be a number if provided)
             'female_children_under16' => 'sometimes|nullable|integer',
@@ -148,11 +176,11 @@ class ProjectAPIController extends Controller
             'total_area_with_hari' => 'sometimes|nullable|numeric',
             'total_area_cultivated_land' => 'sometimes|nullable|numeric',
             'total_fallow_land' => 'sometimes|nullable|numeric',
-            'land_share' => 'sometimes|nullable|string',
+            'land_share' => 'sometimes|nullable',
             'land_area_as_per_share' => 'sometimes|nullable|numeric',
 
             // Title information
-            'survey_no' => 'sometimes|nullable|string',
+            'survey_no' => 'sometimes|nullable',
             // 'title_name' => 'sometimes|nullable|array',
             // 'title_father_name' => 'sometimes|nullable|array',
             // 'title_cnic' => 'sometimes|nullable|array',
@@ -172,22 +200,22 @@ class ProjectAPIController extends Controller
             // 'animal_qty' => 'sometimes|nullable|array',
 
             // Irrigation
-            'source_of_irrigation' => 'sometimes|nullable|string',
-            'source_of_irrigation_engery' => 'sometimes|nullable|string',
+            'source_of_irrigation' => 'sometimes|nullable',
+            'source_of_irrigation_engery' => 'sometimes|nullable',
 
             // Area & line status
             'area_length' => 'sometimes|nullable|numeric',
-            'line_status' => 'sometimes|nullable|string',
+            'line_status' => 'sometimes|nullable',
             'lined_length' => 'sometimes|nullable|numeric',
             'total_command_area' => 'sometimes|nullable|numeric',
 
             // Banking details
-            'account_title' => 'sometimes|nullable|string',
-            'account_no' => 'sometimes|nullable|string',
-            'bank_name' => 'sometimes|nullable|string',
-            'branch_name' => 'sometimes|nullable|string',
-            'IBAN_number' => 'sometimes|nullable|string',
-            'branch_code' => 'sometimes|nullable|string',
+            'account_title' => 'sometimes|nullable',
+            'account_no' => 'sometimes|nullable',
+            'bank_name' => 'sometimes|nullable',
+            'branch_name' => 'sometimes|nullable',
+            'IBAN_number' => 'sometimes|nullable',
+            'branch_code' => 'sometimes|nullable',
 
             // File uploads (conditionally required if old values are not set)
             'front_id_card' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
@@ -199,13 +227,13 @@ class ProjectAPIController extends Controller
             'form_seven_pic' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
 
             // Verification
-            'verification_status' => 'sometimes|nullable|string',
-            'declined_reason' => 'sometimes|nullable|string',
-            'verification_by' => 'sometimes|nullable|string',
+            'verification_status' => 'sometimes|nullable',
+            'declined_reason' => 'sometimes|nullable',
+            'verification_by' => 'sometimes|nullable',
 
             // Coordinates
-            'GpsCordinates' => 'sometimes|nullable|string',
-            'FancingCoordinates' => 'sometimes|nullable|string',
+            'GpsCordinates' => 'sometimes|nullable',
+            'FancingCoordinates' => 'sometimes|nullable',
 
             // Measurement units
             'sq_meters' => 'sometimes|nullable|numeric',
@@ -213,8 +241,8 @@ class ProjectAPIController extends Controller
             'acres' => 'sometimes|nullable|numeric',
 
             // Miscellaneous
-            'partially_line' => 'sometimes|nullable|string',
-            'surname' => 'sometimes|nullable|string',
+            'partially_line' => 'sometimes|nullable',
+            'surname' => 'sometimes|nullable',
         ];
 
         // Validation
@@ -241,13 +269,9 @@ class ProjectAPIController extends Controller
             $data['user_type'] = $request->user_type;
 
 
-            if( $data['user_type'] != 'Online'){
 
-                $data['admin_or_user_id'] = $request->user_id;
-                $data['land_emp_id'] = $request->user_id;
+            $data['user_id'] = $request->user_id;
 
-                $data['land_emp_name'] = $request->username;
-            }
 
 
             $data['title_name'] = json_encode($request->title_name);

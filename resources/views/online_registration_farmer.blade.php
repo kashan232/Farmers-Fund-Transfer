@@ -1434,7 +1434,8 @@ $(document).ready(function () {
 
 
             $('#registrationForm').on('submit', function(event) {
-            $('#submitbtn').attr('disabled', true); // Disable the submit button
+                $('#submitbtn').attr('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> Submitting...');
+
             event.preventDefault();
                 var url = $(this).attr('action');
                 var formData = new FormData(this);
@@ -1450,6 +1451,7 @@ $(document).ready(function () {
                     processData: false,
                     dataType: "json",
                     complete: function () {
+                        $('#submitbtn').attr('disabled', false).html('Submit');
                     },
                     success: function (data) {
                         if (data['errors'] !== undefined) {
@@ -1477,8 +1479,28 @@ $(document).ready(function () {
                             }, 200);
 
                         }
-                        $('#submitbtn').attr('disabled', false);
+
+                    },
+
+                    error: function (xhr, status, error) {
+                        let errorMessage = "Something went wrong. Please try again."; // Default message
+
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            errorMessage = xhr.responseJSON.message; // Laravel validation error message
+                        } else if (xhr.responseText) {
+                            errorMessage = xhr.responseText; // Raw response if available
+                        }
+
+                        Swal.fire({
+                            title: "Error!",
+                            text: errorMessage,
+                            icon: "error"
+                        });
+
+                        // Re-enable submit button
+                        $('#submitbtn').attr('disabled', false).html('Submit');
                     }
+
                 });
             // Disable the submit button
 

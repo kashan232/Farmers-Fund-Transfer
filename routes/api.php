@@ -39,6 +39,11 @@ Route::get('/farmers/{search?}',[ProjectAPIController::class,'get_farmer']);
 
 
 
+Route::get('/total/registered/farmers/{user_id}',[ProjectAPIController::class,'total_registered_farmers']);
+Route::get('/total/verified/farmers/{user_id}',[ProjectAPIController::class,'verified_farmers']);
+Route::get('/total/unverified/farmers/{user_id}',[ProjectAPIController::class,'unverified_farmers']);
+
+
 
 
 // Route::post('/api-store-online-farmers-registration', [ProjectAPIController::class, 'api_store_online_farmers_registration'])->name('api-store-online-farmers-registration');

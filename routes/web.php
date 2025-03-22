@@ -122,6 +122,13 @@ Route::get('/admin/sms/', function(){
 
 
 
+Route::get('/change/password', function(){
+    return view('passwordChange');
+})->name('passwordChange');
+
+
+
+
 Route::get('/pdf/report/{id}', function($id){
 
     $farmer = LandRevenueFarmerRegistation::where('id', '=', $id)->first();

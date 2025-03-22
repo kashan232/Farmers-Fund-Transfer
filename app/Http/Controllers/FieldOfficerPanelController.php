@@ -335,9 +335,9 @@ class FieldOfficerPanelController extends Controller
             if( $data['user_type'] != 'Online'){
 
                 $data['admin_or_user_id'] = Auth::id();
-                $data['land_emp_id'] = Auth()->user()->user_id;
+                // $data['land_emp_id'] = Auth()->user()->user_id;
 
-                $data['land_emp_name'] = Auth()->user()->name;
+                // $data['land_emp_name'] = Auth()->user()->name;
             }
 
 
@@ -371,9 +371,9 @@ class FieldOfficerPanelController extends Controller
 
 
 
-            $data['acres'] = $request->acres_hidden;
-            $data['sq_yards'] = $request->sq_yards_hidden;
-            $data['sq_meters'] = $request->sq_meters_hidden;
+            // $data['acres'] = $request->acres_hidden;
+            // $data['sq_yards'] = $request->sq_yards_hidden;
+            // $data['sq_meters'] = $request->sq_meters_hidden;
 
 
 
