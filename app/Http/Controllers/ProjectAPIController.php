@@ -147,102 +147,102 @@ class ProjectAPIController extends Controller
 
         $rules = [
             // Required fields
-            'name' => 'required',
-            'user_id' => 'required',
-            'father_name' => 'required',
-            'cnic' => 'required',
-            'cnic_issue_date' => 'required|date',
-            'cnic_expiry_date' => 'required|date',
-            'mobile' => 'required',
-            'district' => 'required',
-            'tehsil' => 'required',
-            'uc' => 'required',
-            'tappa' => 'required',
-            'dah' => 'required',
-            'village' => 'required',
-            'gender' => 'required|in:male,female,other',
-            'house_type' => 'required',
-            'owner_type' => 'required',
-            'full_name_of_next_kin' => 'required',
-            'cnic_of_next_kin' => 'required',
-            'mobile_of_next_kin' => 'required',
+            // 'name' => 'required',
+            // 'user_id' => 'required',
+            // 'father_name' => 'required',
+            // 'cnic' => 'required',
+            // 'cnic_issue_date' => 'required|date',
+            // // 'cnic_expiry_date' => 'required|date',
+            // 'mobile' => 'required',
+            // // 'district' => 'required',
+            // // 'tehsil' => 'required',
+            // // 'uc' => 'required',
+            // // 'tappa' => 'required',
+            // 'dah' => 'required',
+            // 'village' => 'required',
+            // 'gender' => 'required|in:male,female,other',
+            // 'house_type' => 'required',
+            // 'owner_type' => 'required',
+            // 'full_name_of_next_kin' => 'required',
+            // 'cnic_of_next_kin' => 'required',
+            // 'mobile_of_next_kin' => 'required',
 
-            // Numeric fields (nullable but must be a number if provided)
-            'female_children_under16' => 'sometimes|nullable|integer',
-            'female_Adults_above16' => 'sometimes|nullable|integer',
-            'male_children_under16' => 'sometimes|nullable|integer',
-            'male_Adults_above16' => 'sometimes|nullable|integer',
-            'total_landing_acre' => 'sometimes|nullable|numeric',
-            'total_area_with_hari' => 'sometimes|nullable|numeric',
-            'total_area_cultivated_land' => 'sometimes|nullable|numeric',
-            'total_fallow_land' => 'sometimes|nullable|numeric',
-            'land_share' => 'sometimes|nullable',
-            'land_area_as_per_share' => 'sometimes|nullable|numeric',
+            // // Numeric fields (nullable but must be a number if provided)
+            // 'female_children_under16' => 'sometimes|nullable|integer',
+            // 'female_Adults_above16' => 'sometimes|nullable|integer',
+            // 'male_children_under16' => 'sometimes|nullable|integer',
+            // 'male_Adults_above16' => 'sometimes|nullable|integer',
+            // 'total_landing_acre' => 'sometimes|nullable|numeric',
+            // 'total_area_with_hari' => 'sometimes|nullable|numeric',
+            // 'total_area_cultivated_land' => 'sometimes|nullable|numeric',
+            // 'total_fallow_land' => 'sometimes|nullable|numeric',
+            // 'land_share' => 'sometimes|nullable',
+            // 'land_area_as_per_share' => 'sometimes|nullable|numeric',
 
-            // Title information
-            'survey_no' => 'sometimes|nullable',
-            // 'title_name' => 'sometimes|nullable|array',
-            // 'title_father_name' => 'sometimes|nullable|array',
-            // 'title_cnic' => 'sometimes|nullable|array',
-            // 'title_number' => 'sometimes|nullable|array',
-            // 'title_area' => 'sometimes|nullable|array',
+            // // Title information
+            // 'survey_no' => 'sometimes|nullable',
+            // // 'title_name' => 'sometimes|nullable|array',
+            // // 'title_father_name' => 'sometimes|nullable|array',
+            // // 'title_cnic' => 'sometimes|nullable|array',
+            // // 'title_number' => 'sometimes|nullable|array',
+            // // 'title_area' => 'sometimes|nullable|array',
 
-            // // Crop details
-            // 'crop_season' => 'sometimes|nullable|array',
-            // 'crops' => 'sometimes|nullable|array',
-            // 'crops_orchard' => 'sometimes|nullable|array',
-            // 'crop_area' => 'sometimes|nullable|array',
-            // 'crop_average_yeild' => 'sometimes|nullable|array',
+            // // // Crop details
+            // // 'crop_season' => 'sometimes|nullable|array',
+            // // 'crops' => 'sometimes|nullable|array',
+            // // 'crops_orchard' => 'sometimes|nullable|array',
+            // // 'crop_area' => 'sometimes|nullable|array',
+            // // 'crop_average_yeild' => 'sometimes|nullable|array',
 
-            // // Assets & animals
-            // 'physical_asset_item' => 'sometimes|nullable|array',
-            // 'animal_name' => 'sometimes|nullable|array',
-            // 'animal_qty' => 'sometimes|nullable|array',
+            // // // Assets & animals
+            // // 'physical_asset_item' => 'sometimes|nullable|array',
+            // // 'animal_name' => 'sometimes|nullable|array',
+            // // 'animal_qty' => 'sometimes|nullable|array',
 
-            // Irrigation
-            'source_of_irrigation' => 'sometimes|nullable',
-            'source_of_irrigation_engery' => 'sometimes|nullable',
+            // // Irrigation
+            // 'source_of_irrigation' => 'sometimes|nullable',
+            // 'source_of_irrigation_engery' => 'sometimes|nullable',
 
-            // Area & line status
-            'area_length' => 'sometimes|nullable|numeric',
-            'line_status' => 'sometimes|nullable',
-            'lined_length' => 'sometimes|nullable|numeric',
-            'total_command_area' => 'sometimes|nullable|numeric',
+            // // Area & line status
+            // 'area_length' => 'sometimes|nullable|numeric',
+            // 'line_status' => 'sometimes|nullable',
+            // 'lined_length' => 'sometimes|nullable|numeric',
+            // 'total_command_area' => 'sometimes|nullable|numeric',
 
-            // Banking details
-            'account_title' => 'sometimes|nullable',
-            'account_no' => 'sometimes|nullable',
-            'bank_name' => 'sometimes|nullable',
-            'branch_name' => 'sometimes|nullable',
-            'IBAN_number' => 'sometimes|nullable',
-            'branch_code' => 'sometimes|nullable',
+            // // Banking details
+            // 'account_title' => 'sometimes|nullable',
+            // 'account_no' => 'sometimes|nullable',
+            // 'bank_name' => 'sometimes|nullable',
+            // 'branch_name' => 'sometimes|nullable',
+            // 'IBAN_number' => 'sometimes|nullable',
+            // 'branch_code' => 'sometimes|nullable',
 
-            // File uploads (conditionally required if old values are not set)
-            'front_id_card' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
-            'back_id_card' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
-            'upload_land_proof' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
-            'upload_other_attach' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
-            'upload_farmer_pic' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
-            'upload_cheque_pic' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
-            'form_seven_pic' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            // // File uploads (conditionally required if old values are not set)
+            // 'front_id_card' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            // 'back_id_card' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            // 'upload_land_proof' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            // 'upload_other_attach' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            // 'upload_farmer_pic' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            // 'upload_cheque_pic' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
+            // 'form_seven_pic' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|max:500',
 
-            // Verification
-            'verification_status' => 'sometimes|nullable',
-            'declined_reason' => 'sometimes|nullable',
-            'verification_by' => 'sometimes|nullable',
+            // // Verification
+            // 'verification_status' => 'sometimes|nullable',
+            // 'declined_reason' => 'sometimes|nullable',
+            // 'verification_by' => 'sometimes|nullable',
 
-            // Coordinates
-            'GpsCordinates' => 'sometimes|nullable',
-            'FancingCoordinates' => 'sometimes|nullable',
+            // // Coordinates
+            // 'GpsCordinates' => 'sometimes|nullable',
+            // 'FancingCoordinates' => 'sometimes|nullable',
 
-            // Measurement units
-            'sq_meters' => 'sometimes|nullable|numeric',
-            'sq_yards' => 'sometimes|nullable|numeric',
-            'acres' => 'sometimes|nullable|numeric',
+            // // Measurement units
+            // 'sq_meters' => 'sometimes|nullable|numeric',
+            // 'sq_yards' => 'sometimes|nullable|numeric',
+            // 'acres' => 'sometimes|nullable|numeric',
 
-            // Miscellaneous
-            'partially_line' => 'sometimes|nullable',
-            'surname' => 'sometimes|nullable',
+            // // Miscellaneous
+            // 'partially_line' => 'sometimes|nullable',
+            // 'surname' => 'sometimes|nullable',
         ];
 
         // Validation
