@@ -36,9 +36,9 @@ class HomeController extends Controller
             if ($usertype == 'District_Officer') {
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
-                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
-                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
-                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
+                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
+                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
                 return view('district_officer_panel.index', [
                     'agriUserfarmersCount' => $agriUserfarmersCount,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
@@ -47,9 +47,9 @@ class HomeController extends Controller
             } else if ($usertype == 'Agri_Officer') {
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
-                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
-                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
-                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
+                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
+                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
                 return view('agri_officer_panel.index', [
                     'agriUserfarmersCount' => $agriUserfarmersCount,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
@@ -58,9 +58,9 @@ class HomeController extends Controller
             } else if ($usertype == 'DD_Officer') {
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
-                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
-                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
-                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
+                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
+                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
                 return view('dd_officer_panel.index', [
                     'agriUserfarmersCount' => $agriUserfarmersCount,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
@@ -206,26 +206,26 @@ class HomeController extends Controller
                         }
                     }
                 }
-                $fa_total_Registered_Farmers = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
+                $fa_total_Registered_Farmers = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
                 $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')
-                    ->where('land_emp_id', $user_id)
+                    ->where('user_id', $user_id)
                     ->whereNull('verification_status') // Correct way to check NULL
                     ->count();
 
-                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'verified_by_lo')->count();
+                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'verified_by_lo')->count();
 
                 $rejectedByAO = DB::table('land_revenue_farmer_registations')
-                    ->where('land_emp_id', $user_id)
+                    ->where('user_id', $user_id)
                     ->where('verification_status', 'rejected_by_ao')
                     ->count();
 
                 $rejectedByDD = DB::table('land_revenue_farmer_registations')
-                    ->where('land_emp_id', $user_id)
+                    ->where('user_id', $user_id)
                     ->where('verification_status', 'rejected_by_dd')
                     ->count();
 
                 $rejectedByLRD = DB::table('land_revenue_farmer_registations')
-                    ->where('land_emp_id', $user_id)
+                    ->where('user_id', $user_id)
                     ->where('verification_status', 'rejected_by_lo')
                     ->count();
 
@@ -294,9 +294,9 @@ class HomeController extends Controller
                     //     }
                     // }
                 }
-                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->count();
-                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
-                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('land_emp_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
+                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
+                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
 
                 return view('land_revenue_panel.land_revenue_dashboard', [
                     'agriUserfarmersCount' => $agriUserfarmersCount,
