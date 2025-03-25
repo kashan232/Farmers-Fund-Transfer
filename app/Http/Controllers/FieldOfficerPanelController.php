@@ -285,7 +285,7 @@ class FieldOfficerPanelController extends Controller
             $rules['back_id_card'] = 'required|max:500|file|mimes:jpg,png,jpeg';
         }
         if ($request->old_form_seven_pic != 1){
-            $rules['form_seven_pic'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+            $rules['form_seven_pic'] = 'required|max:1024|file|mimes:jpg,png,jpeg,pdf';
         }
         if ($request->old_upload_farmer_pic != 1){
             $rules['upload_farmer_pic'] = 'required|max:500|file|mimes:jpg,png,jpeg';
@@ -300,7 +300,7 @@ class FieldOfficerPanelController extends Controller
         $messages = [
             'front_id_card.max' => 'The ID card file size must not exceed 500KB.',
             'back_id_card.max' => 'The ID card file size must not exceed 500KB.',
-            'form_seven_pic.max' => 'The Form VII proof file size must not exceed 500KB.',
+            'form_seven_pic.max' => 'The Form VII proof file size must not exceed 1024KB.',
             'upload_farmer_pic.max' => 'The farmer photo file size must not exceed 500KB.',
             'form_seven_pic.required' => 'Forms VII / Registry from Micro (Land Documents) is required.',
             'upload_land_proof.required' => 'Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) is required.',
@@ -309,7 +309,7 @@ class FieldOfficerPanelController extends Controller
 
             'front_id_card.mimes' => 'The ID card must be a file of type: jpg, jpeg, png.',
             'back_id_card.mimes' => 'The ID card must be a file of type: jpg, jpeg, png.',
-            'form_seven_pic.mimes' => 'The Form VII proof file must be of type: jpg, jpeg, png.',
+            'form_seven_pic.mimes' => 'The Form VII proof file must be of type: jpg, jpeg, png, pdf.',
             'upload_farmer_pic.mimes' => 'The farmer photo must be of type: jpg, jpeg, png.',
 
             'upload_land_proof.mimes' => 'The Form VIII proof file must be of type: jpg, jpeg, png.',
@@ -439,6 +439,8 @@ class FieldOfficerPanelController extends Controller
                 $form_seven_pic_image->move(public_path('fa_farmers/form_seven_pic'), $form_seven_pic_image_name);
                 $data['form_seven_pic'] = $form_seven_pic_image_name;
             }
+
+
 
             if ($request->hasFile('no_objection_affidavit_pic')) {
                 $no_objection_affidavit_pic_image = $request->file('no_objection_affidavit_pic');

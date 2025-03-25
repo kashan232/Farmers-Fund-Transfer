@@ -179,8 +179,9 @@
 
 
     .preview{
+            display: none;
             width: 100%;
-
+            height: 160px;
         }
 
     @media only screen and (max-width: 600px) {
@@ -1131,12 +1132,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4">CNIC FRONT <span class="text-danger" > *</span></h6>
+                                                          <h6 class="mb-4" style="height: 50px;">CNIC FRONT <span class="text-danger" > *</span> <p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p> </h6>
                                                           @if(isset($data) && $data->front_id_card != null) <input type="hidden"  class="old_image  old_checkfiles old_checkfile_front_id_card" name="old_front_id_card" value="1" > @endif
                                                           <input type="file"  class="image-input checkfiles checkfile_front_id_card" name="front_id_card" id="front_id_card"  accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->front_id_card != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
-                                                              <p>Image size must be <span>500KB</span></p>
+                                                              {{-- <p>Image size must be <span>500KB</span></p> --}}
                                                           </div>
                                                           <img class="preview" src=" @if(isset($data) && $data->front_id_card != null) {{asset('').'fa_farmers/front_id_card/'.$data->front_id_card}} @endif"  @if(isset($data) && $data->front_id_card != null) style="display: unset " @endif>
                                                           <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->front_id_card != null) style="display: none " @endif>Upload</button>
@@ -1148,12 +1149,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img " style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4">CNIC BACK <span class="text-danger" > *</span></h6>
+                                                          <h6 class="mb-4" style="height: 50px;">CNIC BACK <span class="text-danger" > *</span><p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p></h6>
                                                           @if(isset($data) && $data->back_id_card != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_back_id_card" name="old_back_id_card" value="1" > @endif
                                                           <input type="file"  class="image-input checkfiles checkfile_back_id_card" name="back_id_card" id="back_id_card" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->back_id_card != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
-                                                              <p>Image size must be <span>500KB</span></p>
+                                                              {{-- <p>Image size must be <span>500KB</span></p> --}}
                                                           </div>
                                                           <img class="preview" src=" @if(isset($data) && $data->back_id_card != null) {{asset('').'fa_farmers/back_id_card/'.$data->back_id_card}} @endif"  @if(isset($data) && $data->back_id_card != null) style="display: unset " @endif>
                                                           <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->back_id_card != null) style="display: none " @endif>Upload</button>
@@ -1165,12 +1166,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4">Form VII / Registry from Micro (Mandatory) <span class="text-danger" > *</span></h6>
+                                                          <h6 class="mb-4" style="height: 50px;">Form VII / Registry from Micro (Mandatory) <span class="text-danger" > *</span><p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p></h6>
                                                           @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
-                                                          <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*" hidden>
+                                                          <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
-                                                              <p>Image size must be <span>500KB</span></p>
+                                                              {{-- <p>Image size must be <span>500KB</span></p> --}}
                                                           </div>
                                                           <img class="preview" src=" @if(isset($data) && $data->form_seven_pic != null) {{asset('').'fa_farmers/form_seven_pic/'.$data->form_seven_pic}} @endif"  @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @endif>
                                                           <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif>Upload</button>
@@ -1182,12 +1183,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4">Forms VIII A/ Affidavit/ Heirship (Land Documents) <span class="text-danger" > </span></h6>
+                                                          <h6 class="mb-4" style="height: 50px;">Forms VIII A/ Affidavit/ Heirship (Land Documents) <p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p> </h6>
                                                           @if(isset($data) && $data->upload_land_proof != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_land_proof" name="old_upload_land_proof" value="1" > @endif
                                                           <input type="file"  class="image-input  checkfile_upload_land_proof" name="upload_land_proof" id="upload_land_proof" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
-                                                              <p>Image size must be <span>500KB</span></p>
+                                                              {{-- <p>Image size must be <span>500KB</span></p> --}}
                                                           </div>
                                                           <img class="preview" src=" @if(isset($data) && $data->upload_land_proof != null) {{asset('').'fa_farmers/upload_land_proof/'.$data->upload_land_proof}} @endif"  @if(isset($data) && $data->upload_land_proof != null) style="display: unset " @endif>
                                                           <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif>Upload</button>
@@ -1199,12 +1200,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4">Photo <span class="text-danger" > *</span></h6>
+                                                          <h6 class="mb-4" style="height: 50px;">Photo <span class="text-danger" > *</span> <p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p></h6>
                                                           @if(isset($data) && $data->upload_farmer_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_farmer_pic" name="old_upload_farmer_pic" value="1" > @endif
                                                           <input type="file"  class="image-input checkfiles checkfile_upload_farmer_pic" name="upload_farmer_pic" id="upload_farmer_pic" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_farmer_pic != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
-                                                              <p>Image size must be <span>500KB</span></p>
+                                                              {{-- <p>Image size must be <span>500KB</span></p> --}}
                                                           </div>
                                                           <img class="preview" src=" @if(isset($data) && $data->upload_farmer_pic != null) {{asset('').'fa_farmers/upload_farmer_pic/'.$data->upload_farmer_pic}} @endif"  @if(isset($data) && $data->upload_farmer_pic != null) style="display: unset " @endif>
                                                           <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_farmer_pic != null) style="display: none " @endif>Upload</button>
@@ -1216,12 +1217,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4">Others</h6>
+                                                          <h6 class="mb-4" style="height: 50px;">Others <p style="color: #ff4949; margin:0; margin-top: 5px;  font-size: small;">Image size must be <span>500KB</span></h6>
                                                           @if(isset($data) && $data->upload_other_attach != null) <input type="hidden"  class="old_image " name="old_upload_other_attach" value="1" > @endif
                                                           <input type="file"  class="image-input" name="upload_other_attach" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_other_attach != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
-                                                              <p>Image size must be <span>500KB</span></p>
+                                                              {{-- <p>Image size must be <span>500KB</span></p> --}}
                                                           </div>
                                                           <img class="preview" src=" @if(isset($data) && $data->upload_other_attach != null) {{asset('').'fa_farmers/upload_other_attach/'.$data->upload_other_attach}} @endif"  @if(isset($data) && $data->upload_other_attach != null) style="display: unset " @endif>
                                                           <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_other_attach != null) style="display: none " @endif>Upload</button>
@@ -1234,12 +1235,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4">No Objection Affidavit in case of joint ownership / khata</h6>
+                                                          <h6 class="mb-4" style="height: 50px;">No Objection Affidavit in case of joint ownership / khata <p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p></h6>
                                                           @if(isset($data) && $data->no_objection_affidavit_pic != null) <input type="hidden"  class="old_image " name="old_no_objection_affidavit_pic" value="1" > @endif
                                                           <input type="file"  class="image-input" name="no_objection_affidavit_pic" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
-                                                              <p>Image size must be <span>500KB</span></p>
+
                                                           </div>
                                                           <img class="preview" src=" @if(isset($data) && $data->no_objection_affidavit_pic != null) {{asset('').'fa_farmers/no_objection_affidavit_pic/'.$data->no_objection_affidavit_pic}} @endif"  @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: unset " @endif>
                                                           <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: none " @endif>Upload</button>
@@ -1282,60 +1283,89 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/select2.min.js"></script>
         <script src="{{asset('assets/js/inputMask.js')}}"></script>
         <script>
-            $(document).ready(function() {
+         $(document).ready(function() {
+    $('.upload-image').on('click', function() {
+        $(this).siblings('.image-input').click();
+    });
 
-        $('.upload-image').on('click', function() {
-            $(this).siblings('.image-input').click();
-        });
+    $('.image-input').on('change', function(event) {
+        checkFiles();
 
-        $('.image-input').on('change', function(event) {
-            checkFiles();
+        const file = event.target.files[0];
+        const $input = $(this);
+        const $preview = $input.siblings('.preview');
+        const $removeButton = $input.siblings('.remove-button');
+        const $uploadButton = $input.siblings('.upload-image');
+        const $imageArea = $input.siblings('.img-area');
 
-            const file = event.target.files[0];
-            const $input = $(this);
-            const $preview = $input.siblings('.preview');
-            const $removeButton = $input.siblings('.remove-button');
-            const $uploadButton = $input.siblings('.upload-image');
-            const $imageArea = $input.siblings('.img-area');
+        // Remove previous PDF preview (if any)
+        $input.siblings('.pdf-preview-container').remove();
 
-            if (file) {
-                @if(isset($data))
-                // Clear the old image value if data exists
-                $input.siblings('.old_image').val(1);
-                @endif
+        if (file) {
+            const fileType = file.type;
+
+            // If file is an image
+            if (fileType.startsWith('image/')) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    $preview.attr('src', e.target.result).show();
-                    $removeButton.show();
-                    $uploadButton.hide();
-                    $imageArea.hide();
+                    $preview.attr('src', e.target.result).show(); // Show image preview
                 };
                 reader.readAsDataURL(file);
             }
-        });
+            // If file is a PDF
+            else if (fileType === "application/pdf") {
+                // Hide image preview
+                $preview.hide();
 
-        $('.remove-button').on('click', function() {
-            const $removeButton = $(this);
-            const $input = $removeButton.siblings('.image-input');
-            const $preview = $removeButton.siblings('.preview');
-            const $uploadButton = $input.siblings('.upload-image');
-            const $imageArea = $input.siblings('.img-area');
-            $input.val(''); // Clear the input
-            $preview.attr('src', '').hide();
-            $removeButton.hide();
-            $uploadButton.show();
-            $imageArea.show();
+                // Create a PDF preview section
+                const pdfPreview = $(`
+                    <div class="pdf-preview-container" style="text-align: center; margin-top: 10px;">
+                        <p style="font-size: 74px; margin: 0;">📄</p>
+                        <p style="margin: 0;">${file.name}</p>
+                    </div>
+                `);
 
-            @if(isset($data))
+                $preview.after(pdfPreview); // Append PDF preview
+            }
+            else {
+                alert("Only image or PDF files are allowed!");
+                return;
+            }
 
-                // Clear the old image value if data exists
-                $input.siblings('.old_image').val('');
-                if($removeButton.siblings('.image-input').attr('name') != 'upload_other_attach'){
-                    checkFiles();
-                }
-            @endif
-        });
-        });
+            $removeButton.show();
+            $uploadButton.hide();
+            $imageArea.hide();
+        }
+    });
+
+    $('.remove-button').on('click', function() {
+        const $removeButton = $(this);
+        const $input = $removeButton.siblings('.image-input');
+        const $preview = $removeButton.siblings('.preview');
+        const $uploadButton = $input.siblings('.upload-image');
+        const $imageArea = $input.siblings('.img-area');
+
+        // Clear file input
+        $input.val('');
+
+        // Hide preview
+        $preview.attr('src', '').hide();
+
+        // Remove PDF preview (if any)
+        $input.siblings('.pdf-preview-container').remove();
+
+        // Reset UI
+        $removeButton.hide();
+        $uploadButton.show();
+        $imageArea.show();
+
+        @if(isset($data))
+            $input.siblings('.old_image').val('');
+            checkFiles();
+        @endif
+    });
+});
+
 
         </script>
        <script>
