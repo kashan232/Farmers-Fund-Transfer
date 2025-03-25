@@ -6,6 +6,7 @@ use App\Models\LandRevenueDepartment;
 use Illuminate\Http\Request;
 use App\Models\LandRevenueFarmerRegistation;
 use App\Models\User;
+use App\Models\City;
 use App\Models\Tehsil;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -113,12 +114,13 @@ class FieldOfficerPanelController extends Controller
             $district = Auth()->user()->district;
             $tehsils = Auth()->user()->tehsil;
             $tappa = Auth()->user()->tappas;
-
+            $cities = City::all();
             return view('field_officer_panel.farmers.create', [
 
                 'district' => $district,
                 'tehsils' => $tehsils,
                 'tappa' => $tappa,
+                'cities' => $cities
             ]);
         } else {
             return redirect()->back();

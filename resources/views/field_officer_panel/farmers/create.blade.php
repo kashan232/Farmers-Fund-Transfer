@@ -529,7 +529,7 @@
                                             </div>
                                             <div class="mt-2 col-md-4">
                                                 <label class="form-label">(7) Survey No(s):</label>
-                                                <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z0-9,]/g, '').slice(0, 50)">
+                                                <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z0-9,]/g, '').slice(0, 10)">
                                             </div>
                                         </div>
 
@@ -887,7 +887,60 @@
                                             <h6 class="card-title font-weight-bold" style="line-height: 27px;margin-left: 10px;">
                                                 Bank & Account Details</h6>
                                         </div>
-                                        <div class="mb-6 col-md-6">
+
+                                        <div class="mb-6 col-md-4 mt-2">
+                                            <label class="form-label">City</label>
+                                            <select name="city" id="city" class="form-control js-example-basic-single-no-tag">
+                                                <option value="">Select City</option>
+                                                @foreach ($cities as $city)
+                                                    <option value="{{$city->id}}">{{$city->title}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-6 col-md-4 mt-2">
+                                            <label class="form-label">Preferred Branch Name</label>
+                                            <select name="branch_name" id="branch_name" class="form-control js-example-basic-single-no-tag">
+                                                <option value="">Select City First</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-6 col-md-4 mt-2">
+                                            <label class="form-label">Title of Account</label>
+                                            <input type="text" name="account_title" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                        </div>
+
+
+                                        <div class="mb-6 col-md-4 mt-2">
+                                            <label class="form-label">D.O.B</label>
+                                            <input type="date" name="date_of_birth" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                        </div>
+
+                                        <div class="mb-6 col-md-4 mt-2">
+                                            <label class="form-label">Marital status</label>
+                                            <select name="marital_status" id="" class="form-control">
+                                                <option value="">Select Marital status</option>
+                                                <option value="Married">Married</option>
+                                                <option value="Single">Single</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-6 col-md-4 mt-2">
+                                            <label class="form-label">Mother's Maiden Name</label>
+                                            <input type="text" name="mother_maiden_name" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                        </div>
+
+                                        <div class="mb-6 col-md-6 mt-2">
+                                            <label class="form-label">Correspondence Address</label>
+                                            <input type="text" name="correspondence_address" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                        </div>
+
+
+                                        <div class="mb-6 col-md-6 mt-2">
+                                            <label class="form-label">Permanent Address</label>
+                                            <input type="text" name="permanent_address" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                        </div>
+                                        {{-- <div class="mb-6 col-md-6">
                                             <label class="form-label">Q23: Title of Account</label>
                                             <input type="text" name="account_title" class="form-control" value="{{$data->account_title ?? ''}}" >
                                         </div>
@@ -910,7 +963,7 @@
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Q28: Branch Code</label>
                                             <input type="text" name="branch_code" value="{{$data->branch_code ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4)">
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="row mt-3">
                                         <div class="mb-6 col-md-6">
@@ -2166,7 +2219,31 @@ $('#geoFancingModalSaveBtn').on('click', function(){
 
 
 </script>
+<script>
+    $(document).ready(function () {
+        $('#city').change(function () {
+            var city_id = $(this).val();
+            var url = "{{ route('get-branches', ':city_id') }}".replace(':city_id', city_id);
+            $('#branch_name').html('<option value="">Loading...</option>');
 
+            if (city_id) {
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('#branch_name').html('<option value="">Select Branch</option>');
+                        $.each(data, function (key, branch) {
+                            $('#branch_name').append('<option value="' + branch.id + '">' + branch.title + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#branch_name').html('<option value="">Select City First</option>');
+            }
+        });
+    });
+    </script>
 </body>
 
 </html>

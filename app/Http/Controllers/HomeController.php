@@ -35,7 +35,7 @@ class HomeController extends Controller
                 $user_id = Auth()->user()->user_id;
                 return view('pd_officer_panel.index');
             }
-            
+
             /// DIStrict Officer means A-D OFFICER
             if ($usertype == 'District_Officer') {
                 $userId = Auth::id();

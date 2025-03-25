@@ -90,7 +90,16 @@ class LandRevenueFarmerRegistation extends Model
         'acres',
         'partially_line',
         'surname',
-        'no_objection_affidavit_pic'
+        'no_objection_affidavit_pic',
+
+        'city',
+        'branch_name',
+        'account_title',
+        'date_of_birth',
+        'marital_status',
+        'mother_maiden_name',
+        'correspondence_address',
+        'permanent_address',
 
     ];
 
