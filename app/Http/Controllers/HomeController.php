@@ -21,7 +21,11 @@ class HomeController extends Controller
     {
 
         if (Auth::id()) {
+
+
             $usertype = Auth()->user()->usertype;
+
+
 
             // if ($usertype == 'online_user') {
             //     return view('dashboard');
@@ -29,9 +33,9 @@ class HomeController extends Controller
             if ($usertype == 'DG_Officer' || $usertype == 'PD_Officer') {
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
-
                 return view('pd_officer_panel.index');
             }
+            
             /// DIStrict Officer means A-D OFFICER
             if ($usertype == 'District_Officer') {
                 $userId = Auth::id();

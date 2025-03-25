@@ -22,60 +22,89 @@
 
 <script src="{{asset('select2.min.js')}}"></script>
 <script>
-    $(document).ready(function() {
+        $(document).ready(function() {
+    $('.upload-image').on('click', function() {
+        $(this).siblings('.image-input').click();
+    });
 
-$('.upload-image').on('click', function() {
-    $(this).siblings('.image-input').click();
-});
+    $('.image-input').on('change', function(event) {
+        checkFiles();
 
-$('.image-input').on('change', function(event) {
-    checkFiles();
+        const file = event.target.files[0];
+        const $input = $(this);
+        const $preview = $input.siblings('.preview');
+        const $removeButton = $input.siblings('.remove-button');
+        const $uploadButton = $input.siblings('.upload-image');
+        const $imageArea = $input.siblings('.img-area');
 
-    const file = event.target.files[0];
-    const $input = $(this);
-    const $preview = $input.siblings('.preview');
-    const $removeButton = $input.siblings('.remove-button');
-    const $uploadButton = $input.siblings('.upload-image');
-    const $imageArea = $input.siblings('.img-area');
+        // Remove previous PDF preview (if any)
+        $input.siblings('.pdf-preview-container').remove();
 
-    if (file) {
-        @if(isset($data))
-        // Clear the old image value if data exists
-        $input.siblings('.old_image').val(1);
-        @endif
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            $preview.attr('src', e.target.result).show();
+        if (file) {
+            const fileType = file.type;
+
+            // If file is an image
+            if (fileType.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $preview.attr('src', e.target.result).show(); // Show image preview
+                };
+                reader.readAsDataURL(file);
+            }
+            // If file is a PDF
+            else if (fileType === "application/pdf") {
+                // Hide image preview
+                $preview.hide();
+
+                // Create a PDF preview section
+                const pdfPreview = $(`
+                    <div class="pdf-preview-container" style="text-align: center; margin-top: 10px;">
+                        <p style="font-size: 74px; margin: 0;">📄</p>
+                        <p style="margin: 0;">${file.name}</p>
+                    </div>
+                `);
+
+                $preview.after(pdfPreview); // Append PDF preview
+            }
+            else {
+                alert("Only image or PDF files are allowed!");
+                return;
+            }
+
             $removeButton.show();
             $uploadButton.hide();
             $imageArea.hide();
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
-$('.remove-button').on('click', function() {
-    const $removeButton = $(this);
-    const $input = $removeButton.siblings('.image-input');
-    const $preview = $removeButton.siblings('.preview');
-    const $uploadButton = $input.siblings('.upload-image');
-    const $imageArea = $input.siblings('.img-area');
-    $input.val(''); // Clear the input
-    $preview.attr('src', '').hide();
-    $removeButton.hide();
-    $uploadButton.show();
-    $imageArea.show();
-
-    @if(isset($data))
-
-        // Clear the old image value if data exists
-        $input.siblings('.old_image').val('');
-        if($removeButton.siblings('.image-input').attr('name') != 'upload_other_attach'){
-            checkFiles();
         }
-    @endif
+    });
+
+    $('.remove-button').on('click', function() {
+        const $removeButton = $(this);
+        const $input = $removeButton.siblings('.image-input');
+        const $preview = $removeButton.siblings('.preview');
+        const $uploadButton = $input.siblings('.upload-image');
+        const $imageArea = $input.siblings('.img-area');
+
+        // Clear file input
+        $input.val('');
+
+        // Hide preview
+        $preview.attr('src', '').hide();
+
+        // Remove PDF preview (if any)
+        $input.siblings('.pdf-preview-container').remove();
+
+        // Reset UI
+        $removeButton.hide();
+        $uploadButton.show();
+        $imageArea.show();
+
+        @if(isset($data))
+            $input.siblings('.old_image').val('');
+            checkFiles();
+        @endif
+    });
 });
-});
+
 
 </script>
 <script>
