@@ -42,7 +42,7 @@ class ProjectAPIController extends Controller
         // Fetch user by email
         $user = User::where('email', $email)->first();
 
-        $ucs =  UC::where('district',$user->district)->all();
+        $ucs =  UC::where('district',$user->district)->get();
 
         if ($user && Hash::check($password, $user->password)) {
             // Generate token
