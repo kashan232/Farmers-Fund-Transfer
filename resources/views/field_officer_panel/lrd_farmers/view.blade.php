@@ -519,19 +519,27 @@
                                 <td colspan="2 " class="text-center"><b>Mobile</b></td>
                                 <td colspan="2 " class="text-center"><b>Total Area (Acres)</b></td>
                             </tr>
-                            @foreach (json_decode($data->title_name) as $index => $title)
-                                <tr>
-                                    <th class="question"> {{ $index + 1 }}</th>
-                                    <td colspan="2">{{ json_decode($data->title_name)[$index] }}</td>
-                                    <td colspan="2 " class="text-center">
-                                        {{ json_decode($data->title_cnic)[$index] }}</td>
-                                    <td colspan="2 " class="text-center">
-                                        {{ json_decode($data->title_number)[$index] }}</td>
-                                    <td colspan="2 " class="text-center">
-                                        {{ json_decode($data->title_area)[$index] }}</td>
-                                </tr>
-                            @endforeach
-
+                            @if (!empty($data->title_name) && is_string($data->title_name))
+                            @php
+                                $titles = json_decode($data->title_name, true);
+                                $cnics = json_decode($data->title_cnic, true);
+                                $numbers = json_decode($data->title_number, true);
+                                $areas = json_decode($data->title_area, true);
+                            @endphp
+                        
+                            @if (is_array($titles))
+                                @foreach ($titles as $index => $title)
+                                    <tr>
+                                        <th class="question"> {{ $index + 1 }}</th>
+                                        <td colspan="2">{{ $title }}</td>
+                                        <td colspan="2" class="text-center">{{ $cnics[$index] ?? '' }}</td>
+                                        <td colspan="2" class="text-center">{{ $numbers[$index] ?? '' }}</td>
+                                        <td colspan="2" class="text-center">{{ $areas[$index] ?? '' }}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        @endif
+                        
 
                             <tr>
                                 <th rowspan="2" class="question">Q 17.</th>
