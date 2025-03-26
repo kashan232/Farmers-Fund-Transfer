@@ -1220,7 +1220,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">Form VII / Registry from Micro (Mandatory) <span class="text-danger" > *</span><p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span><p style="    text-transform: uppercase;">jpg, png, jpeg, pdf</p></p></h6>
+                                                          <h6 class="mb-4" style="height: 50px;">Form VII / Registry from Micro (Mandatory) <span class="text-danger" > *</span><p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">File size must be <span>1000KB</span><p style="    text-transform: uppercase; font-size: 12px; margin-top: 5px;">jpg, png, jpeg, pdf</p></p></h6><br>
                                                           @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
                                                           <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
@@ -1228,7 +1228,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                               {{-- <p>Image size must be <span>500KB</span></p> --}}
                                                           </div>
                                                           <img class="preview" src=" @if(isset($data) && $data->form_seven_pic != null) {{asset('').'fa_farmers/form_seven_pic/'.$data->form_seven_pic}} @endif"  @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @endif>
-                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif>Upload</button>
+                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->form_seven_pic != null) style="display: none ; " @endif>Upload</button>
                                                           <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
                                                       </div>
                                                     </div>
