@@ -585,6 +585,8 @@
                                                                 ? json_decode($data->crop_season)
                                                                 : $data->crop_season;
                                                         @endphp
+
+                                                        @if (is_array($data->crops))
                                                         @foreach (json_decode($data->crops) as $index => $crop)
                                                             @if (json_decode($data->crop_season)[$index] == 'rabi_season')
                                                                 <tr>
@@ -609,7 +611,7 @@
                                                         @endforeach
                                                     @endif
 
-
+                                                    @endif
                                                 </table>
                                             </td>
                                             <td style="width: 12.5%;">
