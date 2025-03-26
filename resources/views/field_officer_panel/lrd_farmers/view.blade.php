@@ -578,6 +578,7 @@
                                                             style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;">
                                                             <b>Average Yield (Per Acre)</b></td>
                                                     </tr>
+                                                    @if (!empty($data->crops))
                                                     @if (is_array($data->crop_season) || is_string($data->crop_season))
                                                         @php
                                                             // Decoding the JSON if it's a JSON string
@@ -586,7 +587,6 @@
                                                                 : $data->crop_season;
                                                         @endphp
 
-                                                        @if (is_array($data->crops))
                                                         @foreach (json_decode($data->crops) as $index => $crop)
                                                             @if (json_decode($data->crop_season)[$index] == 'rabi_season')
                                                                 <tr>
@@ -610,8 +610,8 @@
                                                             @endif
                                                         @endforeach
                                                     @endif
-
                                                     @endif
+
                                                 </table>
                                             </td>
                                             <td style="width: 12.5%;">
