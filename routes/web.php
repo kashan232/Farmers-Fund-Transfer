@@ -45,7 +45,7 @@ use App\Http\Controllers\CityController;
 use App\Models\BankBranch;
 use App\Http\Controllers\BankBranchController;
 
-
+use App\Http\Controllers\DGOfficerPanelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -120,8 +120,6 @@ Route::get('/sms', function(){
 Route::get('/admin/sms/', function(){
     return view('admin_panel.sms');
 })->name('admin.sms');
-
-
 
 
 

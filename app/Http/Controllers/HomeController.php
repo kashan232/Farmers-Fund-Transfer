@@ -34,7 +34,30 @@ class HomeController extends Controller
             if ($usertype == 'DG_Officer' || $usertype == 'PD_Officer') {
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
-                return view('pd_officer_panel.index');
+                $user = User::find($userId);
+
+                $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::count();
+                $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , NULL)
+                ->count();
+                $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , 'verified_by_lo')
+                ->count();
+
+                $usersByDistrict = User::where('usertype','Field_Officer')->selectRaw('district, COUNT(*) as total_users')
+                ->groupBy('district')
+                ->paginate(10); // Paginate with 10 results per page
+
+                $farmersByDistrict = LandRevenueFarmerRegistation::selectRaw('district, COUNT(*) as total_farmers')
+                ->groupBy('district')
+                ->paginate(10); // Paginate with 10 results per page
+
+
+                return view('pd_officer_panel.index',[
+                'fa_total_Registered_Farmers' => $fa_total_Registered_Farmers,
+                'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
+                'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
+                'usersByDistrict' => $usersByDistrict,
+                'farmersByDistrict' => $farmersByDistrict
+                ]);
             }
 
             /// DIStrict Officer means A-D OFFICER

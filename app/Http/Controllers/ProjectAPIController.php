@@ -42,12 +42,15 @@ class ProjectAPIController extends Controller
         // Fetch user by email
         $user = User::where('email', $email)->first();
 
+        $ucs =  UC::where('district',$user->district)->all();
+
         if ($user && Hash::check($password, $user->password)) {
             // Generate token
             $token = $user->createToken($request->email)->plainTextToken;
 
             return response()->json([
                 'logged_user_data' => $user,
+                'ucs' => $ucs,
                 'token' => $token,
                 'message' => 'User Login Successfully',
                 'status' => 'Success'
