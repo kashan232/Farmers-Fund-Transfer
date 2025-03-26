@@ -716,11 +716,11 @@
                                                     $cropArea = json_decode($data->crop_area, true) ?? [];
                                                     $cropAverageYield = json_decode($data->crop_average_yeild, true) ?? [];
                                                 @endphp
-                                                
+
                                                 @if (is_array($crops))
                                                     @foreach ($crops as $index => $crop)
-                                                        @if (!empty($cropSeasons[$index]) && 
-                                                             $cropSeasons[$index] != 'kharif_season' && 
+                                                        @if (!empty($cropSeasons[$index]) &&
+                                                             $cropSeasons[$index] != 'kharif_season' &&
                                                              $cropSeasons[$index] != 'rabi_season')
                                                             <tr>
                                                                 <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">
@@ -735,7 +735,7 @@
                                                         @endif
                                                     @endforeach
                                                 @endif
-                                                
+
                                                     {{-- @endif --}}
 
                                                 </table>
@@ -895,22 +895,24 @@
                                         <div class="col-lg-6 border text-center p-2 p-2"><b>Type of animal</b></div>
                                         <div class="col-lg-6 border text-center p-2"><b>Numbers Now </b></div>
 
-                                        @if (is_array($data->animal_name) || is_string($data->animal_name))
-                                            @php
-                                                // Decoding the JSON if it's a JSON string
-                                                $cropSeasons = is_string($data->animal_name)
-                                                    ? json_decode($data->animal_name)
-                                                    : $data->animal_name;
-                                            @endphp
-
-                                            @foreach (json_decode($data->animal_name) as $index => $animal)
-                                                <div class="col-lg-6 border text-center p-2 p-2">
-                                                    <b>{{ json_decode($data->animal_name)[$index] }}</b></div>
+                                        @if (!empty($data->animal_name) && is_string($data->animal_name))
+                                        @php
+                                            $animalNames = json_decode($data->animal_name, true) ?? [];
+                                            $animalQtys = json_decode($data->animal_qty, true) ?? [];
+                                        @endphp
+                                    
+                                        @if (is_array($animalNames))
+                                            @foreach ($animalNames as $index => $animal)
                                                 <div class="col-lg-6 border text-center p-2">
-                                                    <b>{{ json_decode($data->animal_qty)[$index] }}</b></div>
+                                                    <b>{{ $animal }}</b>
+                                                </div>
+                                                <div class="col-lg-6 border text-center p-2">
+                                                    <b>{{ $animalQtys[$index] ?? '' }}</b>
+                                                </div>
                                             @endforeach
-
                                         @endif
+                                    @endif
+                                    
 
 
                                     </div>
