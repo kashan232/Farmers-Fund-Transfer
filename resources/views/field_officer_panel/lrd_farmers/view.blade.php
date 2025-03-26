@@ -578,7 +578,7 @@
                                                             style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;">
                                                             <b>Average Yield (Per Acre)</b></td>
                                                     </tr>
-                                                    @if (!empty($data->crops))
+
                                                     @if (is_array($data->crop_season) || is_string($data->crop_season))
                                                         @php
                                                             // Decoding the JSON if it's a JSON string
@@ -588,9 +588,7 @@
                                                         @endphp
 
                                                         @foreach (json_decode($data->crops) as $index => $crop)
-
-                                                        @if(!empty(json_decode($data->crop_season)[$index]))
-                                                            @if (json_decode($data->crop_season)[$index] == 'rabi_season')
+                                                            {{-- @if (json_decode($data->crop_season)[$index] == 'rabi_season')
                                                                 <tr>
                                                                     <td
                                                                         style="border: 1px solid rgb(192, 192, 192); text-align: center;">
@@ -609,10 +607,10 @@
                                                                         {{ json_decode($data->crop_average_yeild)[$index] }}
                                                                     </td>
                                                                 </tr>
-                                                            @endif @endif
+                                                            @endif --}}
                                                         @endforeach
                                                     @endif
-                                                    @endif
+
 
                                                 </table>
                                             </td>
