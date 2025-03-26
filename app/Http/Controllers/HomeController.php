@@ -39,7 +39,7 @@ class HomeController extends Controller
                 $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::count();
                 $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , NULL)
                 ->count();
-                $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , 'verified_by_lo')
+                $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , 'verified_by_lrd')
                 ->count();
 
                 $usersByDistrict = User::where('usertype','Field_Officer')->selectRaw('district, COUNT(*) as total_users')

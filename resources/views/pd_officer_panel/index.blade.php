@@ -67,7 +67,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Rejected Farmers</p>
+                                                <p class="card-title text-title">Unverified Farmers</p>
                                                 <h3 class="card-text text-amount">{{$Unverifiedfarmeragiruser}}</h3>
                                             </div>
                                             <div class="col-auto">
