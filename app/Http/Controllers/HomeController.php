@@ -37,7 +37,7 @@ class HomeController extends Controller
                 $user = User::find($userId);
 
                 $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::count();
-                $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' ,'!=', 'verified_by_lrd')
+                $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , NULL)
                 ->count();
                 $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , 'verified_by_lrd')
                 ->count();
