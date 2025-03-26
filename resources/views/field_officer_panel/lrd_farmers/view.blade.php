@@ -526,7 +526,7 @@
                                 $numbers = json_decode($data->title_number, true);
                                 $areas = json_decode($data->title_area, true);
                             @endphp
-                        
+
                             @if (is_array($titles))
                                 @foreach ($titles as $index => $title)
                                     <tr>
@@ -539,7 +539,7 @@
                                 @endforeach
                             @endif
                         @endif
-                        
+
 
                             <tr>
                                 <th rowspan="2" class="question">Q 17.</th>
@@ -578,7 +578,7 @@
                                                             style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;">
                                                             <b>Average Yield (Per Acre)</b></td>
                                                     </tr>
-                                                    @if (is_array($data->crop_season) || is_string($data->crop_season))
+                                                    @if (!empty($data->crops) && is_string($data->crop_season))
                                                         @php
                                                             // Decoding the JSON if it's a JSON string
                                                             $cropSeasons = is_string($data->crop_season)
