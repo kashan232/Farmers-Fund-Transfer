@@ -63,11 +63,18 @@ class UCController extends Controller
     }
     public function getTehsils(Request $request)
     {
-        $district = $request->input('district');
-        $tehsils = Tehsil::where('district', $district)->orderBy('tehsil', 'asc')->pluck('tehsil')->toArray(); // Adjust according to your database schema
+        $districts = $request->input('district');
+         // Ensure it's an array before processing
+        if (!is_array($districts)) {
+            $districts = [$districts];
+        }
 
-        return response()->json($tehsils);
-    }
+        $tehsils = Tehsil::whereIn('district', $districts)
+            ->orderBy('tehsil', 'asc')
+            ->pluck('tehsil')
+            ->toArray();
+            return response()->json($tehsils);
+        }
     public function get_ucs(Request $request)
     {
         $district = $request->input('district');

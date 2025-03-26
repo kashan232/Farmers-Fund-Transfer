@@ -157,6 +157,18 @@ Route::get('/farmers/registrations', function(){
 
 
 
+Route::get('/all/farmers-list', [DGOfficerPanelController::class, 'index'])->name('dg.farmers');
+
+
+Route::get('/all/farmers-reporting', [DGOfficerPanelController::class, 'reporting'])->name('dg.farmers.reporting');
+
+
+
+Route::post('/all/farmers-reporting-fetch', [DGOfficerPanelController::class, 'reporting_fetch'])->name('dg.farmers.reporting.fetch');
+
+
+
+
 Route::post('/store-online-farmers-registration', [OnlineFormController::class, 'store_online_farmers_registration'])->name('store-online-farmers-registration');
 
 

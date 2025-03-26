@@ -15,7 +15,24 @@
                         <span class="pc-mtext">Dashboard</span>
                     </a>
                 </li>
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('dg.farmers') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span class="pc-mtext">Farmers</span>
+                    </a>
+                </li>
 
+
+                <li class="pc-item pc-hasmenu">
+                    <a href="{{ route('dg.farmers.reporting') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span class="pc-mtext">Reporting</span>
+                    </a>
+                </li>
 
 
             </ul>

@@ -51,7 +51,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($farmers as $farmer)
+                                                    @forelse($farmers as $farmer)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $farmer->user_type }}</td>
@@ -90,7 +90,11 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    @endforeach
+                                                    @empty
+                                                    <tr>
+                                                        <td colspan="10" class="text-center text-muted">No farmers found</td>
+                                                    </tr>
+                                                    @endforelse
                                                 </tbody>
                                             </table>
 
