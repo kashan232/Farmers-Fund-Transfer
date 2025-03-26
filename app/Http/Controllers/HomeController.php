@@ -7,6 +7,7 @@ use App\Models\AgriUser;
 use App\Models\District;
 use App\Models\LandRevenueDepartment;
 use App\Models\OurUser;
+use App\Models\LandRevenueFarmerRegistation;
 use App\Models\Tappa;
 use App\Models\Tehsil;
 use App\Models\UC;
@@ -210,15 +211,23 @@ class HomeController extends Controller
                         }
                     }
                 }
-                $fa_total_Registered_Farmers = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
-                
-                
-                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')
-                    ->where('user_id', $user_id)
-                    ->whereNull('verification_status') // Correct way to check NULL
-                    ->count();
+                $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->where('tappa', $user->tappas)
+                ->count();
 
-                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'verified_by_lo')->count();
+
+                $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->where('tappa', $user->tappas)
+                ->where('verification_status' , NULL)
+                ->count();
+
+                $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->where('tappa', $user->tappas)
+                ->where('verification_status' , 'verified_by_lo')
+                ->count();
 
                 $rejectedByAO = DB::table('land_revenue_farmer_registations')
                     ->where('user_id', $user_id)
