@@ -1137,7 +1137,7 @@
                                         <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                             <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                               <div class="text-center image-upload-card">
-                                                  <h6 class="mb-4" style="height: 50px;">Form VII / Registry from Micro (Mandatory) <span class="text-danger" > *</span><p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span><p style="    text-transform: uppercase;">jpg, png, jpeg, pdf</p></p></h6>
+                                                  <h6 class="mb-4" style="height: 50px;">Form VII / Registry from Micro (Mandatory) <span class="text-danger" > *</span><p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">File size must be <span>1000KB</span><p style="    text-transform: uppercase; font-size: 12px; font-weight: 500;">jpg, png, jpeg, pdf</p></p></h6>
                                                   @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
                                                   <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
