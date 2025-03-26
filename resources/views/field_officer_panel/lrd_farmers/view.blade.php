@@ -588,6 +588,8 @@
                                                         @endphp
 
                                                         @foreach (json_decode($data->crops) as $index => $crop)
+
+                                                        @if(!empty(json_decode($data->crop_season)[$index]))
                                                             @if (json_decode($data->crop_season)[$index] == 'rabi_season')
                                                                 <tr>
                                                                     <td
@@ -607,7 +609,7 @@
                                                                         {{ json_decode($data->crop_average_yeild)[$index] }}
                                                                     </td>
                                                                 </tr>
-                                                            @endif
+                                                            @endif @endif
                                                         @endforeach
                                                     @endif
                                                     @endif
