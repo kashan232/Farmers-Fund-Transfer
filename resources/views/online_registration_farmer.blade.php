@@ -974,7 +974,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                         Bank & Account Details</h6>
                                                 </div>
                                                 <div class="mb-6 col-md-4 mt-2">
-                                                    <label class="form-label">City</label>
+                                                    <label class="form-label">City <span class="text-danger">*</span></label>
                                                     <select name="city" id="city" class="form-control js-example-basic-single-no-tag">
                                                         <option value="">Select City</option>
                                                         @foreach ($cities as $city)
@@ -984,26 +984,26 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
 
                                                 <div class="mb-6 col-md-4 mt-2">
-                                                    <label class="form-label">Preferred Branch Name</label>
+                                                    <label class="form-label">Preferred Branch Name <span class="text-danger">*</span></label>
                                                     <select name="branch_name" id="branch_name" class="form-control js-example-basic-single-no-tag">
                                                         <option value="">Select City First</option>
                                                     </select>
                                                 </div>
 
                                                 <div class="mb-6 col-md-4 mt-2">
-                                                    <label class="form-label">Title of Account</label>
-                                                    <input type="text" name="account_title" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                                    <label class="form-label">Title of Account <span class="text-danger">*</span></label>
+                                                    <input type="text" name="account_title" id="account_title" class="form-control" value="{{$data->account_title ?? ''}}" >
                                                 </div>
 
 
                                                 <div class="mb-6 col-md-4 mt-2">
-                                                    <label class="form-label">D.O.B</label>
-                                                    <input type="date" name="date_of_birth" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                                    <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
+                                                    <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" value="{{$data->account_title ?? ''}}" >
                                                 </div>
 
                                                 <div class="mb-6 col-md-4 mt-2">
-                                                    <label class="form-label">Marital status</label>
-                                                    <select name="marital_status" id="" class="form-control">
+                                                    <label class="form-label">Marital status <span class="text-danger">*</span></label>
+                                                    <select name="marital_status" id="marital_status" class="form-control">
                                                         <option value="">Select Marital status</option>
                                                         <option value="Married">Married</option>
                                                         <option value="Single">Single</option>
@@ -1011,19 +1011,19 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
 
                                                 <div class="mb-6 col-md-4 mt-2">
-                                                    <label class="form-label">Mother's Maiden Name</label>
-                                                    <input type="text" name="mother_maiden_name" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                                    <label class="form-label">Mother's Maiden Name <span class="text-danger">*</span></label>
+                                                    <input type="text" name="mother_maiden_name" id="mother_maiden_name" class="form-control" value="{{$data->account_title ?? ''}}" >
                                                 </div>
 
                                                 <div class="mb-6 col-md-6 mt-2">
-                                                    <label class="form-label">Correspondence Address</label>
-                                                    <input type="text" name="correspondence_address" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                                    <label class="form-label">Correspondence Address <span class="text-danger">*</span></label>
+                                                    <input type="text" name="correspondence_address" id="correspondence_address" class="form-control" value="{{$data->account_title ?? ''}}" >
                                                 </div>
 
 
                                                 <div class="mb-6 col-md-6 mt-2">
-                                                    <label class="form-label">Permanent Address</label>
-                                                    <input type="text" name="permanent_address" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                                    <label class="form-label">Permanent Address <span class="text-danger">*</span></label>
+                                                    <input type="text" name="permanent_address" id="permanent_address" class="form-control" value="{{$data->account_title ?? ''}}" >
                                                 </div>
 
 
@@ -1220,7 +1220,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">Form VII / Registry from Micro (Mandatory) <span class="text-danger" > *</span><p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p></h6>
+                                                          <h6 class="mb-4" style="height: 50px;">Form VII / Registry from Micro (Mandatory) <span class="text-danger" > *</span><p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span><p style="    text-transform: uppercase;">jpg, png, jpeg, pdf</p></p></h6>
                                                           @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
                                                           <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
@@ -1980,6 +1980,14 @@ $('#lined_unlined').change(function() {
 
                 let step4_formdata = {
                  // FancingCoordinates: $('#FancingCoordinates').val(),
+                    City: $('#city').val(),
+                    BranchName: $('#branch_name').val(),
+                    AccountTitle: $('#account_title').val(),
+                    DateOfBirth: $('#date_of_birth').val(),
+                    MaritalStatus: $('#marital_status').val(),
+                    MotherMaidenName: $('#mother_maiden_name').val(),
+                    CorrespondenceAddress: $('#correspondence_address').val(),
+                    PermanentAddress: $('#permanent_address').val(),
                     GpsCordinates: $('#GpsCordinates').val(),
                 };
 

@@ -211,6 +211,8 @@ class HomeController extends Controller
                     }
                 }
                 $fa_total_Registered_Farmers = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
+                
+                
                 $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')
                     ->where('user_id', $user_id)
                     ->whereNull('verification_status') // Correct way to check NULL

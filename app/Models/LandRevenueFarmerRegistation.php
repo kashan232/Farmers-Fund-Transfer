@@ -92,7 +92,7 @@ class LandRevenueFarmerRegistation extends Model
         'surname',
         'no_objection_affidavit_pic',
 
-        
+        'city',
         'branch_name',
         'account_title',
         'date_of_birth',
