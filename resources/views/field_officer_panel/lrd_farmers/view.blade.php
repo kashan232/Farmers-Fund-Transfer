@@ -578,7 +578,7 @@
                                                             style="border: 1px solid rgb(192, 192, 192); text-align: center; padding: 5px;">
                                                             <b>Average Yield (Per Acre)</b></td>
                                                     </tr>
-                                                    @if (!empty($data->crops) && is_string($data->crop_season))
+                                                    {{-- @if (is_array($data->crop_season) || is_string($data->crop_season))
                                                         @php
                                                             // Decoding the JSON if it's a JSON string
                                                             $cropSeasons = is_string($data->crop_season)
@@ -607,7 +607,35 @@
                                                                 </tr>
                                                             @endif
                                                         @endforeach
-                                                    @endif
+                                                    @endif --}}
+
+
+                                                    @if (!empty($data->crops) && is_string($data->crops))
+    @php
+        $crops = json_decode($data->crops, true);
+        $cropSeasons = json_decode($data->crop_season, true);
+        $cropsOrchard = json_decode($data->crops_orchard, true);
+        $cropArea = json_decode($data->crop_area, true);
+        $cropAverageYield = json_decode($data->crop_average_yeild, true);
+    @endphp
+
+    @if (is_array($crops))
+        @foreach ($crops as $index => $crop)
+            @if (!empty($cropSeasons[$index]) && $cropSeasons[$index] == 'rabi_season')
+                <tr>
+                    <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">
+                        {{ $crop }}</td>
+                    <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">
+                        {{ $cropsOrchard[$index] ?? '' }}</td>
+                    <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">
+                        {{ $cropArea[$index] ?? '' }}</td>
+                    <td style="border: 1px solid rgb(192, 192, 192); text-align: center;">
+                        {{ $cropAverageYield[$index] ?? '' }}</td>
+                </tr>
+            @endif
+        @endforeach
+    @endif
+@endif
 
 
                                                 </table>
