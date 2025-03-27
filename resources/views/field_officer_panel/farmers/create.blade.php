@@ -551,39 +551,36 @@
                                                     </thead>
                                                     <tbody id="title_tableBody">
 
+@if (!empty($data) && !empty($data->title_name) && is_string($data->title_name))
+    @php
+        $titleNames = json_decode($data->title_name, true) ?? [];
+        $fatherNames = json_decode($data->title_father_name, true) ?? [];
+        $cnics = json_decode($data->title_cnic, true) ?? [];
+        $numbers = json_decode($data->title_number, true) ?? [];
+        $areas = json_decode($data->title_area, true) ?? [];
+    @endphp
 
-                                                        @if (isset($data) && $data->title_name != '')
-                                                        @foreach (json_decode($data->title_name) as $index => $title_name)
-                                                        <tr>
-                                                            <td><input type="text" name="title_name[]" value="{{$title_name}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
-                                                            <td><input type="text" name="title_father_name[]"  value="{{json_decode($data->title_father_name)[$index]}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"> </td>
+    @foreach ($titleNames as $index => $title_name)
+        <tr>
+            <td><input type="text" name="title_name[]" value="{{ $title_name }}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
+            <td><input type="text" name="title_father_name[]" value="{{ $fatherNames[$index] ?? '' }}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
+            <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'" placeholder="XXXXX-XXXXXXX-X" value="{{ $cnics[$index] ?? '' }}" class="form-control"></td>
+            <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX" value="{{ $numbers[$index] ?? '' }}" class="form-control"></td>
+            <td><input type="text" name="title_area[]" value="{{ $areas[$index] ?? '' }}" class="form-control"></td>
+            <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+        </tr>
+    @endforeach
+@else
+    <tr>
+        <td><input type="text" name="title_name[]" value="" class="form-control"></td>
+        <td><input type="text" name="title_father_name[]" value="" class="form-control"></td>
+        <td><input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'" placeholder="XXXXX-XXXXXXX-X"></td>
+        <td><input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"></td>
+        <td><input type="text" name="title_area[]" value="" class="form-control"></td>
+        <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+    </tr>
+@endif
 
-                                                            <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
-                                                            <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"   value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
-                                                            <td><input type="text" name="title_area[]" value="{{json_decode($data->title_area)[$index]}}" class="form-control"></td>
-                                                            <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
-                                                        </tr>
-                                                        @endforeach
-                                                        @else
-                                                        <tr>
-                                                            <td>
-                                                                <input type="text" name="title_name[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="title_father_name[]"  value="" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  >
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"  >
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="title_area[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
-                                                            </td>
-                                                            <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
-                                                        </tr>
-                                                        @endif
 
                                                     </tbody>
                                                 </table>
