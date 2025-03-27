@@ -900,7 +900,7 @@
                                             $animalNames = json_decode($data->animal_name, true) ?? [];
                                             $animalQtys = json_decode($data->animal_qty, true) ?? [];
                                         @endphp
-                                    
+
                                         @if (is_array($animalNames))
                                             @foreach ($animalNames as $index => $animal)
                                                 <div class="col-lg-6 border text-center p-2">
@@ -912,7 +912,7 @@
                                             @endforeach
                                         @endif
                                     @endif
-                                    
+
 
 
                                     </div>

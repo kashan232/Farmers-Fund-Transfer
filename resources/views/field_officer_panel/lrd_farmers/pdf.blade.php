@@ -511,7 +511,7 @@ table{
                                                         $cropArea = json_decode($data->crop_area, true);
                                                         $cropAverageYield = json_decode($data->crop_average_yeild, true);
                                                     @endphp
-                                                
+
                                                     @if (is_array($crops))
                                                         @foreach ($crops as $index => $crop)
                                                             @if (!empty($cropSeasons[$index]) && $cropSeasons[$index] == 'kharif_season')
@@ -605,7 +605,7 @@ table{
                                                         @endif
                                                     @endforeach
                                                 @endif
-                                                
+
                                                     {{-- @endif --}}
 
                                                 </table>

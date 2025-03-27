@@ -42,6 +42,22 @@ class DGOfficerPanelController extends Controller
                 $query->whereIn('tappa', $req->tappa);
             }
 
+            if (!empty($req->start_date) && $req->start_date == $req->end_date) {
+                $query->whereDate('created_at', $req->start_date);
+            } else {
+                $query->whereBetween('created_at', [$req->start_date, $req->end_date]);
+            }
+
+            if (!empty($req->farmer_type) && $req->farmer_type !== null) {
+                $query->where('farmer_type', $req->farmer_type);
+            }
+
+            if (!empty($req->verification_status) && $req->verification_status !== null) {
+                $query->where('verification_status', $req->verification_status);
+            }
+
+
+
         // Paginate results
         $farmers = $query->paginate(10);
 

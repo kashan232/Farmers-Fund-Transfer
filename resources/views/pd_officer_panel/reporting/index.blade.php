@@ -11,6 +11,8 @@
 
 
 
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 <style>
    .tables nav{
         display: flex;
@@ -76,9 +78,7 @@
 
                                         <!-- Date Range -->
 
-
-{{--
-                                        <div class="col-6 mt-2">
+                                        <div class="col-4 mt-2">
                                             <div class="mb-12 col-md-12">
                                                 <label class="form-label" style="font-weight: 600;">Date Range</label>
                                                 <div class="d-flex">
@@ -87,7 +87,45 @@
                                                     <input type="text" id="daterange" name="" class="form-control"> &nbsp;
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div>
+
+
+                                        <div class="col-4 mt-2">
+                                            <div class="mb-12 col-md-12">
+                                                <label class="form-label" style="font-weight: 600;">Farmer Type</label>
+                                                <select name="farmer_type" id="" class="form-control">
+                                                    <option value="">Select Farmer Type</option>
+                                                    <option value="Online">Online</option>
+                                                    <option value="Field_Officer">Field Officer</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-4 mt-2">
+                                            <div class="mb-12 col-md-12">
+                                                <label class="form-label" style="font-weight: 600;">Verification Status</label>
+                                                <select name="verification_status" id="" class="form-control">
+                                                    <option value="">Select Verification Status</option>
+
+                                                    <option value="rejected_by_fa">REJECTED BY FA OFFICER</option>
+                                                    <option value="verified_by_fa">VERIFIED BY FA OFFICER</option>
+
+                                                    <option value="rejected_by_ao">REJECTED BY AO OFFICER</option>
+                                                    <option value="verified_by_ao">VERIFIED BY AO OFFICER</option>
+
+                                                    <option value="rejected_by_dd">REJECTED BY DD OFFICER</option>
+                                                    <option value="verified_by_dd">VERIFIED BY DD OFFICER</option>
+
+                                                    <option value="rejected_by_lrd">REJECTED LRD OFFICER</option>
+                                                    <option value="verified_by_lrd">VERIFIED LRD OFFICER</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+
                                     </div>
 
                                     <div class="row mt-4">
@@ -115,8 +153,22 @@
 
 @include('pd_officer_panel.include.footer_include')
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
     $(document).ready(function () {
+
+
+
+        $(function() {
+            $('#daterange').daterangepicker({
+                opens: 'left'
+            }, function(start, end, label) {
+                $('#start_date').val(start.format('YYYY-MM-DD'));
+                $('#end_date').val(end.format('YYYY-MM-DD'));
+            });
+        });
+
 
         $('#district').change(function () {
             var district_id = $(this).val();
@@ -159,7 +211,7 @@
                         tehsil: taluka_id
                     },
                     success: function (data) {
-                        $('#tappa').html('<option value="">All UCs</option>');
+                        $('#tappa').html('<option value="">All Tappas</option>');
 
                         $.each(data.Tappas, function(index, value) {
                             $('#tappa').append('<option value="' + value + '">' + value + '</option>');
