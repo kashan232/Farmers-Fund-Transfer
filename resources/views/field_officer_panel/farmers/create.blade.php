@@ -682,38 +682,32 @@
                                         </div>
                                         <div class="mb-8 col-md-8">
                                             <label class="form-label">Q18: Physical Assets (Farm machinery) - currently owned</label>
-                                            <select name="physical_asset_item[]" id="" class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
+                                           @php
+    $physicalAssetItems = json_decode($data->physical_asset_item, true);
+    if (!is_array($physicalAssetItems)) {
+        $physicalAssetItems = []; // Ensure it's always an array
+    }
+@endphp
+
+<select name="physical_asset_item[]" id="" class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
+    @php
+        $options = [
+            "jeep", "pickup/loader", "motorcycle", "bicycles", "bullock cart",
+            "Tractor(4wheels)", "disk_harrow", "cultivator", "tractor trolley",
+            "plough", "laser lever", "rotavetor", "thresher", "harvester"
+        ];
+    @endphp
+
+    @foreach ($options as $option)
+        <option value="{{ $option }}" {{ in_array($option, $physicalAssetItems) ? 'selected' : '' }}>{{ $option }}</option>
+    @endforeach
+</select>
+
+                                           
+                                            {{-- <select name="physical_asset_item[]" id="" class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
                                                 @if (isset($data) && json_decode($data->physical_asset_item) != null)
 
-                                                {{-- @php
-                                                    // Decode the JSON and remove duplicates if exists
-                                                    $physical_asset_items = json_decode($data->physical_asset_item);
-                                                    $unique_items = is_array($physical_asset_items) ? array_unique($physical_asset_items) : [];
-                                                    $default_options = [
-                                                        'jeep' => 'Jeep',
-                                                        'pickup/loader' => 'Pickup/Loader',
-                                                        'motorcycle' => 'Motorcycle',
-                                                        'bicycles' => 'Bicycles',
-                                                        'bullock_cart' => 'Bullock Cart',
-                                                        'Tractor(4wheels)' => 'Tractor (4 wheels)',
-                                                        'disk_harrow' => 'Disk Harrow',
-                                                        'cultivator' => 'Cultivator',
-                                                        'tractor_trolley' => 'Tractor Trolley',
-                                                        'plough' => 'Plough (wood or metal)',
-                                                        'laser_lever' => 'Laser lever',
-                                                        'rotavetor' => 'Rotavetor',
-                                                        'thresher' => 'Thresher',
-                                                        'harvester' => 'Harvester'
-                                                    ];
-                                                @endphp
-
-                                                @foreach ($default_options as $value => $label)
-                                                    <option value="{{ $value }}"
-                                                        @if(in_array($value, $unique_items)) selected @endif>
-                                                        {{ $label }}
-                                                    </option>
-                                                @endforeach --}}
-
+                                             
                                                 <option value="jeep">Jeep </option>
                                                 <option value="pickup/loader">Pickup/loader</option>
                                                 <option value="motorcycle">Motorcycle</option>
@@ -748,7 +742,7 @@
                                                 <option value="harvester">Harvester</option>
                                                 <option value="Nill">Nill</option>
                                                 @endif
-                                            </select>
+                                            </select> --}}
                                         </div>
                                     </div>
                                     <div class="row mt-2 " id="poultry_assets_section">
