@@ -310,7 +310,7 @@
                                         </div>
                                         <div class="mb-6 col-md-4">
                                             <label class="form-label">Q2.(B) Surname: <span class="text-danger">*</span></label>
-                                            <input type="text" name="surname" id="surname" class="form-control">
+                                            <input type="text" name="surname" id="surname" class="form-control"  value="{{$data->surname ?? ''}}">
                                         </div>
 
 
@@ -703,11 +703,11 @@
     @endforeach
 </select>
 
-                                           
+
                                             {{-- <select name="physical_asset_item[]" id="" class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
                                                 @if (isset($data) && json_decode($data->physical_asset_item) != null)
 
-                                             
+
                                                 <option value="jeep">Jeep </option>
                                                 <option value="pickup/loader">Pickup/loader</option>
                                                 <option value="motorcycle">Motorcycle</option>
