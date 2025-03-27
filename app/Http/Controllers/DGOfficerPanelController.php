@@ -49,7 +49,7 @@ class DGOfficerPanelController extends Controller
             }
 
             if (!empty($req->farmer_type) && $req->farmer_type !== null) {
-                $query->where('farmer_type', $req->farmer_type);
+                $query->where('user_type', $req->farmer_type);
             }
 
             if (!empty($req->verification_status) && $req->verification_status !== null) {
