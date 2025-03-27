@@ -111,6 +111,7 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
+                                            {{$farmers->links()}}
                                         </div>
                                     </div>
                                 </div>
