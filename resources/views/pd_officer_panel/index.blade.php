@@ -26,7 +26,7 @@
                     <div class="all-card">
                         <div class="row">
                             <!-- Total Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -43,8 +43,30 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+                             <!-- Verified Farmers Card -->
+                             <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title">On Process Farmers</p>
+                                                <h3 class="card-text text-amount">{{$Processfarmeragiruser}}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-check" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Verified Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -62,7 +84,7 @@
                                 </div>
                             </div>
                             <!-- Rejected Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">

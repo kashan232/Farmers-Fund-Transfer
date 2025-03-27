@@ -37,8 +37,23 @@ class HomeController extends Controller
                 $user = User::find($userId);
 
                 $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::count();
+
                 $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , NULL)
                 ->count();
+
+                $Processfarmeragiruser =  LandRevenueFarmerRegistation::whereIn('verification_status', [
+                    'rejected_by_lrd',
+                    'rejected_by_ao',
+                    'rejected_by_dd',
+
+                    'verified_by_dd',
+                    'verified_by_fa',
+                    'verified_by_ao'
+                ])
+                ->count();
+
+
+
                 $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , 'verified_by_lrd')
                 ->count();
 
@@ -56,7 +71,8 @@ class HomeController extends Controller
                 'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                 'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
                 'usersByDistrict' => $usersByDistrict,
-                'farmersByDistrict' => $farmersByDistrict
+                'farmersByDistrict' => $farmersByDistrict,
+                'Processfarmeragiruser' => $Processfarmeragiruser
                 ]);
             }
 

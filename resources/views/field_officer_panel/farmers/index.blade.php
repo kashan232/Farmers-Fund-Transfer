@@ -84,7 +84,7 @@
                                                             @elseif($farmer->verification_status == 'rejected_by_ao')
                                                             <span class="badge text-bg-danger text-dark font-weight-bold">Rejected By A-O</span>
                                                             @elseif($farmer->verification_status == 'verified_by_fa')
-                                                            <span class="badge  text-white font-weight-bold" style="background: blue;">Forward to A-O</span>
+                                                            <span class="badge  text-bg-success text-dark font-weight-bold" >Forward to A-O</span>
                                                             @else
                                                             <span class="badge text-bg-primary text-white font-weight-bold">Unverified</span>
                                                             @endif

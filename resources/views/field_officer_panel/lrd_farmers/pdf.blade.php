@@ -102,7 +102,7 @@ table{
 <body>
 
 
-    <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel"
+    {{-- <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -113,7 +113,7 @@ table{
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 @php
     // Assuming front_id_card contains the path to the image file
@@ -131,6 +131,26 @@ table{
     <div class="container">
 
         <div class="row" id="farmer-details-table">
+            <div class="logo-container " style="margin: auto; text-align: center;">
+
+                @php
+                // Define the correct file path
+                $filePath = public_path('assets/images/Sindh_Hari_Card.png');
+
+                // Check if the image file exists
+                if (file_exists($filePath)) {
+                    $imageData = base64_encode(file_get_contents($filePath));
+                    $imageSrc = 'data:image/png;base64,' . $imageData;
+                } else {
+                    $imageSrc = asset('assets/images/default.png'); // Default image in case of error
+                }
+            @endphp
+
+            <img src="{{ $imageSrc }}" alt="logo image" class="logo-lg" style="max-width:120px;" />
+
+            <h1 style="margin: 0; margin-top: 20px; margin-bottom: 10px; font-size: 30px;">Benazir Hari Card</h1>
+            <h3 style="margin: 0; margin-bottom: 20px; font-size: 20px;">Registration Form</h3>
+            </div>
             <div class="col-sm-12">
                 <div class="">
                     <div class="card-body">

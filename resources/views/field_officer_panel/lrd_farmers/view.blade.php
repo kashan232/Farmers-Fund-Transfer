@@ -349,6 +349,26 @@
         </div>
 
         <div class="row" id="farmer-details-table">
+            <div class="logo-container " style="margin: auto; text-align: center;">
+                @php
+                // Define the correct file path
+                $filePath = public_path('assets/images/Sindh_Hari_Card.png');
+
+                // Check if the image file exists
+                if (file_exists($filePath)) {
+                    $imageData = base64_encode(file_get_contents($filePath));
+                    $imageSrc = 'data:image/png;base64,' . $imageData;
+                } else {
+                    $imageSrc = asset('assets/images/default.png'); // Default image in case of error
+                }
+            @endphp
+
+            <img src="{{ $imageSrc }}" alt="logo image" class="logo-lg" style="max-width:120px;" />
+
+
+                <h1 style="margin: 0; font-size: 30px;">Benazir Hari Card</h1>
+                <h3 style="margin: 0; font-size: 20px;">Registration Form</h3>
+            </div>
             <div class="col-sm-12">
                 <div class="">
                     <div class="card-body">
