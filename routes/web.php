@@ -164,7 +164,7 @@ Route::get('/all/farmers-reporting', [DGOfficerPanelController::class, 'reportin
 
 
 
-Route::post('/all/farmers-reporting-fetch', [DGOfficerPanelController::class, 'reporting_fetch'])->name('dg.farmers.reporting.fetch');
+Route::get('/all/farmers-reporting-fetch', [DGOfficerPanelController::class, 'reporting_fetch'])->name('dg.farmers.reporting.fetch');
 
 
 
