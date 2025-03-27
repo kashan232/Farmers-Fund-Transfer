@@ -893,15 +893,15 @@
                                             <select name="city" id="city" class="form-control js-example-basic-single-no-tag">
                                                 <option value="">Select City</option>
                                                 @foreach ($cities as $city)
-                                                    <option value="{{$city->id}}">{{$city->title}}</option>
+                                                    <option value="{{$city->id}}" @if(isset($data)) {{($data->city == $city->id) ? 'selected':''}} @endif>{{$city->title}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Preferred Branch Name <span class="text-danger">*</span></label>
-                                            <select name="branch_name" id="branch_name" class="form-control js-example-basic-single-no-tag">
-                                                <option value="">Select City First</option>
+                                            <select name="branch_name" id="branch_name"  class="form-control js-example-basic-single-no-tag">
+                                                <option value="{{$data->branch_name ?? ''}}" >{{$data->branch_name ?? ''}} Select City First</option>
                                             </select>
                                         </div>
 
@@ -913,32 +913,32 @@
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
-                                            <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                            <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" value="{{$data->date_of_birth ?? ''}}" >
                                         </div>
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Marital status <span class="text-danger">*</span></label>
                                             <select name="marital_status" id="marital_status" class="form-control">
                                                 <option value="">Select Marital status</option>
-                                                <option value="Married">Married</option>
-                                                <option value="Single">Single</option>
+                                                <option value="Married" @if(isset($data)) {{($data->marital_status == 'Married') ? 'selected':''}} @endif>Married</option>
+                                                <option value="Single" @if(isset($data)) {{($data->marital_status == 'Single') ? 'selected':''}} @endif>Single</option>
                                             </select>
                                         </div>
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Mother's Maiden Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="mother_maiden_name" id="mother_maiden_name" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                            <input type="text" name="mother_maiden_name" id="mother_maiden_name" class="form-control" value="{{$data->mother_maiden_name ?? ''}}" >
                                         </div>
 
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Correspondence Address <span class="text-danger">*</span></label>
-                                            <input type="text" name="correspondence_address" id="correspondence_address" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                            <input type="text" name="correspondence_address" id="correspondence_address" class="form-control" value="{{$data->correspondence_address ?? ''}}" >
                                         </div>
 
 
                                         <div class="mb-6 col-md-6 mt-2">
                                             <label class="form-label">Permanent Address <span class="text-danger">*</span></label>
-                                            <input type="text" name="permanent_address" id="permanent_address" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                            <input type="text" name="permanent_address" id="permanent_address" class="form-control" value="{{$data->permanent_address ?? ''}}" >
                                         </div>
                                         {{-- <div class="mb-6 col-md-6">
                                             <label class="form-label">Q23: Title of Account</label>

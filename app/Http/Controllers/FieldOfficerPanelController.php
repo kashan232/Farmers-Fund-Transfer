@@ -136,11 +136,14 @@ class FieldOfficerPanelController extends Controller
             $tehsils = Auth()->user()->tehsil;
             $user_name = Auth()->user()->name;
             $data = LandRevenueFarmerRegistation::where('id', '=', $id)->first();
-
+            $tappa = Auth()->user()->tappas;
+            $cities = City::all();
             return view('field_officer_panel.farmers.create', [
                 'data' => $data,
                 'district' => $district,
                 'tehsils' => $tehsils,
+                'tappa' => $tappa,
+                'cities' => $cities
             ]);
         } else {
             return redirect()->back();
