@@ -157,7 +157,7 @@ Route::get('/farmers/registrations', function(){
 
 
 
-Route::get('/all/farmers-list', [DGOfficerPanelController::class, 'index'])->name('dg.farmers');
+Route::get('/all/farmers-list/{search?}', [DGOfficerPanelController::class, 'index'])->name('dg.farmers');
 
 
 Route::get('/all/farmers-reporting', [DGOfficerPanelController::class, 'reporting'])->name('dg.farmers.reporting');

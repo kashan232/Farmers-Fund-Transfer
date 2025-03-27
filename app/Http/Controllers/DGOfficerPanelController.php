@@ -12,8 +12,26 @@ use App\Models\UC;
 
 class DGOfficerPanelController extends Controller
 {
-    public function index(){
-        $farmers = LandRevenueFarmerRegistation::paginate(10);
+    public function index(request $req){
+
+        $query = LandRevenueFarmerRegistation::query();
+       
+
+        if (!empty($req->search) && $req->search !== null) {
+            $query->where(function ($q) use ($req) {
+                $q->where('name', 'LIKE', "%{$req->search}%")
+                  ->orWhere('father_name', 'LIKE', "%{$req->search}%")
+                  ->orWhere('surname', 'LIKE', "%{$req->search}%")
+                  ->orWhere('mobile', 'LIKE', "%{$req->search}%")
+                  ->orWhere('cnic', 'LIKE', "%{$req->search}%")
+                  ->orWhere('district', 'LIKE', "%{$req->search}%")
+                  ->orWhere('tehsil', 'LIKE', "%{$req->search}%")
+                  ->orWhere('tappa', 'LIKE', "%{$req->search}%")
+                  ->orWhere('uc', 'LIKE', "%{$req->search}%"); // Add more columns as needed
+            });
+        }
+
+        $farmers = $query->paginate(10)->appends($req->all());
 
         return view('pd_officer_panel.farmers',['farmers'=>$farmers ]);
     }
@@ -57,6 +75,21 @@ class DGOfficerPanelController extends Controller
 
             if (!empty($req->verification_status) && $req->verification_status !== null) {
                 $query->where('verification_status', $req->verification_status);
+            }
+
+
+            if (!empty($req->search) && $req->search !== null) {
+                $query->where(function ($q) use ($req) {
+                    $q->where('name', 'LIKE', "%{$req->search}%")
+                      ->orWhere('father_name', 'LIKE', "%{$req->search}%")
+                      ->orWhere('surname', 'LIKE', "%{$req->search}%")
+                      ->orWhere('mobile', 'LIKE', "%{$req->search}%")
+                      ->orWhere('cnic', 'LIKE', "%{$req->search}%")
+                      ->orWhere('district', 'LIKE', "%{$req->search}%")
+                      ->orWhere('tehsil', 'LIKE', "%{$req->search}%")
+                      ->orWhere('tappa', 'LIKE', "%{$req->search}%")
+                      ->orWhere('uc', 'LIKE', "%{$req->search}%"); // Add more columns as needed
+                });
             }
 
 

@@ -31,6 +31,18 @@
                                 <div class="row mt-2 justify-content-md-center">
                                     <div class="col-12  tables">
                                         <div class="table-responsive ">
+
+                                            <div class="row mb-2">
+                                                <div class="col-md-5">
+                                                    <form action="{{ route('dg.farmers') }}" method="get" class="d-flex">
+
+                                                        <input type="text" name="search" id="" class="form-control me-2" placeholder="Search...">
+                                                        <input type="submit" name="" id="" value="Search" class="btn btn-primary">
+                                                    </form>
+                                                </div>
+                                            </div>
+
+
                                             <table id="example1"  style="width:100%" class="table table-bordered table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
                                                     <tr>

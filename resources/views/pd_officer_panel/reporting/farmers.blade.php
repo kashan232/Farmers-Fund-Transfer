@@ -30,6 +30,26 @@
                             <div id="dom-jqry_wrapper" class="dt-container dt-bootstrap5">
                                 <div class="row mt-2 justify-content-md-center">
                                     <div class="col-12  tables">
+                                        <div class="row mb-2">
+                                            <div class="col-md-5">
+                                                <form action="{{ route('dg.farmers.reporting') }}" method="post" class="d-flex">
+                                                    @csrf
+                                                     {{-- Preserve Existing Filters --}}
+                                                    @foreach (request()->except('page') as $key => $value)
+                                                        @if (is_array($value))
+                                                            @foreach ($value as $val)
+                                                                <input type="hidden" name="{{ $key }}[]" value="{{ $val }}">
+                                                            @endforeach
+                                                        @else
+                                                            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                                                        @endif
+                                                    @endforeach
+                                                    <input type="text" name="search" id="" class="form-control me-2" placeholder="Search...">
+                                                    <input type="submit" name="" id="" value="Search" class="btn btn-primary">
+                                                </form>
+                                            </div>
+                                        </div>
+
                                         <div class="table-responsive ">
                                             <table id="example1"  style="width:100%" class="table table-bordered table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
@@ -100,28 +120,28 @@
 
                                         </div>
                                         {{-- Hidden Pagination Form --}}
-<form id="paginationForm" action="{{ route('dg.farmers.reporting.fetch') }}" method="post">
-    @csrf
+                        <form id="paginationForm" action="{{ route('dg.farmers.reporting.fetch') }}" method="post">
+                            @csrf
 
-    {{-- Preserve Existing Filters --}}
-    @foreach (request()->except('page') as $key => $value)
-        @if (is_array($value))
-            @foreach ($value as $val)
-                <input type="hidden" name="{{ $key }}[]" value="{{ $val }}">
-            @endforeach
-        @else
-            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-        @endif
-    @endforeach
+                            {{-- Preserve Existing Filters --}}
+                            @foreach (request()->except('page') as $key => $value)
+                                @if (is_array($value))
+                                    @foreach ($value as $val)
+                                        <input type="hidden" name="{{ $key }}[]" value="{{ $val }}">
+                                    @endforeach
+                                @else
+                                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                                @endif
+                            @endforeach
 
-    {{-- Hidden Page Input (MUST EXIST) --}}
-    <input type="hidden" name="page" id="pageInput" value="">
-</form>
+                            {{-- Hidden Page Input (MUST EXIST) --}}
+                            <input type="hidden" name="page" id="pageInput" value="">
+                        </form>
 
 
 
 {{-- Modify Pagination Links to Use JavaScript --}}
-<div class="pagination">
+<div class="pagination" style="display: flex ; justify-content: right; margin-top: 1%;">
     {!! str_replace('<a', '<a class="pagination-link page-link" ', $farmers->links()) !!}
 </div>
 
