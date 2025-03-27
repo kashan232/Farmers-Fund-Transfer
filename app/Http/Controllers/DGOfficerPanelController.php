@@ -60,10 +60,13 @@ class DGOfficerPanelController extends Controller
             }
 
 
-        // Paginate results
-        $farmers = $query->paginate(10);
+        // Paginate results and keep query parameters
+        $farmers = $query->paginate(10)->appends($req->all());
 
-        return view('pd_officer_panel.reporting.farmers',['farmers'=>$farmers ]);
+        return view('pd_officer_panel.reporting.farmers',[
+            'farmers' => $farmers,
+            'requestData' => $req->all(), // Pass request data for hidden inputs
+         ]);
     }
 
 

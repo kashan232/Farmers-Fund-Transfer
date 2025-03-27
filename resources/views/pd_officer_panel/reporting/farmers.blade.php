@@ -99,7 +99,32 @@
                                             </table>
 
                                         </div>
-                                        {{ $farmers->links() }}
+                                        {{-- Hidden Pagination Form --}}
+<form id="paginationForm" action="{{ route('dg.farmers.reporting.fetch') }}" method="post">
+    @csrf
+
+    {{-- Preserve Existing Filters --}}
+    @foreach (request()->except('page') as $key => $value)
+        @if (is_array($value))
+            @foreach ($value as $val)
+                <input type="hidden" name="{{ $key }}[]" value="{{ $val }}">
+            @endforeach
+        @else
+            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+        @endif
+    @endforeach
+
+    {{-- Hidden Page Input (MUST EXIST) --}}
+    <input type="hidden" name="page" id="pageInput" value="">
+</form>
+
+
+
+{{-- Modify Pagination Links to Use JavaScript --}}
+<div class="pagination">
+    {!! str_replace('<a', '<a class="pagination-link page-link" ', $farmers->links()) !!}
+</div>
+
                                     </div>
                                 </div>
                             </div>
@@ -121,6 +146,25 @@
 @include('pd_officer_panel.include.footer_include')
 
 <!-- Chart Scripts -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".pagination-link").forEach(function(link) {
+            link.addEventListener("click", function(event) {
+                event.preventDefault(); // Stop default GET request
+
+                let url = new URL(this.href);
+                let page = url.searchParams.get("page"); // Extract page number
+
+                if (page) {
+                    document.getElementById("pageInput").value = page; // Set page value
+                    document.getElementById("paginationForm").submit(); // Submit form with POST
+                }
+            });
+        });
+    });
+</script>
+
 <script>
     // Donut Charts Data and Configurations
     const ownFarmerData = [100, 80, 20];
