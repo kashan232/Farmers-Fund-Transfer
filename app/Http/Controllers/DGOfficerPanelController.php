@@ -45,7 +45,10 @@ class DGOfficerPanelController extends Controller
             if (!empty($req->start_date) && $req->start_date == $req->end_date) {
                 $query->whereDate('created_at', $req->start_date);
             } else {
-                $query->whereBetween('created_at', [$req->start_date, $req->end_date]);
+                if(!empty($req->start_date)){
+                    $query->whereBetween('created_at', [$req->start_date, $req->end_date]);
+                }
+
             }
 
             if (!empty($req->farmer_type) && $req->farmer_type !== null) {
@@ -55,7 +58,6 @@ class DGOfficerPanelController extends Controller
             if (!empty($req->verification_status) && $req->verification_status !== null) {
                 $query->where('verification_status', $req->verification_status);
             }
-
 
 
         // Paginate results

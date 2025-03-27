@@ -34,7 +34,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="{{ route('dg.farmers.reporting.fetch') }}" method="get" >
+                                <form action="{{ route('dg.farmers.reporting.fetch') }}" method="post" >
                                     @csrf
 
 
