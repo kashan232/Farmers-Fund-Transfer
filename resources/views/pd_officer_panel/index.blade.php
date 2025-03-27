@@ -150,10 +150,11 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                           
+
                                         </div>
-                                        {{ $farmersByDistrict->links() }}
+                                       
                                     </div>
+                                    {{ $farmersByDistrict->links() }}
                                 </div>
                             </div>
 
