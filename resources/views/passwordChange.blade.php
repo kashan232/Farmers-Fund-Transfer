@@ -1,11 +1,11 @@
-@include('admin_panel.include.header_include')
+{{-- @include('admin_panel.include.header_include') --}}
 <!-- [ Pre-loader ] End -->
 <!-- [ Sidebar Menu ] start -->
 {{-- @include('admin_panel.include.sidebar_include') --}}
 
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header Topbar ] start -->
-@include('admin_panel.include.navbar_include')
+{{-- @include('admin_panel.include.navbar_include') --}}
 <!-- [ Header ] end -->
 
 
