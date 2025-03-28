@@ -52,6 +52,10 @@ class HomeController extends Controller
                 ])
                 ->count();
 
+                $onlineFarmers = LandRevenueFarmerRegistation::where('user_type' , 'Online')
+                ->count();
+
+                $userFarmers = LandRevenueFarmerRegistation::where('user_type' ,'!=', 'Online')->count();
 
 
                 $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , 'verified_by_lrd')
@@ -59,12 +63,13 @@ class HomeController extends Controller
 
                 $usersByDistrict = User::where('usertype','Field_Officer')->selectRaw('district, COUNT(*) as total_users')
                 ->groupBy('district')
-                ->paginate(10); // Paginate with 10 results per page
+                ->get(); // Paginate with 10 results per page
 
-                $farmersByDistrict = LandRevenueFarmerRegistation::selectRaw('district, COUNT(*) as total_farmers')
+                $farmersByDistrict = LandRevenueFarmerRegistation::selectRaw('district,
+                SUM(CASE WHEN user_type = "Online" THEN 1 ELSE 0 END) as online_farmers,
+                SUM(CASE WHEN user_type = "Field_officer" THEN 1 ELSE 0 END) as field_officer_farmers')
                 ->groupBy('district')
-                ->paginate(10); // Paginate with 10 results per page
-
+                ->get();
 
                 return view('pd_officer_panel.index',[
                 'fa_total_Registered_Farmers' => $fa_total_Registered_Farmers,
@@ -72,7 +77,9 @@ class HomeController extends Controller
                 'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
                 'usersByDistrict' => $usersByDistrict,
                 'farmersByDistrict' => $farmersByDistrict,
-                'Processfarmeragiruser' => $Processfarmeragiruser
+                'Processfarmeragiruser' => $Processfarmeragiruser,
+                'userFarmers' => $userFarmers,
+                'onlineFarmers' => $onlineFarmers
                 ]);
             }
 

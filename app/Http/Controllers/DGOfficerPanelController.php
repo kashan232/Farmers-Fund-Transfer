@@ -8,14 +8,14 @@ use App\Models\District;
 use App\Models\Tappa;
 use App\Models\Tehsil;
 use App\Models\UC;
-
+use App\Models\User;
 
 class DGOfficerPanelController extends Controller
 {
     public function index(request $req){
 
         $query = LandRevenueFarmerRegistation::query();
-       
+
 
         if (!empty($req->search) && $req->search !== null) {
             $query->where(function ($q) use ($req) {
@@ -100,6 +100,20 @@ class DGOfficerPanelController extends Controller
             'farmers' => $farmers,
             'requestData' => $req->all(), // Pass request data for hidden inputs
          ]);
+    }
+
+    public function get_fa_list_district(request $req){
+
+        $users = User::select('id', 'name', 'number', 'cnic', 'email')
+        ->withCount('farmers') // Counts related farmers
+        ->where('district', $req->district)
+        ->paginate(10);
+
+
+        return view('pd_officer_panel.field_officer_list',[
+            'users' => $users,
+         ]);
+
     }
 
 

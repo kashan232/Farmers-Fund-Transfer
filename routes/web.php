@@ -155,6 +155,7 @@ Route::get('/farmers/registrations', function(){
     ]);
 });
 
+Route::get('/all/fa-lists-/{district}', [DGOfficerPanelController::class, 'get_fa_list_district'])->name('fa_list_by_dg');
 
 
 Route::get('/all/farmers-list/{search?}', [DGOfficerPanelController::class, 'index'])->name('dg.farmers');

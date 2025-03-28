@@ -1755,6 +1755,7 @@ $('select[name="tehsil"]').on('change', function() {
                     cnic: $('#cnic').val(),
                     cnic_issue_date: $('#cnic_issue_date').val(),
                     mobile: $('#mobile').val(),
+                    district: $('#district').val(),
                     cnic_of_next_kin: $('#cnic_of_next_kin').val(),
                     // total_fallow_land: $('#total_fallow_land').val(),
                 };

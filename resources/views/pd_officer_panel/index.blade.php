@@ -26,7 +26,7 @@
                     <div class="all-card">
                         <div class="row">
                             <!-- Total Farmers Card -->
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -47,7 +47,7 @@
 
 
                              <!-- Verified Farmers Card -->
-                             <div class="col-lg-6 col-md-6 col-sm-6">
+                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -66,7 +66,7 @@
                             </div>
 
                             <!-- Verified Farmers Card -->
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                             <!-- Rejected Farmers Card -->
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -102,7 +102,42 @@
                                 </div>
                             </div>
 
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title">Field Officer Farmers</p>
+                                                <h3 class="card-text text-amount">{{$userFarmers}}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title">Online Farmers</p>
+                                                <h3 class="card-text text-amount">{{$onlineFarmers}}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
                             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -110,7 +145,7 @@
                                     <div class="card-body">
                                         <h3>District Wise Field Officers</h3>
                                         <div class="row tables">
-                                            <table class="table table-bordered">
+                                            <table class="table table-bordered example" id="">
                                                 <thead>
                                                     <th>Districts</th>
                                                     <th>Total Field Officers</th>
@@ -119,12 +154,11 @@
                                                     @foreach($usersByDistrict as $data)
                                                         <tr>
                                                             <td>{{ $data->district }}</td>
-                                                            <td>{{ $data->total_users }}</td>
+                                                            <td><a href="{{ route('fa_list_by_dg',$data->district) }}">{{ $data->total_users }}</a></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            {{ $usersByDistrict->links() }}
                                         </div>
                                     </div>
                                 </div>
@@ -136,16 +170,22 @@
                                     <div class="card-body">
                                         <h3>District Wise Farmers</h3>
                                         <div class="row tables">
-                                            <table class="table table-bordered">
+                                            <table class="table table-bordered example" id="example">
                                                 <thead>
-                                                    <th>Districts</th>
-                                                    <th>Total Farmers</th>
+                                                    <tr>
+                                                        <th>District</th>
+                                                        <th>Online Farmers</th>
+                                                        <th>Field Officer Farmers</th>
+                                                        <th>Total Farmers</th>
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($farmersByDistrict as $data)
+                                                    @foreach ($farmersByDistrict as $data)
                                                         <tr>
                                                             <td>{{ $data->district }}</td>
-                                                            <td>{{ $data->total_farmers }}</td>
+                                                            <td>{{ $data->online_farmers }}</td>
+                                                            <td>{{ $data->field_officer_farmers }}</td>
+                                                            <td>{{ ($data->field_officer_farmers+$data->online_farmers) }}</td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -154,7 +194,6 @@
                                         </div>
 
                                     </div>
-                                    {{ $farmersByDistrict->links() }}
                                 </div>
                             </div>
 
@@ -175,6 +214,23 @@
 </footer>
 
 @include('pd_officer_panel.include.footer_include')
+
+
+
+<script>
+    $(document).ready(function() {
+        $('.example').DataTable( {
+            dom: 'frtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ]
+        });
+    });
+</script>
+
 
 <!-- Chart Scripts -->
 <script>

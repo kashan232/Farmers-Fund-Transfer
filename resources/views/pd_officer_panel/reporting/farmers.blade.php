@@ -44,7 +44,12 @@
                                                             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
                                                         @endif
                                                     @endforeach
-                                                    <input type="text" name="search" id="" class="form-control me-2" placeholder="Search...">
+                                                    <style>
+                                                        .small-placeholder::placeholder {
+                                                            font-size: 11px;
+                                                        }
+                                                    </style>
+                                                    <input type="text" name="search" id="" class=" small-placeholder form-control me-2" placeholder="Search by Name, Father Name, Surname, Mobile, CNIC, District, Tehsil, Tappa, UC">
                                                     <input type="submit" name="" id="" value="Search" class="btn btn-primary">
                                                 </form>
                                             </div>

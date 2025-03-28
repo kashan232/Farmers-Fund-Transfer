@@ -37,81 +37,42 @@
                                                 }
                                             </style>
 
-                                            <div class="row mb-2">
+                                            {{-- <div class="row mb-2">
                                                 <div class="col-md-5">
                                                     <form action="{{ route('dg.farmers') }}" method="get" class="d-flex">
-                                                        <input type="text" name="search" id="" class=" small-placeholder form-control me-2" placeholder="Search by Name, Father Name, Surname, Mobile, CNIC, District, Tehsil, Tappa, UC">
+                                                        <input type="text" name="search" id="" class=" small-placeholder form-control me-2" placeholder="Search by Name, Email, Mobile, CNIC">
                                                         <input type="submit" name="" id="" value="Search" class="btn btn-primary">
                                                     </form>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
 
-                                            <table id="example1"  style="width:100%" class="table table-bordered table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
+                                            <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th>Sno</th>
-                                                        <th>Type</th>
                                                         <th>Name</th>
+                                                        <th>Email</th>
+                                                        <th>Contact</th>
                                                         <th>CNIC</th>
-                                                        <th>Mobile</th>
-                                                        <th>District</th>
-                                                        <th>Taluka</th>
-
-                                                        {{-- <th>Tappa</th> --}}
-
-                                                        <th>Status</th>
-                                                        <th>Reason</th>
-                                                        {{-- <th>Status</th> --}}
-                                                        <th>Action</th>
+                                                        <th>Total Farmers</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($farmers as $farmer)
-                                                    <tr>
-                                                        <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $farmer->user_type }}</td>
-                                                        <td>{{ $farmer->name }}</td>
-                                                        <td>{{ $farmer->cnic }}</td>
-                                                        <td>{{ $farmer->mobile }}</td>
-                                                        <td>{{ $farmer->district }}</td>
-                                                        <td>{{ $farmer->tehsil }}</td>
-
-                                                        {{-- <td>{{ $farmer->tappa }}</td> --}}
-
-
-                                                        <td>
-                                                            @if ($farmer->verification_status == 'verified_by_lo')
-                                                            <span class="badge text-bg-success text-dark font-weight-bold">Verified</span>
-                                                            @elseif($farmer->verification_status == 'rejected_by_ao' || $farmer->verification_status == 'rejected_by_dd' || $farmer->verification_status == 'rejected_by_lrd')
-                                                            <span class="badge text-bg-danger text-dark font-weight-bold">Rejected</span>
-                                                            @else
-                                                            <span class="badge text-bg-primary text-white font-weight-bold">Unverified</span>
-                                                            @endif
-                                                        </td>
-                                                        @if ($farmer->declined_reason != null || $farmer->declined_reason != '')
-                                                        <td>
-                                                            {{ $farmer->declined_reason }}
-                                                        </td>
-                                                        @else
-                                                        <td></td>
-                                                        @endif
-                                                        <td>
-                                                            <div class="d-flex">
-                                                                {{-- <a href="{{ route('farmer-view-by-field-officer', ['id' => $farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp; --}}
-
-
-
-                                                                <a href="{{route('view-farmers-by-field-officer',$farmer->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                    @foreach ($users as $user)
+                                                        <tr>
+                                                            <td>{{ $user->name }}</td>
+                                                            <td>{{ $user->email }}</td>
+                                                            <td>{{ $user->number }}</td>
+                                                            <td>{{ $user->cnic }}</td>
+                                                            <td>{{ $user->farmers_count }}</td> <!-- This is from withCount('farmers') -->
+                                                        </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
 
+
                                         </div>
-                                        {{ $farmers->links() }}
+                                        {{ $users->links() }}
                                     </div>
                                 </div>
                             </div>
