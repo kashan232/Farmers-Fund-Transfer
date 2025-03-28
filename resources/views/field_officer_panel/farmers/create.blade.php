@@ -682,12 +682,16 @@
                                         </div>
                                         <div class="mb-8 col-md-8">
                                             <label class="form-label">Q18: Physical Assets (Farm machinery) - currently owned</label>
-                                           @php
-    $physicalAssetItems = json_decode($data->physical_asset_item, true);
-    if (!is_array($physicalAssetItems)) {
-        $physicalAssetItems = []; // Ensure it's always an array
-    }
-@endphp
+                                            @php
+                                            $physicalAssetItems = isset($data) && isset($data->physical_asset_item)
+                                                ? json_decode($data->physical_asset_item, true)
+                                                : [];
+
+                                            if (!is_array($physicalAssetItems)) {
+                                                $physicalAssetItems = []; // Ensure it's always an array
+                                            }
+                                        @endphp
+
 
 <select name="physical_asset_item[]" id="" class="form-control--input js-example-basic-multiple" style="width: 100%" multiple="multiple">
     @php

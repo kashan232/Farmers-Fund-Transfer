@@ -152,7 +152,7 @@
                                             </table>
 
                                         </div>
-                                       
+
                                     </div>
                                     {{ $farmersByDistrict->links() }}
                                 </div>
