@@ -11,6 +11,8 @@ use App\Models\OnlineFarmerRegistration;
 use App\Models\Tehsil;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Imports\FarmersImport;
@@ -98,14 +100,9 @@ class LandRevenueController extends Controller
 
             try{
 
-                if($request->edit_id && $request->edit_id != '')
-            {
 
-            }else{
-                $validatedData = $request->validate([
-                    'email_address' => 'required|email|unique:users,email',
-                ]);
-            }
+
+
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
@@ -134,8 +131,8 @@ class LandRevenueController extends Controller
                     ]);
 
                     // Update the related User record
-                    $user = User::where('id', $landrevenue->user_id)->first();
-                    
+                    $user = User::where('user_id', $landrevenue->id)->first();
+
                     if ($user) {
                         $user->update([
                             'user_id' => $landrevenue->id,
@@ -148,6 +145,8 @@ class LandRevenueController extends Controller
                             'password' => $request->password ? Hash::make($request->password) : $user->password, // Preserve the existing password if not updated
                             'usertype' => 'Land_Revenue_Officer', // Set the usertype to 'Land_Revenue_Officer'
                         ]);
+
+                        dd($user);
                     }
 
                     return redirect()->back()->with('officer-added', 'Land Revenue Officer updated Successfully');

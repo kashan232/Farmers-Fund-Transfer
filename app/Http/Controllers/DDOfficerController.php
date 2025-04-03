@@ -86,7 +86,7 @@ class DDOfficerController extends Controller
                     ]);
 
                     // Update the related User record
-                    $user = User::where('id', $DDOfficer->user_id)->first();
+                    $user = User::where('user_id', $DDOfficer->id)->first();
 
                     if ($user) {
                         $user->update([

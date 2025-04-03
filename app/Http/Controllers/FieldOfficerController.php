@@ -96,7 +96,7 @@ class FieldOfficerController extends Controller
 
 
                 if ($request->edit_id && $request->edit_id != '') {
-                    
+
                      // Fetch the FieldOfficer record before updating
                     $FieldOfficer = FieldOfficer::where('id', $request->edit_id)->first();
 
@@ -112,8 +112,8 @@ class FieldOfficerController extends Controller
                         ]);
 
                         // Update the related User record
-                        $user = User::where('id', $FieldOfficer->user_id)->first();
-                        
+                        $user = User::where('user_id', $FieldOfficer->id)->first();
+
                         if ($user) {
                             $user->update([
                                 'name' => $request->full_name,
