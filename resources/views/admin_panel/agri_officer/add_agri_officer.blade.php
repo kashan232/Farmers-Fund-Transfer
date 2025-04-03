@@ -86,23 +86,23 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>Select Tehsil</label><br>
-                                            <select name="tehsil" id="tehsil" required class="form-control--input js-example-basic-single" style="width:100%;" >
+                                            <select name="tehsil[]" multiple id="tehsil" required class="form-control--input js-example-basic-multiple" style="width:100%;" >
                                             </select>
                                         </div>
                                     </div>
 
-                                    <div class="row mt-2">
+                                    {{-- <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>UC</label><br>
                                             <select name="ucs" id="uc"  class="form-control--input js-example-basic-single" style="width:100%;" >
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>Tappa</label><br>
-                                            <select name="tappa" id="tappa"  class="form-control--input js-example-basic-single" style="width:100%;" >
+                                            <select name="tappa[]" id="tappa" multiple  class="form-control--input js-example-basic-multiple" style="width:100%;" >
                                             </select>
                                         </div>
                                     </div>
@@ -148,56 +148,145 @@
                         district: district
                     },
                     success: function(data) {
-                        $('select[name="tehsil"]').empty();
+                        $('select[name="tehsil[]"]').empty();
+
+                        $('select[name="tehsil[]"]').append('<option value="all">All</option>');
+
                         $.each(data, function(key, value) {
-                            $('select[name="tehsil"]').append('<option value="' +
+                            $('select[name="tehsil[]"]').append('<option value="' +
                                 value + '">' + value + '</option>');
                         });
                     }
                 });
             } else {
-                $('select[name="tehsil"]').empty();
+                $('select[name="tehsil[]"]').empty();
             }
         });
 
-        $('select[name="tehsil"]').on('change', function() {
-            var district = $('select[name="district"]').val();
-            var tehsil = $(this).val();
+    // Handle "All" selection logic
+    $(document).on('change', 'select[name="tehsil[]"]', function () {
+        var selectedOptions = $(this).val() || [];
+        if (selectedOptions.includes("all")) {
+            // Select all options when "All" is chosen
+            $(this).find('option').prop('selected', true);
+        } else {
+            // If "All" is not selected, ensure it stays deselected
+            $(this).find('option[value="all"]').prop('selected', false);
+        }
+        $(this).find('option[value="all"]').prop('selected', false);
+        // Refresh Select2 UI
+        $(this).trigger('change.select2');
+
+         // After "All" is handled, call the get-ucs function
+        handleGetUcsRequest();
+    });
 
 
+// Function to handle the get-ucs request with selected tehsil values
+function handleGetUcsRequest() {
+    var district = $('select[name="district"]').val();
+    var tehsil = $('select[name="tehsil[]"]').val();  // Get selected tehsil values
 
-            if (district && tehsil) {
-                $.ajax({
-                    url: '{{ route("get-ucs") }}',
-                    type: 'GET',
-                    data: {
-                        district: district,
-                        tehsil: tehsil
-                    },
-                    success: function(response) {
-                        // Populate UC dropdown
-                        var ucSelect = $('select[name="ucs"]');
-                        ucSelect.empty();
-                        $.each(response.ucs, function(index, value) {
-                            ucSelect.append('<option value="' + value + '">' + value + '</option>');
-                        });
+    // If "All" is selected, we need to remove "all" from the selected values
+    if (tehsil.includes("all")) {
+        tehsil = tehsil.filter(function(value) {
+            return value !== "all";  // Remove "all" from the selected list
+        });
+    }
 
-                        // Populate Tappa dropdown
-                        var tappaSelect = $('select[name="tappa"]');
-                        tappaSelect.empty();
-                        $.each(response.Tappas, function(index, value) {
-                            tappaSelect.append('<option value="' + value + '">' + value + '</option>');
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
+    // Only trigger AJAX if district and tehsil are selected and valid
+    if (district && tehsil.length > 0) {
+        $.ajax({
+            url: '{{ route("get-ucs") }}',
+            type: 'GET',
+            data: {
+                district: district,
+                tehsil: tehsil // Send selected tehsil values (excluding "All")
+            },
+            success: function(response) {
+                // // Populate UC dropdown
+                // var ucSelect = $('select[name="ucs"]');
+                // ucSelect.empty();
+                // $.each(response.ucs, function(index, value) {
+                //     ucSelect.append('<option value="' + value + '">' + value + '</option>');
+                // });
+
+                // Populate Tappa dropdown
+                var tappaSelect = $('select[name="tappa[]"]');
+                tappaSelect.empty();
+                $('select[name="tappa[]"]').append('<option value="all">All</option>');
+
+                $.each(response.Tappas, function(index, value) {
+                    tappaSelect.append('<option value="' + value + '">' + value + '</option>');
                 });
-            } else {
-                $('select[name="uc"]').empty();
-                $('select[name="tappa"]').empty();
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
             }
         });
+    } else {
+        // Clear UC and Tappa dropdowns if district or tehsil is empty
+        // $('select[name="ucs"]').empty();
+        $('select[name="tappa[]"]').empty();
+    }
+}
+
+        // $('select[name="tehsil[]"]').on('change', function() {
+        //     var district = $('select[name="district"]').val();
+        //     var tehsil = $(this).val();
+
+
+
+        //     if (district && tehsil) {
+        //         $.ajax({
+        //             url: '{{ route("get-ucs") }}',
+        //             type: 'GET',
+        //             data: {
+        //                 district: district,
+        //                 tehsil: tehsil
+        //             },
+        //             success: function(response) {
+        //                 // Populate UC dropdown
+        //                 var ucSelect = $('select[name="ucs"]');
+        //                 ucSelect.empty();
+        //                 $.each(response.ucs, function(index, value) {
+        //                     ucSelect.append('<option value="' + value + '">' + value + '</option>');
+        //                 });
+
+        //                 // Populate Tappa dropdown
+        //                 var tappaSelect = $('select[name="tappa[]"]');
+        //                 tappaSelect.empty();
+        //                 $('select[name="tappa[]"]').append('<option value="all">All</option>');
+
+        //                 $.each(response.Tappas, function(index, value) {
+        //                     tappaSelect.append('<option value="' + value + '">' + value + '</option>');
+        //                 });
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 console.error(error);
+        //             }
+        //         });
+        //     } else {
+        //         $('select[name="uc"]').empty();
+        //         $('select[name="tappa[]"]').empty();
+        //     }
+        // });
+
+         // Handle "All" selection logic
+        $(document).on('change', 'select[name="tappa[]"]', function () {
+            var selectedOptions = $(this).val() || [];
+            if (selectedOptions.includes("all")) {
+                // Select all options when "All" is chosen
+                $(this).find('option').prop('selected', true);
+            } else {
+                // If "All" is not selected, ensure it stays deselected
+                $(this).find('option[value="all"]').prop('selected', false);
+            }
+            $(this).find('option[value="all"]').prop('selected', false);
+            // Refresh Select2 UI
+            $(this).trigger('change.select2');
+        });
+
     });
 </script>
 

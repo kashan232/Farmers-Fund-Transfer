@@ -115,22 +115,45 @@ class LandRevenueController extends Controller
 
             if($request->edit_id && $request->edit_id != '')
             {
-                $landrevenue = LandRevenueDepartment::where('id',$request->edit_id)->update([
-                    'admin_or_user_id'    => $userId,
-                    'full_name'          => $request->full_name,
-                    'contact_number'          => $request->contact_number,
-                    'address'          => $request->address,
-                    'email_address'          => $request->email_address,
-                    'district'          => $request->district,
-                    'tehsil'          => $tehsil,
-                    'ucs'               => $ucs,
-                    'tappas'          => $tappa,
-                    'username'          => $request->username,
+               // Fetch the LandRevenueDepartment record before updating
+                $landrevenue = LandRevenueDepartment::where('id', $request->edit_id)->first();
 
-                    'created_at'        => Carbon::now(),
-                    'updated_at'        => Carbon::now(),
-                ]);
-                return redirect()->back()->with('officer-added', 'Land Revenue Officer updated Successfully');
+                if ($landrevenue) {
+                    // Update the LandRevenueDepartment record
+                    $landrevenue->update([
+                        'admin_or_user_id' => $userId,
+                        'full_name' => $request->full_name,
+                        'contact_number' => $request->contact_number,
+                        'address' => $request->address,
+                        'email_address' => $request->email_address,
+                        'district' => $request->district,
+                        'tehsil' => $tehsil,
+                        'ucs' => $ucs,
+                        'tappas' => $tappa,
+                        'username' => $request->username,
+                    ]);
+
+                    // Update the related User record
+                    $user = User::where('id', $landrevenue->user_id)->first();
+                    
+                    if ($user) {
+                        $user->update([
+                            'user_id' => $landrevenue->id,
+                            'name' => $request->full_name,
+                            'email' => $request->email_address,
+                            'district' => $request->district,
+                            'tehsil' => $tehsil,
+                            'ucs' => $ucs,
+                            'tappas' => $tappa,
+                            'password' => $request->password ? Hash::make($request->password) : $user->password, // Preserve the existing password if not updated
+                            'usertype' => 'Land_Revenue_Officer', // Set the usertype to 'Land_Revenue_Officer'
+                        ]);
+                    }
+
+                    return redirect()->back()->with('officer-added', 'Land Revenue Officer updated Successfully');
+                } else {
+                    return redirect()->back()->with('error', 'Land Revenue Officer not found');
+                }
             }
             else{
                 $landrevenue = LandRevenueDepartment::create([

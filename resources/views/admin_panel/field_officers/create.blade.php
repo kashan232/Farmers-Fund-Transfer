@@ -158,11 +158,14 @@
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>Tappa</label><br>
-                                            <select name="tappa" id="tappa"  class="form-control--input js-example-basic-single " style="width:100%;" >
+                                            <select name="tappa[]" id="tappa" multiple  class="form-control--input js-example-basic-multiple " style="width:100%;" >
                                                 @if(isset($field_officer) )
                                                     @if($field_officer->tappas != null )
+                                                            @foreach (json_decode($field_officer->tappas) as $tappa)
 
-                                                            <option selected value="{{$field_officer->tappas}}">{{$field_officer->tappas}}</option>
+                                                            <option selected value="{{$tappa}}">{{$tappa}}</option>
+
+                                                            @endforeach
 
                                                     @endif
                                                 @endif
@@ -267,8 +270,9 @@
                         });
 
                         // Populate Tappa dropdown
-                        var tappaSelect = $('select[name="tappa"]');
+                        var tappaSelect = $('select[name="tappa[]"]');
                         tappaSelect.empty();
+                        $('select[name="tappa[]"]').append('<option value="all">All</option>');
                         $.each(response.Tappas, function(index, value) {
                             tappaSelect.append('<option value="' + value + '">' + value + '</option>');
                         });
@@ -282,6 +286,22 @@
                 $('select[name="tappa"]').empty();
             }
         });
+
+          // Handle "All" selection logic
+          $(document).on('change', 'select[name="tappa[]"]', function () {
+            var selectedOptions = $(this).val() || [];
+            if (selectedOptions.includes("all")) {
+                // Select all options when "All" is chosen
+                $(this).find('option').prop('selected', true);
+            } else {
+                // If "All" is not selected, ensure it stays deselected
+                $(this).find('option[value="all"]').prop('selected', false);
+            }
+            $(this).find('option[value="all"]').prop('selected', false);
+            // Refresh Select2 UI
+            $(this).trigger('change.select2');
+        });
+
     });
 </script>
 

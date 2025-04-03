@@ -73,6 +73,8 @@ class FieldOfficerController extends Controller
     public function store(request $request)
     {
 
+
+
         if (Auth::id()) {
 
             try {
@@ -89,35 +91,48 @@ class FieldOfficerController extends Controller
                 $userId = Auth::id();
                 $tehsil = $request->input('tehsil');
                 $ucs = $request->input('ucs');
-                $tappa = $request->input('tappa');
+                $tappa = json_encode($request->input('tappa'));
+
+
 
                 if ($request->edit_id && $request->edit_id != '') {
-                    $FieldOfficer = FieldOfficer::where('id', $request->edit_id)->update([
-                        // 'admin_or_user_id'  => $request->district_officer,
-                        'full_name'         => $request->full_name,
-                        'contact_number'    => $request->contact_number,
-                        // 'cnic'              => $request->cnic,
-                        'email_address'     => $request->email_address,
-                        'district'          => $request->district,
-                        'tehsil'            => $tehsil,
-                        'tappas'            => $tappa,
-                        'created_at'        => Carbon::now(),
-                        'updated_at'        => Carbon::now(),
-                    ]);
+                    
+                     // Fetch the FieldOfficer record before updating
+                    $FieldOfficer = FieldOfficer::where('id', $request->edit_id)->first();
 
-                    $user = User::where('id', $FieldOfficer->id)->update([
-                        'name' => $request->full_name,
-                        'user_id' => $FieldOfficer->id,
-                        'email' => $request->email_address,
-                        'district' => $request->district,
-                        'tehsil' => $tehsil,
-                        'tappas' => $tappa,
-                        'password' => Hash::make($request->password), // Make sure to hash the password
-                        'usertype' => 'Field_Officer', // Set the usertype to 'employee'
-                    ]);
+                    if ($FieldOfficer) {
+                        // Update the FieldOfficer record
+                        $FieldOfficer->update([
+                            'full_name' => $request->full_name,
+                            'contact_number' => $request->contact_number,
+                            'email_address' => $request->email_address,
+                            'district' => $request->district,
+                            'tehsil' => $tehsil,
+                            'tappas' => $tappa,
+                        ]);
+
+                        // Update the related User record
+                        $user = User::where('id', $FieldOfficer->user_id)->first();
+                        
+                        if ($user) {
+                            $user->update([
+                                'name' => $request->full_name,
+                                'user_id' => $FieldOfficer->id,
+                                'email' => $request->email_address,
+                                'district' => $request->district,
+                                'tehsil' => $tehsil,
+                                'tappas' => $tappa,
+                                'password' => $request->password ? Hash::make($request->password) : $user->password, // Preserve existing password if not updated
+                                'usertype' => 'Field_Officer', // Set the usertype to 'Field_Officer'
+                            ]);
+                        }
+
+                        return redirect()->back()->with('officer-added', 'Field Officer Updated Successfully');
+                    } else {
+                        return redirect()->back()->with('error', 'Field Officer not found');
+                    }
 
 
-                    return redirect()->back()->with('officer-added', 'Field Officer Updated Successfully');
                 } else {
                     $FieldOfficer = FieldOfficer::create([
                         // 'admin_or_user_id'    => $request->district_officer,

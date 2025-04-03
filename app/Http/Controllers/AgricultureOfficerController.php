@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\AgricultureOfficer;
 use App\Models\District;
 use App\Models\Tehsil;
@@ -59,27 +59,55 @@ class AgricultureOfficerController extends Controller
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
-            $tehsil = $request->input('tehsil');
-            $ucs = $request->input('ucs');
-            $tappa = $request->input('tappa');
+
+
+
+            $tehsil = json_encode($request->input('tehsil'));
+            $tappa = json_encode($request->input('tappa'));
+
+
 
             if($request->edit_id && $request->edit_id != '')
             {
-                $AgriOfficer = AgriOfficer::where('id',$request->edit_id)->update([
-                    'admin_or_user_id'    => $userId,
-                    'full_name'          => $request->full_name,
-                    'contact_number'          => $request->contact_number,
-                    'address'          => $request->address,
-                    'email_address'          => $request->email_address,
-                    'district'          => $request->district,
-                    'tehsil'          => $tehsil,
-                    'ucs'               => $ucs,
-                    'tappas'          => $tappa,
-                    'username'          => $request->username,
-                    'created_at'        => Carbon::now(),
-                    'updated_at'        => Carbon::now(),
-                ]);
-                return redirect()->back()->with('officer-added', 'Agriculture Officer Officer Updated Successfully');
+                    // Update AgriOfficer record
+                    $AgriOfficer = AgriOfficer::where('id', $request->edit_id)->first();
+
+                    if ($AgriOfficer) {
+                        $AgriOfficer->update([
+                            'admin_or_user_id'    => $userId,
+                            'full_name'           => $request->full_name,
+                            'contact_number'      => $request->contact_number,
+                            'address'             => $request->address,
+                            'email_address'       => $request->email_address,
+                            'district'            => $request->district,
+                            'tehsil'              => $tehsil,
+                            // 'ucs'               => $ucs,
+                            'tappas'              => $tappa,
+                            'username'            => $request->username,
+                        ]);
+
+                        // Update related User record
+                        $user = User::where('id', $AgriOfficer->user_id)->first();
+
+                        if ($user) {
+                            $user->update([
+                                'name'      => $request->full_name,
+                                'user_id'   => $AgriOfficer->id,
+                                'email'     => $request->email_address,
+                                'district'  => $request->district,
+                                'tehsil'    => $tehsil,
+                                // 'ucs'      => $ucs,
+                                'tappas'    => $tappa,
+                                'password'  => $request->password ? Hash::make($request->password) : $user->password, // Preserve existing password if not updated
+                                'usertype'  => 'Agri_Officer', // Set the usertype to 'employee'
+                            ]);
+                        }
+
+                        return redirect()->back()->with('officer-added', 'Agriculture Officer Updated Successfully');
+                    } else {
+                        return redirect()->back()->with('error', 'AgriOfficer not found');
+                    }
+
             }
             else
             {
@@ -91,7 +119,7 @@ class AgricultureOfficerController extends Controller
                     'email_address'          => $request->email_address,
                     'district'          => $request->district,
                     'tehsil'          => $tehsil,
-                    'ucs'               => $ucs,
+                    // 'ucs'               => $ucs,
                     'tappas'          => $tappa,
                     'username'          => $request->username,
                     'password'          => $request->password,
@@ -105,13 +133,13 @@ class AgricultureOfficerController extends Controller
                     'email' => $request->email_address,
                     'district' => $request->district,
                     'tehsil' => $tehsil,
-                    'ucs'               => $ucs,
+                    // 'ucs'               => $ucs,
                     'tappas'          => $tappa,
                     'password' => bcrypt($request->password), // Make sure to hash the password
                     'usertype' => 'Agri_Officer', // Set the usertype to 'employee'
                 ]);
 
-                return redirect()->back()->with('officer-added', 'Agriculture Officer Officer Created Successfully');
+                return redirect()->back()->with('officer-added', 'Agriculture Officer Created Successfully');
             }
         }
         catch (ValidationException $e) {

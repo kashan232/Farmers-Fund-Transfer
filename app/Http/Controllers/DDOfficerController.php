@@ -15,7 +15,7 @@ use App\Models\LandRevenueFarmerRegistation;
 use App\Models\OnlineFarmerRegistration;
 use App\Models\DDOfficer;
 use Illuminate\Validation\ValidationException;
-
+use Illuminate\Support\Facades\Hash;
 class DDOfficerController extends Controller
 {
     public function dd_officer_create()
@@ -56,27 +56,55 @@ class DDOfficerController extends Controller
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
+            // $tehsil = json_encode($request->input('tehsil'));
+            // $ucs = json_encode($request->input('ucs'));
+            // $tappa = json_encode($request->input('tappa'));
+
+            $district = json_encode($request->input('district'));
             $tehsil = json_encode($request->input('tehsil'));
-            $ucs = json_encode($request->input('ucs'));
             $tappa = json_encode($request->input('tappa'));
+
+
 
             if($request->edit_id && $request->edit_id != '')
             {
-                $DDOfficer = DDOfficer::where('id',$request->edit_id)->update([
-                    'admin_or_user_id'    => $userId,
-                    'full_name'          => $request->full_name,
-                    'contact_number'          => $request->contact_number,
-                    'address'          => $request->address,
-                    'email_address'          => $request->email_address,
-                    'district'          => $request->district,
-                    'tehsil'          => $tehsil,
-                    'ucs'               => $ucs,
-                    'tappas'          => $tappa,
-                    'username'          => $request->username,
-                    'created_at'        => Carbon::now(),
-                    'updated_at'        => Carbon::now(),
-                ]);
-                return redirect()->back()->with('officer-added', 'Agriculture Officer Officer Updated Successfully');
+                // Fetch the DDOfficer record before updating
+                $DDOfficer = DDOfficer::where('id', $request->edit_id)->first();
+
+                if ($DDOfficer) {
+                    // Update the DDOfficer record
+                    $DDOfficer->update([
+                        'admin_or_user_id' => $userId,
+                        'full_name' => $request->full_name,
+                        'contact_number' => $request->contact_number,
+                        'address' => $request->address,
+                        'email_address' => $request->email_address,
+                        'district' => $district,
+                        'tehsil' => $tehsil,
+                        'tappas' => $tappa,
+                        'username' => $request->username,
+                    ]);
+
+                    // Update the related User record
+                    $user = User::where('id', $DDOfficer->user_id)->first();
+
+                    if ($user) {
+                        $user->update([
+                            'name' => $request->full_name,
+                            'user_id' => $DDOfficer->id,
+                            'email' => $request->email_address,
+                            'district' => $district,
+                            'tehsil' => $tehsil,
+                            'tappas' => $tappa,
+                            'password' => $request->password ? Hash::make($request->password) : $user->password, // Preserve the password if not updated
+                            'usertype' => 'DD_Officer', // Set the usertype to 'DD_Officer'
+                        ]);
+                    }
+
+                    return redirect()->back()->with('officer-added', 'DD Officer Updated Successfully');
+                } else {
+                    return redirect()->back()->with('error', 'DD Officer not found');
+                }
             }
             else
             {
@@ -86,9 +114,9 @@ class DDOfficerController extends Controller
                     'contact_number'          => $request->contact_number,
                     'address'          => $request->address,
                     'email_address'          => $request->email_address,
-                    'district'          => $request->district,
+                    'district'          => $district,
                     'tehsil'          => $tehsil,
-                    'ucs'               => $ucs,
+                    // 'ucs'               => $ucs,
                     'tappas'          => $tappa,
                     'username'          => $request->username,
                     'password'          => $request->password,
@@ -100,9 +128,9 @@ class DDOfficerController extends Controller
                     'name' => $request->full_name,
                     'user_id' => $DDOfficer->id,
                     'email' => $request->email_address,
-                    'district' => $request->district,
+                    'district' => $district,
                     'tehsil' => $tehsil,
-                    'ucs'               => $ucs,
+                    // 'ucs'               => $ucs,
                     'tappas'          => $tappa,
                     'password' => bcrypt($request->password), // Make sure to hash the password
                     'usertype' => 'DD_Officer', // Set the usertype to 'employee'

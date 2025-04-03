@@ -44,8 +44,9 @@
                                                         <th><strong>Contact Number</strong></th>
                                                         <th><strong>Address</strong></th>
                                                         <th><strong>Email Address</strong></th>
-                                                        <th><strong>District <br> Tehsil</strong></th>
-                                                        <th><strong>UC</strong></th>
+                                                        <th><strong>District </strong></th>
+                                                        <th><strong>Tehsil </strong></th>
+                                                        {{-- <th><strong>UC</strong></th> --}}
                                                         <th><strong>Tappa</strong></th>
                                                         <th><strong>Username</strong></th>
                                                         <th class="text-end"><strong>Action</strong></th>
@@ -59,7 +60,40 @@
                                                         <td>{{ $revenue->contact_number }}</td>
                                                         <td>{{ $revenue->address }}</td>
                                                         <td>{{ $revenue->email_address }}</td>
+                                                        <td>{{ $revenue->district }}</td>
                                                         <td>
+                                                            @php
+                                                                $tehsil = json_decode($revenue->tehsil);
+                                                            @endphp
+                                                            @if(is_array($tehsil))
+                                                                @foreach($tehsil as $index => $tehsilItem)
+                                                                    @if($index < 4)
+                                                                        <span class="badge text-bg-success text-dark font-weight-bold">{{ $tehsilItem }}</span> <b> @if($index < 3)  </b> <br> @endif
+                                                                    @endif
+                                                                @endforeach
+
+                                                                @if(count($tehsil) > 4)
+                                                                    +{{ count($tehsil) - 4 }}
+                                                                @endif
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @php
+                                                                $tappa = json_decode($revenue->tappas);
+                                                            @endphp
+                                                            @if(is_array($tappa))
+                                                                @foreach($tappa as $index => $tappaItem)
+                                                                    @if($index < 4)
+                                                                    <span class="badge text-bg-success text-dark font-weight-bold">{{ $tappaItem }}</span> <b> @if($index < 3)  </b> <br> @endif
+                                                                    @endif
+                                                                @endforeach
+
+                                                                @if(count($tappa) > 4)
+                                                                    +{{ count($tappa) - 4 }}
+                                                                @endif
+                                                            @endif
+                                                        </td>
+                                                        {{-- <td>
                                                             @php
                                                             $tehsil = json_decode($revenue->tehsil);
                                                             @endphp
@@ -68,8 +102,8 @@
                                                             {{ $tehsil }}<br>
                                                             @endforeach
                                                             @endif
-                                                        </td>
-                                                        <td>
+                                                        </td> --}}
+                                                        {{-- <td>
                                                             @php
                                                             $userUcArray = json_decode($revenue->ucs);
                                                             @endphp
@@ -78,8 +112,8 @@
                                                             {{ $uc }}<br>
                                                             @endforeach
                                                             @endif
-                                                        </td>
-                                                        <td>
+                                                        </td> --}}
+                                                        {{-- <td>
                                                             @php
                                                             $usertappaArray = json_decode($revenue->tappas);
                                                             @endphp
@@ -88,7 +122,7 @@
                                                             {{ $tappa }}<br>
                                                             @endforeach
                                                             @endif
-                                                        </td>
+                                                        </td> --}}
                                                         <td>{{ $revenue->username }}</td>
                                                         <td>
                                                             <div class="d-flex">

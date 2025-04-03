@@ -46,7 +46,6 @@
                                                     <th><strong>Email Address</strong></th>
                                                     <th><strong>District </strong></th>
                                                     <th><strong>Tehsils</strong></th>
-                                                    <th><strong>UC</strong></th>
                                                     <th><strong>Tappa</strong></th>
                                                     <th><strong>Username</strong></th>
                                                     <th class="text-end"><strong>Action</strong></th>
@@ -63,34 +62,38 @@
                                                     <td>{{ $agri->district }}</td>
                                                     <td>
                                                         @php
-                                                        $tehsil = json_decode($agri->tehsil);
+                                                            $tehsil = json_decode($agri->tehsil);
                                                         @endphp
                                                         @if(is_array($tehsil))
-                                                        @foreach($tehsil as $tehsil)
-                                                        {{ $tehsil }}<br>
-                                                        @endforeach
+                                                            @foreach($tehsil as $index => $tehsilItem)
+                                                                @if($index < 4)
+                                                                    {{ $tehsilItem }}@if($index < 3), @endif
+                                                                @endif
+                                                            @endforeach
+
+                                                            @if(count($tehsil) > 4)
+                                                                +{{ count($tehsil) - 4 }}
+                                                            @endif
                                                         @endif
                                                     </td>
                                                     <td>
-                                                            @php
-                                                            $userUcArray = json_decode($agri->ucs);
-                                                            @endphp
-                                                            @if(is_array($userUcArray))
-                                                            @foreach($userUcArray as $uc)
-                                                            {{ $uc }}<br>
+                                                        @php
+                                                            $tappa = json_decode($agri->tappas);
+                                                        @endphp
+                                                        @if(is_array($tappa))
+                                                            @foreach($tappa as $index => $tappaItem)
+                                                                @if($index < 4)
+                                                                <span class="badge text-bg-success text-dark font-weight-bold">{{ $tappaItem }}</span> <b> @if($index < 3)  </b> <br> @endif
+                                                                @endif
                                                             @endforeach
+
+                                                            @if(count($tappa) > 4)
+                                                                +{{ count($tappa) - 4 }}
                                                             @endif
-                                                        </td>
-                                                        <td>
-                                                            @php
-                                                            $usertappaArray = json_decode($agri->tappas);
-                                                            @endphp
-                                                            @if(is_array($usertappaArray))
-                                                            @foreach($usertappaArray as $tappa)
-                                                            {{ $tappa }}<br>
-                                                            @endforeach
-                                                            @endif
-                                                        </td>
+                                                        @endif
+                                                    </td>
+
+
                                                         <td>{{ $agri->username }}</td>
                                                         <td>
                                                             <div class="d-flex">

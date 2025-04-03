@@ -89,8 +89,9 @@ class UCController extends Controller
         }
 
 
+
         $ucs = UC::where('district', $district)->whereIn('tehsil', $tehsil)->pluck('uc')->toArray(); // Adjust according to your database schema
-        $Tappas = Tappa::where('district', $district)->whereIn('tehsil', $tehsil)->pluck('tappa')->toArray(); // Adjust according to your database schema
+        $Tappas = Tappa::whereIn('tehsil', $tehsil)->pluck('tappa')->toArray(); // Adjust according to your database schema
 
         return response()->json([
             'ucs' => $ucs,

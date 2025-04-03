@@ -60,7 +60,12 @@
                                                         <td>{{ $field_officer->email_address }}</td>
                                                         <td>{{ $field_officer->district }}</td>
                                                         <td>{{ $field_officer->tehsil }}</td>
-                                                        <td>{{ $field_officer->tappas }}</td>
+
+                                                        <td>
+                                                            @foreach (json_decode($field_officer->tappas) as $tappa)
+                                                               <span class="badge text-bg-success text-dark font-weight-bold">{{  $tappa }}</span><br>
+                                                            @endforeach
+                                                        </td>
 
 
                                                         <td>
