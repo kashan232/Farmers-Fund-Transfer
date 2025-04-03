@@ -170,26 +170,28 @@
                                     <div class="card-body">
                                         <h3>District Wise Farmers</h3>
                                         <div class="row tables">
-                                            <table class="table table-bordered example" id="example">
-                                                <thead>
-                                                    <tr>
-                                                        <th>District</th>
-                                                        <th>Online Farmers</th>
-                                                        <th>Field Officer Farmers</th>
-                                                        <th>Total Farmers</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($farmersByDistrict as $data)
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered example" id="example">
+                                                    <thead>
                                                         <tr>
-                                                            <td>{{ $data->district }}</td>
-                                                            <td>{{ $data->online_farmers }}</td>
-                                                            <td>{{ $data->field_officer_farmers }}</td>
-                                                            <td>{{ ($data->field_officer_farmers+$data->online_farmers) }}</td>
+                                                            <th>District</th>
+                                                            <th>Online Farmers</th>
+                                                            <th>Field Officer Farmers</th>
+                                                            <th>Total Farmers</th>
                                                         </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($farmersByDistrict as $data)
+                                                            <tr>
+                                                                <td>{{ $data->district }}</td>
+                                                                <td>{{ $data->online_farmers }}</td>
+                                                                <td>{{ $data->field_officer_farmers }}</td>
+                                                                <td>{{ ($data->field_officer_farmers+$data->online_farmers) }}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
                                         </div>
 
