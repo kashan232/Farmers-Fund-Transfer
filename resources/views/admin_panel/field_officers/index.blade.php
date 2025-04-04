@@ -61,23 +61,31 @@
                                                         <td>{{ $field_officer->district }}</td>
                                                         <td>{{ $field_officer->tehsil }}</td>
 
-                                                        <td>
-                                                            {{-- @if (is_array(json_decode($field_officer->tappas)))
-                                                                @foreach (json_decode($field_officer->tappas) as $tappa)
-                                                                    <span class="badge text-bg-success text-dark font-weight-bold">{{ $tappa }}</span><br>
-                                                                @endforeach
-                                                            @elseif (is_array($field_officer->tappas))
-
-                                                                <span class="badge text-bg-success text-dark font-weight-bold">{{ $tappa }}</span><br>
-
-                                                            @endif --}}
+                                                        {{-- <td>
+                                                         
 
                                                             @foreach (json_decode($field_officer->tappas) ?? [] as $tappa)
                                                                 <span class="badge text-bg-success text-dark font-weight-bold">{{ $tappa }}</span><br>
                                                             @endforeach
 
-                                                        </td>
+                                                        </td> --}}
 
+                                                        <td>
+                                                            @php
+                                                                $tappa = json_decode($field_officer->tappas);
+                                                            @endphp
+                                                            @if(is_array($tappa))
+                                                                @foreach($tappa as $index => $tappaItem)
+                                                                    @if($index < 4)
+                                                                    <span class="badge text-bg-success text-dark font-weight-bold">{{ $tappaItem }}</span> <b> @if($index < 3)  </b> <br> @endif
+                                                                    @endif
+                                                                @endforeach
+
+                                                                @if(count($tappa) > 4)
+                                                                    +{{ count($tappa) - 4 }}
+                                                                @endif
+                                                            @endif
+                                                        </td>
 
                                                         <td>
                                                             <div class="d-flex">
