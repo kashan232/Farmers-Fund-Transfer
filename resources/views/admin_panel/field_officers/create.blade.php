@@ -126,9 +126,13 @@
                                             <label>Select Tehsil</label><br>
                                             <select name="tehsil" id="tehsil" required class="form-control--input js-example-basic-single" style="width:100%;" >
                                                 @if(isset($field_officer))
-                                                @foreach ($tehsils as $tehsil)
-                                                    <option {{ ($tehsil->tehsil == $field_officer->tehsil) ? 'selected':'' }} value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
-                                                @endforeach
+
+                                                @if (is_array(json_decode($field_officer->tappas)))
+                                                    @foreach ($tehsils as $tehsil)
+                                                        <option {{ ($tehsil->tehsil == $field_officer->tehsil) ? 'selected':'' }} value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
+                                                    @endforeach
+                                                @endif
+                                                
                                                 @endif
                                             </select>
                                         </div>
