@@ -132,7 +132,7 @@
                                                     @endforeach
                                                 @endif
 
-                                                
+
                                             </select>
                                         </div>
                                     </div>
@@ -179,7 +179,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Password</label>
-                                            <input type="password" class="form-control" required name="password" >
+                                            <input type="password" class="form-control"  name="password" >
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-success mt-4">Submit</button>
