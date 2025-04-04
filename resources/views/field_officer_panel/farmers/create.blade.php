@@ -365,8 +365,11 @@
 
                                         <div class="mb-6 col-md-6 py-2">
                                             <label for="tappa">Q8. Tappa: </label>
-                                            <select name="tappa" id="tapspa" class="form-control js-example-basic-single-no-tag">
-                                                <option value="{{ $tappa }}" @if(isset($data->tappa)) {{ ($tappa == $data->tappa) ? 'selected':'' }} @endif > {{ $tappa }} </option>
+                                            <select name="tappa" id="tappa" class="form-control js-example-basic-single-no-tag">
+                                                @foreach (json_decode($tappa) as $tappa)
+                                                    <option value="">{{$tappa}}</option>
+                                                @endforeach
+                                                {{-- <option value="{{ $tappa }}" @if(isset($data->tappa)) {{ ($tappa == $data->tappa) ? 'selected':'' }} @endif > {{ $tappa }} </option> --}}
 
                                             </select>
                                         </div>
@@ -1252,6 +1255,22 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
 <script src="{{asset('assets/js/inputMask.js')}}"></script>
+
+
+
+
+{{-- 
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.5.0/turf.min.js"></script> --}}
+
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> --}}
+
+
+
 <script>
 
 $(document).ready(function () {
@@ -2021,7 +2040,7 @@ let step1_formdata = {
     // Initialize the first step
     // nextStep(1);
 </script>
-
+{{--
 
 
 
@@ -2032,7 +2051,7 @@ let step1_formdata = {
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.5.0/turf.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> --}}
 
 <script>
     var map = L.map('map').setView([25.3960, 68.3578], 20); // Hyderabad, Pakistan
