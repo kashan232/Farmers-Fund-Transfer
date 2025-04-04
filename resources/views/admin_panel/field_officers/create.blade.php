@@ -127,12 +127,11 @@
                                             <select name="tehsil" id="tehsil" required class="form-control--input js-example-basic-single" style="width:100%;" >
                                                 @if(isset($field_officer))
 
-                                                @if (is_array(json_decode($field_officer->tappas)))
                                                     @foreach ($tehsils as $tehsil)
                                                         <option {{ ($tehsil->tehsil == $field_officer->tehsil) ? 'selected':'' }} value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
                                                     @endforeach
                                                 @endif
-                                                
+
                                                 @endif
                                             </select>
                                         </div>
@@ -165,7 +164,7 @@
                                             <select name="tappa[]" id="tappa" multiple  class="form-control--input js-example-basic-multiple " style="width:100%;" >
                                                 @if(isset($field_officer) )
                                                     @if($field_officer->tappas != null )
-                                                            @foreach (json_decode($field_officer->tappas) as $tappa)
+                                                            @foreach (json_decode($field_officer->tappas) ?? [] as $tappa)
 
                                                             <option selected value="{{$tappa}}">{{$tappa}}</option>
 
