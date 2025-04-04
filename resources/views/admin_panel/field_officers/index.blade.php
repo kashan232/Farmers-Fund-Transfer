@@ -62,9 +62,20 @@
                                                         <td>{{ $field_officer->tehsil }}</td>
 
                                                         <td>
-                                                            @foreach (json_decode($field_officer->tappas) as $tappa)
-                                                               <span class="badge text-bg-success text-dark font-weight-bold">{{  $tappa }}</span><br>
+                                                            @if (is_array(json_decode($field_officer->tappas)))
+                                                                @foreach (json_decode($field_officer->tappas) as $tappa)
+                                                                    <span class="badge text-bg-success text-dark font-weight-bold">{{ $tappa }}</span><br>
+                                                                @endforeach
+                                                            @elseif (is_array($field_officer->tappas))
+                                                                
+                                                                <span class="badge text-bg-success text-dark font-weight-bold">{{ $tappa }}</span><br>
+                                                               
+                                                            @endif
+
+                                                            @foreach (json_decode($field_officer->tappas) ?? [] as $tappa)
+                                                                <span class="badge text-bg-success text-dark font-weight-bold">{{ $tappa }}</span><br>
                                                             @endforeach
+                                                        
                                                         </td>
 
 
