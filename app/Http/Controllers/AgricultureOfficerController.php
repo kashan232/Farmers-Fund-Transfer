@@ -17,6 +17,7 @@ use App\Models\OnlineFarmerRegistration;
 use App\Models\AgriOfficer;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class AgricultureOfficerController extends Controller
 {
@@ -48,24 +49,42 @@ class AgricultureOfficerController extends Controller
         if (Auth::id()) {
 
 
+            // if ($request->edit_id && $request->edit_id != '') {
+            //     // In edit mode
+
+            //     $validatedData = $request->validate([
+            //         'email_address' => 'required|email|unique:field_officers,email_address,' . $request->edit_id,
+            //     ]);
+
+
+            // }
+
+
+            // else {
+            //     // In create mode
+            //     $validatedData = $request->validate([
+            //         'email_address' => 'required|email|unique:field_officers,email_address',
+            //     ]);
+            // }
+
+
+
             if ($request->edit_id && $request->edit_id != '') {
-                // In edit mode
-
+                // ✅ Edit mode - custom validation for both tables
+                Validator::make($request->all(), [
+                    'email_address' => [
+                        'required',
+                        'email',
+                        Rule::unique('field_officers', 'email_address')->ignore($request->edit_id),
+                        Rule::unique('users', 'email')->ignore(optional(User::where('user_id', $request->edit_id)->first())->id),
+                    ],
+                ])->validate();
+            } else {
+                // ✅ Create mode - simple validation
                 $validatedData = $request->validate([
-                    'email_address' => 'required|email|unique:field_officers,email_address,' . $request->edit_id,
-                ]);
-
-
-            }
-
-
-            else {
-                // In create mode
-                $validatedData = $request->validate([
-                    'email_address' => 'required|email|unique:field_officers,email_address',
+                    'email_address' => 'required|email|unique:field_officers,email_address|unique:users,email',
                 ]);
             }
-
 
 
             $usertype = Auth()->user()->usertype;
