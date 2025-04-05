@@ -16,6 +16,7 @@ use App\Models\LandRevenueFarmerRegistation;
 use App\Models\OnlineFarmerRegistration;
 use App\Models\AgriOfficer;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Str;
 
 class AgricultureOfficerController extends Controller
 {
@@ -111,6 +112,13 @@ class AgricultureOfficerController extends Controller
             }
             else
             {
+
+
+
+                // Generate a unique 8-digit numeric password
+                $plainPassword = str_pad(mt_rand(0, 99999999), 8, '0', STR_PAD_LEFT);
+
+
                 $AgriOfficer = AgriOfficer::create([
                     'admin_or_user_id'    => $userId,
                     'full_name'          => $request->full_name,
@@ -122,10 +130,12 @@ class AgricultureOfficerController extends Controller
                     // 'ucs'               => $ucs,
                     'tappas'          => $tappa,
                     // 'username'          => $request->username,
-                    'password'          => $request->password,
+                    'password'          => $plainPassword,
                     'created_at'        => Carbon::now(),
                     'updated_at'        => Carbon::now(),
                 ]);
+
+
                 // Create a user record with the same credentials and usertype 'employee'
                 $user = User::create([
                     'name' => $request->full_name,
@@ -135,7 +145,7 @@ class AgricultureOfficerController extends Controller
                     'tehsil' => $tehsil,
                     // 'ucs'               => $ucs,
                     'tappas'          => $tappa,
-                    'password' => bcrypt($request->password), // Make sure to hash the password
+                    'password' => bcrypt($plainPassword ), // Make sure to hash the password
                     'usertype' => 'Agri_Officer', // Set the usertype to 'employee'
                 ]);
 
