@@ -72,23 +72,31 @@ class AgricultureOfficerController extends Controller
 
 
             if ($request->edit_id && $request->edit_id != '') {
-                // ✅ Edit mode - custom validation for both tables
+                // ✅ Edit mode - Validate email for `field_officers` table
                 Validator::make($request->all(), [
                     'email_address' => [
                         'required',
                         'email',
-                        // Exclude the current record's email from field_officers table
+                        // Exclude current email for `field_officers`
                         Rule::unique('field_officers', 'email_address')->ignore($request->edit_id),
-                        // Exclude the current record's email from users table
+                    ],
+                ], [
+                    'email_address.unique' => 'The email address is already taken for Field Officer.',
+                ])->validate();
+        
+                // ✅ Edit mode - Validate email for `users` table
+                Validator::make($request->all(), [
+                    'email_address' => [
+                        'required',
+                        'email',
+                        // Exclude current email for `users` table
                         Rule::unique('users', 'email')->ignore(optional(User::where('user_id', $request->edit_id)->first())->id),
                     ],
                 ], [
-                    // Custom error messages
-                    'email_address.unique' => 'The email address is already taken for Field Officer.',
-                    'email.unique' => 'The email address is already taken for User.',
+                    'email_address.unique' => 'The email address is already taken for User.',
                 ])->validate();
             } else {
-                // ✅ Create mode - simple validation
+                // ✅ Create mode - Validate email for both tables
                 $validatedData = $request->validate([
                     'email_address' => 'required|email|unique:field_officers,email_address|unique:users,email',
                 ]);
