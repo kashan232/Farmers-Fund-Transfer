@@ -14,6 +14,10 @@ use App\Models\DistrictOfficer;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\FieldOfficerImport;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+
 
 class FieldOfficerController extends Controller
 {
@@ -74,7 +78,7 @@ class FieldOfficerController extends Controller
     {
 
 
-
+        $plainPassword = Str::upper(Str::random(8));
         if (Auth::id()) {
 
             try {
@@ -143,7 +147,7 @@ class FieldOfficerController extends Controller
                         'district'          => $request->district,
                         'tehsil'          => $tehsil,
                         'tappas'          => $tappa,
-                        'password'          => $request->password,
+                        'password'          => $plainPassword ,
                         'created_at'        => Carbon::now(),
                         'updated_at'        => Carbon::now(),
                     ]);
@@ -155,7 +159,7 @@ class FieldOfficerController extends Controller
                         'district' => $request->district,
                         'tehsil' => $tehsil,
                         'tappas' => $tappa,
-                        'password' => Hash::make($request->password), // Make sure to hash the password
+                        'password' => $plainPassword , // Make sure to hash the password
                         'usertype' => 'Field_Officer', // Set the usertype to 'employee'
                     ]);
 

@@ -22,7 +22,7 @@ class FieldOfficerPanelController extends Controller
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
 
 
-        
+
 
         $farmers = LandRevenueFarmerRegistation::where('district', $user->district)
         ->where('tehsil', $user->tehsil)
