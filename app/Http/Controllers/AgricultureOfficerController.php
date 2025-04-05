@@ -108,7 +108,7 @@ class AgricultureOfficerController extends Controller
                         $AgriOfficer->update($dataToUpdate);
 
                         // Update related User record
-                        $user = User::where('user_id', $AgriOfficer->id)->first();
+                        $user = User::where('user_id', $AgriOfficer->id)->where('usertype','Agri_Officer')->first();
 
                         if ($user) {
                             // Prepare data for User update
