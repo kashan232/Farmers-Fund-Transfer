@@ -16,7 +16,7 @@ class AgriUser extends Model
         'user_name',
         'number',
         'email',
-        'address',
+        'cnic',
         'cnic',
         'district',
         'tehsil',
