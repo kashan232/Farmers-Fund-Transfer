@@ -57,8 +57,8 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
-                                            <label class="form-label">Address</label>
-                                            <textarea class="form-control" name="address" rows="3" required></textarea>
+                                            <label class="form-label">Cnic</label>
+                                            <textarea class="form-control" name="cnic"  required></textarea>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
@@ -106,12 +106,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
-                                        <div class="mb-12 col-md-12">
-                                            <label class="form-label">Username</label>
-                                            <input type="text" class="form-control"  name="username">
-                                        </div>
-                                    </div>
+
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Password</label>
