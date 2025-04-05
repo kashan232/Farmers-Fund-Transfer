@@ -116,7 +116,7 @@ class DDOfficerController extends Controller
                         $user->update($userDataToUpdate);
                     }
 
-                    return redirect()->back()->with('officer-added', 'Agriculture Officer Updated Successfully');
+                    return redirect()->back()->with('officer-added', 'DD Officer Updated Successfully');
                 } else {
                     return redirect()->back()->with('error', 'DDOfficer not found');
                 }
@@ -161,7 +161,7 @@ class DDOfficerController extends Controller
                 'usertype' => 'Agri_Officer', // Set the usertype to 'employee'
             ]);
 
-            return redirect()->back()->with('officer-added', 'Agriculture Officer Created Successfully');
+            return redirect()->back()->with('officer-added', 'DD Officer Created Successfully');
         }
 
 
