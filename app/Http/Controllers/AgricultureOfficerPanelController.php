@@ -290,12 +290,12 @@ class AgricultureOfficerPanelController extends Controller
         $farmers = LandRevenueFarmerRegistation::where('district', $user->district)
         ->whereIn('tehsil', json_decode($user->tehsil))
         ->whereIn('tappa', json_decode($user->tappas))
-        ->where(function($query) {
-            $query->where('verification_status', 'rejected_by_lrd')
-            ->orWhere('verification_status', 'verified_by_fa');
+        // ->where(function($query) {
+        //     $query->where('verification_status', 'rejected_by_lrd')
+        //     ->orWhere('verification_status', 'verified_by_fa');
 
-                //   ->orWhere('verification_status', null);
-        })
+        //         //   ->orWhere('verification_status', null);
+        // })
         ->paginate(10);
 
 
