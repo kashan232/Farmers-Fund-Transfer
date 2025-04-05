@@ -19,6 +19,13 @@ use App\Imports\FarmersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Validation\ValidationException;
 use App\Exports\reportsExport;
+
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+
+
+
 class LandRevenueController extends Controller
 {
 
@@ -98,7 +105,23 @@ class LandRevenueController extends Controller
         if (Auth::id()) {
 
 
-            try{
+            // if ($request->edit_id && $request->edit_id != '') {
+            //     // In edit mode
+
+            //     $validatedData = $request->validate([
+            //         'email_address' => 'required|email|unique:field_officers,email_address,' . $request->edit_id,
+            //     ]);
+
+
+            // }
+
+
+            // else {
+            //     // In create mode
+            //     $validatedData = $request->validate([
+            //         'email_address' => 'required|email|unique:field_officers,email_address',
+            //     ]);
+            // }
 
 
 
@@ -107,95 +130,220 @@ class LandRevenueController extends Controller
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
             $tehsil = json_encode($request->input('tehsil'));
-            $ucs = json_encode($request->input('ucs'));
             $tappa = json_encode($request->input('tappa'));
+
+
 
             if($request->edit_id && $request->edit_id != '')
             {
-               // Fetch the LandRevenueDepartment record before updating
-                $landrevenue = LandRevenueDepartment::where('id', $request->edit_id)->first();
+                     // Update LandRevenueDepartment record
+                    $LandRevenueDepartment = LandRevenueDepartment::where('id', $request->edit_id)->first();
 
-                if ($landrevenue) {
-                    // Update the LandRevenueDepartment record
-                    $landrevenue->update([
-                        'admin_or_user_id' => $userId,
-                        'full_name' => $request->full_name,
-                        'contact_number' => $request->contact_number,
-                        'address' => $request->address,
-                        'email_address' => $request->email_address,
-                        'district' => $request->district,
-                        'tehsil' => $tehsil,
-                        'ucs' => $ucs,
-                        'tappas' => $tappa,
-                        'username' => $request->username,
-                    ]);
-
-                    // Update the related User record
-                    $user = User::where('user_id', $landrevenue->id)->first();
-
-                    if ($user) {
-                        $user->update([
-                            'user_id' => $landrevenue->id,
-                            'name' => $request->full_name,
-                            'email' => $request->email_address,
+                    if ($LandRevenueDepartment) {
+                        // Prepare the data for LandRevenueDepartment update
+                        $dataToUpdate = [
+                            'admin_or_user_id' => $userId,
+                            'full_name' => $request->full_name,
+                            'contact_number' => $request->contact_number,
+                            'cnic' => $request->cnic,
+                            'email_address' => $request->email_address,
                             'district' => $request->district,
                             'tehsil' => $tehsil,
-                            'ucs' => $ucs,
                             'tappas' => $tappa,
-                            'password' => $request->password ? Hash::make($request->password) : $user->password, // Preserve the existing password if not updated
-                            'usertype' => 'Land_Revenue_Officer', // Set the usertype to 'Land_Revenue_Officer'
-                        ]);
+                        ];
 
-                        dd($user);
+                        // Only update email_address if it's changed
+                        if ($LandRevenueDepartment->email_address != $request->email_address) {
+                            $dataToUpdate['email_address'] = $request->email_address;
+                        }
+
+
+                        // Update LandRevenueDepartment record
+                        $LandRevenueDepartment->update($dataToUpdate);
+
+                        // Update related User record
+                        $user = User::where('user_id', $LandRevenueDepartment->id)->where('usertype','Agri_Officer')->first();
+
+                        if ($user) {
+                            // Prepare data for User update
+                            $userDataToUpdate = [
+                                'name' => $request->full_name,
+                                'user_id' => $LandRevenueDepartment->id,
+                                'email' => $request->email_address,
+                                'district' => $request->district,
+                                'tehsil' => $tehsil,
+                                'tappas' => $tappa,
+                                'usertype' => 'Land_Revenue_Officer', // Set the usertype to 'employee'
+                            ];
+
+                            // Only update email if it has changed
+                            if ($user->email != $request->email_address) {
+                                $userDataToUpdate['email'] = $request->email_address;
+
+                            }
+
+
+                            // Update User record
+                            $user->update($userDataToUpdate);
+                        }
+
+                        return redirect()->back()->with('officer-added', 'Land Revenue Officer Updated Successfully');
+                    } else {
+                        return redirect()->back()->with('error', 'Land Revenue Officer not found');
                     }
 
-                    return redirect()->back()->with('officer-added', 'Land Revenue Officer updated Successfully');
-                } else {
-                    return redirect()->back()->with('error', 'Land Revenue Officer not found');
-                }
             }
-            else{
-                $landrevenue = LandRevenueDepartment::create([
+            else
+            {
+
+
+
+                // Generate a unique 8-digit numeric password
+                $plainPassword = Str::upper(Str::random(8));
+
+
+                $LandRevenueDepartment = LandRevenueDepartment::create([
                     'admin_or_user_id'    => $userId,
                     'full_name'          => $request->full_name,
                     'contact_number'          => $request->contact_number,
-                    'address'          => $request->address,
+                    'cnic'          => $request->cnic,
                     'email_address'          => $request->email_address,
                     'district'          => $request->district,
                     'tehsil'          => $tehsil,
-                    'ucs'               => $ucs,
+                    // 'ucs'               => $ucs,
                     'tappas'          => $tappa,
-                    'username'          => $request->username,
-                    'password'          => $request->password,
+                    // 'username'          => $request->username,
+                    'password'          => $plainPassword,
                     'created_at'        => Carbon::now(),
                     'updated_at'        => Carbon::now(),
                 ]);
 
-                 // Create a user record with the same credentials and usertype 'employee'
 
                 // Create a user record with the same credentials and usertype 'employee'
                 $user = User::create([
-                    'user_id' => $landrevenue->id,
                     'name' => $request->full_name,
+                    'user_id' => $LandRevenueDepartment->id,
                     'email' => $request->email_address,
                     'district' => $request->district,
                     'tehsil' => $tehsil,
-                    'ucs'               => $ucs,
+                    // 'ucs'               => $ucs,
                     'tappas'          => $tappa,
-                    'password' => bcrypt($request->password), // Make sure to hash the password
+                    'password' => bcrypt($plainPassword ), // Make sure to hash the password
                     'usertype' => 'Land_Revenue_Officer', // Set the usertype to 'employee'
                 ]);
 
                 return redirect()->back()->with('officer-added', 'Land Revenue Officer Created Successfully');
             }
-        }
-        catch (ValidationException $e) {
-            // Handle the validation failure
-            return back()->withErrors($e->validator)->withInput();
-        }
+
+
+
         } else {
             return redirect()->back();
         }
+
+
+
+        // if (Auth::id()) {
+
+
+        //     try{
+
+
+
+
+
+        //     $usertype = Auth()->user()->usertype;
+        //     $userId = Auth::id();
+        //     $tehsil = json_encode($request->input('tehsil'));
+        //     $ucs = json_encode($request->input('ucs'));
+        //     $tappa = json_encode($request->input('tappa'));
+
+        //     if($request->edit_id && $request->edit_id != '')
+        //     {
+        //        // Fetch the LandRevenueDepartment record before updating
+        //         $landrevenue = LandRevenueDepartment::where('id', $request->edit_id)->first();
+
+        //         if ($landrevenue) {
+        //             // Update the LandRevenueDepartment record
+        //             $landrevenue->update([
+        //                 'admin_or_user_id' => $userId,
+        //                 'full_name' => $request->full_name,
+        //                 'contact_number' => $request->contact_number,
+        //                 'address' => $request->address,
+        //                 'email_address' => $request->email_address,
+        //                 'district' => $request->district,
+        //                 'tehsil' => $tehsil,
+        //                 'ucs' => $ucs,
+        //                 'tappas' => $tappa,
+        //                 'username' => $request->username,
+        //             ]);
+
+        //             // Update the related User record
+        //             $user = User::where('user_id', $landrevenue->id)->first();
+
+        //             if ($user) {
+        //                 $user->update([
+        //                     'user_id' => $landrevenue->id,
+        //                     'name' => $request->full_name,
+        //                     'email' => $request->email_address,
+        //                     'district' => $request->district,
+        //                     'tehsil' => $tehsil,
+        //                     'ucs' => $ucs,
+        //                     'tappas' => $tappa,
+        //                     'password' => $request->password ? Hash::make($request->password) : $user->password, // Preserve the existing password if not updated
+        //                     'usertype' => 'Land_Revenue_Officer', // Set the usertype to 'Land_Revenue_Officer'
+        //                 ]);
+
+        //                 dd($user);
+        //             }
+
+        //             return redirect()->back()->with('officer-added', 'Land Revenue Officer updated Successfully');
+        //         } else {
+        //             return redirect()->back()->with('error', 'Land Revenue Officer not found');
+        //         }
+        //     }
+        //     else{
+        //         $landrevenue = LandRevenueDepartment::create([
+        //             'admin_or_user_id'    => $userId,
+        //             'full_name'          => $request->full_name,
+        //             'contact_number'          => $request->contact_number,
+        //             'address'          => $request->address,
+        //             'email_address'          => $request->email_address,
+        //             'district'          => $request->district,
+        //             'tehsil'          => $tehsil,
+        //             'ucs'               => $ucs,
+        //             'tappas'          => $tappa,
+        //             'username'          => $request->username,
+        //             'password'          => $request->password,
+        //             'created_at'        => Carbon::now(),
+        //             'updated_at'        => Carbon::now(),
+        //         ]);
+
+        //          // Create a user record with the same credentials and usertype 'employee'
+
+        //         // Create a user record with the same credentials and usertype 'employee'
+        //         $user = User::create([
+        //             'user_id' => $landrevenue->id,
+        //             'name' => $request->full_name,
+        //             'email' => $request->email_address,
+        //             'district' => $request->district,
+        //             'tehsil' => $tehsil,
+        //             'ucs'               => $ucs,
+        //             'tappas'          => $tappa,
+        //             'password' => bcrypt($request->password), // Make sure to hash the password
+        //             'usertype' => 'Land_Revenue_Officer', // Set the usertype to 'employee'
+        //         ]);
+
+        //         return redirect()->back()->with('officer-added', 'Land Revenue Officer Created Successfully');
+        //     }
+        // }
+        // catch (ValidationException $e) {
+        //     // Handle the validation failure
+        //     return back()->withErrors($e->validator)->withInput();
+        // }
+        // } else {
+        //     return redirect()->back();
+        // }
     }
     public function all_revenue_officer()
     {

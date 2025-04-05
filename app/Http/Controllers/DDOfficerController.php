@@ -51,7 +51,7 @@ class DDOfficerController extends Controller
         if (Auth::id()) {
 
 
-                 $usertype = Auth()->user()->usertype;
+            $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
             // $tehsil = json_encode($request->input('tehsil'));
             // $ucs = json_encode($request->input('ucs'));
