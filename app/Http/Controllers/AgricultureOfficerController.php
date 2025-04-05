@@ -71,36 +71,6 @@ class AgricultureOfficerController extends Controller
 
 
 
-            if ($request->edit_id && $request->edit_id != '') {
-                // ✅ Edit mode - Validate email for `field_officers` table
-                Validator::make($request->all(), [
-                    'email_address' => [
-                        'required',
-                        'email',
-                        // Exclude current email for `field_officers`
-                        Rule::unique('field_officers', 'email_address')->ignore($request->edit_id),
-                    ],
-                ], [
-                    'email_address.unique' => 'The email address is already taken for Field Officer.',
-                ])->validate();
-        
-                // ✅ Edit mode - Validate email for `users` table
-                Validator::make($request->all(), [
-                    'email_address' => [
-                        'required',
-                        'email',
-                        // Exclude current email for `users` table
-                        Rule::unique('users', 'email')->ignore(optional(User::where('user_id', $request->edit_id)->first())->id),
-                    ],
-                ], [
-                    'email_address.unique' => 'The email address is already taken for User.',
-                ])->validate();
-            } else {
-                // ✅ Create mode - Validate email for both tables
-                $validatedData = $request->validate([
-                    'email_address' => 'required|email|unique:field_officers,email_address|unique:users,email',
-                ]);
-            }
 
 
             $usertype = Auth()->user()->usertype;
@@ -112,38 +82,52 @@ class AgricultureOfficerController extends Controller
 
             if($request->edit_id && $request->edit_id != '')
             {
-                    // Update AgriOfficer record
+                     // Update AgriOfficer record
                     $AgriOfficer = AgriOfficer::where('id', $request->edit_id)->first();
 
                     if ($AgriOfficer) {
-                        $AgriOfficer->update([
-                            'admin_or_user_id'    => $userId,
-                            'full_name'           => $request->full_name,
-                            'contact_number'      => $request->contact_number,
-                            'cnic'             => $request->cnic,
-                            'email_address'       => $request->email_address,
-                            'district'            => $request->district,
-                            'tehsil'              => $tehsil,
-                            // 'ucs'               => $ucs,
-                            'tappas'              => $tappa,
-                            // 'username'            => $request->username,
-                        ]);
+                        // Prepare the data for AgriOfficer update
+                        $dataToUpdate = [
+                            'admin_or_user_id' => $userId,
+                            'full_name' => $request->full_name,
+                            'contact_number' => $request->contact_number,
+                            'cnic' => $request->cnic,
+                            'email_address' => $request->email_address,
+                            'district' => $request->district,
+                            'tehsil' => $tehsil,
+                            'tappas' => $tappa,
+                        ];
+
+                        // Only update email_address if it's changed
+                        if ($AgriOfficer->email_address != $request->email_address) {
+                            $dataToUpdate['email_address'] = $request->email_address;
+                        }
+
+                        // Update AgriOfficer record
+                        $AgriOfficer->update($dataToUpdate);
 
                         // Update related User record
                         $user = User::where('user_id', $AgriOfficer->id)->first();
 
                         if ($user) {
-                            $user->update([
-                                'name'      => $request->full_name,
-                                'user_id'   => $AgriOfficer->id,
-                                'email'     => $request->email_address,
-                                'district'  => $request->district,
-                                'tehsil'    => $tehsil,
-                                // 'ucs'      => $ucs,
-                                'tappas'    => $tappa,
-                                // 'password'  => $request->password ? Hash::make($request->password) : $user->password, // Preserve existing password if not updated
-                                'usertype'  => 'Agri_Officer', // Set the usertype to 'employee'
-                            ]);
+                            // Prepare data for User update
+                            $userDataToUpdate = [
+                                'name' => $request->full_name,
+                                'user_id' => $AgriOfficer->id,
+                                'email' => $request->email_address,
+                                'district' => $request->district,
+                                'tehsil' => $tehsil,
+                                'tappas' => $tappa,
+                                'usertype' => 'Agri_Officer', // Set the usertype to 'employee'
+                            ];
+
+                            // Only update email if it has changed
+                            if ($user->email != $request->email_address) {
+                                $userDataToUpdate['email'] = $request->email_address;
+                            }
+
+                            // Update User record
+                            $user->update($userDataToUpdate);
                         }
 
                         return redirect()->back()->with('officer-added', 'Agriculture Officer Updated Successfully');
