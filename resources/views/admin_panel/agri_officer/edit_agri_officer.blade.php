@@ -127,12 +127,12 @@
                                     </div>
 
 
-                                    <div class="row mt-2">
+                                    {{-- <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Password</label>
                                             <input type="password" class="form-control" required name="password">
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                                 </form>

@@ -99,7 +99,7 @@ class AgricultureOfficerController extends Controller
                                 'tehsil'    => $tehsil,
                                 // 'ucs'      => $ucs,
                                 'tappas'    => $tappa,
-                                'password'  => $request->password ? Hash::make($request->password) : $user->password, // Preserve existing password if not updated
+                                // 'password'  => $request->password ? Hash::make($request->password) : $user->password, // Preserve existing password if not updated
                                 'usertype'  => 'Agri_Officer', // Set the usertype to 'employee'
                             ]);
                         }
