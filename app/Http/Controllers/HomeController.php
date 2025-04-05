@@ -265,14 +265,14 @@ class HomeController extends Controller
 
                 $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->where('tehsil', $user->tehsil)
-                ->where('tappa', $user->tappas)
+                ->whereIn('tappa', json_decode($user->tappas))
                 ->where('verification_status' , NULL)
                 ->count();
 
                 $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->where('tehsil', $user->tehsil)
                 ->whereIn('tappa', json_decode($user->tappas))
-                ->where('verification_status' , 'verified_by_lo')
+                ->where('verification_status' , 'verified_by_lrd')
                 ->count();
 
                 $rejectedByAO = DB::table('land_revenue_farmer_registations')
@@ -287,7 +287,7 @@ class HomeController extends Controller
 
                 $rejectedByLRD = DB::table('land_revenue_farmer_registations')
                     ->where('user_id', $user_id)
-                    ->where('verification_status', 'rejected_by_lo')
+                    ->where('verification_status', 'rejected_by_lrd')
                     ->count();
 
                 // dd($rejectedByAO,$rejectedByDD,$rejectedByLRD);
