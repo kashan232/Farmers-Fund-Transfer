@@ -102,7 +102,7 @@ class DDOfficerController extends Controller
                             'district' => $district,
                             'tehsil' => $tehsil,
                             'tappas' => $tappa,
-                            'usertype' => 'Agri_Officer', // Set the usertype to 'employee'
+                            'usertype' => 'DD_Officer', // Set the usertype to 'employee'
                         ];
 
                         // Only update email if it has changed
@@ -158,7 +158,7 @@ class DDOfficerController extends Controller
                 // 'ucs'               => $ucs,
                 'tappas'          => $tappa,
                 'password' => bcrypt($plainPassword ), // Make sure to hash the password
-                'usertype' => 'Agri_Officer', // Set the usertype to 'employee'
+                'usertype' => 'DD_Officer', // Set the usertype to 'employee'
             ]);
 
             return redirect()->back()->with('officer-added', 'DD Officer Created Successfully');
