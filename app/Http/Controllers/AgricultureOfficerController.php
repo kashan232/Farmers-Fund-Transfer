@@ -18,6 +18,8 @@ use App\Models\AgriOfficer;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+
 
 class AgricultureOfficerController extends Controller
 {
