@@ -142,7 +142,7 @@ class FieldOfficerController extends Controller
                         // 'admin_or_user_id'    => $request->district_officer,
                         'full_name'          => $request->full_name,
                         'contact_number'          => $request->contact_number,
-                        // 'cnic'          => $request->cnic,
+                        'cnic'          => $request->cnic,
                         'email_address'          => $request->email_address,
                         'district'          => $request->district,
                         'tehsil'          => $tehsil,
@@ -155,6 +155,7 @@ class FieldOfficerController extends Controller
                     $user = User::create([
                         'name' => $request->full_name,
                         'user_id' => $FieldOfficer->id,
+                        'cnic'          => $request->cnic,
                         'email' => $request->email_address,
                         'district' => $request->district,
                         'tehsil' => $tehsil,
