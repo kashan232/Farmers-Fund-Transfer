@@ -85,7 +85,7 @@ class AgricultureOfficerController extends Controller
                 ], [
                     // Custom error messages
                     'email_address.unique' => 'The email address is already taken for Field Officer.',
-                    'email_address.unique' => 'The email address is already taken for User.',
+                    'email.unique' => 'The email address is already taken for User.',
                 ])->validate();
             } else {
                 // ✅ Create mode - simple validation
