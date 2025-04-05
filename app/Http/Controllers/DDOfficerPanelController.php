@@ -27,11 +27,10 @@ class DDOfficerPanelController extends Controller
         $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)
 
         ->where(function($query) {
-            $query->where('verification_status', 'rejected_by_lo')
+            $query->where('verification_status', 'rejected_by_lrd')
                   ->orWhere('verification_status', 'verified_by_ao')
-                  ->orWhere('verification_status', null);
         })
-        ->paginate(5);
+        ->paginate(10);
 
 
 
