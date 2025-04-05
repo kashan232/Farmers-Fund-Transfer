@@ -127,7 +127,7 @@ class AgricultureOfficerController extends Controller
                                 $userDataToUpdate['email'] = $request->email_address;
 
                             }
-                           
+
 
                             // Update User record
                             $user->update($userDataToUpdate);

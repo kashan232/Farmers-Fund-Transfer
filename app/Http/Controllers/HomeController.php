@@ -259,7 +259,7 @@ class HomeController extends Controller
                 }
                 $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->where('tehsil', $user->tehsil)
-                ->where('tappa', $user->tappas)
+                ->whereIn('tappa', json_decode($user->tappas))
                 ->count();
 
 
@@ -271,7 +271,7 @@ class HomeController extends Controller
 
                 $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->where('tehsil', $user->tehsil)
-                ->where('tappa', $user->tappas)
+                ->whereIn('tappa', json_decode($user->tappas))
                 ->where('verification_status' , 'verified_by_lo')
                 ->count();
 

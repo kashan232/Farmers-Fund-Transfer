@@ -17,6 +17,11 @@
         position: relative !important;
         padding-top: 5% !important;
     }
+
+    #example1_wrapper nav{
+        float: right;
+        margin-top: 1%;
+    }
 </style>
 
 <!-- [ Main Content ] start -->
