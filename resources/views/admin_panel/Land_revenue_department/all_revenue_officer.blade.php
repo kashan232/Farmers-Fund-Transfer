@@ -42,7 +42,7 @@
                                                         <th><strong>Sno</strong></th>
                                                         <th><strong>Full Name</strong></th>
                                                         <th><strong>Contact Number</strong></th>
-                                                        <th><strong>Address</strong></th>
+                                                        <th><strong>Cnic</strong></th>
                                                         <th><strong>Email Address</strong></th>
                                                         <th><strong>District </strong></th>
                                                         <th><strong>Tehsil </strong></th>
@@ -58,7 +58,7 @@
                                                         <td><strong>{{ $loop->iteration }}</strong></td>
                                                         <td>{{ $revenue->full_name }}</td>
                                                         <td>{{ $revenue->contact_number }}</td>
-                                                        <td>{{ $revenue->address }}</td>
+                                                        <td>{{ $revenue->cnic }}</td>
                                                         <td>{{ $revenue->email_address }}</td>
                                                         <td>{{ $revenue->district }}</td>
                                                         <td>

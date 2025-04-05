@@ -58,8 +58,8 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
-                                            <label class="form-label">Address</label>
-                                            <textarea class="form-control" name="address" rows="3" required>{{$data->address}}</textarea>
+                                            <label class="form-label">Cnic</label>
+                                            <textarea class="form-control" name="cnic" rows="3" required>{{$data->address}}</textarea>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
@@ -126,7 +126,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mt-2">
+                                    {{-- <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Username</label>
                                             <input type="text" required class="form-control" name="username" value="{{$data->username}}">
@@ -138,7 +138,7 @@
                                             <label class="form-label">Password</label>
                                             <input type="password" class="form-control" required name="password">
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                                 </form>
