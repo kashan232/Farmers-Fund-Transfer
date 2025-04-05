@@ -100,10 +100,9 @@ class AgricultureOfficerController extends Controller
 
                         // Only update email_address if it's changed
                         if ($AgriOfficer->email_address != $request->email_address) {
-                            dd('changed');
                             $dataToUpdate['email_address'] = $request->email_address;
                         }
-                        dd('Notchanged');
+                    
 
                         // Update AgriOfficer record
                         $AgriOfficer->update($dataToUpdate);
