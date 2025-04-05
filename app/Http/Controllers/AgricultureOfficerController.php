@@ -77,7 +77,9 @@ class AgricultureOfficerController extends Controller
                     'email_address' => [
                         'required',
                         'email',
+                        // Exclude the current record's email from field_officers table
                         Rule::unique('field_officers', 'email_address')->ignore($request->edit_id),
+                        // Exclude the current record's email from users table
                         Rule::unique('users', 'email')->ignore(optional(User::where('user_id', $request->edit_id)->first())->id),
                     ],
                 ])->validate();
