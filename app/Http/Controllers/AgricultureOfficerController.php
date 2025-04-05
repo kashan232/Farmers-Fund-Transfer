@@ -102,7 +102,7 @@ class AgricultureOfficerController extends Controller
                         if ($AgriOfficer->email_address != $request->email_address) {
                             $dataToUpdate['email_address'] = $request->email_address;
                         }
-                    
+
 
                         // Update AgriOfficer record
                         $AgriOfficer->update($dataToUpdate);
@@ -125,6 +125,7 @@ class AgricultureOfficerController extends Controller
                             // Only update email if it has changed
                             if ($user->email != $request->email_address) {
                                 $userDataToUpdate['email'] = $request->email_address;
+                                dd($user.'--'.$request->email_address);
                                 dd('changed1');
                             }
                             dd('Notchanged1');
