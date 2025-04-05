@@ -25,7 +25,7 @@ class FieldOfficerPanelController extends Controller
 
         $farmers = LandRevenueFarmerRegistation::where('district', $user->district)
         ->where('tehsil', $user->tehsil)
-        ->where('tappa', $user->tappas)
+        ->whereIn('tappa', json_decode($user->tappas))
         ->paginate(10);
 
         return view('field_officer_panel.farmers.index',['farmers'=>$farmers , 'tehsils' => $tehsils]);
