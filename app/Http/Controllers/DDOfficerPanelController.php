@@ -22,13 +22,14 @@ class DDOfficerPanelController extends Controller
 {
     public function farmers_index(){
         $user = User::find(Auth::id());
-        $tehsils = Tehsil::where('district', '=', $user->district)->get();
+        $tehsils = Tehsil::whereIn('district', json_decode($user->district))->get();
 
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)
-
+        $farmers = LandRevenueFarmerRegistation::whereIn('district',json_decode($user->district))
+        ->whereIn('tehsil',json_decode($user->tehsil))
+        ->whereIn('tappa',json_decode($user->tappa))
         ->where(function($query) {
             $query->where('verification_status', 'rejected_by_lrd')
-                  ->orWhere('verification_status', 'verified_by_ao')
+                  ->orWhere('verification_status', 'verified_by_ao');
         })
         ->paginate(10);
 
