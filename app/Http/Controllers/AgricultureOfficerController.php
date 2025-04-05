@@ -47,7 +47,7 @@ class AgricultureOfficerController extends Controller
     {
         if (Auth::id()) {
 
-          
+
             if ($request->edit_id && $request->edit_id != '') {
                 // In edit mode
                 $validatedData = $request->validate([
@@ -59,14 +59,11 @@ class AgricultureOfficerController extends Controller
                     'email_address' => 'required|email|unique:users,email',
                 ]);
             }
-            
-            
+
+
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
-
-
-
             $tehsil = json_encode($request->input('tehsil'));
             $tappa = json_encode($request->input('tappa'));
 
@@ -155,11 +152,8 @@ class AgricultureOfficerController extends Controller
 
                 return redirect()->back()->with('officer-added', 'Agriculture Officer Created Successfully');
             }
-        }
-        catch (ValidationException $e) {
-            // Handle the validation failure
-            return back()->withErrors($e->validator)->withInput();
-        }
+        
+     
 
         } else {
             return redirect()->back();
