@@ -39,6 +39,19 @@
                             <strong>Success!</strong> {{ session('officer-added') }}.
                         </div>
                         @endif
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+
+
                         <div class="row">
                             <div class="col-md-12">
                                 <form action="{{ route('store-agri-officer') }}" method="post">

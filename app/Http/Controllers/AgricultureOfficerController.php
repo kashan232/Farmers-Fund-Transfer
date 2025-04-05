@@ -47,16 +47,20 @@ class AgricultureOfficerController extends Controller
     {
         if (Auth::id()) {
 
-            try{
-
-                if($request->edit_id && $request->edit_id != '')
-            {
-
-            }else{
+          
+            if ($request->edit_id && $request->edit_id != '') {
+                // In edit mode
+                $validatedData = $request->validate([
+                    'email_address' => 'required|email|unique:users,email,' . $request->edit_id,
+                ]);
+            } else {
+                // In create mode
                 $validatedData = $request->validate([
                     'email_address' => 'required|email|unique:users,email',
                 ]);
             }
+            
+            
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
