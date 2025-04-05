@@ -116,7 +116,7 @@ class AgricultureOfficerController extends Controller
 
 
                 // Generate a unique 8-digit numeric password
-                $plainPassword = str_pad(mt_rand(0, 99999999), 8, '0', STR_PAD_LEFT);
+                $plainPassword = Str::upper(Str::random(8));
 
 
                 $AgriOfficer = AgriOfficer::create([
