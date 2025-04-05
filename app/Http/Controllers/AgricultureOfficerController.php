@@ -50,19 +50,19 @@ class AgricultureOfficerController extends Controller
 
             if ($request->edit_id && $request->edit_id != '') {
                 // In edit mode
-                
+
                 $validatedData = $request->validate([
-                    'email_address' => 'required|email|unique:field_officers,email,' . $request->edit_id,
+                    'email_address' => 'required|email|unique:field_officers,email_address,' . $request->edit_id,
                 ]);
 
 
-            } 
-            
-            
+            }
+
+
             else {
                 // In create mode
                 $validatedData = $request->validate([
-                    'email_address' => 'required|email|unique:users,email',
+                    'email_address' => 'required|email|unique:field_officers,email_address',
                 ]);
             }
 
