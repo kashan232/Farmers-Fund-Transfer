@@ -82,6 +82,10 @@ class AgricultureOfficerController extends Controller
                         // Exclude the current record's email from users table
                         Rule::unique('users', 'email')->ignore(optional(User::where('user_id', $request->edit_id)->first())->id),
                     ],
+                ], [
+                    // Custom error messages
+                    'email_address.unique' => 'The email address is already taken for Field Officer.',
+                    'email_address.unique' => 'The email address is already taken for User.',
                 ])->validate();
             } else {
                 // ✅ Create mode - simple validation
