@@ -58,7 +58,9 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Cnic</label>
-                                            <textarea class="form-control" name="cnic"  required></textarea>
+                                            <input type="text" class="form-control" name="cnic" required>
+
+                                            {{-- <textarea class="form-control" name="cnic"  required></textarea> --}}
                                         </div>
                                     </div>
                                     <div class="row mt-2">

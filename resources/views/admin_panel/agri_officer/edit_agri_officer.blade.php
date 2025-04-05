@@ -59,7 +59,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Cnic</label>
-                                            <textarea class="form-control" name="cnic"  required >{{$data->cnic}}</textarea>
+                                            <input type="text" class="form-control" name="cnic"  required value="{{$data->cnic}}" >
                                         </div>
                                     </div>
                                     <div class="row mt-2">
@@ -125,7 +125,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                  
+
 
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
