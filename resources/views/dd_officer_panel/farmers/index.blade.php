@@ -249,7 +249,7 @@
             </div>
             @if(!empty($farmers) && isset($farmers[0]) && $farmers[0] != null)
             @if($farmers[0]->user_type  != 'Agri_Officer')
-            <div class="col-3" style="position: absolute; top:1%; left:250px;" >
+            <div class="col-3" style="position: absolute; top:1%; left:26%;" >
                 <select  id="user_type" class="form-control">
                     <option value="">Select Type</option>
                     <option value="Online">Online</option>
