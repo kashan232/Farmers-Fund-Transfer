@@ -26,6 +26,9 @@ class FieldOfficerPanelController extends Controller
 
         $farmers = LandRevenueFarmerRegistation::where('district', $user->district)
         ->where('tehsil', $user->tehsil)
+        ->when($user->usertype !== 'Online', function ($query) use ($user) {
+            return $query->where('user_id', $user->id);
+        })
         ->whereIn('tappa', json_decode($user->tappas))
         ->paginate(10);
 
