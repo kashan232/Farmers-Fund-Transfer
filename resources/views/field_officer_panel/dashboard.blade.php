@@ -58,7 +58,7 @@
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                    <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,7 +114,7 @@
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                    <i class="fas fa-user-plus" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -133,7 +133,7 @@
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                    <i class="fas fa-globe" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
