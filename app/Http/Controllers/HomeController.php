@@ -269,12 +269,18 @@ class HomeController extends Controller
                 $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->where('tehsil', $user->tehsil)
                 ->whereIn('tappa', json_decode($user->tappas))
+                ->when($user->usertype !== 'Online', function ($query) use ($user) {
+                    return $query->where('user_id', $user->id);
+                })
                 ->where('verification_status' , NULL)
                 ->count();
 
                 $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->where('tehsil', $user->tehsil)
                 ->whereIn('tappa', json_decode($user->tappas))
+                ->when($user->usertype !== 'Online', function ($query) use ($user) {
+                    return $query->where('user_id', $user->id);
+                })
                 ->where('verification_status' , 'verified_by_lrd')
                 ->count();
 
