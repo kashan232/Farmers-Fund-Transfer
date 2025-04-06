@@ -76,7 +76,7 @@
                 </div>
             </div>
             <!-- Farmer Registration Charts -->
-            {{-- <div class="col-12 mt-3">
+            <div class="col-12 mt-3">
                 <div class="box--sec">
                     <div class="top-heading">
                         <p>Farmer Registration</p>
@@ -96,16 +96,16 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
-            <div class="col-12 mt-3">
+            {{-- <div class="col-12 mt-3">
                 <div class="box--sec">
                     <div class="top-heading">
                         <p>Farmers Statistics</p>
                     </div>
                     <div id="districtOfficerTehsilWiseRegistrationChart"></div>
                 </div>
-            </div>
+            </div> --}}
             
         </div>
     </div>
