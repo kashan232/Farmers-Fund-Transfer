@@ -44,9 +44,11 @@
                                                         <th><strong>Contact Number</strong></th>
                                                         <th><strong>Cnic</strong></th>
                                                         <th><strong>Email Address</strong></th>
+                                                        <th><strong>Password</strong></th>
                                                         <th><strong>District</strong></th>
                                                         <th><strong>Taluka</strong></th>
                                                         <th><strong>Tappa</strong></th>
+
                                                         <th class="text-end"><strong>Action</strong></th>
                                                     </tr>
                                                 </thead>
@@ -58,11 +60,12 @@
                                                         <td>{{ $field_officer->contact_number }}</td>
                                                         <td>{{ $field_officer->cnic }}</td>
                                                         <td>{{ $field_officer->email_address }}</td>
+                                                        <td>{{ $field_officer->password }}</td>
                                                         <td>{{ $field_officer->district }}</td>
                                                         <td>{{ $field_officer->tehsil }}</td>
 
                                                         {{-- <td>
-                                                         
+
 
                                                             @foreach (json_decode($field_officer->tappas) ?? [] as $tappa)
                                                                 <span class="badge text-bg-success text-dark font-weight-bold">{{ $tappa }}</span><br>

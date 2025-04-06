@@ -49,6 +49,7 @@
                                                     {{-- <th><strong>UC</strong></th> --}}
                                                     <th><strong>Tappa</strong></th>
                                                     <th><strong>Username</strong></th>
+                                                    <th><strong>Password</strong></th>
                                                     <th class="text-end"><strong>Action</strong></th>
                                                 </tr>
                                             </thead>
@@ -116,6 +117,7 @@
                                                     </td>
 
                                                         <td>{{ $agri->username }}</td>
+                                                        <td>{{ $agri->password }}</td>
                                                         <td>
                                                             <div class="d-flex">
                                                                 <a href="{{route('dd-officer-edit',$agri->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>

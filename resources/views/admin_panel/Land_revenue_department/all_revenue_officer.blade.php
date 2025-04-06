@@ -44,6 +44,7 @@
                                                         <th><strong>Contact Number</strong></th>
                                                         <th><strong>Cnic</strong></th>
                                                         <th><strong>Email Address</strong></th>
+                                                        <th><strong>Password</strong></th>
                                                         <th><strong>District </strong></th>
                                                         <th><strong>Tehsil </strong></th>
                                                         {{-- <th><strong>UC</strong></th> --}}
@@ -60,6 +61,7 @@
                                                         <td>{{ $revenue->contact_number }}</td>
                                                         <td>{{ $revenue->cnic }}</td>
                                                         <td>{{ $revenue->email_address }}</td>
+                                                        <td>{{ $revenue->password }}</td>
                                                         <td>{{ $revenue->district }}</td>
                                                         <td>
                                                             @php
