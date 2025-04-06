@@ -367,7 +367,7 @@
                                             <label for="tappa">Q8. Tappa: </label>
                                             <select name="tappa" id="tappa" class="form-control js-example-basic-single-no-tag">
                                                 @foreach (json_decode($tappa) as $tappa)
-                                                    <option value="">{{$tappa}}</option>
+                                                    <option value="{{$tappa}}">{{$tappa}}</option>
                                                 @endforeach
                                                 {{-- <option value="{{ $tappa }}" @if(isset($data->tappa)) {{ ($tappa == $data->tappa) ? 'selected':'' }} @endif > {{ $tappa }} </option> --}}
 
