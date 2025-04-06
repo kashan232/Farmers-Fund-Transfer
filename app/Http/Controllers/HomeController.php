@@ -327,6 +327,26 @@ class HomeController extends Controller
                 ->where('verification_status' , 'verified_by_lrd')
                 ->count();
 
+
+
+                $myRegisteredFarmers = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->where('user_type', 'Field_Officer')
+                ->where('user_id', $user->id)
+                ->count();
+
+                $onlineFarmers = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->where('user_type', 'Online')
+                ->whereNull('user_id')
+                ->count();
+
+            
+
+
+
                 $rejectedByAO = DB::table('land_revenue_farmer_registations')
                     ->where('user_id', $user_id)
                     ->where('verification_status', 'rejected_by_ao')
@@ -347,6 +367,10 @@ class HomeController extends Controller
                     'fa_total_Registered_Farmers' => $fa_total_Registered_Farmers,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
+                    'onProcessFarmer' =>$onProcessFarmer,
+                    'myRegisteredFarmers' => $myRegisteredFarmers,
+                    'onlineFarmers' => $onlineFarmers,
+
                     'districtCount' => $districtCount,
                     'tehsilCount' => $tehsilCount,
                     'tappaCount' => $tappaCount,
@@ -354,7 +378,7 @@ class HomeController extends Controller
                     'rejectedByAO' => $rejectedByAO,
                     'rejectedByDD' => $rejectedByDD,
                     'rejectedByLRD' => $rejectedByLRD,
-                    'onProcessFarmer' =>$onProcessFarmer
+
                 ]);
             } else if ($usertype == 'Land_Revenue_Officer') {
 
