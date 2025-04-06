@@ -254,8 +254,8 @@
                             <label for="statusSelect">Status</label>
                             <input type="hidden" id="farmer_id" name="farmer_id"  value="" readonly>
                             <select class="form-control" id="statusSelect" name="verification_status">
-                                <option value="verified_by_lo">Verified</option>
-                                <option value="rejected_by_lo">Unverified</option>
+                                <option value="verified_by_lrd">Verified</option>
+                                <option value="rejected_by_lrd">Unverified</option>
                             </select>
                         </div>
                         <div class="form-group" id="reasonBox" style="display: none;">

@@ -19,8 +19,8 @@
     }
 
     #example1_wrapper nav{
-        float: right;
-        margin-top: 1%;
+        float: right !important;
+        margin-top: 1% !important;
     }
 </style>
 
@@ -49,6 +49,7 @@
                             <div id="dom-jqry_wrapper" class="dt-container dt-bootstrap5">
                                 <div class="row mt-2 justify-content-md-center">
                                     <div class="col-12">
+                                        
                                         <div class="table-responsive">
                                             <table id="example1" class="display" style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
