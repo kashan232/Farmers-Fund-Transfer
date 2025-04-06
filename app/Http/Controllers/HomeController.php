@@ -112,9 +112,30 @@ class HomeController extends Controller
                 ->count();
 
 
+                $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
+
+                ->whereIn('tehsil', json_decode($user->tehsil))
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->whereIn('verification_status', 
+                    'rejected_by_ao'
+                )
+                ->count();
+
+                $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
+
+                ->whereIn('tehsil', json_decode($user->tehsil))
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->whereIn('verification_status', 
+                    'verified_by_ao'
+                )
+                ->count();
+
+
+
+
                 // $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
-                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
-                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+                // $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
+                // $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
                 return view('agri_officer_panel.index', [
                     'agriUserfarmersCount' => $agriUserfarmersCount,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
