@@ -52,7 +52,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">On Process Farmers</p>
+                                                <p class="card-title text-title">In-Process Farmers</p>
                                                 <h3 class="card-text text-amount">{{$Processfarmeragiruser}}</h3>
                                             </div>
                                             <div class="col-auto">
