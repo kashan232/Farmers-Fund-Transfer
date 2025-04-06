@@ -113,6 +113,7 @@ class FieldOfficerController extends Controller
                             'district' => $request->district,
                             'tehsil' => $tehsil,
                             'tappas' => $tappa,
+                            'password' => $plainPassword,
                         ]);
 
                         // Update the related User record
@@ -126,7 +127,7 @@ class FieldOfficerController extends Controller
                                 'district' => $request->district,
                                 'tehsil' => $tehsil,
                                 'tappas' => $tappa,
-                                'password' => $request->password ? Hash::make($request->password) : $user->password, // Preserve existing password if not updated
+                                'password' => $plainPassword, // Preserve existing password if not updated
                                 'usertype' => 'Field_Officer', // Set the usertype to 'Field_Officer'
                             ]);
                         }

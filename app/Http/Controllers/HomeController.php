@@ -287,7 +287,8 @@ class HomeController extends Controller
                         if ($user->ucs != null && is_array(json_decode($user->ucs))) {
                             $ucs = json_decode($user->ucs, true);
                             $ucCount = count($ucs);
-                        } else {
+                        }
+                        else {
                             $ucCount =  0;
                         }
                     }
