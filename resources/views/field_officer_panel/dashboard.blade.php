@@ -25,7 +25,7 @@
                 <div class="dashboard">
                     <div class="all-card">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class=" dashboard-btns" style="display: none">
                                     <button class="btn btn-sm btn-primary mb-4">Add Farmer</button>
                                     <button class="btn btn-sm btn-primary mb-4">Farmers List</button>
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -83,6 +83,26 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title">OnProcess Farmers</p>
+                                                <h3 class="card-text text-amount">{{ $onProcessFarmer }}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>

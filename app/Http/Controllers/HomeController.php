@@ -275,6 +275,25 @@ class HomeController extends Controller
                 ->where('verification_status' , NULL)
                 ->count();
 
+
+                $onProcessFarmer = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->when($user->usertype !== 'Online', function ($query) use ($user) {
+                    return $query->where('user_id', $user->id);
+                })
+                ->whereIn('verification_status', [
+                    'rejected_by_lrd',
+                    'rejected_by_ao',
+                    'rejected_by_dd',
+
+                    'verified_by_dd',
+                    'verified_by_fa',
+                    'verified_by_ao'
+                ])
+                ->count();
+
+
                 $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->where('tehsil', $user->tehsil)
                 ->whereIn('tappa', json_decode($user->tappas))
@@ -311,6 +330,7 @@ class HomeController extends Controller
                     'rejectedByAO' => $rejectedByAO,
                     'rejectedByDD' => $rejectedByDD,
                     'rejectedByLRD' => $rejectedByLRD,
+                    'onProcessFarmer' =>$onProcessFarmer
                 ]);
             } else if ($usertype == 'Land_Revenue_Officer') {
 
