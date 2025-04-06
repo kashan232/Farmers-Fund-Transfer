@@ -259,6 +259,9 @@ class HomeController extends Controller
                 }
                 $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->where('tehsil', $user->tehsil)
+                ->when($user->usertype !== 'Online', function ($query) use ($user) {
+                    return $query->where('user_id', $user->id);
+                })
                 ->whereIn('tappa', json_decode($user->tappas))
                 ->count();
 
