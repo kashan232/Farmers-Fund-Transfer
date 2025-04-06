@@ -49,7 +49,7 @@
                             <div id="dom-jqry_wrapper" class="dt-container dt-bootstrap5">
                                 <div class="row mt-2 justify-content-md-center">
                                     <div class="col-12">
-                                        
+
                                         <div class="table-responsive">
                                             <table id="example1" class="display" style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
@@ -88,9 +88,11 @@
                                                             @if ($farmer->verification_status == 'verified_by_lrd')
                                                             <span class="badge text-bg-success text-dark font-weight-bold">Verified</span>
                                                             @elseif($farmer->verification_status == 'rejected_by_ao')
-                                                            <span class="badge text-bg-danger text-dark font-weight-bold">Rejected By A-O</span>
+                                                            <span class="badge text-bg-danger text-dark font-weight-bold">Rejected By AO</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_lrd')
+                                                            <span class="badge text-bg-danger text-dark font-weight-bold">Rejected By LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_fa')
-                                                            <span class="badge  text-bg-success text-dark font-weight-bold" >Forward to A-O</span>
+                                                            <span class="badge  text-bg-success text-dark font-weight-bold" >Forward to AO</span>
                                                             @else
                                                             <span class="badge text-bg-primary text-white font-weight-bold">Unverified</span>
                                                             @endif

@@ -125,7 +125,7 @@
                                                         <td>{{ $farmer->tappa }}</td>
                                                         <td>{{ $farmer->village }}</td>
                                                         <td>
-                                                            @if ($farmer->verification_status == 'rejected_by_lo')
+                                                            @if ($farmer->verification_status == 'rejected_by_lrd')
                                                             <span class="badge text-bg-danger">Rejected By LRD</span>
                                                             @elseif($farmer->verification_status == 'rejected_by_do')
                                                             <span class="badge text-bg-danger">Rejected By Additional Director</span>
