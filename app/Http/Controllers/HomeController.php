@@ -101,7 +101,8 @@ class HomeController extends Controller
                 $user = User::find($userId);
 
                 $agriUserfarmersCount = LandRevenueFarmerRegistation::where('district', $user->district)
-                ->where('tehsil', $user->tehsil)
+
+                ->whereIn('tehsil', json_decode($user->tehsil))
                 ->whereIn('tappa', json_decode($user->tappas))
                 ->whereIn('verification_status', [
                     'rejected_by_ao',
