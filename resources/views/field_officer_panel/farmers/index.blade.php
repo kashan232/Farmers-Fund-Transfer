@@ -108,7 +108,7 @@
                                                             <div class="d-flex">
                                                                 {{-- <a href="{{ route('farmer-view-by-field-officer', ['id' => $farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp; --}}
 
-                                                                @if ($farmer->verification_status != 'verified_by_lo' && $farmer->user_type != "Online")
+                                                                @if ($farmer->verification_status != 'verified_by_lrd')
                                                                 <a href="{{ route('farmer-edit-by-field-officer', ['id' => $farmer->id]) }}" class="btn  btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>&nbsp;
                                                                 @endif
 
