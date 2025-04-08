@@ -21,16 +21,31 @@
         <ul class="list-unstyled">
             <li class="dropdown pc-h-item">
                 <a class="text-dark pt-1" style="font-weight: 700;">
-                    {{
+                    {{-- {{
 
 
                             match (Auth::user()->usertype) {
                                     'PD_Officer' => 'PD OFFICER',
-                                    'DG_Officer' => 'DG Officer',
+                                    'DG_Officer' => 'DG Officer', && email = Ministry@benazirharicard.gos.pk soo 'Ministry'
                                     default => 'N/A',
                                 }
 
-                        }}
+                        }} --}}
+
+                        $user = Auth::user();
+{{
+if ($user->usertype === 'DG_Officer' && $user->email === 'Ministry@benazirharicard.gos.pk') {
+    $label = 'Ministry';
+} elseif ($user->usertype === 'PD_Officer') {
+    $label = 'PD OFFICER';
+} elseif ($user->usertype === 'DG_Officer') {
+    $label = 'DG Officer';
+} else {
+    $label = 'N/A';
+}
+
+
+}}
                 </a>
             </li>
 
