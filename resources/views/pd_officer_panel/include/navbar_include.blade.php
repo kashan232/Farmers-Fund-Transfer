@@ -31,21 +31,23 @@
                                 }
 
                         }} --}}
-{{
-                        $user = Auth::user();
 
-if ($user->usertype === 'DG_Officer' && $user->email === 'Ministry@benazirharicard.gos.pk') {
-    $label = 'Ministry';
-} elseif ($user->usertype === 'PD_Officer') {
-    $label = 'PD OFFICER';
-} elseif ($user->usertype === 'DG_Officer') {
-    $label = 'DG Officer';
-} else {
-    $label = 'N/A';
-}
+                        @php
+    $user = Auth::user();
 
+    if ($user->usertype === 'DG_Officer' && $user->email === 'Ministry@benazirharicard.gos.pk') {
+        $label = 'Ministry';
+    } elseif ($user->usertype === 'PD_Officer') {
+        $label = 'PD OFFICER';
+    } elseif ($user->usertype === 'DG_Officer') {
+        $label = 'DG Officer';
+    } else {
+        $label = 'N/A';
+    }
+@endphp
 
-}}
+{{ $label }}
+
                 </a>
             </li>
 
