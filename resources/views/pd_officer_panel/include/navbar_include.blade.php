@@ -31,9 +31,9 @@
                                 }
 
                         }} --}}
-
-                        $user = Auth::user();
 {{
+                        $user = Auth::user();
+
 if ($user->usertype === 'DG_Officer' && $user->email === 'Ministry@benazirharicard.gos.pk') {
     $label = 'Ministry';
 } elseif ($user->usertype === 'PD_Officer') {
