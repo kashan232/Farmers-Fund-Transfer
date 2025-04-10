@@ -348,7 +348,7 @@
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q6. Taluka: </label>
                                             <select name="tehsil" id="tehsil" class="form-control js-example-basic-single-no-tag" >
-                                                <option value="">Select Taluka</option>
+                                               
                                                     <option value="{{ $tehsils }}" @if(isset($data->tehsil)) {{ ($tehsils == $data->tehsil) ? 'selected':'' }} @endif > {{ $tehsils }} </option>
                                             </select>
                                         </div>
@@ -405,14 +405,14 @@
                                             <label>
                                                 <input type="checkbox" name="owner_type[]" value="owner" @if(isset($data->owner_type))   @if(is_array(json_decode($data->owner_type))) {{ in_array('owner', json_decode($data->owner_type)) ? 'checked' : '' }}  @endif @endif> 1. Owner
                                             </label>
-                                            &nbsp;
+                                            {{-- &nbsp;
                                             <label>
                                                 <input type="checkbox" name="owner_type[]" value="makadedar" @if(isset($data->owner_type))  @if(is_array(json_decode($data->owner_type))) {{ in_array('makadedar', json_decode($data->owner_type)) ? 'checked' : '' }}  @endif @endif> 2. Makadedar (Contractor/Leasee)
                                             </label>
                                             &nbsp;
                                             <label>
                                                 <input type="checkbox" name="owner_type[]" value="sharecropper" @if(isset($data->owner_type))  @if(is_array(json_decode($data->owner_type))) {{ in_array('sharecropper', json_decode($data->owner_type)) ? 'checked' : '' }}  @endif @endif> 3. Sharecropper/Tenant
-                                            </label>
+                                            </label> --}}
                                         </div>
 
                                         <div class="row mt-3">
@@ -779,6 +779,8 @@
                                                                 <option value="Camel">Camel</option>
                                                                 <option value="Goat">Goat</option>
                                                                 <option value="Sheep">Sheep</option>
+                                                                <option value="Bull">Bull</option>
+
                                                                 <option value="Horse / Mules">Horse / Mules</option>
                                                                 <option value="Donkey">Donkey</option>
                                                                 <option value="{{ json_decode($data->animal_name)[$index] }}" selected>{{ json_decode($data->animal_name)[$index] }}</option>
@@ -803,7 +805,8 @@
                                                                 <option value="Camel">Camel</option>
                                                                 <option value="Goat">Goat</option>
                                                                 <option value="Sheep">Sheep</option>
-                                                                <option value="Horse / Mule">Horse / Mule</option>
+                                                                <option value="Bull">Bull</option>
+                                                                <option value="Horse / Mules">Horse / Mules</option>
                                                                 <option value="Donkey">Donkey</option>
                                                             </select>
                                                         </td>
@@ -882,8 +885,10 @@
                                         <div class="mb-12 col-md-12 d-flex">
                                             <img src="{{asset('')}}/login_assets/bank.png" alt="" style="height: 25px;width: 25px;">
 
-                                            <h6 class="card-title font-weight-bold" style="line-height: 27px;margin-left: 10px;">
-                                                Bank & Account Details</h6>
+                                            <div>
+                                                <h6 class="card-title font-weight-bold" style="line-height: 27px;margin-left: 10px; margin-bottom: -0.25rem;">
+                                                    Bank & Account Details </h6> <p style="margin-left: 10px;"> Sindh Bank data requirements </p>
+                                            </div>
                                         </div>
 
                                         <div class="mb-6 col-md-4 mt-2">
@@ -1135,7 +1140,7 @@
                                         <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                             <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                               <div class="text-center image-upload-card">
-                                                  <h6 class="mb-4" style="height: 50px;">Form VII / Registry from Micro (Mandatory) <span class="text-danger" > *</span><p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">File size must be <span>1000KB</span><p style="    text-transform: uppercase; font-size: 12px; font-weight: 500;">jpg, png, jpeg, pdf</p></p></h6>
+                                                  <h6 class="mb-4" style="height: 50px;">Form VII<span class="text-danger" > *</span><p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">File size must be <span>1000KB</span><p style="    text-transform: uppercase; font-size: 12px; font-weight: 500;">jpg, png, jpeg, pdf</p></p></h6>
                                                   @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
                                                   <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
@@ -1149,7 +1154,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                        {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                             <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">Forms VIII A/ Affidavit/ Heirship (Land Documents) <p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p> </h6>
@@ -1157,14 +1162,13 @@
                                                   <input type="file"  class="image-input  checkfile_upload_land_proof" name="upload_land_proof" id="upload_land_proof" accept="image/*" hidden>
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
-                                                      {{-- <p>Image size must be <span>500KB</span></p> --}}
                                                   </div>
                                                   <img class="preview" src=" @if(isset($data) && $data->upload_land_proof != null) {{asset('').'fa_farmers/upload_land_proof/'.$data->upload_land_proof}} @endif"  @if(isset($data) && $data->upload_land_proof != null) style="display: unset " @endif>
                                                   <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif>Upload</button>
                                                   <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->upload_land_proof != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
                                               </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                             <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
@@ -1183,7 +1187,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                        {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                             <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">Others <p style="color: #ff4949; margin:0; margin-top: 5px;  font-size: small;">Image size must be <span>500KB</span></h6>
@@ -1191,17 +1195,16 @@
                                                   <input type="file"  class="image-input" name="upload_other_attach" accept="image/*" hidden>
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_other_attach != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
-                                                      {{-- <p>Image size must be <span>500KB</span></p> --}}
                                                   </div>
                                                   <img class="preview" src=" @if(isset($data) && $data->upload_other_attach != null) {{asset('').'fa_farmers/upload_other_attach/'.$data->upload_other_attach}} @endif"  @if(isset($data) && $data->upload_other_attach != null) style="display: unset " @endif>
                                                   <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_other_attach != null) style="display: none " @endif>Upload</button>
                                                   <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->upload_other_attach != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
                                               </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
 
-                                        <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                        {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                             <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">No Objection Affidavit in case of joint ownership / khata <p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p></h6>
@@ -1216,7 +1219,7 @@
                                                   <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
                                               </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         {{--
                                         <div class="mb-6 col-md-6 mt-3">
@@ -1561,7 +1564,8 @@ $('#add_poultry_assets_row_Btn').click(function() {
                     <option value="Camel">Camel</option>
                     <option value="Goat">Goat</option>
                     <option value="Sheep">Sheep</option>
-                    <option value="Horse / Mule">Horse / Mule</option>
+                    <option value="Bull">Bull</option>
+                    <option value="Horse / Mules">Horse / Mules</option>
                     <option value="Donkey">Donkey</option>
                 </select>
             </td>
@@ -1775,6 +1779,8 @@ $('select[name="tehsil"]').on('change', function() {
                     cnic_issue_date: $('#cnic_issue_date').val(),
                     mobile: $('#mobile').val(),
                     district: $('#district').val(),
+                    tehsils: $('#tehsils').val(),
+                    tappas: $('#tappas').val(),
                     cnic_of_next_kin: $('#cnic_of_next_kin').val(),
                     // total_fallow_land: $('#total_fallow_land').val(),
                 };
@@ -1849,7 +1855,7 @@ let step4_formdata = {
     PermanentAddress: $('#permanent_address').val(),
 
 
-    GpsCordinates: $('#GpsCordinates').val(),
+    // GpsCordinates: $('#GpsCordinates').val(),
 
 
 };
