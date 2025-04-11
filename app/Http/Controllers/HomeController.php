@@ -144,9 +144,38 @@ class HomeController extends Controller
             } else if ($usertype == 'DD_Officer') {
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
-                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
-                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
-                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+                $user = User::find($userId);
+
+                $agriUserfarmersCount = LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
+
+                ->whereIn('tehsil', json_decode($user->tehsil))
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->whereIn('verification_status', [
+                    'rejected_by_dd',
+                    'verified_by_fa',
+                    'verified_by_dd'
+                ])
+                ->count();
+
+
+                $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
+
+                ->whereIn('tehsil', json_decode($user->tehsil))
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->where('verification_status',
+                    'rejected_by_dd'
+                )
+                ->count();
+
+                $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
+
+                ->whereIn('tehsil', json_decode($user->tehsil))
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->where('verification_status',
+                    'verified_by_dd'
+                )
+                ->count();
+                
                 return view('dd_officer_panel.index', [
                     'agriUserfarmersCount' => $agriUserfarmersCount,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,

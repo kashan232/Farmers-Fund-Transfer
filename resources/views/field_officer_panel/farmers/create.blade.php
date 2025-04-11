@@ -343,12 +343,12 @@
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q5. District</label>
-                                            <input type="text" name="district" value="{{ $district }}" value="{{$data->district ?? ''}}" id="district" class="form-control " value="" readonly>
+                                            <input type="text" name="district" value="{{ $district ?? $data->district }}" id="district" class="form-control" readonly>
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q6. Taluka: </label>
                                             <select name="tehsil" id="tehsil" class="form-control js-example-basic-single-no-tag" >
-                                               
+
                                                     <option value="{{ $tehsils }}" @if(isset($data->tehsil)) {{ ($tehsils == $data->tehsil) ? 'selected':'' }} @endif > {{ $tehsils }} </option>
                                             </select>
                                         </div>
