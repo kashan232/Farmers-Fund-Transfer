@@ -98,7 +98,7 @@
 
     table = $('#example1').DataTable({
         "pageLength": 25, // Default number of rows per page
-        "dom": 'Blfrtip', // Only include the filter (search box), table, and pagination
+        "dom": 'Bfrtlip', // Only include the filter (search box), table, and pagination
         "processing": true, // Optional: for large datasets
         "deferRender": true, // Improves performance by rendering rows only when needed
         "order": [
@@ -110,6 +110,7 @@
             'csvHtml5',
             'pdfHtml5'
         ],
+        'lengthMenu': [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
         "language": {
             "search": "Search:" // Customize the search box label (optional)
         }
