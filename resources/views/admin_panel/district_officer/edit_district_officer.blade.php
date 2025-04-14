@@ -39,6 +39,15 @@
                             <strong>Success!</strong> {{ session('officer-added') }}.
                         </div>
                         @endif
+
+
+                        @if (session()->has('error'))
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <strong>Error!</strong> {{ session('error') }}.
+                        </div>
+                        @endif
+
+
                         <div class="row">
                             <div class="col-md-12">
                                 <form action="{{ route('store-district-officer') }}" method="post">
