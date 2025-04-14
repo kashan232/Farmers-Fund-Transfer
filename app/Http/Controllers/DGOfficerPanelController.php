@@ -138,6 +138,33 @@ class DGOfficerPanelController extends Controller
                 return $user;
             });
 
+        }elseif ($req->usertype == 'DD_Officer') {
+
+            $agriUsers = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
+            ->where('district', $req->district)
+            ->where('usertype', 'DD_Officer')
+            ->get();
+
+            $users = $agriUsers->map(function ($user) {
+                $tehsils = json_decode($user->tehsil ?? '[]');
+                $tappas = json_decode($user->tappas ?? '[]');
+                $districts = json_decode($user->district ?? '[]');
+
+                $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                    ->whereIn('tehsil', $tehsils)
+                    ->whereIn('tappa', $tappas)
+                    ->whereIn('verification_status', [
+                        'rejected_by_dd',
+                        'verified_by_dd',
+                        'verified_by_dd'
+                    ])
+                    ->count();
+
+                // Add farmers_count to match Field Officer structure
+                $user->farmers_count = $farmerCount;
+                return $user;
+            });
+
         }
 
 
