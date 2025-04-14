@@ -140,12 +140,15 @@ class DGOfficerPanelController extends Controller
 
         }elseif ($req->usertype == 'DD_Officer') {
 
-            $district = $req->district; // e.g. Badin
 
-$agriUsers = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
-    ->whereRaw('JSON_CONTAINS(district, ?)', [json_encode($district)]) // turns into '"Badin"'
-    ->where('usertype', 'DD_Officer')
-    ->get();
+
+
+
+
+            $agriUsers = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
+            ->whereIn('district', json_encode($req->district))
+            ->where('usertype', 'DD_Officer') // Match specific usertype
+            ->get();
 
 
 
