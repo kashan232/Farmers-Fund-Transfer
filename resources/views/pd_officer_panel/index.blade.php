@@ -175,16 +175,32 @@
                                                             <tr>
                                                                 <td>{{ $row['district'] }}</td>
                                                                 <td>
-                                                                    <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'Field_Officer' => $row['Field_Officer']]) }}">
+                                                                    <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Field_Officer']) }}">
                                                                         {{ $row['Field_Officer'] }}
                                                                     </a>
                                                                 </td>
-                                                                
+
                                                                 {{-- <td><a href="{{ route('fa_list_by_dg',$row['district']) }}"> {{ $row['Field_Officer'] }}</a></td> --}}
-                                                                <td>{{ $row['Agri_Officer'] }}</td>
-                                                                <td>{{ $row['DD_Officer'] }}</td>
-                                                                <td>{{ $row['Land_Revenue_Officer'] }}</td>
-                                                                <td>{{ $row['District_Officer'] }}</td>
+                                                                <td>
+                                                                    <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Agri_Officer']) }}">
+                                                                        {{ $row['Agri_Officer'] }}
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'DD_Officer']) }}">
+                                                                        {{ $row['DD_Officer'] }}
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Land_Revenue_Officer']) }}">
+                                                                        {{ $row['Land_Revenue_Officer'] }}
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'District_Officer']) }}">
+                                                                        {{ $row['District_Officer'] }}
+                                                                    </a>
+                                                                </td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
