@@ -91,7 +91,7 @@ class DistrictOfficerController extends Controller
                         // Update the related User record
                         $user = User::where('user_id', $DistrictOfficer->id)->first();
 
-                        
+
 
                         if ($user) {
 
@@ -112,7 +112,7 @@ class DistrictOfficerController extends Controller
                                 'tehsil' => $tehsil,
                                 'tappas' => $tappa,
                                 'password' => $plainPassword, // Preserve existing password if not updated
-                                'usertype' => 'Field_Officer', // Set the usertype to 'Field_Officer'
+                                'usertype' => 'District_Officer', // Set the usertype to 'Field_Officer'
                             ]);
                         }
 
@@ -146,7 +146,7 @@ class DistrictOfficerController extends Controller
                         'tehsil' => $tehsil,
                         'tappas' => $tappa,
                         'password' => $plainPassword , // Make sure to hash the password
-                        'usertype' => 'Field_Officer', // Set the usertype to 'employee'
+                        'usertype' => 'District_Officer', // Set the usertype to 'employee'
                     ]);
 
                     return redirect()->back()->with('officer-added', 'Field Officer Created Successfully');
