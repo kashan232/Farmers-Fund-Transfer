@@ -45,7 +45,7 @@ class HomeController extends Controller
                     'rejected_by_lrd',
                     'rejected_by_ao',
                     'rejected_by_dd',
-
+                    'rejected_by_fa',
                     'verified_by_dd',
                     'verified_by_fa',
                     'verified_by_ao'
@@ -175,7 +175,7 @@ class HomeController extends Controller
                     'verified_by_dd'
                 )
                 ->count();
-                
+
                 return view('dd_officer_panel.index', [
                     'agriUserfarmersCount' => $agriUserfarmersCount,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
