@@ -251,7 +251,7 @@ class DistrictOfficerController extends Controller
             $userId = Auth::id();
             // dd($userId);
 
-            $all_agri = DistrictOfficer::where('admin_or_user_id', '=', $userId)->get();
+            $all_agri = DistrictOfficer::all();
             return view('admin_panel.district_officer.all_district_officer', [
                 'all_agri' => $all_agri,
             ]);
