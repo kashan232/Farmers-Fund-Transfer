@@ -104,11 +104,43 @@ class DGOfficerPanelController extends Controller
 
     public function get_fa_list_district(request $req){
 
-        $users = User::select('id', 'name', 'number', 'cnic', 'email')
-        ->withCount('farmers') // Counts related farmers
-        ->where('district', $req->district)
-        ->where('usertype', $req->usertype)
-        ->get();
+        if($req->usertype == 'Field_Officer')
+        {
+            $users = User::select('id', 'name', 'number', 'cnic', 'email')
+            ->withCount('farmers') // Counts related farmers
+            ->where('district', $req->district)
+            ->where('usertype', $req->usertype)
+            ->get();
+        }
+        elseif ($req->usertype == 'Agri_Officer') {
+
+            $agriUsers = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
+            ->where('district', $req->district)
+            ->where('usertype', 'Agri_Officer')
+            ->get();
+
+            $users = $agriUsers->map(function ($user) {
+                $tehsils = json_decode($user->tehsil ?? '[]');
+                $tappas = json_decode($user->tappas ?? '[]');
+
+                $farmerCount = LandRevenueFarmerRegistation::where('district', $user->district)
+                    ->whereIn('tehsil', $tehsils)
+                    ->whereIn('tappa', $tappas)
+                    ->whereIn('verification_status', [
+                        'rejected_by_ao',
+                        'verified_by_fa',
+                        'verified_by_ao'
+                    ])
+                    ->count();
+
+                // Add farmers_count to match Field Officer structure
+                $user->farmers_count = $farmerCount;
+                return $user;
+            });
+
+        }
+
+
 
 
         return view('pd_officer_panel.field_officer_list',[
