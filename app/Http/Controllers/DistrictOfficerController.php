@@ -90,7 +90,7 @@ class DistrictOfficerController extends Controller
 
                         // Update the related User record
                         $user = User::where('user_id', $DistrictOfficer->id)
-                        ->orWhere('email', $request->email_address)
+                        ->where('usertype', 'District_Officer')
                         ->first();
 
 
@@ -120,9 +120,9 @@ class DistrictOfficerController extends Controller
                             ]);
                         }
 
-                        return redirect()->back()->with('officer-added', 'Field Officer Updated Successfully');
+                        return redirect()->back()->with('officer-added', 'District Officer Updated Successfully');
                     } else {
-                        return redirect()->back()->with('error', 'Field Officer not found');
+                        return redirect()->back()->with('error', 'District Officer not found');
                     }
 
 
@@ -153,7 +153,7 @@ class DistrictOfficerController extends Controller
                         'usertype' => 'District_Officer', // Set the usertype to 'employee'
                     ]);
 
-                    return redirect()->back()->with('officer-added', 'Field Officer Created Successfully');
+                    return redirect()->back()->with('officer-added', 'District Officer Created Successfully');
                 }
             } catch (ValidationException $e) {
                 // Handle the validation failure
