@@ -95,17 +95,16 @@ class DistrictOfficerController extends Controller
 
 
 
-                        dd($user.' => '. $DistrictOfficer);
 
                         if ($user) {
 
-                             // Check if email already exists for another user
                             $existingEmailUser = User::where('email', $request->email_address)
-                            ->where('id', '!=', $user->id)
+                            ->where('usertype', 'District_Officer')
+                            ->where('id', '!=', $user->id) // Skip current user
                             ->first();
-
+                            
                             if ($existingEmailUser) {
-                                return redirect()->back()->with('error', 'Email address already in use by another user.');
+                                return redirect()->back()->with('error', 'Email already used by another District Officer.');
                             }
 
                             $user->update([
