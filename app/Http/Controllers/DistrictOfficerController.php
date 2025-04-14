@@ -102,7 +102,7 @@ class DistrictOfficerController extends Controller
                             ->where('usertype', 'District_Officer')
                             ->where('id', '!=', $user->id) // Skip current user
                             ->first();
-                            
+
                             if ($existingEmailUser) {
                                 return redirect()->back()->with('error', 'Email already used by another District Officer.');
                             }
