@@ -146,7 +146,8 @@ class DGOfficerPanelController extends Controller
 
 
             $agriUsers = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
-            ->whereIn('district', json_encode($req->district))
+            ->whereIn('district', [$req->district])
+
             ->where('usertype', 'DD_Officer') // Match specific usertype
             ->get();
 
