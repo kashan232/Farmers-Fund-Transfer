@@ -150,27 +150,26 @@ class DGOfficerPanelController extends Controller
                 ->where('usertype', 'DD_Officer')
                 ->get();
 
-
-
-
-
-            $users = $agriUsers->map(function ($user) {
-                // $tehsils = json_decode($user->tehsil ?? '[]');
-                // $tappas = json_decode($user->tappas ?? '[]');
+            $users = $agriUsers->map(function ($user) use ($district) { // Pass $district inside closure
+                // Decode the user's district
                 $districts = json_decode($user->district ?? '[]');
+                
+                // Make sure the current user's district is being used to count farmers for them
+                if (in_array($district, $districts)) {
+                    $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                        ->whereIn('verification_status', [
+                            'rejected_by_dd',
+                            'verified_by_fa',
+                            'verified_by_dd'
+                        ])
+                        ->count();
+                    
+                    // Add farmers_count to the user object
+                    $user->farmers_count = $farmerCount;
+                } else {
+                    $user->farmers_count = 0;
+                }
 
-                $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $districts)
-                    // ->whereIn('tehsil', $tehsils)
-                    // ->whereIn('tappa', $tappas)
-                    ->whereIn('verification_status', [
-                        'rejected_by_dd',
-                        'verified_by_fa',
-                        'verified_by_dd'
-                    ])
-                    ->count();
-
-                // Add farmers_count to match Field Officer structure
-                $user->farmers_count = $farmerCount;
                 return $user;
             });
 
