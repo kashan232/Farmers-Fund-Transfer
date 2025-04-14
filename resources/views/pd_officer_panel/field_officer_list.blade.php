@@ -47,7 +47,7 @@
                                             </div> --}}
 
 
-                                            <table class="table table-bordered">
+                                            <table id="example1" class="table table-bordered">
                                                 <thead>
                                                     <tr>
                                                         <th>Name</th>
@@ -95,6 +95,26 @@
 
 <!-- Chart Scripts -->
 <script>
+
+    table = $('#example1').DataTable({
+        "pageLength": 100, // Default number of rows per page
+        "dom": 'frt', // Only include the filter (search box), table, and pagination
+        "processing": true, // Optional: for large datasets
+        "deferRender": true, // Improves performance by rendering rows only when needed
+        "order": [
+            [0, 'asc']
+        ], // Default ordering of the first column (optional)
+        "buttons": [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ],
+        "language": {
+            "search": "Search:" // Customize the search box label (optional)
+        }
+    });
+
     // Donut Charts Data and Configurations
     const ownFarmerData = [100, 80, 20];
     const landRevenueData = [120, 90, 30];

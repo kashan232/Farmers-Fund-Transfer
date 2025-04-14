@@ -108,7 +108,7 @@ class DGOfficerPanelController extends Controller
         ->withCount('farmers') // Counts related farmers
         ->where('district', $req->district)
         ->where('usertype', $req->usertype)
-        ->paginate(10);
+        ->get();
 
 
         return view('pd_officer_panel.field_officer_list',[
