@@ -174,7 +174,7 @@
                                                         @foreach($districtStats as $row)
                                                             <tr>
                                                                 <td>{{ $row['district'] }}</td>
-                                                                <td><a href="{{ route('fa_list_by_dg',$data->district) }}"> {{ $row['Field_Officer'] }}</a></td>
+                                                                <td><a href="{{ route('fa_list_by_dg',$row['district']) }}"> {{ $row['Field_Officer'] }}</a></td>
                                                                 <td>{{ $row['Agri_Officer'] }}</td>
                                                                 <td>{{ $row['DD_Officer'] }}</td>
                                                                 <td>{{ $row['Land_Revenue_Officer'] }}</td>
