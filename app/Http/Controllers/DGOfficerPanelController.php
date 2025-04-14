@@ -155,7 +155,7 @@ class DGOfficerPanelController extends Controller
                     ->whereIn('tappa', $tappas)
                     ->whereIn('verification_status', [
                         'rejected_by_dd',
-                        'verified_by_dd',
+                        'verified_by_fa',
                         'verified_by_dd'
                     ])
                     ->count();
