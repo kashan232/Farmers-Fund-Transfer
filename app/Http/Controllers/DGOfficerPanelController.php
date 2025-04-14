@@ -143,12 +143,13 @@ class DGOfficerPanelController extends Controller
 
 
             $district = $req->district; // e.g., "Badin"
+dd($req->district, json_encode($req->district));
 
             $agriUsers = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
                 ->whereRaw('JSON_CONTAINS(district, ?)', [json_encode($district)]) // becomes '"Badin"'
                 ->where('usertype', 'DD_Officer')
                 ->get();
-            
+
 
 
 
