@@ -91,7 +91,19 @@ class DistrictOfficerController extends Controller
                         // Update the related User record
                         $user = User::where('user_id', $DistrictOfficer->id)->first();
 
+                        
+
                         if ($user) {
+
+                             // Check if email already exists for another user
+                            $existingEmailUser = User::where('email', $request->email_address)
+                            ->where('id', '!=', $user->id)
+                            ->first();
+
+                            if ($existingEmailUser) {
+                                return redirect()->back()->with('error', 'Email address already in use by another user.');
+                            }
+
                             $user->update([
                                 'name' => $request->full_name,
                                 'user_id' => $DistrictOfficer->id,
