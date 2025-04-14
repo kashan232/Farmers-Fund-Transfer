@@ -72,7 +72,6 @@ class HomeController extends Controller
                 ->get();
 
 
-                
                 $userTypes = [
                     'Field_Officer',
                     'Agri_Officer',
@@ -81,23 +80,26 @@ class HomeController extends Controller
                     'District_Officer'
                 ];
 
-                // Get all users with multiple or single districts
                 $users = DB::table('users')
                     ->whereIn('usertype', $userTypes)
-                    ->select('usertype', 'district') // assuming 'district' is stored as JSON or comma-separated
+                    ->select('usertype', 'district')
                     ->get();
-
 
                 $districtStats = [];
 
-                // Loop over all users
                 foreach ($users as $user) {
-                    // Decode districts – adjust this if your storage is comma-separated
-                    $districts = is_array($user->district) 
-                        ? $user->district 
-                        : json_decode($user->district, true); // Or explode(',', $user->district) if comma-separated
+                    $districtField = $user->district;
 
-                    if (!$districts || !is_array($districts)) continue;
+                    // Handle string or JSON
+                    if (Str::startsWith($districtField, '[')) {
+                        // Likely JSON array
+                        $districts = json_decode($districtField, true);
+                    } else {
+                        // Single string district
+                        $districts = [$districtField];
+                    }
+
+                    if (!is_array($districts)) continue;
 
                     foreach ($districts as $district) {
                         if (!isset($districtStats[$district])) {
@@ -109,11 +111,10 @@ class HomeController extends Controller
                     }
                 }
 
-                $districtStats = array_values($districtStats); // for clean indexed array to use in Blade
+                $districtStats = array_values($districtStats); // reset keys for Blade
 
 
 
-                
 
                 return view('pd_officer_panel.index',[
                 'fa_total_Registered_Farmers' => $fa_total_Registered_Farmers,
