@@ -144,10 +144,10 @@ class DGOfficerPanelController extends Controller
             $districtsArray = [$district]; // Make it an array
             $agriUsers = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
             ->whereIn('district', $districtsArray)
-            ->where('usertype', 'DD_Officer')
+            // ->where('usertype', 'DD_Officer')
             ->get();
 
-            dd($districtsArray);
+            dd($agriUsers);
 
             $users = $agriUsers->map(function ($user) {
                 // $tehsils = json_decode($user->tehsil ?? '[]');
