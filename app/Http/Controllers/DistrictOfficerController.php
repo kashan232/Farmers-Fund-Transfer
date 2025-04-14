@@ -89,9 +89,9 @@ class DistrictOfficerController extends Controller
                         ]);
 
                         // Update the related User record
-                        $user = User::where('user_id', $DistrictOfficer->id)->first();
-
-
+                        $user = User::where('user_id', $DistrictOfficer->id)
+                        ->orWhere('email', $request->email_address)
+                        ->first();
 
                         if ($user) {
 
