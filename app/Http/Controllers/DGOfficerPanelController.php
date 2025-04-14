@@ -147,7 +147,7 @@ class DGOfficerPanelController extends Controller
             ->where('usertype', 'DD_Officer')
             ->get();
 
-            dd($agriUsers);
+            dd($districtsArray);
 
             $users = $agriUsers->map(function ($user) {
                 // $tehsils = json_decode($user->tehsil ?? '[]');
