@@ -144,7 +144,7 @@ class DGOfficerPanelController extends Controller
             $districtsArray = [$district]; // Make it an array
             $agriUsers = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
             ->whereIn('district', $districtsArray)
-            // ->where('usertype', 'DD_Officer')
+            ->where('usertype', 'DD_Officer') // Match specific usertype
             ->get();
 
             dd($agriUsers);
