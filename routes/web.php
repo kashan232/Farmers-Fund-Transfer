@@ -57,7 +57,7 @@ use App\Http\Controllers\SmsTwilioController;
 
 
 
-Route::get('sms/send', function () {
+Route::get('/sms/send', function () {
     $receiverNumber = '+923103730089'; // Replace with the recipient's phone number
     $message = 'hi testing'; // Replace with your desired message
 
