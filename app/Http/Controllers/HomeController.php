@@ -61,9 +61,9 @@ class HomeController extends Controller
                 $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , 'verified_by_lrd')
                 ->count();
 
-                $usersByDistrict = User::where('usertype','Field_Officer')->selectRaw('district, COUNT(*) as total_users')
-                ->groupBy('district')
-                ->get(); // Paginate with 10 results per page
+                // $usersByDistrict = User::where('usertype','Field_Officer')->selectRaw('district, COUNT(*) as total_users')
+                // ->groupBy('district')
+                // ->get(); // Paginate with 10 results per page
 
                 $farmersByDistrict = LandRevenueFarmerRegistation::selectRaw('district,
                 SUM(CASE WHEN user_type = "Online" THEN 1 ELSE 0 END) as online_farmers,
@@ -71,15 +71,50 @@ class HomeController extends Controller
                 ->groupBy('district')
                 ->get();
 
+
+                $userTypes = [
+                    'Field_Officer',
+                    'Agri_Officer',
+                    'DD_Officer',
+                    'Land_Revenue_Officer',
+                    'District_Officer'
+                ];
+
+                $rawStats = DB::table('users')
+                    ->select('district', 'usertype', DB::raw('COUNT(*) as total_users'))
+                    ->whereIn('usertype', $userTypes)
+                    ->groupBy('district', 'usertype')
+                    ->get();
+
+                // Pivot the data by district
+                $districtStats = [];
+
+                foreach ($rawStats as $stat) {
+                    $district = $stat->district;
+                    $usertype = $stat->usertype;
+                    $total = $stat->total_users;
+
+                    if (!isset($districtStats[$district])) {
+                        $districtStats[$district] = array_fill_keys($userTypes, 0);
+                        $districtStats[$district]['district'] = $district;
+                    }
+
+                    $districtStats[$district][$usertype] = $total;
+                }
+
+
+                $districtStats = array_values($districtStats);
+
                 return view('pd_officer_panel.index',[
                 'fa_total_Registered_Farmers' => $fa_total_Registered_Farmers,
                 'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                 'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
-                'usersByDistrict' => $usersByDistrict,
+                // 'usersByDistrict' => $usersByDistrict,
                 'farmersByDistrict' => $farmersByDistrict,
                 'Processfarmeragiruser' => $Processfarmeragiruser,
                 'userFarmers' => $userFarmers,
-                'onlineFarmers' => $onlineFarmers
+                'onlineFarmers' => $onlineFarmers,
+                'districtStats' => $districtStats
                 ]);
             }
 
