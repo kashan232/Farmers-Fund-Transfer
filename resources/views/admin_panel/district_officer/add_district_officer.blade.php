@@ -73,7 +73,7 @@
                                     <div class="row mt-2">
                                         <div class="mb-12 col-md-12">
                                             <label class="form-label">Select District</label>
-                                            <select name="district" id="district" class="form-control" required>
+                                            <select name="district[]" id="district" class="form-control js-example-basic-multiple" required multiple="multiple" >
                                                 <option value="" selected disabled>Select One</option>
                                                 @foreach ($all_district as $district)
                                                 <option value="{{ $district->district }}">
@@ -91,13 +91,13 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mt-2">
+                                    {{-- <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
                                             <label>UC</label><br>
                                             <select name="ucs[]" id="uc"  class="form-control--input js-example-basic-multiple" style="width:100%;" multiple="multiple">
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="row mt-2">
                                         <div class="mb-3 col-md-12">
@@ -106,18 +106,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
-                                        <div class="mb-12 col-md-12">
-                                            <label class="form-label">Username</label>
-                                            <input type="text" class="form-control"  name="username">
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="mb-12 col-md-12">
-                                            <label class="form-label">Password</label>
-                                            <input type="password" class="form-control" required name="password">
-                                        </div>
-                                    </div>
+
                                     <button type="submit" class="btn btn-success mt-4">Submit</button>
                                 </form>
                             </div>
@@ -136,7 +125,116 @@
 
 @include('admin_panel.include.footer_include')
 
+
 <script>
+    $(document).ready(function() {
+        $('select[name="district[]"]').on('change', function() {
+            var district = $(this).val();
+            if (district) {
+                $.ajax({
+                    url: '{{ route('get-tehsils') }}',
+                    type: 'GET',
+                    data: {
+                        district: district
+                    },
+                    success: function(data) {
+                        $('select[name="tehsil[]"]').empty();
+
+                        $('select[name="tehsil[]"]').append('<option value="all">All</option>');
+
+                        $.each(data, function(key, value) {
+                            $('select[name="tehsil[]"]').append('<option value="' +
+                                value + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('select[name="tehsil[]"]').empty();
+            }
+        });
+
+    // Handle "All" selection logic
+    $(document).on('change', 'select[name="tehsil[]"]', function () {
+        var selectedOptions = $(this).val() || [];
+        if (selectedOptions.includes("all")) {
+            // Select all options when "All" is chosen
+            $(this).find('option').prop('selected', true);
+        } else {
+            // If "All" is not selected, ensure it stays deselected
+            $(this).find('option[value="all"]').prop('selected', false);
+        }
+        $(this).find('option[value="all"]').prop('selected', false);
+        // Refresh Select2 UI
+        $(this).trigger('change.select2');
+
+         // After "All" is handled, call the get-ucs function
+        handleGetUcsRequest();
+    });
+
+
+// Function to handle the get-ucs request with selected tehsil values
+function handleGetUcsRequest() {
+    var district = $('select[name="district[]"]').val();
+    var tehsil = $('select[name="tehsil[]"]').val();  // Get selected tehsil values
+
+    // If "All" is selected, we need to remove "all" from the selected values
+    if (tehsil.includes("all")) {
+        tehsil = tehsil.filter(function(value) {
+            return value !== "all";  // Remove "all" from the selected list
+        });
+    }
+
+    // Only trigger AJAX if district and tehsil are selected and valid
+    if (district && tehsil.length > 0) {
+        $.ajax({
+            url: '{{ route("get-ucs") }}',
+            type: 'GET',
+            data: {
+                district: district,
+                tehsil: tehsil // Send selected tehsil values (excluding "All")
+            },
+            success: function(response) {
+
+                // Populate Tappa dropdown
+                var tappaSelect = $('select[name="tappa[]"]');
+                tappaSelect.empty();
+                $('select[name="tappa[]"]').append('<option value="all">All</option>');
+
+                $.each(response.Tappas, function(index, value) {
+                    tappaSelect.append('<option value="' + value + '">' + value + '</option>');
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    } else {
+        // Clear UC and Tappa dropdowns if district or tehsil is empty
+        // $('select[name="ucs"]').empty();
+        $('select[name="tappa[]"]').empty();
+    }
+}
+
+         // Handle "All" selection logic
+        $(document).on('change', 'select[name="tappa[]"]', function () {
+            var selectedOptions = $(this).val() || [];
+            if (selectedOptions.includes("all")) {
+                // Select all options when "All" is chosen
+                $(this).find('option').prop('selected', true);
+            } else {
+                // If "All" is not selected, ensure it stays deselected
+                $(this).find('option[value="all"]').prop('selected', false);
+            }
+            $(this).find('option[value="all"]').prop('selected', false);
+            // Refresh Select2 UI
+            $(this).trigger('change.select2');
+        });
+
+    });
+</script>
+
+
+{{-- <script>
     $(document).ready(function() {
         $('select[name="district"]').on('change', function() {
             var district = $(this).val();
@@ -199,7 +297,7 @@
             }
         });
     });
-</script>
+</script> --}}
 
 </body>
 

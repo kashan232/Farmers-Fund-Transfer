@@ -61,6 +61,7 @@ class DistrictOfficerController extends Controller
                 // $tehsil = $request->input('tehsil');
                 // $ucs = $request->input('ucs');
 
+                $district = json_encode($request->input('district'));
 
                 $ucs = json_encode($request->input('ucs'));
 
@@ -81,7 +82,7 @@ class DistrictOfficerController extends Controller
                             'full_name' => $request->full_name,
                             'contact_number' => $request->contact_number,
                             'email_address' => $request->email_address,
-                            'district' => $request->district,
+                            'district' => $district,
                             'tehsil' => $tehsil,
                             'tappas' => $tappa,
                             'password' => $plainPassword,
@@ -95,7 +96,7 @@ class DistrictOfficerController extends Controller
                                 'name' => $request->full_name,
                                 'user_id' => $DistrictOfficer->id,
                                 'email' => $request->email_address,
-                                'district' => $request->district,
+                                'district' => $district,
                                 'tehsil' => $tehsil,
                                 'tappas' => $tappa,
                                 'password' => $plainPassword, // Preserve existing password if not updated
@@ -116,7 +117,7 @@ class DistrictOfficerController extends Controller
                         'contact_number'          => $request->contact_number,
                         'cnic'          => $request->cnic,
                         'email_address'          => $request->email_address,
-                        'district'          => $request->district,
+                        'district'          => $district,
                         'tehsil'          => $tehsil,
                         'tappas'          => $tappa,
                         'password'          => $plainPassword ,
@@ -129,7 +130,7 @@ class DistrictOfficerController extends Controller
                         'user_id' => $DistrictOfficer->id,
                         'cnic'          => $request->cnic,
                         'email' => $request->email_address,
-                        'district' => $request->district,
+                        'district' => $district,
                         'tehsil' => $tehsil,
                         'tappas' => $tappa,
                         'password' => $plainPassword , // Make sure to hash the password
