@@ -142,14 +142,14 @@ class DGOfficerPanelController extends Controller
 
 
 
-            $district = $req->district; // e.g. "Badin"
-            dd(json_encode([$req->district])); // Should show: ["Badin"]
+           
+            $district = $req->district; // e.g., "Badin"
 
             $agriUsers = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
-                ->whereRaw('JSON_CONTAINS(district, ?)', [json_encode([$district])])
+                ->where('district', 'LIKE', '%"'.$district.'"%') // Search inside ["Badin"]
                 ->where('usertype', 'DD_Officer')
                 ->get();
-
+            
 
 
 
