@@ -72,6 +72,7 @@ class HomeController extends Controller
                 ->get();
 
 
+                
                 $userTypes = [
                     'Field_Officer',
                     'Agri_Officer',
@@ -80,30 +81,39 @@ class HomeController extends Controller
                     'District_Officer'
                 ];
 
-                $rawStats = DB::table('users')
-                    ->select('district', 'usertype', DB::raw('COUNT(*) as total_users'))
+                // Get all users with multiple or single districts
+                $users = DB::table('users')
                     ->whereIn('usertype', $userTypes)
-                    ->groupBy('district', 'usertype')
+                    ->select('usertype', 'district') // assuming 'district' is stored as JSON or comma-separated
                     ->get();
 
-                // Pivot the data by district
+
                 $districtStats = [];
 
-                foreach ($rawStats as $stat) {
-                    $district = $stat->district;
-                    $usertype = $stat->usertype;
-                    $total = $stat->total_users;
+                // Loop over all users
+                foreach ($users as $user) {
+                    // Decode districts – adjust this if your storage is comma-separated
+                    $districts = is_array($user->district) 
+                        ? $user->district 
+                        : json_decode($user->district, true); // Or explode(',', $user->district) if comma-separated
 
-                    if (!isset($districtStats[$district])) {
-                        $districtStats[$district] = array_fill_keys($userTypes, 0);
-                        $districtStats[$district]['district'] = $district;
+                    if (!$districts || !is_array($districts)) continue;
+
+                    foreach ($districts as $district) {
+                        if (!isset($districtStats[$district])) {
+                            $districtStats[$district] = array_fill_keys($userTypes, 0);
+                            $districtStats[$district]['district'] = $district;
+                        }
+
+                        $districtStats[$district][$user->usertype]++;
                     }
-
-                    $districtStats[$district][$usertype] = $total;
                 }
 
+                $districtStats = array_values($districtStats); // for clean indexed array to use in Blade
 
-                $districtStats = array_values($districtStats);
+
+
+                
 
                 return view('pd_officer_panel.index',[
                 'fa_total_Registered_Farmers' => $fa_total_Registered_Farmers,
