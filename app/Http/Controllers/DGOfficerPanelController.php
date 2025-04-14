@@ -146,13 +146,13 @@ class DGOfficerPanelController extends Controller
             ->get();
 
             $users = $agriUsers->map(function ($user) {
-                $tehsils = json_decode($user->tehsil ?? '[]');
-                $tappas = json_decode($user->tappas ?? '[]');
+                // $tehsils = json_decode($user->tehsil ?? '[]');
+                // $tappas = json_decode($user->tappas ?? '[]');
                 $districts = json_decode($user->district ?? '[]');
 
                 $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $districts)
-                    ->whereIn('tehsil', $tehsils)
-                    ->whereIn('tappa', $tappas)
+                    // ->whereIn('tehsil', $tehsils)
+                    // ->whereIn('tappa', $tappas)
                     ->whereIn('verification_status', [
                         'rejected_by_dd',
                         'verified_by_fa',
