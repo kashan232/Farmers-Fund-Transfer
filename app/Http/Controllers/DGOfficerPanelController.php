@@ -142,18 +142,17 @@ class DGOfficerPanelController extends Controller
 
 
 
-           
+
             $district = $req->district; // e.g., "Badin"
 
             $agriUsers = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
                 ->where('district', 'LIKE', '%"'.$district.'"%') // Search inside ["Badin"]
                 ->where('usertype', 'DD_Officer')
                 ->get();
-            
 
 
 
-            dd($agriUsers);
+
 
             $users = $agriUsers->map(function ($user) {
                 // $tehsils = json_decode($user->tehsil ?? '[]');
