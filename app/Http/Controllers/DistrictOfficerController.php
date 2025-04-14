@@ -93,6 +93,10 @@ class DistrictOfficerController extends Controller
                         ->orWhere('email', $request->email_address)
                         ->first();
 
+
+
+                        dd($user.' => '. $DistrictOfficer);
+
                         if ($user) {
 
                              // Check if email already exists for another user
