@@ -97,8 +97,8 @@
 <script>
 
     table = $('#example1').DataTable({
-        "pageLength": 50, // Default number of rows per page
-        "dom": 'Bfrtip', // Only include the filter (search box), table, and pagination
+        "pageLength": 25, // Default number of rows per page
+        "dom": 'Blfrtip', // Only include the filter (search box), table, and pagination
         "processing": true, // Optional: for large datasets
         "deferRender": true, // Improves performance by rendering rows only when needed
         "order": [
