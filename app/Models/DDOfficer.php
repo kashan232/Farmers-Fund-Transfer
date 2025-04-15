@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DDOfficer extends Model
 {
     use HasFactory;
+    protected $table = 'd_d_officers';
 
     protected $fillable = [
         'admin_or_user_id',
