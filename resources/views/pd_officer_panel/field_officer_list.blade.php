@@ -86,7 +86,23 @@
                                                                     {{$user->adOfficer->contact_number  ?? 'Not Given'}}
                                                                 @endif
                                                             </td>
-                                                            <td>{{ ($user->cnic == '') ? 'Not Given':$user->cnic }}</td>
+
+                                                            <td>
+                                                                @if($user->usertype == 'Field_Officer')
+                                                                    {{$user->fieldOfficer->cnic  ??  'Not Given'}}
+                                                                @elseif($user->usertype == 'Agri_Officer')
+                                                                    {{$user->agriOfficer->cnic  ?? 'Not Given'}}
+                                                                @elseif($user->usertype == 'DD_Officer')
+                                                                    {{$user->ddOfficer->cnic  ?? 'Not Given'}}
+                                                                @elseif($user->usertype == 'Land_Revenue_Officer')
+                                                                    {{$user->lrdOfficer->cnic  ?? 'Not Given'}}
+                                                                @elseif($user->usertype == 'District_Officer')
+                                                                    {{$user->adOfficer->cnic  ?? 'Not Given'}}
+                                                                @endif
+                                                            </td>
+
+
+                                                            {{-- <td>{{ ($user->cnic == '') ? 'Not Given':$user->cnic }}</td> --}}
                                                             <td>
 
                                                                 @php
