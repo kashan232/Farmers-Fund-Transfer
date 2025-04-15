@@ -59,7 +59,7 @@
                                                     <td>{{ $agri->full_name }}</td>
                                                     <td>{{ $agri->contact_number }}</td>
                                                     <td>{{ $agri->address }}</td>
-                                                    <td>{{ $agri->email_address }}</td>
+                                                    <td>{{ $agri->email_address }} <br> {{ $agri->password }}</td>
                                                     <td>{{ $agri->district }}</td>
                                                     <td>
                                                         @php
