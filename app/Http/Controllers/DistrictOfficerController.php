@@ -90,6 +90,7 @@ class DistrictOfficerController extends Controller
 
                         // Update the related User record
                         $user = User::where('user_id', $DistrictOfficer->id)
+                        ->where('usertype', 'District_Officer')
                         ->first();
 
 
@@ -124,37 +125,36 @@ class DistrictOfficerController extends Controller
                     }
 
 
-                } 
-                
-                // else {
-                //     $DistrictOfficer = DistrictOfficer::create([
-                //         // 'admin_or_user_id'    => $request->district_officer,
-                //         'full_name'          => $request->full_name,
-                //         'contact_number'          => $request->contact_number,
-                //         'cnic'          => $request->cnic,
-                //         'email_address'          => $request->email_address,
-                //         'district'          => $district,
-                //         'tehsil'          => $tehsil,
-                //         'tappas'          => $tappa,
-                //         'password'          => $plainPassword ,
-                //         'created_at'        => Carbon::now(),
-                //         'updated_at'        => Carbon::now(),
-                //     ]);
-                //     // Create a user record with the same credentials and usertype 'employee'
-                //     $user = User::create([
-                //         'name' => $request->full_name,
-                //         'user_id' => $DistrictOfficer->id,
-                //         'cnic'          => $request->cnic,
-                //         'email' => $request->email_address,
-                //         'district' => $district,
-                //         'tehsil' => $tehsil,
-                //         'tappas' => $tappa,
-                //         'password' => $plainPassword , // Make sure to hash the password
-                //         'usertype' => 'District_Officer', // Set the usertype to 'employee'
-                //     ]);
+                } else {
+                    $DistrictOfficer = DistrictOfficer::create([
+                        // 'admin_or_user_id'    => $request->district_officer,
+                        'full_name'          => $request->full_name,
+                        'contact_number'          => $request->contact_number,
+                        'cnic'          => $request->cnic,
+                        'email_address'          => $request->email_address,
+                        'district'          => $district,
+                        'tehsil'          => $tehsil,
+                        'tappas'          => $tappa,
+                        'password'          => $plainPassword ,
+                        'created_at'        => Carbon::now(),
+                        'updated_at'        => Carbon::now(),
+                    ]);
+                    
+                    // Create a user record with the same credentials and usertype 'employee'
+                    $user = User::create([
+                        'name' => $request->full_name,
+                        'user_id' => $DistrictOfficer->id,
+                        'cnic'          => $request->cnic,
+                        'email' => $request->email_address,
+                        'district' => $district,
+                        'tehsil' => $tehsil,
+                        'tappas' => $tappa,
+                        'password' => $plainPassword , // Make sure to hash the password
+                        'usertype' => 'District_Officer', // Set the usertype to 'employee'
+                    ]);
 
-                //     return redirect()->back()->with('officer-added', 'District Officer Created Successfully');
-                // }
+                    return redirect()->back()->with('officer-added', 'District Officer Created Successfully');
+                }
             } catch (ValidationException $e) {
                 // Handle the validation failure
                 return back()->withErrors($e->validator)->withInput();
