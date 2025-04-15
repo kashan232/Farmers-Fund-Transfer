@@ -74,11 +74,11 @@
                                                             <td>{{ $user->name }}</td>
                                                             <td>{{ $user->email }}</td>
                                                             <td>
-                                                                {{
-
-                                                                    ($user->usertype == 'Field_Officer') ? $user->fieldOfficer->contact_number  : 'N/A'
-                                                                }}
-
+                                                                @if($user->usertype == 'Field_Officer')
+                                                                    {{$user->fieldOfficer->contact_number  ??  'Not Given'}}
+                                                                @elseif($user->usertype == 'Agri_Officer')
+                                                                    {{$user->agriOfficer->contact_number  ?? 'Not Given'}}
+                                                                @endif
                                                             </td>
                                                             <td>{{ ($user->cnic == '') ? 'Not Given':$user->cnic }}</td>
                                                             <td>
