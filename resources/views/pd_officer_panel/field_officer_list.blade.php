@@ -77,17 +77,25 @@
                                                                     $tappa = json_decode($user->tappas);
                                                                 @endphp
                                                                 @if(is_array($tappa))
-                                                                    @foreach($tappa as $index => $tappaItem)
-                                                                        @if($index < 4)
-                                                                        <span class="badge text-bg-success text-dark font-weight-bold">{{ $tappaItem }}</span> <b> @if($index < 3)  </b> <br> @endif
+                                                                    <div>
+                                                                        @foreach($tappa as $index => $tappaItem)
+                                                                            <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-'.$user->id : '' }}">
+                                                                                {{ $tappaItem }}
+                                                                            </span>
+                                                                            @if($index < 3)
+                                                                                <br>
+                                                                            @endif
+                                                                        @endforeach
+
+                                                                        @if(count($tappa) > 4)
+                                                                            <a href="javascript:void(0);" onclick="showAllTappas({{ $user->id }})" class="text-primary">
+                                                                                +{{ count($tappa) - 4 }}
+                                                                            </a>
                                                                         @endif
-                                                                    @endforeach
-    
-                                                                    @if(count($tappa) > 4)
-                                                                        +{{ count($tappa) - 4 }}
-                                                                    @endif
+                                                                    </div>
                                                                 @endif
                                                             </td>
+
                                                             <td>{{ $user->farmers_count }}</td> <!-- This is from withCount('farmers') -->
                                                         </tr>
                                                     @endforeach
@@ -116,6 +124,16 @@
 </footer>
 
 @include('pd_officer_panel.include.footer_include')
+<script>
+    function showAllTappas(id) {
+        document.querySelectorAll('.extra-tappa-' + id).forEach(function(el) {
+            el.classList.remove('d-none');
+        });
+
+        // Hide the "+N" link after showing all
+        event.target.style.display = 'none';
+    }
+</script>
 
 <!-- Chart Scripts -->
 <script>
