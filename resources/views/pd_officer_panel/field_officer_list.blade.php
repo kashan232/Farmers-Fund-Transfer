@@ -75,16 +75,21 @@
                                                             <td>
                                                                 @php
                                                                     $rawDistrict = $user->district;
-                                                                    $tappa = json_decode($rawDistrict);
-
-                                                                    if (json_last_error() !== JSON_ERROR_NONE || !is_array($tappa)) {
-                                                                        $tappa = [$rawDistrict]; // Treat as single value string
+                                                                    $tappa = [];
+                                                            
+                                                                    // Try to decode as JSON
+                                                                    $decoded = json_decode($rawDistrict, true);
+                                                            
+                                                                    if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                                                                        // Filter out nulls if any
+                                                                        $tappa = array_filter($decoded);
+                                                                    } elseif (!empty($rawDistrict)) {
+                                                                        // Treat as single string value
+                                                                        $tappa = [$rawDistrict];
                                                                     }
-
-                                                                    dd($tappa);
                                                                 @endphp
-
-                                                                @if(is_array($tappa))
+                                                            
+                                                                @if(!empty($tappa))
                                                                     <div>
                                                                         @foreach($tappa as $index => $tappaItem)
                                                                             <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $user->id : '' }}">
@@ -94,7 +99,7 @@
                                                                                 <br>
                                                                             @endif
                                                                         @endforeach
-
+                                                            
                                                                         @if(count($tappa) > 4)
                                                                             <a href="javascript:void(0);" id="toggle-link-{{ $user->id }}" onclick="toggleTappas({{ $user->id }})" class="text-primary d-block mt-1">
                                                                                 +{{ count($tappa) - 4 }}
@@ -103,6 +108,7 @@
                                                                     </div>
                                                                 @endif
                                                             </td>
+                                                            
 
                                                             <td>
                                                                 @php
