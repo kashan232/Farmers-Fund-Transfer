@@ -243,7 +243,7 @@ class DGOfficerPanelController extends Controller
                 $tappas = json_decode($user->tappas ?? '[]');
 
 
-                    $farmerCount = LandRevenueFarmerRegistation::where('district', $district)->whereIn('tehsil', $tehsils)
+                    $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $district)->whereIn('tehsil', $tehsils)
                     ->whereIn('tappa', $tappas)
                     ->count();
 
