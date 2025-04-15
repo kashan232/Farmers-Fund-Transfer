@@ -19,10 +19,31 @@ class User extends Authenticatable
     // In User.php
     public function fieldOfficer()
     {
-        return $this->belongsTo(FieldOfficer::class, 'user_id', 'id')
-                    ->where('usertype', 'Field_Officer');
+        return $this->belongsTo(FieldOfficer::class, 'user_id', 'id');
     }
-    
+
+
+    public function agriOfficer()
+    {
+        return $this->belongsTo(AgriOfficer::class, 'user_id', 'id');
+    }
+
+    public function ddOfficer()
+    {
+        return $this->belongsTo(DDOfficer::class, 'user_id', 'id');
+    }
+
+
+    public function lrdOfficer()
+    {
+        return $this->belongsTo(LandRevenueDepartment::class, 'user_id', 'id');
+    }
+
+
+    public function adOfficer()
+    {
+        return $this->belongsTo(DistrictOfficer::class, 'user_id', 'id');
+    }
 
 
     /**
