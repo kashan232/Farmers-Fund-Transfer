@@ -90,7 +90,6 @@ class DistrictOfficerController extends Controller
 
                         // Update the related User record
                         $user = User::where('user_id', $DistrictOfficer->id)
-                        ->where('usertype', 'District_Officer')
                         ->first();
 
 

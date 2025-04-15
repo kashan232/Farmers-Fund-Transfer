@@ -153,7 +153,7 @@ class DGOfficerPanelController extends Controller
             $users = $agriUsers->map(function ($user) use ($district) { // Pass $district inside closure
                 // Decode the user's district
                 $districts = json_decode($user->district ?? '[]');
-                
+
                 // Make sure the current user's district is being used to count farmers for them
                 if (in_array($district, $districts)) {
                     $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $districts)
@@ -163,7 +163,7 @@ class DGOfficerPanelController extends Controller
                             'verified_by_dd'
                         ])
                         ->count();
-                    
+
                     // Add farmers_count to the user object
                     $user->farmers_count = $farmerCount;
                 } else {
