@@ -148,7 +148,7 @@ class DGOfficerPanelController extends Controller
 
             $district = $req->district; // e.g., "Badin"
 
-            $agriUsers = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
+            $agriUsers = User::select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
                 ->where('district', 'LIKE', '%"'.$district.'"%') // Search inside ["Badin"]
                 ->where('usertype', 'DD_Officer')
                 ->get();
@@ -191,7 +191,7 @@ class DGOfficerPanelController extends Controller
             $district = $req->district; // e.g., "Badin"
 
             $agriUsers = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
-                ->where('district', 'LIKE', '%"'.$district.'"%') // Search inside ["Badin"]
+                ->where('district', $district) // Search inside ["Badin"]
                 ->where('usertype', 'Land_Revenue_Officer')
                 ->get();
 
@@ -221,7 +221,43 @@ class DGOfficerPanelController extends Controller
 
         }
 
+        elseif ($req->usertype == 'District_Officer') {
 
+
+
+
+            $district = $req->district; // e.g., "Badin"
+
+            $agriUsers = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
+                ->where('district', 'LIKE', '%"'.$district.'"%') // Search inside ["Badin"]
+                ->where('usertype', 'Land_Revenue_Officer')
+                ->get();
+
+            $users = $agriUsers->map(function ($user) use ($district) { // Pass $district inside closure
+                // Decode the user's district
+                $district = $user->district;
+
+                $tehsils = json_decode($user->tehsil ?? '[]');
+                $tappas = json_decode($user->tappas ?? '[]');
+
+
+                    $farmerCount = LandRevenueFarmerRegistation::where('district', $district)->whereIn('tehsil', $tehsils)
+                    ->whereIn('tappa', $tappas)
+                        ->whereIn('verification_status', [
+                            'rejected_by_lrd',
+                            'verified_by_ao',
+                            'verified_by_dd',
+                            'verified_by_lrd'
+                        ])
+                        ->count();
+
+                    // Add farmers_count to the user object
+                    $user->farmers_count = $farmerCount;
+
+                return $user;
+            });
+
+        }
 
 
         return view('pd_officer_panel.field_officer_list',[
