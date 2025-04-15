@@ -59,6 +59,8 @@
                                                         <th>Email</th>
                                                         <th>Contact</th>
                                                         <th>CNIC</th>
+                                                        <th>Tehsils</th>
+                                                        <th>Tappas</th>
                                                         <th>Total Farmers</th>
                                                     </tr>
                                                 </thead>
@@ -67,8 +69,10 @@
                                                         <tr>
                                                             <td>{{ $user->name }}</td>
                                                             <td>{{ $user->email }}</td>
-                                                            <td>{{ $user->number }}</td>
-                                                            <td>{{ $user->cnic }}</td>
+                                                            <td>{{ ($user->number == '') ? 'Not Given':$user->number }}</td>
+                                                            <td>{{ ($user->cnic == '') ? 'Not Given':$user->cnic }}</td>
+                                                            <td>{{ $user->tehsil }}</td>
+                                                            <td>{{ $user->tappas }}</td>
                                                             <td>{{ $user->farmers_count }}</td> <!-- This is from withCount('farmers') -->
                                                         </tr>
                                                     @endforeach
