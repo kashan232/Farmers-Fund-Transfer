@@ -71,10 +71,11 @@
                                                             <td>{{ $user->name }}</td>
                                                             <td>{{ $user->email }}</td>
                                                             <td>
-                                                                {{ 
-                                                                    ($user->usertype == 'Field_Officer') ? $user->fieldOfficer->contact_number : 'N/A' 
+                                                                {{
+                                                                    dd($user);
+                                                                    ($user->usertype == 'Field_Officer') ? $user->fieldOfficer->contact_number  : 'N/A'
                                                                 }}
-                                                            
+
                                                             </td>
                                                             <td>{{ ($user->cnic == '') ? 'Not Given':$user->cnic }}</td>
                                                             <td>
