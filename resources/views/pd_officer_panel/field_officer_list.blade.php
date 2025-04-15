@@ -74,22 +74,10 @@
                                                             <td>{{ ($user->cnic == '') ? 'Not Given':$user->cnic }}</td>
                                                             <td>
                                                                 @php
-                                                                    $rawDistrict = $user->district;
-                                                                    $tappa = [];
-                                                            
-                                                                    // Try to decode as JSON
-                                                                    $decoded = json_decode($rawDistrict, true);
-                                                            
-                                                                    if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
-                                                                        // Filter out nulls if any
-                                                                        $tappa = array_filter($decoded);
-                                                                    } elseif (!empty($rawDistrict)) {
-                                                                        // Treat as single string value
-                                                                        $tappa = [$rawDistrict];
-                                                                    }
+                                                                    $tappa = json_decode($user->district, true);
                                                                 @endphp
                                                             
-                                                                @if(!empty($tappa))
+                                                                @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
                                                                     <div>
                                                                         @foreach($tappa as $index => $tappaItem)
                                                                             <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $user->id : '' }}">
@@ -106,6 +94,10 @@
                                                                             </a>
                                                                         @endif
                                                                     </div>
+                                                                @else
+                                                                    <span class="badge text-bg-success text-dark font-weight-bold">
+                                                                        {{ $user->district }}
+                                                                    </span>
                                                                 @endif
                                                             </td>
                                                             
