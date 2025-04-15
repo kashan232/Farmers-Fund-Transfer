@@ -101,14 +101,16 @@
                                                                     </span>
                                                                 @endif
                                                             </td>
-                                                            {{dd($user);}}
+                                                            
 
 
                                                             <td>
+
                                                                 @php
-                                                                    $tappa = json_decode($user->tehsil);
+                                                                    $tappa = json_decode($user->tehsil, true);
                                                                 @endphp
-                                                                @if(is_array($tappa))
+
+                                                                @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
                                                                     <div>
                                                                         @foreach($tappa as $index => $tappaItem)
                                                                             <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $user->id : '' }}">
@@ -125,13 +127,22 @@
                                                                             </a>
                                                                         @endif
                                                                     </div>
+                                                                @else
+                                                                    <span class="badge text-bg-success text-dark font-weight-bold">
+                                                                        {{ $user->tehsil }}
+                                                                    </span>
                                                                 @endif
                                                             </td>
+                                                            
+
+
                                                             <td>
+
                                                                 @php
-                                                                    $tappa = json_decode($user->tappas);
+                                                                    $tappa = json_decode($user->tappas, true);
                                                                 @endphp
-                                                                @if(is_array($tappa))
+
+                                                                @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
                                                                     <div>
                                                                         @foreach($tappa as $index => $tappaItem)
                                                                             <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $user->id : '' }}">
@@ -148,8 +159,13 @@
                                                                             </a>
                                                                         @endif
                                                                     </div>
+                                                                @else
+                                                                    <span class="badge text-bg-success text-dark font-weight-bold">
+                                                                        {{ $user->tappas }}
+                                                                    </span>
                                                                 @endif
                                                             </td>
+                                                            
 
 
                                                             <td style="text-align: center; font-size: 24px; font-weight: 700;;">{{ $user->farmers_count }}</td> <!-- This is from withCount('farmers') -->
