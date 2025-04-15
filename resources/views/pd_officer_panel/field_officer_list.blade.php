@@ -70,15 +70,7 @@
                                                         <tr>
                                                             <td>{{ $user->name }}</td>
                                                             <td>{{ $user->email }}</td>
-                                                            
-                                                                @php
-                                                                    $fo = \App\Models\FieldOfficer::find($user->user_id);
-                                                                @endphp
-
-                                                                <td>
-                                                                    {{ $fo->contact_number ?? 'N/A' }}
-                                                                </td>
-                                                          
+                                                            <td>{{ $user->fieldOfficer->contact_number ?? 'N/A' }}</td>
                                                             <td>{{ ($user->cnic == '') ? 'Not Given':$user->cnic }}</td>
                                                             <td>
 

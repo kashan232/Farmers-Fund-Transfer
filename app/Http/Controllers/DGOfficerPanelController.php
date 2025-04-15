@@ -107,6 +107,7 @@ class DGOfficerPanelController extends Controller
         if($req->usertype == 'Field_Officer')
         {
             $users = User::select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
+            ->with('fieldOfficer')
             ->withCount('farmers') // Counts related farmers
             ->where('district', $req->district)
             ->where('usertype', $req->usertype)
@@ -199,7 +200,7 @@ class DGOfficerPanelController extends Controller
                 $tehsils = json_decode($user->tehsil ?? '[]');
                 $tappas = json_decode($user->tappas ?? '[]');
 
-              
+
                     $farmerCount = LandRevenueFarmerRegistation::where('district', $district)->whereIn('tehsil', $tehsils)
                     ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
@@ -212,7 +213,7 @@ class DGOfficerPanelController extends Controller
 
                     // Add farmers_count to the user object
                     $user->farmers_count = $farmerCount;
-                
+
                 return $user;
             });
 
