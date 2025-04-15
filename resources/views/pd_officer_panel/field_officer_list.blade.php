@@ -74,8 +74,14 @@
                                                             <td>{{ ($user->cnic == '') ? 'Not Given':$user->cnic }}</td>
                                                             <td>
                                                                 @php
-                                                                    $tappa = json_decode($user->district);
+                                                                    $rawDistrict = $user->district;
+                                                                    $tappa = json_decode($rawDistrict);
+                                                            
+                                                                    if (json_last_error() !== JSON_ERROR_NONE || !is_array($tappa)) {
+                                                                        $tappa = [$rawDistrict]; // Treat as single value string
+                                                                    }
                                                                 @endphp
+                                                            
                                                                 @if(is_array($tappa))
                                                                     <div>
                                                                         @foreach($tappa as $index => $tappaItem)
@@ -86,7 +92,7 @@
                                                                                 <br>
                                                                             @endif
                                                                         @endforeach
-
+                                                            
                                                                         @if(count($tappa) > 4)
                                                                             <a href="javascript:void(0);" id="toggle-link-{{ $user->id }}" onclick="toggleTappas({{ $user->id }})" class="text-primary d-block mt-1">
                                                                                 +{{ count($tappa) - 4 }}
@@ -95,6 +101,7 @@
                                                                     </div>
                                                                 @endif
                                                             </td>
+                                                            
                                                             <td>
                                                                 @php
                                                                     $tappa = json_decode($user->tehsil);
