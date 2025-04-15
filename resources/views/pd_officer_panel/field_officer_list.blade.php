@@ -59,6 +59,7 @@
                                                         <th>Email</th>
                                                         <th>Contact</th>
                                                         <th>CNIC</th>
+                                                        <th>District</th>
                                                         <th>Tehsils</th>
                                                         <th>Tappas</th>
                                                         <th>Total Farmers</th>
@@ -71,6 +72,29 @@
                                                             <td>{{ $user->email }}</td>
                                                             <td>{{ ($user->number == '') ? 'Not Given':$user->number }}</td>
                                                             <td>{{ ($user->cnic == '') ? 'Not Given':$user->cnic }}</td>
+                                                            <td>
+                                                                @php
+                                                                    $tappa = json_decode($user->district);
+                                                                @endphp
+                                                                @if(is_array($tappa))
+                                                                    <div>
+                                                                        @foreach($tappa as $index => $tappaItem)
+                                                                            <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $user->id : '' }}">
+                                                                                {{ $tappaItem }}
+                                                                            </span>
+                                                                            @if($index < 3)
+                                                                                <br>
+                                                                            @endif
+                                                                        @endforeach
+
+                                                                        @if(count($tappa) > 4)
+                                                                            <a href="javascript:void(0);" id="toggle-link-{{ $user->id }}" onclick="toggleTappas({{ $user->id }})" class="text-primary d-block mt-1">
+                                                                                +{{ count($tappa) - 4 }}
+                                                                            </a>
+                                                                        @endif
+                                                                    </div>
+                                                                @endif
+                                                            </td>
                                                             <td>
                                                                 @php
                                                                     $tappa = json_decode($user->tehsil);
