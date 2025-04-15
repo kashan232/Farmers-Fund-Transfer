@@ -113,7 +113,7 @@ class DGOfficerPanelController extends Controller
             ->where('usertype', $req->usertype)
             ->get();
 
-            dd($users);
+            // dd($users);
         }
         elseif ($req->usertype == 'Agri_Officer') {
 
