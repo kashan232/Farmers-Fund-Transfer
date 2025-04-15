@@ -106,7 +106,7 @@ class DGOfficerPanelController extends Controller
 
         if($req->usertype == 'Field_Officer')
         {
-            $users = User::with('fieldOfficer')->select('id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
+            $users = User::with('fieldOfficer')->select('id',  'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
             ->with('fieldOfficer')
             ->withCount('farmers') // Counts related farmers
             ->where('district', $req->district)
