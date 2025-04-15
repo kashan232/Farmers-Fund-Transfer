@@ -72,7 +72,22 @@
                                                             <td>{{ ($user->number == '') ? 'Not Given':$user->number }}</td>
                                                             <td>{{ ($user->cnic == '') ? 'Not Given':$user->cnic }}</td>
                                                             <td>{{ $user->tehsil }}</td>
-                                                            <td>{{ $user->tappas }}</td>
+                                                            <td>
+                                                                @php
+                                                                    $tappa = json_decode($user->tappas);
+                                                                @endphp
+                                                                @if(is_array($tappa))
+                                                                    @foreach($tappa as $index => $tappaItem)
+                                                                        @if($index < 4)
+                                                                        <span class="badge text-bg-success text-dark font-weight-bold">{{ $tappaItem }}</span> <b> @if($index < 3)  </b> <br> @endif
+                                                                        @endif
+                                                                    @endforeach
+    
+                                                                    @if(count($tappa) > 4)
+                                                                        +{{ count($tappa) - 4 }}
+                                                                    @endif
+                                                                @endif
+                                                            </td>
                                                             <td>{{ $user->farmers_count }}</td> <!-- This is from withCount('farmers') -->
                                                         </tr>
                                                     @endforeach
