@@ -153,7 +153,7 @@ class DGOfficerPanelController extends Controller
                 ->where('usertype', 'DD_Officer')
                 ->get();
 
-                
+
 
             $users = $agriUsers->map(function ($user) use ($district) { // Pass $district inside closure
                 // Decode the user's district
@@ -231,8 +231,8 @@ class DGOfficerPanelController extends Controller
             $district = $req->district; // e.g., "Badin"
 
             $agriUsers = User::with('adOfficer')->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
-                ->where('district', 'LIKE', $district) // Search inside ["Badin"]
-                ->where('usertype', 'Land_Revenue_Officer')
+                ->where('district', $district) // Search inside ["Badin"]
+                ->where('usertype', 'District_Officer')
                 ->get();
 
             $users = $agriUsers->map(function ($user) use ($district) { // Pass $district inside closure
@@ -245,13 +245,7 @@ class DGOfficerPanelController extends Controller
 
                     $farmerCount = LandRevenueFarmerRegistation::where('district', $district)->whereIn('tehsil', $tehsils)
                     ->whereIn('tappa', $tappas)
-                        ->whereIn('verification_status', [
-                            'rejected_by_lrd',
-                            'verified_by_ao',
-                            'verified_by_dd',
-                            'verified_by_lrd'
-                        ])
-                        ->count();
+                    ->count();
 
                     // Add farmers_count to the user object
                     $user->farmers_count = $farmerCount;
