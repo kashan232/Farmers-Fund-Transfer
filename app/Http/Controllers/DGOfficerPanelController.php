@@ -237,7 +237,8 @@ class DGOfficerPanelController extends Controller
 
             $users = $agriUsers->map(function ($user) use ($district) { // Pass $district inside closure
                 // Decode the user's district
-                $district = $user->district;
+         
+                $district = json_decode($user->district ?? '[]');
 
                 $tehsils = json_decode($user->tehsil ?? '[]');
                 $tappas = json_decode($user->tappas ?? '[]');
