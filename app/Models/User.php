@@ -19,7 +19,7 @@ class User extends Authenticatable
     // In User.php
     public function fieldOfficer()
     {
-        return $this->hasOne(FieldOfficer::class, 'id', 'user_id');
+        return $this->belongsTo(FieldOfficer::class, 'user_id', 'id');
     }
     
 
