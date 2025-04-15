@@ -154,9 +154,13 @@ class DGOfficerPanelController extends Controller
                 // Decode the user's district
                 $districts = json_decode($user->district ?? '[]');
 
+                $tehsils = json_decode($user->tehsil ?? '[]');
+                $tappas = json_decode($user->tappas ?? '[]');
+
                 // Make sure the current user's district is being used to count farmers for them
                 if (in_array($district, $districts)) {
-                    $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                    $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $districts)->whereIn('tehsil', $tehsils)
+                    ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
                             'rejected_by_dd',
                             'verified_by_fa',
