@@ -73,10 +73,11 @@
                                                             <td>{{ ($user->number == '') ? 'Not Given':$user->number }}</td>
                                                             <td>{{ ($user->cnic == '') ? 'Not Given':$user->cnic }}</td>
                                                             <td>
+
                                                                 @php
                                                                     $tappa = json_decode($user->district, true);
                                                                 @endphp
-                                                            
+
                                                                 @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
                                                                     <div>
                                                                         @foreach($tappa as $index => $tappaItem)
@@ -87,7 +88,7 @@
                                                                                 <br>
                                                                             @endif
                                                                         @endforeach
-                                                            
+
                                                                         @if(count($tappa) > 4)
                                                                             <a href="javascript:void(0);" id="toggle-link-{{ $user->id }}" onclick="toggleTappas({{ $user->id }})" class="text-primary d-block mt-1">
                                                                                 +{{ count($tappa) - 4 }}
@@ -100,7 +101,8 @@
                                                                     </span>
                                                                 @endif
                                                             </td>
-                                                            
+                                                            {{dd($user);}}
+
 
                                                             <td>
                                                                 @php
