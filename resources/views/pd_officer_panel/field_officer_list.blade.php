@@ -79,7 +79,7 @@
                                                                 @if(is_array($tappa))
                                                                     <div>
                                                                         @foreach($tappa as $index => $tappaItem)
-                                                                            <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-'.$user->id : '' }}">
+                                                                            <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $user->id : '' }}">
                                                                                 {{ $tappaItem }}
                                                                             </span>
                                                                             @if($index < 3)
@@ -88,13 +88,14 @@
                                                                         @endforeach
 
                                                                         @if(count($tappa) > 4)
-                                                                            <a href="javascript:void(0);" onclick="showAllTappas({{ $user->id }})" class="text-primary">
+                                                                            <a href="javascript:void(0);" id="toggle-link-{{ $user->id }}" onclick="toggleTappas({{ $user->id }})" class="text-primary d-block mt-1">
                                                                                 +{{ count($tappa) - 4 }}
                                                                             </a>
                                                                         @endif
                                                                     </div>
                                                                 @endif
                                                             </td>
+
 
                                                             <td>{{ $user->farmers_count }}</td> <!-- This is from withCount('farmers') -->
                                                         </tr>
@@ -125,15 +126,23 @@
 
 @include('pd_officer_panel.include.footer_include')
 <script>
-    function showAllTappas(id) {
-        document.querySelectorAll('.extra-tappa-' + id).forEach(function(el) {
-            el.classList.remove('d-none');
+    function toggleTappas(id) {
+        const extraTappas = document.querySelectorAll('.extra-tappa-' + id);
+        const toggleLink = document.getElementById('toggle-link-' + id);
+        let isHidden = extraTappas[0].classList.contains('d-none');
+
+        extraTappas.forEach(function(el) {
+            el.classList.toggle('d-none');
         });
 
-        // Hide the "+N" link after showing all
-        event.target.style.display = 'none';
+        if (isHidden) {
+            toggleLink.textContent = 'Show Less';
+        } else {
+            toggleLink.textContent = '+' + extraTappas.length;
+        }
     }
 </script>
+
 
 <!-- Chart Scripts -->
 <script>
