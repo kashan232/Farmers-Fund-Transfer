@@ -16,6 +16,13 @@ class User extends Authenticatable
         return $this->hasMany(LandRevenueFarmerRegistation::class, 'user_id');
     }
 
+    // In User.php
+public function fieldOfficer()
+{
+    return $this->belongsTo(FieldOfficer::class, 'user_id', 'id');
+}
+
+
     /**
      * The attributes that are mass assignable.
      *

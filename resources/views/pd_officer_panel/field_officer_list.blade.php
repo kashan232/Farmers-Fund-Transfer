@@ -70,7 +70,7 @@
                                                         <tr>
                                                             <td>{{ $user->name }}</td>
                                                             <td>{{ $user->email }}</td>
-                                                            <td>{{ ($user->number == '') ? 'Not Given':$user->number }}</td>
+                                                            {{ $user->fieldOfficer->contact_number ?? 'N/A' }}
                                                             <td>{{ ($user->cnic == '') ? 'Not Given':$user->cnic }}</td>
                                                             <td>
 
@@ -101,7 +101,7 @@
                                                                     </span>
                                                                 @endif
                                                             </td>
-                                                            
+
 
 
                                                             <td>
@@ -133,7 +133,7 @@
                                                                     </span>
                                                                 @endif
                                                             </td>
-                                                            
+
 
 
                                                             <td>
@@ -165,7 +165,7 @@
                                                                     </span>
                                                                 @endif
                                                             </td>
-                                                            
+
 
 
                                                             <td style="text-align: center; font-size: 24px; font-weight: 700;;">{{ $user->farmers_count }}</td> <!-- This is from withCount('farmers') -->
