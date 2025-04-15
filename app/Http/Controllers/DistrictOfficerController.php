@@ -139,7 +139,7 @@ class DistrictOfficerController extends Controller
                         'created_at'        => Carbon::now(),
                         'updated_at'        => Carbon::now(),
                     ]);
-                    
+
                     // Create a user record with the same credentials and usertype 'employee'
                     $user = User::create([
                         'name' => $request->full_name,
