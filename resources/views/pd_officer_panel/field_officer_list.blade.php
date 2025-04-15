@@ -78,6 +78,12 @@
                                                                     {{$user->fieldOfficer->contact_number  ??  'Not Given'}}
                                                                 @elseif($user->usertype == 'Agri_Officer')
                                                                     {{$user->agriOfficer->contact_number  ?? 'Not Given'}}
+                                                                @elseif($user->usertype == 'DD_Officer')
+                                                                    {{$user->ddOfficer->contact_number  ?? 'Not Given'}}
+                                                                @elseif($user->usertype == 'Land_Revenue_Officer')
+                                                                    {{$user->lrdOfficer->contact_number  ?? 'Not Given'}}
+                                                                @elseif($user->usertype == 'District_Officer')
+                                                                    {{$user->adOfficer->contact_number  ?? 'Not Given'}}
                                                                 @endif
                                                             </td>
                                                             <td>{{ ($user->cnic == '') ? 'Not Given':$user->cnic }}</td>
