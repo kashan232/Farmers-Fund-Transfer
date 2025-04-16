@@ -136,6 +136,9 @@ class HomeController extends Controller
             if ($usertype == 'District_Officer') {
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
+                $user = User::find($userId);
+                dd( $user );
+
                 $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
                 $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
                 $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();

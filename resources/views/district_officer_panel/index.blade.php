@@ -13,8 +13,12 @@
 <div class="pc-container">
     <div class="pc-content">
         <div class="row">
+
+            
+
+
             <!-- Farmer Registration Charts -->
-            <div class="col-12 mt-3">
+            {{-- <div class="col-12 mt-3">
                 <div class="box--sec">
                     <div class="top-heading">
                         <p>Farmer Registration Source Overview (Field Officer & Online Farmers)</p>
@@ -54,7 +58,7 @@
                     </div>
                     <div id="fieldOfficerChart"></div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <!-- [ Main Content ] end -->
     </div>

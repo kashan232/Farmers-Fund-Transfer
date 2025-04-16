@@ -225,31 +225,28 @@ class DGOfficerPanelController extends Controller
 
         elseif ($req->usertype == 'District_Officer') {
 
-
-
-
             $district = $req->district; // e.g., "Badin"
 
             $agriUsers = User::with('adOfficer')->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
             ->where('district', 'LIKE', '%"'.$district.'"%')
-                ->where('usertype', 'District_Officer')
-                ->get();
+            ->where('usertype', 'District_Officer')
+            ->get();
 
             $users = $agriUsers->map(function ($user) use ($district) { // Pass $district inside closure
+
                 // Decode the user's district
-         
                 $district = json_decode($user->district ?? '[]');
 
                 $tehsils = json_decode($user->tehsil ?? '[]');
                 $tappas = json_decode($user->tappas ?? '[]');
 
 
-                    $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $district)->whereIn('tehsil', $tehsils)
-                    ->whereIn('tappa', $tappas)
-                    ->count();
+                $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $district)->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas)
+                ->count();
 
-                    // Add farmers_count to the user object
-                    $user->farmers_count = $farmerCount;
+                // Add farmers_count to the user object
+                $user->farmers_count = $farmerCount;
 
                 return $user;
             });
