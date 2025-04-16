@@ -26,7 +26,7 @@
                                 $totalDD = 0;
                                 $totalFO = 0;
                                 $totalAO = 0;
-                            
+
                                 foreach ($districtStats as $row) {
                                     $totalLRD += $row['Land_Revenue_Officer'];
                                     $totalDD += $row['DD_Officer'];
@@ -34,8 +34,8 @@
                                     $totalAO += $row['Agri_Officer'];
                                 }
                             @endphp
-                            
-                            <table class="table table-bordered mt-4" style="width: 300px;">
+
+                            <table class="col-12 table table-bordered mt-4" style="width: 300px;">
                                 <thead>
                                     <tr>
                                         <th>Officers</th>
@@ -61,7 +61,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            
+
                             </div>
                         </div>
                     </div>
