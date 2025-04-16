@@ -45,23 +45,35 @@
                                 <tbody>
                                     <tr>
                                         <td>LRD</td>
-                                        <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Field_Officer']) }}">
-                                            {{ $row['Field_Officer'] }}
-                                        </a>
-                                        
-                                        <td>{{ $totalLRD }}</td>
+                                        <td>
+                                            <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Land_Revenue_Officer']) }}">
+                                                {{ $totalLRD }}
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>DD</td>
-                                        <td>{{ $totalDD }}</td>
+                                        <td>
+                                            <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'DD_Officer']) }}">
+                                                {{ $totalDD }}
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>FO</td>
-                                        <td>{{ $totalFO }}</td>
+                                        <td>
+                                            <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Field_Officer']) }}">
+                                                {{ $totalAO }}
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>AO</td>
-                                        <td>{{ $totalAO }}</td>
+                                        <td>
+                                            <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Agri_Officer']) }}">
+                                                {{ $totalLRD }}
+                                            </a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
