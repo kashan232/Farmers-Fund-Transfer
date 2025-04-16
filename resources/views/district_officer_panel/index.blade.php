@@ -70,11 +70,7 @@
                                                         {{ $row['Land_Revenue_Officer'] }}
                                                     </a>
                                                 </td>
-                                                <td>
-                                                    <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'District_Officer']) }}">
-                                                        {{ $row['District_Officer'] }}
-                                                    </a>
-                                                </td>
+                                              
                                             </tr>
                                         @endforeach
                                     </tbody>
