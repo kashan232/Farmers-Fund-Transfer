@@ -1,12 +1,12 @@
-@include('pd_officer_panel.include.header_include')
+@include('district_officer_panel.include.header_include')
 <!-- [ Pre-loader ] End -->
 
 <!-- [ Sidebar Menu ] start -->
-@include('pd_officer_panel.include.sidebar_include')
+@include('district_officer_panel.include.sidebar_include')
 <!-- [ Sidebar Menu ] end -->
 
 <!-- [ Header Topbar ] start -->
-@include('pd_officer_panel.include.navbar_include')
+@include('district_officer_panel.include.navbar_include')
 <!-- [ Header ] end -->
 
 
@@ -223,10 +223,10 @@
 <!-- [ Main Content ] end -->
 
 <footer class="pc-footer">
-    @include('pd_officer_panel.include.footer_copyright_include')
+    @include('district_officer_panel.include.footer_copyright_include')
 </footer>
 
-@include('pd_officer_panel.include.footer_include')
+@include('district_officer_panel.include.footer_include')
 <script>
     function toggleTappas(id) {
         const extraTappas = document.querySelectorAll('.extra-tappa-' + id);
