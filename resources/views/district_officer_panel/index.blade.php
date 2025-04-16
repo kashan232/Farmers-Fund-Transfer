@@ -45,6 +45,10 @@
                                 <tbody>
                                     <tr>
                                         <td>LRD</td>
+                                        <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Field_Officer']) }}">
+                                            {{ $row['Field_Officer'] }}
+                                        </a>
+                                        
                                         <td>{{ $totalLRD }}</td>
                                     </tr>
                                     <tr>
