@@ -14,7 +14,76 @@
     <div class="pc-content">
         <div class="row">
 
-            
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>District Wise Field Officers</h3>
+                        <div class="row tables">
+                            <div class="table-responsive">
+
+                                <table class="table table-bordered example" id="">
+                                    {{-- <thead>
+                                        <th>Districts</th>
+                                        <th>Total Field Officers</th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($usersByDistrict as $data)
+                                            <tr>
+                                                <td>{{ $data->district }}</td>
+                                                <td><a href="{{ route('fa_list_by_dg',$data->district) }}">{{ $data->total_users }}</a></td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody> --}}
+                                    <thead>
+                                        <tr>
+                                            <th>District</th>
+                                            <th>Field Officer</th>
+                                            <th>Agri Officer</th>
+                                            <th>DD Officer</th>
+                                            <th>Land Revenue Officer</th>
+                                            <th>Additional Director</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($districtStats as $row)
+                                            <tr>
+                                                <td>{{ $row['district'] }}</td>
+                                                <td>
+                                                    <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Field_Officer']) }}">
+                                                        {{ $row['Field_Officer'] }}
+                                                    </a>
+                                                </td>
+
+                                                {{-- <td><a href="{{ route('fa_list_by_dg',$row['district']) }}"> {{ $row['Field_Officer'] }}</a></td> --}}
+                                                <td>
+                                                    <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Agri_Officer']) }}">
+                                                        {{ $row['Agri_Officer'] }}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'DD_Officer']) }}">
+                                                        {{ $row['DD_Officer'] }}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Land_Revenue_Officer']) }}">
+                                                        {{ $row['Land_Revenue_Officer'] }}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'District_Officer']) }}">
+                                                        {{ $row['District_Officer'] }}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
             <!-- Farmer Registration Charts -->

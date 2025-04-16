@@ -181,7 +181,7 @@ class HomeController extends Controller
                 $districtStats = array_values($districtStats); // reset keys for Blade
 
 
-                dd( $districtStats);
+
 
 
                 $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
@@ -191,6 +191,7 @@ class HomeController extends Controller
                     'agriUserfarmersCount' => $agriUserfarmersCount,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
+                    'districtStats' => $districtStats
                 ]);
             } else if ($usertype == 'Agri_Officer') {
                 $userId = Auth::id();
