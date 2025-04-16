@@ -35,7 +35,7 @@
                                 }
                             @endphp
 
-                            <table class="col-12 table table-bordered mt-4" style="width: 300px;">
+                            <table class="col-12 table table-bordered mt-4" >
                                 <thead>
                                     <tr>
                                         <th>Officers</th>
