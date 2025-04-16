@@ -137,7 +137,52 @@ class HomeController extends Controller
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
                 $user = User::find($userId);
-                // dd( $user );
+
+
+                $userTypes = [
+                    'Field_Officer',
+                    'Agri_Officer',
+                    'DD_Officer',
+                    'Land_Revenue_Officer',
+                ];
+
+                $users = DB::table('users')
+                    ->whereIn('usertype', $userTypes)
+                    ->whereIn('district',json_decode($user->district))
+                    ->select('usertype', 'district')
+                    ->get();
+
+                $districtStats = [];
+
+                foreach ($users as $user) {
+                    $districtField = $user->district;
+
+                    // Handle string or JSON
+                    if (Str::startsWith($districtField, '[')) {
+                        // Likely JSON array
+                        $districts = json_decode($districtField, true);
+                    } else {
+                        // Single string district
+                        $districts = [$districtField];
+                    }
+
+                    if (!is_array($districts)) continue;
+
+                    foreach ($districts as $district) {
+                        if (!isset($districtStats[$district])) {
+                            $districtStats[$district] = array_fill_keys($userTypes, 0);
+                            $districtStats[$district]['district'] = $district;
+                        }
+
+                        $districtStats[$district][$user->usertype]++;
+                    }
+                }
+
+                $districtStats = array_values($districtStats); // reset keys for Blade
+
+
+                dd( $districtStats);
+
 
                 $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
                 $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
