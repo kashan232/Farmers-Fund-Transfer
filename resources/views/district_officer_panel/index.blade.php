@@ -17,7 +17,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3>District Wise Field Officers</h3>
+                        <h3>District Wise Officers</h3>
                         <div class="row tables">
                             <div class="table-responsive">
 
@@ -44,33 +44,33 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>LRD</td>
+                                        <td>Land Revenue Officers</td>
                                         <td>
-                                            <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Land_Revenue_Officer']) }}">
+                                            <a href="{{ route('fa_list_by_ad', ['district' => $row['district'], 'usertype' => 'Land_Revenue_Officer']) }}">
                                                 {{ $totalLRD }}
                                             </a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>DD</td>
+                                        <td>Deputy Director Officers</td>
                                         <td>
-                                            <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'DD_Officer']) }}">
+                                            <a href="{{ route('fa_list_by_ad', ['district' => $row['district'], 'usertype' => 'DD_Officer']) }}">
                                                 {{ $totalDD }}
                                             </a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>FO</td>
+                                        <td>Field Officers</td>
                                         <td>
-                                            <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Field_Officer']) }}">
+                                            <a href="{{ route('fa_list_by_ad', ['district' => $row['district'], 'usertype' => 'Field_Officer']) }}">
                                                 {{ $totalAO }}
                                             </a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>AO</td>
+                                        <td>Agricuture Officers</td>
                                         <td>
-                                            <a href="{{ route('fa_list_by_dg', ['district' => $row['district'], 'usertype' => 'Agri_Officer']) }}">
+                                            <a href="{{ route('fa_list_by_ad', ['district' => $row['district'], 'usertype' => 'Agri_Officer']) }}">
                                                 {{ $totalLRD }}
                                             </a>
                                         </td>
