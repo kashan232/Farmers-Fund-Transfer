@@ -970,7 +970,7 @@
                                     </div>
                                     <div class="row mt-3">
                                         <div class="mb-6 col-md-6">
-                                            <h6>GPS Cordinates <span class="text-danger">*</span></h6>
+                                            <h6>GPS Cordinates</h6>
                                             <label class="form-label">GPS Coordinates of Agriculture land</label><br>
                                             <div class="d-flex"  style="justify-content: space-between; ">
 

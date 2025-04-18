@@ -1062,7 +1062,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div> --}}
 
                                                 <div class="mb-6 col-md-6">
-                                                    <h6>GPS Cordinates <span class="text-danger">*</span></h6>
+                                                    <h6>GPS Cordinates </h6>
                                                     <label class="form-label">GPS Coordinates of Agriculture land</label><br>
                                                     <div class="d-flex"  style="justify-content: space-between; ">
 
