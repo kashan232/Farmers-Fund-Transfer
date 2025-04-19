@@ -162,7 +162,7 @@ class LandRevenueController extends Controller
                         $LandRevenueDepartment->update($dataToUpdate);
 
                         // Update related User record
-                        $user = User::where('user_id', $LandRevenueDepartment->id)->where('usertype','Agri_Officer')->first();
+                        $user = User::where('user_id', $LandRevenueDepartment->id)->where('usertype','Land_Revenue_Officer')->first();
 
                         if ($user) {
                             // Prepare data for User update
