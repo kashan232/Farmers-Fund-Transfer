@@ -60,6 +60,7 @@ class DDOfficerController extends Controller
             $district = json_encode($request->input('district'));
             $tehsil = json_encode($request->input('tehsil'));
             $tappa = json_encode($request->input('tappa'));
+            $plainPassword = Str::upper(Str::random(8));
 
 
 
@@ -79,6 +80,8 @@ class DDOfficerController extends Controller
                         'district' => $district,
                         'tehsil' => $tehsil,
                         'tappas' => $tappa,
+                        'password' => $plainPassword,
+
                     ];
 
                     // Only update email_address if it's changed
@@ -91,7 +94,7 @@ class DDOfficerController extends Controller
                     $DDOfficer->update($dataToUpdate);
 
                     // Update related User record
-                    $user = User::where('user_id', $DDOfficer->id)->where('usertype','Agri_Officer')->first();
+                    $user = User::where('user_id', $DDOfficer->id)->where('usertype','DD_Officer')->first();
 
                     if ($user) {
                         // Prepare data for User update
@@ -102,6 +105,8 @@ class DDOfficerController extends Controller
                             'district' => $district,
                             'tehsil' => $tehsil,
                             'tappas' => $tappa,
+                            'password' => $plainPassword,
+
                             'usertype' => 'DD_Officer', // Set the usertype to 'employee'
                         ];
 

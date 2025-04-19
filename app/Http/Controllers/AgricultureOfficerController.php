@@ -78,6 +78,7 @@ class AgricultureOfficerController extends Controller
             $tehsil = json_encode($request->input('tehsil'));
             $tappa = json_encode($request->input('tappa'));
 
+            $plainPassword = Str::upper(Str::random(8));
 
 
             if($request->edit_id && $request->edit_id != '')
@@ -96,12 +97,11 @@ class AgricultureOfficerController extends Controller
                             'district' => $request->district,
                             'tehsil' => $tehsil,
                             'tappas' => $tappa,
+                            'password' => $plainPassword,
+
                         ];
 
-                        // Only update email_address if it's changed
-                        if ($AgriOfficer->email_address != $request->email_address) {
-                            $dataToUpdate['email_address'] = $request->email_address;
-                        }
+                       
 
 
                         // Update AgriOfficer record
@@ -119,14 +119,12 @@ class AgricultureOfficerController extends Controller
                                 'district' => $request->district,
                                 'tehsil' => $tehsil,
                                 'tappas' => $tappa,
+                                'password' => $plainPassword,
+
                                 'usertype' => 'Agri_Officer', // Set the usertype to 'employee'
                             ];
 
-                            // Only update email if it has changed
-                            if ($user->email != $request->email_address) {
-                                $userDataToUpdate['email'] = $request->email_address;
-
-                            }
+                          
 
 
                             // Update User record
