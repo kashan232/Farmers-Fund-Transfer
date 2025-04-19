@@ -127,6 +127,8 @@ class LandRevenueController extends Controller
 
 
 
+
+            $plainPassword = Str::upper(Str::random(8));
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
             $tehsil = json_encode($request->input('tehsil'));
@@ -150,6 +152,7 @@ class LandRevenueController extends Controller
                             'district' => $request->district,
                             'tehsil' => $tehsil,
                             'tappas' => $tappa,
+                            'password' => $plainPassword,
                         ];
 
                         // Only update email_address if it's changed
@@ -163,7 +166,7 @@ class LandRevenueController extends Controller
 
                         // Update related User record
                         $user = User::where('user_id', $LandRevenueDepartment->id)->where('usertype','Land_Revenue_Officer')->first();
-                        dd($user);
+
                         if ($user) {
                             // Prepare data for User update
                             $userDataToUpdate = [
@@ -173,6 +176,8 @@ class LandRevenueController extends Controller
                                 'district' => $request->district,
                                 'tehsil' => $tehsil,
                                 'tappas' => $tappa,
+                            'password' => $plainPassword,
+
                                 'usertype' => 'Land_Revenue_Officer', // Set the usertype to 'employee'
                             ];
 
