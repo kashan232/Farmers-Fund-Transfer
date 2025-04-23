@@ -1309,7 +1309,7 @@
                 var reasonBox = $('#reasonBox');
 
 
-                if ($(this).val() == 'rejected_by_fa' || $(this).val() == 'rejected_by_ao' || $(this).val() == 'rejected_by_dd' || $(this).val() == 'rejected_by_lo' ) {
+                if ($(this).val() == 'rejected_by_fa' || $(this).val() == 'rejected_by_ao' || $(this).val() == 'rejected_by_dd' || $(this).val() == 'rejected_by_lrd' ) {
                     reasonBox.show();
                     $('#reasonTextarea').prop('required', true);
 
