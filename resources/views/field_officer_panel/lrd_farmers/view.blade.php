@@ -236,12 +236,20 @@
                                 <option value="rejected_by_dd">Unverified</option>
                             </select>
                         </div>
+                        <div class="form-group" id="other_reason_Box" style="display: none">
+                            <label for="reasonTextarea">Other Reason:</label>
+                            <textarea name="other_reason" id="other_reason" class="form-control">
+
+                            </textarea>
+                        </div>
                         <div class="form-group" id="reasonBox" style="display: none;">
                             <label for="reasonTextarea">Reason</label>
                             <select id="reasonTextarea" name="declined_reason" class="form-control js-example-basic-single" >
                                 <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                 <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                 <option value="Attachments are not cleared">Attachments are not cleared</option>
+                                <option value="other">Other</option>
+
 
                             </select>
                         </div>
@@ -264,8 +272,16 @@
                                 <option value="Banks Details Not Valid">Banks Details Not Valid</option>
                                 <option value="Form Seven(07) Not Valid">Form Seven(07) Not Valid</option>
                                 <option value="Attachments are not cleared">Attachments are not cleared</option>
+                                <option value="other">Other</option>
+
 
                             </select>
+                        </div>
+                        <div class="form-group" id="other_reason_Box" style="display: none">
+                            <label for="reasonTextarea">Other Reason:</label>
+                            <textarea name="other_reason" id="other_reason" class="form-control">
+
+                            </textarea>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Save</button>
                     </form>
