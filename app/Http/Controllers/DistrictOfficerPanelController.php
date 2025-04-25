@@ -271,7 +271,7 @@ class DistrictOfficerPanelController extends Controller
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
         // $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->where('verification_status','verified_by_lo')->orWhere('verification_status','verified_by_do')->paginate(5);
-        $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)
+        $farmers = LandRevenueFarmerRegistation::whereIn('district',json_decode($user->district))
          // Match the user_type
         ->where(function($query) {
             $query->where('verification_status', 'verified_by_lrd');
