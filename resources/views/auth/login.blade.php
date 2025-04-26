@@ -56,15 +56,14 @@
 
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="email" name="email" :value="old('email')" required>
+                        <input class="input100" type="email" placeholder="Email" name="email" :value="old('email')" required>
                         <span class="focus-input100"></span>
-                        <span class="label-input100">Email</span>
                     </div>
 
 
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password" id="passwordInput" required>
+                        <input class="input100" type="password" placeholder="Password" name="password" id="passwordInput" required>
 
                         <i id="togglePassword" class="fa-solid fa-eye" style="cursor: pointer; position: absolute; top: 23px; right: 20px;"></i>
 
@@ -84,7 +83,6 @@
                         </script>
 
                         <span class="focus-input100"></span>
-                        <span class="label-input100">Password</span>
                     </div>
 
 
