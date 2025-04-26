@@ -616,7 +616,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <div class="mt-2 col-md-4">
                                                         <label class="form-label">(7) Survey No(s):</label>
-                                                        <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z0-9,]/g, '').slice(0, 50)">
+                                                        <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control">
                                                     </div>
                                                 </div>
 
@@ -1001,8 +1001,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 
                                                 <div class="mb-6 col-md-4 mt-2">
-                                                    <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
-                                                    <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                                    <label class="form-label">Date of Birth (D-M-Y) <span class="text-danger">*</span></label>
+                                                    <input type="text" name="date_of_birth" placeholder="XX-XX-XXXX" id="date_of_birth" class="form-control" value="{{$data->account_title ?? ''}}" >
                                                 </div>
 
                                                 <div class="mb-6 col-md-4 mt-2">

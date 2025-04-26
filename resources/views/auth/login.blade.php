@@ -62,7 +62,8 @@
 
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password" required>
+                        <input class="input100" type="password" name="password" id="passwordInput" required>
+                        <i id="togglePassword" class="fa-solid fa-eye" style="cursor: pointer; margin-left: -30px;"></i>
                         <span class="focus-input100"></span>
                         <span class="label-input100">Password</span>
                     </div>
@@ -96,7 +97,20 @@
     </div>
 
 
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById("passwordInput");
+            const button = event.target;
 
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                button.textContent = "Hide";
+            } else {
+                passwordInput.type = "password";
+                button.textContent = "Show";
+            }
+        }
+        </script>
 
 
     <!--===============================================================================================-->
