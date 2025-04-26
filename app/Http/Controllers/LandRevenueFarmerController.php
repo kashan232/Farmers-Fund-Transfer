@@ -238,7 +238,7 @@ class LandRevenueFarmerController extends Controller
             ->where(function ($query) {
                 $query->where('verification_status', 'verified_by_dd')
                     ->orWhere('verification_status', 'verified_by_ao')
-                    ->orWhere('verification_status', 'verified_by_lo');
+                    ->orWhere('verification_status', 'verified_by_lrd');
             })
             ->paginate();
             // dd($all_agriculture_farmers);
@@ -313,8 +313,14 @@ class LandRevenueFarmerController extends Controller
         $farmer = LandRevenueFarmerRegistation::find($request->farmer_id);
         // Update farmer verification status
         $farmer->verification_status = $request->verification_status;
-        if ($request->verification_status == 'rejected_by_lo') {
-            $farmer->declined_reason = $request->declined_reason;
+        if ($request->verification_status == 'rejected_by_lrd') {
+            if($request->declined_reason == 'other')
+            {
+                $farmer->declined_reason = $request->other_reason;
+            }
+            else{
+                $farmer->declined_reason = $request->declined_reason;
+            }
         }
         else{
             $farmer->declined_reason = null;
