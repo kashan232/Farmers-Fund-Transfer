@@ -25,7 +25,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('')}}/login_assets/vendor/daterangepicker/daterangepicker.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('')}}/login_assets/css/util.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('')}}/login_assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('')}}/login_assets/css/main.css">\
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <!--===============================================================================================-->
 </head>
 
@@ -63,7 +65,23 @@
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
                         <input class="input100" type="password" name="password" id="passwordInput" required>
-                        <i id="togglePassword" class="fa fa-eye" style="cursor: pointer; margin-left: -30px;"></i>
+                        
+                        <i id="togglePassword" class="fa-solid fa-eye" style="cursor: pointer; margin-left: -30px;"></i>
+
+<script>
+const togglePassword = document.getElementById('togglePassword');
+const passwordInput = document.getElementById('passwordInput');
+
+togglePassword.addEventListener('click', function () {
+    // Toggle password visibility
+    const type = passwordInput.type === 'password' ? 'text' : 'password';
+    passwordInput.type = type;
+
+    // Toggle the eye / eye-slash icon
+    this.classList.toggle('fa-eye');
+    this.classList.toggle('fa-eye-slash');
+});
+</script>
 
                         <span class="focus-input100"></span>
                         <span class="label-input100">Password</span>
@@ -97,23 +115,22 @@
         </div>
     </div>
 
+
     <script>
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.getElementById('passwordInput');
-        
-        togglePassword.addEventListener('click', function () {
-            // Toggle password visibility
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                this.classList.remove('fa-eye');
-                this.classList.add('fa-eye-slash');
+        function togglePassword() {
+            const passwordInput = document.getElementById("passwordInput");
+            const button = event.target;
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                button.textContent = "Hide";
             } else {
-                passwordInput.type = 'password';
-                this.classList.remove('fa-eye-slash');
-                this.classList.add('fa-eye');
+                passwordInput.type = "password";
+                button.textContent = "Show";
             }
-        });
+        }
         </script>
+
 
     <!--===============================================================================================-->
     <script src="{{asset('')}}/login_assets/vendor/jquery/jquery-3.2.1.min.js"></script>
