@@ -63,7 +63,8 @@
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
                         <input class="input100" type="password" name="password" id="passwordInput" required>
-                        <i id="togglePassword" class="fa-solid fa-eye" style="cursor: pointer; margin-left: -30px;"></i>
+                        <i id="togglePassword" class="fa fa-eye" style="cursor: pointer; margin-left: -30px;"></i>
+
                         <span class="focus-input100"></span>
                         <span class="label-input100">Password</span>
                     </div>
@@ -96,22 +97,23 @@
         </div>
     </div>
 
-
     <script>
-        function togglePassword() {
-            const passwordInput = document.getElementById("passwordInput");
-            const button = event.target;
-
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                button.textContent = "Hide";
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('passwordInput');
+        
+        togglePassword.addEventListener('click', function () {
+            // Toggle password visibility
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.classList.remove('fa-eye');
+                this.classList.add('fa-eye-slash');
             } else {
-                passwordInput.type = "password";
-                button.textContent = "Show";
+                passwordInput.type = 'password';
+                this.classList.remove('fa-eye-slash');
+                this.classList.add('fa-eye');
             }
-        }
+        });
         </script>
-
 
     <!--===============================================================================================-->
     <script src="{{asset('')}}/login_assets/vendor/jquery/jquery-3.2.1.min.js"></script>
