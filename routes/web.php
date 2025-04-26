@@ -341,7 +341,7 @@ Route::post('/dd/store/farmer', [DDOfficerPanelController::class, 'store_farmer'
 Route::post('/verifiy/farmer/by/dd/officer', [DDOfficerPanelController::class, 'verify_farmer'])->name('verify-farmer-by-dd');
 
 
-Route::get('/ao/farmers', [AgricultureOfficerPanelController::class, 'farmers_index'])->name('ao-farmers');
+Route::get('/ao/farmerss', [AgricultureOfficerPanelController::class, 'farmers_index'])->name('ao-farmers');
 Route::get('/ao/create/farmer', [AgricultureOfficerPanelController::class, 'farmer_create'])->name('ao-create-farmer');
 Route::get('/ao/edit/farmer/{id}', [AgricultureOfficerPanelController::class, 'farmer_edit'])->name('ao-edit-farmer');
 Route::post('/ao/store/farmer', [AgricultureOfficerPanelController::class, 'store_farmer'])->name('ao-store-farmer');
