@@ -266,7 +266,7 @@ class AgricultureOfficerPanelController extends Controller
                   ->orWhere('verification_status', 'verified_by_do')
                   ->orWhere('verification_status', null);
         })
-        ->paginate(5);
+        ->get();
 
 
 
