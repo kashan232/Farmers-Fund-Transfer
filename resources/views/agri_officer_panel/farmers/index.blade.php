@@ -125,8 +125,8 @@
                                                         <td>{{ $farmer->tappa }}</td>
                                                         <td>{{ $farmer->village }}</td>
                                                         <td>
-                                                            @if ($farmer->verification_status == 'rejected_by_lrd')
-                                                            <span class="badge text-bg-danger">Rejected By LRD</span>
+                                                            @if ($farmer->verification_status == 'rejected_by_dd')
+                                                            <span class="badge text-bg-danger">Rejected By DD</span>
                                                             @elseif($farmer->verification_status == 'rejected_by_do')
                                                             <span class="badge text-bg-danger">Rejected By Additional Director</span>
                                                             @elseif($farmer->verification_status == 'verified_by_do')
@@ -264,14 +264,14 @@
     //         </div>
 
 
-    <div class="col-3" style="position: absolute; top:1%" >
-                <select name="tehsil" id="tehsil" class="form-control">
-                    <option value="0">Please Select Taluka</option>
-                    @foreach ($tehsils as $tehsil)
-                        <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
-                    @endforeach
-                </select>
-            </div>
+    // <div class="col-3" style="position: absolute; top:1%" >
+    //     <select name="tehsil" id="tehsil" class="form-control">
+    //         <option value="0">Please Select Taluka</option>
+    //         @foreach ($tehsils as $tehsil)
+    //             <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
+    //         @endforeach
+    //     </select>
+    // </div>
     $(document).ready(function() {
     // Event listener for opening the modal
 

@@ -291,7 +291,7 @@ class AgricultureOfficerPanelController extends Controller
         ->whereIn('tehsil', json_decode($user->tehsil))
         ->whereIn('tappa', json_decode($user->tappas))
         ->where(function($query) {
-            $query->where('verification_status', 'rejected_by_lrd')
+            $query->where('verification_status', 'rejected_by_dd')
             ->orWhere('verification_status', 'verified_by_fa');
         })
         ->get();
