@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Intervention\Image\Facades\Image;
+// use Intervention\Image\Facades\Image;
 use App\Models\LandRevenueDepartment;
 use Illuminate\Http\Request;
 use App\Models\LandRevenueFarmerRegistation;
