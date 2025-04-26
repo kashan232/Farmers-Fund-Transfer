@@ -184,7 +184,7 @@ class FieldOfficerPanelController extends Controller
 
             if($request->declined_reason == 'other')
             {
-                $farmer->declined_reason = $request->declined_reason;
+                $farmer->declined_reason = $request->other_reason;
             }
             else{
                 $farmer->declined_reason = $request->declined_reason;

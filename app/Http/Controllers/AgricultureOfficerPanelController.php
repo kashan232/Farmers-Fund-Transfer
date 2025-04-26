@@ -322,7 +322,13 @@ class AgricultureOfficerPanelController extends Controller
         // Update farmer verification status
         $farmer->verification_status = $request->verification_status;
         if ($request->verification_status == 'rejected_by_ao') {
-            $farmer->declined_reason = $request->declined_reason;
+            if($request->declined_reason == 'other')
+            {
+                $farmer->declined_reason = $request->other_reason;
+            }
+            else{
+                $farmer->declined_reason = $request->declined_reason;
+            }
         }
         else{
             $farmer->declined_reason = null;
