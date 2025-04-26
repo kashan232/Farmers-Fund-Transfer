@@ -128,7 +128,7 @@
                                                             @if ($farmer->verification_status == 'rejected_by_lrd')
                                                                 <span class="badge text-bg-danger">Rejected By LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_fa')
-                                                                <span class="badge text-bg-info">Forwarded by AO</span>
+                                                                <span class="badge text-bg-info">Forwarded by FA</span>
                                                             @endif
                                                         </td>
                                                         @if ($farmer->declined_reason != null || $farmer->declined_reason != '')
