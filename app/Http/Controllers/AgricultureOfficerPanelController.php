@@ -294,7 +294,7 @@ class AgricultureOfficerPanelController extends Controller
             $query->where('verification_status', 'rejected_by_lrd')
             ->orWhere('verification_status', 'verified_by_fa');
         })
-        ->paginate(10);
+        ->get();
 
 
         return view('agri_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
