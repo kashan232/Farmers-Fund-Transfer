@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-// use Intervention\Image\Facades\Image;
+use Intervention\Image\Facades\Image;
 use App\Models\LandRevenueDepartment;
 use Illuminate\Http\Request;
 use App\Models\LandRevenueFarmerRegistation;
@@ -305,7 +305,7 @@ class FieldOfficerPanelController extends Controller
 
 
         if ($request->old_front_id_card != 1){
-            $rules['front_id_card'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+            $rules['front_id_card'] = 'required';
         }
         if ($request->old_back_id_card != 1){
             $rules['back_id_card'] = 'required|max:500|file|mimes:jpg,png,jpeg';
@@ -411,12 +411,28 @@ class FieldOfficerPanelController extends Controller
 
 
              // Handle front ID card image
-            if ($request->hasFile('front_id_card')) {
-                $front_id_cardimage = $request->file('front_id_card');
-                $front_id_cardimageName = time() . '_' . uniqid() . '.' . $front_id_cardimage->getClientOriginalExtension();
-                $front_id_cardimage->move(public_path('fa_farmers/front_id_card'), $front_id_cardimageName);
-                $data['front_id_card'] = $front_id_cardimageName;
-            }
+
+
+             if ($request->hasFile('front_id_card')) {
+                 $front_id_cardimage = $request->file('front_id_card');
+                 $front_id_cardimageName = time() . '_' . uniqid() . '.webp'; // Notice: .webp extension
+
+                 // Create image instance
+                 $image = Image::make($front_id_cardimage->getRealPath());
+
+                 // Optional: Resize if needed
+                 // $image->resize(1200, null, function ($constraint) {
+                 //     $constraint->aspectRatio();
+                 //     $constraint->upsize();
+                 // });
+
+                 // Save as .webp with 80% quality
+                 $image->encode('webp', 80)->save(public_path('fa_farmers/front_id_card/' . $front_id_cardimageName));
+
+                 $data['front_id_card'] = $front_id_cardimageName;
+             }
+
+
 
             // Handle back ID card image
             if ($request->hasFile('back_id_card')) {
