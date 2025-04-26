@@ -532,7 +532,7 @@
                                             </div>
                                             <div class="mt-2 col-md-4">
                                                 <label class="form-label">(7) Survey No(s):</label>
-                                                <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z0-9,]/g, '').slice(0, 10)">
+                                                <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" >
                                             </div>
                                         </div>
 
@@ -915,8 +915,8 @@
 
 
                                         <div class="mb-6 col-md-4 mt-2">
-                                            <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
-                                            <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" value="{{$data->date_of_birth ?? ''}}" >
+                                            <label class="form-label">Date of Birth (D-M-Y) <span class="text-danger">*</span></label>
+                                            <input type="text" name="date_of_birth" placeholder="XX-XX-XXXX" id="date_of_birth" class="form-control" value="{{$data->date_of_birth ?? ''}}" >
                                         </div>
 
                                         <div class="mb-6 col-md-4 mt-2">
