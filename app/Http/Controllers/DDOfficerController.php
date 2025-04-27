@@ -60,7 +60,8 @@ class DDOfficerController extends Controller
             $district = json_encode($request->input('district'));
             $tehsil = json_encode($request->input('tehsil'));
             $tappa = json_encode($request->input('tappa'));
-            $plainPassword = Str::upper(Str::random(8));
+            $plainPassword = (string) random_int(10000000, 99999999);
+
 
 
 
@@ -133,7 +134,8 @@ class DDOfficerController extends Controller
 
 
             // Generate a unique 8-digit numeric password
-            $plainPassword = Str::upper(Str::random(8));
+            $plainPassword = (string) random_int(10000000, 99999999);
+
 
 
             $DDOfficer = DDOfficer::create([

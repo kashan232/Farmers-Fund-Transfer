@@ -78,7 +78,8 @@ class FieldOfficerController extends Controller
     {
 
 
-        $plainPassword = Str::upper(Str::random(8));
+        $plainPassword = (string) random_int(10000000, 99999999);
+
         if (Auth::id()) {
 
             try {

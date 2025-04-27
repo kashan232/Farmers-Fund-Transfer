@@ -128,7 +128,8 @@ class LandRevenueController extends Controller
 
 
 
-            $plainPassword = Str::upper(Str::random(8));
+            $plainPassword = (string) random_int(10000000, 99999999);
+
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
             $tehsil = json_encode($request->input('tehsil'));
@@ -204,7 +205,8 @@ class LandRevenueController extends Controller
 
 
                 // Generate a unique 8-digit numeric password
-                $plainPassword = Str::upper(Str::random(8));
+                $plainPassword = (string) random_int(10000000, 99999999);
+
 
 
                 $LandRevenueDepartment = LandRevenueDepartment::create([

@@ -78,7 +78,8 @@ class AgricultureOfficerController extends Controller
             $tehsil = json_encode($request->input('tehsil'));
             $tappa = json_encode($request->input('tappa'));
 
-            $plainPassword = Str::upper(Str::random(8));
+            $plainPassword = (string) random_int(10000000, 99999999);
+
 
 
             if($request->edit_id && $request->edit_id != '')
@@ -143,7 +144,8 @@ class AgricultureOfficerController extends Controller
 
 
                 // Generate a unique 8-digit numeric password
-                $plainPassword = Str::upper(Str::random(8));
+                $plainPassword = (string) random_int(10000000, 99999999);
+
 
 
                 $AgriOfficer = AgriOfficer::create([
