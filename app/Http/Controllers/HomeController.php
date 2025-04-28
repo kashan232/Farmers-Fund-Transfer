@@ -205,7 +205,9 @@ class HomeController extends Controller
                 ->whereIn('verification_status', [
                     'rejected_by_ao',
                     'verified_by_fa',
-                    'verified_by_ao'
+                    'verified_by_ao',
+                    'verified_by_lrd',
+
                 ])
                 ->count();
 
