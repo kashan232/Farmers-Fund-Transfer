@@ -1020,27 +1020,27 @@
                                     <span> <b>Title of Account : </b></span> <span
                                         style="border-bottom: 1px solid black;">{{ $data->account_title }}</span></td>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
-                                    <span> <b>Q24. &nbsp;&nbsp; Account no : </b> </span> <span
-                                        style="border-bottom: 1px solid black;">{{ $data->account_no }}</span></td>
+                                    <span> <b>Q24. &nbsp;&nbsp; Mother's Maiden Name : </b> </span> <span
+                                        style="border-bottom: 1px solid black;">{{ $data->mother_maiden_name }}</span></td>
 
                             </tr>
                             <tr>
                                 <th class="question"> Q25.</th>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
-                                    <span> <b> Bank Name:</b></span> <span
-                                        style="border-bottom: 1px solid black;">{{ $data->bank_name }}</span></td>
+                                    <span> <b> Date of Birth:</b></span> <span
+                                        style="border-bottom: 1px solid black;">{{ $data->date_of_birth }}</span></td>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
-                                    <span> <b>Q26. &nbsp;&nbsp; Branch Name : </b> </span> <span
-                                        style="border-bottom: 1px solid black;">{{ $data->branch_name }}</span></td>
+                                    <span> <b>Q26. &nbsp;&nbsp; Marital status : </b> </span> <span
+                                        style="border-bottom: 1px solid black;">{{ $data->marital_status }}</span></td>
                             </tr>
                             <tr>
                                 <th class="question"> Q27.</th>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
-                                    <span> <b> IBAN:</b></span> <span
-                                        style="border-bottom: 1px solid black;">{{ $data->IBAN_number }}</span></td>
+                                    <span> <b> Correspondence Address:</b></span> <span
+                                        style="border-bottom: 1px solid black;">{{ $data->correspondence_address }}</span></td>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
-                                    <span> <b>Q28. &nbsp;&nbsp; Branch code : </b> </span> <span
-                                        style="border-bottom: 1px solid black;">{{ $data->branch_code }}</span></td>
+                                    <span> <b>Q28. &nbsp;&nbsp; Permanent Address : </b> </span> <span
+                                        style="border-bottom: 1px solid black;">{{ $data->permanent_address }}</span></td>
                             </tr>
 
 

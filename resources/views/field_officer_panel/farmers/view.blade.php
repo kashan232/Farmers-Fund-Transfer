@@ -194,20 +194,20 @@
                         <tr>
                             <th>Account Title</th>
                             <td>{{ $data->account_title }}</td>
-                            <th>Account No</th>
-                            <td colspan="6">{{ $data->account_no }}</td>
+                            <th>Mother's Maiden Name</th>
+                            <td colspan="6">{{ $data->mother_maiden_name }}</td>
                         </tr>
                         <tr>
-                            <th>Bank Name</th>
-                            <td>{{ $data->bank_name }}</td>
-                            <th>Branch Name</th>
-                            <td colspan="6">{{ $data->branch_name }}</td>
+                            <th>Marital status</th>
+                            <td>{{ $data->marital_status }}</td>
+                            <th>Date of Birth</th>
+                            <td colspan="6">{{ $data->date_of_birth }}</td>
                         </tr>
                         <tr>
-                            <th>IBAN Number</th>
-                            <td>{{ $data->IBAN_number }}</td>
-                            <th>Branch Code</th>
-                            <td colspan="6">{{ $data->branch_code }}</td>
+                            <th>Correspondence Address</th>
+                            <td>{{ $data->correspondence_address }}</td>
+                            <th>Permanent Address</th>
+                            <td colspan="6">{{ $data->permanent_address }}</td>
                         </tr>
 
                         <tr>

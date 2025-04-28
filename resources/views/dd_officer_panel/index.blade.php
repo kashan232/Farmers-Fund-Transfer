@@ -83,7 +83,7 @@
                         <p>Farmer Registration</p>
                     </div>
                     <div class="row">
-                       
+
                         <div class="col-md-6 p-3">
                             <div class="chart-heading text-center pt-2 pb-2" style="font-weight: bold;">Field Officer</div>
                             <div class="chart-wrapper">
@@ -207,7 +207,7 @@
     };
 
     new ApexCharts(document.querySelector("#districtOfficerTehsilWiseRegistrationChart"), districtOfficerOptions).render();
-    
+
 </script>
 
 </body>
