@@ -207,6 +207,7 @@ class HomeController extends Controller
                     'verified_by_fa',
                     'verified_by_ao',
                     'verified_by_lrd',
+                    'verified_by_dd',
 
                 ])
                 ->count();
