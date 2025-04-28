@@ -337,23 +337,23 @@
                     @endif
 
 
-                    {{-- @if (Auth::user()->usertype != 'Field_Officer' && Auth::user()->usertype == 'Agri_Officer')
-                        @if ( $data->verification_status != 'verified_by_do' || $data->verification_status != 'verified_by_ao')
+                    @if (Auth::user()->usertype != 'Field_Officer' && Auth::user()->usertype == 'Agri_Officer')
+                        @if ( $data->verification_status != 'verified_by_do' && $data->verification_status != 'verified_by_ao')
                             <button type="button" class="btn btn-sm btn-success verifiy-btn "
                                 data-id="{{ $data->id }}">Verify</button> &nbsp;
                         @endif
-                    @endif --}}
+                    @endif
 
                    {{-- {{ dd($data->user_type)}} --}}
                     @if (Auth::user()->usertype != 'Field_Officer' && Auth::user()->usertype == 'DD_Officer')
-                        @if ($data->verification_status != 'verified_by_do' || $data->verification_status != 'verified_by_dd')
+                        @if ($data->verification_status != 'verified_by_do' && $data->verification_status != 'verified_by_dd')
                             <button type="button" class="btn btn-sm btn-success verifiy-btn "
                                 data-id="{{ $data->id }}">Verify</button> &nbsp;
                         @endif
                     @endif
 
                     @if (Auth::user()->usertype != 'Field_Officer' && Auth::user()->usertype == 'Land_Revenue_Officer')
-                    @if ($data->verification_status != 'verified_by_do' || $data->verification_status != 'verified_by_lrd')
+                    @if ($data->verification_status != 'verified_by_do' && $data->verification_status != 'verified_by_lrd')
                         <button type="button" class="btn btn-sm btn-success verifiy-btn "
                             data-id="{{ $data->id }}">Verify</button> &nbsp;
                     @endif
