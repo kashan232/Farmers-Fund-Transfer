@@ -269,9 +269,11 @@ class HomeController extends Controller
 
                 ->whereIn('tehsil', json_decode($user->tehsil))
                 ->whereIn('tappa', json_decode($user->tappas))
-                ->where('verification_status',
+                ->whereIn('verification_status', [
+                   
+                    'verified_by_lrd',
                     'verified_by_dd'
-                )
+                ])
                 ->count();
 
                 return view('dd_officer_panel.index', [
