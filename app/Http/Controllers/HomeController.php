@@ -250,7 +250,7 @@ class HomeController extends Controller
                 ->whereIn('tappa', json_decode($user->tappas))
                 ->whereIn('verification_status', [
                     'rejected_by_dd',
-                    'verified_by_fa',
+                    'verified_by_ao',
                     'verified_by_dd'
                 ])
                 ->count();
