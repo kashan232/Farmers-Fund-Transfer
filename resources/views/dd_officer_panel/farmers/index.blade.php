@@ -129,7 +129,7 @@
                                                                 <span class="badge text-bg-danger">Rejected By LRD</span>
                                                             @elseif($farmer->verification_status == 'rejected_by_dd')
                                                             <span class="badge text-bg-danger">Rejected By DD</span>
-                                                                
+
                                                             @elseif($farmer->verification_status == 'verified_by_dd')
                                                                 <span class="badge text-bg-info">Forwarded to LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_lrd')
@@ -153,8 +153,10 @@
                                                                 <a class="btn btn-primary" href="{{route('dd-edit-farmer',$farmer->id)}}">Edit</a> &nbsp;
                                                                 @endif --}}
                                                             {{-- <a class="btn btn-primary btn-sm" href="{{route('dd-view-farmers',$farmer->id)}}">View</a> --}}
+                                                            @if($farmer->verification_status == 'verified_by_lrd')
+                                                            @else
                                                             <a class="btn btn-primary btn-sm" href="{{route('view-farmers-by-field-officer',$farmer->id)}}">View</a>
-
+                                                            @endif
                                                             </div>
                                                         </td>
 

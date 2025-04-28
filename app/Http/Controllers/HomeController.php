@@ -215,7 +215,7 @@ class HomeController extends Controller
                 ->whereIn('tehsil', json_decode($user->tehsil))
                 ->whereIn('tappa', json_decode($user->tappas))
                 ->where('verification_status',
-                    'rejected_by_dd'
+                    'rejected_by_ao'
                 )
                 ->count();
 
