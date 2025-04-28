@@ -138,8 +138,8 @@
                                                             <span class="badge text-bg-primary">Forwarded by AO</span>
                                                             @elseif($all_land_farmer->verification_status == 'verified_by_dd' && $all_land_farmer->declined_reason == '')
                                                             <span class="badge text-bg-primary">Forwarded by DD</span>
-                                                            @elseif($all_land_farmer->verification_status == 'verified_by_lo')
-                                                            <span class="badge text-bg-success">Approved Farmers</span>
+                                                            @elseif($all_land_farmer->verification_status == 'verified_by_lrd')
+                                                            <span class="badge text-bg-success">Verified</span>
                                                             @elseif($all_land_farmer->declined_reason != null || $all_land_farmer->declined_reason != '')
                                                             <span class="badge bg-danger">Rejected</span>
                                                             @else
