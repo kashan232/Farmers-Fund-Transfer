@@ -1014,6 +1014,18 @@
 
                                 <th colspan="8 " class="p-3">Bank & Account Details : </th>
                             </tr>
+
+                            <tr>
+                                <th class="question"> </th>
+                                <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
+                                    <span> <b>City : </b></span> <span
+                                        style="border-bottom: 1px solid black;">{{ $data->city }}</span></td>
+                                <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
+                                    <span> <b> &nbsp;&nbsp; Preferred Branch Name : </b> </span> <span
+                                        style="border-bottom: 1px solid black;">{{ $data->branch_name }}</span></td>
+
+                            </tr>
+
                             <tr>
                                 <th class="question"> Q23.</th>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
