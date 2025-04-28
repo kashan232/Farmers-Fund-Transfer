@@ -292,9 +292,10 @@ class AgricultureOfficerPanelController extends Controller
         ->whereIn('tappa', json_decode($user->tappas))
         ->where(function($query) {
             $query->where('verification_status', 'rejected_by_dd')
-            ->orWhere('verification_status', 'verified_by_fa');
+            ->orWhere('verification_status', 'verified_by_fa')
+            ->orWhere('verification_status', 'verified_by_ao');
         })
-        ->get();
+        ->latest()->get();
 
 
         return view('agri_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
