@@ -251,10 +251,10 @@ class HomeController extends Controller
                 ->whereIn('verification_status', [
                     'rejected_by_dd',
                     'verified_by_ao',
-                    'verified_by_dd'
+                    'verified_by_dd', 'rejected_by_lrd'
                 ])
                 ->count();
-
+            
 
                 $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
 
