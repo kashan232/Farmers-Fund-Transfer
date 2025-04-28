@@ -102,7 +102,7 @@ class AgricultureOfficerController extends Controller
 
                         ];
 
-                       
+
 
 
                         // Update AgriOfficer record
@@ -125,7 +125,7 @@ class AgricultureOfficerController extends Controller
                                 'usertype' => 'Agri_Officer', // Set the usertype to 'employee'
                             ];
 
-                          
+
 
 
                             // Update User record

@@ -1190,7 +1190,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">CNIC FRONT <span class="text-danger" > *</span> <p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p> </h6>
+                                                          <h6 class="mb-4" style="height: 50px;">CNIC FRONT <span class="text-danger" > *</span>  </h6>
                                                           @if(isset($data) && $data->front_id_card != null) <input type="hidden"  class="old_image  old_checkfiles old_checkfile_front_id_card" name="old_front_id_card" value="1" > @endif
                                                           <input type="file"  class="image-input checkfiles checkfile_front_id_card" name="front_id_card" id="front_id_card"  accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->front_id_card != null) style="display: none " @endif   >
@@ -1207,7 +1207,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img " style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">CNIC BACK <span class="text-danger" > *</span><p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p></h6>
+                                                          <h6 class="mb-4" style="height: 50px;">CNIC BACK <span class="text-danger" > *</span></h6>
                                                           @if(isset($data) && $data->back_id_card != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_back_id_card" name="old_back_id_card" value="1" > @endif
                                                           <input type="file"  class="image-input checkfiles checkfile_back_id_card" name="back_id_card" id="back_id_card" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->back_id_card != null) style="display: none " @endif   >
@@ -1224,7 +1224,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">Form VII <span class="text-danger" > *</span><p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">File size must be <span>1000KB</span><p style="    text-transform: uppercase; font-size: 12px; margin-top: 5px;">jpg, png, jpeg, pdf</p></p></h6><br>
+                                                          <h6 class="mb-4" style="height: 50px;">Form VII <span class="text-danger" > *</span><p style="    text-transform: uppercase; font-size: 12px; margin-top: 5px;">jpg, png, jpeg, pdf</p></p></h6><br>
                                                           @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
                                                           <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
@@ -1241,7 +1241,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">Forms VIII A/ Affidavit/ Heirship (Land Documents) <p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p> </h6>
+                                                          <h6 class="mb-4" style="height: 50px;">Forms VIII A/ Affidavit/ Heirship (Land Documents)  </h6>
                                                           @if(isset($data) && $data->upload_land_proof != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_land_proof" name="old_upload_land_proof" value="1" > @endif
                                                           <input type="file"  class="image-input  checkfile_upload_land_proof" name="upload_land_proof" id="upload_land_proof" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif   >
@@ -1257,7 +1257,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">Photo <span class="text-danger" > *</span> <p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p></h6>
+                                                          <h6 class="mb-4" style="height: 50px;">Photo <span class="text-danger" > *</span> </h6>
                                                           @if(isset($data) && $data->upload_farmer_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_farmer_pic" name="old_upload_farmer_pic" value="1" > @endif
                                                           <input type="file"  class="image-input checkfiles checkfile_upload_farmer_pic" name="upload_farmer_pic" id="upload_farmer_pic" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_farmer_pic != null) style="display: none " @endif   >
@@ -1291,7 +1291,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">No Objection Affidavit in case of joint ownership / khata <p style="color: #ff4949; margin:0; margin-top: 5px; font-size: small;">Image size must be <span>500KB</span></p></h6>
+                                                          <h6 class="mb-4" style="height: 50px;">No Objection Affidavit in case of joint ownership / khata </h6>
                                                           @if(isset($data) && $data->no_objection_affidavit_pic != null) <input type="hidden"  class="old_image " name="old_no_objection_affidavit_pic" value="1" > @endif
                                                           <input type="file"  class="image-input" name="no_objection_affidavit_pic" accept="image/*" hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: none " @endif   >

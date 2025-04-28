@@ -305,29 +305,29 @@ class FieldOfficerPanelController extends Controller
 
 
         if ($request->old_front_id_card != 1){
-            $rules['front_id_card'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+            $rules['front_id_card'] = 'required|file|mimes:jpg,png,jpeg';
         }
         if ($request->old_back_id_card != 1){
-            $rules['back_id_card'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+            $rules['back_id_card'] = 'required|file|mimes:jpg,png,jpeg';
         }
         if ($request->old_form_seven_pic != 1){
-            $rules['form_seven_pic'] = 'required|max:1024|file|mimes:jpg,png,jpeg,pdf';
+            $rules['form_seven_pic'] = 'required|file|mimes:jpg,png,jpeg,pdf';
         }
         if ($request->old_upload_farmer_pic != 1){
-            $rules['upload_farmer_pic'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+            $rules['upload_farmer_pic'] = 'required|file|mimes:jpg,png,jpeg';
         }
         // if ($request->old_upload_land_proof != 1){
-        //     $rules['upload_land_proof'] = 'required|max:500|file|mimes:jpg,png,jpeg';
+        //     $rules['upload_land_proof'] = 'required|file|mimes:jpg,png,jpeg';
         // }
 
 
 
 
         $messages = [
-            'front_id_card.max' => 'The ID card file size must not exceed 500KB.',
-            'back_id_card.max' => 'The ID card file size must not exceed 500KB.',
-            'form_seven_pic.max' => 'The Form VII proof file size must not exceed 1024KB.',
-            'upload_farmer_pic.max' => 'The farmer photo file size must not exceed 500KB.',
+            // 'front_id_card.max' => 'The ID card file size must not exceed 500KB.',
+            // 'back_id_card.max' => 'The ID card file size must not exceed 500KB.',
+            // 'form_seven_pic.max' => 'The Form VII proof file size must not exceed 1024KB.',
+            // 'upload_farmer_pic.max' => 'The farmer photo file size must not exceed 500KB.',
             'form_seven_pic.required' => 'Forms VII / Registry from Micro (Land Documents) is required.',
             'upload_land_proof.required' => 'Forms VII/ VIII A/ Affidavit/ Heirship / Registry from Micro (Land Documents) is required.',
 
