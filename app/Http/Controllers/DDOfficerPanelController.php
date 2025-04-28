@@ -24,15 +24,25 @@ class DDOfficerPanelController extends Controller
         $user = User::find(Auth::id());
         $tehsils = Tehsil::whereIn('district', json_decode($user->district))->get();
 
-        $farmers = LandRevenueFarmerRegistation::whereIn('district',json_decode($user->district))
-        ->whereIn('tehsil',json_decode($user->tehsil))
-        ->whereIn('tappa',json_decode($user->tappas))
-        ->where(function($query) {
-            $query->where('verification_status', 'rejected_by_lrd')
-                  ->orWhere('verification_status', 'verified_by_ao')
-                  ->orWhere('verification_status', 'verified_by_dd')
-                  ->orWhere('verification_status', 'rejected_by_dd');
-        })
+        // $farmers = LandRevenueFarmerRegistation::whereIn('district',json_decode($user->district))
+        // ->whereIn('tehsil',json_decode($user->tehsil))
+        // ->whereIn('tappa',json_decode($user->tappas))
+        // ->where(function($query) {
+        //     $query->where('verification_status', 'rejected_by_lrd')
+        //           ->orWhere('verification_status', 'verified_by_ao')
+        //           ->orWhere('verification_status', 'verified_by_dd')
+        //           ->orWhere('verification_status', 'rejected_by_dd');
+        // })
+
+        $farmers =  LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
+
+                ->whereIn('tehsil', json_decode($user->tehsil))
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->whereIn('verification_status', [
+                    'rejected_by_dd',
+                    'verified_by_ao',
+                    'verified_by_dd', 'rejected_by_lrd'
+                ])
         ->latest()->get();
 
 
