@@ -127,6 +127,9 @@
                                                         <td>
                                                             @if ($farmer->verification_status == 'rejected_by_lrd')
                                                                 <span class="badge text-bg-danger">Rejected By LRD</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_dd')
+                                                            <span class="badge text-bg-danger">Rejected By DD</span>
+                                                                
                                                             @elseif($farmer->verification_status == 'verified_by_dd')
                                                                 <span class="badge text-bg-info">Forwarded to LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_lrd')
