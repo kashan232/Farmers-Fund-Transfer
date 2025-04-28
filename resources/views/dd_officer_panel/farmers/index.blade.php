@@ -129,6 +129,8 @@
                                                                 <span class="badge text-bg-danger">Rejected By LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_fa')
                                                                 <span class="badge text-bg-info">Forwarded by FA</span>
+                                                            @elseif($farmer->verification_status == 'verified_by_lrd')
+                                                                <span class="badge text-bg-info">Forwarded by LRD</span>
                                                             @endif
                                                         </td>
                                                         @if ($farmer->declined_reason != null || $farmer->declined_reason != '')
@@ -159,7 +161,7 @@
                                             </table>
                                         </div>
                                         <div style="float:right; margin-top:10px">
-                                            {{ $farmers->links() }}
+                                            {{-- {{ $farmers->links() }} --}}
                                         </div>
                                     </div>
                                 </div>
