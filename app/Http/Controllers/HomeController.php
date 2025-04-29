@@ -205,10 +205,22 @@ class HomeController extends Controller
                 ->whereIn('verification_status', [
                     'rejected_by_ao',
                     'rejected_by_dd',
+                    'rejected_by_lrd',
                     'verified_by_fa',
                     'verified_by_ao',
                     'verified_by_lrd',
                     'verified_by_dd',
+
+
+                ])
+                ->count();
+
+
+                $process = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->whereIn('tehsil', json_decode($user->tehsil))
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->whereIn('verification_status', [
+                    'verified_by_dd', 'verified_by_lrd','rejected_by_lrd'
 
                 ])
                 ->count();
@@ -260,7 +272,7 @@ class HomeController extends Controller
                     'verified_by_lrd',
                 ])
                 ->count();
- 
+
 
                 // $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
                 // $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
@@ -271,7 +283,8 @@ class HomeController extends Controller
                     'rejected_by_ao' => $rejected_by_ao,
                     'unverified' => $unverified,
                     'rejected_by_dd' => $rejected_by_dd,
-                    'verified_by_lrd' => $verified_by_lrd
+                    'verified_by_lrd' => $verified_by_lrd,
+                    'process' => $process
                 ]);
             } else if ($usertype == 'DD_Officer') {
                 $userId = Auth::id();

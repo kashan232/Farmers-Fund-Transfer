@@ -128,13 +128,31 @@
                                 </div>
                             </div>
 
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title">In-Process Farmers</p>
+                                                <h3 class="card-text text-amount">{{ $process }}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Farmer Registration Charts -->
-            <div class="col-12 mt-3">
+            {{-- <div class="col-12 mt-3">
                 <div class="box--sec">
                     <div class="top-heading">
                         <p>Farmer Registration</p>
@@ -154,7 +172,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- <div class="col-12 mt-3">
                 <div class="box--sec">
