@@ -128,12 +128,14 @@
                                                             @if ($farmer->verification_status == 'rejected_by_lrd')
                                                                 <span class="badge text-bg-danger">Rejected By LRD</span>
                                                             @elseif($farmer->verification_status == 'rejected_by_dd')
-                                                            <span class="badge text-bg-danger">Rejected By DD</span>
+                                                            <span class="badge text-bg-danger">Rejected</span>
 
                                                             @elseif($farmer->verification_status == 'verified_by_dd')
-                                                                <span class="badge text-bg-info">Forwarded to LRD</span>
+                                                                <span class="badge text-bg-primary">Forwarded to LRD</span>
+                                                            @elseif($farmer->verification_status == 'verified_by_ao')
+                                                                <span class="badge text-bg-info">Unverified</span>
                                                             @elseif($farmer->verification_status == 'verified_by_lrd')
-                                                                <span class="badge text-bg-info">Verified</span>
+                                                                <span class="badge text-bg-success">Verified</span>
                                                             @endif
                                                         </td>
                                                         @if ($farmer->declined_reason != null || $farmer->declined_reason != '')
