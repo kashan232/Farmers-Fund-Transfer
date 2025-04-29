@@ -305,12 +305,22 @@ class HomeController extends Controller
                 ])
                 ->count();
 
+                $rejected_by_lrd = LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
+
+                ->whereIn('tehsil', json_decode($user->tehsil))
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->where('verification_status',
+                    'rejected_by_lrd'
+                )
+                ->count();
+
                 return view('dd_officer_panel.index', [
                     'agriUserfarmersCount' => $agriUserfarmersCount,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
                     'rejected' => $rejected,
-                    'verified' => $verified
+                    'verified' => $verified,
+                    'rejected_by_lrd' => $rejected_by_lrd
                 ]);
             } else if ($usertype == 'admin') {
                 // Fetching counts directly
