@@ -351,7 +351,7 @@
                     @if (Auth::user()->usertype != 'Field_Officer' && Auth::user()->usertype == 'Agri_Officer')
                         @if ( $data->verification_status != 'verified_by_lrd' && $data->verification_status != 'verified_by_dd' && $data->verification_status != 'verified_by_ao')
                             <button type="button" class="btn btn-sm btn-success verifiy-btn "
-                                data-id="{{ $data->id }}">Verifyd</button> &nbsp;
+                                data-id="{{ $data->id }}">Verify</button> &nbsp;
                         @endif
                     @endif
 
