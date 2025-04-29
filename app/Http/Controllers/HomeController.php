@@ -260,7 +260,7 @@ class HomeController extends Controller
                     'verified_by_lrd',
                 ])
                 ->count();
-
+ 
 
                 // $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
                 // $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
