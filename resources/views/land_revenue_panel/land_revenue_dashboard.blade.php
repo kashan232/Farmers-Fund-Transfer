@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <div class="col-12 mt-3">
+            {{-- <div class="col-12 mt-3">
                 <div class="box--sec">
                     <div class="top-heading">
                         <p>Farmer Registration Source Overview (Field Officer & Online Farmers)</p>
@@ -127,7 +127,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
 
 
