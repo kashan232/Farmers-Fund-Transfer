@@ -131,6 +131,8 @@
                                                             <span class="badge text-bg-danger">Rejected By Additional Director</span>
                                                             @elseif($farmer->verification_status == 'verified_by_ao')
                                                             <span class="badge text-bg-success">Forwarded to DD</span>
+                                                            @elseif($farmer->verification_status == 'verified_by_dd')
+                                                            <span class="badge text-bg-success">Forwarded to LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_lrd')
                                                             <span class="badge text-bg-success">Verified</span>
                                                             @elseif($farmer->user_type == 'Agri_Officer' && ($farmer->verification_status == null || $farmer->verification_status == 0))
