@@ -153,7 +153,7 @@
 
 
             <!-- Farmer Status Chart -->
-            <div class="col-lg-12 ">
+            {{-- <div class="col-lg-12 ">
                 <div class="box--sec">
                     <div class="top-heading">
                         <div>
@@ -162,7 +162,7 @@
                     </div>
                     <div id="farmerRejectionStatusBarChart"></div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <!-- [ Main Content ] end -->
     </div>
