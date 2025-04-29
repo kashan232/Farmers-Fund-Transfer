@@ -18,10 +18,11 @@
         padding-top: 5% !important;
     }
 
-    #example1_wrapper nav{
+    .table-responsive nav{
         float: right !important;
         margin-top: 1% !important;
     }
+
 </style>
 
 <!-- [ Main Content ] start -->
@@ -87,12 +88,20 @@
                                                         <td>
                                                             @if ($farmer->verification_status == 'verified_by_lrd')
                                                             <span class="badge text-bg-success text-dark font-weight-bold">Verified</span>
-                                                            @elseif($farmer->verification_status == 'rejected_by_ao')
-                                                            <span class="badge text-bg-danger text-dark font-weight-bold">Rejected By AO</span>
-                                                            @elseif($farmer->verification_status == 'rejected_by_lrd')
-                                                            <span class="badge text-bg-danger text-dark font-weight-bold">Rejected By LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_fa')
                                                             <span class="badge  text-bg-success text-dark font-weight-bold" >Forward to AO</span>
+                                                            @elseif($farmer->verification_status == 'verified_by_ao')
+                                                            <span class="badge  text-bg-success text-dark font-weight-bold" >Forward to DD</span>
+                                                            @elseif($farmer->verification_status == 'verified_by_dd')
+                                                            <span class="badge  text-bg-success text-dark font-weight-bold" >Forward to LRD</span>
+                                                            
+                                                            @elseif($farmer->verification_status == 'rejected_by_ao')
+                                                            <span class="badge text-bg-danger text-dark font-weight-bold">Rejected By AO</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_dd')
+                                                            <span class="badge text-bg-danger text-dark font-weight-bold">Rejected By DD</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_lrd')
+                                                            <span class="badge text-bg-danger text-dark font-weight-bold">Rejected By LRD</span>
+                                                            
                                                             @else
                                                             <span class="badge text-bg-primary text-white font-weight-bold">Unverified</span>
                                                             @endif
