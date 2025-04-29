@@ -340,9 +340,9 @@
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q4. Mobile No.: <span class="text-danger">*</span></label>
                                             <input type="text" id="mobile" name="mobile" class="form-control"
-    value="{{ $data->mobile ?? '' }}"
-    data-inputmask="'mask': '03##-#######'" 
-    placeholder="03XX-XXXXXXX">
+                                            value="{{ \Illuminate\Support\Str::of($data->mobile)->replaceMatches('/(\d{4})(\d{7})/', '$1-$2') }}"
+                                            data-inputmask="'mask': '03\\99-9999999'"
+                                            placeholder="03XX-XXXXXXX">
 
 
                                             {{-- <input type="text" id="mobile" name="mobile" class="form-control" value="{{ str_replace('-', '', $data->mobile ?? '') }}"  data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"  > --}}
@@ -1284,24 +1284,28 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
 
 <script>
 
+// $(document).ready(function () {
+//     $("input").inputmask(); // Apply mask only to input fields
+
+
+//     $(":input").inputmask({
+//     inputEventOnly: true  // Forces Inputmask to work on mobile
+// });
+
+
+
+// });
+
+
+
+// $(document).ready(function () {
+//     $(":input").inputmask(); // initializes all inputs with mask
+// });
+
+
 $(document).ready(function () {
-    $("input").inputmask(); // Apply mask only to input fields
-
-
-    $(":input").inputmask({
-    inputEventOnly: true  // Forces Inputmask to work on mobile
+    $(":input").inputmask(); // only once
 });
-
-
-
-});
-
-
-
-$(document).ready(function () {
-    $(":input").inputmask(); // initializes all inputs with mask
-});
-
 
 
 
