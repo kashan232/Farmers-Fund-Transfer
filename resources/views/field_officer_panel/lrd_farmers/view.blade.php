@@ -162,8 +162,8 @@
             document.getElementById('content').style.display = 'block';
         });
     </script>
-        
-    
+
+
     <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -349,7 +349,7 @@
 
 
                     @if (Auth::user()->usertype != 'Field_Officer' && Auth::user()->usertype == 'Agri_Officer')
-                        @if ( $data->verification_status != 'verified_by_do' && $data->verification_status != 'verified_by_ao')
+                        @if ( $data->verification_status != 'verified_by_lrd' && $data->verification_status != 'verified_by_dd' && $data->verification_status != 'verified_by_ao')
                             <button type="button" class="btn btn-sm btn-success verifiy-btn "
                                 data-id="{{ $data->id }}">Verify</button> &nbsp;
                         @endif
