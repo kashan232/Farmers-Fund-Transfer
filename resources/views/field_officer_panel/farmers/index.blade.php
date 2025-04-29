@@ -114,7 +114,7 @@
                                                         <td></td>
                                                         @endif
                                                         <td>
-                                                            @if($farmer->verification_status != 'verified_by_fa' || $farmer->verification_status != 'verified_by_ao' || $farmer->verification_status != 'verified_by_dd' || $farmer->verification_status != 'verified_by_lrd')
+                                                            @if($farmer->verification_status != 'verified_by_fa' && $farmer->verification_status != 'verified_by_ao' && $farmer->verification_status != 'verified_by_dd' && $farmer->verification_status != 'verified_by_lrd')
                                                             <div class="d-flex">
                                                                 {{-- <a href="{{ route('farmer-view-by-field-officer', ['id' => $farmer->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>&nbsp; --}}
 
