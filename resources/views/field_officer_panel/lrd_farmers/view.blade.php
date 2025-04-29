@@ -152,7 +152,18 @@
 
 <body>
 
+    <div id="loader" style="position: fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:9999; display:flex; align-items:center; justify-content:center;">
+        <h1>Loading...</h1>
+    </div>
 
+    <script>
+        window.addEventListener('load', function () {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        });
+    </script>
+        
+    
     <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
