@@ -672,14 +672,38 @@ class HomeController extends Controller
                     //     }
                     // }
                 }
-                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
-                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
-                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+
+                $total_farmers = LandRevenueFarmerRegistation::where('district', Auth::user()->district)
+                ->whereIn('tehsil',json_decode($user->tehsil))
+                ->where(function ($query) {
+                    $query->where('verification_status', 'verified_by_dd')
+                        ->orWhere('verification_status', 'rejected_by_lrd')
+                        ->orWhere('verification_status', 'verified_by_lrd');
+                })->count();
+
+
+                $rejected_farmers = LandRevenueFarmerRegistation::where('district', Auth::user()->district)
+                ->whereIn('tehsil',json_decode($user->tehsil))
+                ->where(function ($query) {
+                    $query->where('verification_status', 'rejected_by_lrd');
+                })->count();
+
+                $verified_farmers = LandRevenueFarmerRegistation::where('district', Auth::user()->district)
+                ->whereIn('tehsil',json_decode($user->tehsil))
+                ->where(function ($query) {
+                    $query->where('verification_status', 'verified_by_lrd');
+                })->count();
+
+
+
+                // $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
+                // $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
+                // $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
 
                 return view('land_revenue_panel.land_revenue_dashboard', [
-                    'agriUserfarmersCount' => $agriUserfarmersCount,
-                    'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
-                    'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
+                    'total_farmers' => $total_farmers,
+                    'verified_farmers' => $verified_farmers,
+                    'rejected_farmers' => $rejected_farmers,
                     'districtCount' => $districtCount,
                     'tehsilCount' => $tehsilCount,
                     'tappaCount' => $tappaCount,
