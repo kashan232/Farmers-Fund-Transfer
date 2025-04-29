@@ -339,7 +339,12 @@
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q4. Mobile No.: <span class="text-danger">*</span></label>
-                                            <input type="text" id="mobile" name="mobile" class="form-control" value="{{ str_replace('-', '', $data->mobile ?? '') }}"  data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"  >
+                                            <input type="text" id="mobile" name="mobile" class="form-control"
+    value="{{ $data->mobile ?? '' }}"
+    data-inputmask="'mask': '03\\99-9999999'" 
+    placeholder="03XX-XXXXXXX">
+
+                                            {{-- <input type="text" id="mobile" name="mobile" class="form-control" value="{{ str_replace('-', '', $data->mobile ?? '') }}"  data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"  > --}}
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q5. District</label>
@@ -483,6 +488,8 @@
                                                 <label class="form-label">Mobile No:</label>
                                                 <input type="text" name="mobile_of_next_kin" class="form-control" value="{{$data->mobile_of_next_kin ?? ''}}" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"  >
                                             </div>
+
+                                            
                                         </div>
 
                                         <div class="row" id="">
@@ -1287,6 +1294,16 @@ $(document).ready(function () {
 
 
 });
+
+
+
+$(document).ready(function () {
+    $(":input").inputmask(); // initializes all inputs with mask
+});
+
+
+
+
 
 </script>
 
