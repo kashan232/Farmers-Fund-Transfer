@@ -11,7 +11,7 @@
 <style>
     .table-responsive{
         position: relative !important;
-        padding-top: 5% !important;
+
     }
 
 
