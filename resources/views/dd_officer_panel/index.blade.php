@@ -42,7 +42,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">DD Verified Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $Verifiedfarmeragiruser }}</h3>
+                                                <h3 class="card-text text-amount">{{ $verified }}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
@@ -60,6 +60,44 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">DD Rejected Farmers</p>
+                                                <h3 class="card-text text-amount">{{ $rejected }}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                             <!-- Verified Farmers Card -->
+                             <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title">Verified Farmers</p>
+                                                <h3 class="card-text text-amount">{{ $Verifiedfarmeragiruser }}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-check" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Rejected Farmers Card -->
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title">Un-Verified Farmers</p>
                                                 <h3 class="card-text text-amount">{{ $Unverifiedfarmeragiruser }}</h3>
                                             </div>
                                             <div class="col-auto">
@@ -71,6 +109,8 @@
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>

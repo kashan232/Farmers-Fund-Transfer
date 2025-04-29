@@ -274,7 +274,25 @@ class HomeController extends Controller
                 ->whereIn('tehsil', json_decode($user->tehsil))
                 ->whereIn('tappa', json_decode($user->tappas))
                 ->where('verification_status',
+                    'verified_by_ao'
+                )
+                ->count();
+
+                $rejected = LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
+
+                ->whereIn('tehsil', json_decode($user->tehsil))
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->where('verification_status',
                     'rejected_by_dd'
+                )
+                ->count();
+
+                $verified = LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
+
+                ->whereIn('tehsil', json_decode($user->tehsil))
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->where('verification_status',
+                    'verified_by_dd'
                 )
                 ->count();
 
@@ -283,9 +301,7 @@ class HomeController extends Controller
                 ->whereIn('tehsil', json_decode($user->tehsil))
                 ->whereIn('tappa', json_decode($user->tappas))
                 ->whereIn('verification_status', [
-
                     'verified_by_lrd',
-                    'verified_by_dd'
                 ])
                 ->count();
 
@@ -293,6 +309,8 @@ class HomeController extends Controller
                     'agriUserfarmersCount' => $agriUserfarmersCount,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
+                    'rejected' => $rejected,
+                    'verified' => $verified
                 ]);
             } else if ($usertype == 'admin') {
                 // Fetching counts directly
