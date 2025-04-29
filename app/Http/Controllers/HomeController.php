@@ -198,12 +198,13 @@ class HomeController extends Controller
                 $user_id = Auth()->user()->user_id;
                 $user = User::find($userId);
 
-                $agriUserfarmersCount = LandRevenueFarmerRegistation::where('district', $user->district)
+                $total_farmers = LandRevenueFarmerRegistation::where('district', $user->district)
 
                 ->whereIn('tehsil', json_decode($user->tehsil))
                 ->whereIn('tappa', json_decode($user->tappas))
                 ->whereIn('verification_status', [
                     'rejected_by_ao',
+                    'rejected_by_dd',
                     'verified_by_fa',
                     'verified_by_ao',
                     'verified_by_lrd',
@@ -213,44 +214,64 @@ class HomeController extends Controller
                 ->count();
 
 
-                $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
-
+                $unverified = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->whereIn('tehsil', json_decode($user->tehsil))
                 ->whereIn('tappa', json_decode($user->tappas))
                 ->whereIn('verification_status', [
-
-                    'rejected_by_ao',
-                    'rejected_by_dd',
-                    'rejected_by_lrd',
-
-
+                    'verified_by_fa',
                 ])
                 ->count();
 
-                $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
 
+                $Verified_by_ao = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->whereIn('tehsil', json_decode($user->tehsil))
                 ->whereIn('tappa', json_decode($user->tappas))
                 ->whereIn('verification_status', [
-
-                    'verified_by_lrd',
                     'verified_by_ao',
-                    'verified_by_dd',
+                ])
+                ->count();
 
-
+                $rejected_by_ao = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->whereIn('tehsil', json_decode($user->tehsil))
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->whereIn('verification_status', [
+                    'rejected_by_ao',
                 ])
                 ->count();
 
 
+
+
+                $rejected_by_dd = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->whereIn('tehsil', json_decode($user->tehsil))
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->whereIn('verification_status', [
+                    'rejected_by_dd',
+                ])
+                ->count();
+
+
+
+
+                $verified_by_lrd = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->whereIn('tehsil', json_decode($user->tehsil))
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->whereIn('verification_status', [
+                    'verified_by_lrd',
+                ])
+                ->count();
 
 
                 // $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
                 // $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
                 // $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
                 return view('agri_officer_panel.index', [
-                    'agriUserfarmersCount' => $agriUserfarmersCount,
-                    'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
-                    'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
+                    'total_farmers' => $total_farmers,
+                    'Verified_by_ao' => $Verified_by_ao,
+                    'rejected_by_ao' => $rejected_by_ao,
+                    'unverified' => $unverified,
+                    'rejected_by_dd' => $rejected_by_dd,
+                    'verified_by_lrd' => $verified_by_lrd
                 ]);
             } else if ($usertype == 'DD_Officer') {
                 $userId = Auth::id();
