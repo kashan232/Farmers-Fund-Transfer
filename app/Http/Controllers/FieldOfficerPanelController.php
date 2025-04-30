@@ -232,7 +232,7 @@ class FieldOfficerPanelController extends Controller
             $user_name = Auth()->user()->name;
             $data = LandRevenueFarmerRegistation::with('city')->where('id', '=', $id)->first();
 
-            dd($data);
+            // dd($data);
             // dd($all_agriculture_farmers);
             return view('field_officer_panel.lrd_farmers.view', [
                 'data' => $data,
