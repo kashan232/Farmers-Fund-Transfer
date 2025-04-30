@@ -237,7 +237,7 @@
     @include('field_officer_panel.include.navbar_include')
 <!-- [ Header ] end -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-
+{{dd($data)}}
 
 <!-- [ Main Content ] start -->
 <div class="pc-container">
@@ -916,7 +916,7 @@
                                                 <option value="{{$data->branch->title ?? ''}}" >{{$data->branch->title ?? ''}} Select City First</option>
                                             </select>
                                         </div>
-{{dd($data)}}
+
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Title of Account <span class="text-danger">*</span></label>
                                             <input type="text" name="account_title" id="account_title" class="form-control" value="{{$data->account_title ?? ''}}" >
