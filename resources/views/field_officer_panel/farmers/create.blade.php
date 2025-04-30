@@ -237,7 +237,7 @@
     @include('field_officer_panel.include.navbar_include')
 <!-- [ Header ] end -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-{{dd(vars: $data->branch->title)}}
+{{-- {{dd(vars: $data->branch->title)}} --}}
 
 <!-- [ Main Content ] start -->
 <div class="pc-container">
