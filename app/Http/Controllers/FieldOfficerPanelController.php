@@ -230,7 +230,9 @@ class FieldOfficerPanelController extends Controller
             $userId = Auth::id();
             $user_id = Auth()->user()->user_id;
             $user_name = Auth()->user()->name;
-            $data = LandRevenueFarmerRegistation::where('id', '=', $id)->first();
+            $data = LandRevenueFarmerRegistation::with('city')->where('id', '=', $id)->first();
+
+            dd($data);
             // dd($all_agriculture_farmers);
             return view('field_officer_panel.lrd_farmers.view', [
                 'data' => $data,
