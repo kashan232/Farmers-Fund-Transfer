@@ -898,7 +898,7 @@
                                                 <h6 class="card-title font-weight-bold" style="line-height: 27px;margin-left: 10px; margin-bottom: -0.25rem;">
                                                     Bank & Account Details </h6> <p style="margin-left: 10px;"> Sindh Bank data requirements </p>
                                             </div>
-                                        </div>
+                                        </div> 
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">City <span class="text-danger">*</span></label>
