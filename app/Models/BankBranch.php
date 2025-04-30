@@ -13,4 +13,10 @@ class BankBranch extends Model
     {
         return $this->belongsTo(City::class);
     }
+
+    public function farmers()
+    {
+        return $this->hasMany(LandRevenueFarmerRegistation::class, 'branch_name');
+    }
+
 }

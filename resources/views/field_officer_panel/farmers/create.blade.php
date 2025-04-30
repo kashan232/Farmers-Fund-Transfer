@@ -913,7 +913,7 @@
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Preferred Branch Name <span class="text-danger">*</span></label>
                                             <select name="branch_name" id="branch_name"  class="form-control js-example-basic-single-no-tag">
-                                                <option value="{{$data->branch_name ?? ''}}" >{{$data->branch_name ?? ''}} Select City First</option>
+                                                <option value="{{$data->branch_name ?? ''}}" >{{$data->branch->name ?? ''}} Select City First</option>
                                             </select>
                                         </div>
 
@@ -1314,7 +1314,7 @@ $('#cnic_issue_date, #cnic_expiry_date ,#date_of_birth').on('blur', function () 
                 text: 'Invalid Date! Please enter a valid day, month, and year.',
                 icon: "error"
             });
-          
+
             $(this).val('');
             $(this).focus();
         }

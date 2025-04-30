@@ -103,5 +103,9 @@ class LandRevenueFarmerRegistation extends Model
 
     ];
 
+    public function branch()
+    {
+        return $this->belongsTo(BankBranch::class, 'branch_name'); // foreign key in this table
+    }
 
 }
