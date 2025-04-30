@@ -149,7 +149,7 @@
 
 
 </style>
-{{dd($data->city)}}
+{{-- {{dd($data->city)}} --}}
 <body>
 
     <div id="loader" style="position: fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:9999; display:flex; align-items:center; justify-content:center;">
@@ -1030,7 +1030,7 @@
                                 <th class="question"> </th>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
                                     <span> <b>City : </b></span> <span
-                                        style="border-bottom: 1px solid black;">{{ $data->city->title ?? '' }}</span></td>
+                                        style="border-bottom: 1px solid black;">{{ $data->cityDetail->title ?? '' }}</span></td>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
                                     <span> <b> &nbsp;&nbsp; Preferred Branch Name : </b> </span> <span
                                         style="border-bottom: 1px solid black;">{{ $data->branch->title ?? '' }}</span></td>
