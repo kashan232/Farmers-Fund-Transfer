@@ -1284,7 +1284,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
 
 
 <script>
-$('#cnic_issue_date').on('blur', function () {
+$('#cnic_issue_date, #cnic_expiry_date ,#date_of_birth').on('blur', function () {
     let val = $(this).val();
     let regex = /^(\d{2})-(\d{2})-(\d{4})$/;
 
@@ -1309,7 +1309,12 @@ $('#cnic_issue_date').on('blur', function () {
         }
 
         if (!isValidDate) {
-            alert('Invalid Date! Please enter a valid day, month, and year.');
+            Swal.fire({
+                title: "Error!",
+                text: 'Invalid Date! Please enter a valid day, month, and year.',
+                icon: "error"
+            });
+          
             $(this).val('');
             $(this).focus();
         }
