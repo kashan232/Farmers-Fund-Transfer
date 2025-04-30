@@ -1289,16 +1289,33 @@ $('#cnic_issue_date').on('blur', function () {
     let regex = /^(\d{2})-(\d{2})-(\d{4})$/;
 
     if (regex.test(val)) {
-        let [_, day, month, year] = val.match(regex).map(Number);
-        let isValidDate = day >= 1 && day <= 31 && month >= 1 && month <= 12;
+        let [_, dayStr, monthStr, yearStr] = val.match(regex);
+        let day = parseInt(dayStr, 10);
+        let month = parseInt(monthStr, 10);
+        let year = parseInt(yearStr, 10);
+
+        let isValidYear = year >= 1900 && year <= 2100;
+        let isValidDate = false;
+
+        // Check actual date validity using JS Date object
+        let date = new Date(`${year}-${month}-${day}`);
+        if (
+            isValidYear &&
+            date.getFullYear() === year &&
+            date.getMonth() + 1 === month &&
+            date.getDate() === day
+        ) {
+            isValidDate = true;
+        }
 
         if (!isValidDate) {
-            alert('Invalid Date! Please enter a valid day and month.');
+            alert('Invalid Date! Please enter a valid day, month, and year.');
             $(this).val('');
             $(this).focus();
         }
     }
 });
+
 
 // $(document).ready(function () {
 //     $("input").inputmask(); // Apply mask only to input fields
