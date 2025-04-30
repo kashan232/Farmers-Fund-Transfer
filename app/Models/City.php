@@ -13,4 +13,9 @@ class City extends Model
     {
         return $this->hasMany(BankBranch::class);
     }
+
+    public function farmers()
+    {
+        return $this->hasMany(LandRevenueFarmerRegistation::class, 'city');
+    }
 }
