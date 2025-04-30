@@ -1284,6 +1284,21 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
 
 
 <script>
+$('#cnic_issue_date').on('blur', function () {
+    let val = $(this).val();
+    let regex = /^(\d{2})-(\d{2})-(\d{4})$/;
+
+    if (regex.test(val)) {
+        let [_, day, month, year] = val.match(regex).map(Number);
+        let isValidDate = day >= 1 && day <= 31 && month >= 1 && month <= 12;
+
+        if (!isValidDate) {
+            alert('Invalid Date! Please enter a valid day and month.');
+            $(this).val('');
+            $(this).focus();
+        }
+    }
+});
 
 // $(document).ready(function () {
 //     $("input").inputmask(); // Apply mask only to input fields
