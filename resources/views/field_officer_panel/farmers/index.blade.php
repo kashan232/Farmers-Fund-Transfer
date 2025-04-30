@@ -130,7 +130,7 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            {{$farmers->links()}}
+                                            {{-- {{$farmers->links()}} --}}
                                         </div>
                                     </div>
                                 </div>

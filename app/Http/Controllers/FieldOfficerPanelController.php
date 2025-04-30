@@ -45,7 +45,7 @@ class FieldOfficerPanelController extends Controller
                 ->whereNull('user_id');
             });
         })
-        ->paginate(10);
+        ->latest()->get();
 
 
 

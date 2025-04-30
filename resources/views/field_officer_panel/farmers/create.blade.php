@@ -331,11 +331,11 @@
 
                                         <div class="mb-6 col-md-2 py-2">
                                             <label class="form-label">CNIC Issue Date.: <span class="text-danger">*</span></label>
-                                            <input type="date" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="{{$data->cnic_issue_date ?? ''}}"     >
+                                            <input type="text" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="{{$data->cnic_issue_date ?? ''}}"   data-inputmask="'alias': 'datetime', 'inputFormat': 'dd-mm-yyyy'" placeholder="DD-MM-YYYY"  >
                                         </div>
                                         <div class="mb-6 col-md-2 py-2 cnic_expiry_date_div">
                                             <label class="form-label">CNIC Expiry Date.: <span class="text-danger">*</span></label>
-                                            <input type="date" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="{{$data->cnic_expiry_date ?? ''}}"     >
+                                            <input type="text" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="{{$data->cnic_expiry_date ?? ''}}"   data-inputmask="'alias': 'datetime', 'inputFormat': 'dd-mm-yyyy'" placeholder="DD-MM-YYYY"  >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q4. Mobile No.: <span class="text-danger">*</span></label>
@@ -343,7 +343,7 @@
                                             value="{{ $data->mobile ?? '' }}"
                                             data-inputmask="'mask': '0399-9999999', 'greedy': false"
                                             placeholder="03XX-XXXXXXX">
-                                        
+
 
 
                                             {{-- <input type="text" id="mobile" name="mobile" class="form-control" value="{{ str_replace('-', '', $data->mobile ?? '') }}"  data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"  > --}}
@@ -488,7 +488,7 @@
                                             </div>
                                             <div class="mb-4 col-md-4 ">
                                                 <label class="form-label">Mobile No:</label>
-                                                <input type="text" name="mobile_of_next_kin" class="form-control" value="{{$data->mobile_of_next_kin ?? ''}}" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"  >
+                                                <input type="text" name="mobile_of_next_kin" class="form-control" value="{{$data->mobile_of_next_kin ?? ''}}" data-inputmask="'mask': '0399-9999999', 'greedy': false" placeholder="XXXX-XXXXXXX"  >
                                             </div>
 
 
@@ -577,7 +577,7 @@
             <td><input type="text" name="title_name[]" value="{{ $title_name }}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
             <td><input type="text" name="title_father_name[]" value="{{ $fatherNames[$index] ?? '' }}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
             <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'" placeholder="XXXXX-XXXXXXX-X" value="{{ $cnics[$index] ?? '' }}" class="form-control"></td>
-            <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX" value="{{ $numbers[$index] ?? '' }}" class="form-control"></td>
+            <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-9999999', 'greedy': false" placeholder="XXXX-XXXXXXX" value="{{ $numbers[$index] ?? '' }}" class="form-control"></td>
             <td><input type="text" name="title_area[]" value="{{ $areas[$index] ?? '' }}" class="form-control"></td>
             <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
         </tr>
@@ -587,7 +587,7 @@
         <td><input type="text" name="title_name[]" value="" class="form-control"></td>
         <td><input type="text" name="title_father_name[]" value="" class="form-control"></td>
         <td><input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'" placeholder="XXXXX-XXXXXXX-X"></td>
-        <td><input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"></td>
+        <td><input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-9999999', 'greedy': false" placeholder="XXXX-XXXXXXX"></td>
         <td><input type="text" name="title_area[]" value="" class="form-control"></td>
         <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
     </tr>
@@ -925,7 +925,7 @@
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Date of Birth (D-M-Y) <span class="text-danger">*</span></label>
-                                            <input type="text" name="date_of_birth" placeholder="XX-XX-XXXX" id="date_of_birth" class="form-control" value="{{$data->date_of_birth ?? ''}}" >
+                                            <input type="text" name="date_of_birth" data-inputmask="'alias': 'datetime', 'inputFormat': 'dd-mm-yyyy'" placeholder="DD-MM-YYYY" id="date_of_birth" class="form-control" value="{{$data->date_of_birth ?? ''}}" >
                                         </div>
 
                                         <div class="mb-6 col-md-4 mt-2">
