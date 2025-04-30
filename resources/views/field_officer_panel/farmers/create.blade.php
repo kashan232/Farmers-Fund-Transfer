@@ -913,7 +913,7 @@
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Preferred Branch Name <span class="text-danger">*</span></label>
                                             <select name="branch_name" id="branch_name"  class="form-control js-example-basic-single-no-tag">
-                                                <option value="{{$data->branch->title ?? ''}}" >{{$data->branch->title ?? ''}} Select City First</option>
+                                                <option value="{{$data->branch->title ?? ''}}" >{{$data->branch->title ?? 'Select City First'}} </option>
                                             </select>
                                         </div>
 

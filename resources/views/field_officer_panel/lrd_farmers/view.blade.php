@@ -1033,7 +1033,7 @@
                                         style="border-bottom: 1px solid black;">{{ $data->city }}</span></td>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
                                     <span> <b> &nbsp;&nbsp; Preferred Branch Name : </b> </span> <span
-                                        style="border-bottom: 1px solid black;">{{ $data->branch_name }}</span></td>
+                                        style="border-bottom: 1px solid black;">{{ $data->branch->title }}</span></td>
 
                             </tr>
 
