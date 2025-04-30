@@ -898,7 +898,7 @@
                                                 <h6 class="card-title font-weight-bold" style="line-height: 27px;margin-left: 10px; margin-bottom: -0.25rem;">
                                                     Bank & Account Details </h6> <p style="margin-left: 10px;"> Sindh Bank data requirements </p>
                                             </div>
-                                        </div> 
+                                        </div>
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">City <span class="text-danger">*</span></label>
@@ -913,10 +913,10 @@
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Preferred Branch Name <span class="text-danger">*</span></label>
                                             <select name="branch_name" id="branch_name"  class="form-control js-example-basic-single-no-tag">
-                                                <option value="{{$data->branch_name ?? ''}}" >{{$data->branch->name ?? ''}} Select City First</option>
+                                                <option value="{{$data->branch->title ?? ''}}" >{{$data->branch->title ?? ''}} Select City First</option>
                                             </select>
                                         </div>
-
+{{-- {{dd($data)}} --}}
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Title of Account <span class="text-danger">*</span></label>
                                             <input type="text" name="account_title" id="account_title" class="form-control" value="{{$data->account_title ?? ''}}" >
