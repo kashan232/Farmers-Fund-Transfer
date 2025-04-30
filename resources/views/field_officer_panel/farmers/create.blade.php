@@ -916,7 +916,7 @@
                                                 <option value="{{$data->branch->title ?? ''}}" >{{$data->branch->title ?? ''}} Select City First</option>
                                             </select>
                                         </div>
-{{-- {{dd($data)}} --}}
+{{dd($data)}}
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Title of Account <span class="text-danger">*</span></label>
                                             <input type="text" name="account_title" id="account_title" class="form-control" value="{{$data->account_title ?? ''}}" >
