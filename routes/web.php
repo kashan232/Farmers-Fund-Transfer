@@ -414,6 +414,21 @@ Route::post('/view/reporting-farmers-by-field-officer', [FieldOfficerPanelContro
 
 
 
+use Intervention\Image\Facades\Image;
+
+Route::post('/compress-image', function (Request $request) {
+    // Validate the uploaded image
+    $request->validate([
+        'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
+
+    // Compress and save the image
+    $image = Image::make($request->file('photo'))
+                  ->encode('jpg', 75)  // Adjust quality as needed
+                  ->save(public_path('uploads/compressed_photo.jpg'));
+
+    return response()->json(['message' => 'Image compressed and saved successfully']);
+});
 
 
 
