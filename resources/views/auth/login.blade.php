@@ -32,7 +32,12 @@
 </head>
 
 <body style="background-color: #666666;">
-
+    <form action="/compress-image" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="photo" accept="image/*">
+        <button type="submit">Upload and Compress</button>
+    </form>
+    
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
