@@ -1985,7 +1985,7 @@ $('#lined_unlined').change(function() {
                     const dateFields = ['cnic_expiry_date', 'cnic_issue_date', 'date_of_birth'];
                     const dateRegex = /^(\d{4})-(\d{2})-(\d{2})$/;
 
-                    
+
                     // Date format + validity check (yyyy-mm-dd)
                     dateFields.forEach((field) => {
                         let val = step1_formdata[field];
@@ -2012,7 +2012,7 @@ $('#lined_unlined').change(function() {
                             let formattedKey = field.replace(/_/g, " ");
                             errors += `<b><span class="text-danger">${formattedKey} must be in YYYY-MM-DD format.</span></b><br>`;
                         }
-
+                    });
 
                     // Check if any field is empty
                     for (const key in step1_formdata) {
