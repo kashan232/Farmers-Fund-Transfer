@@ -1094,7 +1094,7 @@
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">CNIC FRONT <span class="text-danger" > *</span>  </h6>
                                                   @if(isset($data) && $data->front_id_card != null) <input type="hidden"  class="old_image  old_checkfiles old_checkfile_front_id_card" name="old_front_id_card" value="1" > @endif
-                                                  <input type="file"  class="image-input checkfiles checkfile_front_id_card" name="front_id_card" id="front_id_card"  accept="image/*" hidden capture="environment">
+                                                  <input type="file"  class="image-input checkfiles checkfile_front_id_card" name="front_id_card" id="front_id_card"  accept="image/*" hidden >
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->front_id_card != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
                                                       {{-- <p>Image size must be <span>500KB</span></p> --}}
@@ -1111,7 +1111,7 @@
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">CNIC BACK <span class="text-danger" > *</span></h6>
                                                   @if(isset($data) && $data->back_id_card != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_back_id_card" name="old_back_id_card" value="1" > @endif
-                                                  <input type="file"  class="image-input checkfiles checkfile_back_id_card" name="back_id_card" id="back_id_card" accept="image/*" hidden capture="environment">
+                                                  <input type="file"  class="image-input checkfiles checkfile_back_id_card" name="back_id_card" id="back_id_card" accept="image/*" hidden >
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->back_id_card != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
                                                       {{-- <p>Image size must be <span>500KB</span></p> --}}
@@ -1128,7 +1128,7 @@
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">Form VII<span class="text-danger" > *</span><p style="    text-transform: uppercase; font-size: 12px; font-weight: 500;">jpg, png, jpeg, pdf</p></h6>
                                                   @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
-                                                  <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden capture="environment">
+                                                  <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden >
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
                                                       {{-- <p>Image size must be <span>500KB</span></p> --}}
@@ -1161,7 +1161,7 @@
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">Photo <span class="text-danger" > *</span> </h6>
                                                   @if(isset($data) && $data->upload_farmer_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_farmer_pic" name="old_upload_farmer_pic" value="1" > @endif
-                                                  <input type="file"  class="image-input checkfiles checkfile_upload_farmer_pic" name="upload_farmer_pic" id="upload_farmer_pic" accept="image/*" hidden capture="environment">
+                                                  <input type="file"  class="image-input checkfiles checkfile_upload_farmer_pic" name="upload_farmer_pic" id="upload_farmer_pic" accept="image/*" hidden >
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_farmer_pic != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
                                                       {{-- <p>Image size must be <span>500KB</span></p> --}}
