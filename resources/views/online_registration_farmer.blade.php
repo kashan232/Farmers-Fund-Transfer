@@ -451,7 +451,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label for="tappa">Q8. Tappa: </label>
-                                                    <select name="tappa" id="tappas" class="form-control js-example-basic-single">
+                                                    <select name="tappa" id="tappas" class="form-control js-example-basic-single-no-tag">
                                                         @if(isset($data->tappa) && $data->tappa != '')
                                                         <option value="{{$data->tappa}}">{{$data->tappa}}</option>
                                                         @endif
