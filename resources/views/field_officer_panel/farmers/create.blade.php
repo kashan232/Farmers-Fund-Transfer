@@ -938,7 +938,7 @@
                                         </div>
 
                                         <div class="mb-6 col-md-4 mt-2">
-                                            <label class="form-label">Mother's Maiden Name <span class="text-danger">*</span></label>
+                                            <label class="form-label">Mother's Name <span class="text-danger">*</span></label>
                                             <input type="text" name="mother_maiden_name" id="mother_maiden_name" class="form-control" value="{{$data->mother_maiden_name ?? ''}}" >
                                         </div>
 
@@ -952,30 +952,7 @@
                                             <label class="form-label">Permanent Address <span class="text-danger">*</span></label>
                                             <input type="text" name="permanent_address" id="permanent_address" class="form-control" value="{{$data->permanent_address ?? ''}}" >
                                         </div>
-                                        {{-- <div class="mb-6 col-md-6">
-                                            <label class="form-label">Q23: Title of Account</label>
-                                            <input type="text" name="account_title" class="form-control" value="{{$data->account_title ?? ''}}" >
-                                        </div>
-                                        <div class="mb-6 col-md-6">
-                                            <label class="form-label">Q24: Account No</label>
-                                            <input type="text" name="account_no" class="form-control" value="{{$data->account_no ?? ''}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16)">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-2">
-                                            <label class="form-label">Q25: Bank Name</label>
-                                            <input type="text" name="bank_name"  class="form-control" value=" {{$data->bank_name ?? ''}}">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-2">
-                                            <label class="form-label">Q26: Branch Name</label>
-                                            <input type="text" name="branch_name" value="{{$data->branch_name ?? ''}}" class="form-control">
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-2">
-                                            <label class="form-label">Q27: IBAN</label>
-                                            <input type="text" name="IBAN_number" value="{{$data->IBAN_number ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').slice(0, 24)" >
-                                        </div>
-                                        <div class="mb-6 col-md-6 mt-2">
-                                            <label class="form-label">Q28: Branch Code</label>
-                                            <input type="text" name="branch_code" value="{{$data->branch_code ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4)">
-                                        </div> --}}
+
                                     </div>
                                     <div class="row mt-3">
                                         <div class="mb-6 col-md-6">
@@ -1117,7 +1094,7 @@
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">CNIC FRONT <span class="text-danger" > *</span>  </h6>
                                                   @if(isset($data) && $data->front_id_card != null) <input type="hidden"  class="old_image  old_checkfiles old_checkfile_front_id_card" name="old_front_id_card" value="1" > @endif
-                                                  <input type="file"  class="image-input checkfiles checkfile_front_id_card" name="front_id_card" id="front_id_card"  accept="image/*" hidden>
+                                                  <input type="file"  class="image-input checkfiles checkfile_front_id_card" name="front_id_card" id="front_id_card"  accept="image/*" hidden capture="environment">
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->front_id_card != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
                                                       {{-- <p>Image size must be <span>500KB</span></p> --}}
@@ -1134,7 +1111,7 @@
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">CNIC BACK <span class="text-danger" > *</span></h6>
                                                   @if(isset($data) && $data->back_id_card != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_back_id_card" name="old_back_id_card" value="1" > @endif
-                                                  <input type="file"  class="image-input checkfiles checkfile_back_id_card" name="back_id_card" id="back_id_card" accept="image/*" hidden>
+                                                  <input type="file"  class="image-input checkfiles checkfile_back_id_card" name="back_id_card" id="back_id_card" accept="image/*" hidden capture="environment">
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->back_id_card != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
                                                       {{-- <p>Image size must be <span>500KB</span></p> --}}
@@ -1151,7 +1128,7 @@
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">Form VII<span class="text-danger" > *</span><p style="    text-transform: uppercase; font-size: 12px; font-weight: 500;">jpg, png, jpeg, pdf</p></h6>
                                                   @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
-                                                  <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
+                                                  <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden capture="environment">
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
                                                       {{-- <p>Image size must be <span>500KB</span></p> --}}
@@ -1184,7 +1161,7 @@
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">Photo <span class="text-danger" > *</span> </h6>
                                                   @if(isset($data) && $data->upload_farmer_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_farmer_pic" name="old_upload_farmer_pic" value="1" > @endif
-                                                  <input type="file"  class="image-input checkfiles checkfile_upload_farmer_pic" name="upload_farmer_pic" id="upload_farmer_pic" accept="image/*" hidden>
+                                                  <input type="file"  class="image-input checkfiles checkfile_upload_farmer_pic" name="upload_farmer_pic" id="upload_farmer_pic" accept="image/*" hidden capture="environment">
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_farmer_pic != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
                                                       {{-- <p>Image size must be <span>500KB</span></p> --}}

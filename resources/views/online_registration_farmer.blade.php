@@ -1015,7 +1015,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
 
                                                 <div class="mb-6 col-md-4 mt-2">
-                                                    <label class="form-label">Mother's Maiden Name <span class="text-danger">*</span></label>
+                                                    <label class="form-label">Mother's Name <span class="text-danger">*</span></label>
                                                     <input type="text" name="mother_maiden_name" id="mother_maiden_name" class="form-control" value="{{$data->account_title ?? ''}}" >
                                                 </div>
 
