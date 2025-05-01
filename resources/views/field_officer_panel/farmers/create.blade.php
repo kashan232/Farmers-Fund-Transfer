@@ -925,7 +925,7 @@
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Date of Birth (D-M-Y) <span class="text-danger">*</span></label>
-                                            <input type="text" name="date_of_birth" data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY" placeholder="DD-MM-YYYY" id="date_of_birth" class="form-control" value="{{$data->date_of_birth ?? ''}}" >
+                                            <input type="text" name="date_of_birth" data-inputmask="'mask': '9999-99-99'" placeholder="YYYY-MM-DD" id="date_of_birth" class="form-control" value="{{$data->date_of_birth ?? ''}}" >
                                         </div>
 
                                         <div class="mb-6 col-md-4 mt-2">

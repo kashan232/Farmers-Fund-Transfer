@@ -403,11 +403,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-2 py-2 cnic_issue_date_div">
                                                     <label class="form-label">CNIC Issue Date: <span class="text-danger">*</span></label>
-                                                    <input type="date" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="{{$data->cnic_issue_date ?? ''}}"     >
+                                                    <input type="text" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="{{$data->cnic_issue_date ?? ''}}"   data-inputmask="'mask': '9999-99-99'" placeholder="YYYY-MM-DD"  >
                                                 </div>
                                                 <div class="mb-6 col-md-2 py-2 cnic_expiry_date_div">
                                                     <label class="form-label">CNIC Expiry Date: <span class="text-danger">*</span></label>
-                                                    <input type="date" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="{{$data->cnic_expiry_date ?? ''}}"     >
+                                                    <input type="text" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="{{$data->cnic_expiry_date ?? ''}}"    data-inputmask="'mask': '9999-99-99'" placeholder="YYYY-MM-DD" >
                                                 </div>
 
 
@@ -1002,7 +1002,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-4 mt-2">
                                                     <label class="form-label">Date of Birth (D-M-Y) <span class="text-danger">*</span></label>
-                                                    <input type="text" name="date_of_birth" placeholder="XX-XX-XXXX" id="date_of_birth" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                                    <input type="text" name="date_of_birth" data-inputmask="'mask': '9999-99-99'" placeholder="YYYY-MM-DD" id="date_of_birth" class="form-control" value="{{$data->account_title ?? ''}}" >
                                                 </div>
 
                                                 <div class="mb-6 col-md-4 mt-2">
@@ -1339,10 +1339,56 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/select2.min.js"></script>
         <script src="{{asset('assets/js/inputMask.js')}}"></script>
         <script>
+
+
+$(document).ready(function () {
+    $(":input").inputmask(); // only once
+});
+
+
+$('#cnic_issue_date, #cnic_expiry_date, #date_of_birth').on('blur', function () {
+    let val = $(this).val();
+    let regex = /^(\d{4})-(\d{2})-(\d{2})$/;
+
+    if (regex.test(val)) {
+        let [_, yearStr, monthStr, dayStr] = val.match(regex);
+        let day = parseInt(dayStr, 10);
+        let month = parseInt(monthStr, 10);
+        let year = parseInt(yearStr, 10);
+
+        let isValidYear = year >= 1900 && year <= 2100;
+        let isValidDate = false;
+
+        let date = new Date(`${year}-${month}-${day}`);
+        if (
+            isValidYear &&
+            date.getFullYear() === year &&
+            date.getMonth() + 1 === month &&
+            date.getDate() === day
+        ) {
+            isValidDate = true;
+        }
+
+        if (!isValidDate) {
+            Swal.fire({
+                title: "Error!",
+                text: 'Invalid Date! Please enter a valid date in YYYY-MM-DD format.',
+                icon: "error"
+            });
+
+            $(this).val('');
+            $(this).focus();
+        }
+    }
+});
+
+
+
+
          $(document).ready(function() {
-    $('.upload-image').on('click', function() {
-        $(this).siblings('.image-input').click();
-    });
+        $('.upload-image').on('click', function() {
+            $(this).siblings('.image-input').click();
+        });
 
     $('.image-input').on('change', function(event) {
         checkFiles();
