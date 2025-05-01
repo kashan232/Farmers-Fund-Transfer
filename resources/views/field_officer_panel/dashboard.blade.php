@@ -27,9 +27,9 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class=" dashboard-btns" style="display: none">
-                                    <button class="btn btn-sm btn-primary mb-4">Add Farmer</button>
-                                    <button class="btn btn-sm btn-primary mb-4">Farmers List</button>
-                                    <button class="btn btn-sm btn-primary mb-4">Reporting</button>
+                                    <a href="{{route('farmer-create-by-field-officer')}}"><button class="btn btn-sm btn-primary mb-4">Add Farmer</button></a>
+                                    <a href="{{route('farmers-list-field-officer')}}"><button class="btn btn-sm btn-primary mb-4">Farmers List</button></a>
+                                    {{-- <a href=""><button class="btn btn-sm btn-primary mb-4">Reporting</button></a> --}}
                                 </div>
                                 <div class="card">
                                     <div class="card-body">
