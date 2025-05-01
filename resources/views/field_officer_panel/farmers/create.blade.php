@@ -1261,12 +1261,52 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
 
 
 <script>
-$('#cnic_issue_date, #cnic_expiry_date ,#date_of_birth').on('blur', function () {
+
+// $('#cnic_issue_date, #cnic_expiry_date ,#date_of_birth').on('blur', function () {
+//     let val = $(this).val();
+//     let regex = /^(\d{2})-(\d{2})-(\d{4})$/;
+
+//     if (regex.test(val)) {
+//         let [_, dayStr, monthStr, yearStr] = val.match(regex);
+//         let day = parseInt(dayStr, 10);
+//         let month = parseInt(monthStr, 10);
+//         let year = parseInt(yearStr, 10);
+
+//         let isValidYear = year >= 1900 && year <= 2100;
+//         let isValidDate = false;
+
+//         // Check actual date validity using JS Date object
+//         let date = new Date(`${year}-${month}-${day}`);
+//         if (
+//             isValidYear &&
+//             date.getFullYear() === year &&
+//             date.getMonth() + 1 === month &&
+//             date.getDate() === day
+//         ) {
+//             isValidDate = true;
+//         }
+
+//         if (!isValidDate) {
+//             Swal.fire({
+//                 title: "Error!",
+//                 text: 'Invalid Date! Please enter a valid day, month, and year.',
+//                 icon: "error"
+//             });
+
+//             $(this).val('');
+//             $(this).focus();
+//         }
+//     }
+// });
+
+
+
+$('#cnic_issue_date, #cnic_expiry_date, #date_of_birth').on('blur', function () {
     let val = $(this).val();
-    let regex = /^(\d{2})-(\d{2})-(\d{4})$/;
+    let regex = /^(\d{4})-(\d{2})-(\d{2})$/;
 
     if (regex.test(val)) {
-        let [_, dayStr, monthStr, yearStr] = val.match(regex);
+        let [_, yearStr, monthStr, dayStr] = val.match(regex);
         let day = parseInt(dayStr, 10);
         let month = parseInt(monthStr, 10);
         let year = parseInt(yearStr, 10);
@@ -1274,7 +1314,6 @@ $('#cnic_issue_date, #cnic_expiry_date ,#date_of_birth').on('blur', function () 
         let isValidYear = year >= 1900 && year <= 2100;
         let isValidDate = false;
 
-        // Check actual date validity using JS Date object
         let date = new Date(`${year}-${month}-${day}`);
         if (
             isValidYear &&
@@ -1288,7 +1327,7 @@ $('#cnic_issue_date, #cnic_expiry_date ,#date_of_birth').on('blur', function () 
         if (!isValidDate) {
             Swal.fire({
                 title: "Error!",
-                text: 'Invalid Date! Please enter a valid day, month, and year.',
+                text: 'Invalid Date! Please enter a valid date in YYYY-MM-DD format.',
                 icon: "error"
             });
 
@@ -1297,6 +1336,8 @@ $('#cnic_issue_date, #cnic_expiry_date ,#date_of_birth').on('blur', function () 
         }
     }
 });
+
+
 
 
 // $(document).ready(function () {
