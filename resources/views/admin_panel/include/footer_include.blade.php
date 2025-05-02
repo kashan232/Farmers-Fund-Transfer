@@ -51,7 +51,7 @@
   });
   // [ Multiple Table Control Elements ]
   $('#multi-table').DataTable({
-    dom: '<"top"iflp<"clear">>rt<"bottom"iflp<"clear">>'
+    dom: '<"top"Biflp<"clear">>rt<"bottom"iflp<"clear">>'
   });
   // [ Complex Headers With Column Visibility ]
   $('#complex-header').DataTable({
