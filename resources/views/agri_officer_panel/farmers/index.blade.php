@@ -199,7 +199,7 @@
     $(document).ready(function() {
 
        table =  $('#example').DataTable({
-            "pageLength": 100, // Default number of rows per page
+            "pageLength": 50, // Default number of rows per page
             "dom": 'Bfrtip',
  // Only include the filter (search box), table, and pagination
             "processing": true, // Optional: for large datasets
@@ -242,20 +242,20 @@
             }
         });
 
-        $('#example_wrapper').before(`
+        // $('#example_wrapper').before(`
 
-            @if(!empty($farmers) && isset($farmers[0]) && $farmers[0] != null)
-            @if($farmers[0]->user_type  != 'Agri_Officer')
-            <div class="col-3" style="position: absolute; top:1%; left:27%;" >
-                <select  id="user_type" class="form-control">
-                    <option value="">Select Type</option>
-                    <option value="Online">Online</option>
-                    <option value="Field Assitant">Field Assitant</option>
-                </select>
-            </div>
-            @endif
-            @endif
-        `);
+        //     @if(!empty($farmers) && isset($farmers[0]) && $farmers[0] != null)
+        //     @if($farmers[0]->user_type  != 'Agri_Officer')
+        //     <div class="col-3" style="position: absolute; top:1%; left:27%;" >
+        //         <select  id="user_type" class="form-control">
+        //             <option value="">Select Type</option>
+        //             <option value="Online">Online</option>
+        //             <option value="Field Assitant">Field Assitant</option>
+        //         </select>
+        //     </div>
+        //     @endif
+        //     @endif
+        // `);
 
     });
     // <div class="col-3" style="position: absolute; top:1%" >
