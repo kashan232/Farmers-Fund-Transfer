@@ -34,7 +34,10 @@
 <script>
   // [ DOM/jquery ]
   var total, pageTotal;
-  var table = $('#dom-jqry').DataTable();
+  var table = $('#dom-jqry').DataTable({
+  dom: 'Bfrtip', // Adds buttons, filtering input, table, info, pagination
+  buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+});
   // [ column Rendering ]
   $('#colum-render').DataTable({
     dom: 'Bfrtip', // Adds buttons, filtering input, table, info, pagination
