@@ -113,6 +113,10 @@ class LandRevenueFarmerRegistation extends Model
         return $this->belongsTo(City::class, 'city'); // foreign key in this table
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id'); // foreign key in this table
+    }
 
 
 }

@@ -1043,7 +1043,7 @@
                                     <span> <b>Title of Account : </b></span> <span
                                         style="border-bottom: 1px solid black;">{{ $data->account_title }}</span></td>
                                 <td colspan="4" style="border: none;border-bottom: 1px solid rgb(192, 192, 192);">
-                                    <span> <b>Q24. &nbsp;&nbsp; Mother's Maiden Name : </b> </span> <span
+                                    <span> <b>Q24. &nbsp;&nbsp; Mother's Name : </b> </span> <span
                                         style="border-bottom: 1px solid black;">{{ $data->mother_maiden_name }}</span></td>
 
                             </tr>
