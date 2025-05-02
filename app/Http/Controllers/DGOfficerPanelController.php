@@ -198,6 +198,9 @@ class DGOfficerPanelController extends Controller
                 ->where('usertype', 'Land_Revenue_Officer')
                 ->get();
 
+
+                dd( $agriUsers);
+
             $users = $agriUsers->map(function ($user) use ($district) { // Pass $district inside closure
                 // Decode the user's district
                 $district = $user->district;
