@@ -369,6 +369,14 @@ class FieldOfficerPanelController extends Controller
             }
 
 
+            $data['cnic_issue_date'] = Carbon::createFromFormat('d-m-Y', $request->cnic_issue_date)->format('Y-m-d');
+            $data['cnic_expiry_date'] = Carbon::createFromFormat('d-m-Y', $request->cnic_expiry_date)->format('Y-m-d');
+            $data['date_of_birth'] = Carbon::createFromFormat('d-m-Y', $request->date_of_birth)->format('Y-m-d');
+
+            
+
+
+
             $data['title_name'] = json_encode($request->title_name);
             $data['title_father_name'] = json_encode($request->title_name);
             $data['title_cnic'] = json_encode($request->title_cnic);

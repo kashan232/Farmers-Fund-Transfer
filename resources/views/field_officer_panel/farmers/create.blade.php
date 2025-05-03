@@ -331,11 +331,11 @@
 
                                         <div class="mb-6 col-md-2 py-2">
                                             <label class="form-label">CNIC Issue Date.: <span class="text-danger">*</span></label>
-                                            <input type="text" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="{{$data->cnic_issue_date ?? ''}}"   data-inputmask="'mask': '9999-99-99'" placeholder="YYYY-MM-DD"   >
+                                            <input type="text" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="{{$data->cnic_issue_date ?? ''}}"   data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY"   >
                                         </div>
                                         <div class="mb-6 col-md-2 py-2 cnic_expiry_date_div">
                                             <label class="form-label">CNIC Expiry Date.: <span class="text-danger">*</span></label>
-                                            <input type="text" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="{{$data->cnic_expiry_date ?? ''}}"   data-inputmask="'mask': '9999-99-99'" placeholder="YYYY-MM-DD"   >
+                                            <input type="text" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="{{$data->cnic_expiry_date ?? ''}}"   data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY"   >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q4. Mobile No.: <span class="text-danger">*</span></label>
@@ -925,7 +925,7 @@
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Date of Birth (D-M-Y) <span class="text-danger">*</span></label>
-                                            <input type="text" name="date_of_birth" data-inputmask="'mask': '9999-99-99'" placeholder="YYYY-MM-DD" id="date_of_birth" class="form-control" value="{{$data->date_of_birth ?? ''}}" >
+                                            <input type="text" name="date_of_birth" data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY" id="date_of_birth" class="form-control" value="{{$data->date_of_birth ?? ''}}" >
                                         </div>
 
                                         <div class="mb-6 col-md-4 mt-2">
@@ -1262,51 +1262,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
 
 <script>
 
-// $('#cnic_issue_date, #cnic_expiry_date ,#date_of_birth').on('blur', function () {
-//     let val = $(this).val();
-//     let regex = /^(\d{2})-(\d{2})-(\d{4})$/;
-
-//     if (regex.test(val)) {
-//         let [_, dayStr, monthStr, yearStr] = val.match(regex);
-//         let day = parseInt(dayStr, 10);
-//         let month = parseInt(monthStr, 10);
-//         let year = parseInt(yearStr, 10);
-
-//         let isValidYear = year >= 1900 && year <= 2100;
-//         let isValidDate = false;
-
-//         // Check actual date validity using JS Date object
-//         let date = new Date(`${year}-${month}-${day}`);
-//         if (
-//             isValidYear &&
-//             date.getFullYear() === year &&
-//             date.getMonth() + 1 === month &&
-//             date.getDate() === day
-//         ) {
-//             isValidDate = true;
-//         }
-
-//         if (!isValidDate) {
-//             Swal.fire({
-//                 title: "Error!",
-//                 text: 'Invalid Date! Please enter a valid day, month, and year.',
-//                 icon: "error"
-//             });
-
-//             $(this).val('');
-//             $(this).focus();
-//         }
-//     }
-// });
-
-
-
-$('#cnic_issue_date, #cnic_expiry_date, #date_of_birth').on('blur', function () {
+$('#cnic_issue_date, #cnic_expiry_date ,#date_of_birth').on('blur', function () {
     let val = $(this).val();
-    let regex = /^(\d{4})-(\d{2})-(\d{2})$/;
+    let regex = /^(\d{2})-(\d{2})-(\d{4})$/;
 
     if (regex.test(val)) {
-        let [_, yearStr, monthStr, dayStr] = val.match(regex);
+        let [_, dayStr, monthStr, yearStr] = val.match(regex);
         let day = parseInt(dayStr, 10);
         let month = parseInt(monthStr, 10);
         let year = parseInt(yearStr, 10);
@@ -1314,6 +1275,7 @@ $('#cnic_issue_date, #cnic_expiry_date, #date_of_birth').on('blur', function () 
         let isValidYear = year >= 1900 && year <= 2100;
         let isValidDate = false;
 
+        // Check actual date validity using JS Date object
         let date = new Date(`${year}-${month}-${day}`);
         if (
             isValidYear &&
@@ -1327,7 +1289,7 @@ $('#cnic_issue_date, #cnic_expiry_date, #date_of_birth').on('blur', function () 
         if (!isValidDate) {
             Swal.fire({
                 title: "Error!",
-                text: 'Invalid Date! Please enter a valid date in YYYY-MM-DD format.',
+                text: 'Invalid Date! Please enter a valid day, month, and year.',
                 icon: "error"
             });
 
@@ -1336,6 +1298,44 @@ $('#cnic_issue_date, #cnic_expiry_date, #date_of_birth').on('blur', function () 
         }
     }
 });
+
+
+
+// $('#cnic_issue_date, #cnic_expiry_date, #date_of_birth').on('blur', function () {
+//     let val = $(this).val();
+//     let regex = /^(\d{4})-(\d{2})-(\d{2})$/;
+
+//     if (regex.test(val)) {
+//         let [_, yearStr, monthStr, dayStr] = val.match(regex);
+//         let day = parseInt(dayStr, 10);
+//         let month = parseInt(monthStr, 10);
+//         let year = parseInt(yearStr, 10);
+
+//         let isValidYear = year >= 1900 && year <= 2100;
+//         let isValidDate = false;
+
+//         let date = new Date(`${year}-${month}-${day}`);
+//         if (
+//             isValidYear &&
+//             date.getFullYear() === year &&
+//             date.getMonth() + 1 === month &&
+//             date.getDate() === day
+//         ) {
+//             isValidDate = true;
+//         }
+
+//         if (!isValidDate) {
+//             Swal.fire({
+//                 title: "Error!",
+//                 text: 'Invalid Date! Please enter a valid date in DD-MM-YYYY format.',
+//                 icon: "error"
+//             });
+
+//             $(this).val('');
+//             $(this).focus();
+//         }
+//     }
+// });
 
 
 
