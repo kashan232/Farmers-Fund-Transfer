@@ -1184,33 +1184,29 @@
 
                             <tr>
 
-
-<td colspan="8" style="border: none;"><b>4. Form VII / Registry from Micro (Mandatory): </b></span> <br>
-
-
-    {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
+<td colspan="8" style="border: none;">
+    <b>4. Form VII / Registry from Micro (Mandatory): </b><br>
 
     @if ($data->form_seven_pic != null)
         @php
-            // Assuming form_seven_pic contains the path to the image file
-            $imagePath = public_path(
-                'fa_farmers/form_seven_pic/' . $data->form_seven_pic,
-            );
-
-            // Check if the image exists before encoding
-            if (file_exists($imagePath)) {
-                $imageData = base64_encode(file_get_contents($imagePath));
-                $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-            } else {
-                $imageSrc = '';
-            }
+            $filePath = public_path('fa_farmers/form_seven_pic/' . $data->form_seven_pic);
+            $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
         @endphp
 
-        @if ($imageSrc)
-            <img src="{{ $imageSrc }}"  alt="Front ID Card"
-            style="width:80%">
+        @if (file_exists($filePath))
+            @if (in_array(strtolower($fileExtension), ['jpg', 'jpeg', 'png', 'gif']))
+                @php
+                    $imageData = base64_encode(file_get_contents($filePath));
+                    $imageSrc = 'data:image/' . $fileExtension . ';base64,' . $imageData;
+                @endphp
+                <img src="{{ $imageSrc }}" alt="Form VII" style="width:80%;">
+            @elseif (strtolower($fileExtension) === 'pdf')
+                <embed src="{{ asset('fa_farmers/form_seven_pic/' . $data->form_seven_pic) }}" type="application/pdf" width="100%" height="600px" />
+            @else
+                <p>Unsupported file format</p>
+            @endif
         @else
-            <p>Image not found</p>
+            <p>File not found</p>
         @endif
     @endif
 </td>
