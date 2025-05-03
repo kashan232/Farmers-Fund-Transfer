@@ -40,6 +40,46 @@ Route::middleware('auth:sanctum')->post('/update-password', function(Request $re
 
 
 
+Route::post('/demo/data', function(Request $request) {
+
+return response()->json([
+    'success' => true,
+    'data' => [
+        'report_id' => 1,
+        'title' => 'Sample Demo Report',
+        'description' => 'This is a demo report for Flutter team',
+        'created_at' => now()->toDateTimeString(),
+        'images' => [
+            'image_1' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_2' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_3' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_4' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_5' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_6' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_7' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_8' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_9' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_10' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_11' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_12' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_13' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_14' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_15' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_16' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_17' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_18' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_19' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+            'image_20' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+
+        ]
+    ]
+]);
+
+});
+
+
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
