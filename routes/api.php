@@ -41,42 +41,28 @@ Route::middleware('auth:sanctum')->post('/update-password', function(Request $re
 
 
 Route::post('/demo/data', function(Request $request) {
+    $reports = [];
 
-return response()->json([
-    'success' => true,
-    'data' => [
-        'report_id' => 1,
-        'title' => 'Sample Demo Report',
-        'description' => 'This is a demo report for Flutter team',
-        'created_at' => now()->toDateTimeString(),
-        'images' => [
-            'image_1' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_2' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_3' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_4' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_5' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_6' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_7' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_8' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_9' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_10' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_11' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_12' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_13' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_14' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_15' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_16' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_17' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_18' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_19' => asset('https://cms.benazirharicard.gos.pk/1.png'),
-            'image_20' => asset('https://cms.benazirharicard.gos.pk/1.png'),
+    for ($i = 1; $i <= 10; $i++) {
+        $images = [];
+        for ($j = 1; $j <= 10; $j++) {
+            $images["image_$j"] = asset("https://cms.benazirharicard.gos.pk/{$j}.png");
+        }
 
-        ]
-    ]
-]);
+        $reports[] = [
+            'report_id' => $i,
+            'title' => "Sample Demo Report $i",
+            'description' => "This is demo report #$i for Flutter team",
+            'created_at' => now()->toDateTimeString(),
+            'images' => $images,
+        ];
+    }
 
+    return response()->json([
+        'success' => true,
+        'data' => $reports,
+    ]);
 });
-
 
 
 
