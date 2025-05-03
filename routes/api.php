@@ -43,10 +43,10 @@ Route::middleware('auth:sanctum')->post('/update-password', function(Request $re
 Route::post('/demo/data', function(Request $request) {
     $reports = [];
 
-    for ($i = 1; $i <= 10; $i++) {
+    for ($i = 1; $i <= 12; $i++) {
         $images = [];
-        for ($j = 1; $j <= 10; $j++) {
-            $images["image_$j"] = asset("https://cms.benazirharicard.gos.pk/{$j}.png");
+        for ($j = 1; $j <= 12; $j++) {
+            $images["image_$j"] = asset("https://cms.benazirharicard.gos.pk/demo/{$j}.jpg");
         }
 
         $reports[] = [
