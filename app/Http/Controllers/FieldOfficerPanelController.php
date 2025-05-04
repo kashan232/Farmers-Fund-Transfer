@@ -373,7 +373,7 @@ class FieldOfficerPanelController extends Controller
             $data['cnic_expiry_date'] = Carbon::createFromFormat('d-m-Y', $request->cnic_expiry_date)->format('Y-m-d');
             $data['date_of_birth'] = Carbon::createFromFormat('d-m-Y', $request->date_of_birth)->format('Y-m-d');
 
-            
+
 
 
 

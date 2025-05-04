@@ -1871,6 +1871,43 @@ $('select[name="tehsil"]').on('change', function() {
 
 if (formstep == 1) {
 
+
+    const dateFields = ['cnic_expiry_date', 'cnic_issue_date', 'date_of_birth'];
+const dateRegex = /^(\d{2})-(\d{2})-(\d{4})$/; // DD-MM-YYYY
+
+// Date format + validity check (DD-MM-YYYY)
+dateFields.forEach((field) => {
+    let val = step1_formdata[field];
+    if (val && dateRegex.test(val)) {
+        const [_, dayStr, monthStr, yearStr] = val.match(dateRegex);
+        const day = parseInt(dayStr, 10);
+        const month = parseInt(monthStr, 10);
+        const year = parseInt(yearStr, 10);
+
+        // JS Date uses YYYY-MM-DD (months are 0-based)
+        const date = new Date(`${year}-${month}-${day}`);
+
+        const isValid = (
+            year >= 1900 &&
+            year <= 2100 &&
+            date.getFullYear() === year &&
+            date.getMonth() + 1 === month &&
+            date.getDate() === day
+        );
+
+        if (!isValid) {
+            let formattedKey = field.replace(/_/g, " ");
+            errors += `<b><span class="text-danger">${formattedKey} must be a valid date in DD-MM-YYYY format.</span></b><br>`;
+        }
+    } else if (val) {
+        let formattedKey = field.replace(/_/g, " ");
+        errors += `<b><span class="text-danger">${formattedKey} must be in DD-MM-YYYY format.</span></b><br>`;
+    }
+});
+
+
+
+
     // Check if any field is empty
     for (const key in step1_formdata) {
         if (step1_formdata[key] === "" || step1_formdata[key] === null) {
