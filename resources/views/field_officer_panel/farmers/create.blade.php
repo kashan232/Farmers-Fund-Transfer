@@ -331,11 +331,11 @@
 
                                         <div class="mb-6 col-md-2 py-2">
                                             <label class="form-label">CNIC Issue Date.: <span class="text-danger">*</span></label>
-                                            <input type="text" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="{{$data->cnic_issue_date ?? ''}}"   data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY"   >
+                                            <input type="text" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="{{ $data->cnic_issue_date ? \Carbon\Carbon::parse($data->cnic_issue_date)->format('d-m-Y') : '' }}"   data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY"   >
                                         </div>
                                         <div class="mb-6 col-md-2 py-2 cnic_expiry_date_div">
                                             <label class="form-label">CNIC Expiry Date.: <span class="text-danger">*</span></label>
-                                            <input type="text" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="{{$data->cnic_expiry_date ?? ''}}"   data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY"   >
+                                            <input type="text" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="{{ $data->cnic_expiry_date ? \Carbon\Carbon::parse($data->cnic_expiry_date)->format('d-m-Y') : '' }}"   data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY"   >
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
                                             <label class="form-label">Q4. Mobile No.: <span class="text-danger">*</span></label>
@@ -925,7 +925,7 @@
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Date of Birth (D-M-Y) <span class="text-danger">*</span></label>
-                                            <input type="text" name="date_of_birth" data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY" id="date_of_birth" class="form-control" value="{{$data->date_of_birth ?? ''}}" >
+                                            <input type="text" name="date_of_birth" data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY" id="date_of_birth" class="form-control" value="{{ $data->date_of_birth ? \Carbon\Carbon::parse($data->date_of_birth)->format('d-m-Y') : '' }}" >
                                         </div>
 
                                         <div class="mb-6 col-md-4 mt-2">
