@@ -403,11 +403,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-2 py-2 cnic_issue_date_div">
                                                     <label class="form-label">CNIC Issue Date: <span class="text-danger">*</span></label>
-                                                    <input type="text" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="{{$data->cnic_issue_date ?? ''}}"   data-inputmask="'mask': '9999-99-99'" placeholder="YYYY-MM-DD"  >
+                                                    <input type="text" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="{{$data->cnic_issue_date ?? ''}}"   data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY"  >
                                                 </div>
                                                 <div class="mb-6 col-md-2 py-2 cnic_expiry_date_div">
                                                     <label class="form-label">CNIC Expiry Date: <span class="text-danger">*</span></label>
-                                                    <input type="text" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="{{$data->cnic_expiry_date ?? ''}}"    data-inputmask="'mask': '9999-99-99'" placeholder="YYYY-MM-DD" >
+                                                    <input type="text" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="{{$data->cnic_expiry_date ?? ''}}"    data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY" >
                                                 </div>
 
 
@@ -1002,7 +1002,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-4 mt-2">
                                                     <label class="form-label">Date of Birth (D-M-Y) <span class="text-danger">*</span></label>
-                                                    <input type="text" name="date_of_birth" data-inputmask="'mask': '9999-99-99'" placeholder="YYYY-MM-DD" id="date_of_birth" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                                    <input type="text" name="date_of_birth" data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY" id="date_of_birth" class="form-control" value="{{$data->account_title ?? ''}}" >
                                                 </div>
 
                                                 <div class="mb-6 col-md-4 mt-2">
@@ -1346,12 +1346,12 @@ $(document).ready(function () {
 });
 
 
-$('#cnic_issue_date, #cnic_expiry_date, #date_of_birth').on('blur', function () {
+$('#cnic_issue_date, #cnic_expiry_date ,#date_of_birth').on('blur', function () {
     let val = $(this).val();
-    let regex = /^(\d{4})-(\d{2})-(\d{2})$/;
+    let regex = /^(\d{2})-(\d{2})-(\d{4})$/;
 
     if (regex.test(val)) {
-        let [_, yearStr, monthStr, dayStr] = val.match(regex);
+        let [_, dayStr, monthStr, yearStr] = val.match(regex);
         let day = parseInt(dayStr, 10);
         let month = parseInt(monthStr, 10);
         let year = parseInt(yearStr, 10);
@@ -1359,6 +1359,7 @@ $('#cnic_issue_date, #cnic_expiry_date, #date_of_birth').on('blur', function () 
         let isValidYear = year >= 1900 && year <= 2100;
         let isValidDate = false;
 
+        // Check actual date validity using JS Date object
         let date = new Date(`${year}-${month}-${day}`);
         if (
             isValidYear &&
@@ -1372,7 +1373,7 @@ $('#cnic_issue_date, #cnic_expiry_date, #date_of_birth').on('blur', function () 
         if (!isValidDate) {
             Swal.fire({
                 title: "Error!",
-                text: 'Invalid Date! Please enter a valid date in YYYY-MM-DD format.',
+                text: 'Invalid Date! Please enter a valid day, month, and year.',
                 icon: "error"
             });
 
@@ -1982,37 +1983,40 @@ $('#lined_unlined').change(function() {
                 if (formstep == 1) {
 
 
-                    const dateFields = ['cnic_expiry_date', 'cnic_issue_date', 'date_of_birth'];
-                    const dateRegex = /^(\d{4})-(\d{2})-(\d{2})$/;
 
+    const dateFields = ['cnic_expiry_date', 'cnic_issue_date', 'date_of_birth'];
+const dateRegex = /^(\d{2})-(\d{2})-(\d{4})$/; // DD-MM-YYYY
 
-                    // Date format + validity check (yyyy-mm-dd)
-                    dateFields.forEach((field) => {
-                        let val = step1_formdata[field];
-                        if (val && dateRegex.test(val)) {
-                            const [_, yearStr, monthStr, dayStr] = val.match(dateRegex);
-                            const year = parseInt(yearStr, 10);
-                            const month = parseInt(monthStr, 10);
-                            const day = parseInt(dayStr, 10);
-                            const date = new Date(`${year}-${month}-${day}`);
+// Date format + validity check (DD-MM-YYYY)
+dateFields.forEach((field) => {
+    let val = step1_formdata[field];
+    if (val && dateRegex.test(val)) {
+        const [_, dayStr, monthStr, yearStr] = val.match(dateRegex);
+        const day = parseInt(dayStr, 10);
+        const month = parseInt(monthStr, 10);
+        const year = parseInt(yearStr, 10);
 
-                            const isValid = (
-                                year >= 1900 &&
-                                year <= 2100 &&
-                                date.getFullYear() === year &&
-                                date.getMonth() + 1 === month &&
-                                date.getDate() === day
-                            );
+        // JS Date uses DD-MM-YYYY (months are 0-based)
+        const date = new Date(`${year}-${month}-${day}`);
 
-                            if (!isValid) {
-                                let formattedKey = field.replace(/_/g, " ");
-                                errors += `<b><span class="text-danger">${formattedKey} must be a valid date in YYYY-MM-DD format.</span></b><br>`;
-                            }
-                        } else if (val) {
-                            let formattedKey = field.replace(/_/g, " ");
-                            errors += `<b><span class="text-danger">${formattedKey} must be in YYYY-MM-DD format.</span></b><br>`;
-                        }
-                    });
+        const isValid = (
+            year >= 1900 &&
+            year <= 2100 &&
+            date.getFullYear() === year &&
+            date.getMonth() + 1 === month &&
+            date.getDate() === day
+        );
+
+        if (!isValid) {
+            let formattedKey = field.replace(/_/g, " ");
+            errors += `<b><span class="text-danger">${formattedKey} must be a valid date in DD-MM-YYYY format.</span></b><br>`;
+        }
+    } else if (val) {
+        let formattedKey = field.replace(/_/g, " ");
+        errors += `<b><span class="text-danger">${formattedKey} must be in DD-MM-YYYY format.</span></b><br>`;
+    }
+});
+
 
                     // Check if any field is empty
                     for (const key in step1_formdata) {
