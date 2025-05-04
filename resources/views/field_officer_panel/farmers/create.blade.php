@@ -902,7 +902,7 @@
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">City <span class="text-danger">*</span></label>
-                                            <select name="city" id="city" class="form-control js-example-basic-single-no-tag">
+                                            <select name="city" id="city" class="form-control js-example-basic-single-no-tag"> 
                                                 <option value="">Select City</option>
                                                 @foreach ($cities as $city)
                                                     <option value="{{$city->id}}" @if(isset($data)) {{($data->city == $city->id) ? 'selected':''}} @endif>{{$city->title}}</option>
