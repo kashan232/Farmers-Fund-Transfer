@@ -1128,17 +1128,74 @@
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">Form VII<span class="text-danger" > *</span><p style="    text-transform: uppercase; font-size: 12px; font-weight: 500;">jpg, png, jpeg, pdf</p></h6>
                                                   @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
-                                                  <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden >
+                                                  <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" multiple  name="form_seven_pic[]" id="form_seven_pic" accept="image/*,application/pdf"  hidden >
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
                                                       {{-- <p>Image size must be <span>500KB</span></p> --}}
                                                   </div>
-                                                  <img class="preview" src=" @if(isset($data) && $data->form_seven_pic != null) {{asset('').'fa_farmers/form_seven_pic/'.$data->form_seven_pic}} @endif"  @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @endif>
-                                                  <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif>Upload</button>
+                                                  <div class="preview-area" id="preview-area">
+                                                    <!-- Dynamically append preview images/files here -->
+                                                  </div>
+
+                                                  {{-- <img class="preview" src=" @if(isset($data) && $data->form_seven_pic != null) {{asset('').'fa_farmers/form_seven_pic/'.$data->form_seven_pic}} @endif"  @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @endif> --}}
+                                                  <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn-form_seven_pic" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif>Upload</button>
                                                   <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
                                               </div>
                                             </div>
                                         </div>
+
+
+                                        <script>
+                                            document.querySelector('.upload-image-btn-form_seven_pic').addEventListener('click', function () {
+                                                document.querySelector('#form_seven_pic').click();
+                                            });
+
+                                            document.querySelector('#form_seven_pic').addEventListener('change', function (event) {
+                                                const previewArea = document.getElementById('preview-area');
+                                                previewArea.innerHTML = '';
+                                                const files = event.target.files;
+
+                                                if (files.length > 0) {
+                                                document.querySelector('.remove-button').style.display = 'block';
+                                                }
+
+                                                Array.from(files).forEach(file => {
+                                                const reader = new FileReader();
+
+                                                reader.onload = function (e) {
+                                                    const fileType = file.type;
+                                                    let element;
+
+                                                    if (fileType.startsWith('image/')) {
+                                                    element = document.createElement('img');
+                                                    element.src = e.target.result;
+                                                    element.style.maxWidth = '100px';
+                                                    element.style.margin = '5px';
+                                                    } else if (fileType === 'application/pdf') {
+                                                    element = document.createElement('a');
+                                                    element.href = e.target.result;
+                                                    element.textContent = 'PDF File';
+                                                    element.target = '_blank';
+                                                    element.style.display = 'block';
+                                                    element.style.margin = '5px';
+                                                    }
+
+                                                    if (element) {
+                                                    previewArea.appendChild(element);
+                                                    }
+                                                };
+
+                                                reader.readAsDataURL(file);
+                                                });
+                                            });
+
+                                            document.querySelector('.remove-button').addEventListener('click', function () {
+                                                document.querySelector('#form_seven_pic').value = '';
+                                                document.getElementById('preview-area').innerHTML = '';
+                                                this.style.display = 'none';
+                                            });
+                                        </script>
+
 
                                         {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                             <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
