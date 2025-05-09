@@ -15,12 +15,12 @@
 
     .table-responsive {
         position: relative !important;
-        padding-top: 5% !important;
+        /* padding-top: 5% !important; */
     }
 
     .table-responsive nav{
         float: right !important;
-        margin-top: 1% !important;
+        /* margin-top: 1% !important; */
     }
 
 </style>
@@ -52,6 +52,23 @@
                                     <div class="col-12">
 
                                         <div class="table-responsive">
+
+                                            <div style="display: flex;" class="mb-3">
+                                                <div class="col-3 " style="top:1%;" >
+                                                    <select  id="user_type" class="form-control">
+                                                        <option value="">Select Type</option>
+                                                        <option value="Online">Online</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-3 mx-3  " style="   top:1%;" >
+                                                    <select  id="form_status" class="form-control">
+                                                        <option value="">All</option>
+                                                        <option value="Unverified">Un-verified</option>
+                                                        <option value="Forward to AO">verified</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <table id="example1" class="display" style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
                                                     <tr>
@@ -193,6 +210,20 @@
                 table.column(1).search('').draw();
             }
         });
+
+        $(document).on('change', '#form_status', function(e) {
+            e.preventDefault();
+            var searchValue = $(this).val();
+            if (searchValue != 0) {
+                table.column(10).search('^' + searchValue + '$', true, false).draw();
+            } else {
+                table.column(10).search('').draw();
+            }
+        });
+
+
+
+
         //  <div class="col-3" style="position: absolute; top:1%" >
         //          <select name="tehsil" id="tehsil" class="form-control">
         //              <option value="0">Please Select Tehsil</option>
@@ -201,15 +232,11 @@
         //              @endforeach
         //          </select>
         //      </div>
-        $('#example1_wrapper').before(`
+//         $('#example1_wrapper').before(`
 
-     <div class="col-3" style="position: absolute; top:1%;" >
-         <select  id="user_type" class="form-control">
-             <option value="">Select Type</option>
-             <option value="Online">Online</option>
-         </select>
-     </div>
- `);
+
+
+//  `);
 
     });
 
