@@ -1221,85 +1221,21 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                 </div>
 
-                                                <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                                {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
                                                           <h6 class="mb-4" style="height: 50px;">Form VII <span class="text-danger" > *</span><p style="    text-transform: uppercase; font-size: 12px; margin-top: 5px;">jpg, png, jpeg, pdf</p></p></h6><br>
                                                           @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
-                                                          <input type="file"  class="image-inputf checkffiles checkfile_formf_seven_pic" multiple name="form_seven_pic[]" id="form_seven_pic" accept="image/*"  hidden>
+                                                          <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
                                                           <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
-                                                              {{-- <p>Image size must be <span>500KB</span></p> --}}
                                                           </div>
-
-                                                          <div class="preview-area" id="preview-area">
-                                                            <!-- Dynamically append preview images/files here -->
-                                                          </div>
-
-
-
                                                           <img class="preview" src=" @if(isset($data) && $data->form_seven_pic != null) {{asset('').'fa_farmers/form_seven_pic/'.$data->form_seven_pic}} @endif"  @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @endif>
-                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image-btn-form_seven_pic" @if(isset($data) && $data->form_seven_pic != null) style="display: none ; " @endif>Upload</button>
+                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->form_seven_pic != null) style="display: none ; " @endif>Upload</button>
                                                           <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
                                                       </div>
                                                     </div>
-                                                </div>
-
-
-
-                                        <script>
-                                            document.querySelector('.upload-image-btn-form_seven_pic').addEventListener('click', function () {
-                                                document.querySelector('#form_seven_pic').click();
-                                            });
-
-                                            document.querySelector('#form_seven_pic').addEventListener('change', function (event) {
-                                                const previewArea = document.getElementById('preview-area');
-                                                previewArea.innerHTML = '';
-                                                const files = event.target.files;
-
-                                                if (files.length > 0) {
-                                                document.querySelector('.remove-button').style.display = 'block';
-                                                }
-
-                                                Array.from(files).forEach(file => {
-                                                const reader = new FileReader();
-
-                                                reader.onload = function (e) {
-                                                    const fileType = file.type;
-                                                    let element;
-
-                                                    if (fileType.startsWith('image/')) {
-                                                    element = document.createElement('img');
-                                                    element.src = e.target.result;
-                                                    element.style.maxWidth = '100px';
-                                                    element.style.margin = '5px';
-                                                    } else if (fileType === 'application/pdf') {
-                                                    element = document.createElement('a');
-                                                    element.href = e.target.result;
-                                                    element.textContent = 'PDF File';
-                                                    element.target = '_blank';
-                                                    element.style.display = 'block';
-                                                    element.style.margin = '5px';
-                                                    }
-
-                                                    if (element) {
-                                                    previewArea.appendChild(element);
-                                                    }
-                                                };
-
-                                                reader.readAsDataURL(file);
-                                                });
-                                            });
-
-                                            document.querySelector('.remove-button').addEventListener('click', function () {
-                                                document.querySelector('#form_seven_pic').value = '';
-                                                document.getElementById('preview-area').innerHTML = '';
-                                                this.style.display = 'none';
-                                            });
-                                        </script>
-
-
-
+                                                </div> --}}
 
                                                 {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
@@ -1333,6 +1269,52 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                       </div>
                                                     </div>
                                                 </div>
+
+
+
+
+
+                                                <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
+                                                      <div class="text-center image-upload-card">
+                                                          <h6 class="mb-4" style="height: 50px;">Form VII <span class="text-danger" > *</span><p style="    text-transform: uppercase; font-size: 12px; margin-top: 5px;">jpg, png, jpeg, Multiple Images</p></p></h6><br>
+                                                          @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
+
+                                                          <input type="file"  class="image-inputs checkfiless checkfile_form_seven_pics"  multiple name="form_seven_pic[]" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
+
+                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
+                                                              <i class='bx bxs-cloud-upload icon' ></i>
+                                                          </div>
+
+                                                          <div id="preview-area">
+
+                                                          </div>
+                                                          <img class="preview" src=" @if(isset($data) && $data->form_seven_pic != null) {{asset('').'fa_farmers/form_seven_pic/'.$data->form_seven_pic}} @endif"  @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @endif>
+                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn-mlti" @if(isset($data) && $data->form_seven_pic != null) style="display: none ; " @endif>Upload</button>
+                                                          <button type="button" class="btn btn-outline-danger w-100 rm-btn-images" @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
+                                                      </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                                                 {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
@@ -1401,6 +1383,84 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/main.js"></script>
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/select2.min.js"></script>
         <script src="{{asset('assets/js/inputMask.js')}}"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+
+
+
+
+        $('.upload-image-btn-mlti').on('click', function () {
+            $('#form_seven_pic').click();
+        });
+
+        $('#form_seven_pic').on('change', function (e) {
+            let previewArea = $('#preview-area');
+
+
+
+
+            previewArea.html(''); // Clear previous previews
+
+            let files = e.target.files;
+
+
+            if (files.length > 5) {
+                alert('You can upload a maximum of 5 files.');
+                $('#form_seven_pic').val('');
+                $('.rm-btn-images').hide();
+                return;
+            }
+
+
+            if (files.length > 0) {
+                $('.rm-btn-images').show();
+            }
+
+            $.each(files, function (index, file) {
+                let reader = new FileReader();
+
+                reader.onload = function (e) {
+                    let fileType = file.type;
+                    let element;
+
+                    if (fileType.startsWith('image/')) {
+                        element = $('<img>').attr('src', e.target.result).css({
+                            'max-width': '100px',
+                            'margin': '5px'
+                        });
+                    } else if (fileType === 'application/pdf') {
+                        element = $('<a>')
+                            .attr('href', e.target.result)
+                            .attr('target', '_blank')
+                            .text('PDF File')
+                            .css({
+                                'display': 'block',
+                                'margin': '5px'
+                            });
+                    }
+
+                    if (element) {
+                        previewArea.append(element);
+                    }
+                };
+
+                reader.readAsDataURL(file);
+            });
+        });
+
+        $('.rm-btn-images').on('click', function () {
+            $('#form_seven_pic').val('');
+            $('#preview-area').html('');
+            $(this).hide();
+        });
+
+    });
+</script>
+
+
         <script>
 
 
@@ -2021,16 +2081,16 @@ $('#lined_unlined').change(function() {
                 errors = '';
 
                 let step1_formdata = {
-                    // name: $('#name').val(),
-                    // father_name: $('#father_name').val(),
-                    // surname: $('#surname').val(),
-                    // cnic: $('#cnic').val(),
-                    // cnic_issue_date: $('#cnic_issue_date').val(),
-                    // mobile: $('#mobile').val(),
-                    // district: $('#district').val(),
-                    // tehsils: $('#tehsils').val(),
-                    // tappas: $('#tappas').val(),
-                    // cnic_of_next_kin: $('#cnic_of_next_kin').val(),
+                    name: $('#name').val(),
+                    father_name: $('#father_name').val(),
+                    surname: $('#surname').val(),
+                    cnic: $('#cnic').val(),
+                    cnic_issue_date: $('#cnic_issue_date').val(),
+                    mobile: $('#mobile').val(),
+                    district: $('#district').val(),
+                    tehsils: $('#tehsils').val(),
+                    tappas: $('#tappas').val(),
+                    cnic_of_next_kin: $('#cnic_of_next_kin').val(),
                     // total_fallow_land: $('#total_fallow_land').val(),
                 };
 
@@ -2047,38 +2107,40 @@ $('#lined_unlined').change(function() {
 
 
 
-//     const dateFields = ['cnic_expiry_date', 'cnic_issue_date', 'date_of_birth'];
-// const dateRegex = /^(\d{2})-(\d{2})-(\d{4})$/; // DD-MM-YYYY
+    const dateFields = ['cnic_expiry_date', 'cnic_issue_date', 'date_of_birth'];
+const dateRegex = /^(\d{2})-(\d{2})-(\d{4})$/; // DD-MM-YYYY
 
-// // Date format + validity check (DD-MM-YYYY)
-// dateFields.forEach((field) => {
-//     let val = step1_formdata[field];
-//     if (val && dateRegex.test(val)) {
-//         const [_, dayStr, monthStr, yearStr] = val.match(dateRegex);
-//         const day = parseInt(dayStr, 10);
-//         const month = parseInt(monthStr, 10);
-//         const year = parseInt(yearStr, 10);
 
-//         // JS Date uses DD-MM-YYYY (months are 0-based)
-//         const date = new Date(`${year}-${month}-${day}`);
 
-//         const isValid = (
-//             year >= 1900 &&
-//             year <= 2100 &&
-//             date.getFullYear() === year &&
-//             date.getMonth() + 1 === month &&
-//             date.getDate() === day
-//         );
 
-//         if (!isValid) {
-//             let formattedKey = field.replace(/_/g, " ");
-//             errors += `<b><span class="text-danger">${formattedKey} must be a valid date in DD-MM-YYYY format.</span></b><br>`;
-//         }
-//     } else if (val) {
-//         let formattedKey = field.replace(/_/g, " ");
-//         errors += `<b><span class="text-danger">${formattedKey} must be in DD-MM-YYYY format.</span></b><br>`;
-//     }
-// });
+dateFields.forEach((field) => {
+    let val = step1_formdata[field];
+    if (val && dateRegex.test(val)) {
+        const [_, dayStr, monthStr, yearStr] = val.match(dateRegex);
+        const day = parseInt(dayStr, 10);
+        const month = parseInt(monthStr, 10);
+        const year = parseInt(yearStr, 10);
+
+        // JS Date uses DD-MM-YYYY (months are 0-based)
+        const date = new Date(`${year}-${month}-${day}`);
+
+        const isValid = (
+            year >= 1900 &&
+            year <= 2100 &&
+            date.getFullYear() === year &&
+            date.getMonth() + 1 === month &&
+            date.getDate() === day
+        );
+
+        if (!isValid) {
+            let formattedKey = field.replace(/_/g, " ");
+            errors += `<b><span class="text-danger">${formattedKey} must be a valid date in DD-MM-YYYY format.</span></b><br>`;
+        }
+    } else if (val) {
+        let formattedKey = field.replace(/_/g, " ");
+        errors += `<b><span class="text-danger">${formattedKey} must be in DD-MM-YYYY format.</span></b><br>`;
+    }
+});
 
 
                     // Check if any field is empty
@@ -2090,32 +2152,20 @@ $('#lined_unlined').change(function() {
                         }
                     }
 
-                    // if (step1_formdata.cnic.includes('_')) {
-                    //     errors += `<b><span class="text-danger">CNIC NUMBER IS INVALID.</span></b><br>`;
-                    // }
+                    if (step1_formdata.cnic.includes('_')) {
+                        errors += `<b><span class="text-danger">CNIC NUMBER IS INVALID.</span></b><br>`;
+                    }
 
-                    // if (step1_formdata.mobile.includes('_')) {
-                    //     errors += `<b><span class="text-danger">MOBILE NUMBER IS INVALID</span></b><br>`;
-                    // }
+                    if (step1_formdata.mobile.includes('_')) {
+                        errors += `<b><span class="text-danger">MOBILE NUMBER IS INVALID</span></b><br>`;
+                    }
 
-                    // if (step1_formdata.cnic_of_next_kin.includes('_')) {
-                    //     errors += `<b><span class="text-danger">CNIC OF NEXT KIN IS INVALID</span></b><br>`;
-                    // }
+                    if (step1_formdata.cnic_of_next_kin.includes('_')) {
+                        errors += `<b><span class="text-danger">CNIC OF NEXT KIN IS INVALID</span></b><br>`;
+                    }
 
 
-                       // Validate mobile number (should not have more than one '-')
-                        // let mobileHyphenCount = (step1_formdata.mobile.match(/-/g) || []).length;
-                        // if (mobileHyphenCount > 1) {
-                        //     errors += `<b><span class="text-danger">Mobile number should not contain more than one '-' symbol.</span></b><br>`;
-                        // }
 
-                        // // Validate CNIC format (should have exactly two '-')
-                        // let cnicHyphenCount = (step1_formdata.cnic.match(/-/g) || []).length;
-                        // if (cnicHyphenCount !== 2) {
-                        //     errors += `<b><span class="text-danger">CNIC should contain exactly two '-' symbols.</span></b><br>`;
-                        // }
-
-                         // Ensure CNIC does not contain '_'
 
                     if(errors != '')
                     {
@@ -2131,16 +2181,14 @@ $('#lined_unlined').change(function() {
                 }
 
                 let step4_formdata = {
-                 // FancingCoordinates: $('#FancingCoordinates').val(),
-                    // City: $('#city').val(),
-                    // BranchName: $('#branch_name').val(),
-                    // AccountTitle: $('#account_title').val(),
-                    // DateOfBirth: $('#date_of_birth').val(),
-                    // MaritalStatus: $('#marital_status').val(),
-                    // MotherMaidenName: $('#mother_maiden_name').val(),
-                    // CorrespondenceAddress: $('#correspondence_address').val(),
-                    // PermanentAddress: $('#permanent_address').val(),
-                    // GpsCordinates: $('#GpsCordinates').val(),
+                    City: $('#city').val(),
+                    BranchName: $('#branch_name').val(),
+                    AccountTitle: $('#account_title').val(),
+                    DateOfBirth: $('#date_of_birth').val(),
+                    MaritalStatus: $('#marital_status').val(),
+                    MotherMaidenName: $('#mother_maiden_name').val(),
+                    CorrespondenceAddress: $('#correspondence_address').val(),
+                    PermanentAddress: $('#permanent_address').val(),
                 };
 
                 if (formstep == 4) {

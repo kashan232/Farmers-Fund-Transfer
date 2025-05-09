@@ -1187,7 +1187,7 @@
 <td colspan="8" style="border: none;">
     <b>4. Form VII / Registry from Micro (Mandatory): </b><br>
 
-    @if ($data->form_seven_pic != null)
+    {{-- @if ($data->form_seven_pic != null)
         @php
             $filePath = public_path('fa_farmers/form_seven_pic/' . $data->form_seven_pic);
             $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
@@ -1208,100 +1208,51 @@
         @else
             <p>File not found</p>
         @endif
+    @endif --}}
+
+@if (!empty($data->form_seven_pic))
+    @php
+        $files = json_decode($data->form_seven_pic, true);
+    @endphp
+
+    @if (is_array($files))
+        <div class="row">
+            @foreach ($files as $file)
+                @php
+                    $filePath = public_path('fa_farmers/form_seven_pic/' . $file);
+                    $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
+                @endphp
+
+                <div class="col-md-4 mb-4 text-center">
+                    @if (file_exists($filePath))
+                        @if (in_array(strtolower($fileExtension), ['jpg', 'jpeg', 'png', 'gif']))
+                            @php
+                                $imageData = base64_encode(file_get_contents($filePath));
+                                $imageSrc = 'data:image/' . $fileExtension . ';base64,' . $imageData;
+                            @endphp
+                            <img src="{{ $imageSrc }}" alt="Form VII Image" style="width: 100%; border-radius: 10px;">
+                        @elseif (strtolower($fileExtension) === 'pdf')
+                            <embed src="{{ asset('fa_farmers/form_seven_pic/' . $file) }}" type="application/pdf" width="100%" height="400px" />
+                        @else
+                            <p>Unsupported file format</p>
+                        @endif
+                    @else
+                        <p>File not found</p>
+                    @endif
+                </div>
+            @endforeach
+        </div>
     @endif
+@endif
+
+
 </td>
 
 
                             </tr>
 
 
-                           <tr>
-                            <td colspan="8" style="border: none;"> <b>5. Forms VIII A/ Affidavit/ Heirship (Land Documents): </b></span> <br>
-                                @if ($data->upload_land_proof != null)
-                                @php
-                                    // Assuming upload_land_proof contains the path to the image file
-                                    $imagePath = public_path(
-                                        'fa_farmers/upload_land_proof/' . $data->upload_land_proof,
-                                    );
-
-                                    // Check if the image exists before encoding
-                                    if (file_exists($imagePath)) {
-                                        $imageData = base64_encode(file_get_contents($imagePath));
-                                        $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-                                    } else {
-                                        $imageSrc = '';
-                                    }
-                                @endphp
-
-                                @if ($imageSrc)
-                                    <img src="{{ $imageSrc }}"   alt="Front ID Card"
-                                    style="width:80%">
-                                @else
-                                    <p>Image not found</p>
-                                @endif
-                            @endif
-                            </td>
-                           </tr>
-
-
-
-                           <tr>
-                            <td colspan="8" style="border: none;"> <b>6. Others: </b></span> <br>
- {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
- @if ($data->upload_other_attach != null)
- @php
-     // Assuming upload_other_attach contains the path to the image file
-     $imagePath = public_path(
-         'fa_farmers/upload_other_attach/' . $data->upload_other_attach,
-     );
-
-     // Check if the image exists before encoding
-     if (file_exists($imagePath)) {
-         $imageData = base64_encode(file_get_contents($imagePath));
-         $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-     } else {
-         $imageSrc = '';
-     }
- @endphp
-
- @if ($imageSrc)
-     <img src="{{ $imageSrc }}"  alt="Front ID Card"
-     style="width:80%">
- @else
-     <p>Image not found</p>
- @endif
-@endif
-                            </td>
-                           </tr>
-
- <tr>
-                            <td colspan="8" style="border: none;"> <b>7. No Objection Affidavit in case of joint ownership / khata: </b></span> <br>
- {{-- <img src="data:image/jpeg;base64,{{ base64_encode() }}" alt="Image"  style="width:auto;height:auto"> --}}
- @if ($data->no_objection_affidavit_pic != null)
- @php
-     // Assuming no_objection_affidavit_pic contains the path to the image file
-     $imagePath = public_path(
-         'fa_farmers/no_objection_affidavit_pic/' . $data->no_objection_affidavit_pic,
-     );
-
-     // Check if the image exists before encoding
-     if (file_exists($imagePath)) {
-         $imageData = base64_encode(file_get_contents($imagePath));
-         $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-     } else {
-         $imageSrc = '';
-     }
- @endphp
-
- @if ($imageSrc)
-     <img src="{{ $imageSrc }}"  alt="Front ID Card"
-     style="width:80%">
- @else
-     <p>Image not found</p>
- @endif
-@endif
-                            </td>
-                           </tr>
+                          
                             </table>
                     </div>
                 </div>

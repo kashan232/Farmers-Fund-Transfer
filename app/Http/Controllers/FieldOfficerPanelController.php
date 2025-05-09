@@ -313,7 +313,7 @@ class FieldOfficerPanelController extends Controller
             $rules['back_id_card'] = 'required|file|mimes:jpg,png,jpeg';
         }
         if ($request->old_form_seven_pic != 1){
-            $rules['form_seven_pic'] = 'required|file|mimes:jpg,png,jpeg,pdf';
+            // $rules['form_seven_pic'] = 'required|file|mimes:jpg,png,jpeg,pdf';
         }
         if ($request->old_upload_farmer_pic != 1){
             $rules['upload_farmer_pic'] = 'required|file|mimes:jpg,png,jpeg';
@@ -476,11 +476,25 @@ class FieldOfficerPanelController extends Controller
             }
 
             // Handle cheque picture image
+            // if ($request->hasFile('form_seven_pic')) {
+            //     $form_seven_pic_image = $request->file('form_seven_pic');
+            //     $form_seven_pic_image_name = time() . '_' . uniqid() . '.' . $form_seven_pic_image->getClientOriginalExtension();
+            //     $form_seven_pic_image->move(public_path('fa_farmers/form_seven_pic'), $form_seven_pic_image_name);
+            //     $data['form_seven_pic'] = $form_seven_pic_image_name;
+            // }
+
+
             if ($request->hasFile('form_seven_pic')) {
-                $form_seven_pic_image = $request->file('form_seven_pic');
-                $form_seven_pic_image_name = time() . '_' . uniqid() . '.' . $form_seven_pic_image->getClientOriginalExtension();
-                $form_seven_pic_image->move(public_path('fa_farmers/form_seven_pic'), $form_seven_pic_image_name);
-                $data['form_seven_pic'] = $form_seven_pic_image_name;
+                $form_seven_pics = [];
+
+                foreach ($request->file('form_seven_pic') as $file) {
+                    $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path('fa_farmers/form_seven_pic'), $filename);
+                    $form_seven_pics[] = $filename;
+                }
+
+                // Store the filenames as JSON or comma-separated, depending on your DB column type
+                $data['form_seven_pic'] = json_encode($form_seven_pics);
             }
 
 
