@@ -55,12 +55,14 @@
 
                                             <div style="display: flex;" class="mb-3">
                                                 <div class="col-3 " style="top:1%;" >
+                                                    <label for="">Registration Status</label>
                                                     <select  id="user_type" class="form-control">
                                                         <option value="">Select Type</option>
                                                         <option value="Online">Online</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-3 mx-3  " style="   top:1%;" >
+                                                    <label for="">Verification Status</label>
                                                     <select  id="form_status" class="form-control">
                                                         <option value="">All</option>
                                                         <option value="Unverified">Un-verified</option>
