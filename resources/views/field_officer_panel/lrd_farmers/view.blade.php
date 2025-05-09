@@ -1209,7 +1209,7 @@
             <p>File not found</p>
         @endif
     @endif --}}
-
+{{-- 
 @if (!empty($data->form_seven_pic))
     @php
         $files = json_decode($data->form_seven_pic, true);
@@ -1243,6 +1243,41 @@
             @endforeach
         </div>
     @endif
+@endif --}}
+@if (!empty($data->form_seven_pic))
+    @php
+        $files = json_decode($data->form_seven_pic, true);
+        if (!is_array($files)) {
+            $files = [$data->form_seven_pic]; // fallback to single image as string
+        }
+    @endphp
+
+    <div class="row">
+        @foreach ($files as $file)
+            @php
+                $filePath = public_path('fa_farmers/form_seven_pic/' . $file);
+                $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
+            @endphp
+
+            <div class="col-md-4 mb-4 text-center">
+                @if (file_exists($filePath))
+                    @if (in_array(strtolower($fileExtension), ['jpg', 'jpeg', 'png', 'gif']))
+                        @php
+                            $imageData = base64_encode(file_get_contents($filePath));
+                            $imageSrc = 'data:image/' . $fileExtension . ';base64,' . $imageData;
+                        @endphp
+                        <img src="{{ $imageSrc }}" alt="Form VII Image" style="width: 100%; border-radius: 10px;">
+                    @elseif (strtolower($fileExtension) === 'pdf')
+                        <embed src="{{ asset('fa_farmers/form_seven_pic/' . $file) }}" type="application/pdf" width="100%" height="400px" />
+                    @else
+                        <p>Unsupported file format</p>
+                    @endif
+                @else
+                    <p>File not found</p>
+                @endif
+            </div>
+        @endforeach
+    </div>
 @endif
 
 
@@ -1252,7 +1287,7 @@
                             </tr>
 
 
-                          
+
                             </table>
                     </div>
                 </div>
