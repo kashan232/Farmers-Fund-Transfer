@@ -1188,8 +1188,8 @@
 
                                                           <div id="preview-area">
 
+                                                             @if(isset($data) && $data->form_seven_pic != null) <img class="preview" src="  {{asset('').'fa_farmers/form_seven_pic/'.$data->form_seven_pic}} "  @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @endif>@endif
                                                           </div>
-                                                          <img class="preview" src=" @if(isset($data) && $data->form_seven_pic != null) {{asset('').'fa_farmers/form_seven_pic/'.$data->form_seven_pic}} @endif"  @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @endif>
                                                           <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn-mlti" @if(isset($data) && $data->form_seven_pic != null) style="display: none ; " @endif>Upload</button>
                                                           <button type="button" class="btn btn-outline-danger w-100 rm-btn-images" @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
                                                       </div>
