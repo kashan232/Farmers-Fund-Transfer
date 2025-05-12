@@ -1187,9 +1187,25 @@
                                                           </div> --}}
 
                                                           <div id="preview-area">
+    @php
+        $images = [];
+        if(isset($data->form_seven_pic)) {
+            $images[] = asset('fa_farmers/form_seven_pic/' . $data->form_seven_pic);
+        }
+        if(isset($data->form_eight_pic)) {
+            $images[] = asset('fa_farmers/form_eight_pic/' . $data->form_eight_pic);
+        }
+    @endphp
 
-                                                             @if(isset($data) && $data->form_seven_pic != null) <img class="preview" src="  {{asset('').'fa_farmers/form_seven_pic/'.$data->form_seven_pic}} "  @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @endif>@endif
-                                                          </div>
+    @if(count($images) > 0)
+        @foreach($images as $image)
+            <img class="preview" src="{{ $image }}" alt="Preview Image">
+        @endforeach
+    @else
+        <p>No image available.</p>
+    @endif
+</div>
+
                                                           <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn-mlti" @if(isset($data) && $data->form_seven_pic != null) style="display: none ; " @endif>Upload</button>
                                                           <button type="button" class="btn btn-outline-danger w-100 rm-btn-images" @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
                                                       </div>
