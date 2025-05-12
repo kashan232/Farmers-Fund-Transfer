@@ -1186,7 +1186,7 @@
                                                               <i class='bx bxs-cloud-upload icon' ></i>
                                                           </div> --}}
 
-                                                          <div id="preview-area">
+                                                          <div id="preview-area" style="display: flex">
                                                                 @if(isset($data->form_seven_pic))
                                                                     @php
                                                                         $images = json_decode($data->form_seven_pic, true);
@@ -1194,10 +1194,10 @@
 
                                                                     @if(is_array($images))
                                                                         @foreach($images as $image)
-                                                                            <img class="preiew" src="{{ asset('fa_farmers/form_seven_pic/' . $image) }}" alt="Preview Image">
+                                                                            <img class="preiew" style="width: 100px; height: 100px;" src="{{ asset('fa_farmers/form_seven_pic/' . $image) }}" alt="Preview Image">
                                                                         @endforeach
                                                                     @else
-                                                                        <img class="prevew" src="{{ asset('fa_farmers/form_seven_pic/' . $data->form_seven_pic) }}" alt="Preview Image">
+                                                                        <img class="prevew" style="width: 100px; height: 100px;" src="{{ asset('fa_farmers/form_seven_pic/' . $data->form_seven_pic) }}" alt="Preview Image">
                                                                     @endif
                                                                 @endif
                                                             </div>
