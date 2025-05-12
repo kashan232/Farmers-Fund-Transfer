@@ -1180,7 +1180,7 @@
                                                           <h6 class="mb-4" style="height: 50px;">Form VII <span class="text-danger" > *</span><p style="    text-transform: uppercase; font-size: 12px; margin-top: 5px;">jpg, png, jpeg, Multiple Images</p></p></h6><br>
                                                           @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
 
-                                                          <input type="file"  class="image-inputs checkfiless checkfile_form_seven_pics"  multiple name="form_seven_pic[]" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
+                                                          <input type="file"  class="image-inputs checkfiles checkfile_form_seven_pics"  multiple name="form_seven_pic[]" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
 
                                                           {{-- <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
