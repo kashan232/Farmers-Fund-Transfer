@@ -1187,20 +1187,20 @@
                                                           </div> --}}
 
                                                           <div id="preview-area">
-    @if(isset($data->form_seven_pic))
-        @php
-            $images = json_decode($data->form_seven_pic, true);
-        @endphp
+                                                                @if(isset($data->form_seven_pic))
+                                                                    @php
+                                                                        $images = json_decode($data->form_seven_pic, true);
+                                                                    @endphp
 
-        @if(is_array($images))
-            @foreach($images as $image)
-                <img class="preview" src="{{ asset('fa_farmers/form_seven_pic/' . $image) }}" alt="Preview Image">
-            @endforeach
-        @else
-            <img class="preview" src="{{ asset('fa_farmers/form_seven_pic/' . $data->form_seven_pic) }}" alt="Preview Image">
-        @endif
-    @endif
-</div>
+                                                                    @if(is_array($images))
+                                                                        @foreach($images as $image)
+                                                                            <img class="preiew" src="{{ asset('fa_farmers/form_seven_pic/' . $image) }}" alt="Preview Image">
+                                                                        @endforeach
+                                                                    @else
+                                                                        <img class="prevew" src="{{ asset('fa_farmers/form_seven_pic/' . $data->form_seven_pic) }}" alt="Preview Image">
+                                                                    @endif
+                                                                @endif
+                                                            </div>
 
 
                                                           <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn-mlti" @if(isset($data) && $data->form_seven_pic != null) style="display: none ; " @endif>Upload</button>
