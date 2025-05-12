@@ -1349,6 +1349,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
 
         $('.rm-btn-images').on('click', function () {
 
+            $('.upload-image-btn-mlti').show();
+
             $('#form_seven_pic').val('');
             $('#preview-area').html('');
             $(this).hide();
