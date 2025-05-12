@@ -1182,9 +1182,9 @@
 
                                                           <input type="file"  class="image-inputs checkfiless checkfile_form_seven_pics"  multiple name="form_seven_pic[]" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
 
-                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
+                                                          {{-- <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
-                                                          </div>
+                                                          </div> --}}
 
                                                           <div id="preview-area">
 
@@ -1348,6 +1348,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
         });
 
         $('.rm-btn-images').on('click', function () {
+
             $('#form_seven_pic').val('');
             $('#preview-area').html('');
             $(this).hide();
