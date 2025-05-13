@@ -323,7 +323,7 @@
                                             <label class="form-label">CNIC Status: <span class="text-danger">*</span></label>
                                             <select name="cnic_status" id="cnic_status" class="form-control">
                                                 <option value="valid_till" selected>Valid Till</option>
-                                                <option value="life_time">Life Time</option>
+                                                <option value="life_time" @if(isset($data) && $data->cnic_expiry_date == '')  selected @endif>Life Time</option>
                                             </select>
                                         </div>
 
