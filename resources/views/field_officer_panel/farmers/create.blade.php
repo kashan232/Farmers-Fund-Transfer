@@ -329,6 +329,12 @@
 
 
 
+                                     
+
+
+
+
+
                                         <div class="mb-6 col-md-2 py-2">
                                             <label class="form-label">CNIC Issue Date.: <span class="text-danger">*</span></label>
                                             <input type="text" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="@if(isset($data)) {{ $data->cnic_issue_date ? \Carbon\Carbon::parse($data->cnic_issue_date)->format('d-m-Y') : '' }} @endif"   data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY"   >

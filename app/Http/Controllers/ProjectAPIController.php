@@ -42,7 +42,7 @@ class ProjectAPIController extends Controller
         // Fetch user by email
         $user = User::where('email', $email)->first();
 
-        $ucs =  UC::where('district',$user->district)->pluck('uc');
+        // $ucs =  UC::where('district',$user->district)->pluck('uc');
 
         if ($user && Hash::check($password, $user->password)) {
             // Generate token
@@ -50,7 +50,7 @@ class ProjectAPIController extends Controller
 
             return response()->json([
                 'logged_user_data' => $user,
-                'ucs' => $ucs,
+                // 'ucs' => $ucs,
                 'token' => $token,
                 'message' => 'User Login Successfully',
                 'status' => 'Success'
