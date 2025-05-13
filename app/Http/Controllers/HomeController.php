@@ -210,8 +210,6 @@ class HomeController extends Controller
                     'verified_by_ao',
                     'verified_by_lrd',
                     'verified_by_dd',
-
-
                 ])
                 ->count();
 
@@ -220,7 +218,7 @@ class HomeController extends Controller
                 ->whereIn('tehsil', json_decode($user->tehsil))
                 ->whereIn('tappa', json_decode($user->tappas))
                 ->whereIn('verification_status', [
-                    'verified_by_dd','rejected_by_lrd'
+                    'verified_by_dd','rejected_by_lrd','verified_by_ao'
 
                 ])
                 ->count();
@@ -235,13 +233,13 @@ class HomeController extends Controller
                 ->count();
 
 
-                $Verified_by_ao = LandRevenueFarmerRegistation::where('district', $user->district)
-                ->whereIn('tehsil', json_decode($user->tehsil))
-                ->whereIn('tappa', json_decode($user->tappas))
-                ->whereIn('verification_status', [
-                    'verified_by_ao',
-                ])
-                ->count();
+                // $Verified_by_ao = LandRevenueFarmerRegistation::where('district', $user->district)
+                // ->whereIn('tehsil', json_decode($user->tehsil))
+                // ->whereIn('tappa', json_decode($user->tappas))
+                // ->whereIn('verification_status', [
+                //     'verified_by_ao',
+                // ])
+                // ->count();
 
                 $rejected_by_ao = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->whereIn('tehsil', json_decode($user->tehsil))
@@ -279,7 +277,7 @@ class HomeController extends Controller
                 // $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
                 return view('agri_officer_panel.index', [
                     'total_farmers' => $total_farmers,
-                    'Verified_by_ao' => $Verified_by_ao,
+                    // 'Verified_by_ao' => $Verified_by_ao,
                     'rejected_by_ao' => $rejected_by_ao,
                     'unverified' => $unverified,
                     'rejected_by_dd' => $rejected_by_dd,

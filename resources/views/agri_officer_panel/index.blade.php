@@ -35,42 +35,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Verified Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">AO Verified Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $Verified_by_ao }}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-check" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Rejected Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">AO Rejected Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $rejected_by_ao }}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
@@ -78,31 +42,12 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Verified Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $verified_by_lrd }}</h3>
+                                                <p class="card-title text-title">In-Process Farmers</p>
+                                                <h3 class="card-text text-amount">{{ $process }}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title">DD Rejected Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $rejected_by_dd }}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                    <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -128,17 +73,81 @@
                                 </div>
                             </div>
 
+
+
+                            <!-- Verified Farmers Card -->
+                            {{-- <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title">AO Verified Farmers</p>
+                                                <h3 class="card-text text-amount">{{ $Verified_by_ao }}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-check" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+                            <!-- Rejected Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">In-Process Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $process }}</h3>
+                                                <p class="card-title text-title">AO Rejected Farmers</p>
+                                                <h3 class="card-text text-amount">{{ $rejected_by_ao }}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title">DD Rejected Farmers</p>
+                                                <h3 class="card-text text-amount">{{ $rejected_by_dd }}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title">LRD Verified Farmers</p>
+                                                <h3 class="card-text text-amount">{{ $verified_by_lrd }}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
