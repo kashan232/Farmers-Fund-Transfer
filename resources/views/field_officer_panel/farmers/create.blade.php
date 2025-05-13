@@ -913,7 +913,7 @@
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Preferred Branch Name <span class="text-danger">*</span></label>
                                             <select name="branch_name" id="branch_name"  class="form-control js-example-basic-single-no-tag">
-                                                <option value="{{$data->branch->title ?? ''}}" >{{$data->branch->title ?? 'Select City First'}} </option>
+                                                <option value="{{$data->branch_name ?? ''}}" >{{$data->branch->title ?? 'Select City First'}} </option>
                                             </select>
                                         </div>
 
@@ -1094,7 +1094,7 @@
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">CNIC FRONT <span class="text-danger" > *</span>  </h6>
                                                   @if(isset($data) && $data->front_id_card != null) <input type="hidden"  class="old_image  old_checkfiles old_checkfile_front_id_card" name="old_front_id_card" value="1" > @endif
-                                                  <input type="file"  class="image-input checkfiles checkfile_front_id_card" name="front_id_card" id="front_id_card"  accept="image/*" hidden >
+                                                  <input type="file"  class="image-input checkf4iles checkfile_front_id_card" name="front_id_card" id="front_id_card"  accept="image/*" hidden >
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->front_id_card != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
                                                       {{-- <p>Image size must be <span>500KB</span></p> --}}
@@ -1111,7 +1111,7 @@
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">CNIC BACK <span class="text-danger" > *</span></h6>
                                                   @if(isset($data) && $data->back_id_card != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_back_id_card" name="old_back_id_card" value="1" > @endif
-                                                  <input type="file"  class="image-input checkfiles checkfile_back_id_card" name="back_id_card" id="back_id_card" accept="image/*" hidden >
+                                                  <input type="file"  class="image-input chec4kfiles checkfile_back_id_card" name="back_id_card" id="back_id_card" accept="image/*" hidden >
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->back_id_card != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
                                                       {{-- <p>Image size must be <span>500KB</span></p> --}}
@@ -1161,7 +1161,7 @@
                                               <div class="text-center image-upload-card">
                                                   <h6 class="mb-4" style="height: 50px;">Photo <span class="text-danger" > *</span> </h6>
                                                   @if(isset($data) && $data->upload_farmer_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_farmer_pic" name="old_upload_farmer_pic" value="1" > @endif
-                                                  <input type="file"  class="image-input checkfiles checkfile_upload_farmer_pic" name="upload_farmer_pic" id="upload_farmer_pic" accept="image/*" hidden >
+                                                  <input type="file"  class="image-input checkf4iles checkfile_upload_farmer_pic" name="upload_farmer_pic" id="upload_farmer_pic" accept="image/*" hidden >
                                                   <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_farmer_pic != null) style="display: none " @endif   >
                                                       <i class='bx bxs-cloud-upload icon' ></i>
                                                       {{-- <p>Image size must be <span>500KB</span></p> --}}
@@ -1180,7 +1180,7 @@
                                                           <h6 class="mb-4" style="height: 50px;">Form VII <span class="text-danger" > *</span><p style="    text-transform: uppercase; font-size: 12px; margin-top: 5px;">jpg, png, jpeg, Multiple Images</p></p></h6><br>
                                                           @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
 
-                                                          <input type="file"  class="image-inputs checkfiles checkfile_form_seven_pics"  multiple name="form_seven_pic[]" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
+                                                          <input type="file"  class="image-inputs checkfi4les checkfile_form_seven_pics"  multiple name="form_seven_pic[]" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
 
                                                           {{-- <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
@@ -1251,7 +1251,7 @@
                                         --}}
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
-                                    <button type="submit" class="btn btn-primary mt-5" id="submitbtn"  >Submit</button>
+                                    <button type="submit" class="btn btn-primary mt-5" id="submitbtn"   >Submit</button>
 
                                 </div>
                             </form>
@@ -1365,6 +1365,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
             $('.upload-image-btn-mlti').show();
 
             $('#form_seven_pic').val('');
+
             $('#preview-area').html('');
             $(this).hide();
         });
