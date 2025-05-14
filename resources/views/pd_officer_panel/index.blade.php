@@ -17,8 +17,8 @@
         justify-content: right;
     }
 
-  
-  #awardsChart {
+
+  #districtFarmersChart {
     width: 100%;
     height: 400px;
   }
@@ -149,7 +149,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <canvas id="awardsChart" width="1000" height="400px"></canvas>
+                                        <canvas id="districtFarmersChart" width="1000" height="400px"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -295,82 +295,58 @@
 </script>
 
 <script>
-    const ctx = document.getElementById('awardsChart').getContext('2d');
+    const ctx = document.getElementById('districtFarmersChart').getContext('2d');
 
-    const data = {
-      labels: [
-        "Coen Brothers", "Lee Unkrich", "Steven Spielberg",
-        "George Lucas", "David Fincher", "Curtis Hanson",
-        "Ang Lee", "Terrence Malick", "Behn Zeitlin", "Roberto Benigni"
-      ],
-      datasets: [
-        {
-          label: 'Action',
-          data: [40, 10, 15, 20, 5, 10, 0, 5, 0, 0],
-          backgroundColor: '#1f77b4'
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: @json($labels),
+            datasets: [
+                {
+                    label: 'Verified Farmers',
+                    data: @json($verified),
+                    backgroundColor: 'rgba(40, 167, 69, 0.7)', // green
+                },
+                {
+                    label: 'Unverified Farmers',
+                    data: @json($unverified),
+                    backgroundColor: 'rgba(220, 53, 69, 0.7)', // red
+                }
+            ]
         },
-        {
-          label: 'Drama',
-          data: [70, 40, 30, 15, 40, 50, 30, 60, 40, 35],
-          backgroundColor: '#ff7f0e'
-        },
-        {
-          label: 'Comedy',
-          data: [90, 0, 20, 25, 0, 10, 5, 0, 0, 20],
-          backgroundColor: '#2ca02c'
-        },
-        {
-          label: 'Thriller',
-          data: [100, 0, 0, 0, 40, 20, 0, 0, 0, 0],
-          backgroundColor: '#e377c2'
-        },
-        {
-          label: 'Animation',
-          data: [0, 80, 0, 0, 0, 0, 0, 0, 0, 0],
-          backgroundColor: '#ffbb78'
-        },
-        {
-          label: 'Sci-Fi',
-          data: [0, 0, 50, 70, 0, 0, 10, 0, 0, 0],
-          backgroundColor: '#17becf'
-        },
-        // Add more genres here...
-      ]
-    };
-
-    const config = {
-      type: 'bar',
-      data: data,
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { position: 'right' },
-          title: {
-            display: true,
-            text: 'Directors with Greatest Number of Award Wins'
-          }
-        },
-        scales: {
-          x: {
-            stacked: true,
-            title: {
-              display: true,
-              text: 'Directors'
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'District Wise Farmers (Verified vs Unverified)'
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false
+                },
+            },
+            interaction: {
+                mode: 'nearest',
+                axis: 'x',
+                intersect: false
+            },
+            scales: {
+                x: {
+                    stacked: true
+                },
+                y: {
+                    stacked: true,
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Number of Farmers'
+                    }
+                }
             }
-          },
-          y: {
-            stacked: true,
-            title: {
-              display: true,
-              text: 'Total Wins'
-            }
-          }
         }
-      }
-    };
-
-    new Chart(ctx, config);
-  </script>
+    });
+</script>
 
 </body>
 

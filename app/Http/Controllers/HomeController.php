@@ -77,7 +77,7 @@ class HomeController extends Controller
                 $total = $data->pluck('total');
 
 
-                dd($labels);
+
 
 
                 $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::count();
@@ -161,15 +161,20 @@ class HomeController extends Controller
 
 
                 return view('pd_officer_panel.index',[
-                'fa_total_Registered_Farmers' => $fa_total_Registered_Farmers,
-                'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
-                'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
-                // 'usersByDistrict' => $usersByDistrict,
-                'farmersByDistrict' => $farmersByDistrict,
-                'Processfarmeragiruser' => $Processfarmeragiruser,
-                'userFarmers' => $userFarmers,
-                'onlineFarmers' => $onlineFarmers,
-                'districtStats' => $districtStats
+                    'fa_total_Registered_Farmers' => $fa_total_Registered_Farmers,
+                    'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
+                    'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
+                    // 'usersByDistrict' => $usersByDistrict,
+                    'farmersByDistrict' => $farmersByDistrict,
+                    'Processfarmeragiruser' => $Processfarmeragiruser,
+                    'userFarmers' => $userFarmers,
+                    'onlineFarmers' => $onlineFarmers,
+                    'districtStats' => $districtStats,
+                    'labels' => $labels, 
+                    'verified' => $verified, 
+                    'unverified' => $unverified, 
+                    'total' => $total
+
                 ]);
             }
 
