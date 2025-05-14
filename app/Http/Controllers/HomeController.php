@@ -76,8 +76,8 @@ class HomeController extends Controller
                 $unverified = $data->pluck('unverified');
                 $total = $data->pluck('total');
 
-                
-                dd('$labels');
+
+                dd($labels);
 
 
                 $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::count();
