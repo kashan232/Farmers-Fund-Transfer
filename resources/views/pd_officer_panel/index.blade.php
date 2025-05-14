@@ -140,7 +140,11 @@
                             </div>
 
                             <div class="col-lg-12 col-md-12 col-sm-12">
-                                <canvas id="awardsChart" width="1000" height="600"></canvas>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <canvas id="awardsChart" width="1000" height="600"></canvas>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-lg-12 col-md-12 col-sm-12">
