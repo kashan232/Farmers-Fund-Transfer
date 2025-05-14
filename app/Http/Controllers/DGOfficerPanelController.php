@@ -116,7 +116,7 @@ class DGOfficerPanelController extends Controller
                         ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                         ->count();
 
-                    $user->farmer_count = $farmerCount;
+                    $user->farmers_count = $farmerCount;
                     return $user;
                 });
         }
