@@ -123,6 +123,9 @@ class DGOfficerPanelController extends Controller
                         ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                         ->whereIn('verification_status', [
                             'verified_by_fa',
+                            'verified_by_ao',
+                            'verified_by_dd',
+                            'verified_by_lrd'
                         ])
                         ->count();
                     $user->forwarded_to_ao = $forwarded_to_ao;
