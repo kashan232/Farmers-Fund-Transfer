@@ -112,7 +112,7 @@ class DGOfficerPanelController extends Controller
                 ->get()
                 ->map(function ($user) {
                     $farmerCount = LandRevenueFarmerRegistation::where('district', $user->district)
-                        ->whereIn('tehsil', is_array($user->tehsil) ? $user->tehsil : json_decode($user->tehsil, true))
+                        ->where('tehsil', $user->tehsil)
                         ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                         ->count();
 
