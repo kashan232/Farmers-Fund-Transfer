@@ -267,7 +267,7 @@
 
 @include('pd_officer_panel.include.footer_include')
 
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -288,8 +288,8 @@
 
     const data = {
       labels: [
-        "Coen Brothers", "Lee Unkrich", "Steven Spielberg", 
-        "George Lucas", "David Fincher", "Curtis Hanson", 
+        "Coen Brothers", "Lee Unkrich", "Steven Spielberg",
+        "George Lucas", "David Fincher", "Curtis Hanson",
         "Ang Lee", "Terrence Malick", "Behn Zeitlin", "Roberto Benigni"
       ],
       datasets: [
