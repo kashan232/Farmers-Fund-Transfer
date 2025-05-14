@@ -117,6 +117,15 @@ class DGOfficerPanelController extends Controller
                         ->count();
 
                     $user->farmers_count = $farmerCount;
+
+                    $forwarded_to_ao = LandRevenueFarmerRegistation::where('district', $user->district)
+                        ->where('tehsil', $user->tehsil)
+                        ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                        ->whereIn('verification_status', [
+                            'verified_by_fa',
+                        ])
+                        ->count();
+                    $user->forwarded_to_ao = $forwarded_to_ao;
                     return $user;
                 });
         }
