@@ -139,6 +139,9 @@
                                 </div>
                             </div>
 
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <canvas id="awardsChart" width="1000" height="600"></canvas>
+                            </div>
 
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="card">
@@ -280,131 +283,83 @@
     });
 </script>
 
-
-<!-- Chart Scripts -->
 <script>
-    // Donut Charts Data and Configurations
-    const ownFarmerData = [100, 80, 20];
-    const landRevenueData = [120, 90, 30];
-    const fieldOfficerData = [90, 70, 20];
+    const ctx = document.getElementById('awardsChart').getContext('2d');
 
-    function renderDonutChart(elementId, data, total) {
-        const options = {
-            series: data,
-            chart: {
-                type: 'donut',
-                height: 400
-            },
-            labels: ['Registered Farmers', 'Verified Farmers', 'Rejected Farmers'],
-            colors: ['#dfd930', '#d9534f', '#5cc183'],
-            dataLabels: {
-                enabled: true,
-                formatter: (val) => val.toFixed(1) + '%'
-            },
-            plotOptions: {
-                pie: {
-                    donut: {
-                        size: '65%',
-                        labels: {
-                            show: true,
-                            total: {
-                                show: true,
-                                label: 'Total',
-                                formatter: () => total
-                            }
-                        }
-                    }
-                }
-            },
-            legend: {
-                position: 'bottom'
-            }
-        };
-        new ApexCharts(document.querySelector(elementId), options).render();
-    }
-
-    renderDonutChart("#onlinefarmers", ownFarmerData, 100);
-    renderDonutChart("#landRevenueChart", landRevenueData, 120);
-    renderDonutChart("#fieldOfficerRegistrationChart", fieldOfficerData, 90);
-
-    const districtOfficerOptions = {
-        series: [{
-            name: 'Registered Farmers',
-            data: [50, 70, 40]
-        }, {
-            name: 'Verified Farmers',
-            data: [30, 50, 20]
-        }, {
-            name: 'Rejected Farmers',
-            data: [10, 5, 10]
-        }],
-        chart: {
-            type: 'bar',
-            height: 500
+    const data = {
+      labels: [
+        "Coen Brothers", "Lee Unkrich", "Steven Spielberg", 
+        "George Lucas", "David Fincher", "Curtis Hanson", 
+        "Ang Lee", "Terrence Malick", "Behn Zeitlin", "Roberto Benigni"
+      ],
+      datasets: [
+        {
+          label: 'Action',
+          data: [40, 10, 15, 20, 5, 10, 0, 5, 0, 0],
+          backgroundColor: '#1f77b4'
         },
-        plotOptions: {
-            bar: {
-                horizontal: true,
-                barHeight: '60%',
-                endingShape: 'rounded'
-            }
+        {
+          label: 'Drama',
+          data: [70, 40, 30, 15, 40, 50, 30, 60, 40, 35],
+          backgroundColor: '#ff7f0e'
         },
-        colors: ['#dfd930', '#d9534f', '#5cc183'],
-        xaxis: {
-            categories: ['Hyderabad City', 'Qasimabad', 'Latifabad'], // Replace with actual Tehsil names
+        {
+          label: 'Comedy',
+          data: [90, 0, 20, 25, 0, 10, 5, 0, 0, 20],
+          backgroundColor: '#2ca02c'
         },
-        yaxis: {
-            title: {
-                text: 'Tehsils'
-            }
+        {
+          label: 'Thriller',
+          data: [100, 0, 0, 0, 40, 20, 0, 0, 0, 0],
+          backgroundColor: '#e377c2'
         },
-        legend: {
-            position: 'top'
+        {
+          label: 'Animation',
+          data: [0, 80, 0, 0, 0, 0, 0, 0, 0, 0],
+          backgroundColor: '#ffbb78'
         },
-        tooltip: {
-            y: {
-                formatter: (val) => `${val} farmers`
-            }
-        }
+        {
+          label: 'Sci-Fi',
+          data: [0, 0, 50, 70, 0, 0, 10, 0, 0, 0],
+          backgroundColor: '#17becf'
+        },
+        // Add more genres here...
+      ]
     };
 
-    new ApexCharts(document.querySelector("#districtOfficerTehsilWiseRegistrationChart"), districtOfficerOptions).render();
-    // Field Officer Count Chart Data and Configurations
-    const fieldOfficerOptions = {
-        series: [{
-            name: 'Field Officers',
-            data: [10, 7, 5]
-        }],
-        chart: {
-            type: 'bar',
-            height: 350
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'right' },
+          title: {
+            display: true,
+            text: 'Directors with Greatest Number of Award Wins'
+          }
         },
-        plotOptions: {
-            bar: {
-                horizontal: true,
-                borderRadius: 8,
-                barHeight: '60%'
-            }
-        },
-        colors: ['#3e7350'],
-        dataLabels: {
-            enabled: true,
-            formatter: (val) => `${val} officers`
-        },
-        xaxis: {
-            categories: ['Hyderabad City', 'Qasimabad', 'Latifabad'],
+        scales: {
+          x: {
+            stacked: true,
             title: {
-                text: 'Field Officer Count'
+              display: true,
+              text: 'Directors'
             }
-        },
-        yaxis: {
+          },
+          y: {
+            stacked: true,
             title: {
-                text: 'Tehsil'
+              display: true,
+              text: 'Total Wins'
             }
+          }
         }
+      }
     };
-    new ApexCharts(document.querySelector("#fieldOfficerChart"), fieldOfficerOptions).render();
-</script>
+
+    new Chart(ctx, config);
+  </script>
 
 </body>
 
