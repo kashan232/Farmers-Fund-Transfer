@@ -13,4 +13,9 @@ class District extends Model
 
     protected $guarded = [];
 
+    public function farmers()
+    {
+        return $this->hasMany(LandRevenueFarmerRegistation::class, 'district', 'district');
+    }
+
 }

@@ -39,6 +39,47 @@ class HomeController extends Controller
                 $user_id = Auth()->user()->user_id;
                 $user = User::find($userId);
 
+
+                $verifiedStatus = 'verified_by_lrd';
+
+                $unverifiedStatuses = [
+                    null,
+                    'rejected_by_ao',
+                    'rejected_by_dd',
+                    'rejected_by_lrd',
+                    'verified_by_fa',
+                    'verified_by_ao',
+                    'verified_by_dd',
+                ];
+
+                $data = District::withCount([
+                    // Total farmers per district
+                    'farmers as total' => function ($q) {
+                        // No filter; count all
+                    },
+                    // Verified farmers
+                    'farmers as verified' => function ($q) use ($verifiedStatus) {
+                        $q->where('verification_status', $verifiedStatus);
+                    },
+                    // Unverified farmers
+                    'farmers as unverified' => function ($q) use ($unverifiedStatuses) {
+                        $q->where(function ($query) use ($unverifiedStatuses) {
+                            $query->whereIn('verification_status', $unverifiedStatuses)
+                                ->orWhereNull('verification_status');
+                        });
+                    }
+                ])->get();
+
+                // Prepare for chart
+                $labels = $data->pluck('district');
+                $verified = $data->pluck('verified');
+                $unverified = $data->pluck('unverified');
+                $total = $data->pluck('total');
+
+                
+                dd('$labels');
+
+
                 $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::count();
 
                 $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , NULL)
