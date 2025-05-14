@@ -16,6 +16,13 @@
         display: flex;
         justify-content: right;
     }
+
+  
+  #awardsChart {
+    width: 100%;
+    height: 400px;
+  }
+
 </style>
 <!-- [ Main Content ] start -->
 <div class="pc-container">
