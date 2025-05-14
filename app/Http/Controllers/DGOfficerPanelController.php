@@ -104,17 +104,23 @@ class DGOfficerPanelController extends Controller
 
     public function get_fa_list_district(request $req){
 
-        if($req->usertype == 'Field_Officer')
-        {
-            $users = User::with('fieldOfficer')->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
-            ->with('fieldOfficer')
-            ->withCount('farmers') // Counts related farmers
-            ->where('district', $req->district)
-            ->where('usertype', $req->usertype)
-            ->get();
+       if ($req->usertype == 'Field_Officer') {
+            $users = User::with('fieldOfficer')
+                ->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
+                ->where('district', $req->district)
+                ->where('usertype', $req->usertype)
+                ->get()
+                ->map(function ($user) {
+                    $farmerCount = LandRevenueFarmerRegistation::where('district', $user->district)
+                        ->whereIn('tehsil', is_array($user->tehsil) ? $user->tehsil : json_decode($user->tehsil, true))
+                        ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                        ->count();
 
-            // dd($users);
+                    $user->farmer_count = $farmerCount;
+                    return $user;
+                });
         }
+
         elseif ($req->usertype == 'Agri_Officer') {
 
             $agriUsers = User::with('agriOfficer')->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
