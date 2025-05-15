@@ -16,4 +16,9 @@ class Tehsil extends Model
         'district',
         'tehsil',
     ];
+
+    public function farmers()
+    {
+        return $this->hasMany(LandRevenueFarmerRegistation::class, 'tehsil', 'tehsil');
+    }
 }

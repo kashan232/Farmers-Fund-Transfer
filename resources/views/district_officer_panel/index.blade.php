@@ -17,6 +17,15 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body">
+                        <canvas id="districtFarmersChart" width="1000" height="400px"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
                         <h3>District Wise Officers</h3>
                         <div class="row tables">
                             <div class="table-responsive">
@@ -139,128 +148,76 @@
 
 @include('district_officer_panel.include.footer_include')
 
-<!-- Chart Scripts -->
-<script>
-    // Donut Charts Data and Configurations
-    const ownFarmerData = [100, 80, 20];
-    const fieldOfficerData = [90, 70, 20];
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    function renderDonutChart(elementId, data, total) {
-        const options = {
-            series: data,
-            chart: {
-                type: 'donut',
-                height: 400
+<script>
+    $(document).ready(function() {
+        $('.example').DataTable( {
+            dom: 'frtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ]
+        });
+    });
+</script>
+
+<script>
+    const ctx = document.getElementById('districtFarmersChart').getContext('2d');
+
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: @json($labels),
+            datasets: [
+                {
+                    label: 'Verified Farmers',
+                    data: @json($verified),
+                    backgroundColor: 'rgba(40, 167, 69, 0.7)', // green
+                },
+                {
+                    label: 'Unverified Farmers',
+                    data: @json($unverified),
+                    backgroundColor: 'rgba(220, 53, 69, 0.7)', // red
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'District Wise Farmers (Verified vs Unverified)'
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false
+                },
             },
-            labels: ['Registered Farmers', 'Verified Farmers', 'Rejected Farmers'],
-            colors: ['#dfd930', '#5cc183', '#d9534f'],
-            dataLabels: {
-                enabled: true,
-                formatter: (val) => val.toFixed(1) + '%'
+            interaction: {
+                mode: 'nearest',
+                axis: 'x',
+                intersect: false
             },
-            plotOptions: {
-                pie: {
-                    donut: {
-                        size: '65%',
-                        labels: {
-                            show: true,
-                            total: {
-                                show: true,
-                                label: 'Total',
-                                formatter: () => total
-                            }
-                        }
+            scales: {
+                x: {
+                    stacked: true
+                },
+                y: {
+                    stacked: true,
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Number of Farmers'
                     }
                 }
-            },
-            legend: {
-                position: 'bottom'
-            }
-        };
-        new ApexCharts(document.querySelector(elementId), options).render();
-    }
-
-    renderDonutChart("#onlinefarmers", ownFarmerData, 100);
-    renderDonutChart("#fieldOfficerRegistrationChart", fieldOfficerData, 90);
-
-    const districtOfficerOptions = {
-        series: [{
-            name: 'Registered Farmers',
-            data: [50, 70, 40]
-        }, {
-            name: 'Verified Farmers',
-            data: [30, 50, 20]
-        }, {
-            name: 'Rejected Farmers',
-            data: [10, 5, 10]
-        }],
-        chart: {
-            type: 'bar',
-            height: 500
-        },
-        plotOptions: {
-            bar: {
-                horizontal: true,
-                barHeight: '60%',
-                endingShape: 'rounded'
-            }
-        },
-        colors: ['#dfd930', '#5cc183', '#d9534f'],
-        xaxis: {
-            categories: ['Hyderabad City', 'Qasimabad', 'Latifabad'], // Replace with actual Tehsil names
-        },
-        yaxis: {
-            title: {
-                text: 'Tehsils'
-            }
-        },
-        legend: {
-            position: 'top'
-        },
-        tooltip: {
-            y: {
-                formatter: (val) => `${val} farmers`
             }
         }
-    };
-
-    new ApexCharts(document.querySelector("#districtOfficerTehsilWiseRegistrationChart"), districtOfficerOptions).render();
-    // Field Officer Count Chart Data and Configurations
-    const fieldOfficerOptions = {
-        series: [{
-            name: 'Field Officers',
-            data: [10, 7, 5]
-        }],
-        chart: {
-            type: 'bar',
-            height: 350
-        },
-        plotOptions: {
-            bar: {
-                horizontal: true,
-                borderRadius: 8,
-                barHeight: '60%'
-            }
-        },
-        colors: ['#3e7350'],
-        dataLabels: {
-            enabled: true,
-            formatter: (val) => `${val} officers`
-        },
-        xaxis: {
-            categories: ['Hyderabad City', 'Qasimabad', 'Latifabad'],
-            title: {
-                text: 'Field Officer Count'
-            }
-        },
-        yaxis: {
-            title: {
-                text: 'Tehsil'
-            }
-        }
-    };
-    new ApexCharts(document.querySelector("#fieldOfficerChart"), fieldOfficerOptions).render();
+    });
 </script>
+
 
 </body>
 

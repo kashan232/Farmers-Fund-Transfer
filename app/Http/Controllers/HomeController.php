@@ -170,9 +170,9 @@ class HomeController extends Controller
                     'userFarmers' => $userFarmers,
                     'onlineFarmers' => $onlineFarmers,
                     'districtStats' => $districtStats,
-                    'labels' => $labels, 
-                    'verified' => $verified, 
-                    'unverified' => $unverified, 
+                    'labels' => $labels,
+                    'verified' => $verified,
+                    'unverified' => $unverified,
                     'total' => $total
 
                 ]);
@@ -183,6 +183,48 @@ class HomeController extends Controller
                 $userId = Auth::id();
                 $user_id = Auth()->user()->user_id;
                 $user = User::find($userId);
+
+
+                $verifiedStatus = 'verified_by_lrd';
+
+                $unverifiedStatuses = [
+                    null,
+                    'rejected_by_ao',
+                    'rejected_by_dd',
+                    'rejected_by_lrd',
+                    'verified_by_fa',
+                    'verified_by_ao',
+                    'verified_by_dd',
+                ];
+
+                $data = Tehsil::withCount([
+                    // Total farmers per district
+                    'farmers as total' => function ($q) {
+                        // No filter; count all
+                    },
+                    // Verified farmers
+                    'farmers as verified' => function ($q) use ($verifiedStatus) {
+                        $q->where('verification_status', $verifiedStatus);
+                    },
+                    // Unverified farmers
+                    'farmers as unverified' => function ($q) use ($unverifiedStatuses) {
+                        $q->where(function ($query) use ($unverifiedStatuses) {
+                            $query->whereIn('verification_status', $unverifiedStatuses)
+                                ->orWhereNull('verification_status');
+                        });
+                    }
+                ])->get();
+
+                // Prepare for chart
+                $labels = $data->pluck('tehsil');
+                $verified = $data->pluck('verified');
+                $unverified = $data->pluck('unverified');
+                $total = $data->pluck('total');
+
+
+
+
+
 
 
                 $userTypes = [
@@ -237,7 +279,11 @@ class HomeController extends Controller
                     'agriUserfarmersCount' => $agriUserfarmersCount,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
-                    'districtStats' => $districtStats
+                    'districtStats' => $districtStats,
+                     'labels' => $labels,
+                    'verified' => $verified,
+                    'unverified' => $unverified,
+                    'total' => $total
                 ]);
             } else if ($usertype == 'Agri_Officer') {
                 $userId = Auth::id();
