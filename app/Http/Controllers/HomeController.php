@@ -197,7 +197,7 @@ class HomeController extends Controller
                     'verified_by_dd',
                 ];
 
-                $data = Tehsil::withCount([
+                $data = Tehsil::where('district',$user->district)->withCount([
                     // Total farmers per district
                     'farmers as total' => function ($q) {
                         // No filter; count all
