@@ -44,7 +44,16 @@ class ProjectAPIController extends Controller
 
         // $ucs =  UC::where('district',$user->district)->pluck('uc');
 
-        if ($user && Hash::check($password, $user->password)) {
+        if ($user && Hash::check($password, $user->password) ) {
+
+            if($user->usertype != 'Field_Officer')
+            {
+                return response()->json([
+                    'message' => 'Permission Denied',
+                    'status' => 'Failed'
+                ], 401);
+            }
+
             // Generate token
             $token = $user->createToken($request->email)->plainTextToken;
 
