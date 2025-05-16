@@ -83,8 +83,8 @@ class ProjectAPIController extends Controller
         $validator = Validator::make($request->all(), [
             'farmer_id' => 'required',
             'user_id' => 'required',
-            'verification_status' => 'required',
-            'declined_reason' => 'required',
+            'verification_status' => 'required|in:verified_by_fa,rejected_by_fa',
+            'other_reason' => 'required_if:declined_reason,other'
         ]);
 
         //Send failed response if request is not valid
