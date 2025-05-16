@@ -84,6 +84,7 @@ class ProjectAPIController extends Controller
             'farmer_id' => 'required',
             'user_id' => 'required',
             'verification_status' => 'required|in:verified_by_fa,rejected_by_fa',
+            'declined_reason' => 'required_if:verification_status,rejected_by_fa',
             'other_reason' => 'required_if:declined_reason,other'
         ]);
 
