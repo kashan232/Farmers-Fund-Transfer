@@ -111,7 +111,13 @@ class ProjectAPIController extends Controller
 
         $farmer->verification_by = $request->user_id;
         $farmer->save();
-        return redirect()->route('farmers-list-field-officer')->with('farmers-registered', 'Done');
+
+            return response()->json([
+
+                'message' => 'Done..!',
+                'status' => 'Success'
+            ], 200);
+
     }
 
 
