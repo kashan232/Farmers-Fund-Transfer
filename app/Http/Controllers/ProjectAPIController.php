@@ -73,6 +73,38 @@ class ProjectAPIController extends Controller
     }
 
 
+
+
+
+
+    public function verify_farmer(request $request){
+        $farmer = LandRevenueFarmerRegistation::find($request->farmer_id);
+        // Update farmer verification status
+        $farmer->verification_status = $request->verification_status;
+        if ($request->verification_status == 'rejected_by_fa') {
+            if($request->declined_reason == 'other')
+            {
+                $farmer->declined_reason = $request->other_reason;
+            }
+            else{
+                $farmer->declined_reason = $request->declined_reason;
+            }
+        }
+        else{
+            $farmer->declined_reason = null;
+        }
+
+        $farmer->verification_by = $request->user_id;
+        $farmer->save();
+        return redirect()->route('farmers-list-field-officer')->with('farmers-registered', 'Done');
+    }
+
+
+
+
+
+
+
     public function get_districts(Request $request)
     {
         // Fetch all districts from the database

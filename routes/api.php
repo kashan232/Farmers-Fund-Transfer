@@ -95,6 +95,7 @@ Route::get('/dashboard/data/{user_id}',[ProjectAPIController::class,'dashboard_d
 
 
 
+Route::post('/farmer-verify',[ProjectAPIController::class,'verify_farmer']);
 
 // Route::post('/api-store-online-farmers-registration', [ProjectAPIController::class, 'api_store_online_farmers_registration'])->name('api-store-online-farmers-registration');
 
