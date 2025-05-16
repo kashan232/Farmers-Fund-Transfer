@@ -86,7 +86,7 @@ Route::post('/farmer-store',[ProjectAPIController::class,'store_farmer']);
 
 
 
-Route::get('/farmers/{search?}',[ProjectAPIController::class,'get_farmer']);
+Route::get('/farmers/{search?}/{user_id}',[ProjectAPIController::class,'get_farmer']);
 
 
 
