@@ -291,7 +291,7 @@ class ProjectAPIController extends Controller
 
 
 
-    public function get_farmer($search = null, $user_id)
+    public function get_farmer($user_id, $search = null )
     {
 
         $user = user::find($user_id);
