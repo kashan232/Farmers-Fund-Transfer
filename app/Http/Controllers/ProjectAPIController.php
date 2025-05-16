@@ -78,6 +78,21 @@ class ProjectAPIController extends Controller
 
 
     public function verify_farmer(request $request){
+
+        //valid credential
+        $validator = Validator::make($request->all(), [
+            'farmer_id' => 'required',
+            'user_id' => 'required',
+            'verification_status' => 'required',
+            'declined_reason' => 'required',
+        ]);
+
+        //Send failed response if request is not valid
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()], 200);
+        }
+
+
         $farmer = LandRevenueFarmerRegistation::find($request->farmer_id);
         // Update farmer verification status
         $farmer->verification_status = $request->verification_status;
