@@ -104,20 +104,117 @@ class ProjectAPIController extends Controller
 
     public function dashboard_data($user_id){
 
-        $total_registered_farmers = LandRevenueFarmerRegistation::where('user_id',$user_id)->count();
 
-        $verified_farmers = LandRevenueFarmerRegistation::where('user_id', $user_id)
-        ->where('verification_status', 'verified_by_lrd')
-        ->count();
+        $user = user::find($user_id);
 
-        $unverified_farmers = LandRevenueFarmerRegistation::where('user_id', $user_id)
-        ->where('verification_status','!=' ,'verified_by_lrd')
-        ->count();
+         $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->where(function ($query) use ($user) {
+                    $query->where(function ($q) use ($user) {
+                        $q->where('user_type', 'Field_Officer')
+                        ->where('user_id', $user->id);
+                    })->orWhere(function ($q) {
+                        $q->where('user_type', 'Online')
+                        ->whereNull('user_id');
+                    });
+                })
+                ->count();
+
+
+                $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->where(function ($query) use ($user) {
+                    $query->where(function ($q) use ($user) {
+                        $q->where('user_type', 'Field_Officer')
+                        ->where('user_id', $user->id);
+                    })->orWhere(function ($q) {
+                        $q->where('user_type', 'Online')
+                        ->whereNull('user_id');
+                    });
+                })
+                ->where('verification_status' , NULL)
+                ->count();
+
+
+                $onProcessFarmer = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->where(function ($query) use ($user) {
+                    $query->where(function ($q) use ($user) {
+                        $q->where('user_type', 'Field_Officer')
+                        ->where('user_id', $user->id);
+                    })->orWhere(function ($q) {
+                        $q->where('user_type', 'Online')
+                        ->whereNull('user_id');
+                    });
+                })
+                ->whereIn('verification_status', [
+                    'rejected_by_lrd',
+                    'rejected_by_ao',
+                    'rejected_by_dd',
+
+                    'verified_by_dd',
+                    'verified_by_fa',
+                    'verified_by_ao'
+                ])
+                ->count();
+
+
+                $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->where(function ($query) use ($user) {
+                    $query->where(function ($q) use ($user) {
+                        $q->where('user_type', 'Field_Officer')
+                        ->where('user_id', $user->id);
+                    })->orWhere(function ($q) {
+                        $q->where('user_type', 'Online')
+                        ->whereNull('user_id');
+                    });
+                })
+                ->where('verification_status' , 'verified_by_lrd')
+                ->count();
+
+
+
+                $myRegisteredFarmers = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->where('user_type', 'Field_Officer')
+                ->where('user_id', $user->id)
+                ->count();
+
+                $onlineFarmers = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->whereIn('tappa', json_decode($user->tappas))
+                ->where('user_type', 'Online')
+                ->whereNull('user_id')
+                ->count();
+
+
+        // $total_registered_farmers = LandRevenueFarmerRegistation::where('user_id',$user_id)->count();
+
+        // $verified_farmers = LandRevenueFarmerRegistation::where('user_id', $user_id)
+        // ->where('verification_status', 'verified_by_lrd')
+        // ->count();
+
+        // $unverified_farmers = LandRevenueFarmerRegistation::where('user_id', $user_id)
+        // ->where('verification_status','!=' ,'verified_by_lrd')
+        // ->count();
 
         $data = [
-            'total_registered_farmers' =>  $total_registered_farmers,
-            'verified_farmers' => $verified_farmers,
-            'unverified_farmers' => $unverified_farmers
+            // 'total_registered_farmers' =>  $total_registered_farmers,
+            // 'verified_farmers' => $verified_farmers,
+            // 'unverified_farmers' => $unverified_farmers
+
+            'fa_total_Registered_Farmers' => $fa_total_Registered_Farmers,
+            'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
+            'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
+            'onProcessFarmer' =>$onProcessFarmer,
+            'myRegisteredFarmers' => $myRegisteredFarmers,
+            'onlineFarmers' => $onlineFarmers,
         ];
 
         return response()->json(['data' => $data], 200);
