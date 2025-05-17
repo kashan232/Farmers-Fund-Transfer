@@ -118,6 +118,18 @@ class DGOfficerPanelController extends Controller
 
                     $user->farmers_count = $farmerCount;
 
+
+                    $online_farmers = LandRevenueFarmerRegistation::where('district', $user->district)
+                        ->where('tehsil', $user->tehsil)
+                        ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                        ->where('user_type', 'Online')
+
+                        ->count();
+
+                    $user->online_farmers = $online_farmers;
+
+                    $user->self = $farmerCount - $online_farmers;
+                    
                     $forwarded_to_ao = LandRevenueFarmerRegistation::where('district', $user->district)
                         ->where('tehsil', $user->tehsil)
                         ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
@@ -137,7 +149,7 @@ class DGOfficerPanelController extends Controller
                         $unverified = LandRevenueFarmerRegistation::where('district', $user->district)
                         ->where('tehsil', $user->tehsil)
                         ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
-                        ->where('verification_status', 
+                        ->where('verification_status',
                             NULL
                         )
                         ->count();
