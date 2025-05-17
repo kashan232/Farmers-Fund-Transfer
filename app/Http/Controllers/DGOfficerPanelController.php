@@ -117,7 +117,7 @@ class DGOfficerPanelController extends Controller
                         ->count();
 
                     $user->farmers_count = $farmerCount;
-
+ 
 
                     $online_farmers = LandRevenueFarmerRegistation::where('district', $user->district)
                         ->where('tehsil', $user->tehsil)
