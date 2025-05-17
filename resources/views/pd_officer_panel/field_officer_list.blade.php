@@ -199,7 +199,7 @@
 
 
 
-                                                            <td style="text-align: center; font-size: 24px; font-weight: 700;;">{{ $user->farmers_count }} <br> @if($user->usertype == 'Field_Officer') <span style="font-size:12px"> In-Process Farmers = {{ $user->forwarded_to_ao }} <br> Pending = {{ $user->unverified }}  </span> @endif </td> <!-- This is from withCount('farmers') -->
+                                                            <td style="text-align: left; font-size:12px font-weight: 700;;">{{ $user->farmers_count }} <br> @if($user->usertype == 'Field_Officer') <span style="font-size:12px"> In-Process Farmers = {{ $user->forwarded_to_ao }} <br> Pending = {{ $user->unverified }}  </span> @endif </td> <!-- This is from withCount('farmers') -->
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
