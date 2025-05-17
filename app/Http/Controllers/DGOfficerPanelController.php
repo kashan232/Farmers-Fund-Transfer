@@ -132,6 +132,18 @@ class DGOfficerPanelController extends Controller
                             'rejected_by_fa',
                         ])
                         ->count();
+
+
+                        $unverified = LandRevenueFarmerRegistation::where('district', $user->district)
+                        ->where('tehsil', $user->tehsil)
+                        ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                        ->whereIn('verification_status', [
+                            NULL
+                        ])
+                        ->count();
+
+
+                    $user->unverified = $unverified;
                     $user->forwarded_to_ao = $forwarded_to_ao;
                     return $user;
                 });
@@ -160,6 +172,19 @@ class DGOfficerPanelController extends Controller
 
                 // Add farmers_count to match Field Officer structure
                 $user->farmers_count = $farmerCount;
+
+                $unverified = LandRevenueFarmerRegistation::where('district', $user->district)
+                        ->where('tehsil', $user->tehsil)
+                        ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                        ->whereIn('verification_status', [
+                            NULL
+                        ])
+                        ->count();
+
+
+                $user->unverified = $unverified;
+
+
                 return $user;
             });
 
