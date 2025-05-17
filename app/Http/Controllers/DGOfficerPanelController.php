@@ -129,7 +129,7 @@ class DGOfficerPanelController extends Controller
                     $user->online_farmers = $online_farmers;
 
                     $user->self = $farmerCount - $online_farmers;
-                    
+
                     $forwarded_to_ao = LandRevenueFarmerRegistation::where('district', $user->district)
                         ->where('tehsil', $user->tehsil)
                         ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))

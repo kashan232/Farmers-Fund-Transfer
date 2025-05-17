@@ -614,44 +614,83 @@ class DistrictOfficerPanelController extends Controller
 
         if($req->usertype == 'Field_Officer')
         {
-            $users = User::with('fieldOfficer')->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
-            ->with('fieldOfficer')
-            ->withCount('farmers') // Counts related farmers
-            ->where('district', $req->district)
-            ->where('usertype', $req->usertype)
-            ->get()->map(function ($user) {
-                    $farmerCount = LandRevenueFarmerRegistation::where('district', $user->district)
-                        ->where('tehsil', $user->tehsil)
-                        ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
-                        ->count();
+           $users = User::with('fieldOfficer')
+        ->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
+        ->where('district', $req->district)
+        ->where('usertype', $req->usertype)
+        ->get();
 
-                    $user->farmers_count = $farmerCount;
+    // Collect all tappas combinations per user
+    $tappaSets = [];
+    foreach ($users as $user) {
+        $tappas = is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true);
+        $key = $user->district . '-' . $user->tehsil . '-' . implode(',', $tappas);
+        $tappaSets[$user->id] = [
+            'district' => $user->district,
+            'tehsil' => $user->tehsil,
+            'tappas' => $tappas,
+            'key' => $key,
+        ];
+    }
 
-                    $forwarded_to_ao = LandRevenueFarmerRegistation::where('district', $user->district)
-                        ->where('tehsil', $user->tehsil)
-                        ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
-                        ->whereIn('verification_status', [
-                            'verified_by_fa',
-                            'verified_by_ao',
-                            'verified_by_dd',
-                            'verified_by_lrd',
-                            'rejected_by_ao',
-                            'rejected_by_dd',
-                            'rejected_by_lrd',
-                            'rejected_by_fa',
-                        ])
-                        ->count();
-                    $user->forwarded_to_ao = $forwarded_to_ao;
-                    return $user;
-                });
+    // Flatten all tappas for one bulk query
+    $conditions = [];
+    foreach ($tappaSets as $uid => $data) {
+        $conditions[] = [
+            'user_id' => $uid,
+            'district' => $data['district'],
+            'tehsil' => $data['tehsil'],
+            'tappas' => $data['tappas'],
+        ];
+    }
 
+    // Bulk query: fetch all relevant registrations in one go
+    $allFarmers = LandRevenueFarmerRegistation::where('district', $req->district)
+        ->whereIn('tehsil', $users->pluck('tehsil')->unique())
+        ->get();
 
+    // Group farmers by user based on tappas
+    $userStats = [];
+    foreach ($users as $user) {
+        $tappas = is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true);
+        $filtered = $allFarmers->filter(function ($farmer) use ($user, $tappas) {
+            return $farmer->district === $user->district &&
+                $farmer->tehsil === $user->tehsil &&
+                in_array($farmer->tappa, $tappas);
+        });
 
+        $userStats[$user->id] = [
+            'farmers_count' => $filtered->count(),
+            'online_farmers' => $filtered->where('user_type', 'Online')->count(),
+            'forwarded_to_ao' => $filtered->whereIn('verification_status', [
+                'verified_by_fa',
+                'verified_by_ao',
+                'verified_by_dd',
+                'verified_by_lrd',
+                'rejected_by_ao',
+                'rejected_by_dd',
+                'rejected_by_lrd',
+                'rejected_by_fa',
+            ])->count(),
+            'unverified' => $filtered->whereNull('verification_status')->count(),
+        ];
+    }
 
-
-
-
-            // dd($users);
+    // Attach stats to each user
+    $users = $users->map(function ($user) use ($userStats) {
+        $stats = $userStats[$user->id] ?? [
+            'farmers_count' => 0,
+            'online_farmers' => 0,
+            'forwarded_to_ao' => 0,
+            'unverified' => 0,
+        ];
+        $user->farmers_count = $stats['farmers_count'];
+        $user->online_farmers = $stats['online_farmers'];
+        $user->self = $stats['farmers_count'] - $stats['online_farmers'];
+        $user->forwarded_to_ao = $stats['forwarded_to_ao'];
+        $user->unverified = $stats['unverified'];
+        return $user;
+    });
         }
         elseif ($req->usertype == 'Agri_Officer') {
 
