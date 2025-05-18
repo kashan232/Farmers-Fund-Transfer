@@ -486,22 +486,23 @@ class ProjectAPIController extends Controller
             $data['title_area'] = json_encode($title_area);
 
 
-            $cropForms = json_decode($request->cropForms, true); // cropForms JSON string ho request mein
+           $cropForms = json_decode($request->cropStatusForms, true);
 
-            $crop_season = [];
-            $crops_orchard = [];
-            $crops = [];
-            $crop_area = [];
-            $crop_average_yeild = [];
-
-            foreach ($cropForms as $crop) {
-                $crop_season[] = $crop['crop_season'] ?? null;
-                $crops_orchard[] = $crop['crops_orchard'] ?? null;
-                $crops[] = $crop['crops'] ?? null;
-                $crop_area[] = $crop['crop_area'] ?? null;
-                $crop_average_yeild[] = $crop['crop_average_yeild'] ?? null;
+            if (is_array($cropForms)) {
+                foreach ($cropForms as $crop) {
+                    $crop_season[] = $crop['crop_season'] ?? null;
+                    $crops_orchard[] = $crop['crops_orchard'] ?? null;
+                    $crops[] = $crop['crops'] ?? null;
+                    $crop_area[] = $crop['crop_area'] ?? null;
+                    $crop_average_yeild[] = $crop['crop_average_yeild'] ?? null;
+                }
+            } else {
+                $crop_season = [];
+                $crops_orchard = [];
+                $crops = [];
+                $crop_area = [];
+                $crop_average_yeild = [];
             }
-
 
             $data['crop_season'] = json_encode($crop_season);
             $data['crops_orchard'] = json_encode($crops_orchard);
@@ -659,46 +660,18 @@ class ProjectAPIController extends Controller
             //     $data['form_seven_pic'] = $form_seven_pic_image_name;
             // }
 
-            //       if ($request->hasFile('form_seven_pic')) {
-            //     $form_seven_pics = [];
+                  if ($request->hasFile('form_seven_pic')) {
+                $form_seven_pics = [];
 
-            //     foreach ($request->file('form_seven_pic') as $file) {
-            //         $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            //         $file->move(public_path('fa_farmers/form_seven_pic'), $filename);
-            //         $form_seven_pics[] = $filename;
-            //     }
+                foreach ($request->file('form_seven_pic') as $file) {
+                    $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path('fa_farmers/form_seven_pic'), $filename);
+                    $form_seven_pics[] = $filename;
+                }
 
-            //     // Store the filenames as JSON or comma-separated, depending on your DB column type
-            //     $data['form_seven_pic'] = json_encode($form_seven_pics);
-            // }
-
-                // if ($request->hasFile('form_seven_pic')) {
-                //         $files = $request->file('form_seven_pic');
-
-                //         // Debug: Check what $files contains
-                //         if ($files === null) {
-                //             \Log::error('form_seven_pic is null even though hasFile returned true');
-                //             $files = [];
-                //         }
-
-                //         // Make sure it's array to avoid foreach error
-                //         if (!is_array($files)) {
-                //             $files = [$files];
-                //         }
-
-                //         $form_seven_pics = [];
-
-                //         foreach ($files as $file) {
-                //             $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-                //             $file->move(public_path('fa_farmers/form_seven_pic'), $filename);
-                //             $form_seven_pics[] = $filename;
-                //         }
-
-                //         $data['form_seven_pic'] = json_encode($form_seven_pics);
-                //     } else {
-                //         \Log::info('No form_seven_pic files found in the request.');
-                //     }
-
+                // Store the filenames as JSON or comma-separated, depending on your DB column type
+                $data['form_seven_pic'] = json_encode($form_seven_pics);
+            }
 
 
             // dd($data);
