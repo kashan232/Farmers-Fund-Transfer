@@ -117,7 +117,7 @@ class DGOfficerPanelController extends Controller
                         ->count();
 
                     $user->farmers_count = $farmerCount;
- 
+
 
                     $online_farmers = LandRevenueFarmerRegistation::where('district', $user->district)
                         ->where('tehsil', $user->tehsil)
@@ -181,20 +181,33 @@ class DGOfficerPanelController extends Controller
                         'verified_by_ao'
                     ])
                     ->count();
-
                 // Add farmers_count to match Field Officer structure
                 $user->farmers_count = $farmerCount;
 
+
                 $unverified = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                ->whereIn('verification_status', [
+                    'verified_by_fa'
+                ])
+                ->count();
+                $user->unverified = $unverified;
+
+                $forwarded_to_dd = LandRevenueFarmerRegistation::where('district', $user->district)
                         ->where('tehsil', $user->tehsil)
                         ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                         ->whereIn('verification_status', [
-                            NULL
+                            'verified_by_dd',
+                            'verified_by_ao',
+                            'verified_by_dd',
+                            'verified_by_lrd',
+                            'rejected_by_ao',
+                            'rejected_by_dd',
+                            'rejected_by_lrd',
+                            'rejected_by_fa',
                         ])
                         ->count();
-
-
-                $user->unverified = $unverified;
 
 
                 return $user;

@@ -554,12 +554,26 @@ class ProjectAPIController extends Controller
             }
 
             // Handle cheque picture image
-            if ($request->hasFile('form_seven_pic')) {
-                $form_seven_pic_image = $request->file('form_seven_pic');
-                $form_seven_pic_image_name = time() . '_' . uniqid() . '.' . $form_seven_pic_image->getClientOriginalExtension();
-                $form_seven_pic_image->move(public_path('fa_farmers/form_seven_pic'), $form_seven_pic_image_name);
-                $data['form_seven_pic'] = $form_seven_pic_image_name;
+            // if ($request->hasFile('form_seven_pic')) {
+            //     $form_seven_pic_image = $request->file('form_seven_pic');
+            //     $form_seven_pic_image_name = time() . '_' . uniqid() . '.' . $form_seven_pic_image->getClientOriginalExtension();
+            //     $form_seven_pic_image->move(public_path('fa_farmers/form_seven_pic'), $form_seven_pic_image_name);
+            //     $data['form_seven_pic'] = $form_seven_pic_image_name;
+            // }
+
+                  if ($request->hasFile('form_seven_pic')) {
+                $form_seven_pics = [];
+
+                foreach ($request->file('form_seven_pic') as $file) {
+                    $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path('fa_farmers/form_seven_pic'), $filename);
+                    $form_seven_pics[] = $filename;
+                }
+
+                // Store the filenames as JSON or comma-separated, depending on your DB column type
+                $data['form_seven_pic'] = json_encode($form_seven_pics);
             }
+
 
             // dd($data);
 
