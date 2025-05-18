@@ -949,10 +949,11 @@
                                             <input type="text" name="account_title" id="account_title" class="form-control" value="{{$data->account_title ?? ''}}" >
                                         </div>
 
+                                       
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Date of Birth (D-M-Y) <span class="text-danger">*</span></label>
-                                            <input type="text" name="date_of_birth" data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY" id="date_of_birth" class="form-control" value="@if(isset($data)) {{ $data->date_of_birth ? \Carbon\Carbon::parse($data->date_of_birth)->format('d-m-Y') : '' }} @endif" >
+                                            <input type="text" name="date_of_birth" data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY" id="date_of_birth" class="form-control" value="@if(isset($data) && isValidDate($data->date_of_birth)) {{ $data->date_of_birth ? \Carbon\Carbon::parse($data->date_of_birth)->format('d-m-Y') : '' }} @endif" >
                                         </div>
 
                                         <div class="mb-6 col-md-4 mt-2">
