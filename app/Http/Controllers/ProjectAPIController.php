@@ -494,6 +494,48 @@ class ProjectAPIController extends Controller
 
 
 
+             $data['cnic_issue_date'] = Carbon::createFromFormat('d-m-Y', $request->cnic_issue_date)->format('Y-m-d');
+
+            if($request->cnic_expiry_date && $request->cnic_expiry_date != '')
+            {
+
+                $data['cnic_expiry_date'] = Carbon::createFromFormat('d-m-Y', $request->cnic_expiry_date)->format('Y-m-d');
+            }
+
+
+            $data['date_of_birth'] = Carbon::createFromFormat('d-m-Y', $request->date_of_birth)->format('Y-m-d');
+
+            $errors = [];
+
+            // CNIC Issue Date
+            try {
+                $data['cnic_issue_date'] = Carbon::createFromFormat('d-m-Y', $request->cnic_issue_date)->format('Y-m-d');
+            } catch (\Exception $e) {
+                $errors['cnic_issue_date'] = 'Invalid CNIC issue date format. Use d-m-Y.';
+            }
+
+            // CNIC Expiry Date (optional)
+            if ($request->cnic_expiry_date && $request->cnic_expiry_date != '') {
+                try {
+                    $data['cnic_expiry_date'] = Carbon::createFromFormat('d-m-Y', $request->cnic_expiry_date)->format('Y-m-d');
+                } catch (\Exception $e) {
+                    $errors['cnic_expiry_date'] = 'Invalid CNIC expiry date format. Use d-m-Y.';
+                }
+            }
+
+            // Date of Birth
+            try {
+                $data['date_of_birth'] = Carbon::createFromFormat('d-m-Y', $request->date_of_birth)->format('Y-m-d');
+            } catch (\Exception $e) {
+                $errors['date_of_birth'] = 'Invalid date of birth format. Use d-m-Y.';
+            }
+
+            // If any errors, return validation-style response
+            if (!empty($errors)) {
+                return response()->json(['errors' => $errors], 422);
+            }
+
+
 
             if ($request->hasFile('no_objection_affidavit_pic')) {
                 $no_objection_affidavit_pic_image = $request->file('no_objection_affidavit_pic');
