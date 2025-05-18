@@ -457,26 +457,81 @@ class ProjectAPIController extends Controller
             $data['user_id'] = $request->user_id;
 
 
+            $data['owner_type'] = json_encode($request->owner_type);
 
-            $data['title_name'] = json_encode($request->title_name);
-            $data['title_father_name'] = json_encode($request->title_name);
-            $data['title_cnic'] = json_encode($request->title_cnic);
-            $data['title_number'] = json_encode($request->title_number);
-            $data['title_area'] = json_encode($request->title_area);
 
-            $data['owner_type'] = $request->owner_type;
 
-            $data['crop_season'] = json_encode($request->crop_season);
-            $data['crops'] = json_encode($request->crops);
-            $data['crops_orchard'] = json_encode($request->crops_orchard);
-            $data['crop_area'] = json_encode($request->crop_area);
-            $data['crop_average_yeild'] = json_encode($request->crop_average_yeild);
+
+            $titleeForms = json_decode($request->titleeForms, true); // true for associative array
+
+            // Extract individual arrays
+            $title_name = [];
+            $title_father_name = [];
+            $title_cnic = [];
+            $title_number = [];
+            $title_area = [];
+
+            foreach ($titleeForms as $form) {
+                $title_name[] = $form['title_name'] ?? null;
+                $title_father_name[] = $form['title_father_name'] ?? null;
+                $title_cnic[] = $form['title_cnic'] ?? null;
+                $title_number[] = $form['title_number'] ?? null;
+                $title_area[] = $form['title_area'] ?? null;
+            }
+
+            $data['title_name'] = json_encode($title_name);
+            $data['title_father_name'] = json_encode($title_father_name);
+            $data['title_cnic'] = json_encode($title_cnic);
+            $data['title_number'] = json_encode($title_number);
+            $data['title_area'] = json_encode($title_area);
+
+
+            $cropForms = json_decode($request->cropForms, true); // cropForms JSON string ho request mein
+
+            $crop_season = [];
+            $crops_orchard = [];
+            $crops = [];
+            $crop_area = [];
+            $crop_average_yeild = [];
+
+            foreach ($cropForms as $crop) {
+                $crop_season[] = $crop['crop_season'] ?? null;
+                $crops_orchard[] = $crop['crops_orchard'] ?? null;
+                $crops[] = $crop['crops'] ?? null;
+                $crop_area[] = $crop['crop_area'] ?? null;
+                $crop_average_yeild[] = $crop['crop_average_yeild'] ?? null;
+            }
+
+
+            $data['crop_season'] = json_encode($crop_season);
+            $data['crops_orchard'] = json_encode($crops_orchard);
+            $data['crops'] = json_encode($crops);
+            $data['crop_area'] = json_encode($crop_area);
+            $data['crop_average_yeild'] = json_encode($crop_average_yeild);
+
+
+
 
             $data['physical_asset_item'] = json_encode($request->physical_asset_item);
 
-            $data['animal_name'] = json_encode($request->animal_name);
-            $data['animal_qty'] = json_encode($request->animal_qty);
 
+
+
+            $animals = json_decode($request->liveStockAnimalAssets, true);  // Decode JSON to array
+
+            $animal_names = [];
+            $animal_qtys = [];
+
+            foreach ($animals as $animal) {
+                $animal_names[] = $animal['animal_name'] ?? null;
+                $animal_qtys[] = $animal['animal_qty'] ?? null;
+            }
+
+            $data['animal_name'] = json_encode($animal_names);
+            $data['animal_qty'] = json_encode($animal_qtys);
+
+
+            
 
             $data['source_of_irrigation'] = json_encode($request->source_of_irrigation);
             $data['source_of_irrigation_engery'] = json_encode($request->source_of_irrigation_engery);
