@@ -672,32 +672,32 @@ class ProjectAPIController extends Controller
             //     $data['form_seven_pic'] = json_encode($form_seven_pics);
             // }
 
-            if ($request->hasFile('form_seven_pic')) {
-                    $files = $request->file('form_seven_pic');
+                // if ($request->hasFile('form_seven_pic')) {
+                //         $files = $request->file('form_seven_pic');
 
-                    // Debug: Check what $files contains
-                    if ($files === null) {
-                        \Log::error('form_seven_pic is null even though hasFile returned true');
-                        $files = [];
-                    } 
+                //         // Debug: Check what $files contains
+                //         if ($files === null) {
+                //             \Log::error('form_seven_pic is null even though hasFile returned true');
+                //             $files = [];
+                //         }
 
-                    // Make sure it's array to avoid foreach error
-                    if (!is_array($files)) {
-                        $files = [$files];
-                    }
+                //         // Make sure it's array to avoid foreach error
+                //         if (!is_array($files)) {
+                //             $files = [$files];
+                //         }
 
-                    $form_seven_pics = [];
+                //         $form_seven_pics = [];
 
-                    foreach ($files as $file) {
-                        $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-                        $file->move(public_path('fa_farmers/form_seven_pic'), $filename);
-                        $form_seven_pics[] = $filename;
-                    }
+                //         foreach ($files as $file) {
+                //             $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                //             $file->move(public_path('fa_farmers/form_seven_pic'), $filename);
+                //             $form_seven_pics[] = $filename;
+                //         }
 
-                    $data['form_seven_pic'] = json_encode($form_seven_pics);
-                } else {
-                    \Log::info('No form_seven_pic files found in the request.');
-                }
+                //         $data['form_seven_pic'] = json_encode($form_seven_pics);
+                //     } else {
+                //         \Log::info('No form_seven_pic files found in the request.');
+                //     }
 
 
 
