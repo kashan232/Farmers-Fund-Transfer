@@ -679,7 +679,7 @@ class ProjectAPIController extends Controller
                     if ($files === null) {
                         \Log::error('form_seven_pic is null even though hasFile returned true');
                         $files = [];
-                    }
+                    } 
 
                     // Make sure it's array to avoid foreach error
                     if (!is_array($files)) {
