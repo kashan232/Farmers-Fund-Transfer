@@ -949,7 +949,7 @@
                                             <input type="text" name="account_title" id="account_title" class="form-control" value="{{$data->account_title ?? ''}}" >
                                         </div>
 
-                                       
+
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Date of Birth (D-M-Y) <span class="text-danger">*</span></label>
