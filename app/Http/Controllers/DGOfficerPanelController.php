@@ -311,7 +311,7 @@ class DGOfficerPanelController extends Controller
 
                     // Add farmers_count to the user object
                     $user->farmers_count = $farmerCount;
-                    
+
 
 
                     $unverified = LandRevenueFarmerRegistation::where('district', $district)
@@ -360,6 +360,10 @@ class DGOfficerPanelController extends Controller
 
                 $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $district)->whereIn('tehsil', $tehsils)
                 ->whereIn('tappa', $tappas)
+                ->whereIn('verification_status', [
+                                'verified_by_lrd',
+
+                 ])
                 ->count();
 
                 // Add farmers_count to the user object
