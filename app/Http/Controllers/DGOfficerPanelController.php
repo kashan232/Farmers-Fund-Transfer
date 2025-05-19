@@ -186,7 +186,7 @@ class DGOfficerPanelController extends Controller
 
 
                 $unverified = LandRevenueFarmerRegistation::where('district', $user->district)
-                ->where('tehsil', $user->tehsil)
+                ->whereIn('tehsil', $tehsils)
                 ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                 ->whereIn('verification_status', [
                     'verified_by_fa'
@@ -195,7 +195,7 @@ class DGOfficerPanelController extends Controller
                 $user->unverified = $unverified;
 
                 $forwarded_to_dd = LandRevenueFarmerRegistation::where('district', $user->district)
-                        ->where('tehsil', $user->tehsil)
+                       ->whereIn('tehsil', $tehsils)
                         ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                         ->whereIn('verification_status', [
                             'verified_by_dd',
