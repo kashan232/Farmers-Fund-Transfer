@@ -200,10 +200,9 @@
 
 
                                                             <td style="text-align: left; font-size:12px; font-weight: 700;;">
-                                                                Total Farmers: <span style="font-size:12px"> {{ $user->farmers_count }} </span> <br>
+                                                                Total Farmers: <span style="font-size:15px"> {{ $user->farmers_count }} </span> <br>
                                                                 @if($user->usertype == 'Field_Officer') <span style="font-size:12px"> In-Process Farmers = <span style="font-size:15px"> {{ $user->forwarded_to_ao }} </span> <br> Pending = <span style="font-size:15px"> {{ $user->unverified }} </span> <br> Online =  <span style="font-size:15px"> {{ $user->online_farmers }} </span> <br> Self = <span style="font-size:15px"> {{ $user->self }} </span>  </span>  @endif <!-- This is from withCount('farmers') -->
-
-                                                                @if($user->usertype == 'Agri_Officer') <span style="font-size:12px"> In-Process Farmers = <span style="font-size:15px"> {{ $user->forwarded_to_dd }} </span> <br> Pending = <span style="font-size:15px"> {{ $user->unverified }}  </span>  </span>   @endif <!-- This is from withCount('farmers') -->
+                                                                @if($user->usertype == 'Agri_Officer' || $user->usertype == 'DD_Officer' ) <span style="font-size:12px"> In-Process Farmers = <span style="font-size:15px"> {{ $user->forwarded_to_dd }} </span> <br> Pending = <span style="font-size:15px"> {{ $user->unverified }}  </span>  </span>   @endif <!-- This is from withCount('farmers') -->
                                                             </td>
 
                                                         </tr>

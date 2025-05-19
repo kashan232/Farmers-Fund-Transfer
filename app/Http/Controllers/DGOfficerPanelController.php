@@ -250,6 +250,29 @@ class DGOfficerPanelController extends Controller
                     $user->farmers_count = 0;
                 }
 
+                $unverified = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                ->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas)
+                ->whereIn('verification_status', [
+                    'verified_by_ao'
+                ])
+                ->count();
+                $user->unverified = $unverified;
+
+                $forwarded_to_dd = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                       ->whereIn('tehsil', $tehsils)
+                        ->whereIn('tappa', $tappas)
+                        ->whereIn('verification_status', [
+                            'verified_by_dd',
+                            'verified_by_lrd',
+                            'rejected_by_dd',
+                            'rejected_by_lrd',
+                        ])
+                        ->count();
+                $user->forwarded_to_dd = $forwarded_to_dd;
+
+
+
                 return $user;
             });
 
