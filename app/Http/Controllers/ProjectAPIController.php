@@ -86,6 +86,11 @@ class ProjectAPIController extends Controller
             'verification_status' => 'required|in:verified_by_fa,rejected_by_fa',
             'declined_reason' => 'required_if:verification_status,rejected_by_fa',
             'other_reason' => 'required_if:declined_reason,other'
+        ], [
+            'verification_status.required' => 'Verification status is required.',
+            'verification_status.in' => 'These values are allowed in verification status: verified_by_fa, rejected_by_fa.',
+            'declined_reason.required_if' => 'Declined reason is required when verification status is rejected_by_fa.',
+            'other_reason.required_if' => 'Other reason is required when declined reason is other.'
         ]);
 
         //Send failed response if request is not valid
