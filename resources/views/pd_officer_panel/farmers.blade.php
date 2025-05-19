@@ -47,11 +47,14 @@
 
                                                 <div class="col-md-5">
                                                     <form action="{{ route('dg.farmers') }}" method="get" class="d-flex">
-                                                        <input type="text" name="search" id="" class=" small-placeholder form-control me-2" placeholder="Search by Name, Father Name, Surname, Mobile, CNIC, District, Tehsil, Tappa, UC">
-                                                        <input type="submit" name="" id="" value="Search" class="btn btn-primary">
+                                                        <select name="" id="" class="form-control">
+                                                            <option value="">Select Status</option>
+                                                            <option value="1">Verified</option>
+                                                            <option value="0">Un-Verified</option>
+                                                        </select>
                                                     </form>
                                                 </div>
-                                                
+
                                             </div>
 
 
