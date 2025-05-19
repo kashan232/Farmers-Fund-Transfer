@@ -223,6 +223,12 @@
             }
         });
 
+        $('#tappa').off('change').on('change', function () {
+            if ($(this).val().includes("")) {
+                $('#tappa option').prop('selected', true);
+            }
+        });
+
 
     });
     </script>
