@@ -38,7 +38,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Total Farmers</p>
+                                                <p class="card-title text-title">Total Number of Farmers</p>
                                                 <h3 class="card-text text-amount">{{$fa_total_Registered_Farmers}}</h3>
                                             </div>
                                             <div class="col-auto">
@@ -140,7 +140,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Field Officer Farmers</p>
+                                                <p class="card-title text-title">Through Mobile Application Farmers Registration</p>
                                                 <h3 class="card-text text-amount">{{$userFarmers}}</h3>
                                             </div>
                                             <div class="col-auto">
