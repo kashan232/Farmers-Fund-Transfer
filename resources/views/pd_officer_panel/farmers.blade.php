@@ -37,7 +37,7 @@
                                                 }
                                             </style>
 
-                                            <div class="row mb-2">
+                                            <div class="row mb-2 " style="justify-content: space-between;">
                                                 <div class="col-md-5">
                                                     <form action="{{ route('dg.farmers') }}" method="get" class="d-flex">
                                                         <input type="text" name="search" id="" class=" small-placeholder form-control me-2" placeholder="Search by Name, Father Name, Surname, Mobile, CNIC, District, Tehsil, Tappa, UC">
@@ -46,8 +46,8 @@
                                                 </div>
 
                                                 <div class="col-md-5">
-                                                    <form action="{{ route('dg.farmers') }}" method="get" class="d-flex">
-                                                        <select name="" id="" class="form-control">
+                                                    <form action="{{ route('dg.farmers') }}" id="status_form" method="get" class="d-flex">
+                                                        <select name="status" id="" class="form-control" onchange="document.getElementById('status_form').submit()">
                                                             <option value="">Select Status</option>
                                                             <option value="1">Verified</option>
                                                             <option value="0">Un-Verified</option>
