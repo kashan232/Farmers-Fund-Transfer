@@ -206,7 +206,7 @@ class DGOfficerPanelController extends Controller
                             'rejected_by_lrd',
                         ])
                         ->count();
-$user->forwarded_to_dd = $forwarded_to_dd;
+                $user->forwarded_to_dd = $forwarded_to_dd;
 
                 return $user;
             });
