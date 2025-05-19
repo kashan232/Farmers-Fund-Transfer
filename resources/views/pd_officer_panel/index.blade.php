@@ -159,7 +159,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Online Farmers</p>
+                                                <p class="card-title text-title">Online Farmers Registration</p>
                                                 <h3 class="card-text text-amount">{{$onlineFarmers}}</h3>
                                             </div>
                                             <div class="col-auto">
