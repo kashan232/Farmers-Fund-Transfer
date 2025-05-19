@@ -44,6 +44,14 @@
                                                         <input type="submit" name="" id="" value="Search" class="btn btn-primary">
                                                     </form>
                                                 </div>
+
+                                                <div class="col-md-5">
+                                                    <form action="{{ route('dg.farmers') }}" method="get" class="d-flex">
+                                                        <input type="text" name="search" id="" class=" small-placeholder form-control me-2" placeholder="Search by Name, Father Name, Surname, Mobile, CNIC, District, Tehsil, Tappa, UC">
+                                                        <input type="submit" name="" id="" value="Search" class="btn btn-primary">
+                                                    </form>
+                                                </div>
+                                                
                                             </div>
 
 
