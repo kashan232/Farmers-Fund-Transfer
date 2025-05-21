@@ -89,7 +89,7 @@ class HomeController extends Controller
                 ->count();
 
                 $Processfarmeragiruser =  LandRevenueFarmerRegistation::whereIn('verification_status', [
-                   
+
                     'rejected_by_ao',
                     'rejected_by_dd',
                     'rejected_by_fa',
@@ -98,6 +98,9 @@ class HomeController extends Controller
                     'verified_by_ao'
                 ])
                 ->count();
+dd(
+    LandRevenueFarmerRegistation::where('user_type', 'Online')->toSql()
+);
 
                 $onlineFarmers = LandRevenueFarmerRegistation::where('user_type' , 'Online')
                 ->count();
