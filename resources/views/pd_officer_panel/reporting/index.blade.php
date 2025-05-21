@@ -170,68 +170,179 @@
         });
 
 
-        $('#district').change(function () {
-            var district_id = $(this).val();
-            var url = "{{ route('get-tehsils', ':district_id') }}".replace(':district_id', district_id);
-            $('#taluka').html('<option value="">Loading...</option>');
+        // $('#district').change(function () {
+        //     var district_id = $(this).val();
+        //     var url = "{{ route('get-tehsils', ':district_id') }}".replace(':district_id', district_id);
+        //     $('#taluka').html('<option value="">Loading...</option>');
 
-            if (district_id) {
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    data: {
-                                district: district_id
-                            },
-                    success: function (data) {
-                        $('#taluka').html('<option value="">All Taluka</option>');
-                        $.each(data, function (key, district) {
+        //     if (district_id) {
+        //         $.ajax({
+        //             url: url,
+        //             type: "GET",
+        //             data: {
+        //                         district: district_id
+        //                     },
+        //             success: function (data) {
+        //                 $('#taluka').html('<option value="">All Taluka</option>');
+        //                 $.each(data, function (key, district) {
 
-                            console.log(data);
-                            $('#taluka').append('<option value="' + district+ '">' + district + '</option>');
-                        });
-                    }
-                });
-            } else {
-                $('#taluka').html('<option value="">Select District First</option>');
-            }
-        });
+        //                     console.log(data);
+        //                     $('#taluka').append('<option value="' + district+ '">' + district + '</option>');
+        //                 });
+        //             }
+        //         });
+        //     } else {
+        //         $('#taluka').html('<option value="">Select District First</option>');
+        //     }
+        // });
 
 
-        $('#taluka').change(function () {
-            var taluka_id = $(this).val();
-            var url = "{{ route('get-ucs', ':taluka_id') }}".replace(':taluka_id', taluka_id);
-            $('#tappa').html('<option value="">Loading...</option>');
-            var district = $('#district').val();
-            if (taluka_id) {
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    data: {
-                        district: district,
-                        tehsil: taluka_id
-                    },
-                    success: function (data) {
-                        $('#tappa').html('<option value="">All Tappas</option>');
+        // $('#taluka').change(function () {
+        //     var taluka_id = $(this).val();
+        //     var url = "{{ route('get-ucs', ':taluka_id') }}".replace(':taluka_id', taluka_id);
+        //     $('#tappa').html('<option value="">Loading...</option>');
+        //     var district = $('#district').val();
+        //     if (taluka_id) {
+        //         $.ajax({
+        //             url: url,
+        //             type: "GET",
+        //             data: {
+        //                 district: district,
+        //                 tehsil: taluka_id
+        //             },
+        //             success: function (data) {
+        //                 $('#tappa').html('<option value="">All Tappas</option>');
 
-                        $.each(data.Tappas, function(index, value) {
-                            $('#tappa').append('<option value="' + value + '">' + value + '</option>');
-                        });
-                    }
-                });
-            } else {
-                $('#tappa').html('<option value="">Select Taluka First</option>');
-            }
-        });
+        //                 $.each(data.Tappas, function(index, value) {
+        //                     $('#tappa').append('<option value="' + value + '">' + value + '</option>');
+        //                 });
+        //             }
+        //         });
+        //     } else {
+        //         $('#tappa').html('<option value="">Select Taluka First</option>');
+        //     }
+        // });
 
-        $('#tappa').off('change').on('change', function () {
-            if ($(this).val().includes("")) {
-                $('#tappa option').prop('selected', true);
-            }
-        });
+        // $('#tappa').off('change').on('change', function () {
+        //     if ($(this).val().includes("")) {
+        //         $('#tappa option').prop('selected', true);
+        //     }
+        // });
 
 
     });
     </script>
+
+
+
+
+<script>
+    $(document).ready(function() {
+        $('select[name="district[]"]').on('change', function() {
+            var district = $(this).val();
+            if (district) {
+                $.ajax({
+                    url: '{{ route('get-tehsils') }}',
+                    type: 'GET',
+                    data: {
+                        district: district
+                    },
+                    success: function(data) {
+                        $('select[name="tehsil[]"]').empty();
+
+                        $('select[name="tehsil[]"]').append('<option value="all">All</option>');
+
+                        $.each(data, function(key, value) {
+                            $('select[name="tehsil[]"]').append('<option value="' +
+                                value + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('select[name="tehsil[]"]').empty();
+            }
+        });
+
+    // Handle "All" selection logic
+    $(document).on('change', 'select[name="tehsil[]"]', function () {
+        var selectedOptions = $(this).val() || [];
+        if (selectedOptions.includes("all")) {
+            // Select all options when "All" is chosen
+            $(this).find('option').prop('selected', true);
+        } else {
+            // If "All" is not selected, ensure it stays deselected
+            $(this).find('option[value="all"]').prop('selected', false);
+        }
+        $(this).find('option[value="all"]').prop('selected', false);
+        // Refresh Select2 UI
+        $(this).trigger('change.select2');
+
+         // After "All" is handled, call the get-ucs function
+        handleGetUcsRequest();
+    });
+
+
+// Function to handle the get-ucs request with selected tehsil values
+function handleGetUcsRequest() {
+    var district = $('select[name="district[]"]').val();
+    var tehsil = $('select[name="tehsil[]"]').val();  // Get selected tehsil values
+
+    // If "All" is selected, we need to remove "all" from the selected values
+    if (tehsil.includes("all")) {
+        tehsil = tehsil.filter(function(value) {
+            return value !== "all";  // Remove "all" from the selected list
+        });
+    }
+
+    // Only trigger AJAX if district and tehsil are selected and valid
+    if (district && tehsil.length > 0) {
+        $.ajax({
+            url: '{{ route("get-ucs") }}',
+            type: 'GET',
+            data: {
+                district: district,
+                tehsil: tehsil // Send selected tehsil values (excluding "All")
+            },
+            success: function(response) {
+
+                // Populate Tappa dropdown
+                var tappaSelect = $('select[name="tappa[]"]');
+                tappaSelect.empty();
+                $('select[name="tappa[]"]').append('<option value="all">All</option>');
+
+                $.each(response.Tappas, function(index, value) {
+                    tappaSelect.append('<option value="' + value + '">' + value + '</option>');
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    } else {
+        // Clear UC and Tappa dropdowns if district or tehsil is empty
+        // $('select[name="ucs"]').empty();
+        $('select[name="tappa[]"]').empty();
+    }
+}
+
+         // Handle "All" selection logic
+        $(document).on('change', 'select[name="tappa[]"]', function () {
+            var selectedOptions = $(this).val() || [];
+            if (selectedOptions.includes("all")) {
+                // Select all options when "All" is chosen
+                $(this).find('option').prop('selected', true);
+            } else {
+                // If "All" is not selected, ensure it stays deselected
+                $(this).find('option[value="all"]').prop('selected', false);
+            }
+            $(this).find('option[value="all"]').prop('selected', false);
+            // Refresh Select2 UI
+            $(this).trigger('change.select2');
+        });
+
+    });
+</script>
+
 
 </body>
 
