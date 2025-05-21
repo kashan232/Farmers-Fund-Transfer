@@ -83,7 +83,6 @@ class HomeController extends Controller
                 ])
                 ->count();
 
-                $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::count();
 
                 $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , NULL)
                 ->count();
@@ -98,6 +97,8 @@ class HomeController extends Controller
                     'verified_by_ao'
                 ])
                 ->count();
+                
+                $fa_total_Registered_Farmers = $Unverifiedfarmeragiruser +$Processfarmeragiruser;
 
 
                 $onlineFarmers = LandRevenueFarmerRegistation::where('user_type' , 'Online')
