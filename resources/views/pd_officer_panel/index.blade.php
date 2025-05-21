@@ -142,7 +142,7 @@
                                             <div class="col">
                                                 <p class="card-title text-title">
                                                     {{-- Through Mobile Application Farmers Registration --}}
-                                                    Farmers #districtFarmersChartRegistered By FA
+                                                    Farmers Registered By FA
                                                 </p>
                                                 <h3 class="card-text text-amount">{{$userFarmers}}</h3>
                                             </div>
