@@ -140,7 +140,10 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Through Mobile Application Farmers Registration</p>
+                                                <p class="card-title text-title">
+                                                    {{-- Through Mobile Application Farmers Registration --}}
+                                                    Farmers #districtFarmersChartRegistered By FA
+                                                </p>
                                                 <h3 class="card-text text-amount">{{$userFarmers}}</h3>
                                             </div>
                                             <div class="col-auto">
