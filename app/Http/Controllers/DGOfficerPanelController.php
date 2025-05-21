@@ -262,7 +262,6 @@ class DGOfficerPanelController extends Controller
                             'rejected_by_dd',
                             'verified_by_ao',
                             'verified_by_dd',
-                            'verified_by_lrd'
                         ])
                         ->count();
 
@@ -285,10 +284,8 @@ class DGOfficerPanelController extends Controller
                        ->whereIn('tehsil', $tehsils)
                         ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
-                            'verified_by_dd',
-                            'verified_by_lrd',
                             'rejected_by_dd',
-                            'rejected_by_lrd',
+                            'verified_by_dd',
                         ])
                         ->count();
                 $user->forwarded_to_dd = $forwarded_to_dd;
