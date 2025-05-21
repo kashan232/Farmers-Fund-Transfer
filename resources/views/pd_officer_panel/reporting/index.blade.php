@@ -45,7 +45,7 @@
                                                 <label class="form-label" style="font-weight: 600;">Districts</label>
                                                 <div class="d-flex">
                                                     <select multiple name="district[]" id="district" class="form-control js-example-basic-multiple">
-                                                        <option value=""> All Districts</option>
+                                                        <option value="all"> All Districts</option>
                                                         @foreach ($districts as $district)
                                                             <option value="{{$district->district}}">{{$district->district}}</option>
                                                         @endforeach
