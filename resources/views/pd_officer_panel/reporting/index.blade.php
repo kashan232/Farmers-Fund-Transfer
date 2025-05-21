@@ -260,9 +260,29 @@
             } else {
                 $('select[name="tehsil[]"]').empty();
             }
+
+
+            var selectedOptions = $(this).val() || [];
+            if (selectedOptions.includes("all")) {
+                // Select all options when "All" is chosen
+                $(this).find('option').prop('selected', true);
+            } else {
+                // If "All" is not selected, ensure it stays deselected
+                $(this).find('option[value="all"]').prop('selected', false);
+            }
+            $(this).find('option[value="all"]').prop('selected', false);
+            // Refresh Select2 UI
+            $(this).trigger('change.select2');
+
+
         });
 
-    // Handle "All" selection logic
+
+
+
+
+
+        // Handle "All" selection logic
     $(document).on('change', 'select[name="tehsil[]"]', function () {
         var selectedOptions = $(this).val() || [];
         if (selectedOptions.includes("all")) {
