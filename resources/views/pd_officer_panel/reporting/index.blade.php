@@ -125,6 +125,18 @@
                                         </div>
 
 
+                                        <div class="col-4 mt-2">
+                                            <div class="mb-12 col-md-12">
+                                                <label class="form-label" style="font-weight: 600;">Acre Range</label>
+                                                <div class="d-flex gap-2">
+                                                    <input type="number" class="form-control" placeholder="From" name="acre_from" min="0">
+                                                    <input type="number" class="form-control" placeholder="To" name="acre_to" min="0">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
 
                                     </div>
 

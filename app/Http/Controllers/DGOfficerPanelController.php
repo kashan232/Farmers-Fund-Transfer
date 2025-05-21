@@ -75,8 +75,8 @@ class DGOfficerPanelController extends Controller
             }
 
             // Apply filters only if they are not empty
-            if (!empty($req->taluka) && $req->taluka[0] !== null) {
-                $query->whereIn('tehsil', $req->taluka);
+            if (!empty($req->tehsil) && $req->tehsil[0] !== null) {
+                $query->whereIn('tehsil', $req->tehsil);
             }
 
             if (!empty($req->tappa) && $req->tappa[0] !== null) {
