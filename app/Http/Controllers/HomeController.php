@@ -793,7 +793,7 @@ class HomeController extends Controller
                 return view('land_revenue_panel.land_revenue_dashboard', [
                     'total_farmers' => $total_farmers,
                     'verified_farmers' => $verified_farmers,
-                    'rejected_farmers' => $rejected_farmers,
+                    'rejected_farmers' => $rejected_farmerss,
                     'districtCount' => $districtCount,
                     'tehsilCount' => $tehsilCount,
                     'tappaCount' => $tappaCount,
