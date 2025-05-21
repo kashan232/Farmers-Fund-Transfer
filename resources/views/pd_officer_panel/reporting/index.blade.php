@@ -237,8 +237,39 @@
 
 <script>
     $(document).ready(function() {
-        $('select[name="district[]"]').on('change', function() {
-            var district = $(this).val();
+     
+
+    // Handle "All" selection logic
+    $(document).on('change', 'select[name="district[]"]', function () {
+        
+        var selectedOptions = $(this).val() || [];
+        if (selectedOptions.includes("all")) {
+            // Select all options when "All" is chosen
+            $(this).find('option').prop('selected', true);
+        } else {
+            // If "All" is not selected, ensure it stays deselected
+            $(this).find('option[value="all"]').prop('selected', false);
+        }
+        $(this).find('option[value="all"]').prop('selected', false);
+        // Refresh Select2 UI
+        $(this).trigger('change.select2');
+
+         // After "All" is handled, call the get-ucs function
+        handleGetTehsilsRequest();
+    });
+
+        
+
+    function handleGetTehsilsRequest() {
+        var district = $('select[name="district[]"]').val();
+
+        // If "All" is selected, we need to remove "all" from the selected values
+        if (district.includes("all")) {
+            district = district.filter(function(value) {
+                return value !== "all";  // Remove "all" from the selected list
+            });
+        }
+
             if (district) {
                 $.ajax({
                     url: '{{ route('get-tehsils') }}',
@@ -262,26 +293,14 @@
             }
 
 
-            var selectedOptions = $(this).val() || [];
-            if (selectedOptions.includes("all")) {
-                // Select all options when "All" is chosen
-                $(this).find('option').prop('selected', true);
-            } else {
-                // If "All" is not selected, ensure it stays deselected
-                $(this).find('option[value="all"]').prop('selected', false);
-            }
-            $(this).find('option[value="all"]').prop('selected', false);
-            // Refresh Select2 UI
-            $(this).trigger('change.select2');
 
-
-        });
+    }
 
 
 
 
-
-
+        
+   
         // Handle "All" selection logic
     $(document).on('change', 'select[name="tehsil[]"]', function () {
         var selectedOptions = $(this).val() || [];
