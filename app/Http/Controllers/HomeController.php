@@ -89,7 +89,7 @@ class HomeController extends Controller
                 ->count();
 
                 $Processfarmeragiruser =  LandRevenueFarmerRegistation::whereIn('verification_status', [
-                    'rejected_by_lrd',
+                   
                     'rejected_by_ao',
                     'rejected_by_dd',
                     'rejected_by_fa',
