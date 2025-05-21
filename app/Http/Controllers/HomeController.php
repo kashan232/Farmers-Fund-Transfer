@@ -110,15 +110,15 @@ class HomeController extends Controller
                 ])
                 ->count();
 
-$total = LandRevenueFarmerRegistation::count();
+// $total = LandRevenueFarmerRegistation::count();
 
-$groupedTotal = $Unverifiedfarmeragiruser + $Processfarmeragiruser + $Verifiedfarmeragiruser + $rejected_by_lrd;
+// $groupedTotal = $Unverifiedfarmeragiruser + $Processfarmeragiruser + $Verifiedfarmeragiruser + $rejected_by_lrd;
 
-dd([
-    'Actual Total Records in DB' => $total,
-    'Summed Grouped Records' => $groupedTotal,
-    'Difference' => $total - $groupedTotal
-]);
+// dd([
+//     'Actual Total Records in DB' => $total,
+//     'Summed Grouped Records' => $groupedTotal,
+//     'Difference' => $total - $groupedTotal
+// ]);
 
 
 
