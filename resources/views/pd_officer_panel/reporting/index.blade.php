@@ -237,11 +237,11 @@
 
 <script>
     $(document).ready(function() {
-     
+
 
     // Handle "All" selection logic
     $(document).on('change', 'select[name="district[]"]', function () {
-        
+
         var selectedOptions = $(this).val() || [];
         if (selectedOptions.includes("all")) {
             // Select all options when "All" is chosen
@@ -258,7 +258,7 @@
         handleGetTehsilsRequest();
     });
 
-        
+
 
     function handleGetTehsilsRequest() {
         var district = $('select[name="district[]"]').val();
@@ -279,6 +279,7 @@
                     },
                     success: function(data) {
                         $('select[name="tehsil[]"]').empty();
+                        $('select[name="tappa[]"]').empty();
 
                         $('select[name="tehsil[]"]').append('<option value="all">All</option>');
 
@@ -290,6 +291,8 @@
                 });
             } else {
                 $('select[name="tehsil[]"]').empty();
+                        $('select[name="tappa[]"]').empty();
+
             }
 
 
@@ -299,8 +302,8 @@
 
 
 
-        
-   
+
+
         // Handle "All" selection logic
     $(document).on('change', 'select[name="tehsil[]"]', function () {
         var selectedOptions = $(this).val() || [];
