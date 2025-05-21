@@ -78,7 +78,10 @@ class HomeController extends Controller
 
 
 
-
+                $rejected_by_lrd = LandRevenueFarmerRegistation::whereIn('verification_status', [
+                    'rejected_by_lrd'
+                ])
+                ->count();
 
                 $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::count();
 
@@ -173,7 +176,8 @@ class HomeController extends Controller
                     'labels' => $labels,
                     'verified' => $verified,
                     'unverified' => $unverified,
-                    'total' => $total
+                    'total' => $total,
+                    'rejected_by_lrd' => $rejected_by_lrd
 
                 ]);
             }
@@ -793,7 +797,7 @@ class HomeController extends Controller
                 return view('land_revenue_panel.land_revenue_dashboard', [
                     'total_farmers' => $total_farmers,
                     'verified_farmers' => $verified_farmers,
-                    'rejected_farmers' => $rejected_farmerss,
+                    'rejected_farmers' => $rejected_farmers,
                     'districtCount' => $districtCount,
                     'tehsilCount' => $tehsilCount,
                     'tappaCount' => $tappaCount,

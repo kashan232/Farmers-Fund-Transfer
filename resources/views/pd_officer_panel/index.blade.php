@@ -79,7 +79,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Rejected BY LRD</p>
-                                                <h3 class="card-text text-amount">{{$Verifiedfarmeragiruser}}</h3>
+                                                <h3 class="card-text text-amount">{{$rejected_by_lrd}}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
