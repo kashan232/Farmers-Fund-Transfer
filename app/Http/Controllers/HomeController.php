@@ -98,9 +98,7 @@ class HomeController extends Controller
                     'verified_by_ao'
                 ])
                 ->count();
-dd(
-    LandRevenueFarmerRegistation::where('user_type', 'Online')->toSql()
-);
+
 
                 $onlineFarmers = LandRevenueFarmerRegistation::where('user_type' , 'Online')
                 ->count();
