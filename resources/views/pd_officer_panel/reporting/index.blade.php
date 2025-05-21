@@ -235,7 +235,6 @@
 
 
 
-
 <script>
     $(document).ready(function() {
         $('select[name="district[]"]').on('change', function() {
