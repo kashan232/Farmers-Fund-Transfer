@@ -78,17 +78,11 @@ class HomeController extends Controller
 
 
 
-                $rejected_by_lrd = LandRevenueFarmerRegistation::whereIn('verification_status', [
-                    'rejected_by_lrd'
-                ])
-                ->count();
 
 
-                $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , NULL)
-                ->count();
+                $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::whereNull('verification_status')->count();
 
                 $Processfarmeragiruser =  LandRevenueFarmerRegistation::whereIn('verification_status', [
-
                     'rejected_by_ao',
                     'rejected_by_dd',
                     'rejected_by_fa',
@@ -109,6 +103,24 @@ class HomeController extends Controller
 
                 $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , 'verified_by_lrd')
                 ->count();
+
+
+                $rejected_by_lrd = LandRevenueFarmerRegistation::whereIn('verification_status', [
+                    'rejected_by_lrd'
+                ])
+                ->count();
+
+$total = LandRevenueFarmerRegistation::count();
+
+$groupedTotal = $Unverifiedfarmeragiruser + $Processfarmeragiruser + $Verifiedfarmeragiruser + $rejected_by_lrd;
+
+dd([
+    'Actual Total Records in DB' => $total,
+    'Summed Grouped Records' => $groupedTotal,
+    'Difference' => $total - $groupedTotal
+]);
+
+
 
                 // $usersByDistrict = User::where('usertype','Field_Officer')->selectRaw('district, COUNT(*) as total_users')
                 // ->groupBy('district')
