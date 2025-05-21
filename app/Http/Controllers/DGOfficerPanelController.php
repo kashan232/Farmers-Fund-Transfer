@@ -223,6 +223,8 @@ class DGOfficerPanelController extends Controller
                         ->whereIn('verification_status', [
 
                             'verified_by_ao',
+                        'rejected_by_ao',
+
 
                         ])
                         ->count();
