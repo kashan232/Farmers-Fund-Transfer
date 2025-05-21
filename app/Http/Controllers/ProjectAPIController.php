@@ -329,6 +329,16 @@ class ProjectAPIController extends Controller
 
 
 
+
+    public function get_farmer_by_cnic($search)
+    {
+        $query = LandRevenueFarmerRegistation::where('cnic', $search);
+        $farmers = $query->paginate(10);
+        return response()->json(['farmers' => $farmers], 200);
+    }
+
+
+
     public function store_farmer(Request $request)
     {
            \Log::info($request->all());

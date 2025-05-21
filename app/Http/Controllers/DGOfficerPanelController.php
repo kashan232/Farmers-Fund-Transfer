@@ -74,6 +74,14 @@ class DGOfficerPanelController extends Controller
                 $query->whereIn('district', $req->district);
             }
 
+
+
+            if (!empty($req->acre_from) && $req->acre_from !== null) {
+                $query->whereIn('acre', $req->district);
+            }
+
+
+
             // Apply filters only if they are not empty
             if (!empty($req->tehsil) && $req->tehsil[0] !== null) {
                 $query->whereIn('tehsil', $req->tehsil);

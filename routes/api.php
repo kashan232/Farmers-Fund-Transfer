@@ -90,6 +90,9 @@ Route::get('/farmers/{user_id}/{search?}',[ProjectAPIController::class,'get_farm
 
 
 
+
+
+
 Route::get('/dashboard/data/{user_id}',[ProjectAPIController::class,'dashboard_data']);
 
 
@@ -99,3 +102,8 @@ Route::post('/farmer-verify',[ProjectAPIController::class,'verify_farmer']);
 
 // Route::post('/api-store-online-farmers-registration', [ProjectAPIController::class, 'api_store_online_farmers_registration'])->name('api-store-online-farmers-registration');
 
+
+
+
+
+Route::get('/farmer-get/{search}',[ProjectAPIController::class,'get_farmer_by_cnic']);
