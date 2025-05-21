@@ -58,7 +58,7 @@
                                             <div class="mb-12 col-md-12">
                                                 <label class="form-label" style="font-weight: 600;">Taluka</label>
                                                 <div class="d-flex">
-                                                    <select multiple name="taluka[]" id="taluka" class="form-control js-example-basic-multiple">
+                                                    <select multiple name="tehsil[]" id="tehsil" class="form-control js-example-basic-multiple">
 
                                                     </select>
                                                 </div>
