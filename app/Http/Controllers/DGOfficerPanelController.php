@@ -74,10 +74,15 @@ class DGOfficerPanelController extends Controller
                 $query->whereIn('district', $req->district);
             }
 
+            $acreFrom = $req->input('acre_from');
+            $acreTo = $req->input('acre_to');
 
+             if ($acreFrom !== null) {
+                $query->where('total_landing_acre', '>=', $acreFrom);
+            }
 
-            if (!empty($req->acre_from) && $req->acre_from !== null) {
-                $query->whereIn('acre', $req->district);
+            if ($acreTo !== null) {
+                $query->where('total_landing_acre', '<=', $acreTo);
             }
 
 
