@@ -99,7 +99,7 @@ class HomeController extends Controller
 
                 $userFarmers = LandRevenueFarmerRegistation::where('user_type' ,'!=', 'Online')->count();
 
-                $fa_total_Registered_Farmers = $onlineFarmers + $userFarmers;
+                $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::count();
 
                 $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , 'verified_by_lrd')
                 ->count();
