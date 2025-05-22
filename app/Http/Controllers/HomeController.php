@@ -293,6 +293,7 @@ class HomeController extends Controller
                 // $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
                 // $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
                 // $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+                $user = User::find($userId);
 
 
                 $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::whereNull('verification_status')->whereIn('district',json_decode($user->district))->count();
@@ -309,8 +310,7 @@ class HomeController extends Controller
 
 
 
-                $onlineFarmers = LandRevenueFarmerRegistation::where('user_type' , 'Online')->whereIn('district',json_decode($user->district))
-                ->count();
+                $onlineFarmers = LandRevenueFarmerRegistation::where('user_type' , 'Online')->whereIn('district',json_decode($user->district))->count();
 
                 $userFarmers = LandRevenueFarmerRegistation::where('user_type' ,'!=', 'Online')->whereIn('district',json_decode($user->district))->count();
 
