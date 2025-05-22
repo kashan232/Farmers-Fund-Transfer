@@ -336,6 +336,7 @@ class HomeController extends Controller
                     'Processfarmeragiruser' => $Processfarmeragiruser,
                     'userFarmers' => $userFarmers,
                     'onlineFarmers' => $onlineFarmers,
+                    'rejected_by_lrd' => $rejected_by_lrd,
 
                     // 'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                     // 'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
