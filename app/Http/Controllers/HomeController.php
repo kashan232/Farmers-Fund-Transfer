@@ -290,11 +290,44 @@ class HomeController extends Controller
 
 
 
-                $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
-                $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
-                $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+                // $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
+                // $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
+                // $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
+
+
+                $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::whereNull('verification_status')->whereIn('district',json_decode($user->district))->count();
+
+                $Processfarmeragiruser =  LandRevenueFarmerRegistation::whereIn('verification_status', [
+                    'rejected_by_ao',
+                    'rejected_by_dd',
+                    'rejected_by_fa',
+                    'verified_by_dd',
+                    'verified_by_fa',
+                    'verified_by_ao'
+                ])->whereIn('district',json_decode($user->district))
+                ->count();
+
+
+
+                $onlineFarmers = LandRevenueFarmerRegistation::where('user_type' , 'Online')->whereIn('district',json_decode($user->district))
+                ->count();
+
+                $userFarmers = LandRevenueFarmerRegistation::where('user_type' ,'!=', 'Online')->whereIn('district',json_decode($user->district))->count();
+
+                $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::whereIn('district',json_decode($user->district))->count();
+
+                $Verifiedfarmeragiruser = LandRevenueFarmerRegistation::where('verification_status' , 'verified_by_lrd')->whereIn('district',json_decode($user->district))
+                ->count();
+
+
+                $rejected_by_lrd = LandRevenueFarmerRegistation::whereIn('verification_status', [
+                    'rejected_by_lrd'
+                ])->whereIn('district',json_decode($user->district))
+                ->count();
+
+
                 return view('district_officer_panel.index', [
-                    'agriUserfarmersCount' => $agriUserfarmersCount,
+                    // 'agriUserfarmersCount' => $agriUserfarmersCount,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
                     'districtStats' => $districtStats,
