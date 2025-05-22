@@ -128,7 +128,7 @@ class LandRevenueController extends Controller
 
 
 
-            $plainPassword = (string) random_int(10000000, 99999999);
+            // $plainPassword = (string) random_int(10000000, 99999999);
 
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
@@ -153,7 +153,7 @@ class LandRevenueController extends Controller
                             'district' => $request->district,
                             'tehsil' => $tehsil,
                             'tappas' => $tappa,
-                            'password' => $plainPassword,
+                            // 'password' => $plainPassword,
                         ];
 
                         // Only update email_address if it's changed
@@ -177,7 +177,7 @@ class LandRevenueController extends Controller
                                 'district' => $request->district,
                                 'tehsil' => $tehsil,
                                 'tappas' => $tappa,
-                            'password' => $plainPassword,
+                            // 'password' => $plainPassword,
 
                                 'usertype' => 'Land_Revenue_Officer', // Set the usertype to 'employee'
                             ];
