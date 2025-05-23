@@ -462,7 +462,10 @@ class ProjectAPIController extends Controller
 
 
             $data = $request->all();
-            $data = $request->except(['_token', 'edit_id', 'old_front_id_card','old_back_id_card','old_form_seven_pic','old_upload_land_proof','old_upload_farmer_pic','old_upload_other_attach','old_no_objection_affidavit_pic']);
+
+            
+            $data = $request->except(['_token', 'edit_id', 'old_front_id_card','old_back_id_card','old_form_seven_pic','old_upload_land_proof','old_upload_farmer_pic','old_upload_other_attach','old_no_objection_affidavit_pic', 'titleeForms', 'cropStatusForms', 'liveStockAnimalAssets']);
+  
 
 
             $data['user_type'] = $request->user_type;
@@ -691,13 +694,7 @@ class ProjectAPIController extends Controller
 
             // dd($data);
 
-            $data = $request->except([
-                'titleeForms',
-                'cropStatusForms',
-                'liveStockAnimalAssets',
-                // Add other fields that are not actual database columns
-            ]);
-
+        
 
             try {
 
