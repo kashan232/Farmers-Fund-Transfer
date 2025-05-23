@@ -691,7 +691,12 @@ class ProjectAPIController extends Controller
 
             // dd($data);
 
-
+            $data = $request->except([
+                'titleeForms',
+                'cropStatusForms',
+                'liveStockAnimalAssets',
+                // Add other fields that are not actual database columns
+            ]);
 
 
             try {
