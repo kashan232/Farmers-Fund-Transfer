@@ -205,12 +205,12 @@
                                                     </tbody> --}}
                                                     <thead>
                                                         <tr>
-                                                            <th>District</th>
-                                                            <th>Field Officer</th>
-                                                            <th>Agri Officer</th>
-                                                            <th>DD Officer</th>
-                                                            <th>Land Revenue Officer</th>
-                                                            <th>Additional Director</th>
+                                                            <th>Districts</th>
+                                                            <th>Field Assitants</th>
+                                                            <th>Agri Officers</th>
+                                                            <th>DD Officers</th>
+                                                            <th>Land Revenue Officers</th>
+                                                            <th>Additional Directors</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>

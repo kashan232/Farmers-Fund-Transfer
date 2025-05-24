@@ -361,11 +361,15 @@ class FieldOfficerPanelController extends Controller
 
             $data['user_type'] = $request->user_type;
             if( $data['user_type'] != 'Online'){
-
+                $data['verification_status'] = 'verified_by_fa';
                 $data['user_id'] = Auth::id();
                 // $data['land_emp_id'] = Auth()->user()->user_id;
 
                 // $data['land_emp_name'] = Auth()->user()->name;
+            }
+
+            else{
+                 $data['verification_status'] = null;
             }
 
 
@@ -408,7 +412,7 @@ class FieldOfficerPanelController extends Controller
             $data['source_of_irrigation_engery'] = json_encode($request->source_of_irrigation_engery);
 
 
-            $data['verification_status'] = null;
+
             $data['declined_reason'] = null;
 
 

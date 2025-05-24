@@ -463,9 +463,9 @@ class ProjectAPIController extends Controller
 
             $data = $request->all();
 
-            
+
             $data = $request->except(['_token', 'edit_id', 'old_front_id_card','old_back_id_card','old_form_seven_pic','old_upload_land_proof','old_upload_farmer_pic','old_upload_other_attach','old_no_objection_affidavit_pic', 'titleeForms', 'cropStatusForms', 'liveStockAnimalAssets']);
-  
+
 
 
             $data['user_type'] = $request->user_type;
@@ -556,7 +556,7 @@ class ProjectAPIController extends Controller
             $data['source_of_irrigation_engery'] = json_encode($request->source_of_irrigation_engery);
 
 
-            $data['verification_status'] = null;
+            $data['verification_status'] = 'verified_by_fa';
             $data['declined_reason'] = null;
 
 
@@ -694,7 +694,7 @@ class ProjectAPIController extends Controller
 
             // dd($data);
 
-        
+
 
             try {
 
