@@ -130,7 +130,7 @@
                                                             @elseif($farmer->verification_status == 'rejected_by_do')
                                                             <span class="badge text-bg-danger">Rejected By Additional Director</span>
                                                             @elseif($farmer->verification_status == 'verified_by_ao')
-                                                            <span class="badge text-bg-primary">Forwarded to DD</span>
+                                                            <span class="badge text-bg-primary">Forwarded to LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_dd')
                                                             <span class="badge text-bg-primary">Forwarded to LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_lrd')

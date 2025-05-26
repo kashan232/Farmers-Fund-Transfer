@@ -133,7 +133,7 @@
                                                             @elseif($farmer->verification_status == 'verified_by_dd')
                                                                 <span class="badge text-bg-primary">Forwarded to LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_ao')
-                                                                <span class="badge text-bg-info">Unverified</span>
+                                                                <span class="badge text-bg-info">Forwarded to LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_lrd')
                                                                 <span class="badge text-bg-success">Verified</span>
                                                             @endif

@@ -110,7 +110,7 @@
                                                             @elseif($farmer->verification_status == 'verified_by_fa')
                                                             <span class="badge  text-bg-success text-dark font-weight-bold" >Forward to AO</span>
                                                             @elseif($farmer->verification_status == 'verified_by_ao')
-                                                            <span class="badge  text-bg-success text-dark font-weight-bold" >Forward to DD</span>
+                                                            <span class="badge  text-bg-success text-dark font-weight-bold" >Forward to LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_dd')
                                                             <span class="badge  text-bg-success text-dark font-weight-bold" >Forward to LRD</span>
 

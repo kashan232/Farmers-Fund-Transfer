@@ -356,12 +356,12 @@
                     @endif
 
                    {{-- {{ dd($data->user_type)}} --}}
-                    @if (Auth::user()->usertype != 'Field_Officer' && Auth::user()->usertype == 'DD_Officer')
+                    {{-- @if (Auth::user()->usertype != 'Field_Officer' && Auth::user()->usertype == 'DD_Officer')
                         @if ($data->verification_status != 'verified_by_do' && $data->verification_status != 'verified_by_dd')
                             <button type="button" class="btn btn-sm btn-success verifiy-btn "
                                 data-id="{{ $data->id }}">Verify</button> &nbsp;
                         @endif
-                    @endif
+                    @endif --}}
 
                     @if (Auth::user()->usertype != 'Field_Officer' && Auth::user()->usertype == 'Land_Revenue_Officer')
                     @if ($data->verification_status != 'verified_by_do' && $data->verification_status != 'verified_by_lrd')
@@ -1209,7 +1209,7 @@
             <p>File not found</p>
         @endif
     @endif --}}
-{{-- 
+{{--
 @if (!empty($data->form_seven_pic))
     @php
         $files = json_decode($data->form_seven_pic, true);

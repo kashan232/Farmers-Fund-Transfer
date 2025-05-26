@@ -237,7 +237,7 @@ class LandRevenueFarmerController extends Controller
             ->whereIn('tehsil',json_decode($user->tehsil))
             ->where(function ($query) {
                 $query->where('verification_status', 'verified_by_dd')
-                    ->orWhere('verification_status', 'verified_by_aa')
+                    ->orWhere('verification_status', 'verified_by_ao')
                     ->orWhere('verification_status', 'verified_by_lrd');
             })
             ->paginate(50);
