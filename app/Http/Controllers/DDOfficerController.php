@@ -81,7 +81,7 @@ class DDOfficerController extends Controller
                         'district' => $district,
                         'tehsil' => $tehsil,
                         'tappas' => $tappa,
-                        'password' => $plainPassword,
+                        // 'password' => $plainPassword,
 
                     ];
 
@@ -106,7 +106,7 @@ class DDOfficerController extends Controller
                             'district' => $district,
                             'tehsil' => $tehsil,
                             'tappas' => $tappa,
-                            'password' => $plainPassword,
+                            // 'password' => $plainPassword,
 
                             'usertype' => 'DD_Officer', // Set the usertype to 'employee'
                         ];

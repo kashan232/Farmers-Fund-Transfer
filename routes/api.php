@@ -92,6 +92,10 @@ Route::get('/farmers/{user_id}/{search?}',[ProjectAPIController::class,'get_farm
 
 
 
+Route::get('/farmer/{cnic}',[ProjectAPIController::class,'get_farmer_data']);
+
+
+
 
 Route::get('/dashboard/data/{user_id}',[ProjectAPIController::class,'dashboard_data']);
 

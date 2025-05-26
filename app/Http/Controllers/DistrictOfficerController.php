@@ -85,7 +85,7 @@ class DistrictOfficerController extends Controller
                             'district' => $district,
                             'tehsil' => $tehsil,
                             'tappas' => $tappa,
-                            'password' => $plainPassword,
+                            // 'password' => $plainPassword,
                         ]);
 
                         // Update the related User record
@@ -114,7 +114,7 @@ class DistrictOfficerController extends Controller
                                 'district' => $district,
                                 'tehsil' => $tehsil,
                                 'tappas' => $tappa,
-                                'password' => $plainPassword, // Preserve existing password if not updated
+                                // 'password' => $plainPassword, // Preserve existing password if not updated
                                 'usertype' => 'District_Officer', // Set the usertype to 'Field_Officer'
                             ]);
                         }
