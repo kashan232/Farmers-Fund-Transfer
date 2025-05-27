@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <!-- Verified Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            {{-- <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -52,9 +52,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- Rejected Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            {{-- <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -70,7 +70,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                              <!-- Verified Farmers Card -->
@@ -79,7 +79,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Verified Farmers</p>
+                                                <p class="card-title text-title">Verified By LRD</p>
                                                 <h3 class="card-text text-amount">{{ $Verifiedfarmeragiruser }}</h3>
                                             </div>
                                             <div class="col-auto">
@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                             <!-- Rejected Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            {{-- <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -108,7 +108,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                              <!-- Rejected Farmers Card -->
                              <div class="col-lg-4 col-md-6 col-sm-6">
