@@ -149,10 +149,10 @@ class ProjectAPIController extends Controller
         return response()->json(['tehsils' => $tehsils], 200);
     }
 
-    public function get_uc(Request $request)
+    public function get_uc($tehsil)
     {
         // Fetch all Ucs from the database
-        $Ucs = UC::all();
+        $Ucs = UC::where('tehsil', $tehsil)->get();
 
         // Return the Ucs as a JSON response
         return response()->json(['Ucs' => $Ucs], 200);
