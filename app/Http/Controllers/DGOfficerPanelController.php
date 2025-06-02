@@ -343,7 +343,7 @@ class DGOfficerPanelController extends Controller
                 $tehsils = json_decode($user->tehsil ?? '[]');
                 $tappas = json_decode($user->tappas ?? '[]');
 
-
+                    //Total
                     $farmerCount = LandRevenueFarmerRegistation::where('district', $district)->whereIn('tehsil', $tehsils)
 
                         ->whereIn('verification_status', [
@@ -355,16 +355,18 @@ class DGOfficerPanelController extends Controller
                     $user->farmers_count = $farmerCount;
 
 
+                    //Pending
+                    // $unverified = LandRevenueFarmerRegistation::where('district', $district)
+                    // ->whereIn('tehsil', $tehsils)
 
-                    $unverified = LandRevenueFarmerRegistation::where('district', $district)
-                    ->whereIn('tehsil', $tehsils)
+                    // ->whereIn('verification_status', [
+                    //     'verified_by_ao'
+                    // ])
+                    // ->count();
+                    // $user->unverified = $unverified;
 
-                    ->whereIn('verification_status', [
-                        'verified_by_ao'
-                    ])
-                    ->count();
-                    $user->unverified = $unverified;
 
+                    //Verified
                     $forwarded_to_dd = LandRevenueFarmerRegistation::where('district', $district)
                         ->whereIn('tehsil', $tehsils)
 
@@ -374,7 +376,7 @@ class DGOfficerPanelController extends Controller
                             ->count();
                     $user->forwarded_to_dd = $forwarded_to_dd;
 
-
+                    $user->unverified =  ($farmerCount - $forwarded_to_dd);
 
                 return $user;
             });
