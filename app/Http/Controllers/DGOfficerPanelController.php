@@ -236,12 +236,25 @@ class DGOfficerPanelController extends Controller
                         ->whereIn('verification_status', [
 
                             'verified_by_ao',
-                        'rejected_by_ao',
+
 
 
                         ])
                         ->count();
                 $user->forwarded_to_dd = $forwarded_to_dd;
+
+
+                $rejected_by_ao = LandRevenueFarmerRegistation::where('district', $user->district)
+                       ->whereIn('tehsil', $tehsils)
+                        // ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                        ->whereIn('verification_status', [
+                            'rejected_by_ao',
+                        ])
+                        ->count();
+                $user->rejected_by_ao = $rejected_by_ao;
+
+
+
 
                 return $user;
             });
