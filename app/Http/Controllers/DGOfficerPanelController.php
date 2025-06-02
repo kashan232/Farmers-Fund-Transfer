@@ -335,7 +335,7 @@ class DGOfficerPanelController extends Controller
                     ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
                             'rejected_by_lrd',
-                            'verified_by_dd',
+                            'verified_by_ao',
                             'verified_by_lrd'
                         ])
                         ->count();
@@ -349,7 +349,7 @@ class DGOfficerPanelController extends Controller
                     ->whereIn('tehsil', $tehsils)
                     ->whereIn('tappa', $tappas)
                     ->whereIn('verification_status', [
-                        'verified_by_dd'
+                        'verified_by_ao'
                     ])
                     ->count();
                     $user->unverified = $unverified;
