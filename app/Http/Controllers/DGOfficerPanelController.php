@@ -332,7 +332,7 @@ class DGOfficerPanelController extends Controller
 
 
                     $farmerCount = LandRevenueFarmerRegistation::where('district', $district)->whereIn('tehsil', $tehsils)
-                    ->whereIn('tappa', $tappas)
+                   
                         ->whereIn('verification_status', [
                             'rejected_by_lrd',
                             'verified_by_ao',
@@ -347,7 +347,7 @@ class DGOfficerPanelController extends Controller
 
                     $unverified = LandRevenueFarmerRegistation::where('district', $district)
                     ->whereIn('tehsil', $tehsils)
-                    ->whereIn('tappa', $tappas)
+                    
                     ->whereIn('verification_status', [
                         'verified_by_ao'
                     ])
@@ -356,7 +356,7 @@ class DGOfficerPanelController extends Controller
 
                     $forwarded_to_dd = LandRevenueFarmerRegistation::where('district', $district)
                         ->whereIn('tehsil', $tehsils)
-                            ->whereIn('tappa', $tappas)
+                         
                             ->whereIn('verification_status', [
                                 'verified_by_lrd',
                                 'rejected_by_lrd',
