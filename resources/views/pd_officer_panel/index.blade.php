@@ -34,12 +34,12 @@
                         <div class="row">
                             <!-- Total Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
+                                <div class="card" style="    background-color: #ffff55;">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Total Number of Farmers</p>
-                                                <h3 class="card-text text-amount">{{$fa_total_Registered_Farmers}}</h3>
+                                                <p class="card-title text-title" style="color: #000000 !important;">Total Number of Farmers</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$fa_total_Registered_Farmers}}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
@@ -54,12 +54,12 @@
 
                              <!-- Verified Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
+                                <div class="card" style="background: green;">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Verified BY LRD</p>
-                                                <h3 class="card-text text-amount">{{$Verifiedfarmeragiruser}}</h3>
+                                                <p class="card-title text-title" style="color: #000000 !important;">Verified BY LRD</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$Verifiedfarmeragiruser}}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
@@ -74,12 +74,12 @@
 
                              <!-- Verified Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
+                                <div class="card" style="    background: red;">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Rejected BY LRD</p>
-                                                <h3 class="card-text text-amount">{{$rejected_by_lrd}}</h3>
+                                                <p class="card-title text-title" style="color: #000000 !important;">Rejected BY LRD</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$rejected_by_lrd}}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
@@ -98,12 +98,12 @@
 
                              <!-- Verified Farmers Card -->
                              <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
+                                <div class="card" style="background: cadetblue;">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">In-Process Farmers</p>
-                                                <h3 class="card-text text-amount">{{$Processfarmeragiruser}}</h3>
+                                                <p class="card-title text-title" style="color: #000000 !important;">In-Process Farmers</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$Processfarmeragiruser}}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
@@ -118,12 +118,12 @@
 
                             <!-- Rejected Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
+                                <div class="card" style="background: tomato;">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Pending Farmers by FA</p>
-                                                <h3 class="card-text text-amount">{{$Unverifiedfarmeragiruser}}</h3>
+                                                <p class="card-title text-title" style="color: #000000 !important;">Pending Farmers by FA</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$Unverifiedfarmeragiruser}}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
@@ -136,15 +136,15 @@
                             </div>
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
+                                <div class="card" style="cornflowerblue;">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">
+                                                <p class="card-title text-title" style="color: #000000 !important;">
                                                     {{-- Through Mobile Application Farmers Registration --}}
                                                     Farmers Registered By FA
                                                 </p>
-                                                <h3 class="card-text text-amount">{{$userFarmers}}</h3>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$userFarmers}}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
@@ -158,12 +158,12 @@
 
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
+                                <div class="card" style="    background: yellowgreen;">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Online Farmers Registration</p>
-                                                <h3 class="card-text text-amount">{{$onlineFarmers}}</h3>
+                                                <p class="card-title text-title" style="color: #000000 !important;">Online Farmers Registration</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$onlineFarmers}}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
