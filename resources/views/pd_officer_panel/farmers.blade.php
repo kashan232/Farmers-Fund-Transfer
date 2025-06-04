@@ -47,6 +47,18 @@
 
                                                 <div class="col-md-3">
                                                     <form action="{{ route('dg.farmers') }}" id="status_form" method="get" class="d-flex">
+                                                        <select name="district" id="" class="form-control" onchange="document.getElementById('status_form').submit()">
+                                                            <option value="">Select District</option>
+                                                            @foreach ($districts as $district)
+                                                                <option value="{{$district->district}}">{{$district->district}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </form>
+                                                </div>
+
+
+                                                <div class="col-md-3">
+                                                    <form action="{{ route('dg.farmers') }}" id="status_form" method="get" class="d-flex">
                                                         <select name="status" id="" class="form-control" onchange="document.getElementById('status_form').submit()">
                                                             <option value="">Select Status</option>
                                                             <option value="verified_by_lrd">Verified</option>

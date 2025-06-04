@@ -51,12 +51,18 @@ class DGOfficerPanelController extends Controller
 
 
 
+        if (!empty($req->district) && $req->district !== null) {
+            $query->orWhere('district', '=', "$req->district");
+        }
 
 
+
+
+        $districts = District::all();
 
         $farmers = $query->paginate(10)->appends($req->all());
 
-        return view('pd_officer_panel.farmers',['farmers'=>$farmers ]);
+        return view('pd_officer_panel.farmers',['farmers'=>$farmers,'districts' => $districts ]);
     }
 
 
