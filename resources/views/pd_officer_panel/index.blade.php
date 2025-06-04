@@ -136,7 +136,7 @@
                             </div>
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card" style="cornflowerblue;">
+                                <div class="card" style="background: cornflowerblue;">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
