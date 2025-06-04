@@ -407,16 +407,58 @@ class DGOfficerPanelController extends Controller
                 $tappas = json_decode($user->tappas ?? '[]');
 
 
-                $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $district)->whereIn('tehsil', $tehsils)
-                ->whereIn('tappa', $tappas)
+                $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $district)
+                // ->whereIn('tehsil', $tehsils)
+                // ->whereIn('tappa', $tappas)
+                // ->whereIn('verification_status', [
+                //     'verified_by_fa',
+                //     'verified_by_ao',
+                //     'verified_by_dd',
+                //     'verified_by_lrd',
+                //     'rejected_by_ao',
+                //     'rejected_by_dd',
+                //     'rejected_by_lrd',
+                //     'rejected_by_fa',
+                //  ])
+                ->count();
+                // Add farmers_count to the user object
+                $user->farmers_count = $farmerCount;
+
+
+                $verified_by_lrd = LandRevenueFarmerRegistation::whereIn('district', $district)
+                // ->whereIn('tehsil', $tehsils)
+                // ->whereIn('tappa', $tappas)
                 ->whereIn('verification_status', [
-                                'verified_by_lrd',
+                    // 'verified_by_fa',
+                    // 'verified_by_ao',
+                    // 'verified_by_dd',
+                    'verified_by_lrd',
+                    // 'rejected_by_ao',
+                    // 'rejected_by_dd',
+                    // 'rejected_by_lrd',
+                    // 'rejected_by_fa',
+                 ])
+                ->count();
+                // Add farmers_count to the user object
+                $user->verified_by_lrd = $verified_by_lrd;
+
+
+                $rejected_by_lrd = LandRevenueFarmerRegistation::whereIn('district', $district)
+                // ->whereIn('tehsil', $tehsils)
+                // ->whereIn('tappa', $tappas)
+                ->whereIn('verification_status', [
+
+                    'rejected_by_lrd',
 
                  ])
                 ->count();
-
                 // Add farmers_count to the user object
-                $user->farmers_count = $farmerCount;
+                $user->rejected_by_lrd = $rejected_by_lrd;
+
+
+
+
+
 
                 return $user;
             });

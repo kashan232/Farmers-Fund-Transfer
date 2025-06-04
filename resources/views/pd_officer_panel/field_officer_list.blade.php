@@ -205,6 +205,11 @@
                                                                 @if($user->usertype == 'Agri_Officer'  ) <span style="font-size:12px"> In-Process  = <span style="font-size:15px"> {{ $user->forwarded_to_dd }} </span> <br> Rejected = <span style="font-size:15px"> {{ $user->rejected_by_ao }}  </span> <br> Pending = <span style="font-size:15px"> {{ $user->unverified }}  </span>  </span>   @endif <!-- This is from withCount('farmers') -->
                                                                 @if($user->usertype == 'Land_Revenue_Officer') <span style="font-size:12px"> Verified  = <span style="font-size:15px"> {{ $user->forwarded_to_dd }} </span> <br> Pending = <span style="font-size:15px"> {{ $user->unverified }}  </span>  </span>   @endif <!-- This is from withCount('farmers') -->
 
+
+
+                                                                @if($user->usertype == 'District_Officer') <span style="font-size:12px"> Verified By LRD = <span style="font-size:15px"> {{ $user->verified_by_lrd }} </span> <br> Rejected By LRD = <span style="font-size:15px"> {{ $user->rejected_by_lrd }}  </span>  </span>   @endif <!-- This is from withCount('farmers') -->
+`
+
                                                             </td>
 
                                                         </tr>
