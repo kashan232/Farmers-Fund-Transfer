@@ -137,14 +137,12 @@
                                                             @if($all_land_farmer->verification_status == 'verified_by_ao' && $all_land_farmer->declined_reason == '')
                                                             <span class="badge text-bg-primary">Forwarded by AO</span>
                                                             @elseif($all_land_farmer->verification_status == 'verified_by_dd' && $all_land_farmer->declined_reason == '')
-                                                            <span class="badge text-bg-primary">Forwarded by AO</span>
+                                                            <span class="badge text-bg-primary">Forwarded by DD</span>
                                                             @elseif($all_land_farmer->verification_status == 'verified_by_lrd')
                                                             <span class="badge text-bg-success">Verified</span>
                                                             @elseif($all_land_farmer->declined_reason != null || $all_land_farmer->declined_reason != '')
                                                             <span class="badge bg-danger">Rejected</span>
                                                             @else
-                                                            <span class="badge bg-danger">Unknown</span>
-
                                                             @endif
                                                         </td>
                                                         @if ($all_land_farmer->declined_reason != null || $all_land_farmer->declined_reason != '')
@@ -230,7 +228,7 @@ $(document).ready(function() {
     $(document).ready(function() {
 
        table =  $('#example').DataTable({
-            "pageLength": 100, // Default number of rows per page
+            "pageLength": 1000, // Default number of rows per page
             "dom": 'frt', // Only include the filter (search box), table, and pagination
             "processing": true, // Optional: for large datasets
             "deferRender": true, // Improves performance by rendering rows only when needed
