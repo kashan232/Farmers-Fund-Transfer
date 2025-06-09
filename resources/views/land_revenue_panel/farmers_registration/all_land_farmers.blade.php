@@ -170,7 +170,7 @@
                                             </table>
                                         </div>
                                         <div style="float:right; margin-top:10px">
-                                            {{ $all_land_farmers->links() }}
+                                            {{-- {{ $all_land_farmers->links() }} --}}
                                         </div>
 
                                     </div>
