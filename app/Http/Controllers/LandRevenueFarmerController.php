@@ -241,7 +241,7 @@ class LandRevenueFarmerController extends Controller
                     ->orWhere('verification_status', 'verified_by_lrd')
                     ->orWhere('verification_status', 'rejected_by_lrd');
             })
-            ->paginate(500);
+            ->all();
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
                 'all_land_farmers' => $all_land_farmers,
