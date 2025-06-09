@@ -843,7 +843,7 @@ class HomeController extends Controller
                 $verified_farmers = LandRevenueFarmerRegistation::where('district', Auth::user()->district)
                 ->whereIn('tehsil',json_decode($user->tehsil))
                 ->where(function ($query) {
-                    $query->where('verification_status', 'verified_by_lrd');
+                    $query->Where('verification_status', 'verified_by_lrd');
                 })->count();
 
 
