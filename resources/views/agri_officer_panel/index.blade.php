@@ -117,8 +117,8 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">DD Rejected Farmers</p>
-                                                <h3 class="card-text text-amount">{{ $rejected_by_dd }}</h3>
+                                                <p class="card-title text-title">LRD Rejected Farmers</p>
+                                                <h3 class="card-text text-amount">{{ $rejected_by_lrd }}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
