@@ -433,7 +433,7 @@ class HomeController extends Controller
                     // 'Verified_by_ao' => $Verified_by_ao,
                     'rejected_by_ao' => $rejected_by_ao,
                     'unverified' => $unverified,
-                    'rejected_by_dd' => $rejected_by_dd,
+                    'rejected_by_lrd' => $rejected_by_lrd,
                     'verified_by_lrd' => $verified_by_lrd,
                     'process' => $process
                 ]);
