@@ -160,7 +160,7 @@ Route::get('/all/fa-lists-/{district}/{usertype}', [DGOfficerPanelController::cl
 
 
 
-Route::get('/all/farmers-list/{search?}', [DGOfficerPanelController::class, 'index'])->name('dg.farmers');
+Route::get('/all/farmers-list/{search?}/{status?}', [DGOfficerPanelController::class, 'index'])->name('dg.farmers');
 
 
 

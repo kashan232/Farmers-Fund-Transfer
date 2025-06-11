@@ -32,22 +32,14 @@ class DGOfficerPanelController extends Controller
         }
 
         if (!empty($req->status) && $req->status !== null) {
-
-            if (!empty($req->status) && $req->status !== null) {
-
-                if ($req->status == 0) {
-                    $query->where(function ($q) {
-                        $q->whereNull('verification_status');
-                    });
-                } elseif ($req->status == 'verified_by_lrd') {
-                    $query->where(function ($q) {
-                        $q->where('verification_status', 'verified_by_lrd');
-                    });
-                }
-
+            if($req->status ){
+                $query->where('verification_status', '=',$req->status);
+            }else{
+                $query->where('verification_status', NULL);
             }
-
         }
+
+
 
 
 
