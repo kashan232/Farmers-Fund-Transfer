@@ -114,8 +114,8 @@
                                                     <option value="rejected_by_ao">REJECTED BY AO OFFICER</option>
                                                     <option value="verified_by_ao">VERIFIED BY AO OFFICER</option>
 
-                                                    <option value="rejected_by_dd">REJECTED BY DD OFFICER</option>
-                                                    <option value="verified_by_dd">VERIFIED BY DD OFFICER</option>
+                                                    {{-- <option value="rejected_by_dd">REJECTED BY DD OFFICER</option>
+                                                    <option value="verified_by_dd">VERIFIED BY DD OFFICER</option> --}}
 
                                                     <option value="rejected_by_lrd">REJECTED LRD OFFICER</option>
                                                     <option value="verified_by_lrd">VERIFIED LRD OFFICER</option>
