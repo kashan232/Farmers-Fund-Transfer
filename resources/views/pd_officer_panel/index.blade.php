@@ -80,6 +80,7 @@
 
                              <!-- Verified Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
+                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'rejected_by_lrd']) }}">
                                 <div class="card" style="    background: red;">
                                     <div class="card-body">
                                         <div class="row">
@@ -95,6 +96,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                  </a>
                             </div>
 
 
@@ -104,6 +106,7 @@
 
                              <!-- Verified Farmers Card -->
                              <div class="col-lg-4 col-md-6 col-sm-6">
+                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'in_process']) }}">
                                 <div class="card" style="background: cadetblue;">
                                     <div class="card-body">
                                         <div class="row">
@@ -119,11 +122,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                  </a>
                             </div>
 
 
                             <!-- Rejected Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
+                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => null]) }}">
                                 <div class="card" style="background: tomato;">
                                     <div class="card-body">
                                         <div class="row">
@@ -139,9 +144,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                  </a>
                             </div>
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
+                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'fa_farmers']) }}">
                                 <div class="card" style="background: cornflowerblue;">
                                     <div class="card-body">
                                         <div class="row">
@@ -160,10 +167,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                  </a>
                             </div>
 
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
+                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'online_farmers']) }}">
                                 <div class="card" style="    background: yellowgreen;">
                                     <div class="card-body">
                                         <div class="row">
@@ -179,6 +188,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                  </a>
                             </div>
 
                             <div class="col-lg-12 col-md-12 col-sm-12">
