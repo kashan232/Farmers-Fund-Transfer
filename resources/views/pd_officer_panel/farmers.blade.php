@@ -51,6 +51,7 @@
                                                             <input type="hidden" name="status" value="{{ request('status') }}">
                                                         <select name="district" id="" class="form-control" onchange="document.getElementById('filter_form').submit()">
                                                             <option value="">Select District</option>
+                                                            <option value="">All</option>
                                                             @foreach ($districts as $district)
                                                                 <option value="{{$district->district}}">{{$district->district}}</option>
                                                             @endforeach
@@ -65,7 +66,7 @@
                                                               <input type="hidden" name="district" value="{{ request('district') }}">
 
                                                         <select name="status" id="" class="form-control" onchange="document.getElementById('status_form').submit()">
-                                                              
+
                                                             <option value="">Select Status</option>
                                                             <option value="verified_by_lrd">Verified by LRD</option>
                                                             <option value="rejected_by_lrd">Rejected by LRD</option>
