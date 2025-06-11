@@ -37,12 +37,12 @@ class DGOfficerPanelController extends Controller
     if (!empty($status)) {
         if($status == 'in_process'){
              $query->whereIn('verification_status', [
-                    'rejected_by_ao',
-                    'rejected_by_dd',
-                    'rejected_by_fa',
-                    'verified_by_dd',
-                    'verified_by_fa',
-                    'verified_by_ao'
+                'rejected_by_ao',
+                'rejected_by_dd',
+                'rejected_by_fa',
+                'verified_by_dd',
+                'verified_by_fa',
+                'verified_by_ao'
              ]);
         }
         elseif($status == 'fa_farmers'){
