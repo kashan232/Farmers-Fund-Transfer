@@ -12,42 +12,35 @@ use App\Models\User;
 
 class DGOfficerPanelController extends Controller
 {
-    public function index(request $req){
+    public function index(Request $req, $search = null, $status = null)
+{
+    // Override request search/status if present in route
+    $search = ($search === '-') ? null : ($search ?? $req->search);
+    $status = $status ?? $req->status;
 
-        $query = LandRevenueFarmerRegistation::query();
+    $query = LandRevenueFarmerRegistation::query();
 
+    if (!empty($search)) {
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'LIKE', "%{$search}%")
+              ->orWhere('father_name', 'LIKE', "%{$search}%")
+              ->orWhere('surname', 'LIKE', "%{$search}%")
+              ->orWhere('mobile', 'LIKE', "%{$search}%")
+              ->orWhere('cnic', 'LIKE', "%{$search}%")
+              ->orWhere('district', 'LIKE', "%{$search}%")
+              ->orWhere('tehsil', 'LIKE', "%{$search}%")
+              ->orWhere('tappa', 'LIKE', "%{$search}%")
+              ->orWhere('uc', 'LIKE', "%{$search}%");
+        });
+    }
 
-        if (!empty($req->search) && $req->search !== null) {
-            $query->where(function ($q) use ($req) {
-                $q->where('name', 'LIKE', "%{$req->search}%")
-                  ->orWhere('father_name', 'LIKE', "%{$req->search}%")
-                  ->orWhere('surname', 'LIKE', "%{$req->search}%")
-                  ->orWhere('mobile', 'LIKE', "%{$req->search}%")
-                  ->orWhere('cnic', 'LIKE', "%{$req->search}%")
-                  ->orWhere('district', 'LIKE', "%{$req->search}%")
-                  ->orWhere('tehsil', 'LIKE', "%{$req->search}%")
-                  ->orWhere('tappa', 'LIKE', "%{$req->search}%")
-                  ->orWhere('uc', 'LIKE', "%{$req->search}%"); // Add more columns as needed
-            });
-        }
+    if (!empty($status)) {
+        $query->where('verification_status', $status);
+    }
 
-        if (!empty($req->status) && $req->status !== null) {
-            if($req->status ){
-                $query->where('verification_status', '=',$req->status);
-            }else{
-                $query->where('verification_status', NULL);
-            }
-        }
-
-
-
-
-
-        if (!empty($req->district) && $req->district !== null) {
-            $query->orWhere('district', '=', "$req->district");
-        }
-
-
+    if (!empty($req->district)) {
+        $query->where('district', $req->district);
+    }
 
 
         $districts = District::all();
