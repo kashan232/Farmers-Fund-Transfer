@@ -67,7 +67,7 @@
                                                             <option value="verified_by_ao">Verified by AO</option>
                                                             <option value="rejected_by_ao">Rejected by AO</option>
 
-                                                            <option value="">Un-Verified</option>
+                                                            <option value="">UnVerified</option>
                                                         </select>
                                                     </form>
                                                 </div>

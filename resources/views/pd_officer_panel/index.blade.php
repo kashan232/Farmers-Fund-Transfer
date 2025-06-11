@@ -33,6 +33,9 @@
                     <div class="all-card">
                         <div class="row">
                             <!-- Total Farmers Card -->
+
+
+                            <a href="{{route('dg.farmers')}}">sds</a>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card" style="    background-color: #ffff55;">
                                     <div class="card-body">
