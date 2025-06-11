@@ -61,10 +61,11 @@
 
                                                 <div class="col-md-3">
                                                     <form action="{{ route('dg.farmers') }}" id="status_form" method="get" class="d-flex">
-                                                        <select name="status" id="" class="form-control" onchange="document.getElementById('status_form').submit()">
-                                                              <input type="hidden" name="search" value="{{ request('search') }}">
+                                                        <input type="hidden" name="search" value="{{ request('search') }}">
                                                               <input type="hidden" name="district" value="{{ request('district') }}">
 
+                                                        <select name="status" id="" class="form-control" onchange="document.getElementById('status_form').submit()">
+                                                              
                                                             <option value="">Select Status</option>
                                                             <option value="verified_by_lrd">Verified by LRD</option>
                                                             <option value="rejected_by_lrd">Rejected by LRD</option>
