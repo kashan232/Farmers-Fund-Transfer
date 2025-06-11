@@ -46,8 +46,8 @@
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <form action="{{ route('dg.farmers') }}" id="status_form" method="get" class="d-flex">
-                                                        <select name="district" id="" class="form-control" onchange="document.getElementById('status_form').submit()">
+                                                    <form action="{{ route('dg.farmers') }}" id="filter_form" method="get" class="d-flex">
+                                                        <select name="district" id="" class="form-control" onchange="document.getElementById('filter_form').submit()">
                                                             <option value="">Select District</option>
                                                             @foreach ($districts as $district)
                                                                 <option value="{{$district->district}}">{{$district->district}}</option>
