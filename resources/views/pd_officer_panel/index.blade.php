@@ -35,8 +35,9 @@
                             <!-- Total Farmers Card -->
 
 
-                            <a href="{{route('dg.farmers')}}">
+                            
                             <div class="col-lg-4 col-md-6 col-sm-6">
+                                <a href="{{route('dg.farmers')}}">
                                 <div class="card" style="    background-color: #ffff55;">
                                     <div class="card-body">
                                         <div class="row">
@@ -52,8 +53,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                </a>
                             </div>
-                            </a>
 
                              <!-- Verified Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
