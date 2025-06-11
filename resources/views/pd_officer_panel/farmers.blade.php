@@ -110,9 +110,13 @@
 
                                                         <td>
                                                             @if ($farmer->verification_status == 'verified_by_lrd')
-                                                            <span class="badge text-bg-success text-dark font-weight-bold">Verified</span>
-                                                            @elseif($farmer->verification_status == 'rejected_by_ao' || $farmer->verification_status == 'rejected_by_dd' || $farmer->verification_status == 'rejected_by_lrd')
-                                                            <span class="badge text-bg-danger text-dark font-weight-bold">Rejected</span>
+                                                            <span class="badge text-bg-success text-dark font-weight-bold">Verified by LRD</span>
+                                                            @elseif ($farmer->verification_status == 'verified_by_ao')
+                                                            <span class="badge text-bg-success text-dark font-weight-bold">Verified by AO</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_lrd')
+                                                            <span class="badge text-bg-danger text-dark font-weight-bold">Rejected by LRD</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_ao')
+                                                            <span class="badge text-bg-danger text-dark font-weight-bold">Rejected by AO</span>
                                                             @else
                                                             <span class="badge text-bg-primary text-white font-weight-bold">Unverified</span>
                                                             @endif
