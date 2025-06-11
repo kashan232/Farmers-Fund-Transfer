@@ -35,7 +35,7 @@
                             <!-- Total Farmers Card -->
 
 
-                            
+
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <a href="{{route('dg.farmers')}}">
                                 <div class="card" style="    background-color: #ffff55;">
@@ -58,6 +58,7 @@
 
                              <!-- Verified Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
+                                <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'verified_by_lrd']) }}">
                                 <div class="card" style="background: green;">
                                     <div class="card-body">
                                         <div class="row">
@@ -73,6 +74,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                </a>
                             </div>
 
 
