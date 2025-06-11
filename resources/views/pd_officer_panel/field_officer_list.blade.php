@@ -196,7 +196,7 @@
                                                                     </span>
                                                                 @endif
                                                             </td>
-{{dd($user)}}
+
 
 
                                                             <td style="text-align: left; font-size:12px; font-weight: 700;;">
