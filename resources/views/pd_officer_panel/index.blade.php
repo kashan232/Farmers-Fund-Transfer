@@ -328,7 +328,7 @@
 <script>
     $(document).ready(function() {
         $('.example').DataTable( {
-            dom: 'frtip',
+            dom: 'Bfrtip',
             buttons: [
                 'copyHtml5',
                 'excelHtml5',
