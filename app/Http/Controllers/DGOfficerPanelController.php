@@ -46,11 +46,11 @@ class DGOfficerPanelController extends Controller
              ]);
         }
         elseif($status == 'fa_farmers'){
-             $query->where('user_type' , 'Online');
+             $query->where('user_type' ,'!=', 'Online');
         }
         elseif
         ($status == 'online_farmers'){
-             $query->where('user_type' ,'!=', 'Online');
+             $query->where('user_type' , 'Online');
         }
         else{
             $query->where('verification_status', $status);
