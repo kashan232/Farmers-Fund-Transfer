@@ -1383,28 +1383,22 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const gallery = document.querySelector('.image-gallery');
-        const viewer = new Viewer(gallery, {
+ document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.image-gallery').forEach(function(gallery) {
+        new Viewer(gallery, {
             toolbar: {
                 zoomIn: 1,
                 zoomOut: 1,
                 oneToOne: 1,
                 reset: 1,
-                prev: 0,
-                play: 0,
-                next: 0,
                 rotateLeft: 1,
                 rotateRight: 1,
-                flipHorizontal: 0,
-                flipVertical: 0,
             },
             inline: false,
-            viewed() {
-                viewer.zoomTo(1);
-            },
         });
     });
+});
+
 </script>
 <script>
     $(document).ready(function() {
