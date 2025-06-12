@@ -70,7 +70,15 @@ class DGOfficerPanelController extends Controller
     }
 
     if (!empty($req->farmer_type)) {
-        $query->where('district', $req->farmer_type);
+
+        if($req->farmer_type == 'online'){
+            $query->where('user_type', 'Online');
+        }
+        else{
+           
+            $query->where('user_type','!=', 'Online');
+        
+        }
     }
 
     $districts = District::all();
