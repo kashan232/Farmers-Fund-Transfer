@@ -146,9 +146,15 @@ Route::post('/check/cnic/duplicate', function(Request $request) {
         'tappa' => 'required|string',
     ]);
 
-    $exists = LandRevenueFarmerRegistation::where('cnic', $request->cnic)
-                ->where('tappa', $request->tappa)
-                ->exists();
+    $query = LandRevenueFarmerRegistation::where('cnic', $request->cnic)
+            ->where('tappas', $request->tappa);
+
+    // Ignore current record if editing
+    if ($request->filled('edit_id')) {
+        $query->where('id', '!=', $request->edit_id);
+    }
+
+    $exists = $query->exists();
 
 
     return response()->json(['exists' => $exists]);
