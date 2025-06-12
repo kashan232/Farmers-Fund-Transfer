@@ -1117,8 +1117,8 @@
                                         @if ($imageSrc)
 
                                         <div id="image-gallery">
-    <img src="{{ $imageSrc }}" alt="Farmer Image" style="max-width: 200px;" />
-</div>
+                                            <img src="{{ $imageSrc }}" alt="Farmer Image" style="max-width: 200px;" />
+                                        </div>
 
 
 
@@ -1199,16 +1199,8 @@
                                     @endphp
 
                                     @if ($imageSrc)
-                                        <div class="position-relative d-inline-block">
-                                            <img src="{{ $imageSrc }}" class="rotatable-img" style="width:200px;" alt="Farmer Photo">
-
-
-                                            <!-- Fullscreen Button (opens modal) -->
-                                            <button type="button" class="btn btn-sm btn-primary open-fullscreen-btn"
-                                                    data-img="{{ $imageSrc }}"
-                                                    style="position: absolute; top: 5px; left: 5px;">
-                                                <i class="fas fa-expand"></i>
-                                            </button>
+                                         <div id="image-gallery">
+                                            <img src="{{ $imageSrc }}" alt="Farmer Image" style="max-width: 200px;" />
                                         </div>
                                     @else
                                         <p>Image not found</p>
@@ -1304,16 +1296,8 @@
                             $imageData = base64_encode(file_get_contents($filePath));
                             $imageSrc = 'data:image/' . $fileExtension . ';base64,' . $imageData;
                         @endphp
-                        <div class="position-relative d-inline-block">
-                                            <img src="{{ $imageSrc }}" class="rotatable-img" style="width:200px;" alt="Farmer Photo">
-
-
-                                            <!-- Fullscreen Button (opens modal) -->
-                                            <button type="button" class="btn btn-sm btn-primary open-fullscreen-btn"
-                                                    data-img="{{ $imageSrc }}"
-                                                    style="position: absolute; top: 5px; left: 5px;">
-                                                <i class="fas fa-expand"></i>
-                                            </button>
+                       <div id="image-gallery">
+                                            <img src="{{ $imageSrc }}" alt="Farmer Image" style="max-width: 200px;" />
                                         </div>
 
 
@@ -1346,7 +1330,7 @@
     </div>
 <!-- Fullscreen Modal -->
 <!-- Fullscreen Image Modal -->
-<div class="modal fade" id="fullscreenImageModal" tabindex="-1" aria-hidden="true">
+{{-- <div class="modal fade" id="fullscreenImageModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -1362,7 +1346,7 @@
 
         </div>
     </div>
-</div>
+</div> --}}
 
 
 
@@ -1375,7 +1359,7 @@
 
 <script src="{{asset('select2.min.js')}}"></script>
 
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         const modalImage = document.getElementById('fullscreenImage');
         const rotateBtn = document.getElementById('rotateImageBtn');
@@ -1400,7 +1384,7 @@
         });
     });
 </script>
-<!-- CSS -->
+<!-- CSS --> --}}
 
 <!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.js"></script>
