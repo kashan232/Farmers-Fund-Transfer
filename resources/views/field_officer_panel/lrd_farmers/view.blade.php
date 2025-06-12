@@ -1145,8 +1145,17 @@
                                         @endphp
 
                                         @if ($imageSrc)
-                                            <img src="{{ $imageSrc }}" alt="Front ID Card"
-                                                style="width:420px;height:220px">
+                                            <div class="position-relative d-inline-block">
+                                            <img src="{{ $imageSrc }}" class="rotatable-img" style="width:200px;" alt="Farmer Photo">
+
+
+                                            <!-- Fullscreen Button (opens modal) -->
+                                            <button type="button" class="btn btn-sm btn-primary open-fullscreen-btn"
+                                                    data-img="{{ $imageSrc }}"
+                                                    style="position: absolute; top: 5px; left: 5px;">
+                                                <i class="fas fa-expand"></i>
+                                            </button>
+                                        </div>
                                         @else
                                             <p>Image not found</p>
                                         @endif
@@ -1180,8 +1189,17 @@
                                     @endphp
 
                                     @if ($imageSrc)
-                                        <img src="{{ $imageSrc }}" style="width:200px" alt="Front ID Card"
-                                            style="">
+                                        <div class="position-relative d-inline-block">
+                                            <img src="{{ $imageSrc }}" class="rotatable-img" style="width:200px;" alt="Farmer Photo">
+
+
+                                            <!-- Fullscreen Button (opens modal) -->
+                                            <button type="button" class="btn btn-sm btn-primary open-fullscreen-btn"
+                                                    data-img="{{ $imageSrc }}"
+                                                    style="position: absolute; top: 5px; left: 5px;">
+                                                <i class="fas fa-expand"></i>
+                                            </button>
+                                        </div>
                                     @else
                                         <p>Image not found</p>
                                     @endif
