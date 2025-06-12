@@ -2096,6 +2096,45 @@ dateFields.forEach((field) => {
     }
 
 
+     // 🔽 CNIC CHECK AJAX START
+                    $.ajax({
+                        url: '{{route("check.cnic.duplication")}}', // Your server route
+                        method: 'POST',
+                        data: {
+                            cnic: step1_formdata.cnic,
+                            tappa: step1_formdata.tappas,
+                             _token: $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (response) {
+                            if (response.exists) {
+                                Swal.fire({
+                                    title: "Duplicate CNIC!",
+                                    icon: "error",
+                                    html: `<b><span class="text-danger">CNIC already exists in the system.</span></b>`
+                                });
+                                return;
+
+                            }
+
+                             // ✅ No errors, proceed to next step
+                                document.querySelectorAll('.step').forEach(function(stepElement) {
+                                    stepElement.style.display = 'none';
+                                });
+                                document.querySelector('.step-' + step).style.display = 'block';
+                                updateProgressIndicator(step);
+                        },
+                        error: function () {
+                            Swal.fire({
+                                title: "Error!",
+                                icon: "error",
+                                html: `<b><span class="text-danger">Failed to validate CNIC. Please try again later.</span></b>`
+                            });
+                        }
+                    });
+                    return;
+
+
+
 }
 
 let step4_formdata = {
