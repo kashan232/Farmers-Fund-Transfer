@@ -149,7 +149,9 @@
                                                     @foreach($farmers as $farmer)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $farmer->user_type }}</td>
+                                                        <td>{!! ($farmer->user_type == 'Online') ? 'Online':'Field Assistant <br><b>'.$farmer->user->name.'<b>'   !!}</td>
+
+                                                   
                                                         <td>{{ $farmer->name }}</td>
                                                         <td>{{ $farmer->cnic }}</td>
                                                         <td>{{ $farmer->mobile }}</td>
