@@ -68,7 +68,7 @@
                                                     <form action="{{ route('dg.farmers') }}" id="filter_form2" method="get" class="d-flex">
                                                         <input type="hidden" name="search" value="{{ request('search') }}">
                                                         <input type="hidden" name="status" value="{{ request('status') }}">
-                                                        <input type="hidden" name="status" value="{{ request('district') }}">
+                                                        <input type="hidden" name="district" value="{{ request('district') }}">
                                                         <select name="taluka" id="taluka" class="form-control" onchange="document.getElementById('filter_form2').submit()">
                                                             <option value="">Select Taluka</option>
                                                             <option value="">All</option>

@@ -59,11 +59,15 @@ class DGOfficerPanelController extends Controller
 
     if (!empty($req->district)) {
         $query->where('district', $req->district);
+        $talukas = Tehsil::where('district', $req->district)->get();
+    }
+    else{
+        $talukas = Tehsil::all();
     }
 
 
         $districts = District::all();
-        $talukas = Tehsil::all();
+        
 
 
         $farmers = $query->paginate(10)->appends($req->all());
