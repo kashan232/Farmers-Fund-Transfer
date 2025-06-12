@@ -45,7 +45,7 @@
                                                     </form>
                                                 </div>
 
-                                                
+
 
                                             </div>
 
@@ -73,7 +73,7 @@
                                                             <option value="">Select Taluka</option>
                                                             <option value="">All</option>
                                                             @foreach ($talukas as $taluka)
-                                                                <option value="{{$taluka->taluka}}">{{$taluka->taluka}}</option>
+                                                                <option value="{{$taluka->tehsil}}">{{$taluka->tehsil}}</option>
                                                             @endforeach
                                                         </select>
                                                     </form>
