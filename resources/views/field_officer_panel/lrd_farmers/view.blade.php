@@ -1114,14 +1114,10 @@
                                         @if ($imageSrc)
                                         <div class="position-relative d-inline-block">
                                             <img src="{{ $imageSrc }}" class="rotatable-img" style="width:200px;" alt="Farmer Photo">
-                                            
-                                            <!-- Rotate Button -->
-                                            <button type="button" class="btn btn-sm btn-secondary rotate-btn" style="position: absolute; top: 5px; right: 5px;">
-                                                <i class="fas fa-sync-alt"></i>
-                                            </button>
+
 
                                             <!-- Fullscreen Button (opens modal) -->
-                                            <button type="button" class="btn btn-sm btn-primary open-fullscreen-btn" 
+                                            <button type="button" class="btn btn-sm btn-primary open-fullscreen-btn"
                                                     data-img="{{ $imageSrc }}"
                                                     style="position: absolute; top: 5px; left: 5px;">
                                                 <i class="fas fa-expand"></i>
@@ -1309,15 +1305,26 @@
         </div>
     </div>
 <!-- Fullscreen Modal -->
+<!-- Fullscreen Image Modal -->
 <div class="modal fade" id="fullscreenImageModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content">
-      <div class="modal-body text-center">
-        <img id="fullscreenImage" src="" style="width: 100%; height: auto;" />
-      </div>
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Farmer Photo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="fullscreenImage" src="" style="max-width: 100%; height: auto;" data-rotation="0">
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button id="rotateImageBtn" class="btn btn-secondary">
+                    <i class="fas fa-sync-alt"></i> Rotate
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
 
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -1329,29 +1336,28 @@
 
 <script src="{{asset('select2.min.js')}}"></script>
 
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Rotate image
-        document.querySelectorAll('.rotate-btn').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                const img = btn.closest('div').querySelector('.rotatable-img');
-                let currentRotation = parseInt(img.getAttribute('data-rotation') || 0);
-                currentRotation = (currentRotation + 90) % 360;
-                img.style.transform = 'rotate(' + currentRotation + 'deg)';
-                img.setAttribute('data-rotation', currentRotation);
-            });
-        });
+        const modalImage = document.getElementById('fullscreenImage');
+        const rotateBtn = document.getElementById('rotateImageBtn');
 
-        // Fullscreen modal show
         document.querySelectorAll('.open-fullscreen-btn').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 const src = btn.getAttribute('data-img');
-                const modalImg = document.getElementById('fullscreenImage');
-                modalImg.src = src;
+                modalImage.src = src;
+                modalImage.style.transform = 'rotate(0deg)';
+                modalImage.setAttribute('data-rotation', '0');
+
                 const modal = new bootstrap.Modal(document.getElementById('fullscreenImageModal'));
                 modal.show();
             });
+        });
+
+        rotateBtn.addEventListener('click', function () {
+            let rotation = parseInt(modalImage.getAttribute('data-rotation') || 0);
+            rotation = (rotation + 90) % 360;
+            modalImage.style.transform = 'rotate(' + rotation + 'deg)';
+            modalImage.setAttribute('data-rotation', rotation);
         });
     });
 </script>
