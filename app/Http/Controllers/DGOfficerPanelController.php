@@ -72,12 +72,12 @@ class DGOfficerPanelController extends Controller
     if (!empty($req->farmer_type)) {
 
         if($req->farmer_type == 'online'){
-            $query->where('user_type', 'Online');
+            $query->where('user_type','=', 'Online');
         }
         else{
-           
+
             $query->where('user_type','!=', 'Online');
-        
+
         }
     }
 
