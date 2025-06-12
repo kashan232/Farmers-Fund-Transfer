@@ -25,6 +25,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="{{ asset('select2.min.css') }}">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.css" />
+
 </head>
 <style>
     .question {
@@ -1112,7 +1115,14 @@
                                         @endphp
 
                                         @if ($imageSrc)
-                                        <div class="position-relative d-inline-block">
+
+                                        <div id="image-gallery">
+    <img src="{{ $imageSrc }}" alt="Farmer Image" style="max-width: 200px;" />
+</div>
+
+
+
+                                        {{-- <div class="position-relative d-inline-block">
                                             <img src="{{ $imageSrc }}" class="rotatable-img" style="width:200px;" alt="Farmer Photo">
 
 
@@ -1122,7 +1132,7 @@
                                                     style="position: absolute; top: 5px; left: 5px;">
                                                 <i class="fas fa-expand"></i>
                                             </button>
-                                        </div>
+                                        </div> --}}
 
                                         @else
                                             <p>Image not found</p>
@@ -1390,9 +1400,36 @@
         });
     });
 </script>
+<!-- CSS -->
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.js"></script>
 
 
-
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const gallery = document.getElementById('image-gallery');
+        const viewer = new Viewer(gallery, {
+            toolbar: {
+                zoomIn: 1,
+                zoomOut: 1,
+                oneToOne: 1,
+                reset: 1,
+                prev: 0,
+                play: 0,
+                next: 0,
+                rotateLeft: 1,
+                rotateRight: 1,
+                flipHorizontal: 0,
+                flipVertical: 0,
+            },
+            inline: false,
+            viewed() {
+                viewer.zoomTo(1);
+            },
+        });
+    });
+</script>
 <script>
     $(document).ready(function() {
         // $('.js-example-basic-multiple').select2();
