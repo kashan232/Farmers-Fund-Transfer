@@ -1294,7 +1294,19 @@
                             $imageData = base64_encode(file_get_contents($filePath));
                             $imageSrc = 'data:image/' . $fileExtension . ';base64,' . $imageData;
                         @endphp
-                        <img src="{{ $imageSrc }}" alt="Form VII Image" style="width: 100%; border-radius: 10px;">
+                        <div class="position-relative d-inline-block">
+                                            <img src="{{ $imageSrc }}" class="rotatable-img" style="width:200px;" alt="Farmer Photo">
+
+
+                                            <!-- Fullscreen Button (opens modal) -->
+                                            <button type="button" class="btn btn-sm btn-primary open-fullscreen-btn"
+                                                    data-img="{{ $imageSrc }}"
+                                                    style="position: absolute; top: 5px; left: 5px;">
+                                                <i class="fas fa-expand"></i>
+                                            </button>
+                                        </div>
+
+
                     @elseif (strtolower($fileExtension) === 'pdf')
                         <embed src="{{ asset('fa_farmers/form_seven_pic/' . $file) }}" type="application/pdf" width="100%" height="400px" />
                     @else
