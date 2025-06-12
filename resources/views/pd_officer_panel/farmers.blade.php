@@ -58,7 +58,7 @@
                                                             <option value="">Select District</option>
                                                             <option value="">All</option>
                                                             @foreach ($districts as $district)
-                                                                <option value="{{$district->district}}">{{$district->district}}</option>
+                                                                <option value="{{$district->district}}" {{ request('district') == $district->district ? 'selected' : '' }} >{{$district->district}}</option>
                                                             @endforeach
                                                         </select>
                                                     </form>
@@ -73,7 +73,7 @@
                                                             <option value="">Select Taluka</option>
                                                             <option value="">All</option>
                                                             @foreach ($talukas as $taluka)
-                                                                <option value="{{$taluka->tehsil}}">{{$taluka->tehsil}}</option>
+                                                                <option value="{{$taluka->tehsil}}" {{ request('taluka') == $taluka->tehsil ? 'selected' : '' }}>{{$taluka->tehsil}}</option>
                                                             @endforeach
                                                         </select>
                                                     </form>
