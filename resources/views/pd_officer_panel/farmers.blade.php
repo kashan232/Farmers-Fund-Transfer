@@ -55,7 +55,7 @@
                                                           <input type="hidden" name="search" value="{{ request('search') }}">
                                                             <input type="hidden" name="status" value="{{ request('status') }}">
                                                              <input type="hidden" name="taluka" value="{{ request('taluka') }}">
-                                                                <input type="hidden" name="taluka" value="{{ request('farmer_type') }}">
+                                                                <input type="hidden" name="farmer_type" value="{{ request('farmer_type') }}">
                                                         <select name="district" id="" class="form-control" onchange="document.getElementById('filter_form').submit()">
                                                             <option value="">Select District</option>
                                                             <option value="">All</option>
@@ -72,7 +72,7 @@
                                                         <input type="hidden" name="status" value="{{ request('status') }}">
                                                         <input type="hidden" name="district" value="{{ request('district') }}">
 
-                                                                <input type="hidden" name="taluka" value="{{ request('farmer_type') }}">
+                                                                <input type="hidden" name="farmer_type" value="{{ request('farmer_type') }}">
 
                                                         <select name="taluka" id="taluka" class="form-control" onchange="document.getElementById('filter_form2').submit()">
                                                             <option value="">Select Taluka</option>
@@ -107,7 +107,7 @@
                                                         <input type="hidden" name="search" value="{{ request('search') }}">
                                                               <input type="hidden" name="district" value="{{ request('district') }}">
                                                                 <input type="hidden" name="taluka" value="{{ request('taluka') }}">
-                                                                <input type="hidden" name="taluka" value="{{ request('farmer_type') }}">
+                                                                <input type="hidden" name="farmer_type" value="{{ request('farmer_type') }}">
 
 
                                                         <select name="status" id="" class="form-control" onchange="document.getElementById('status_form').submit()">
