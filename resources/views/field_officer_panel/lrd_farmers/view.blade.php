@@ -1113,12 +1113,21 @@
 
                                         @if ($imageSrc)
                                         <div class="position-relative d-inline-block">
-                                            <img src="{{ $imageSrc }}" alt="Front ID Card" class="rotatable-img"
-                                                style="width:420px;height:220px">
-                                                <button type="button" class="btn btn-sm btn-secondary rotate-btn" style="position: absolute; top: 5px; right: 5px;">
-                                                    <i class="fas fa-sync-alt"></i>
-                                                </button>
+                                            <img src="{{ $imageSrc }}" class="rotatable-img" style="width:200px;" alt="Farmer Photo">
+                                            
+                                            <!-- Rotate Button -->
+                                            <button type="button" class="btn btn-sm btn-secondary rotate-btn" style="position: absolute; top: 5px; right: 5px;">
+                                                <i class="fas fa-sync-alt"></i>
+                                            </button>
+
+                                            <!-- Fullscreen Button (opens modal) -->
+                                            <button type="button" class="btn btn-sm btn-primary open-fullscreen-btn" 
+                                                    data-img="{{ $imageSrc }}"
+                                                    style="position: absolute; top: 5px; left: 5px;">
+                                                <i class="fas fa-expand"></i>
+                                            </button>
                                         </div>
+
                                         @else
                                             <p>Image not found</p>
                                         @endif
@@ -1299,6 +1308,18 @@
             </div>
         </div>
     </div>
+<!-- Fullscreen Modal -->
+<div class="modal fade" id="fullscreenImageModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <img id="fullscreenImage" src="" style="width: 100%; height: auto;" />
+      </div>
+    </div>
+  </div>
+</div>
+
+
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="{{ asset('') }}assets/js/plugins/popper.min.js"></script>
 
@@ -1311,6 +1332,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // Rotate image
         document.querySelectorAll('.rotate-btn').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 const img = btn.closest('div').querySelector('.rotatable-img');
@@ -1318,6 +1340,17 @@
                 currentRotation = (currentRotation + 90) % 360;
                 img.style.transform = 'rotate(' + currentRotation + 'deg)';
                 img.setAttribute('data-rotation', currentRotation);
+            });
+        });
+
+        // Fullscreen modal show
+        document.querySelectorAll('.open-fullscreen-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const src = btn.getAttribute('data-img');
+                const modalImg = document.getElementById('fullscreenImage');
+                modalImg.src = src;
+                const modal = new bootstrap.Modal(document.getElementById('fullscreenImageModal'));
+                modal.show();
             });
         });
     });
