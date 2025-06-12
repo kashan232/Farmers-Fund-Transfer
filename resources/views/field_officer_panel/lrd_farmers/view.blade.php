@@ -1112,8 +1112,13 @@
                                         @endphp
 
                                         @if ($imageSrc)
-                                            <img src="{{ $imageSrc }}" alt="Front ID Card"
+                                        <div class="position-relative d-inline-block">
+                                            <img src="{{ $imageSrc }}" alt="Front ID Card" class="rotatable-img"
                                                 style="width:420px;height:220px">
+                                                <button type="button" class="btn btn-sm btn-secondary rotate-btn" style="position: absolute; top: 5px; right: 5px;">
+                                                    <i class="fas fa-sync-alt"></i>
+                                                </button>
+                                        </div>
                                         @else
                                             <p>Image not found</p>
                                         @endif
@@ -1302,6 +1307,24 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
 <script src="{{asset('select2.min.js')}}"></script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.rotate-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const img = btn.closest('div').querySelector('.rotatable-img');
+                let currentRotation = parseInt(img.getAttribute('data-rotation') || 0);
+                currentRotation = (currentRotation + 90) % 360;
+                img.style.transform = 'rotate(' + currentRotation + 'deg)';
+                img.setAttribute('data-rotation', currentRotation);
+            });
+        });
+    });
+</script>
+
+
+
 <script>
     $(document).ready(function() {
         // $('.js-example-basic-multiple').select2();
