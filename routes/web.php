@@ -147,7 +147,7 @@ Route::post('/check/cnic/duplicate', function(Request $request) {
     ]);
 
     $query = LandRevenueFarmerRegistation::where('cnic', $request->cnic)
-            ->where('tappas', $request->tappa);
+            ->where('tappa', $request->tappa);
 
     // Ignore current record if editing
     if ($request->filled('edit_id')) {
