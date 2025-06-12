@@ -2103,7 +2103,7 @@ dateFields.forEach((field) => {
                         data: {
                             cnic: step1_formdata.cnic,
                             tappa: step1_formdata.tappas,
-                            edit_id: $('#edit_id').val(),
+                            edit_id: $('#edit_id').val() ?? '23',
                              _token: $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function (response) {
