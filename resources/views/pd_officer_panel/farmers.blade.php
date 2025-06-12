@@ -146,7 +146,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($farmers as $farmer)
+                                                    @forelse($farmers as $farmer)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{!! ($farmer->user_type == 'Online') ? 'Online':'Field Assistant <br><b>'.$farmer->user->name.'<b>'   !!}</td>
@@ -192,7 +192,11 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    @endforeach
+                                                    @empty
+                                                    <tr>
+                                                        <td colspan="11" class="text-center text-danger"><strong>No farmers found.</strong></td>
+                                                    </tr>
+                                                    @endforelse
                                                 </tbody>
                                             </table>
 
