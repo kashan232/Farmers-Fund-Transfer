@@ -294,7 +294,7 @@
                             <form id="registrationForm" action="{{ route('farmer-store-by-field-officer') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
-                                <input type="hidden" value="{{ $data->id ?? '' }}" name="edit_id">
+                                <input type="hidden" value="{{ $data->id ?? '' }}" name="edit_id" id="edit_id">
                                 <input type="hidden" value="{{ $data->user_type ?? 'Field_Officer' }}" name="user_type">
 
                                 <div class="step step-1">
@@ -2103,7 +2103,7 @@ dateFields.forEach((field) => {
                         data: {
                             cnic: step1_formdata.cnic,
                             tappa: step1_formdata.tappas,
-                            edit_id: $('#edit_id').val() ?? '23',
+                            edit_id: $('#edit_id').val() ?? '',
                              _token: $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function (response) {
