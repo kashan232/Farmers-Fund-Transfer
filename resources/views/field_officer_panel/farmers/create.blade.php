@@ -1999,7 +1999,7 @@ $('select[name="tehsil"]').on('change', function() {
                     mobile: $('#mobile').val(),
                     district: $('#district').val(),
                     tehsils: $('#tehsils').val(),
-                    tappas: $('#tappas').val(),
+                    tappas: $('#tappa').val(),
                     cnic_of_next_kin: $('#cnic_of_next_kin').val(),
                     // total_fallow_land: $('#total_fallow_land').val(),
                 };
