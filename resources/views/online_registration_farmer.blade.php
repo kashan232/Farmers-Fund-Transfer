@@ -2175,7 +2175,38 @@ dateFields.forEach((field) => {
                             icon: "error",
                             html: errors
                         });
+                        return;
                     }
+
+                     // 🔽 CNIC CHECK AJAX START
+                    $.ajax({
+                        url: '{{route("check.cnic.duplication")}}', // Your server route
+                        method: 'POST',
+                        data: {
+                            cnic: step1_formdata.cnic,
+                            tappa: step1_formdata.tappas,
+                             _token: $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (response) {
+                            if (response.exists) {
+                                Swal.fire({
+                                    title: "Duplicate CNIC!",
+                                    icon: "error",
+                                    html: `<b><span class="text-danger">CNIC already exists in the system.</span></b>`
+                                });
+                            } else {
+                                // ✅ All checks passed, go to the next step
+                                // goToStep(step);
+                            }
+                        },
+                        error: function () {
+                            Swal.fire({
+                                title: "Error!",
+                                icon: "error",
+                                html: `<b><span class="text-danger">Failed to validate CNIC. Please try again later.</span></b>`
+                            });
+                        }
+                    });
 
 
                 }

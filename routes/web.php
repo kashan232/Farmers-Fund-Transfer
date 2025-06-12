@@ -138,6 +138,26 @@ Route::get('/pdf/report/{id}', function($id){
 
 
 
+
+Route::post('/check/cnic/duplicate', function(Request $request) {
+
+     $request->validate([
+        'cnic' => 'required|string',
+        'tappa' => 'required|string',
+    ]);
+
+    $exists = LandRevenueFarmerRegistation::where('cnic', $request->cnic)
+                ->where('tappas', $request->tappa)
+                ->exists();
+
+
+    return response()->json(['exists' => $exists]);
+
+})->name('check.cnic.duplication');
+
+
+
+
 Route::get('/get-branches/{city_id}', function ($city_id) {
     $branches = BankBranch::where('city_id', $city_id)->get();
     return response()->json($branches);
