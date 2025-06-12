@@ -152,11 +152,11 @@ Route::post('/check/cnic/duplicate', function(Request $request) {
     // Ignore current record if editing
     if ($request->filled('edit_id')) {
         $query->where('id', '!=', $request->edit_id);
-        dd('sdf');
+
     }
 
     $exists = $query->exists();
-
+    dd($exists);
 
     return response()->json(['exists' => $exists]);
 
