@@ -201,7 +201,7 @@
                                             </table>
 
                                         </div>
-                                     <nav class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+                                     <nav class="d-flex justify-content-between align-items-center mb-3 flex-wrap mt-2">
                                         {{-- Pagination --}}
                                         <div>
                                             {{ $farmers->links() }}
