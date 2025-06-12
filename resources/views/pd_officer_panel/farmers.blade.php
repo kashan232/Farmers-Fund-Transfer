@@ -45,6 +45,11 @@
                                                     </form>
                                                 </div>
 
+                                                
+
+                                            </div>
+
+                                            <div  class="row mb-2 " style="justify-content: space-between;">
                                                 <div class="col-md-3">
                                                     <form action="{{ route('dg.farmers') }}" id="filter_form" method="get" class="d-flex">
                                                           <input type="hidden" name="search" value="{{ request('search') }}">
@@ -64,8 +69,12 @@
                                                         <input type="hidden" name="search" value="{{ request('search') }}">
                                                         <input type="hidden" name="status" value="{{ request('status') }}">
                                                         <input type="hidden" name="status" value="{{ request('district') }}">
-                                                        <select name="taluka" id="tehsils" class="form-control" onchange="document.getElementById('filter_form2').submit()">
-
+                                                        <select name="taluka" id="taluka" class="form-control" onchange="document.getElementById('filter_form2').submit()">
+                                                            <option value="">Select Taluka</option>
+                                                            <option value="">All</option>
+                                                            @foreach ($talukas as $taluka)
+                                                                <option value="{{$taluka->taluka}}">{{$taluka->taluka}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </form>
                                                 </div>
@@ -92,7 +101,6 @@
                                                         </select>
                                                     </form>
                                                 </div>
-
                                             </div>
 
 
@@ -308,35 +316,6 @@
         }
     };
     new ApexCharts(document.querySelector("#fieldOfficerChart"), fieldOfficerOptions).render();
-
-
-
-
-     $('#district').on('change', function() {
-        var district = $(this).val();
-        if (district) {
-            $.ajax({
-                url: '{{route("get-tehsils")}}',
-                type: 'GET',
-                data: {
-                    district: district
-                },
-                success: function(data) {
-                    $('#tehsils').empty();
-                    $('#tehsils').append('<option value="">Please Select Taluka</option>');
-                    $.each(data, function(key, value) {
-                        $('#tehsils').append('<option value="' +
-                            value + '">' + value + '</option>');
-                    });
-                }
-            });
-        } else {
-            $('#tehsils').empty();
-        }
-    });
-
-
-
 </script>
 
 </body>

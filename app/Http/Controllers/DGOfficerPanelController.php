@@ -63,10 +63,12 @@ class DGOfficerPanelController extends Controller
 
 
         $districts = District::all();
+        $talukas = Tehsil::all();
+
 
         $farmers = $query->paginate(10)->appends($req->all());
 
-        return view('pd_officer_panel.farmers',['farmers'=>$farmers,'districts' => $districts ]);
+        return view('pd_officer_panel.farmers',['farmers'=>$farmers,'districts' => $districts, 'talukas' => $talukas ]);
     }
 
 
