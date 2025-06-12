@@ -202,6 +202,13 @@
 
                                         </div>
                                         {{ $farmers->links() }}
+
+                                        <div class="mb-3">
+                                            <h5>Total Farmers: {{ $totalFarmers }}</h5>
+                                            <p>Online Farmers: {{ $onlineFarmers }}</p>
+                                            <p>Self Registered (Field Assistant): {{ $selfFarmers }}</p>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

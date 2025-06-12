@@ -83,9 +83,22 @@ class DGOfficerPanelController extends Controller
 
     $districts = District::all();
 
+    $totalFarmers = (clone $query)->count();
+
+    $onlineFarmers = (clone $query)->where('user_type', 'Online')->count();
+    $selfFarmers = $totalFarmers - $onlineFarmers;
+
+
     $farmers = $query->paginate(10)->appends($req->all());
 
-    return view('pd_officer_panel.farmers',['farmers'=>$farmers,'districts' => $districts, 'talukas' => $talukas ]);
+    return view('pd_officer_panel.farmers',[
+        'farmers'=>$farmers,
+        'districts' => $districts,
+        'talukas' => $talukas,
+        'totalFarmers' => $totalFarmers,
+        'onlineFarmers' => $onlineFarmers,
+        'selfFarmers' => $selfFarmers,
+    ]);
     }
 
 

@@ -156,7 +156,7 @@ Route::post('/check/cnic/duplicate', function(Request $request) {
     }
 
     $exists = $query->exists();
-    
+
 
     return response()->json(['exists' => $exists]);
 
