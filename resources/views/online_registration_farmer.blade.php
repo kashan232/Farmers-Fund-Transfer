@@ -2195,6 +2195,7 @@ dateFields.forEach((field) => {
                                     icon: "error",
                                     html: `<b><span class="text-danger">CNIC already exists in the system.</span></b>`
                                 });
+                                errors = `<b><span class="text-danger">CNIC already exists in the system.</span></b>`;
                                 return;
                             } else {
                                 // ✅ All checks passed, go to the next step
