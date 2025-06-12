@@ -137,7 +137,7 @@
                                                         <th>District</th>
                                                         <th>Taluka</th>
 
-                                                        {{-- <th>Tappa</th> --}}
+                                                        <th>Tappa</th>
 
                                                         <th>Status</th>
                                                         <th>Reason</th>
@@ -151,12 +151,13 @@
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{!! ($farmer->user_type == 'Online') ? 'Online':'Field Assistant <br><b>'.$farmer->user->name.'<b>'   !!}</td>
 
-                                                   
+
                                                         <td>{{ $farmer->name }}</td>
                                                         <td>{{ $farmer->cnic }}</td>
                                                         <td>{{ $farmer->mobile }}</td>
                                                         <td>{{ $farmer->district }}</td>
                                                         <td>{{ $farmer->tehsil }}</td>
+                                                        <td>{{ $farmer->tappa }}</td>
 
                                                         {{-- <td>{{ $farmer->tappa }}</td> --}}
 
