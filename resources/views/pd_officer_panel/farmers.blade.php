@@ -210,8 +210,8 @@
                                         {{-- Totals --}}
                                         <div class="text-end">
                                             <h6 class="mb-0">Total Farmers: {{ $totalFarmers }}</h6>
-                                            <small>Online Farmers: {{ $onlineFarmers }}</small><br>
-                                            <small>Self Registered (Field Assistant): {{ $selfFarmers }}</small>
+                                            <h6>Online Farmers: {{ $onlineFarmers }}</h6><br>
+                                            <h6>Self Registered (Field Assistant): {{ $selfFarmers }}</h6>
                                         </div>
                                     </nav>
 
