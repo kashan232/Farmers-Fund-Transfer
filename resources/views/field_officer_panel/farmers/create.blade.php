@@ -2095,7 +2095,7 @@ dateFields.forEach((field) => {
         });
     }
 
-
+    if(errors == ''){
      // 🔽 CNIC CHECK AJAX START
                     $.ajax({
                         url: '{{route("check.cnic.duplication")}}', // Your server route
@@ -2133,7 +2133,7 @@ dateFields.forEach((field) => {
                         }
                     });
                     return;
-
+                }
 
 
 }
