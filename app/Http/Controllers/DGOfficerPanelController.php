@@ -65,14 +65,19 @@ class DGOfficerPanelController extends Controller
         $talukas = Tehsil::all();
     }
 
+    if (!empty($req->taluka)) {
+        $query->where('tehsil', $req->taluka);
+    }
 
-        $districts = District::all();
-        
+    if (!empty($req->farmer_type)) {
+        $query->where('district', $req->farmer_type);
+    }
 
+    $districts = District::all();
 
-        $farmers = $query->paginate(10)->appends($req->all());
+    $farmers = $query->paginate(10)->appends($req->all());
 
-        return view('pd_officer_panel.farmers',['farmers'=>$farmers,'districts' => $districts, 'talukas' => $talukas ]);
+    return view('pd_officer_panel.farmers',['farmers'=>$farmers,'districts' => $districts, 'talukas' => $talukas ]);
     }
 
 

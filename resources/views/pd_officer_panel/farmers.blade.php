@@ -54,6 +54,8 @@
                                                     <form action="{{ route('dg.farmers') }}" id="filter_form" method="get" class="d-flex">
                                                           <input type="hidden" name="search" value="{{ request('search') }}">
                                                             <input type="hidden" name="status" value="{{ request('status') }}">
+                                                             <input type="hidden" name="taluka" value="{{ request('taluka') }}">
+                                                                <input type="hidden" name="taluka" value="{{ request('farmer_type') }}">
                                                         <select name="district" id="" class="form-control" onchange="document.getElementById('filter_form').submit()">
                                                             <option value="">Select District</option>
                                                             <option value="">All</option>
@@ -69,12 +71,29 @@
                                                         <input type="hidden" name="search" value="{{ request('search') }}">
                                                         <input type="hidden" name="status" value="{{ request('status') }}">
                                                         <input type="hidden" name="district" value="{{ request('district') }}">
+
+                                                                <input type="hidden" name="taluka" value="{{ request('farmer_type') }}">
+
                                                         <select name="taluka" id="taluka" class="form-control" onchange="document.getElementById('filter_form2').submit()">
                                                             <option value="">Select Taluka</option>
                                                             <option value="">All</option>
                                                             @foreach ($talukas as $taluka)
                                                                 <option value="{{$taluka->tehsil}}" {{ request('taluka') == $taluka->tehsil ? 'selected' : '' }}>{{$taluka->tehsil}}</option>
                                                             @endforeach
+                                                        </select>
+                                                    </form>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <form action="{{ route('dg.farmers') }}" id="filter_form3" method="get" class="d-flex">
+                                                        <input type="hidden" name="search" value="{{ request('search') }}">
+                                                        <input type="hidden" name="status" value="{{ request('status') }}">
+                                                        <input type="hidden" name="district" value="{{ request('district') }}">
+                                                        <input type="hidden" name="taluka" value="{{ request('taluka') }}">
+                                                        <select name="farmer_type" id="farmer_type" class="form-control" onchange="document.getElementById('filter_form3').submit()">
+                                                            <option value="">Select Taluka</option>
+                                                            <option value="online">Online</option>
+                                                            <option value="fa">FA's</option>
                                                         </select>
                                                     </form>
                                                 </div>
@@ -87,6 +106,9 @@
                                                     <form action="{{ route('dg.farmers') }}" id="status_form" method="get" class="d-flex">
                                                         <input type="hidden" name="search" value="{{ request('search') }}">
                                                               <input type="hidden" name="district" value="{{ request('district') }}">
+                                                                <input type="hidden" name="taluka" value="{{ request('taluka') }}">
+                                                                <input type="hidden" name="taluka" value="{{ request('farmer_type') }}">
+
 
                                                         <select name="status" id="" class="form-control" onchange="document.getElementById('status_form').submit()">
 
