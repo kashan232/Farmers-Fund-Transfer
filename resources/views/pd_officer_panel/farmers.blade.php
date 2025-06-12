@@ -91,7 +91,7 @@
                                                         <input type="hidden" name="district" value="{{ request('district') }}">
                                                         <input type="hidden" name="taluka" value="{{ request('taluka') }}">
                                                         <select name="farmer_type" id="farmer_type" class="form-control" onchange="document.getElementById('filter_form3').submit()">
-                                                            <option value="">Select Taluka</option>
+                                                            <option value="">Select Type</option>
                                                             <option value="online">Online</option>
                                                             <option value="fa">FA's</option>
                                                         </select>
