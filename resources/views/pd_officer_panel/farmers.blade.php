@@ -201,13 +201,20 @@
                                             </table>
 
                                         </div>
-                                        {{ $farmers->links() }}
-
-                                        <div class="mb-3">
-                                            <h5>Total Farmers: {{ $totalFarmers }}</h5>
-                                            <p>Online Farmers: {{ $onlineFarmers }}</p>
-                                            <p>Self Registered (Field Assistant): {{ $selfFarmers }}</p>
+                                     <nav class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+                                        {{-- Pagination --}}
+                                        <div>
+                                            {{ $farmers->links() }}
                                         </div>
+
+                                        {{-- Totals --}}
+                                        <div class="text-end">
+                                            <h6 class="mb-0">Total Farmers: {{ $totalFarmers }}</h6>
+                                            <small>Online Farmers: {{ $onlineFarmers }}</small><br>
+                                            <small>Self Registered (Field Assistant): {{ $selfFarmers }}</small>
+                                        </div>
+                                    </nav>
+
 
                                     </div>
                                 </div>
