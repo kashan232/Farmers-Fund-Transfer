@@ -18,7 +18,7 @@ class DGOfficerPanelController extends Controller
     $search = ($search === '-') ? null : ($search ?? $req->search);
     $status = $status ?? $req->status;
 
-    $query = LandRevenueFarmerRegistation::with('user');
+    $query = LandRevenueFarmerRegistation::with('user')->orderBy('tehsil', 'asc');
 
     if (!empty($search)) {
         $query->where(function ($q) use ($search) {
