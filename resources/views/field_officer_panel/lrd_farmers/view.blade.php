@@ -1314,12 +1314,12 @@
                 <button id="rotateImageBtn" class="btn btn-secondary">
                     <i class="fas fa-sync-alt"></i> Rotate
                 </button>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                {{-- <button type="button" class="btn-close" data-bs-dismiss="modal"></button> --}}
             </div>
             <div class="modal-body text-center">
                 <img id="fullscreenImage" src="" style="max-width: 100%; height: auto;" data-rotation="0">
             </div>
-            
+
         </div>
     </div>
 </div>
