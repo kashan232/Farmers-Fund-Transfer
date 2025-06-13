@@ -408,16 +408,16 @@ class DGOfficerPanelController extends Controller
 
 
                     //Verified
-                    $forwarded_to_dd = LandRevenueFarmerRegistation::where('district', $district)
+                    $verified_by_lrd = LandRevenueFarmerRegistation::where('district', $district)
                         ->whereIn('tehsil', $tehsils)
 
                             ->whereIn('verification_status', [
                                 'verified_by_lrd',
                             ])
                             ->count();
-                    $user->forwarded_to_dd = $forwarded_to_dd;
+                    $user->verified_by_lrd = $verified_by_lrd;
 
-                    $user->unverified =  ($farmerCount - $forwarded_to_dd);
+                    $user->unverified =  $farmerCount;
 
                 return $user;
             });

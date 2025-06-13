@@ -200,7 +200,7 @@
 
 
                                                             <td style="text-align: left; font-size:12px; font-weight: 700;;">
-                                                                Total Farmers: <span style="font-size:15px"> {{ $user->farmers_count }} </span> <br>
+                                                                @if($user->usertype != 'Land_Revenue_Officer') Total Farmers: <span style="font-size:15px"> {{ $user->farmers_count }} </span> <br>@endif
 
                                                                 @if($user->usertype == 'Field_Officer')
                                                                 <span style="font-size:12px">
@@ -214,7 +214,7 @@
 
 
                                                                 @if($user->usertype == 'Agri_Officer'  ) <span style="font-size:12px"> In-Process  = <span style="font-size:15px"> {{ $user->forwarded_to_dd }} </span> <br> Rejected = <span style="font-size:15px"> {{ $user->rejected_by_ao }}  </span> <br> Pending = <span style="font-size:15px"> {{ $user->unverified }}  </span>  </span>   @endif <!-- This is from withCount('farmers') -->
-                                                                @if($user->usertype == 'Land_Revenue_Officer') <span style="font-size:12px"> Verified  = <span style="font-size:15px"> {{ $user->forwarded_to_dd }} </span> <br> Pending = <span style="font-size:15px"> {{ $user->unverified }}  </span>  </span>   @endif <!-- This is from withCount('farmers') -->
+                                                                @if($user->usertype == 'Land_Revenue_Officer') <span style="font-size:12px"> Verified  = <span style="font-size:15px"> {{ $user->verified_by_lrd }} </span> <br> Pending = <span style="font-size:15px"> {{ $user->unverified }}  </span>  </span>   @endif <!-- This is from withCount('farmers') -->
 
 
 
