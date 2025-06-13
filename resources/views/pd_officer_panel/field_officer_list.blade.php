@@ -201,14 +201,14 @@
 
                                                             <td style="text-align: left; font-size:12px; font-weight: 700;;">
                                                                 Total Farmers: <span style="font-size:15px"> {{ $user->farmers_count }} </span> <br>
-                                                               
-                                                                @if($user->usertype == 'Field_Officer') 
-                                                                <span style="font-size:12px"> 
-                                                                    Forwarded to AO  = <span style="font-size:15px"> {{ $user->forwarded_to_ao }} </span> <br> 
-                                                                    Pending = <span style="font-size:15px"> {{ $user->unverified }} </span> <br> 
-                                                                    Online =  <span style="font-size:15px"> {{ $user->online_farmers }} </span> <br> 
-                                                                    Self = <span style="font-size:15px"> {{ $user->self }} </span>  
-                                                                </span> 
+
+                                                                @if($user->usertype == 'Field_Officer')
+                                                                <span style="font-size:12px">
+                                                                    In-Process  = <span style="font-size:15px"> {{ $user->forwarded_to_ao }} </span> <br>
+                                                                    Pending = <span style="font-size:15px"> {{ $user->unverified }} </span> <br>
+                                                                    Online =  <span style="font-size:15px"> {{ $user->online_farmers }} </span> <br>
+                                                                    Self = <span style="font-size:15px"> {{ $user->self }} </span>
+                                                                </span>
                                                                 @endif <!-- This is from withCount('farmers') -->
 
 
