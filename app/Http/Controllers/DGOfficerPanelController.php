@@ -84,7 +84,13 @@ class DGOfficerPanelController extends Controller
 
 
     if (!empty($req->user_id)) {
-        $query->where('user_id', $req->user_id);
+        $user = user::find( $req->user_id);
+
+        $query->where('district', $user->district)
+        ->where('tehsil', $user->tehsil)
+        ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true));
+
+
         if($req->farmer_type_status == 'in-Process'){
            $query->whereIn('verification_status', [
                 'verified_by_fa',
