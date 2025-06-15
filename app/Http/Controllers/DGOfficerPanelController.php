@@ -100,9 +100,9 @@ class DGOfficerPanelController extends Controller
            ]);
         }elseif($req->farmer_type_status == 'pending'){
 
-             $query->whereIn('verification_status', [
+             $query->where('verification_status',
                 NULL
-           ]);
+           );
 
         }
         elseif($req->farmer_type_status == 'online'){
