@@ -204,7 +204,7 @@
 
                                                                 @if($user->usertype == 'Field_Officer')
                                                                 <span style="font-size:12px">
-                                                                    In-Process  = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user' => $user->id, 'status' => 'in-Process']) }}"> {{ $user->forwarded_to_ao }} </a></span> <br>
+                                                                    In-Process  = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'in-Process']) }}"> {{ $user->forwarded_to_ao }} </a></span> <br>
                                                                     Pending = <span style="font-size:15px"> {{ $user->unverified }} </span> <br>
                                                                     Online =  <span style="font-size:15px"> {{ $user->online_farmers }} </span> <br>
                                                                     Self = <span style="font-size:15px"> {{ $user->self }} </span>

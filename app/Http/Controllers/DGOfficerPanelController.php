@@ -81,6 +81,22 @@ class DGOfficerPanelController extends Controller
         }
     }
 
+
+
+    if (!empty($req->user_id)) {
+        $query->where('user_id', $req->user_id);
+        if($req->farmer_type_status == 'in-Process'){
+           $query->whereIn('verification_status', [
+                'verified_by_fa',
+                'verified_by_ao',
+                'rejected_by_ao',
+                'rejected_by_lrd',
+           ]);
+        }
+    }
+
+
+
     $districts = District::all();
 
     $totalFarmers = (clone $query)->count();
