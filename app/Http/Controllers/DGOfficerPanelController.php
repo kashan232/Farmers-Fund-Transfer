@@ -98,6 +98,18 @@ class DGOfficerPanelController extends Controller
                 'rejected_by_ao',
                 'rejected_by_lrd',
            ]);
+        }elseif($req->farmer_type_status == 'pending'){
+
+             $query->whereIn('verification_status', [
+                NULL
+           ]);
+
+        }
+        elseif($req->farmer_type_status == 'online'){
+             $query->where('user_type', 'Online');
+        }
+        elseif($req->farmer_type_status == 'self'){
+            $query->where('user_type', '!=','Online');
         }
     }
 
