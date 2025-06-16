@@ -230,7 +230,10 @@ class DGOfficerPanelController extends Controller
                     $farmerCount = LandRevenueFarmerRegistation::where('district', $user->district)
                     ->where('tehsil', $user->tehsil)
                     ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
-                    ->count();
+                    ->get()->groupBy('verification_status');
+
+dd( $farmerCount);
+                    
 
                     $user->farmers_count = $farmerCount;
 
