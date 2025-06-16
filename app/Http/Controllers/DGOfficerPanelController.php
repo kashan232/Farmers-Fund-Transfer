@@ -268,7 +268,7 @@ class DGOfficerPanelController extends Controller
                         ->where('verification_status',
                             'verified_by_lrd')
                         ->count();
-dd( $verified_by_lrd );
+// dd( $verified_by_lrd );
 
 
                         $unverified = LandRevenueFarmerRegistation::where('district', $user->district)
