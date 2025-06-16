@@ -86,8 +86,15 @@ class DGOfficerPanelController extends Controller
     if (!empty($req->user_id)) {
         $user = user::find( $req->user_id);
 
-        if(!empty($req->farmer_type_status_by_ao)){
-            
+
+        if($req->farmer_type_status == 'total'){
+            $query->where('district', $user->district)
+            ->where('tehsil', $user->tehsil)
+            ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true));
+        }
+
+
+        if($req->farmer_type_status_by_ao == 'total'){
             $tehsils = json_decode($user->tehsil ?? '[]');
             $tappas = json_decode($user->tappas ?? '[]');
 
@@ -99,15 +106,23 @@ class DGOfficerPanelController extends Controller
                 'verified_by_fa',
                 'verified_by_ao'
             ])->get();
-
-
         }
-        else{
+
+
+        if($req->farmer_type_status_by_ao == 'in-Process'){
+            $tehsils = json_decode($user->tehsil ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
+
             $query->where('district', $user->district)
-            ->where('tehsil', $user->tehsil)
-            ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true));
+            ->whereIn('tehsil', $tehsils)
+            ->whereIn('tappa', $tappas)
+            ->whereIn('verification_status', [
+                'verified_by_ao',
+            ])
+            ->count();
         }
-        
+
+
 
         if($req->farmer_type_status == 'in-Process'){
            $query->whereIn('verification_status', [
@@ -134,7 +149,7 @@ class DGOfficerPanelController extends Controller
             // $query->where('user_type', '!=','Online');
         }
 
-        
+
     }
 
 
