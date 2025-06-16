@@ -119,7 +119,33 @@ class DGOfficerPanelController extends Controller
             ->whereIn('verification_status', [
                 'verified_by_ao',
             ])
-            ->count();
+            ->get();
+        }
+
+        if($req->farmer_type_status_by_ao == 'rejected'){
+            $tehsils = json_decode($user->tehsil ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
+
+            $query->where('district', $user->district)
+            ->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas)
+            ->whereIn('verification_status', [
+                'rejected_by_ao',
+            ])
+            ->get();
+        }
+
+        if($req->farmer_type_status_by_ao == 'pending'){
+            $tehsils = json_decode($user->tehsil ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
+
+            $query->where('district', $user->district)
+            ->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas)
+            ->whereIn('verification_status', [
+                'verified_by_fa',
+            ])
+            ->get();
         }
 
 

@@ -225,7 +225,7 @@
 
 
 
-                                                                @if($user->usertype == 'Agri_Officer'  ) <span style="font-size:12px"> In-Process  = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_ao' => 'in-Process']) }}">  {{ $user->forwarded_to_dd }} </a> </span> <br> Rejected = <span style="font-size:15px"> {{ $user->rejected_by_ao }}  </span> <br> Pending = <span style="font-size:15px"> {{ $user->unverified }}  </span>  </span>   @endif <!-- This is from withCount('farmers') -->
+                                                                @if($user->usertype == 'Agri_Officer'  ) <span style="font-size:12px"> In-Process  = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_ao' => 'in-Process']) }}">  {{ $user->forwarded_to_dd }} </a> </span> <br> Rejected = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_ao' => 'rejected']) }}"> {{ $user->rejected_by_ao }} </a> </span> <br> Pending = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_ao' => 'pending']) }}"> {{ $user->unverified }} </a> </span>  </span>   @endif <!-- This is from withCount('farmers') -->
                                                                 @if($user->usertype == 'Land_Revenue_Officer') <span style="font-size:12px"> Verified  = <span style="font-size:15px"> {{ $user->verified_by_lrd }} </span> <br> Pending = <span style="font-size:15px"> {{ $user->unverified }}  </span>  </span>   @endif <!-- This is from withCount('farmers') -->
 
 
