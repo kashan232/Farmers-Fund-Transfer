@@ -200,7 +200,19 @@
 
 
                                                             <td style="text-align: left; font-size:12px; font-weight: 700;;">
-                                                                @if($user->usertype != 'Land_Revenue_Officer') Total Farmers: <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'total']) }}"> {{ $user->farmers_count }} </a> </span> <br>@endif
+                                                                @if($user->usertype != 'Land_Revenue_Officer') Total Farmers:
+
+                                                                <span style="font-size:15px">
+                                                                    @if($user->usertype == 'Field_Officer')
+                                                                        <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'total']) }}"> {{ $user->farmers_count }} </a>
+                                                                    @endif
+                                                                    @if($user->usertype == 'Agri_Officer')
+                                                                        <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_ao' => 'total']) }}"> {{ $user->farmers_count }} </a>
+                                                                    @endif
+                                                                    @if($user->usertype == 'District_Officer')
+                                                                        <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_dd' => 'total']) }}"> {{ $user->farmers_count }} </a>
+                                                                    @endif
+                                                                </span> <br>@endif
 
                                                                 @if($user->usertype == 'Field_Officer')
                                                                 <span style="font-size:12px">
