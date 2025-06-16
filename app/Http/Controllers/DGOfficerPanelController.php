@@ -265,7 +265,7 @@ class DGOfficerPanelController extends Controller
                         ->where('tehsil', $user->tehsil)
                         ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                         ->where('verification_status',
-                            'verified_by_lrd')
+                            'rejected_by_lrd')
                         ->count();
 dd( $verified_by_lrd );
 
