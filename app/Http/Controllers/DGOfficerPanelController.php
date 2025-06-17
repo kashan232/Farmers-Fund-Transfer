@@ -85,7 +85,7 @@ class DGOfficerPanelController extends Controller
 
     if (!empty($req->user_id)) {
         $user = user::find( $req->user_id);
-
+        $test = [];
 
 
 
@@ -139,7 +139,7 @@ class DGOfficerPanelController extends Controller
                 'verified_by_fa',
             ]);
         }
-  $test = [];
+
 
 
 
@@ -165,11 +165,14 @@ class DGOfficerPanelController extends Controller
                 'verified_by_ao',
                 'rejected_by_ao',
                 'rejected_by_lrd',
-           ]);
+           ])->count();
 
+           dd($query);
             $test[] = 'FA-IN-PROCESS';
-
-        }elseif($req->farmer_type_status == 'pending'){
+           
+        }
+        
+        elseif($req->farmer_type_status == 'pending'){
 
              $tappas = json_decode($user->tappas ?? '[]');
             $query->where('user_type', '!=','Online')->where('district', $user->district)
