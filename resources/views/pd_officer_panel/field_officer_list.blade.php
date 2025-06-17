@@ -230,7 +230,7 @@
                                                                 <span style="font-size:12px">
                                                                     Total Farmers  = <span style="font-size:15px"> {{ $user->total_farmers }} </span> <br>
                                                                     Verified  = <span style="font-size:15px"> {{ $user->verified }} </span> <br>
-                                                                    Pending = <span style="font-size:15px"> {{ $user->pending }}  </span>
+                                                                    Pending = <span style="font-size:15px"> {{ $user->pending }}  </span> <br>
                                                                     Rejected = <span style="font-size:15px"> {{ $user->rejected }}  </span>
 
                                                                 </span>
