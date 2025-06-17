@@ -87,11 +87,6 @@ class DGOfficerPanelController extends Controller
         $user = user::find( $req->user_id);
 
 
-        if($req->farmer_type_status == 'total'){
-            $query->where('district', $user->district)
-            ->where('tehsil', $user->tehsil)
-            ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true));
-        }
 
 
         if($req->farmer_type_status_by_ao == 'total'){
@@ -146,11 +141,18 @@ class DGOfficerPanelController extends Controller
         }
 
 
+        
+        if($req->farmer_type_status == 'total'){
+            $query->where('district', $user->district)
+            ->where('tehsil', $user->tehsil)
+            ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true));
+        }
+
 
         if($req->farmer_type_status == 'in-Process'){
 
 
- $tappas = json_decode($user->tappas ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
             $query->where('user_type', '!=','Online')->where('district', $user->district)
             ->where('tehsil', $user->tehsil)
                 ->whereIn('tappa', $tappas);
@@ -162,7 +164,7 @@ class DGOfficerPanelController extends Controller
                 'rejected_by_lrd',
            ]);
 
-
+        dd($user);
 
         }elseif($req->farmer_type_status == 'pending'){
 
