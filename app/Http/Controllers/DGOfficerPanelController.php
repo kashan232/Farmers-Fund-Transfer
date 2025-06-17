@@ -139,13 +139,16 @@ class DGOfficerPanelController extends Controller
                 'verified_by_fa',
             ]);
         }
+  $test = [];
 
 
-        
+
         if($req->farmer_type_status == 'total'){
             $query->where('district', $user->district)
             ->where('tehsil', $user->tehsil)
             ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true));
+
+            $test[] = 'FA-TOTAL';
         }
 
 
@@ -164,7 +167,7 @@ class DGOfficerPanelController extends Controller
                 'rejected_by_lrd',
            ]);
 
-        dd($user);
+            $test[] = 'FA-IN-PROCESS';
 
         }elseif($req->farmer_type_status == 'pending'){
 
@@ -177,7 +180,7 @@ class DGOfficerPanelController extends Controller
              $query->where('verification_status',
                 NULL
            );
-
+            $test[] = 'FA-PENDING';
         }
         elseif($req->farmer_type_status == 'online'){
 
@@ -185,19 +188,21 @@ class DGOfficerPanelController extends Controller
              $query->where('user_type', 'Online')->where('district', $user->district)
             ->where('tehsil', $user->tehsil)
                 ->whereIn('tappa', $tappas);
+
+                  $test[] = 'FA-ONLINE';
         }
         elseif($req->farmer_type_status == 'self'){
               $tappas = json_decode($user->tappas ?? '[]');
             $query->where('user_type', '!=','Online')->where('district', $user->district)
             ->where('tehsil', $user->tehsil)
                 ->whereIn('tappa', $tappas);
+                  $test[] = 'FA-SELF';
         }
 
         elseif($req->farmer_type_status == 'total'){
             // $query->where('user_type', '!=','Online');
         }
-
-
+        dd($test);
     }
 
 
