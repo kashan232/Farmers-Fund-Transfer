@@ -516,12 +516,14 @@ class DGOfficerPanelController extends Controller
                     $farmerCount = LandRevenueFarmerRegistation::where('district', $district)->whereIn('tehsil', $tehsils)
 
                         ->whereIn('verification_status', [
-                            'verified_by_ao'
+                            'verified_by_ao',
+                            'verified_by_lrd',
+                            'rejected_by_lrd'
                         ])
                         ->count();
 
                     // Add farmers_count to the user object
-                    $user->farmers_count = $farmerCount;
+                    $user->total_farmers = $farmerCount;
 
 
                     //Pending
@@ -543,9 +545,33 @@ class DGOfficerPanelController extends Controller
                                 'verified_by_lrd',
                             ])
                             ->count();
-                    $user->verified_by_lrd = $verified_by_lrd;
+                    $user->verified= $verified_by_lrd;
 
-                    $user->unverified =  $farmerCount;
+
+                    //Verified
+                    $pending = LandRevenueFarmerRegistation::where('district', $district)
+                        ->whereIn('tehsil', $tehsils)
+
+                            ->whereIn('verification_status', [
+                                'verified_by_lrd',
+                            ])
+                            ->count();
+                    $user->pending= $pending;
+
+
+                    //Verified
+                    $rejected = LandRevenueFarmerRegistation::where('district', $district)
+                        ->whereIn('tehsil', $tehsils)
+
+                            ->whereIn('verification_status', [
+                                'verified_by_lrd',
+                            ])
+                            ->count();
+                    $user->rejected= $rejected;
+
+
+
+                    // $user->unverified =  $farmerCount;
 
                 return $user;
             });
