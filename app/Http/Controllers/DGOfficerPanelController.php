@@ -148,13 +148,29 @@ class DGOfficerPanelController extends Controller
 
 
         if($req->farmer_type_status == 'in-Process'){
-           $query->whereIn('verification_status', [
+
+
+ $tappas = json_decode($user->tappas ?? '[]');
+            $query->where('user_type', '!=','Online')->where('district', $user->district)
+            ->where('tehsil', $user->tehsil)
+                ->whereIn('tappa', $tappas);
+
+            $query->whereIn('verification_status', [
                 'verified_by_fa',
                 'verified_by_ao',
                 'rejected_by_ao',
                 'rejected_by_lrd',
            ]);
+
+
+
         }elseif($req->farmer_type_status == 'pending'){
+
+             $tappas = json_decode($user->tappas ?? '[]');
+            $query->where('user_type', '!=','Online')->where('district', $user->district)
+            ->where('tehsil', $user->tehsil)
+                ->whereIn('tappa', $tappas);
+
 
              $query->where('verification_status',
                 NULL
