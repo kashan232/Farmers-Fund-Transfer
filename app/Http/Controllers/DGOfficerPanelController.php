@@ -204,7 +204,7 @@ class DGOfficerPanelController extends Controller
         elseif($req->farmer_type_status == 'total'){
             // $query->where('user_type', '!=','Online');
         }
-        dd($test);
+        // dd($test);
     }
 
 
