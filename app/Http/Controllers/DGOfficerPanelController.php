@@ -156,7 +156,7 @@ class DGOfficerPanelController extends Controller
 
 
             $tappas = json_decode($user->tappas ?? '[]');
-            $query->where('user_type', '!=','Online')->where('district', $user->district)
+            $query->where('district', $user->district)
             ->where('tehsil', $user->tehsil)
                 ->whereIn('tappa', $tappas);
 
@@ -167,11 +167,10 @@ class DGOfficerPanelController extends Controller
                 'rejected_by_lrd',
            ])->count();
 
-           dd($query);
             $test[] = 'FA-IN-PROCESS';
-           
+
         }
-        
+
         elseif($req->farmer_type_status == 'pending'){
 
              $tappas = json_decode($user->tappas ?? '[]');
