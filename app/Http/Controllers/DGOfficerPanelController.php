@@ -169,6 +169,7 @@ class DGOfficerPanelController extends Controller
                 ->whereIn('tappa', $tappas);
         }
         elseif($req->farmer_type_status == 'self'){
+              $tappas = json_decode($user->tappas ?? '[]');
             $query->where('user_type', '!=','Online')->where('district', $user->district)
             ->where('tehsil', $user->tehsil)
                 ->whereIn('tappa', $tappas);
