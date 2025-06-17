@@ -105,7 +105,7 @@ class DGOfficerPanelController extends Controller
                 'rejected_by_ao',
                 'verified_by_fa',
                 'verified_by_ao'
-            ])->get();
+            ]);
         }
 
 
@@ -118,8 +118,7 @@ class DGOfficerPanelController extends Controller
             ->whereIn('tappa', $tappas)
             ->whereIn('verification_status', [
                 'verified_by_ao',
-            ])
-            ->get();
+            ]);
         }
 
         if($req->farmer_type_status_by_ao == 'rejected'){
@@ -131,8 +130,7 @@ class DGOfficerPanelController extends Controller
                 ->whereIn('tappa', $tappas)
             ->whereIn('verification_status', [
                 'rejected_by_ao',
-            ])
-            ->get();
+            ]);
         }
 
         if($req->farmer_type_status_by_ao == 'pending'){
@@ -144,8 +142,7 @@ class DGOfficerPanelController extends Controller
                 ->whereIn('tappa', $tappas)
             ->whereIn('verification_status', [
                 'verified_by_fa',
-            ])
-            ->get();
+            ]);
         }
 
 
@@ -165,10 +162,14 @@ class DGOfficerPanelController extends Controller
 
         }
         elseif($req->farmer_type_status == 'online'){
-             $query->where('user_type', 'Online');
+             $query->where('user_type', 'Online')->where('district', $user->district)
+            ->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas);
         }
         elseif($req->farmer_type_status == 'self'){
-            $query->where('user_type', '!=','Online');
+            $query->where('user_type', '!=','Online')->where('district', $user->district)
+            ->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas);
         }
 
         elseif($req->farmer_type_status == 'total'){
