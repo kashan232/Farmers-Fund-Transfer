@@ -162,6 +162,9 @@ class DGOfficerPanelController extends Controller
 
         }
         elseif($req->farmer_type_status == 'online'){
+
+              $tehsils = json_decode($user->tehsil ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
              $query->where('user_type', 'Online')->where('district', $user->district)
             ->whereIn('tehsil', $tehsils)
                 ->whereIn('tappa', $tappas);
