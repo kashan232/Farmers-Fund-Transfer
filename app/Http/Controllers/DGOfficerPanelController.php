@@ -553,7 +553,7 @@ class DGOfficerPanelController extends Controller
                         ->whereIn('tehsil', $tehsils)
 
                             ->whereIn('verification_status', [
-                                'verified_by_lrd',
+                                'verified_by_ao',
                             ])
                             ->count();
                     $user->pending= $pending;
@@ -564,7 +564,7 @@ class DGOfficerPanelController extends Controller
                         ->whereIn('tehsil', $tehsils)
 
                             ->whereIn('verification_status', [
-                                'verified_by_lrd',
+                                'rejected_by_lrd',
                             ])
                             ->count();
                     $user->rejected= $rejected;
