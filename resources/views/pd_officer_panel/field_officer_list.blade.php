@@ -239,7 +239,7 @@
 
 
                                                                 @if($user->usertype == 'District_Officer') <span style="font-size:12px"> Verified By LRD = <span style="font-size:15px"> {{ $user->verified_by_lrd }} </span> <br> Rejected By LRD = <span style="font-size:15px"> {{ $user->rejected_by_lrd }}  </span>  </span>   @endif <!-- This is from withCount('farmers') -->
-`
+
 
                                                             </td>
 
