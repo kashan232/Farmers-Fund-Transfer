@@ -170,7 +170,7 @@ class DGOfficerPanelController extends Controller
         }
         elseif($req->farmer_type_status == 'self'){
             $query->where('user_type', '!=','Online')->where('district', $user->district)
-            ->where('tehsil', $tehsils)
+            ->where('tehsil', $user->tehsil)
                 ->whereIn('tappa', $tappas);
         }
 
