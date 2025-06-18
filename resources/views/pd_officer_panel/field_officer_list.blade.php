@@ -39,7 +39,7 @@
                 }
                 if($users[0]->usertype == 'Agri_Officer'){
                     $groupedData = $users->groupBy('tehsil')->map(function ($group) {
-                        return $group->sum('farmerCount');
+                        return $group->sum('farmers_count');
                     });
                 }
 
