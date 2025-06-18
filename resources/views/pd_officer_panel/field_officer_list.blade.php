@@ -28,9 +28,8 @@
     <div class="pc-content">
 
         <div class="row">
-            <div class="col-sm-12">
 
-                 @php
+             @php
                     $groupedData = $users->groupBy('tehsil')->map(function ($group) {
                         return $group->sum('farmers_count');
                     });
@@ -58,6 +57,11 @@
 
 
                 @endforeach
+
+                
+            <div class="col-sm-12">
+
+                
 
 
 
