@@ -31,6 +31,7 @@
 {{-- {{dd($users);}} --}}
 
                 @php
+                $groupedData = '';
                 // dd($users);
                 if($users[0]->usertype == 'Field_Officer'){
                     $groupedData = $users->groupBy('tehsil')->map(function ($group) {
@@ -44,7 +45,7 @@
                 }
 
                 @endphp
-                @if($groupedData)
+                @if(!empty($groupedData))
                 @foreach ($groupedData as $ttehsil => $totalFarmers)
 
                     <div class="col-lg-4 col-md-6 col-sm-6">
