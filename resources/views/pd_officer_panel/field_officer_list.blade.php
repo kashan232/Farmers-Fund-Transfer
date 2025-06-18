@@ -30,7 +30,7 @@
         <div class="row">
 
                 @php
-                dd($users);
+                // dd($users);
                     $groupedData = $users->groupBy('tehsil')->map(function ($group) {
                         return $group->sum('forwarded_to_ao');
                     });
