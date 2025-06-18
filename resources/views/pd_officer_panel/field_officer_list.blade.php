@@ -68,8 +68,13 @@
                                                 <tbody>
                                                     @foreach ($users as $user)
 
-                                                    {{$users->sum('farmers_count');}}
+                                                    @php
+                                                        $groupedData = $users->groupBy('tehsil')->map(function ($group) {
+                                                            return $group->sum('farmers_count');
+                                                        });
 
+                                                        dd($groupedData);
+                                                    @endphp
 
                                                         <tr>
                                                             <td>{{ $user->name }}</td>
