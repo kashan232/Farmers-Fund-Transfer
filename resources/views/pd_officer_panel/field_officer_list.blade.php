@@ -40,12 +40,15 @@
                 }
                 if($users[0]->usertype == 'Agri_Officer'){
                     $groupedData = $users->groupBy('tehsil')->map(function ($group) {
-                        return $group->sum('farmers_count');
+                        return $group->sum('forwarded_to_dd');
                     });
                 }
 
                 @endphp
                 @if(!empty($groupedData))
+
+
+
                 @foreach ($groupedData as $ttehsil => $totalFarmers)
 
                     <div class="col-lg-4 col-md-6 col-sm-6">
