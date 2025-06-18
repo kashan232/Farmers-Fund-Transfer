@@ -30,16 +30,8 @@
         <div class="row">
 
                 @php
-                    $groupedData = $users->whereIn('verification_status', [
-                            'verified_by_fa',
-                            'verified_by_ao',
-                            'verified_by_lrd',
-
-                            'rejected_by_ao',
-
-                            'rejected_by_lrd',
-
-                        ])->groupBy('tehsil')->map(function ($group) {
+                dd($users);
+                    $groupedData = $users->groupBy('tehsil')->map(function ($group) {
                         return $group->sum('farmers_count');
                     });
                 @endphp
