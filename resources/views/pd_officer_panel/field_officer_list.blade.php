@@ -209,6 +209,10 @@
                                                                     @if($user->usertype == 'Agri_Officer')
                                                                         <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_ao' => 'total']) }}"> {{ $user->farmers_count }} </a>
                                                                     @endif
+                                                                    @if($user->usertype == 'DD_Officer')
+                                                                        <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_dd' => 'total']) }}"> {{ $user->farmers_count }} </a>
+                                                                    @endif
+
                                                                     @if($user->usertype == 'District_Officer')
                                                                         <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_dd' => 'total']) }}"> {{ $user->farmers_count }} </a>
                                                                     @endif
