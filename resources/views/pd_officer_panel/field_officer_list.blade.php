@@ -29,11 +29,20 @@
 
         <div class="row">
 {{dd($users);}}
+
                 @php
                 // dd($users);
+                if($users[0]->usertype == 'Field_Officer'){
                     $groupedData = $users->groupBy('tehsil')->map(function ($group) {
                         return $group->sum('forwarded_to_ao');
                     });
+                }
+                if($users[0]->usertype == 'Agri_Officer'){
+                    $groupedData = $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('forwarded_to_dd');
+                    });
+                }
+
                 @endphp
 
                 @foreach ($groupedData as $ttehsil => $totalFarmers)
