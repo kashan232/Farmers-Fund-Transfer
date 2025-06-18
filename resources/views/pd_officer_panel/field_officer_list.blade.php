@@ -52,6 +52,21 @@
                                             </div> --}}
 
 
+                                             @php
+                                                $groupedData = $users->groupBy('tehsil')->map(function ($group) {
+                                                    return $group->sum('farmers_count');
+                                                });
+
+                                                
+                                             
+
+                                            @endphp
+
+   @foreach ($groupedData as $ttehsil => $totalFarmers)
+                                                    <p><strong>{{ $ttehsil }}:</strong> {{ $totalFarmers }}</p>
+                                                @endforeach
+
+
                                             <table id="example1" class="table table-bordered">
                                                 <thead>
                                                     <tr>
@@ -68,13 +83,7 @@
                                                 <tbody>
                                                     @foreach ($users as $user)
 
-                                                    @php
-                                                        $groupedData = $users->groupBy('tehsil')->map(function ($group) {
-                                                            return $group->sum('farmers_count');
-                                                        });
 
-                                                        dd($groupedData);
-                                                    @endphp
 
                                                         <tr>
                                                             <td>{{ $user->name }}</td>
