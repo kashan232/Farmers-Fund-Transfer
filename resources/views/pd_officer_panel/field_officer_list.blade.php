@@ -28,7 +28,7 @@
     <div class="pc-content">
 
         <div class="row">
-
+{{dd($users);}}
                 @php
                 // dd($users);
                     $groupedData = $users->groupBy('tehsil')->map(function ($group) {
