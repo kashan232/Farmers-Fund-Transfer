@@ -29,6 +29,38 @@
 
         <div class="row">
             <div class="col-sm-12">
+
+                 @php
+                    $groupedData = $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('farmers_count');
+                    });
+                @endphp
+
+                @foreach ($groupedData as $ttehsil => $totalFarmers)
+
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card" style="    background-color: #ffff55;">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="card-title text-title" style="color: #000000 !important;">{{ $ttehsil }}</p>
+                                        <h3 class="card-text text-amount" style="color: #000000 !important;">{{ $totalFarmers }}</h3>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon-shape green-icon-bg">
+                                            <i class="fas fa-user" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                @endforeach
+
+
+
                 <div class="card">
                     <div class="card-body">
                         <div class="dt-responsive">
@@ -52,19 +84,7 @@
                                             </div> --}}
 
 
-                                             @php
-                                                $groupedData = $users->groupBy('tehsil')->map(function ($group) {
-                                                    return $group->sum('farmers_count');
-                                                });
 
-                                                
-                                             
-
-                                            @endphp
-
-   @foreach ($groupedData as $ttehsil => $totalFarmers)
-                                                    <p><strong>{{ $ttehsil }}:</strong> {{ $totalFarmers }}</p>
-                                                @endforeach
 
 
                                             <table id="example1" class="table table-bordered">
