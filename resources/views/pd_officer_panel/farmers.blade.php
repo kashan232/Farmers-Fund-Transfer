@@ -152,10 +152,10 @@
                                                         {{-- <td>{!! ($farmer->user_type == 'Online') ? 'Online':'Field Assistant <br><b>'.$farmer->user->name.'<b>'   !!}</td> --}}
 
 <td>
-    {!! 
-        ($farmer->user_type == 'Online') 
-            ? 'Online' 
-            : 'Field Assistant <br><b>' . ($farmer->user?->name ?? 'N/A') . '</b>' 
+    {!!
+        ($farmer->user_type == 'Online')
+            ? 'Online'
+            : 'Field Assistant <br><b>' . ($farmer->user?->name ?? 'N/A') . '</b>'
     !!}
 </td>
 

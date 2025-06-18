@@ -56,6 +56,30 @@ use Twilio\Rest\Client;
 use App\Http\Controllers\SmsTwilioController;
 
 
+Route::get('/dup/tappas', function () {
+
+    $users = \App\Models\User::select('id', 'name', 'tappas')->get();
+
+$tappaMap = [];
+
+foreach ($users as $user) {
+    $tappas = is_array($user->tappas)
+        ? $user->tappas
+        : json_decode($user->tappas, true);
+
+    foreach ($tappas as $tappa) {
+        $tappaMap[$tappa][] = [
+            'user_id' => $user->id,
+            'name' => $user->name,
+        ];
+    }
+}
+
+
+});
+
+
+
 
 Route::get('/sms/send', function () {
     $receiverNumber = '+923103730089'; // Replace with the recipient's phone number
