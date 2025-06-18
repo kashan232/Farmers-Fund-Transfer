@@ -40,7 +40,7 @@
                 }
                 if($users[0]->usertype == 'Agri_Officer'){
                     $groupedData = $users->groupBy('tehsil')->map(function ($group) {
-                        return $group->sum('forwarded_to_dd');
+                        return $group->sum('farmers_count');
                     });
                 }
 
