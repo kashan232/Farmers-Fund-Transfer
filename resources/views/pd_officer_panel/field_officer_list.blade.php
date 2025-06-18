@@ -44,7 +44,7 @@
                 }
 
                 @endphp
-
+                @if($groupedData)
                 @foreach ($groupedData as $ttehsil => $totalFarmers)
 
                     <div class="col-lg-4 col-md-6 col-sm-6">
@@ -67,7 +67,7 @@
 
 
                 @endforeach
-
+                    @endif
 
             <div class="col-sm-12">
 
