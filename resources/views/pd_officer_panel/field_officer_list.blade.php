@@ -32,7 +32,7 @@
                 @php
                 dd($users);
                     $groupedData = $users->groupBy('tehsil')->map(function ($group) {
-                        return $group->sum('farmers_count');
+                        return $group->sum('forwarded_to_ao');
                     });
                 @endphp
 
