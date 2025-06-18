@@ -381,7 +381,7 @@ class DGOfficerPanelController extends Controller
 
 
 
-                    $user->sumCount += $farmerCount; // Append this to each user
+                    $user->sumCount[] = $farmerCount; // Append this to each user
 
 
 
