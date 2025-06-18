@@ -205,6 +205,58 @@ class DGOfficerPanelController extends Controller
             // $query->where('user_type', '!=','Online');
         }
         // dd($test);
+
+        if($req->farmer_type_status_by_lrd == 'total'){
+
+            $tappas = json_decode($user->tappas ?? '[]');
+            $tehsils = json_decode($user->tehsil ?? '[]');
+            $query->where('district', $user->district)->whereIn('tehsil', $tehsils)
+            ->whereIn('verification_status', [
+                'verified_by_ao',
+                'verified_by_lrd',
+                'rejected_by_lrd'
+            ]);
+
+        }
+
+        if($req->farmer_type_status_by_lrd == 'pending'){
+
+            $tappas = json_decode($user->tappas ?? '[]');
+            $tehsils = json_decode($user->tehsil ?? '[]');
+            $query->where('district', $user->district)->whereIn('tehsil', $tehsils)
+            ->whereIn('verification_status', [
+                'verified_by_ao',
+            ]);
+
+        }
+
+        if($req->farmer_type_status_by_lrd == 'rejected'){
+
+            $tappas = json_decode($user->tappas ?? '[]');
+            $tehsils = json_decode($user->tehsil ?? '[]');
+            $query->where('district', $user->district)->whereIn('tehsil', $tehsils)
+            ->whereIn('verification_status', [
+                'rejected_by_lrd',
+            ]);
+
+        }
+
+        if($req->farmer_type_status_by_lrd == 'verified'){
+
+            $tappas = json_decode($user->tappas ?? '[]');
+            $tehsils = json_decode($user->tehsil ?? '[]');
+            $query->where('district', $user->district)->whereIn('tehsil', $tehsils)
+            ->whereIn('verification_status', [
+                'verified_by_lrd',
+            ]);
+
+        }
+
+
+
+
+
+
     }
 
 
