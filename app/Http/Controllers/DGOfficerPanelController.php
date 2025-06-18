@@ -379,17 +379,14 @@ class DGOfficerPanelController extends Controller
                     $user->farmers_count = $farmerCount;
 
 
-                    $sumCount = LandRevenueFarmerRegistation::where('district', $user->district)
-                    ->where('tehsil', $user->tehsil)
-                    ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
-                    ->sum();
 
 
-                    $user->sumCount += $sumCount; // Append this to each user
+                    $user->sumCount += $farmerCount; // Append this to each user
 
 
 
-                    
+
+
 
 
                     $online_farmers = LandRevenueFarmerRegistation::where('district', $user->district)
