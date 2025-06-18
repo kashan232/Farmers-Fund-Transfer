@@ -74,7 +74,7 @@ Route::get('/dup/tappas', function () {
             $tappaMap[$tappa][] = [
                 'user_id' => $user->id,
                 'name' => $user->name,
-                'name' => $user->tappas,
+                'tappas' => $user->tappas,
             ];
         }
     }
