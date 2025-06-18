@@ -57,29 +57,33 @@ use App\Http\Controllers\SmsTwilioController;
 
 
 Route::get('/dup/tappas', function () {
+    $users = User::select('id', 'name', 'tappas')->get();
 
-    $users = \App\Models\User::select('id', 'name', 'tappas')->get();
+    $tappaMap = [];
 
-$tappaMap = [];
+    foreach ($users as $user) {
+        $tappas = is_array($user->tappas)
+            ? $user->tappas
+            : json_decode($user->tappas, true) ?? [];
 
-foreach ($users as $user) {
-    $tappas = is_array($user->tappas)
-        ? $user->tappas
-        : json_decode($user->tappas, true) ?? []; // fallback to empty array
+        if (!is_array($tappas)) {
+            $tappas = [];
+        }
 
-    if (!is_array($tappas)) {
-        $tappas = []; // ensure always an array
+        foreach ($tappas as $tappa) {
+            $tappaMap[$tappa][] = [
+                'user_id' => $user->id,
+                'name' => $user->name,
+            ];
+        }
     }
 
-    foreach ($tappas as $tappa) {
-        $tappaMap[$tappa][] = [
-            'user_id' => $user->id,
-            'name' => $user->name,
-        ];
-    }
-}
+    // Filter duplicates only
+    $duplicates = collect($tappaMap)->filter(function ($users) {
+        return count($users) > 1;
+    });
 
-
+    return response()->json($duplicates);
 });
 
 
