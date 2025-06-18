@@ -57,7 +57,7 @@ use App\Http\Controllers\SmsTwilioController;
 
 
 Route::get('/dup/tappas', function () {
-    $users = User::select('id', 'name', 'tappas')->where('usertype','Field_Officer')->get();
+    $users = User::select('id', 'email' ,'name', 'tappas')->where('usertype','Field_Officer')->get();
 
     $tappaMap = [];
 
@@ -73,10 +73,9 @@ Route::get('/dup/tappas', function () {
         foreach ($tappas as $tappa) {
             $tappaMap[$tappa][] = [
                 'user_id' => $user->id,
-                'email' => $user->email,
-
                 'name' => $user->name,
-                'tappas' => $user->tappas,
+                'email' => $user->email,
+              
             ];
         }
     }
