@@ -28,7 +28,7 @@
     <div class="pc-content">
 
         <div class="row">
-{{dd($users);}}
+{{-- {{dd($users);}} --}}
 
                 @php
                 // dd($users);
