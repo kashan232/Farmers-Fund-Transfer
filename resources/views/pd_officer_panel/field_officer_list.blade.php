@@ -68,8 +68,9 @@
                                                 <tbody>
                                                     @foreach ($users as $user)
 
+                                                    {{$users->sum('farmers_count');}}
 
-                                                    {{ dd($user);}}
+
                                                         <tr>
                                                             <td>{{ $user->name }}</td>
                                                             <td>{{ $user->email }}</td>
