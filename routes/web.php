@@ -65,7 +65,11 @@ $tappaMap = [];
 foreach ($users as $user) {
     $tappas = is_array($user->tappas)
         ? $user->tappas
-        : json_decode($user->tappas, true);
+        : json_decode($user->tappas, true) ?? []; // fallback to empty array
+
+    if (!is_array($tappas)) {
+        $tappas = []; // ensure always an array
+    }
 
     foreach ($tappas as $tappa) {
         $tappaMap[$tappa][] = [
