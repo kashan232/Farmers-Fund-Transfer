@@ -44,7 +44,21 @@
                     });
 
 
-                    dd($users);
+                    $groupedFarmers = [];
+
+                    foreach ($users as $user) {
+                        $tappas = json_decode($user->tappas, true);
+
+                        foreach ($tappas as $tappa) {
+                            if (!isset($groupedFarmers[$tappa])) {
+                                $groupedFarmers[$tappa] = 0;
+                            }
+                            $groupedFarmers[$tappa] += $user->farmers_count;
+                        }
+                    }
+
+
+                    dd($groupedFarmers);
                 }
 
                 @endphp
