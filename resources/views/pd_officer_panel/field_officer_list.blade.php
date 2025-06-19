@@ -44,21 +44,31 @@
                     });
 
 
-                    $groupedFarmers = [];
+                   $tehsilTappas = [];
 
                     foreach ($users as $user) {
+                        $tehsil = json_decode($user->tehsil, true)[0]; // since it's like ["badin"]
                         $tappas = json_decode($user->tappas, true);
 
+                        if (!isset($tehsilTappas[$tehsil])) {
+                            $tehsilTappas[$tehsil] = [];
+                        }
+
                         foreach ($tappas as $tappa) {
-                            if (!isset($groupedFarmers[$tappa])) {
-                                $groupedFarmers[$tappa] = 0;
-                            }
-                            $groupedFarmers[$tappa] += $user->farmers_count;
+                            $tehsilTappas[$tehsil][] = $tappa;
                         }
                     }
 
+                    // Now count unique tappas per tehsil
+                    $tehsilTappasCount = [];
 
-                    dd($groupedFarmers);
+                    foreach ($tehsilTappas as $tehsil => $tappas) {
+                        $tehsilTappasCount[$tehsil] = count(array_unique($tappas));
+                    }
+
+
+
+                    dd($tehsilTappas);
                 }
 
                 @endphp
