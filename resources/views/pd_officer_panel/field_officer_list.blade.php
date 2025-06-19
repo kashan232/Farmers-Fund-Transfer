@@ -27,22 +27,10 @@
 <div class="pc-container">
     <div class="pc-content">
 
-        <div class="row">
-{{-- {{dd($users);}} --}}
+        @php
 
-                @php
-                $groupedData = '';
-                // dd($users);
-                if($users[0]->usertype == 'Field_Officer'){
-                    $groupedData = $users->groupBy('tehsil')->map(function ($group) {
-                        return $group->sum('forwarded_to_ao');
-                    });
-                }
-                if($users[0]->usertype == 'Agri_Officer'){
-                    $groupedData = $users->groupBy('tehsil')->map(function ($group) {
-                        return $group->sum('farmers_count');
-                    });
-
+         if($users[0]->usertype == 'Agri_Officer'){
+                 
 
                    $tehsilTappas = [];
 
@@ -80,6 +68,66 @@
 
                         echo "<br><br>";
                     }
+
+
+                }
+
+
+        @endphp
+
+        <div class="row">
+{{-- {{dd($users);}} --}}
+
+                @php
+                $groupedData = '';
+                // dd($users);
+                if($users[0]->usertype == 'Field_Officer'){
+                    $groupedData = $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('forwarded_to_ao');
+                    });
+                }
+                if($users[0]->usertype == 'Agri_Officer'){
+                    $groupedData = $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('farmers_count');
+                    });
+
+
+                //    $tehsilTappas = [];
+
+                //     foreach ($users as $user) {
+                //         $tehsil = json_decode($user->tehsil, true)[0]; // since it's like ["badin"]
+                //         $tappas = json_decode($user->tappas, true);
+
+                //         if (!isset($tehsilTappas[$tehsil])) {
+                //             $tehsilTappas[$tehsil] = [];
+                //         }
+
+                //         foreach ($tappas as $tappa) {
+                //             $tehsilTappas[$tehsil][] = $tappa;
+                //         }
+                //     }
+
+                //     // Now count unique tappas per tehsil
+                //     $tehsilTappasCount = [];
+
+                //     foreach ($tehsilTappas as $tehsil => $tappas) {
+                //         $tehsilTappasCount[$tehsil] = count(array_unique($tappas));
+                //     }
+
+
+                //     foreach ($tehsilTappas as $tehsil => $tappas) {
+                //         $uniqueTappas = array_unique($tappas);
+
+                //         echo "<h5>Tehsil:</h5> {$tehsil}<br>";
+                //         echo "Tappas Count: " . count($uniqueTappas) . "<br>";
+                //         echo "Tappas: ";
+
+                //         foreach ($uniqueTappas as $tappa) {
+                //             echo "<span class='badge text-bg-primary text-white font-weight-bold me-1'>{$tappa}</span> ";
+                //         }
+
+                //         echo "<br><br>";
+                //     }
 
 
                 }
