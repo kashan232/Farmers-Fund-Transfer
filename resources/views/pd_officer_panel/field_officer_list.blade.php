@@ -69,7 +69,7 @@
                     }
 
 
-                
+
 
 
         @endphp
@@ -79,7 +79,7 @@
 
                 @php
                 $groupedData = '';
-                dd($users);
+                // dd($users);
                 if($users[0]->usertype == 'Field_Officer'){
                     $groupedData = $users->groupBy('tehsil')->map(function ($group) {
                         return $group->sum('forwarded_to_ao');
