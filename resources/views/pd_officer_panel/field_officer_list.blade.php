@@ -70,9 +70,9 @@
 
                     foreach ($tehsilTappas as $tehsil => $tappas) {
                         $uniqueTappas = array_unique($tappas);
-                        echo "<strong>Tehsil:</strong> {$tehsil}<br>";
+                        echo "<h5>Tehsil:</h5> {$tehsil}<br>";
                         echo "Tappas Count: " . count($uniqueTappas) . "<br>";
-                        echo "Tappas: " . implode(', ', $uniqueTappas) . "<br><br>";
+                        echo "Tappas:  <span class='badge text-bg-primary text-white font-weight-bold'> " . implode(', ', $uniqueTappas) . "</span> <br><br>";
                     }
 
                 }
