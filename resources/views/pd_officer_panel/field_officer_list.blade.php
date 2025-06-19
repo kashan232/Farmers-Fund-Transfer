@@ -42,6 +42,9 @@
                     $groupedData = $users->groupBy('tehsil')->map(function ($group) {
                         return $group->sum('farmers_count');
                     });
+
+
+                    dd($users);
                 }
 
                 @endphp
