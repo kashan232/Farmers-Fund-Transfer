@@ -71,21 +71,39 @@
 
 
                 }
+if ($users[0]->usertype == 'Field_Officer') {
+    $tehsilUsers = [];
 
-                if($users[0]->usertype == 'Field_Officer'){
-                    foreach ($users as $user) {
-                        $tappas = json_decode($user->tappas, true);  // this gives ["talhar seri pathariyoon"]
-                        $uniqueTappas = array_unique($tappas);
+    // Step 1: Group users by tehsil
+    foreach ($users as $user) {
+        $tehsil = $user->tehsil;
 
-                        echo "<h5>Tehsil:</h5> {$user->tehsil}<br>";
-                        echo "Tappas Count: " . count($uniqueTappas) . "<br>";
-                        echo "Tappas: ";
+        if (!isset($tehsilUsers[$tehsil])) {
+            $tehsilUsers[$tehsil] = [];
+        }
 
-                        foreach ($uniqueTappas as $tappa) {
-                            echo "<span class='badge text-bg-primary text-white font-weight-bold me-1'>{$tappa}</span> ";
-                        }
-                    }
-                }
+        $tehsilUsers[$tehsil][] = $user;
+    }
+
+    // Step 2: Display users grouped by tehsil
+    foreach ($tehsilUsers as $tehsil => $tehsilGroup) {
+        echo "<h5 class='mt-4'>Tehsil: <span class='text-success'>{$tehsil}</span></h5>";
+
+        foreach ($tehsilGroup as $user) {
+            echo "<p><strong>User:</strong> {$user->name} ({$user->email})<br>";
+            
+            $tappas = json_decode($user->tappas, true);
+
+            echo "<strong>Tappas:</strong> ";
+            foreach ($tappas as $tappa) {
+                echo "<span class='badge text-bg-primary text-white font-weight-bold me-1'>{$tappa}</span> ";
+            }
+
+            echo "</p>";
+        }
+    }
+}
+
 
 
 
