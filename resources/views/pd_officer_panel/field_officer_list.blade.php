@@ -29,6 +29,7 @@
 
         @php
 
+         if($users[0]->usertype == 'Agri_Officer'){
 
 
                    $tehsilTappas = [];
@@ -69,6 +70,21 @@
                     }
 
 
+                }
+
+                if($users[0]->usertype == 'Field_Officer'){
+
+                    $tappas = json_decode($user->tappas, true);  // this gives ["talhar seri pathariyoon"]
+                    $uniqueTappas = array_unique($tappas);
+
+                    echo "<h5>Tehsil:</h5> {$user->tehsil}<br>";
+                    echo "Tappas Count: " . count($uniqueTappas) . "<br>";
+                    echo "Tappas: ";
+
+                    foreach ($uniqueTappas as $tappa) {
+                        echo "<span class='badge text-bg-primary text-white font-weight-bold me-1'>{$tappa}</span> ";
+                    }
+                }
 
 
 
