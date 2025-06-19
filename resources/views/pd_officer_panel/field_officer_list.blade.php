@@ -67,13 +67,20 @@
                     }
 
 
-
                     foreach ($tehsilTappas as $tehsil => $tappas) {
                         $uniqueTappas = array_unique($tappas);
+
                         echo "<h5>Tehsil:</h5> {$tehsil}<br>";
                         echo "Tappas Count: " . count($uniqueTappas) . "<br>";
-                        echo "Tappas:  <span class='badge text-bg-primary text-white font-weight-bold'> " . implode(', ', $uniqueTappas) . "</span> <br><br>";
+                        echo "Tappas: ";
+
+                        foreach ($uniqueTappas as $tappa) {
+                            echo "<span class='badge text-bg-primary text-white font-weight-bold me-1'>{$tappa}</span> ";
+                        }
+
+                        echo "<br><br>";
                     }
+
 
                 }
 
