@@ -568,8 +568,7 @@ class DGOfficerPanelController extends Controller
 
             $agriUsers = User::with('lrdOfficer')->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
                 ->where('district', $district) // Search inside ["Badin"]
-                ->whereIn('tehsil', $tehsils)
-                ->whereIn('tappa', $tappas)
+      
                 ->where('usertype', 'Land_Revenue_Officer')
                 ->get();
 
