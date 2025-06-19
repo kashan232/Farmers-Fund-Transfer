@@ -29,7 +29,6 @@
 
         @php
 
-         if($users[0]->usertype == 'Agri_Officer'){
 
 
                    $tehsilTappas = [];
@@ -70,7 +69,7 @@
                     }
 
 
-                }
+                
 
 
         @endphp
