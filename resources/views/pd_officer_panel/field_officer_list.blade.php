@@ -68,7 +68,13 @@
 
 
 
-                    dd($tehsilTappas);
+                    foreach ($tehsilTappas as $tehsil => $tappas) {
+                        $uniqueTappas = array_unique($tappas);
+                        echo "<strong>Tehsil:</strong> {$tehsil}<br>";
+                        echo "Tappas Count: " . count($uniqueTappas) . "<br>";
+                        echo "Tappas: " . implode(', ', $uniqueTappas) . "<br><br>";
+                    }
+
                 }
 
                 @endphp
