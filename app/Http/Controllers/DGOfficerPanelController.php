@@ -560,13 +560,16 @@ class DGOfficerPanelController extends Controller
 
         elseif ($req->usertype == 'Land_Revenue_Officer') {
 
-
+ $tehsils = json_decode($user->tehsil ?? '[]');
+                $tappas = json_decode($user->tappas ?? '[]');
 
 
             $district = $req->district; // e.g., "Badin"
 
             $agriUsers = User::with('lrdOfficer')->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
                 ->where('district', $district) // Search inside ["Badin"]
+                ->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas)
                 ->where('usertype', 'Land_Revenue_Officer')
                 ->get();
 
@@ -580,6 +583,7 @@ class DGOfficerPanelController extends Controller
                     //Total
                     $farmerCount = LandRevenueFarmerRegistation::where('district', $district)->whereIn('tehsil', $tehsils)
 
+                ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
                             'verified_by_ao',
                             'verified_by_lrd',
@@ -606,6 +610,7 @@ class DGOfficerPanelController extends Controller
                     $verified_by_lrd = LandRevenueFarmerRegistation::where('district', $district)
                         ->whereIn('tehsil', $tehsils)
 
+                ->whereIn('tappa', $tappas)
                             ->whereIn('verification_status', [
                                 'verified_by_lrd',
                             ])
@@ -617,6 +622,7 @@ class DGOfficerPanelController extends Controller
                     $pending = LandRevenueFarmerRegistation::where('district', $district)
                         ->whereIn('tehsil', $tehsils)
 
+                ->whereIn('tappa', $tappas)
                             ->whereIn('verification_status', [
                                 'verified_by_ao',
                             ])
@@ -628,6 +634,7 @@ class DGOfficerPanelController extends Controller
                     $rejected = LandRevenueFarmerRegistation::where('district', $district)
                         ->whereIn('tehsil', $tehsils)
 
+                ->whereIn('tappa', $tappas)
                             ->whereIn('verification_status', [
                                 'rejected_by_lrd',
                             ])
