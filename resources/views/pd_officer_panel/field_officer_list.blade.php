@@ -128,7 +128,7 @@
                     $verified_by_ao = $users->groupBy('tehsil')->map(function ($group) {
                         return $group->sum('verified_by_ao');
                     });
-                     
+
 
 
                 //    $tehsilTappas = [];
@@ -173,10 +173,10 @@
 
                 @endphp
 
+             {{   dd($verified_by_ao)}}
+                @foreach ($verified_by_ao as $thsil => $a)
 
-                @foreach ($verified_by_ao as $thsil => $verified_by_ao)
-
-                <b> {{$thsil}} </b> : {{$verified_by_ao}}
+                <b> {{$thsil}} </b> : {{$a}}
                 @endforeach
 
 
