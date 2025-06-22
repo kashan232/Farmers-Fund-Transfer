@@ -178,7 +178,7 @@
 
                 @if(!empty($groupedData))
 
-               
+
 
                 <div class="col-lg-12">
                     <table class="table table-bordered" >
@@ -207,9 +207,9 @@
                     </table>
                 </div>
 
-                
 
-              
+
+
 
 
 
@@ -235,10 +235,10 @@
 
 
                 @endforeach --}}
-               
+
 
                 <br>
-                    @if($users[0]->usertype == 'Agri_Officer')
+                @if($users[0]->usertype == 'Agri_Officer')
                 <div class="col-lg-12">
                     <table class="table table-bordered" >
                         <thead>
@@ -266,6 +266,11 @@
                     </table>
                 </div>
                 @endif
+
+                @endif
+
+
+                
             <div class="col-sm-12">
 
 
