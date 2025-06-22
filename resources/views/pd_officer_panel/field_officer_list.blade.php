@@ -173,7 +173,7 @@
 
                 @endphp
 
-             {{   dd($verified_by_ao)}}
+             {{   dd($forwarded_to_dd)}}
                 @foreach ($verified_by_ao as $thsil => $a)
 
                 <b> {{$thsil}} </b> : {{$a}}
