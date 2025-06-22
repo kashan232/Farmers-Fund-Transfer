@@ -125,6 +125,12 @@
                     });
 
 
+                    $verified_by_ao = $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('verified_by_ao');
+                    });
+                     
+
+
                 //    $tehsilTappas = [];
 
                 //     foreach ($users as $user) {
@@ -166,6 +172,14 @@
                 }
 
                 @endphp
+
+
+                @foreach ($verified_by_ao as $thsil => $verified_by_ao)
+
+                <b> {{$thsil}} </b> : {{$verified_by_ao}}
+                @endforeach
+
+
                 @if(!empty($groupedData))
 
 
