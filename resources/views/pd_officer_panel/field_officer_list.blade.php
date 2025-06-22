@@ -173,7 +173,7 @@
 
                 @endphp
 
-
+              <div class="col-lg-12">
               <table class="table table-bordered" >
                 <thead>
                     <tr>
@@ -196,6 +196,7 @@
                     @endforeach
                 </tbody>
             </table>
+              </div>
 
 
                 @if(!empty($groupedData))
