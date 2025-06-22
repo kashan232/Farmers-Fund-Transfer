@@ -173,17 +173,18 @@
 
                 @endphp
 
-                
+
 
 
                 @if(!empty($groupedData))
 
+               
 
                 <div class="col-lg-12">
                     <table class="table table-bordered" >
                         <thead>
                             <tr>
-                                <th colspan="3" style="text-align: center;">Received by FA -  TEHSIL WISE COUNT</th>
+                                <th colspan="3" style="text-align: center;"> {{ ($users[0]->usertype == 'Agri_Officer') ? 'Received by FA':'FORWARDED TO AO'}} -  TEHSIL WISE COUNT </th>
                             </tr>
                             <tr>
                                 <th>S#</th>
@@ -205,6 +206,11 @@
                         </tbody>
                     </table>
                 </div>
+
+                
+
+              
+
 
 
                 {{-- @foreach ($groupedData as $ttehsil => $totalFarmers)
@@ -229,10 +235,10 @@
 
 
                 @endforeach --}}
-                @endif
+               
 
                 <br>
-
+                    @if($users[0]->usertype == 'Agri_Officer')
                 <div class="col-lg-12">
                     <table class="table table-bordered" >
                         <thead>
@@ -259,7 +265,7 @@
                         </tbody>
                     </table>
                 </div>
-
+                @endif
             <div class="col-sm-12">
 
 
