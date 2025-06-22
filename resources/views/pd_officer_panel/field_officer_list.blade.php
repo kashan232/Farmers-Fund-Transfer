@@ -126,7 +126,7 @@
 
 
                     $verified_by_ao = $users->groupBy('tehsil')->map(function ($group) {
-                        return $group->sum('verified_by_ao');
+                        return $group->sum('forwarded_to_dd');
                     });
 
 
@@ -173,7 +173,7 @@
 
                 @endphp
 
-             {{   dd($users)}}
+             
                 @foreach ($verified_by_ao as $thsil => $a)
 
                 <b> {{$thsil}} </b> : {{$a}}
