@@ -174,7 +174,7 @@
                 @endphp
 
 
-              <table border="1" cellpadding="8" cellspacing="0">
+              <table class="table table-bordered" >
                 <thead>
                     <tr>
                         <th colspan="3" style="text-align: center;">FORWARDED TO LRD TEHSIL WISE COUNT</th>
@@ -189,7 +189,8 @@
                     @foreach ($verified_by_ao as $index => $tehsil)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $index }}</td>
+                            <td>{{ str_replace(['[', ']', '"'], '', $index) }}</td>
+
                             <td>{{ $tehsil }}</td>
                         </tr>
                     @endforeach
