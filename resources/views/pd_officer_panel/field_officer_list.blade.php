@@ -173,32 +173,7 @@
 
                 @endphp
 
-                <div class="col-lg-12">
-                    <table class="table table-bordered" >
-                        <thead>
-                            <tr>
-                                <th colspan="3" style="text-align: center;">FORWARDED TO LRD TEHSIL WISE COUNT</th>
-                            </tr>
-                            <tr>
-                                <th>S#</th>
-                                <th>TEHSIL</th>
-                                <th>TOTAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if(!empty($verified_by_ao))
-                            @foreach ($verified_by_ao as $index => $tehsil)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ str_replace(['[', ']', '"'], '', $index) }}</td>
-
-                                    <td>{{ $tehsil }}</td>
-                                </tr>
-                            @endforeach
-                            @endif
-                        </tbody>
-                    </table>
-                </div>
+                
 
 
                 @if(!empty($groupedData))
@@ -208,7 +183,7 @@
                     <table class="table table-bordered" >
                         <thead>
                             <tr>
-                                <th colspan="3" style="text-align: center;">FORWARDED TO LRD TEHSIL WISE COUNT</th>
+                                <th colspan="3" style="text-align: center;">Received by FA -  TEHSIL WISE COUNT</th>
                             </tr>
                             <tr>
                                 <th>S#</th>
@@ -254,7 +229,36 @@
 
 
                 @endforeach --}}
-                    @endif
+                @endif
+
+                <br>
+
+                <div class="col-lg-12">
+                    <table class="table table-bordered" >
+                        <thead>
+                            <tr>
+                                <th colspan="3" style="text-align: center;">FORWARDED TO LRD TEHSIL WISE COUNT</th>
+                            </tr>
+                            <tr>
+                                <th>S#</th>
+                                <th>TEHSIL</th>
+                                <th>TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(!empty($verified_by_ao))
+                            @foreach ($verified_by_ao as $index => $tehsil)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ str_replace(['[', ']', '"'], '', $index) }}</td>
+
+                                    <td>{{ $tehsil }}</td>
+                                </tr>
+                            @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
 
             <div class="col-sm-12">
 
