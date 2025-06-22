@@ -29,78 +29,78 @@
 
         @php
 
-         if($users[0]->usertype == 'Agri_Officer'){
+        //  if($users[0]->usertype == 'Agri_Officer'){
 
 
-                   $tehsilTappas = [];
+        //            $tehsilTappas = [];
 
-                    foreach ($users as $user) {
-                        $tehsil = json_decode($user->tehsil, true)[0]; // since it's like ["badin"]
-                        $tappas = json_decode($user->tappas, true);
+        //             foreach ($users as $user) {
+        //                 $tehsil = json_decode($user->tehsil, true)[0]; // since it's like ["badin"]
+        //                 $tappas = json_decode($user->tappas, true);
 
-                        if (!isset($tehsilTappas[$tehsil])) {
-                            $tehsilTappas[$tehsil] = [];
-                        }
+        //                 if (!isset($tehsilTappas[$tehsil])) {
+        //                     $tehsilTappas[$tehsil] = [];
+        //                 }
 
-                        foreach ($tappas as $tappa) {
-                            $tehsilTappas[$tehsil][] = $tappa;
-                        }
-                    }
+        //                 foreach ($tappas as $tappa) {
+        //                     $tehsilTappas[$tehsil][] = $tappa;
+        //                 }
+        //             }
 
-                    // Now count unique tappas per tehsil
-                    $tehsilTappasCount = [];
+        //             // Now count unique tappas per tehsil
+        //             $tehsilTappasCount = [];
 
-                    foreach ($tehsilTappas as $tehsil => $tappas) {
-                        $tehsilTappasCount[$tehsil] = count(array_unique($tappas));
-                    }
-
-
-                    foreach ($tehsilTappas as $tehsil => $tappas) {
-                        $uniqueTappas = array_unique($tappas);
-
-                        echo "<h5>Tehsil:</h5> {$tehsil}<br>";
-                        echo "Tappas Count: " . count($uniqueTappas) . "<br>";
-                        echo "Tappas: ";
-
-                        foreach ($uniqueTappas as $tappa) {
-                            echo "<span class='badge text-bg-primary text-white font-weight-bold me-1'>{$tappa}</span> ";
-                        }
-
-                        echo "<br><br>";
-                    }
+        //             foreach ($tehsilTappas as $tehsil => $tappas) {
+        //                 $tehsilTappasCount[$tehsil] = count(array_unique($tappas));
+        //             }
 
 
-                }
-if ($users[0]->usertype == 'Field_Officer') {
-    $tehsilTappas = [];
+        //             foreach ($tehsilTappas as $tehsil => $tappas) {
+        //                 $uniqueTappas = array_unique($tappas);
 
-    // Step 1: Collect tappas grouped by tehsil (repeating allowed)
-    foreach ($users as $user) {
-        $tehsil = $user->tehsil;
-        $tappas = json_decode($user->tappas, true);
+        //                 echo "<h5>Tehsil:</h5> {$tehsil}<br>";
+        //                 echo "Tappas Count: " . count($uniqueTappas) . "<br>";
+        //                 echo "Tappas: ";
 
-        if (!isset($tehsilTappas[$tehsil])) {
-            $tehsilTappas[$tehsil] = [];
-        }
+        //                 foreach ($uniqueTappas as $tappa) {
+        //                     echo "<span class='badge text-bg-primary text-white font-weight-bold me-1'>{$tappa}</span> ";
+        //                 }
 
-        foreach ($tappas as $tappa) {
-            $tehsilTappas[$tehsil][] = $tappa; // Keep repeated tappas
-        }
-    }
+        //                 echo "<br><br>";
+        //             }
 
-    // Step 2: Display tehsil-wise total tappas (including duplicates)
-    foreach ($tehsilTappas as $tehsil => $tappas) {
-        echo "<h5 class='mt-4'>Tehsil: <span class='text-success'>{$tehsil}</span></h5>";
-        echo "Total Count: " . count($tappas) . "<br>";
-        echo "Tappas Name: ";
 
-        foreach ($tappas as $tappa) {
-            echo "<span class='badge text-bg-primary text-white font-weight-bold me-1'>{$tappa}</span> ";
-        }
+        //         }
+// if ($users[0]->usertype == 'Field_Officer') {
+//     $tehsilTappas = [];
 
-        echo "<br><br>";
-    }
-}
+//     // Step 1: Collect tappas grouped by tehsil (repeating allowed)
+//     foreach ($users as $user) {
+//         $tehsil = $user->tehsil;
+//         $tappas = json_decode($user->tappas, true);
+
+//         if (!isset($tehsilTappas[$tehsil])) {
+//             $tehsilTappas[$tehsil] = [];
+//         }
+
+//         foreach ($tappas as $tappa) {
+//             $tehsilTappas[$tehsil][] = $tappa; // Keep repeated tappas
+//         }
+//     }
+
+//     // Step 2: Display tehsil-wise total tappas (including duplicates)
+//     foreach ($tehsilTappas as $tehsil => $tappas) {
+//         echo "<h5 class='mt-4'>Tehsil: <span class='text-success'>{$tehsil}</span></h5>";
+//         echo "Total Count: " . count($tappas) . "<br>";
+//         echo "Tappas Name: ";
+
+//         foreach ($tappas as $tappa) {
+//             echo "<span class='badge text-bg-primary text-white font-weight-bold me-1'>{$tappa}</span> ";
+//         }
+
+//         echo "<br><br>";
+//     }
+// }
 
 
 
