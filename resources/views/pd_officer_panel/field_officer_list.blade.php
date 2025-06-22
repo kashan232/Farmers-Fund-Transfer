@@ -119,6 +119,15 @@
                         return $group->sum('forwarded_to_ao');
                     });
                 }
+
+                if($users[0]->usertype == 'Land_Revenue_Officer'){
+                    $groupedData = $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('total_farmers');
+                    });
+                }
+
+
+
                 if($users[0]->usertype == 'Agri_Officer'){
                     $groupedData = $users->groupBy('tehsil')->map(function ($group) {
                         return $group->sum('farmers_count');
@@ -184,7 +193,15 @@
                     <table class="table table-bordered" >
                         <thead>
                             <tr>
-                                <th colspan="3" style="text-align: center;"> {{ ($users[0]->usertype == 'Agri_Officer') ? 'Received by FA':'FORWARDED TO AO'}} -  TEHSIL WISE COUNT </th>
+                                <th colspan="3" style="text-align: center;"> 
+                                    @if($users[0]->usertype == 'Agri_Officer') 
+                                    'Received by FA'
+                                    @elseif($users[0]->usertype == 'Land_Revenue_Officer')
+                                    'Received by AO'
+                                    @else
+                                    FORWARDED TO AO
+                                    @endif
+                                     -  TEHSIL WISE COUNT </th>
                             </tr>
                             <tr>
                                 <th>S#</th>
@@ -270,7 +287,7 @@
                 @endif
 
 
-                
+
             <div class="col-sm-12">
 
 
