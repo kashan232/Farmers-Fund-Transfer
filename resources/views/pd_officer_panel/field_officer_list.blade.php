@@ -193,11 +193,11 @@
                     <table class="table table-bordered" >
                         <thead>
                             <tr>
-                                <th colspan="3" style="text-align: center;"> 
-                                    @if($users[0]->usertype == 'Agri_Officer') 
-                                    'Received by FA'
+                                <th colspan="3" style="text-align: center;">
+                                    @if($users[0]->usertype == 'Agri_Officer')
+                                    Received by FA
                                     @elseif($users[0]->usertype == 'Land_Revenue_Officer')
-                                    'Received by AO'
+                                    Received by AO
                                     @else
                                     FORWARDED TO AO
                                     @endif
