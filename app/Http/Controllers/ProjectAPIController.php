@@ -299,7 +299,7 @@ public function get_farmer_data($cnic)
 
     $farmersWithUsers = $farmers->map(function ($farmer) {
         // Get all users whose tappas (JSON) include this farmer's tappa
-        $matchedUsers = User::whereJsonContains('tappas', $farmer->tappa)->get();
+        $matchedUsers = User::select(['usertype','name'])->whereJsonContains('tappas', $farmer->tappa)->get();
 
         // Attach all matched users to the farmer
         $farmer->users = $matchedUsers;
