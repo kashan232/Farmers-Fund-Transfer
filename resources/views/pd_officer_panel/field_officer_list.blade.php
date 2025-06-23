@@ -325,6 +325,7 @@
                                                     <tr>
                                                         <th>Name</th>
                                                         <th>Email</th>
+                                                        <th>Password</th>
                                                         <th>Contact</th>
                                                         <th>CNIC</th>
                                                         <th>District</th>
@@ -341,6 +342,21 @@
                                                         <tr>
                                                             <td>{{ $user->name }}</td>
                                                             <td>{{ $user->email }}</td>
+
+                                                            <td>
+                                                                @if($user->usertype == 'Field_Officer')
+                                                                    {{$user->fieldOfficer->password  ??  'N/A'}}
+                                                                @elseif($user->usertype == 'Agri_Officer')
+                                                                    {{$user->agriOfficer->password  ?? 'N/A'}}
+                                                                @elseif($user->usertype == 'DD_Officer')
+                                                                    {{$user->ddOfficer->password  ?? 'N/A'}}
+                                                                @elseif($user->usertype == 'Land_Revenue_Officer')
+                                                                    {{$user->lrdOfficer->password  ?? 'N/A'}}
+                                                                @elseif($user->usertype == 'District_Officer')
+                                                                    {{$user->adOfficer->password  ?? 'N/A'}}
+                                                                @endif
+                                                            </td>
+
                                                             <td>
                                                                 @if($user->usertype == 'Field_Officer')
                                                                     {{$user->fieldOfficer->contact_number  ??  'Not Given'}}
