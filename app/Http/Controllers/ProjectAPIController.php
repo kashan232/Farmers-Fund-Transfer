@@ -294,6 +294,16 @@ class ProjectAPIController extends Controller
     public function get_farmer_data($cnic)
     {
         $farmers = LandRevenueFarmerRegistation::where('cnic', $cnic)->get();
+        $user = [];
+
+        foreach ($farmers as $farmer) {
+            $user[] = User::where('tappas', $farmer->tappa)->first(); // if tappas is a single string
+        }
+
+
+
+        return response()->json(['farmers' => $farmers, 'user'=>$user], 200);
+
 
         if ($farmers->isEmpty()) {
             return response()->json(['message' => 'No farmer data found.'], 404);
