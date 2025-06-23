@@ -290,8 +290,7 @@ class ProjectAPIController extends Controller
 
     }
 
-
-   public function get_farmer_data($cnic)
+public function get_farmer_data($cnic)
 {
     $farmers = LandRevenueFarmerRegistation::where('cnic', $cnic)->get();
 
@@ -299,17 +298,17 @@ class ProjectAPIController extends Controller
         return response()->json(['message' => 'No farmer data found.'], 404);
     }
 
-    $userMatches = [];
+    $farmersWithUsers = $farmers->map(function ($farmer) {
+        // Fetch the first matching user where tappas JSON contains farmer's tappa
+        $user = User::whereJsonContains('tappas', $farmer->tappa)->first();
 
-    foreach ($farmers as $farmer) {
-        $matchedUsers = User::whereJsonContains('tappas', $farmer->tappa)->get();
-        $userMatches = array_merge($userMatches, $matchedUsers->all()); // merge results
-    }
+        // Attach the user to the farmer object
+        $farmer->user = $user;
 
-    return response()->json([
-        'farmers' => $farmers,
-        'users' => $userMatches
-    ], 200);
+        return $farmer;
+    });
+
+    return response()->json(['farmers' => $farmersWithUsers], 200);
 }
 
 
