@@ -648,6 +648,9 @@ class HomeController extends Controller
                         }
                     }
                 }
+
+                dd($user);
+
                 $fa_total_Registered_Farmers = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->where('tehsil', $user->tehsil)
                 ->whereIn('tappa', json_decode($user->tappas))
@@ -852,6 +855,8 @@ class HomeController extends Controller
 
 
 
+
+
                 // $agriUserfarmersCount = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->count();
                 // $Unverifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Unverified')->count();
                 // $Verifiedfarmeragiruser = DB::table('land_revenue_farmer_registations')->where('user_id', '=', $user_id)->where('verification_status', '=', 'Verified')->count();
@@ -864,6 +869,7 @@ class HomeController extends Controller
                     'tehsilCount' => $tehsilCount,
                     'tappaCount' => $tappaCount,
                     'ucCount' => $ucCount,
+                    'tappas' => $user->tappas
                 ]);
             }
         } else {
