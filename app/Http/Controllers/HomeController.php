@@ -833,7 +833,7 @@ class HomeController extends Controller
                     $query->where('verification_status', 'verified_by_ao')
 
                         ->orWhere('verification_status', 'rejected_by_lrd')
-                        ->orWhere('verification_status', 'verified_by_lrd');
+                       
                 })->count();
 
 
