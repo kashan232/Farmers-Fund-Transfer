@@ -438,7 +438,7 @@ class DGOfficerPanelController extends Controller
                         //     NULL
 
                         // ])
-                        ->orWhereNull('verification_status')
+                        ->whereNull('verification_status')
                         ->count();
 
 
