@@ -829,7 +829,7 @@ class HomeController extends Controller
 
                 $total_farmers = LandRevenueFarmerRegistation::where('district', Auth::user()->district)
                 ->whereIn('tehsil',json_decode($user->tehsil))
-                ->whereIn('tehsil',json_decode($user->tappas))
+                ->whereIn('tappa',json_decode($user->tappas))
                 ->where(function ($query) {
                     $query->where('verification_status', 'verified_by_ao')
 
