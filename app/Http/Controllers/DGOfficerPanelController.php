@@ -413,9 +413,10 @@ class DGOfficerPanelController extends Controller
                         $unverified = LandRevenueFarmerRegistation::where('district', $user->district)
                         ->where('tehsil', $user->tehsil)
                         ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
-                        ->where('verification_status',
-                            NULL
-                        )
+                        ->whereIn('verification_status',[
+                            NULL,
+                            'rejected_by_fa'
+                        ])
                         ->count();
 
 
@@ -568,7 +569,7 @@ class DGOfficerPanelController extends Controller
 
             $agriUsers = User::with('lrdOfficer')->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
                 ->where('district', $district) // Search inside ["Badin"]
-      
+
                 ->where('usertype', 'Land_Revenue_Officer')
                 ->get();
 
