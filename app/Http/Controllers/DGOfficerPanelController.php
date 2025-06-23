@@ -389,11 +389,11 @@ class DGOfficerPanelController extends Controller
                      ->where(function ($query) {
         $query->whereIn('verification_status', [
             'verified_by_fa',
-            
+
             'verified_by_ao',
             'verified_by_lrd',
             'rejected_by_fa',
-            
+
             'rejected_by_ao',
             'rejected_by_lrd',
         ])->orWhereNull('verification_status');
@@ -446,6 +446,19 @@ class DGOfficerPanelController extends Controller
 
 
 
+
+                         $rejected_by_fa = LandRevenueFarmerRegistation::where('district', $user->district)
+                        ->where('tehsil', $user->tehsil)
+                        ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                        ->where('verification_status',
+
+                            'rejected_by_fa'
+
+                        )
+                        ->count();
+
+
+                    $user->rejected_by_fa = $rejected_by_fa;
 
 
                     $user->unverified = $unverified;
