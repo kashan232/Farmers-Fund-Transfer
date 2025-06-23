@@ -47,7 +47,7 @@ class FieldOfficerPanelController extends Controller
         // })
         ->latest()->get();
 
-        dd( $farmers );
+        
 
         return view('field_officer_panel.farmers.index',['farmers'=>$farmers , 'tehsils' => $tehsils]);
     }
