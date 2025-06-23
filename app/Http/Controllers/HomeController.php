@@ -675,7 +675,7 @@ class HomeController extends Controller
                         ->whereNull('user_id');
                     });
                 })
-                ->where('verification_status' , NULL)
+                 ->whereNull('verification_status')
                 ->count();
 
 
