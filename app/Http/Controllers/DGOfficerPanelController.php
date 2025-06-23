@@ -625,7 +625,8 @@ class DGOfficerPanelController extends Controller
                         ->whereIn('verification_status', [
                             'verified_by_ao',
                             'verified_by_lrd',
-                            'rejected_by_lrd'
+                            'rejected_by_lrd',
+                            'verified_by_dd'
                         ])
                         ->count();
 
