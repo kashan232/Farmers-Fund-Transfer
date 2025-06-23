@@ -235,12 +235,11 @@ class LandRevenueFarmerController extends Controller
 
             $all_land_farmers = LandRevenueFarmerRegistation::where('district', Auth::user()->district)
             ->whereIn('tehsil',json_decode($user->tehsil))
-            ->where(function ($query) {
-                $query->where('verification_status', 'verified_by_dd')
-                    ->orWhere('verification_status', 'verified_by_ao')
-                    ->orWhere('verification_status', 'verified_by_lrd')
-                    ->orWhere('verification_status', 'rejected_by_lrd');
-            })
+            ->whereIn('verification_status', [
+                            'verified_by_ao',
+                            'verified_by_lrd',
+                            'rejected_by_lrd'
+                        ])
             ->get();
             // dd($all_agriculture_farmers);
             return view('land_revenue_panel.farmers_registration.all_land_farmers', [
