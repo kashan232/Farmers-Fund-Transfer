@@ -659,8 +659,23 @@ class HomeController extends Controller
                         $q->where('user_type', 'Online')
                         ->whereNull('user_id');
                     });
-                })
+                })->whereIn('verification_status', [
+            'verified_by_fa',
+            'verified_by_ao',
+            'verified_by_lrd',
+            'rejected_by_ao',
+            'rejected_by_lrd',
+        ])->orWhereNull('verification_status')
+
+
+                
                 ->count();
+
+
+
+                
+
+
 
 
                 $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
