@@ -555,7 +555,8 @@ class DGOfficerPanelController extends Controller
 
                 // Make sure the current user's district is being used to count farmers for them
                 if (in_array($district, $districts)) {
-                    $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $districts)->whereIn('tehsil', $tehsils)
+                    $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                    ->whereIn('tehsil', $tehsils)
                     ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
                             'verified_by_fa',
@@ -564,7 +565,7 @@ class DGOfficerPanelController extends Controller
                             'rejected_by_lrd',
                             'rejected_by_ao',
                             'rejected_by_fa',
-                        ])->orWhereNull('verification_status')
+                        ])->whereNull('verification_status')
                         ->count();
 
                     // Add farmers_count to the user object
@@ -610,7 +611,7 @@ class DGOfficerPanelController extends Controller
                        ->whereIn('tehsil', $tehsils)
                         ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
-                            
+
                             'rejected_by_fa',
                         ])
                         ->count();
@@ -620,9 +621,9 @@ class DGOfficerPanelController extends Controller
                        ->whereIn('tehsil', $tehsils)
                         ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
-                            
+
                             'rejected_by_ao',
-                           
+
                         ])
                         ->count();
                 $user->rejected_by_ao = $rejected_by_ao;
