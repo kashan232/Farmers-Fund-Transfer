@@ -558,14 +558,17 @@ class DGOfficerPanelController extends Controller
                     $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $districts)
                     ->whereIn('tehsil', $tehsils)
                     ->whereIn('tappa', $tappas)
-                        ->whereIn('verification_status', [
-                            'verified_by_fa',
-                            'verified_by_ao',
-                            'verified_by_lrd',
-                            'rejected_by_lrd',
-                            'rejected_by_ao',
-                            'rejected_by_fa',
-                        ])
+                      ->where(function ($query) {
+        $query->whereIn('verification_status', [
+                'verified_by_fa',
+                'verified_by_ao',
+                'verified_by_lrd',
+                'rejected_by_lrd',
+                'rejected_by_ao',
+                'rejected_by_fa'
+            ])
+            ->orWhereNull('verification_status');
+    })
                         ->count();
 
                     // Add farmers_count to the user object
