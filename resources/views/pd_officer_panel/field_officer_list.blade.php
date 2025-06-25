@@ -547,10 +547,18 @@
 
 
                                                                 @if($user->usertype == 'District_Officer')
-                                                                <span style="font-size:12px">
-                                                                    Verified = <span style="font-size:15px"> {{ $user->verified }} </span> <br>
-                                                                    Rejected = <span style="font-size:15px"> {{ $user->rejected }} </span> <br>
-                                                                    Pending = <span style="font-size:15px"> {{ $user->pending }}  </span>
+                                                                 <span style="font-size:12px">
+                                                                    Verified By FA= <span style="font-size:15px"> {{ $user->verified_by_fa }} </span> <br>
+                                                                    Verified By AO= <span style="font-size:15px"> {{ $user->verified_by_ao }} </span> <br>
+                                                                    Verified By LRD= <span style="font-size:15px"> {{ $user->verified_by_lrd }} </span> <br>
+
+                                                                    Rejected By FA= <span style="font-size:15px"> {{ $user->rejected_by_fa }} </span> <br>
+                                                                    Rejected By AO= <span style="font-size:15px"> {{ $user->rejected_by_ao }} </span> <br>
+                                                                    Rejected By LRD= <span style="font-size:15px"> {{ $user->rejected_by_lrd }} </span> <br>
+
+                                                                    Pending = <span style="font-size:15px"> {{ $user->pending }} </span> <br>
+
+
                                                                 </span>
                                                                  @endif <!-- This is from withCount('farmers') -->
 

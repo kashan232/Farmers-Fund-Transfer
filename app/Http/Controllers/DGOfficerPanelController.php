@@ -559,16 +559,16 @@ class DGOfficerPanelController extends Controller
                     ->whereIn('tehsil', $tehsils)
                     ->whereIn('tappa', $tappas)
                       ->where(function ($query) {
-        $query->whereIn('verification_status', [
-                'verified_by_fa',
-                'verified_by_ao',
-                'verified_by_lrd',
-                'rejected_by_lrd',
-                'rejected_by_ao',
-                'rejected_by_fa'
-            ])
-            ->orWhereNull('verification_status');
-    })
+                        $query->whereIn('verification_status', [
+                                'verified_by_fa',
+                                'verified_by_ao',
+                                'verified_by_lrd',
+                                'rejected_by_lrd',
+                                'rejected_by_ao',
+                                'rejected_by_fa'
+                            ])
+                            ->orWhereNull('verification_status');
+                    })
                         ->count();
 
                     // Add farmers_count to the user object
@@ -748,74 +748,121 @@ class DGOfficerPanelController extends Controller
 
         }
 
-        elseif ($req->usertype == 'District_Officer') {
+        elseif ($req->usertype == 'District_Officer')  {
+
+
+
 
             $district = $req->district; // e.g., "Badin"
 
-            $agriUsers = User::with('adOfficer')->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
-            ->where('district', 'LIKE', '%"'.$district.'"%')
-            ->where('usertype', 'District_Officer')
-            ->get();
+            $agriUsers = User::with('ddOfficer')->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
+                ->where('district', 'LIKE', '%"'.$district.'"%') // Search inside ["Badin"]
+                ->where('usertype', 'DD_Officer')
+                ->get();
+
+
 
             $users = $agriUsers->map(function ($user) use ($district) { // Pass $district inside closure
-
                 // Decode the user's district
-                $district = json_decode($user->district ?? '[]');
+                $districts = json_decode($user->district ?? '[]');
 
                 $tehsils = json_decode($user->tehsil ?? '[]');
                 $tappas = json_decode($user->tappas ?? '[]');
 
+                // Make sure the current user's district is being used to count farmers for them
+                if (in_array($district, $districts)) {
+                    $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                    ->whereIn('tehsil', $tehsils)
+                    ->whereIn('tappa', $tappas)
+                      ->where(function ($query) {
+                        $query->whereIn('verification_status', [
+                                'verified_by_fa',
+                                'verified_by_ao',
+                                'verified_by_lrd',
+                                'rejected_by_lrd',
+                                'rejected_by_ao',
+                                'rejected_by_fa'
+                            ])
+                            ->orWhereNull('verification_status');
+                    })
+                        ->count();
 
-                $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $district)
-                // ->whereIn('tehsil', $tehsils)
-                // ->whereIn('tappa', $tappas)
-                // ->whereIn('verification_status', [
-                //     'verified_by_fa',
-                //     'verified_by_ao',
-                //     'verified_by_dd',
-                //     'verified_by_lrd',
-                //     'rejected_by_ao',
-                //     'rejected_by_dd',
-                //     'rejected_by_lrd',
-                //     'rejected_by_fa',
-                //  ])
-                ->count();
-                // Add farmers_count to the user object
-                $user->farmers_count = $farmerCount;
+                    // Add farmers_count to the user object
+                    $user->farmers_count = $farmerCount;
+                } else {
+                    $user->farmers_count = 0;
+                }
 
 
-                $verified_by_lrd = LandRevenueFarmerRegistation::whereIn('district', $district)
-                // ->whereIn('tehsil', $tehsils)
-                // ->whereIn('tappa', $tappas)
+                $verified_by_fa = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                ->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas)
                 ->whereIn('verification_status', [
-                    // 'verified_by_fa',
-                    // 'verified_by_ao',
-                    // 'verified_by_dd',
-                    'verified_by_lrd',
-                    // 'rejected_by_ao',
-                    // 'rejected_by_dd',
-                    // 'rejected_by_lrd',
-                    // 'rejected_by_fa',
-                 ])
+                    'verified_by_fa',
+
+                ])
                 ->count();
-                // Add farmers_count to the user object
+                $user->verified_by_fa = $verified_by_fa;
+
+                $verified_by_ao = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                ->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas)
+                ->whereIn('verification_status', [
+
+                    'verified_by_ao',
+
+                ])
+                ->count();
+                $user->verified_by_ao = $verified_by_ao;
+
+                $verified_by_lrd = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                ->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas)
+                ->whereIn('verification_status', [
+
+                    'verified_by_lrd'
+                ])
+                ->count();
                 $user->verified_by_lrd = $verified_by_lrd;
 
 
-                $rejected_by_lrd = LandRevenueFarmerRegistation::whereIn('district', $district)
-                // ->whereIn('tehsil', $tehsils)
-                // ->whereIn('tappa', $tappas)
-                ->whereIn('verification_status', [
+                $rejected_by_fa = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                       ->whereIn('tehsil', $tehsils)
+                        ->whereIn('tappa', $tappas)
+                        ->whereIn('verification_status', [
 
-                    'rejected_by_lrd',
+                            'rejected_by_fa',
+                        ])
+                        ->count();
+                $user->rejected_by_fa = $rejected_by_fa;
 
-                 ])
-                ->count();
-                // Add farmers_count to the user object
+                $rejected_by_ao = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                       ->whereIn('tehsil', $tehsils)
+                        ->whereIn('tappa', $tappas)
+                        ->whereIn('verification_status', [
+
+                            'rejected_by_ao',
+
+                        ])
+                        ->count();
+                $user->rejected_by_ao = $rejected_by_ao;
+
+                $rejected_by_lrd = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                       ->whereIn('tehsil', $tehsils)
+                        ->whereIn('tappa', $tappas)
+                        ->whereIn('verification_status', [
+                            'rejected_by_lrd',
+
+                        ])
+                        ->count();
                 $user->rejected_by_lrd = $rejected_by_lrd;
 
-
-
+                $pending = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                ->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas)
+                ->whereNull('verification_status')
+                ->count();
+                $user->pending = $pending;
 
 
 
