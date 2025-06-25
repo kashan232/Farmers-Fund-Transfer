@@ -507,7 +507,7 @@
                                                                     In-Process  = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'in-Process']) }}"> {{ $user->forwarded_to_ao }} </a> </span> <br>
                                                                     Pending = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'pending']) }}"> {{ $user->unverified }} </a> </span> <br>
                                                                     Rejected = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'rejected']) }}"> {{ $user->rejected_by_fa }} </a> </span> <br>
-                                                                    
+
                                                                     Online =  <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'online']) }}"> {{ $user->online_farmers }} </a> </span> <br>
                                                                     Self = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'self']) }}"> {{ $user->self }} </a> </span>
                                                                 </span>
@@ -528,7 +528,23 @@
 
 
 
-                                                                @if($user->usertype == 'District_Officer') <span style="font-size:12px"> Verified By LRD = <span style="font-size:15px"> {{ $user->verified_by_lrd }} </span> <br> Rejected By LRD = <span style="font-size:15px"> {{ $user->rejected_by_lrd }}  </span>  </span>   @endif <!-- This is from withCount('farmers') -->
+                                                                 @if($user->usertype == 'District_Officer')
+                                                                <span style="font-size:12px">
+                                                                    Verified = <span style="font-size:15px"> {{ $user->verified }} </span> <br>
+                                                                    Rejected = <span style="font-size:15px"> {{ $user->rejected }} </span> <br>
+                                                                    Pending = <span style="font-size:15px"> {{ $user->pending }}  </span>
+                                                                </span>
+                                                                 @endif <!-- This is from withCount('farmers') -->
+
+
+
+                                                                @if($user->usertype == 'District_Officer')
+                                                                <span style="font-size:12px">
+                                                                    Verified = <span style="font-size:15px"> {{ $user->verified }} </span> <br>
+                                                                    Rejected = <span style="font-size:15px"> {{ $user->rejected }} </span> <br>
+                                                                    Pending = <span style="font-size:15px"> {{ $user->pending }}  </span>
+                                                                </span>
+                                                                 @endif <!-- This is from withCount('farmers') -->
 
 
                                                             </td>

@@ -558,10 +558,13 @@ class DGOfficerPanelController extends Controller
                     $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $districts)->whereIn('tehsil', $tehsils)
                     ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
-                            // 'rejected_by_dd',
-                            // 'verified_by_ao',
-                            // 'verified_by_dd',
-                        ])
+                             'verified_by_fa',
+                            'verified_by_ao',
+                            'verified_by_lrd',
+                            'rejected_by_lrd',
+                            'rejected_by_ao',
+                            'rejected_by_fa',
+                        ])->orWhereNull('verification_status')
                         ->count();
 
                     // Add farmers_count to the user object
@@ -570,24 +573,36 @@ class DGOfficerPanelController extends Controller
                     $user->farmers_count = 0;
                 }
 
-                $unverified = LandRevenueFarmerRegistation::whereIn('district', $districts)
+
+                $verified = LandRevenueFarmerRegistation::whereIn('district', $districts)
                 ->whereIn('tehsil', $tehsils)
                 ->whereIn('tappa', $tappas)
                 ->whereIn('verification_status', [
-                    'verified_by_ao'
+                    'verified_by_fa',
+                    'verified_by_ao',
+                    'verified_by_lrd'
                 ])
                 ->count();
-                $user->unverified = $unverified;
+                $user->verified = $verified;
 
-                $forwarded_to_dd = LandRevenueFarmerRegistation::whereIn('district', $districts)
+
+                $rejected = LandRevenueFarmerRegistation::whereIn('district', $districts)
                        ->whereIn('tehsil', $tehsils)
                         ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
-                            'rejected_by_dd',
-                            'verified_by_dd',
+                            'rejected_by_lrd',
+                            'rejected_by_ao',
+                            'rejected_by_fa',
                         ])
                         ->count();
-                $user->forwarded_to_dd = $forwarded_to_dd;
+                $user->rejected = $rejected;
+
+                $pending = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                ->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas)
+                ->whereNull('verification_status')
+                ->count();
+                $user->pending = $pending;
 
 
 
