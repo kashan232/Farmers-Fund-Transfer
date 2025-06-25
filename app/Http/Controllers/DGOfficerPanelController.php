@@ -558,7 +558,7 @@ class DGOfficerPanelController extends Controller
                     $farmerCount = LandRevenueFarmerRegistation::whereIn('district', $districts)->whereIn('tehsil', $tehsils)
                     ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
-                             'verified_by_fa',
+                            'verified_by_fa',
                             'verified_by_ao',
                             'verified_by_lrd',
                             'rejected_by_lrd',
@@ -574,28 +574,68 @@ class DGOfficerPanelController extends Controller
                 }
 
 
-                $verified = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                $verified_by_fa = LandRevenueFarmerRegistation::whereIn('district', $districts)
                 ->whereIn('tehsil', $tehsils)
                 ->whereIn('tappa', $tappas)
                 ->whereIn('verification_status', [
                     'verified_by_fa',
+
+                ])
+                ->count();
+                $user->verified_by_fa = $verified_by_fa;
+
+                $verified_by_ao = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                ->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas)
+                ->whereIn('verification_status', [
+
                     'verified_by_ao',
+
+                ])
+                ->count();
+                $user->verified_by_ao = $verified_by_ao;
+
+                $verified_by_lrd = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                ->whereIn('tehsil', $tehsils)
+                ->whereIn('tappa', $tappas)
+                ->whereIn('verification_status', [
+
                     'verified_by_lrd'
                 ])
                 ->count();
-                $user->verified = $verified;
+                $user->verified_by_lrd = $verified_by_lrd;
 
 
-                $rejected = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                $rejected_by_fa = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                       ->whereIn('tehsil', $tehsils)
+                        ->whereIn('tappa', $tappas)
+                        ->whereIn('verification_status', [
+                            
+                            'rejected_by_fa',
+                        ])
+                        ->count();
+                $user->rejected_by_fa = $rejected_by_fa;
+
+                $rejected_by_ao = LandRevenueFarmerRegistation::whereIn('district', $districts)
+                       ->whereIn('tehsil', $tehsils)
+                        ->whereIn('tappa', $tappas)
+                        ->whereIn('verification_status', [
+                            
+                            'rejected_by_ao',
+                           
+                        ])
+                        ->count();
+                $user->rejected_by_ao = $rejected_by_ao;
+
+                $rejected_by_lrd = LandRevenueFarmerRegistation::whereIn('district', $districts)
                        ->whereIn('tehsil', $tehsils)
                         ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
                             'rejected_by_lrd',
-                            'rejected_by_ao',
-                            'rejected_by_fa',
+
                         ])
                         ->count();
-                $user->rejected = $rejected;
+                $user->rejected_by_lrd = $rejected_by_lrd;
 
                 $pending = LandRevenueFarmerRegistation::whereIn('district', $districts)
                 ->whereIn('tehsil', $tehsils)
