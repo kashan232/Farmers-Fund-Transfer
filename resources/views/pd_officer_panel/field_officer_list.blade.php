@@ -528,7 +528,7 @@
 
 
 
-                                                                 @if($user->usertype == 'District_Officer')
+                                                                 @if($user->usertype == 'DD_Officer')
                                                                 <span style="font-size:12px">
                                                                     Verified = <span style="font-size:15px"> {{ $user->verified }} </span> <br>
                                                                     Rejected = <span style="font-size:15px"> {{ $user->rejected }} </span> <br>
