@@ -565,7 +565,7 @@ class DGOfficerPanelController extends Controller
                             'rejected_by_lrd',
                             'rejected_by_ao',
                             'rejected_by_fa',
-                        ])->whereNull('verification_status')
+                        ])
                         ->count();
 
                     // Add farmers_count to the user object
