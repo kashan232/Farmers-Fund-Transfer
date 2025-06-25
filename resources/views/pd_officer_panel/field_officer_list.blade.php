@@ -538,6 +538,7 @@
                                                                     Rejected By AO= <span style="font-size:15px"> {{ $user->rejected_by_ao }} </span> <br>
                                                                     Rejected By LRD= <span style="font-size:15px"> {{ $user->rejected_by_lrd }} </span> <br>
 
+                                                                    Pending = <span style="font-size:15px"> {{ $user->pending }} </span> <br>
 
 
                                                                 </span>
