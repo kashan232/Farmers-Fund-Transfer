@@ -211,48 +211,53 @@
                 }
 
                 @endphp
-                
+
 
 
                 @if(!empty($groupedData))
 
+                @if($users[0]->usertype == 'Field_Officer')
+
+                
+                
+
                 <div class="col-lg-12">
-                <table class="table table-bordered" >
-                <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>S#</th>
-                        <th>Tehsil</th>
-                        <th>Total</th>
-                        <th>Forwarded to AO</th>
-                        <th>Unverified</th>
-                        <th>Rejected by FA</th>
-                        <th>Self</th>
-                        <th>Online Farmers</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php $i = 1; @endphp
-                    @foreach($groupedData_total as $tehsil => $total)
+
+                    <table class="table table-bordered">
+                    <thead>
                         <tr>
-                            <td>{{ $i++ }}</td>
-                            <td>{{ ucfirst($tehsil) }}</td>
-                            <td>{{ $total }}</td>
-                            <td>{{ $groupedData_forwarded_to_ao[$tehsil] ?? 0 }}</td>
-                            <td>{{ $groupedData_pending[$tehsil] ?? 0 }}</td>
-                            <td>{{ $groupedData_rejected_by_fa[$tehsil] ?? 0 }}</td>
-                            <td>{{ $groupedData_self[$tehsil] ?? 0 }}</td>
-                            <td>{{ $groupedData_online_farmers[$tehsil] ?? 0 }}</td>
+                            <th>S#</th>
+                            <th>Tehsil</th>
+                            <th>Total</th>
+                            <th>Forwarded to AO</th>
+                            <th>Unverified</th>
+                            <th>Rejected by FA</th>
+                            <th>Self</th>
+                            <th>Online Farmers</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @php $i = 1; @endphp
+                        @foreach($groupedData_total as $tehsil => $total)
+                            <tr>
+                                <td>{{ $i++ }}</td>
+                                <td>{{ ucfirst($tehsil) }}</td>
+                                <td>{{ $total }}</td>
+                                <td>{{ $groupedData_forwarded_to_ao[$tehsil] ?? 0 }}</td>
+                                <td>{{ $groupedData_pending[$tehsil] ?? 0 }}</td>
+                                <td>{{ $groupedData_rejected_by_fa[$tehsil] ?? 0 }}</td>
+                                <td>{{ $groupedData_self[$tehsil] ?? 0 }}</td>
+                                <td>{{ $groupedData_online_farmers[$tehsil] ?? 0 }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
-        </div>
+            </div>
+            @endif
 
 
-
-{{-- 
+{{--
                 <div class="col-lg-12">
                     <table class="table table-bordered" >
                         <thead>
