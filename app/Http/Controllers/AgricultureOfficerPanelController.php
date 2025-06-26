@@ -273,7 +273,7 @@ class AgricultureOfficerPanelController extends Controller
         return view('agri_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
-
+ 
     public function lrd_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
