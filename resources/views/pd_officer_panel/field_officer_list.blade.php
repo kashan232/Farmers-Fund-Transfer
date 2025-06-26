@@ -270,10 +270,10 @@
                                 <tr>
                                     <th>S#</th>
                                     <th>Tehsil</th>
-                                    <th>Total Farmers:</th>
+                                    <th>Total Farmers</th>
                                     <th>In-Process</th>
                                     <th>Rejected</th>
-                                    <th>RPending</th>
+                                    <th>Pending</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -281,8 +281,11 @@
                                 @foreach($groupedData_farmers_count as $tehsil => $total)
                                     <tr>
                                          <td>{{ $i++ }}</td>
-                                        <td>{{ ucfirst($tehsil) }}</td>
-                                        <td>{{ $total }}</td>
+                                        {{-- <td>{{ ucfirst($tehsil) }}</td> --}}
+
+                                        <td>{{ str_replace(['[', ']', '"'], '', $tehsil) }}</td>
+
+
                                         <td>{{ $groupedData_farmers_count[$tehsil] ?? 0 }}</td>
                                         <td>{{ $groupedData_forwarded_to_dd[$tehsil] ?? 0 }}</td>
                                         <td>{{ $groupedData_rejected_by_ao[$tehsil] ?? 0 }}</td>
