@@ -112,8 +112,8 @@ table{
   @php
     $path = public_path('vstamp.png');
     $type = pathinfo($path, PATHINFO_EXTENSION);
-    $data = file_get_contents($path);
-    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+    $image = file_get_contents($path);
+    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($image);
 @endphp
 
 <div class="watermark">
