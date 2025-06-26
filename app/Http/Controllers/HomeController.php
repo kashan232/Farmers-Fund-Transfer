@@ -687,21 +687,11 @@ class HomeController extends Controller
                 $onProcessFarmer = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->where('tehsil', $user->tehsil)
                 ->whereIn('tappa', json_decode($user->tappas))
-                ->where(function ($query) use ($user) {
-                    $query->where(function ($q) use ($user) {
-                        $q->where('user_type', 'Field_Officer')
-                        ->where('user_id', $user->id);
-                    })->orWhere(function ($q) {
-                        $q->where('user_type', 'Online')
-                        ->whereNull('user_id');
-                    });
-                })
+              
                 ->whereIn('verification_status', [
                     'rejected_by_lrd',
                     'rejected_by_ao',
                     'rejected_by_dd',
-
-                    'verified_by_dd',
                     'verified_by_fa',
                     'verified_by_ao'
                 ])
