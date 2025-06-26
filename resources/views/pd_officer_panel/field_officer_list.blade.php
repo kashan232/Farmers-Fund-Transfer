@@ -211,7 +211,13 @@
                 }
 
                 @endphp
+                
 
+
+                @if(!empty($groupedData))
+
+                <div class="col-lg-12">
+                <table class="table table-bordered" >
                 <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -242,12 +248,11 @@
                 </tbody>
             </table>
 
-
-
-                @if(!empty($groupedData))
+        </div>
 
 
 
+{{-- 
                 <div class="col-lg-12">
                     <table class="table table-bordered" >
                         <thead>
@@ -282,7 +287,7 @@
                         </tbody>
                     </table>
                 </div>
-
+ --}}
 
 
 
