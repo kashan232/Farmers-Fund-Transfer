@@ -150,7 +150,7 @@
                                                         @else
                                                         <td></td>
                                                         @endif
-
+                                                        {{-- <td></td> --}}
                                                         <td>
                                                             <div style="display:flex">
                                                                 {{-- @if($farmer->user_type != 'Agri_Officer' && $farmer->verification_status != 'verified_by_do')

@@ -116,10 +116,12 @@ table{
     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($image);
 @endphp
 
+
+@if($data->verification_status == 'verified_by_lrd')
 <div class="watermark">
     <img src="{{ $base64 }}" width="400">
 </div>
-
+@endif
 
     {{-- <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel"
         aria-hidden="true">

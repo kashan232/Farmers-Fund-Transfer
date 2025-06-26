@@ -115,10 +115,40 @@
                 $groupedData = '';
                 // dd($users);
                 if($users[0]->usertype == 'Field_Officer'){
-                    $groupedData = $users->groupBy('tehsil')->map(function ($group) {
+
+                    $groupedData_total= $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('farmers_count');
+                    });
+
+                    $groupedData_forwarded_to_ao = $users->groupBy('tehsil')->map(function ($group) {
                         return $group->sum('forwarded_to_ao');
                     });
+
+                    $groupedData_online_farmers = $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('online_farmers');
+                    });
+
+                    $groupedData_pending = $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('unverified');
+                    });
+
+
+                    $groupedData_rejected_by_fa = $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('rejected_by_fa');
+                    });
+
+                    $groupedData_self = $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('self');
+                    });
+
+
+
+
+
+
                 }
+
+
 
                 if($users[0]->usertype == 'Land_Revenue_Officer'){
                     $groupedData = $users->groupBy('tehsil')->map(function ($group) {
@@ -182,6 +212,35 @@
 
                 @endphp
 
+                <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>S#</th>
+                        <th>Tehsil</th>
+                        <th>Total</th>
+                        <th>Forwarded to AO</th>
+                        <th>Unverified</th>
+                        <th>Rejected by FA</th>
+                        <th>Self</th>
+                        <th>Online Farmers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php $i = 1; @endphp
+                    @foreach($groupedData_total as $tehsil => $total)
+                        <tr>
+                            <td>{{ $i++ }}</td>
+                            <td>{{ ucfirst($tehsil) }}</td>
+                            <td>{{ $total }}</td>
+                            <td>{{ $groupedData_forwarded_to_ao[$tehsil] ?? 0 }}</td>
+                            <td>{{ $groupedData_pending[$tehsil] ?? 0 }}</td>
+                            <td>{{ $groupedData_rejected_by_fa[$tehsil] ?? 0 }}</td>
+                            <td>{{ $groupedData_self[$tehsil] ?? 0 }}</td>
+                            <td>{{ $groupedData_online_farmers[$tehsil] ?? 0 }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
 
 

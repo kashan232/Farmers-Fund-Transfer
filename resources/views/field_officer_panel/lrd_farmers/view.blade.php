@@ -155,6 +155,9 @@
 {{-- {{dd($data->city)}} --}}
 <body style="position: relative;">
 
+
+    @if($data->verification_status == 'verified_by_lrd')
+
     <img src="{{ asset('vstamp.png') }}" alt=""
          style="
             position: absolute;
@@ -165,6 +168,8 @@
             z-index: 0;
             width: 400px; /* optional: adjust size */
          ">
+
+    @endif
 
     <div id="loader" style="position: fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:9999; display:flex; align-items:center; justify-content:center;">
         <h1>Loading...</h1>
