@@ -324,19 +324,19 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                     <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
                         <div class="button-back-line"></div>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active step-indicator  step-indicator-1" id="personal-tab" data-bs-toggle="pill" data-bs-target="#personal-info" type="button" role="tab" aria-controls="personal-info" aria-selected="true" >Personal Information</button>
+                            <button class="nav-link active step-indicator  step-indicator-1" id="personal-tab" data-bs-toggle="pill" data-bs-target="#apersonal-info" type="button" role="tab" aria-controls="personal-info" aria-selected="true" >Personal Information</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link step-indicator  step-indicator-2" id="assets-tab" data-bs-toggle="pill" data-bs-target="#assets-info" type="button" role="tab" aria-controls="assets-info" aria-selected="false" >Assets Information</button>
+                            <button class="nav-link step-indicator  step-indicator-2" id="assets-tab" data-bs-toggle="pill" data-bs-target="#aassets-info" type="button" role="tab" aria-controls="assets-info" aria-selected="false" >Assets Information</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link step-indicator  step-indicator-3" id="sources-tab" data-bs-toggle="pill" data-bs-target="#sources-info" type="button" role="tab" aria-controls="sources-info" aria-selected="false" >Sources</button>
+                            <button class="nav-link step-indicator  step-indicator-3" id="sources-tab" data-bs-toggle="pill" data-bs-target="#asources-info" type="button" role="tab" aria-controls="sources-info" aria-selected="false" >Sources</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link step-indicator  step-indicator-4" id="bank-tab" data-bs-toggle="pill" data-bs-target="#bank-info" type="button" role="tab" aria-controls="bank-info" aria-selected="false" >Bank & Account Details</button>
+                            <button class="nav-link step-indicator  step-indicator-4" id="bank-tab" data-bs-toggle="pill" data-bs-target="#abank-info" type="button" role="tab" aria-controls="bank-info" aria-selected="false" >Bank & Account Details</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link step-indicator  step-indicator-5" id="uploads-tab" data-bs-toggle="pill" data-bs-target="#uploads-info" type="button" role="tab" aria-controls="uploads-info" aria-selected="false" >Uploads Documents</button>
+                            <button class="nav-link step-indicator  step-indicator-5" id="uploads-tab" data-bs-toggle="pill" data-bs-target="#auploads-info" type="button" role="tab" aria-controls="uploads-info" aria-selected="false" >Uploads Documents</button>
                         </li>
                     </ul>
                 </div>
@@ -1414,7 +1414,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         });
     });
 
-    
+
     $(document).ready(function () {
 
 
