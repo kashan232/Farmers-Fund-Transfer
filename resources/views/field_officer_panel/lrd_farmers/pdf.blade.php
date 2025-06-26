@@ -95,22 +95,30 @@ table{
          display:flex; align-items:end; justify-content:right; color:black; font-weight:bold;
 
      }
-
+    .watermark {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        opacity: 0.1;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+    }
 
 </style>
 
 <body style="position: relative">
 
-     <img src="{{ asset('vstamp.png') }}" alt=""
-         style="
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.1;
-            z-index: 0;
-            width: 400px; /* optional: adjust size */
-         ">
+  @php
+    $path = public_path('vstamp.png');
+    $type = pathinfo($path, PATHINFO_EXTENSION);
+    $data = file_get_contents($path);
+    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+@endphp
+
+<div class="watermark">
+    <img src="{{ $base64 }}" width="400">
+</div>
 
 
     {{-- <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel"
