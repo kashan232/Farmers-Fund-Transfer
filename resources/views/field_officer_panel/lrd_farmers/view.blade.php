@@ -153,9 +153,18 @@
 
 </style>
 {{-- {{dd($data->city)}} --}}
-<body>
+<body style="position: relative;">
 
-    <img src="{{asset('vstamp.png')}}" alt="">
+    <img src="{{ asset('vstamp.png') }}" alt=""
+         style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+            z-index: 0;
+            width: 200px; /* optional: adjust size */
+         ">
 
     <div id="loader" style="position: fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:9999; display:flex; align-items:center; justify-content:center;">
         <h1>Loading...</h1>
