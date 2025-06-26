@@ -258,9 +258,11 @@
                         </table>
                     </div>
                 @endif
+                @endif
 
 
 
+                @if(!empty($groupedData_farmers_count))
                 @if($users[0]->usertype == 'Agri_Officer')
                     <div class="col-lg-12">
                         <table class="table table-bordered">
@@ -276,7 +278,7 @@
                             </thead>
                             <tbody>
                                 @php $i = 1; @endphp
-                                @foreach($groupedData_total as $tehsil => $total)
+                                @foreach($groupedData_farmers_count as $tehsil => $total)
                                     <tr>
                                          <td>{{ $i++ }}</td>
                                         <td>{{ ucfirst($tehsil) }}</td>
@@ -291,6 +293,8 @@
                         </table>
                     </div>
                 @endif
+                @endif
+
 
 
 
@@ -363,7 +367,7 @@
                 @endforeach --}}
 
 
-                <br>
+
                 {{-- @if($users[0]->usertype == 'Agri_Officer')
                 <div class="col-lg-12">
                     <table class="table table-bordered" >
@@ -392,8 +396,6 @@
                     </table>
                 </div>
                 @endif --}}
-
-                @endif
 
 
 
