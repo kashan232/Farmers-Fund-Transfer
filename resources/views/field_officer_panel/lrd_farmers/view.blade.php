@@ -155,6 +155,8 @@
 {{-- {{dd($data->city)}} --}}
 <body>
 
+    <img src="{{asset('vstamp.png')}}" alt="">
+
     <div id="loader" style="position: fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:9999; display:flex; align-items:center; justify-content:center;">
         <h1>Loading...</h1>
     </div>
