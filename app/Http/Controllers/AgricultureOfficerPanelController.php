@@ -273,7 +273,7 @@ class AgricultureOfficerPanelController extends Controller
         return view('agri_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 
- 
+
     public function lrd_farmers(){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
@@ -295,7 +295,7 @@ class AgricultureOfficerPanelController extends Controller
             ->orWhere('verification_status', 'verified_by_fa')->orWhere('verification_status', 'verified_by_lrd')->orWhere('verification_status', 'verified_by_dd')
             ->orWhere('verification_status', 'verified_by_ao')->orWhere('verification_status', 'rejected_by_ao')->orWhere('verification_status', 'rejected_by_lrd');
         })
-        ->latest()->get();
+        ->orderBy('updated_at', 'desc')->get();
 
 
         return view('agri_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);

@@ -139,6 +139,8 @@
                                                             <span class="badge text-bg-info">Unverify</span>
                                                             @elseif($farmer->verification_status == 'rejected_by_ao')
                                                             <span class="badge text-bg-danger">Rejected</span>
+                                                             @elseif($farmer->verification_status == 'rejected_by_lrd')
+                                                            <span class="badge text-bg-danger">Rejected By LRD</span>
                                                             @endif
                                                         </td>
                                                         @if ($farmer->declined_reason != null || $farmer->declined_reason != '')
