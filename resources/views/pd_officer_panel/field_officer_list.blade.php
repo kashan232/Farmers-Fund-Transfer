@@ -214,12 +214,12 @@
 
 
 
-                @if(!empty($groupedData))
+                @if(!empty($groupedData_total))
 
                 @if($users[0]->usertype == 'Field_Officer')
 
-                
-                
+
+
 
                 <div class="col-lg-12">
 
