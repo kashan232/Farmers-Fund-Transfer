@@ -671,7 +671,7 @@ class HomeController extends Controller
                 $Unverifiedfarmeragiruser = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->where('tehsil', $user->tehsil)
                 ->whereIn('tappa', json_decode($user->tappas))
-              
+
                  ->whereNull('verification_status')
                 ->count();
 
