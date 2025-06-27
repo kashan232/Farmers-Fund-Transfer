@@ -424,7 +424,7 @@ class DGOfficerPanelController extends Controller
                         ->whereIn('verification_status', [
                             'verified_by_fa',
                             'verified_by_ao',
-                            'verified_by_lrd',
+
 
                             'rejected_by_ao',
 

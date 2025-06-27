@@ -142,7 +142,9 @@
                     });
 
 
-
+                     $groupedData_verified_by_lrd = $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('verified_by_lrd');
+                    });
 
 
 
@@ -177,9 +179,7 @@
                         return $group->sum('unverified');
                     });
 
-                     $groupedData_verified_by_lrd = $users->groupBy('tehsil')->map(function ($group) {
-                        return $group->sum('verified_by_lrd');
-                    });
+
 
 
 
@@ -627,7 +627,7 @@
                                                                 @if($user->usertype == 'Field_Officer')
                                                                 <span style="font-size:12px">
                                                                     Verified By LRD = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'verified_by_lrd']) }}"> {{ $user->verified_by_lrd }} </a> </span> <br>
-                                                                    
+
                                                                     In-Process  = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'in-Process']) }}"> {{ $user->forwarded_to_ao }} </a> </span> <br>
                                                                     Pending = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'pending']) }}"> {{ $user->unverified }} </a> </span> <br>
                                                                     Rejected = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'rejected']) }}"> {{ $user->rejected_by_fa }} </a> </span> <br>
