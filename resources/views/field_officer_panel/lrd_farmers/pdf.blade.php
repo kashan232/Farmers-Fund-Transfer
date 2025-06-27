@@ -122,7 +122,7 @@ table{
 @endphp
 
 <div class="watermark">
-    <img src="{{ $base64 }}" width="400">
+    <img src="{{ $base64 }}" width="700">
 </div>
 @endif
 
