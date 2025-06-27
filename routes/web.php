@@ -360,7 +360,7 @@ Route::get('/dg-officer-edit/{id}', [DGOfficerController::class, 'edit_dg_office
 
 
 
-Route::get('/excelExport', [DGOfficerPanelController::class, 'excelExport'])->middleware(['auth', 'admin'])->name('excelExport');
+Route::get('/excelExport', [DGOfficerPanelController::class, 'excelExport'])->name('excelExport');
 
 
 
