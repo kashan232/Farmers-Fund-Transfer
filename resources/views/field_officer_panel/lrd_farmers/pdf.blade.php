@@ -99,7 +99,7 @@ table{
         position: fixed;
         top: 50%;
         left: 50%;
-        width: 400px;
+        width: 700px;
         opacity: 0.1;
         transform: translate(-50%, -50%);
         z-index: -1;
