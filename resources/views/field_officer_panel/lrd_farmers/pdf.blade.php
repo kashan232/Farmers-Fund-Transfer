@@ -99,7 +99,7 @@ table{
         position: fixed;
         top: 50%;
         left: 50%;
-        width: 700px;
+        width: 400px;
         opacity: 0.1;
         transform: translate(-50%, -50%);
         z-index: -1;
@@ -120,9 +120,8 @@ table{
     $image = file_get_contents($path);
     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($image);
 @endphp
-
 <div class="watermark">
-    <img src="{{ $base64 }}" width="700">
+    <img src="{{ $base64 }}" width="400">
 </div>
 @endif
 
