@@ -56,33 +56,34 @@ public function excelExport(Request $request)
     $callback = function () use ($farmers, $columns) {
         $file = fopen('php://output', 'w');
         fputcsv($file, $columns);
-
+        if (!empty($farmers)) {
         foreach ($farmers as $farmer) {
             fputcsv($file, [
-                $farmer->name,
-                $farmer->father_name,
-                $farmer->mother_maiden_name,
-                $farmer->cnic,
-                $farmer->cnic_issue_date,
-                $farmer->cnic_expiry_date,
-                $farmer->date_of_birth,
+                $farmer->name ?? '',
+                $farmer->father_name ?? '',
+                $farmer->mother_maiden_name ?? '',
+                $farmer->cnic ?? '',
+                $farmer->cnic_issue_date ?? '',
+                $farmer->cnic_expiry_date ?? '',
+                $farmer->date_of_birth ?? '',
                 'N/A',
-                $farmer->gender,
+                $farmer->gender ?? '',
                 'PAKISTANI',
                 'N/A',
-                $farmer->tehsil,
-                $farmer->district,
-                $farmer->mobile,
+                $farmer->tehsil ?? '',
+                $farmer->district ?? '',
+                $farmer->mobile ?? '',
                 'N/A',
-                $farmer->total_fallow_land,
-                $farmer->total_area_cultivated_land,
-                $farmer->tappa,
-                $farmer->tehsil,
-                $farmer->district,
-                $farmer->branch_name,
-                $farmer->branch_code,
+                $farmer->total_fallow_land ?? '',
+                $farmer->total_area_cultivated_land ?? '',
+                $farmer->tappa ?? '',
+                $farmer->tehsil ?? '',
+                $farmer->district ?? '',
+                $farmer->branch_name ?? '',
+                $farmer->branch_code ?? '',
             ]);
         }
+    }
 
         fclose($file);
     };
