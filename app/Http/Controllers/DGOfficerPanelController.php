@@ -56,7 +56,7 @@ public function excelExport(Request $request)
     $callback = function () use ($farmers, $columns) {
         $file = fopen('php://output', 'w');
         fputcsv($file, $columns);
-        if (!empty($farmers)) {
+      
         foreach ($farmers as $farmer) {
             fputcsv($file, [
                 $farmer->name ?? '',
@@ -83,7 +83,7 @@ public function excelExport(Request $request)
                 $farmer->branch_code ?? '',
             ]);
         }
-    }
+    
 
         fclose($file);
     };
