@@ -114,7 +114,10 @@ class DGOfficerPanelController extends Controller
             ->whereIn('tehsil', $tehsils)
             ->whereIn('tappa', $tappas)
             ->whereIn('verification_status', [
+
                 'verified_by_ao',
+                'verified_by_lrd',
+                'rejected_by_lrd'
             ]);
         }
 
