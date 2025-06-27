@@ -176,14 +176,22 @@ class DGOfficerPanelController extends Controller
              $tappas = json_decode($user->tappas ?? '[]');
             $query->where('district', $user->district)
             ->where('tehsil', $user->tehsil)
-                ->whereIn('tappa', $tappas);
+                ->whereIn('tappa', $tappas)
+                ->whereNull('verification_status');
 
-
-             $query->where('verification_status',
-                NULL
-           );
-            $test[] = 'FA-PENDING';
         }
+
+        elseif($req->farmer_type_status == 'verified_by_lrd'){
+
+             $tappas = json_decode($user->tappas ?? '[]');
+            $query->where('district', $user->district)
+            ->where('tehsil', $user->tehsil)
+            ->whereIn('tappa', $tappas)
+            ->where('verification_status','verified_by_lrd');
+
+        }
+
+
         elseif($req->farmer_type_status == 'online'){
 
             $tappas = json_decode($user->tappas ?? '[]');
