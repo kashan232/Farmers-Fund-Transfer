@@ -148,7 +148,7 @@
                                                 <tbody>
                                                     @forelse($farmers as $farmer)
                                                     <tr>
-                                                        <td>{{ ($loop->iteration + ($data->currentPage() - 1) * $data->perPage()) }}</td>
+                                                        <td>{{ ($loop->iteration + ($farmers->currentPage() - 1) * $farmers->perPage()) }}</td>
                                                         {{-- <td>{!! ($farmer->user_type == 'Online') ? 'Online':'Field Assistant <br><b>'.$farmer->user->name.'<b>'   !!}</td> --}}
 
 <td>
