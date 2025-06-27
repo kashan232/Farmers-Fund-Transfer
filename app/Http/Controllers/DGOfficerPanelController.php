@@ -599,15 +599,16 @@ class DGOfficerPanelController extends Controller
                     ->whereIn('tehsil', $tehsils)
                     ->whereIn('tappa', $tappas)
                      ->where(function($query) {
-        $query->whereIn('verification_status', [
-            'verified_by_fa',
-            'rejected_by_fa',
-            'verified_by_ao',
-            'rejected_by_ao',
-            'rejected_by_lrd',
-        ])
-        ->orWhereNull('verification_status');
-    })
+                            $query->whereIn('verification_status', [
+                                'verified_by_fa',
+                                'rejected_by_fa',
+                                'verified_by_ao',
+                                'rejected_by_ao',
+                                'rejected_by_lrd',
+                                'verified_by_lrd'
+                            ])
+                            ->orWhereNull('verification_status');
+                        })
                         ->count();
 
                     // Add farmers_count to the user object
