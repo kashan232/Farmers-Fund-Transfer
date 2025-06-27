@@ -147,6 +147,70 @@ class DGOfficerPanelController extends Controller
 
 
 
+        if($req->farmer_type_status_by_dd == 'total'){
+
+            $districts = json_decode($user->district ?? '[]');
+            $tehsils = json_decode($user->tehsil ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
+
+            $query->whereIn('district', $districts)
+            ->whereIn('tehsil', $tehsils)
+            ->whereIn('tappa', $tappas)
+            ->where(function($query) {
+                $query->whereIn('verification_status', [
+                    'verified_by_fa',
+                    'rejected_by_fa',
+                    'verified_by_ao',
+                    'rejected_by_ao',
+                    'rejected_by_lrd',
+                    'verified_by_lrd'
+                ])
+                ->orWhereNull('verification_status');
+            });
+        }
+
+         if($req->farmer_type_status_by_dd == 'process'){
+
+            $districts = json_decode($user->district ?? '[]');
+            $tehsils = json_decode($user->tehsil ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
+
+            $query->whereIn('district', $districts)
+            ->whereIn('tehsil', $tehsils)
+            ->whereIn('tappa', $tappas)
+            ->where(function($query) {
+                $query->whereIn('verification_status', [
+                    'verified_by_fa',
+                    'rejected_by_fa',
+                    'verified_by_ao',
+                    'rejected_by_ao',
+                    'rejected_by_lrd',
+
+                ])
+                ->orWhereNull('verification_status');
+            });
+        }
+
+         if($req->farmer_type_status_by_dd == 'verified_by_lrd'){
+
+            $districts = json_decode($user->district ?? '[]');
+            $tehsils = json_decode($user->tehsil ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
+
+            $query->whereIn('district', $districts)
+            ->whereIn('tehsil', $tehsils)
+            ->whereIn('tappa', $tappas)
+            ->where(function($query) {
+                $query->whereIn('verification_status', [
+
+                    'verified_by_lrd'
+                ]);
+            });
+        }
+
+
+
+
 
         if($req->farmer_type_status == 'total'){
             $query->where('district', $user->district)

@@ -654,8 +654,8 @@
 
                                                                  @if($user->usertype == 'DD_Officer')
                                                                 <span style="font-size:12px">
-                                                                    In-Process = <span style="font-size:15px"> {{ $user->process }} </span> <br>
-                                                                    Verified By LRD = <span style="font-size:15px"> {{ $user->verified_by_lrd }} </span> <br>
+                                                                    In-Process = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_dd' => 'process']) }}"> {{ $user->process }} </a> </span> <br>
+                                                                    Verified By LRD = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_dd' => 'verified_by_lrd']) }}"> {{ $user->verified_by_lrd }} </a> </span> <br>
                                                                     {{-- Verified By LRD = <span style="font-size:15px"> {{ $user->verified_by_lrd }} </span> <br>
 
 
