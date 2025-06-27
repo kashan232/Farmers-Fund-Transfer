@@ -9,9 +9,93 @@ use App\Models\Tappa;
 use App\Models\Tehsil;
 use App\Models\UC;
 use App\Models\User;
-
+use Symfony\Component\HttpFoundation\StreamedResponse;
 class DGOfficerPanelController extends Controller
 {
+
+
+
+
+public function excelExport(Request $request)
+{
+    $fileName = 'farmers_export.csv';
+
+    $farmers = LandRevenueFarmerRegistation::query()
+        ->when($request->search, fn($q) => $q->where('name', 'like', "%{$request->search}%"))
+        ->when($request->district, fn($q) => $q->where('district', $request->district))
+        ->when($request->taluka, fn($q) => $q->where('tehsil', $request->taluka))
+        ->when($request->farmer_type, fn($q) => $q->where('farmer_type', $request->farmer_type))
+        ->when($request->status, fn($q) => $q->where('verification_status', $request->status))
+        ->get();
+
+    $columns = [
+        'Name as per CNIC',
+        'Father / Husband Name',
+        "Mother's Name",
+        'CNIC Number',
+        'CNIC issuance date',
+        'CNIC expiry date',
+        'Date of Birth',
+        'Place of Birth',
+        'Gender',
+        'Nationality',
+        'Complete Mailing Address as per valid CNIC',
+        'Taluka',
+        'District',
+        'Mobile No.',
+        'Passbook / Form VII - B Number',
+        'Land Holding',
+        'Land Cultivated',
+        'Tappa',
+        'Taluka',
+        'District',
+        'Name',
+        'Code',
+    ];
+
+    $callback = function () use ($farmers, $columns) {
+        $file = fopen('php://output', 'w');
+        fputcsv($file, $columns);
+
+        foreach ($farmers as $farmer) {
+            fputcsv($file, [
+                $farmer->name,
+                $farmer->father_name,
+                $farmer->mother_maiden_name,
+                $farmer->cnic,
+                $farmer->cnic_issue_date,
+                $farmer->cnic_expiry_date,
+                $farmer->date_of_birth,
+                'N/A',
+                $farmer->gender,
+                'PAKISTANI',
+                'N/A',
+                $farmer->tehsil,
+                $farmer->district,
+                $farmer->mobile,
+                'N/A',
+                $farmer->total_fallow_land,
+                $farmer->total_area_cultivated_land,
+                $farmer->tappa,
+                $farmer->tehsil,
+                $farmer->district,
+                $farmer->branch_name,
+                $farmer->branch_code,
+            ]);
+        }
+
+        fclose($file);
+    };
+
+    return response()->stream($callback, 200, [
+        "Content-Type" => "text/csv",
+        "Content-Disposition" => "attachment; filename={$fileName}",
+    ]);
+}
+
+
+
+
     public function index(Request $req, $search = null, $status = null)
 {
     // Override request search/status if present in route
