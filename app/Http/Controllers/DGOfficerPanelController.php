@@ -620,7 +620,7 @@ class DGOfficerPanelController extends Controller
 
 
 
-                $process = LandRevenueFarmerRegistation::where('district', $user->district)
+                $process = LandRevenueFarmerRegistation::whereIn('district', $user->district)
                        ->whereIn('tehsil', $tehsils)
                          ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
@@ -634,7 +634,7 @@ class DGOfficerPanelController extends Controller
                 $user->process = $process;
 
 
-                $verified_by_lrd = LandRevenueFarmerRegistation::where('district', $user->district)
+                $verified_by_lrd = LandRevenueFarmerRegistation::whereIn('district', $user->district)
                        ->whereIn('tehsil', $tehsils)
                          ->whereIn('tappa', $tappas)
                         ->whereIn('verification_status', [
