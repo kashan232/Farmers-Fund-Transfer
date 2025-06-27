@@ -177,6 +177,10 @@
                         return $group->sum('unverified');
                     });
 
+                     $groupedData_verified_by_lrd = $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('verified_by_lrd');
+                    });
+
 
 
                 //    $tehsilTappas = [];
@@ -234,7 +238,8 @@
                                     <th>Tehsil</th>
                                     <th>Total</th>
                                     <th>Forwarded to AO</th>
-                                    <th>Unverified</th>
+                                    <th>Verified By LRD</th>
+                                    <th>Pending</th>
                                     <th>Rejected by FA</th>
                                     <th>Self</th>
                                     <th>Online Farmers</th>
@@ -248,6 +253,9 @@
                                         <td>{{ ucfirst($tehsil) }}</td>
                                         <td>{{ $total }}</td>
                                         <td>{{ $groupedData_forwarded_to_ao[$tehsil] ?? 0 }}</td>
+
+                                        <td>{{ $groupedData_verified_by_lrd[$tehsil] ?? 0 }}</td>
+
                                         <td>{{ $groupedData_pending[$tehsil] ?? 0 }}</td>
                                         <td>{{ $groupedData_rejected_by_fa[$tehsil] ?? 0 }}</td>
                                         <td>{{ $groupedData_self[$tehsil] ?? 0 }}</td>
@@ -618,6 +626,8 @@
 
                                                                 @if($user->usertype == 'Field_Officer')
                                                                 <span style="font-size:12px">
+                                                                    Verified By LRD = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'verified_by_lrd']) }}"> {{ $user->verified_by_lrd }} </a> </span> <br>
+                                                                    
                                                                     In-Process  = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'in-Process']) }}"> {{ $user->forwarded_to_ao }} </a> </span> <br>
                                                                     Pending = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'pending']) }}"> {{ $user->unverified }} </a> </span> <br>
                                                                     Rejected = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status' => 'rejected']) }}"> {{ $user->rejected_by_fa }} </a> </span> <br>
