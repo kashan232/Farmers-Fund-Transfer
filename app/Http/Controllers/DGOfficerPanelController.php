@@ -192,6 +192,17 @@ class DGOfficerPanelController extends Controller
         }
 
 
+        elseif($req->farmer_type_status == 'rejected'){
+
+             $tappas = json_decode($user->tappas ?? '[]');
+            $query->where('district', $user->district)
+            ->where('tehsil', $user->tehsil)
+            ->whereIn('tappa', $tappas)
+            ->where('verification_status','rejected_by_fa');
+
+        }
+
+
         elseif($req->farmer_type_status == 'online'){
 
             $tappas = json_decode($user->tappas ?? '[]');
