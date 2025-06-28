@@ -324,6 +324,26 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                     <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
                         <div class="button-back-line"></div>
                         <li class="nav-item" role="presentation">
+                            <button class="nav-link active step-indicator  step-indicator-1"  onclick="showStep(1)">Personal Information</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link step-indicator  step-indicator-2"  onclick="showStep(2)">Assets Information</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link step-indicator  step-indicator-3"  onclick="showStep(3)">Sources</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link step-indicator  step-indicator-4"  onclick="showStep(4)">Bank & Account Details</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link step-indicator  step-indicator-5"   onclick="showStep(5)">Uploads Documents</button>
+                        </li>
+                    </ul>
+
+{{--
+                       <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
+                        <div class="button-back-line"></div>
+                        <li class="nav-item" role="presentation">
                             <button class="nav-link active step-indicator  step-indicator-1" id="personal-tab" data-bs-toggle="pill" data-bs-target="#personal-info" type="button" role="tab" aria-controls="personal-info" aria-selected="true" onclick="showStep(1)">Personal Information</button>
                         </li>
                         <li class="nav-item" role="presentation">
@@ -338,7 +358,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                         <li class="nav-item" role="presentation">
                             <button class="nav-link step-indicator  step-indicator-5" id="uploads-tab" data-bs-toggle="pill" data-bs-target="#uploads-info" type="button" role="tab" aria-controls="uploads-info" aria-selected="false" onclick="showStep(5)">Uploads Documents</button>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </div>
 
                 <div id="content" class="p-4 p-md-5 pt-5">
