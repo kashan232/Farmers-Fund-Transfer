@@ -699,12 +699,6 @@ class HomeController extends Controller
 
 
 
-                $myRegisteredFarmers = LandRevenueFarmerRegistation::where('district', $user->district)
-                ->where('tehsil', $user->tehsil)
-                ->whereIn('tappa', json_decode($user->tappas))
-                ->where('user_type', 'Field_Officer')
-                ->where('user_id', $user->id)
-                ->count();
 
                 $onlineFarmers = LandRevenueFarmerRegistation::where('district', $user->district)
                 ->where('tehsil', $user->tehsil)
@@ -713,6 +707,7 @@ class HomeController extends Controller
                 ->whereNull('user_id')
                 ->count();
 
+                $myRegisteredFarmers = $fa_total_Registered_Farmers - $onlineFarmers;
 
 
 

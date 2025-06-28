@@ -1389,18 +1389,18 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 <script>
 
-    document.querySelectorAll('.nav-link').forEach(el => {
-    el.addEventListener('click', function(e) {
-        if (/* your condition */) {
-            e.preventDefault();
-        }
-    });
-});
+//     document.querySelectorAll('.nav-link').forEach(el => {
+//     el.addEventListener('click', function(e) {
+//         if (/* your condition */) {
+//             e.preventDefault();
+//         }
+//     });
+// });
 
 
        $(document).ready(function () {
 
-        
+
         $('#date_of_birth').inputmask();
 
         $('#date_of_birth, #cnic_issue_date').on('blur', function () {
