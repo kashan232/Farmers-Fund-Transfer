@@ -2434,12 +2434,12 @@ let step1_formdata = {
                 updateProgressIndicator(step);
             }
 
-            function updateProgressIndicator(step) {
-                document.querySelectorAll('.step-indicator').forEach(function(indicator) {
-                    indicator.classList.remove('active');
-                });
-                $('.step-indicator-' + step).addClass('active');
-            }
+            // function updateProgressIndicator(step) {
+            //     document.querySelectorAll('.step-indicator').forEach(function(indicator) {
+            //         indicator.classList.remove('active');
+            //     });
+            //     $('.step-indicator-' + step).addClass('active');
+            // }
 
 
 
