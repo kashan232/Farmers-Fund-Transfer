@@ -806,27 +806,31 @@ class HomeController extends Controller
                 $total_farmers = LandRevenueFarmerRegistation::where('district', Auth::user()->district)
                 ->whereIn('tehsil',json_decode($user->tehsil))
                 ->whereIn('tappa',json_decode($user->tappas))
-                ->where(function ($query) {
-                    $query->where('verification_status', 'verified_by_ao')
-                        ->orWhere('verification_status', 'rejected_by_lrd')
-                        ->orWhere('verification_status', 'verified_by_lrd');
-                })->count();
+                ->whereIn('verification_status', [
+                            'verified_by_ao',
+                            'verified_by_lrd',
+                            'rejected_by_lrd',
+                            'verified_by_dd'
+                        ])->count();
 
 
                 $rejected_farmers = LandRevenueFarmerRegistation::where('district', Auth::user()->district)
                 ->whereIn('tehsil',json_decode($user->tehsil))
+                ->whereIn('tappa',json_decode($user->tappas))
                 ->where(function ($query) {
                     $query->where('verification_status', 'rejected_by_lrd');
                 })->count();
 
                 $verified_farmers = LandRevenueFarmerRegistation::where('district', Auth::user()->district)
                 ->whereIn('tehsil',json_decode($user->tehsil))
+                ->whereIn('tappa',json_decode($user->tappas))
                 ->where(function ($query) {
                     $query->Where('verification_status', 'verified_by_lrd');
                 })->count();
 
                 $pending = LandRevenueFarmerRegistation::where('district', Auth::user()->district)
                 ->whereIn('tehsil',json_decode($user->tehsil))
+                ->whereIn('tappa',json_decode($user->tappas))
                 ->where(function ($query) {
                     $query->Where('verification_status', 'verified_by_ao');
                 })->count();
