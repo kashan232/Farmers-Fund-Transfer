@@ -78,7 +78,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title">Pending</p>
-                                                <h3 class="card-text text-amount">{{ $pendings }}</h3>
+                                                <h3 class="card-text text-amount">{{ $pending }}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
