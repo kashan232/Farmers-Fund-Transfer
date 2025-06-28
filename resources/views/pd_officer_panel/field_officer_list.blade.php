@@ -180,6 +180,11 @@
                     });
 
 
+                    $groupedData_unverified = $users->groupBy('tehsil')->map(function ($group) {
+                        return $group->sum('verified_by_lrd');
+                    });
+
+
 
 
 
@@ -279,6 +284,7 @@
                                     <th>S#</th>
                                     <th>Tehsil</th>
                                     <th>Total Farmers</th>
+                                    <th>Verified By LRD</th>
                                     <th>In-Process</th>
                                     <th>Rejected</th>
                                     <th>Pending</th>
@@ -295,6 +301,10 @@
 
 
                                         <td>{{ $groupedData_farmers_count[$tehsil] ?? 0 }}</td>
+
+                                        <td>{{ $groupedData_verified_by_lrd[$tehsil] ?? 0 }}</td>
+
+
                                         <td>{{ $groupedData_forwarded_to_dd[$tehsil] ?? 0 }}</td>
                                         <td>{{ $groupedData_rejected_by_ao[$tehsil] ?? 0 }}</td>
                                         <td>{{ $groupedData_unverified[$tehsil] ?? 0 }}</td>
