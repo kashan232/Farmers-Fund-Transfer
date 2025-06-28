@@ -611,8 +611,8 @@
     @endforeach
 @else
     <tr>
-        <td><input type="text" name="title_name[]" value="" class="form-control"></td>
-        <td><input type="text" name="title_father_name[]" value="" class="form-control"></td>
+        <td><input type="text" name="title_name[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
+        <td><input type="text" name="title_father_name[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
         <td><input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'" placeholder="XXXXX-XXXXXXX-X"></td>
         <td><input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-9999999', 'greedy': false" placeholder="XXXX-XXXXXXX"></td>
         <td><input type="text" name="title_area[]" value="" class="form-control"></td>
@@ -946,7 +946,7 @@
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Title of Account <span class="text-danger">*</span></label>
-                                            <input type="text" name="account_title" id="account_title" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                            <input type="text" name="account_title" id="account_title" class="form-control" value="{{$data->account_title ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
                                         </div>
 
 
@@ -967,7 +967,7 @@
 
                                         <div class="mb-6 col-md-4 mt-2">
                                             <label class="form-label">Mother's Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="mother_maiden_name" id="mother_maiden_name" class="form-control" value="{{$data->mother_maiden_name ?? ''}}" >
+                                            <input type="text" name="mother_maiden_name" id="mother_maiden_name" class="form-control" value="{{$data->mother_maiden_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)">
                                         </div>
 
                                         <div class="mb-6 col-md-6 mt-2">
@@ -1324,6 +1324,42 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css
 
 
 <script>
+
+     $(document).ready(function () {
+        $('#date_of_birth').inputmask();
+
+        $('#date_of_birth, #cnic_issue_date').on('blur', function () {
+            let inputVal = $(this).val();
+            let parts = inputVal.split('-');
+
+            if (parts.length === 3) {
+                let day = parseInt(parts[0]);
+                let month = parseInt(parts[1]) - 1; // Month is 0-indexed
+                let year = parseInt(parts[2]);
+
+                let inputDate = new Date(year, month, day);
+                let today = new Date();
+                today.setHours(0, 0, 0, 0); // Remove time
+
+                if (inputDate > today) {
+                    $_html ='Future dates are not allowed.';
+
+                    Swal.fire({
+                                title: "Errors!",
+                                // text: "You clicked the button!",
+                                icon: "error",
+                                html: $_html
+                            });
+
+
+                    $(this).val('');
+                    $(this).focus();
+                }
+            }
+        });
+    });
+
+
     $(document).ready(function () {
 
 

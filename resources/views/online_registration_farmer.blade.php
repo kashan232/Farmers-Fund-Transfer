@@ -324,19 +324,19 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                     <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
                         <div class="button-back-line"></div>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active step-indicator  step-indicator-1" id="personal-tab" data-bs-toggle="pill" data-bs-target="#personal-info" type="button" role="tab" aria-controls="personal-info" aria-selected="true" >Personal Information</button>
+                            <button class="nav-link active step-indicator  step-indicator-1" id="personal-tab" data-bs-toggle="pill" data-bs-target="#personal-info" type="button" role="tab" aria-controls="personal-info" aria-selected="true" onclick="showStep(1)">Personal Information</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link step-indicator  step-indicator-2" id="assets-tab" data-bs-toggle="pill" data-bs-target="#assets-info" type="button" role="tab" aria-controls="assets-info" aria-selected="false" >Assets Information</button>
+                            <button class="nav-link step-indicator  step-indicator-2" id="assets-tab" data-bs-toggle="pill" data-bs-target="#assets-info" type="button" role="tab" aria-controls="assets-info" aria-selected="false" onclick="showStep(2)">Assets Information</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link step-indicator  step-indicator-3" id="sources-tab" data-bs-toggle="pill" data-bs-target="#sources-info" type="button" role="tab" aria-controls="sources-info" aria-selected="false" >Sources</button>
+                            <button class="nav-link step-indicator  step-indicator-3" id="sources-tab" data-bs-toggle="pill" data-bs-target="#sources-info" type="button" role="tab" aria-controls="sources-info" aria-selected="false" onclick="showStep(3)">Sources</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link step-indicator  step-indicator-4" id="bank-tab" data-bs-toggle="pill" data-bs-target="#bank-info" type="button" role="tab" aria-controls="bank-info" aria-selected="false" >Bank & Account Details</button>
+                            <button class="nav-link step-indicator  step-indicator-4" id="bank-tab" data-bs-toggle="pill" data-bs-target="#bank-info" type="button" role="tab" aria-controls="bank-info" aria-selected="false" onclick="showStep(4)">Bank & Account Details</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link step-indicator  step-indicator-5" id="uploads-tab" data-bs-toggle="pill" data-bs-target="#uploads-info" type="button" role="tab" aria-controls="uploads-info" aria-selected="false" >Uploads Documents</button>
+                            <button class="nav-link step-indicator  step-indicator-5" id="uploads-tab" data-bs-toggle="pill" data-bs-target="#uploads-info" type="button" role="tab" aria-controls="uploads-info" aria-selected="false" onclick="showStep(5)">Uploads Documents</button>
                         </li>
                     </ul>
                 </div>
@@ -2349,9 +2349,80 @@ dateFields.forEach((field) => {
 
             }
 
-            function showStep(step) {
-                nextStep(step);
-            }
+             function showStep(step) {
+
+
+        errors = '';
+
+let step1_formdata = {
+    name: $('#name').val(),
+    father_name: $('#father_name').val(),
+    surname: $('#surname').val(),
+    cnic: $('#cnic').val(),
+    cnic_issue_date: $('#cnic_issue_date').val(),
+    cnic_expiry_date: $('#cnic_expiry_date').val(),
+    mobile: $('#mobile').val(),
+    cnic_of_next_kin: $('#cnic_of_next_kin').val(),
+};
+
+
+
+
+    // Check if any field is empty
+    for (const key in step1_formdata) {
+        if (step1_formdata[key] === "" || step1_formdata[key] === null) {
+            let formattedKey = key.replace(/_/g, " ");
+            errors += `<b><span class="text-danger" > ${formattedKey} field is required. </span> </b> <br>`;
+
+        }
+    }
+
+    if (step1_formdata.cnic.includes('_')) {
+        errors += `<b><span class="text-danger">CNIC NUMBER IS INVALID.</span></b><br>`;
+    }
+
+    if (step1_formdata.mobile.includes('_')) {
+        errors += `<b><span class="text-danger">MOBILE NUMBER IS INVALID</span></b><br>`;
+    }
+
+    if (step1_formdata.cnic_of_next_kin.includes('_')) {
+        errors += `<b><span class="text-danger">CNIC OF NEXT KIN IS INVALID</span></b><br>`;
+    }
+
+
+       // Validate mobile number (should not have more than one '-')
+        // let mobileHyphenCount = (step1_formdata.mobile.match(/-/g) || []).length;
+        // if (mobileHyphenCount > 1) {
+        //     errors += `<b><span class="text-danger">Mobile number should not contain more than one '-' symbol.</span></b><br>`;
+        // }
+
+        // // Validate CNIC format (should have exactly two '-')
+        // let cnicHyphenCount = (step1_formdata.cnic.match(/-/g) || []).length;
+        // if (cnicHyphenCount !== 2) {
+        //     errors += `<b><span class="text-danger">CNIC should contain exactly two '-' symbols.</span></b><br>`;
+        // }
+
+         // Ensure CNIC does not contain '_'
+
+    if(errors != '')
+    {
+        Swal.fire({
+            title: "Errors!",
+            // text: "You clicked the button!",
+            icon: "error",
+            html: errors
+        });
+    }
+    else{
+
+        nextStep(step);
+    }
+
+
+
+
+
+    }
 
             function prevStep(step) {
                 // Hide all steps
