@@ -191,6 +191,23 @@ public function excelExport(Request $request)
         }
 
 
+         if($req->farmer_type_status_by_ao == 'verified_by_lrd'){
+            $tehsils = json_decode($user->tehsil ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
+
+            $query->where('district', $user->district)
+            ->whereIn('tehsil', $tehsils)
+            ->whereIn('tappa', $tappas)
+            ->whereIn('verification_status', [
+
+            'verified_by_lrd',
+
+            ]);
+        }
+
+
+
+
         if($req->farmer_type_status_by_ao == 'in-Process'){
             $tehsils = json_decode($user->tehsil ?? '[]');
             $tappas = json_decode($user->tappas ?? '[]');
@@ -673,13 +690,27 @@ public function excelExport(Request $request)
                     ->whereIn('verification_status', [
                         'rejected_by_ao',
                         'verified_by_fa',
-                        'verified_by_lrd',
+
                         'verified_by_ao',
                          'rejected_by_lrd',
                     ])
                     ->count();
                 // Add farmers_count to match Field Officer structure
                 $user->farmers_count = $farmerCount;
+
+
+                $verified_by_lrd = LandRevenueFarmerRegistation::where('district', $user->district)
+                    ->whereIn('tehsil', $tehsils)
+                    ->whereIn('tappa', $tappas)
+                    ->whereIn('verification_status', [
+
+                         'verified_by_lrd',
+                    ])
+                    ->count();
+                // Add farmers_count to match Field Officer structure
+                $user->verified_by_lrd = $verified_by_lrd;
+
+
 
 
                 $unverified = LandRevenueFarmerRegistation::where('district', $user->district)
