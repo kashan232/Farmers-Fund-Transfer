@@ -711,6 +711,16 @@ class HomeController extends Controller
 
 
 
+                    $rejected = LandRevenueFarmerRegistation::where('district', $user->district)
+                ->where('tehsil', $user->tehsil)
+                ->whereIn('tappa', json_decode($user->tappas))
+
+                ->where('verification_status' , 'rejected_by_fa')
+                ->count();
+
+
+
+
 
                 $rejectedByAO = DB::table('land_revenue_farmer_registations')
                     ->where('user_id', $user_id)
@@ -743,6 +753,8 @@ class HomeController extends Controller
                     'rejectedByAO' => $rejectedByAO,
                     'rejectedByDD' => $rejectedByDD,
                     'rejectedByLRD' => $rejectedByLRD,
+                    'rejected' => $rejected,
+
 
                 ]);
             } else if ($usertype == 'Land_Revenue_Officer') {

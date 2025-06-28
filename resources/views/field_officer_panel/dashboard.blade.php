@@ -35,7 +35,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title" style="font-size: 12px">Total Registered Farmers</p>
+                                                <p class="card-title text-title" style="font-size: 12px">Total Farmers</p>
                                                 <h3 class="card-text text-amount">{{ $fa_total_Registered_Farmers }}</h3>
                                             </div>
                                             <div class="col-auto">
@@ -53,7 +53,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">In-Process Farmers</p>
+                                                <p class="card-title text-title">In-Process</p>
                                                 <h3 class="card-text text-amount">{{ $onProcessFarmer }}</h3>
                                             </div>
                                             <div class="col-auto">
@@ -72,7 +72,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Verified Farmers</p>
+                                                <p class="card-title text-title">Verified By LRD</p>
                                                 <h3 class="card-text text-amount">{{ $Verifiedfarmeragiruser }}</h3>
                                             </div>
                                             <div class="col-auto">
@@ -90,7 +90,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Unverified Farmers</p>
+                                                <p class="card-title text-title">Pending</p>
                                                 <h3 class="card-text text-amount">{{ $Unverifiedfarmeragiruser }}</h3>
                                             </div>
                                             <div class="col-auto">
@@ -109,7 +109,27 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title"> My Registered Farmers</p>
+                                                <p class="card-title text-title">Rejected</p>
+                                                <h3 class="card-text text-amount">{{ $rejected }}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title">Self</p>
                                                 <h3 class="card-text text-amount">{{ $myRegisteredFarmers }}</h3>
                                             </div>
                                             <div class="col-auto">
@@ -128,7 +148,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title">Online Farmers </p>
+                                                <p class="card-title text-title">Online </p>
                                                 <h3 class="card-text text-amount">{{ $onlineFarmers }}</h3>
                                             </div>
                                             <div class="col-auto">
