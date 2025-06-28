@@ -48,13 +48,13 @@
 
                                                 <div class="col-md-5">
 
-                                                    <form action="{{ route('excelExport') }}"  method="get" class="d-flex">
+                                                    <form action="{{ route('excelExport') }}"  method="get" class="d-flex" style="float: right;">
                                                         <input type="hidden" name="search" value="{{ request('search') }}">
                                                         <input type="hidden" name="district" value="{{ request('district') }}">
                                                         <input type="hidden" name="taluka" value="{{ request('taluka') }}">
                                                         <input type="hidden" name="farmer_type" value="{{ request('farmer_type') }}">
                                                         <input type="hidden" name="status" value="{{ request('status') }}">
-                                                        <input type="submit" name="" id="" value="Export" class="btn btn-primary">
+                                                        <input type="submit" name="" id="" value="Export" class="btn btn-danger">
                                                     </form>
 
                                                 </div>
