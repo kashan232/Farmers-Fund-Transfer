@@ -825,6 +825,12 @@ class HomeController extends Controller
                     $query->Where('verification_status', 'verified_by_lrd');
                 })->count();
 
+                $pending = LandRevenueFarmerRegistation::where('district', Auth::user()->district)
+                ->whereIn('tehsil',json_decode($user->tehsil))
+                ->where(function ($query) {
+                    $query->Where('verification_status', 'verified_by_ao');
+                })->count();
+
 
 
 
@@ -841,6 +847,8 @@ class HomeController extends Controller
                     'tehsilCount' => $tehsilCount,
                     'tappaCount' => $tappaCount,
                     'ucCount' => $ucCount,
+                    'pending' => $pending,
+
                     'tappas' => $user->tappas
                 ]);
             }
