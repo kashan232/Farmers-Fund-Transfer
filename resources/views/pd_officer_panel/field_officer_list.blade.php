@@ -180,7 +180,7 @@
                     });
 
 
-                    $groupedData_unverified = $users->groupBy('tehsil')->map(function ($group) {
+                    $groupedData_verified_by_lrd = $users->groupBy('tehsil')->map(function ($group) {
                         return $group->sum('verified_by_lrd');
                     });
 
