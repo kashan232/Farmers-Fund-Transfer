@@ -369,7 +369,8 @@ class HomeController extends Controller
                 ->whereIn('tehsil', json_decode($user->tehsil))
                 ->whereIn('tappa', json_decode($user->tappas))
                 ->whereIn('verification_status', [
-                 'verified_by_ao'
+                 'verified_by_ao',
+                 'rejected_by_lrd'
 
                 ])
                 ->count();
@@ -403,13 +404,13 @@ class HomeController extends Controller
 
 
 
-                $rejected_by_lrd = LandRevenueFarmerRegistation::where('district', $user->district)
-                ->whereIn('tehsil', json_decode($user->tehsil))
-                ->whereIn('tappa', json_decode($user->tappas))
-                ->whereIn('verification_status', [
-                    'rejected_by_lrd',
-                ])
-                ->count();
+                // $rejected_by_lrd = LandRevenueFarmerRegistation::where('district', $user->district)
+                // ->whereIn('tehsil', json_decode($user->tehsil))
+                // ->whereIn('tappa', json_decode($user->tappas))
+                // ->whereIn('verification_status', [
+                //     'rejected_by_lrd',
+                // ])
+                // ->count();
 
 
 
