@@ -38,9 +38,9 @@
     if ($user->usertype === 'DG_Officer' && $user->email === 'Ministry@benazirharicard.gos.pk') {
         $label = 'Ministry';
     } elseif ($user->usertype === 'PD_Officer') {
-        $label = 'PD OFFICER';
+        $label = 'PROJECT DIRECTOR';
     } elseif ($user->usertype === 'DG_Officer') {
-        $label = 'DG Officer';
+        $label = 'DIRECTOR GENERAL';
     } else {
         $label = 'N/A';
     }
