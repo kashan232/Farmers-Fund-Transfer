@@ -650,7 +650,7 @@
 
 
                                                                 @if($user->usertype == 'Agri_Officer'  ) <span style="font-size:12px">
-                                                                    Verified By LRD  = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_ao' => 'verified_by_lrd']) }}">  {{ $user->verified_by_lrd }} </a> </span> <br>
+                                                                    {{-- Verified By LRD  = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_ao' => 'verified_by_lrd']) }}">  {{ $user->verified_by_lrd }} </a> </span> <br> --}}
 
                                                                     In-Process  = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_ao' => 'in-Process']) }}">  {{ $user->forwarded_to_dd }} </a> </span> <br>
                                                                     Rejected = <span style="font-size:15px"> <a href="{{ route('dg.farmers', ['user_id' => $user->id, 'farmer_type_status_by_ao' => 'rejected']) }}"> {{ $user->rejected_by_ao }} </a> </span> <br>
