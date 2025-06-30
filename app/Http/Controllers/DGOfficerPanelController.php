@@ -729,8 +729,8 @@ public function excelExport(Request $request)
 
                            'verified_by_ao',
 
-                            'rejected_by_lrd'
-
+                            'rejected_by_lrd',
+  'verified_by_lrd',
 
                         ])
                         ->count();
