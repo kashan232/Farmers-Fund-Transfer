@@ -232,15 +232,7 @@ Route::get('/all/farmers-list', [DGOfficerPanelController::class, 'index'])->nam
 
 
 Route::get('/all/fa-lists-by-ad-/{district}/{usertype}', [DistrictOfficerPanelController::class, 'get_fa_list_district'])->name('fa_list_by_ad');
-
-
-
-
-
 Route::get('/all/farmers-reporting', [DGOfficerPanelController::class, 'reporting'])->name('dg.farmers.reporting');
-
-
-
 Route::post('/all/farmers-reporting-fetch', [DGOfficerPanelController::class, 'reporting_fetch'])->name('dg.farmers.reporting.fetch');
 
 

@@ -133,7 +133,7 @@
                                 </div>
                             </div> --}}
                             <!-- Rejected Farmers Card -->
-                           
+
 
                             {{-- <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card">
@@ -160,7 +160,7 @@
 
 
 
-                           
+
 
 
                         </div>
