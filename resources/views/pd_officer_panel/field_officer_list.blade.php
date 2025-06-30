@@ -243,7 +243,7 @@
                                     <th>Tehsil</th>
                                     <th>Total</th>
                                     <th>Forwarded to AO</th>
-                                    <th>Verified By LRD</th>
+                                    {{-- <th>Verified By LRD</th> --}}
                                     <th>Pending</th>
                                     <th>Rejected by FA</th>
                                     <th>Self</th>
@@ -259,7 +259,7 @@
                                         <td>{{ $total }}</td>
                                         <td>{{ $groupedData_forwarded_to_ao[$tehsil] ?? 0 }}</td>
 
-                                        <td>{{ $groupedData_verified_by_lrd[$tehsil] ?? 0 }}</td>
+                                        {{-- <td>{{ $groupedData_verified_by_lrd[$tehsil] ?? 0 }}</td> --}}
 
                                         <td>{{ $groupedData_pending[$tehsil] ?? 0 }}</td>
                                         <td>{{ $groupedData_rejected_by_fa[$tehsil] ?? 0 }}</td>
