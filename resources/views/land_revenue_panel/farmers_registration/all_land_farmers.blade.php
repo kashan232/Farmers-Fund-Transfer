@@ -261,11 +261,11 @@ $(document).ready(function() {
         $(document).on('change', '#user_type', function(e) {
             e.preventDefault();
             var searchValue = $(this).val();
-            if(searchValue !=  11){
-                table.column(11).search('^' + searchValue + '$', true, false).draw();
+            if(searchValue !=  10){
+                table.column(10).search('^' + searchValue + '$', true, false).draw();
             }
             else{
-                table.column(11).search('').draw();
+                table.column(10).search('').draw();
             }
         });
 
@@ -290,7 +290,7 @@ $(document).ready(function() {
 
         $('#example_wrapper').before(`
 
-            <div class="col-3" style="position: absolute; top:1%; left:26%;" >
+            <div class="col-3" style="margin-bottom:2%" >
                 <select  id="user_type" class="form-control">
                     <option value="">Select Type</option>
                     <option value="verified_by_ao">Forwarded by AO</option>
