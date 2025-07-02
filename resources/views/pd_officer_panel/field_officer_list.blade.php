@@ -71,36 +71,36 @@
 
 
         //         }
-// if ($users[0]->usertype == 'Field_Officer') {
-//     $tehsilTappas = [];
+if ($users[0]->usertype == 'Field_Officer') {
+    $tehsilTappas = [];
 
-//     // Step 1: Collect tappas grouped by tehsil (repeating allowed)
-//     foreach ($users as $user) {
-//         $tehsil = $user->tehsil;
-//         $tappas = json_decode($user->tappas, true);
+    // Step 1: Collect tappas grouped by tehsil (repeating allowed)
+    foreach ($users as $user) {
+        $tehsil = $user->tehsil;
+        $tappas = json_decode($user->tappas, true);
 
-//         if (!isset($tehsilTappas[$tehsil])) {
-//             $tehsilTappas[$tehsil] = [];
-//         }
+        if (!isset($tehsilTappas[$tehsil])) {
+            $tehsilTappas[$tehsil] = [];
+        }
 
-//         foreach ($tappas as $tappa) {
-//             $tehsilTappas[$tehsil][] = $tappa; // Keep repeated tappas
-//         }
-//     }
+        foreach ($tappas as $tappa) {
+            $tehsilTappas[$tehsil][] = $tappa; // Keep repeated tappas
+        }
+    }
 
-//     // Step 2: Display tehsil-wise total tappas (including duplicates)
-//     foreach ($tehsilTappas as $tehsil => $tappas) {
-//         echo "<h5 class='mt-4'>Tehsil: <span class='text-success'>{$tehsil}</span></h5>";
-//         echo "Total Count: " . count($tappas) . "<br>";
-//         echo "Tappas Name: ";
+    // Step 2: Display tehsil-wise total tappas (including duplicates)
+    foreach ($tehsilTappas as $tehsil => $tappas) {
+        echo "<h5 class='mt-4'>Tehsil: <span class='text-success'>{$tehsil}</span></h5>";
+        echo "Total Count: " . count($tappas) . "<br>";
+        echo "Tappas Name: ";
 
-//         foreach ($tappas as $tappa) {
-//             echo "<span class='badge text-bg-primary text-white font-weight-bold me-1'>{$tappa}</span> ";
-//         }
+        foreach ($tappas as $tappa) {
+            echo "<span class='badge text-bg-primary text-white font-weight-bold me-1'>{$tappa}</span> ";
+        }
 
-//         echo "<br><br>";
-//     }
-// }
+        echo "<br><br>";
+    }
+}
 
 
 
