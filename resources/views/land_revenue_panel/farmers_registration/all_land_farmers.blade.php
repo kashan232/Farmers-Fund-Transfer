@@ -293,13 +293,18 @@ $(document).ready(function() {
             <div class="col-3" style="margin-bottom:2%" >
                 <select  id="user_type" class="form-control">
                     <option value="">Select Type</option>
-                    <option value="Forwarded by AO" selected>Pending</option>
+                    <option value="Forwarded by AO">Pending</option>
                     <option value="Verified">Verified</option>
                     <option value="Rejected">Rejected</option>
-
                 </select>
             </div>
         `);
+
+
+        setTimeout(function() {
+              $('#user_type').val('Forwarded by AO').trigger('change');
+        }, 3000); // 3000 milliseconds = 3 seconds
+
 
     });
 </script>
