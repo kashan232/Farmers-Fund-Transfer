@@ -263,7 +263,7 @@ $(document).ready(function() {
             var searchValue = $(this).val();
             if(searchValue !=  10){
                 table.column(10).search('^' + searchValue + '$', true, false).draw();
-            }
+            }   
             else{
                 table.column(10).search('').draw();
             }
@@ -293,8 +293,8 @@ $(document).ready(function() {
             <div class="col-3" style="margin-bottom:2%" >
                 <select  id="user_type" class="form-control">
                     <option value="">Select Type</option>
-                    <option value="verified_by_ao">Forwarded by AO</option>
-                    <option value="verified_by_lrd">Verified</option>
+                    <option value="Forwarded by AO">Forwarded by AO</option>
+                    <option value="Verified">Verified</option>
                 </select>
             </div>
         `);
