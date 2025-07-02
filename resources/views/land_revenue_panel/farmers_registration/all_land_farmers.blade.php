@@ -269,23 +269,23 @@ $(document).ready(function() {
             }
         });
 
-        $('#example_wrapper').before(`
-            <div class="col-3" style="position: absolute; top:1%" >
-                <select name="tehsil" id="tehsil" class="form-control">
-                    <option value="0">Please Select Tehsil</option>
-                    @foreach ($tehsils as $tehsil)
-                        <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-3" style="position: absolute; top:1%; left:26%;" >
-                <select  id="user_type" class="form-control">
-                    <option value="">Select Type</option>
-                    <option value="Online">Online</option>
-                    <option value="Field Assitant">Field Assitant</option>
-                </select>
-            </div>
-        `);
+        // $('#example_wrapper').before(`
+        //     <div class="col-3" style="position: absolute; top:1%" >
+        //         <select name="tehsil" id="tehsil" class="form-control">
+        //             <option value="0">Please Select Tehsil</option>
+        //             @foreach ($tehsils as $tehsil)
+        //                 <option value="{{$tehsil->tehsil}}">{{$tehsil->tehsil}}</option>
+        //             @endforeach
+        //         </select>
+        //     </div>
+        //     <div class="col-3" style="position: absolute; top:1%; left:26%;" >
+        //         <select  id="user_type" class="form-control">
+        //             <option value="">Select Type</option>
+        //             <option value="Online">Online</option>
+        //             <option value="Field Assitant">Field Assitant</option>
+        //         </select>
+        //     </div>
+        // `);
 
     });
 </script>
