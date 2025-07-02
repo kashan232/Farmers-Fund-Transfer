@@ -293,8 +293,10 @@ $(document).ready(function() {
             <div class="col-3" style="margin-bottom:2%" >
                 <select  id="user_type" class="form-control">
                     <option value="">Select Type</option>
-                    <option value="Forwarded by AO">Forwarded by AO</option>
+                    <option value="Forwarded by AO" selected>Pending</option>
                     <option value="Verified">Verified</option>
+                    <option value="Rejected">Rejected</option>
+
                 </select>
             </div>
         `);
