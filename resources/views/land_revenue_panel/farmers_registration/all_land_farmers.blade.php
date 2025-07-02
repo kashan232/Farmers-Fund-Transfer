@@ -228,7 +228,7 @@ $(document).ready(function() {
     $(document).ready(function() {
 
        table =  $('#example').DataTable({
-            "pageLength": 1000, // Default number of rows per page
+            "pageLength": 500, // Default number of rows per page
            "dom": 'Blfrtip', // Only include the filter (search box), table, and pagination
             "processing": true, // Optional: for large datasets
             "deferRender": true, // Improves performance by rendering rows only when needed
