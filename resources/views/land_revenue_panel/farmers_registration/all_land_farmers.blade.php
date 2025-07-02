@@ -261,11 +261,11 @@ $(document).ready(function() {
         $(document).on('change', '#user_type', function(e) {
             e.preventDefault();
             var searchValue = $(this).val();
-            if(searchValue !=  10){
-                table.column(10).search('^' + searchValue + '$', true, false).draw();
-            }   
+            if(searchValue !=  11){
+                table.column(11).search('^' + searchValue + '$', true, false).draw();
+            }
             else{
-                table.column(10).search('').draw();
+                table.column(11).search('').draw();
             }
         });
 
