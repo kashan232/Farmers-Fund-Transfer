@@ -261,16 +261,16 @@ $(document).ready(function() {
         $(document).on('change', '#user_type', function(e) {
             e.preventDefault();
             var searchValue = $(this).val();
-            if(searchValue !=  0){
-                table.column(0).search('^' + searchValue + '$', true, false).draw();
+            if(searchValue !=  11){
+                table.column(11).search('^' + searchValue + '$', true, false).draw();
             }
             else{
-                table.column(0).search('').draw();
+                table.column(11).search('').draw();
             }
         });
 
-        // $('#example_wrapper').before(`
-        //     <div class="col-3" style="position: absolute; top:1%" >
+
+        // <div class="col-3" style="position: absolute; top:1%" >
         //         <select name="tehsil" id="tehsil" class="form-control">
         //             <option value="0">Please Select Tehsil</option>
         //             @foreach ($tehsils as $tehsil)
@@ -278,14 +278,26 @@ $(document).ready(function() {
         //             @endforeach
         //         </select>
         //     </div>
-        //     <div class="col-3" style="position: absolute; top:1%; left:26%;" >
+
+        // <div class="col-3" style="position: absolute; top:1%; left:26%;" >
         //         <select  id="user_type" class="form-control">
         //             <option value="">Select Type</option>
         //             <option value="Online">Online</option>
         //             <option value="Field Assitant">Field Assitant</option>
         //         </select>
         //     </div>
-        // `);
+
+
+        $('#example_wrapper').before(`
+
+            <div class="col-3" style="position: absolute; top:1%; left:26%;" >
+                <select  id="user_type" class="form-control">
+                    <option value="">Select Type</option>
+                    <option value="verified_by_ao">Forwarded by AO</option>
+                    <option value="verified_by_lrd">Verified</option>
+                </select>
+            </div>
+        `);
 
     });
 </script>
