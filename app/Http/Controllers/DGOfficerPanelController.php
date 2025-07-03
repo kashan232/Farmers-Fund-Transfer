@@ -8,6 +8,7 @@ use App\Models\District;
 use App\Models\Tappa;
 use App\Models\Tehsil;
 use App\Models\UC;
+use Carbon\Carbon;
 use App\Models\User;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 class DGOfficerPanelController extends Controller
@@ -60,12 +61,13 @@ public function excelExport(Request $request)
     $callback = function () use ($farmers, $columns, $request) {
         $file = fopen('php://output', 'w');
 
-         if ($request->filled('start_date') && $request->filled('end_date')) {
-            fputcsv($file, ["Date: {$request->start_date} to {$request->end_date}"]);
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $startFormatted = Carbon::parse($request->start_date)->format('d-M-Y'); // e.g. 23/Jun - 2025
+            $endFormatted = Carbon::parse($request->end_date)->format('d-M-Y');     // e.g. 15/Jul - 2025
+            fputcsv($file, ["Date: {$startFormatted} to {$endFormatted}"]);
         } else {
             fputcsv($file, ["Date: All"]);
         }
-
 
         fputcsv($file, $columns);
 
