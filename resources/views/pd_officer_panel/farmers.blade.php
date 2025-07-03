@@ -139,7 +139,8 @@
                                                               <input type="hidden" name="district" value="{{ request('district') }}">
                                                                 <input type="hidden" name="taluka" value="{{ request('taluka') }}">
                                                                 <input type="hidden" name="farmer_type" value="{{ request('farmer_type') }}">
-
+<input type="hidden" name="start_date" value="{{ request('start_date') }}">
+                                                        <input type="hidden" name="end_date" value="{{ request('end_date') }}">
 
                                                         <select name="status" id="" class="form-control" onchange="document.getElementById('status_form').submit()">
 
