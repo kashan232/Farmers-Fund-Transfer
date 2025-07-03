@@ -26,6 +26,10 @@ public function excelExport(Request $request)
         ->when($request->taluka, fn($q) => $q->where('tehsil', $request->taluka))
         ->when($request->farmer_type, fn($q) => $q->where('farmer_type', $request->farmer_type))
         ->when($request->status, fn($q) => $q->where('verification_status', $request->status))
+        ->when($request->filled('start_date') && $request->filled('end_date'), function ($q) use ($request) {
+        $q->whereBetween('created_at', [$request->start_date, $request->end_date]);
+    })
+
         ->get();
 
     $columns = [

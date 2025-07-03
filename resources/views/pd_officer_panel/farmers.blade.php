@@ -47,8 +47,22 @@
 
 
                                                 <div class="col-md-5">
+                                                     {{-- Date Range --}}
+                                                    <div class="col-md-4 mb-2">
+                                                        <div class="d-flex">
+                                                            <input type="date" name="start_date" value="{{ request('start_date') }}" class="form-control me-1" placeholder="From">
+                                                            <input type="date" name="end_date" value="{{ request('end_date') }}" class="form-control me-1" placeholder="To">
+                                                            <button type="submit" class="btn btn-primary">Filter</button>
+                                                        </div>
+                                                    </div>
 
                                                     <form action="{{ route('excelExport') }}"  method="get" class="d-flex" style="float: right;">
+
+                                                        <input type="hidden" name="start_date" value="{{ request('start_date') }}">
+                                                        <input type="hidden" name="end_date" value="{{ request('end_date') }}">
+
+
+
                                                         <input type="hidden" name="search" value="{{ request('search') }}">
                                                         <input type="hidden" name="district" value="{{ request('district') }}">
                                                         <input type="hidden" name="taluka" value="{{ request('taluka') }}">
