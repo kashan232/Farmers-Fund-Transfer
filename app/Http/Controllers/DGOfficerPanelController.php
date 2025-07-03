@@ -57,8 +57,16 @@ public function excelExport(Request $request)
         'Code',
     ];
 
-    $callback = function () use ($farmers, $columns) {
+    $callback = function () use ($farmers, $columns, $request) {
         $file = fopen('php://output', 'w');
+
+         if ($request->filled('start_date') && $request->filled('end_date')) {
+            fputcsv($file, ["Date: {$request->start_date} to {$request->end_date}"]);
+        } else {
+            fputcsv($file, ["Date: All"]);
+        }
+
+
         fputcsv($file, $columns);
 
         foreach ($farmers as $farmer) {
