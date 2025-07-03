@@ -140,6 +140,12 @@ public function excelExport(Request $request)
         });
     }
 
+
+    $query->when(
+    $req->filled('start_date') && $req->filled('end_date'),
+    fn($q) => $q->whereBetween('created_at', [$req->start_date, $req->end_date])
+);
+
     if (!empty($status)) {
         if($status == 'in_process'){
              $query->whereIn('verification_status', [
