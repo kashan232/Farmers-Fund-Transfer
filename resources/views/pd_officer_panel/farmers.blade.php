@@ -50,9 +50,12 @@
                                                      {{-- Date Range --}}
                                                     <div class="col-md-4 mb-2">
                                                         <div class="d-flex">
+                                                    <form action="{{ route('dg.farmers') }}" method="get" class="d-flex">
+
                                                             <input type="date" name="start_date" value="{{ request('start_date') }}" class="form-control me-1" placeholder="From">
                                                             <input type="date" name="end_date" value="{{ request('end_date') }}" class="form-control me-1" placeholder="To">
                                                             <button type="submit" class="btn btn-primary">Filter</button>
+                                                    </form>
                                                         </div>
                                                     </div>
 
