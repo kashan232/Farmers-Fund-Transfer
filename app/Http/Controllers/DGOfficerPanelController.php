@@ -19,7 +19,14 @@ class DGOfficerPanelController extends Controller
 
 public function excelExport(Request $request)
 {
-    $fileName = 'farmers_export.csv';
+      // Format filename with date range
+    if ($request->filled('start_date') && $request->filled('end_date')) {
+        $startFormatted = Carbon::parse($request->start_date)->format('d-M-Y'); // e.g. 23-Jun-2025
+        $endFormatted = Carbon::parse($request->end_date)->format('d-M-Y');     // e.g. 15-Jul-2025
+        $fileName = "farmers_export_{$startFormatted}_to_{$endFormatted}.csv";
+    } else {
+        $fileName = 'farmers_export_all.csv';
+    }
 
     $farmers = LandRevenueFarmerRegistation::query()
         ->when($request->search, fn($q) => $q->where('name', 'like', "%{$request->search}%"))
