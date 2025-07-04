@@ -217,7 +217,6 @@ $(document).ready(function() {
         if ($(this).val() == 'rejected_by_lo') {
             reasonBox.show();
             $('#reasonTextarea').prop('required', true);
-
         } else {
             reasonBox.hide();
             $('#reasonTextarea').prop('required', false);

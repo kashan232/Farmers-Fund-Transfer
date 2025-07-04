@@ -93,14 +93,14 @@ public function excelExport(Request $request)
                  $farmer->permanent_address ?? '',
                 $farmer->tehsil ?? '',
                 $farmer->district ?? '',
-                $farmer->survey_no ?? '',
+                $farmer->mobile ?? '',
                 $farmer->survey_no ?? '',
                 $farmer->total_fallow_land ?? '',
                 $farmer->total_area_cultivated_land ?? '',
                 $farmer->tappa ?? '',
                 $farmer->tehsil ?? '',
                 $farmer->district ?? '',
-                $farmer->branch_name ?? '',
+                $farmer->branch()->title ?? '',
                 $farmer->branch_code ?? '',
             ]);
         }
