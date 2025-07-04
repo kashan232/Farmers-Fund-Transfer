@@ -28,7 +28,7 @@ public function excelExport(Request $request)
         $fileName = 'farmers_export_all.csv';
     }
 
-    $farmers = LandRevenueFarmerRegistation::query()
+    $farmers = LandRevenueFarmerRegistation::with('branch')
         ->when($request->search, fn($q) => $q->where('name', 'like', "%{$request->search}%"))
         ->when($request->district, fn($q) => $q->where('district', $request->district))
         ->when($request->taluka, fn($q) => $q->where('tehsil', $request->taluka))
@@ -100,7 +100,7 @@ public function excelExport(Request $request)
                 $farmer->tappa ?? '',
                 $farmer->tehsil ?? '',
                 $farmer->district ?? '',
-                $farmer->branch()->title ?? '',
+                $farmer->branch->title ?? '',
                 $farmer->branch_code ?? '',
             ]);
         }
