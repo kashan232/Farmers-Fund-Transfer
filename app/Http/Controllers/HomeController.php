@@ -537,7 +537,7 @@ class HomeController extends Controller
                 })->get();
 
 
-                dd($$lrd_list);
+                dd($lrd_list);
 
 
 
