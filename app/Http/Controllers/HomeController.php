@@ -580,8 +580,6 @@ class HomeController extends Controller
                         $query->whereIn('verification_status', [
                             'verified_by_fa',
                             'verified_by_ao',
-
-
                         ]);
                     })
                     ->count();
@@ -593,9 +591,7 @@ class HomeController extends Controller
                     ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                     ->where(function ($query) {
                         $query->whereIn('verification_status', [
-
                             'verified_by_lrd',
-
                         ]);
                     })
                     ->count();

@@ -151,6 +151,13 @@
                             <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
                             <th style="width: 150px">Tehsils</th>
+                            <th style="width: 150px">Tehsils</th>
+                            <th style="width: 150px">Total Farmers</th>
+                            <th style="width: 150px">in_process</th>
+                            <th style="width: 150px">verified</th>
+                            <th style="width: 150px">rejected</th>
+                            <th style="width: 150px">pending</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -161,6 +168,11 @@
                                 <td>{{ $fa->email }}</td>
                                 <td>{{ $fa->district }}</td>
                                 <td>{{ $fa->tehsil }}</td>
+                                <td>{{ $fa->total_farmers }}</td>
+                                <td>{{ $fa->in_process }}</td>
+                                <td>{{ $fa->verified }}</td>
+                                <td>{{ $fa->rejected }}</td>
+                                <td>{{ $fa->pending }}</td>
                             </tr>
                         @endforeach
                     </tbody>
