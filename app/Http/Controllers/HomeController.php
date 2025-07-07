@@ -616,7 +616,85 @@ class HomeController extends Controller
                     foreach ($tehsils as $tehsil) {
                         $query->orWhereJsonContains('tehsil', $tehsil);
                     }
-                })->get();
+                })->get()
+                ->map(function ($user) {
+                    $total_farmers = LandRevenueFarmerRegistation::where('district', $user->district)
+                    ->where('tehsil', $user->tehsil)
+                    ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                    ->where(function ($query) {
+                        $query->whereIn('verification_status', [
+                            'verified_by_fa',
+                            'verified_by_ao',
+                            'verified_by_lrd',
+                            'rejected_by_ao',
+                            'rejected_by_lrd',
+                        ]);
+                    })
+                    ->count();
+                    $user->total_farmers = $total_farmers;
+
+                    // $forwarded_to_ao = LandRevenueFarmerRegistation::where('district', $user->district)
+                    // ->where('tehsil', $user->tehsil)
+                    // ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                    // ->where(function ($query) {
+                    //     $query->whereIn('verification_status', [
+                    //         'verified_by_fa',
+                    //     ]);
+                    // })
+                    // ->count();
+                    // $user->forwarded_to_ao = $forwarded_to_ao;
+
+                    $rejected = LandRevenueFarmerRegistation::where('district', $user->district)
+                    ->where('tehsil', $user->tehsil)
+                    ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                    ->where(function ($query) {
+                        $query->whereIn('verification_status', [
+                            'rejected_by_ao',
+                            'rejected_by_lrd',
+                        ]);
+                    })
+                    ->count();
+                    $user->rejected = $rejected;
+
+                    $pending = LandRevenueFarmerRegistation::where('district', $user->district)
+                    ->where('tehsil', $user->tehsil)
+                    ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                    ->where(function ($query) {
+                        $query->whereIn('verification_status', [
+                            'verified_by_fa',
+                        ]);
+                    })
+                    ->count();
+                    $user->pending = $pending;
+
+
+                     $in_process = LandRevenueFarmerRegistation::where('district', $user->district)
+                    ->where('tehsil', $user->tehsil)
+                    ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                    ->where(function ($query) {
+                        $query->whereIn('verification_status', [
+                            'verified_by_ao',
+                        ]);
+                    })
+                    ->count();
+                    $user->in_process = $in_process;
+
+
+                     $verified = LandRevenueFarmerRegistation::where('district', $user->district)
+                    ->where('tehsil', $user->tehsil)
+                    ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                    ->where(function ($query) {
+                        $query->whereIn('verification_status', [
+                            'verified_by_lrd',
+                        ]);
+                    })
+                    ->count();
+                    $user->verified = $verified;
+
+
+
+                    return $user;
+                });
 
 
                 $lrd_list = User::where('usertype', 'Land_Revenue_Officer')
