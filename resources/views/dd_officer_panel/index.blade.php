@@ -171,7 +171,7 @@
                     <thead>
                         <tr>
                             <th colspan="5">
-                                
+                                <h2 class="text-white text-center">Agri Officers (AO)</h2>
                             </th>
                         </tr>
                         <tr>
