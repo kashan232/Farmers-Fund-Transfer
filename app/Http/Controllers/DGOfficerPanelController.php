@@ -55,7 +55,7 @@ public function excelExport(Request $request)
             'total_fallow_land',
             'total_area_cultivated_land',
             'tappa',
-            'branch_code',
+            // 'branch_code',
         ];
 
         foreach ($requiredFields as $field) {

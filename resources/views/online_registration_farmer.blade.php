@@ -613,15 +613,15 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <div class="mb-6 col-md-6 mt-3">
                                                         <label class="form-label">(1) Total Landholding (Acres):  <span class="text-danger">*</span></label>
-                                                        <input type="text" name="total_landing_acre" id="total_landing_acre" value="{{$data->total_landing_acre ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                        <input type="text" name="total_landing_acre" id="total_landing_acre" value="{{$data->total_landing_acre ?? ''}}" class="form-control"   min="1" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                     </div>
                                                     <div class="mb-6 col-md-6 mt-3">
                                                         <label class="form-label">(2) Total Area with Hari(s) (Acres):</label>
-                                                        <input type="text" name="total_area_with_hari" value="{{$data->total_area_with_hari ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                        <input type="text" name="total_area_with_hari" value="{{$data->total_area_with_hari ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" >
                                                     </div>
                                                     <div class="mt-2 col-md-6">
                                                         <label class="form-label">(3) Total self cultivated land (Acres):  <span class="text-danger">*</span></label>
-                                                        <input type="text" name="total_area_cultivated_land" id="total_area_cultivated_land" value="{{$data->total_area_cultivated_land ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                        <input type="text" name="total_area_cultivated_land" id="total_area_cultivated_land" value="{{$data->total_area_cultivated_land ?? ''}}"   min="1" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                     </div>
                                                     <div class="mt-2 col-md-6">
                                                         <label class="form-label">(4) Total fallow land (Acres):</label>
@@ -1405,6 +1405,27 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <script src="https://cms.benazirharicard.gos.pk/online_farmers_assets/js/select2.min.js"></script>
         <script src="{{asset('assets/js/inputMask.js')}}"></script>
 
+<script>
+    $(document).ready(function () {
+        function validateGreaterThanZeroLive(selector, fieldName) {
+            $(selector).on('input', function () {
+                let value = parseInt($(this).val(), 10);
+
+                if (!value || value <= 0) {
+                    $(this)[0].setCustomValidity(fieldName + ' must be greater than 0');
+                    $(this)[0].reportValidity(); // shows message
+                } else {
+                    $(this)[0].setCustomValidity('');
+                }
+            });
+        }
+
+        // Bind validation on DOM ready
+        validateGreaterThanZeroLive('#total_landing_acre', 'Total Landing Acre');
+        validateGreaterThanZeroLive('#total_area_cultivated_land', 'Total Area Cultivated Land');
+        validateGreaterThanZeroLive('#survey_no', 'Survey No');
+    });
+</script>
 
 
 <script>
@@ -2238,6 +2259,8 @@ dateFields.forEach((field) => {
                     if (step1_formdata.cnic_of_next_kin.includes('_')) {
                         errors += `<b><span class="text-danger">CNIC OF NEXT KIN IS INVALID</span></b><br>`;
                     }
+
+
 
 
 
