@@ -89,8 +89,8 @@
                                                 <h3 class="card-text text-amount" style="color: #000000 !important;">{{$rejected_by_lrd}}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-check" aria-hidden="true"></i>
+                                                <div class="icon-shape bg-danger text-danger" >
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -148,7 +148,7 @@
                             </div>
 
 
-                            
+
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                   <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'forwarded_to_ao']) }}">
                                 <div class="card" >
