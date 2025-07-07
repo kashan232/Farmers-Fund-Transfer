@@ -129,6 +129,7 @@
                 </div>
 
                 {{-- <h2 class="mb-4 mt-5">Agri Officers (AO)</h2> --}}
+                <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -166,8 +167,10 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
 
                 {{-- <h2 class="mb-4 mt-5">Land Revenue Officers (LRD)</h2> --}}
+                <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -203,6 +206,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
             </div>
 
 
