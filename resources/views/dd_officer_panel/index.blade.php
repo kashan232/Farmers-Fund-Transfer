@@ -147,8 +147,8 @@
                         </tr>
                         <tr>
                             <th>#</th>
-                            <th style="width: 300px">Name</th>
-                            <th >Email</th>
+                            <th>Name</th>
+                            <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
                             <th style="width: 150px">Tehsils</th>
                         </tr>
@@ -176,8 +176,8 @@
                         </tr>
                         <tr>
                             <th>#</th>
-                            <th style="width: 300px">Name</th>
-                            <th >Email</th>
+                            <th>Name</th>
+                            <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
                             <th style="width: 150px">Tehsils</th>
                         </tr>
@@ -205,8 +205,8 @@
                         </tr>
                         <tr>
                             <th>#</th>
-                            <th style="width: 300px">Name</th>
-                            <th >Email</th>
+                            <th>Name</th>
+                            <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
                             <th style="width: 150px">Tehsils</th>
                         </tr>
