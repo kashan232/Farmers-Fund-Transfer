@@ -38,7 +38,7 @@
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <a href="{{route('dg.farmers')}}">
-                                <div class="card" style="    background-color: #ffff55;">
+                                <div class="card" >
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
@@ -59,7 +59,7 @@
                              <!-- Verified Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'verified_by_lrd']) }}">
-                                <div class="card" style="background: green;">
+                                <div class="card" >
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
@@ -81,7 +81,7 @@
                              <!-- Verified Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                   <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'rejected_by_lrd']) }}">
-                                <div class="card" style="    background: red;">
+                                <div class="card" >
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
@@ -107,7 +107,7 @@
                              <!-- Verified Farmers Card -->
                              <div class="col-lg-4 col-md-6 col-sm-6">
                                   <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'in_process']) }}">
-                                <div class="card" style="background: cadetblue;">
+                                <div class="card" >
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
@@ -129,7 +129,7 @@
                             <!-- Rejected Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                   <a href="{{ route('dg.farmers', ['search' => null, 'status' => null]) }}">
-                                <div class="card" style="background: tomato;">
+                                <div class="card" >
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
@@ -147,52 +147,8 @@
                                   </a>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'fa_farmers']) }}">
-                                <div class="card" style="background: cornflowerblue;">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title" style="color: #000000 !important;">
-                                                    {{-- Through Mobile Application Farmers Registration --}}
-                                                    Farmers Registered By FA
-                                                </p>
-                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$userFarmers}}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                  </a>
-                            </div>
 
-
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'online_farmers']) }}">
-                                <div class="card" style="    background: yellowgreen;">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title" style="color: #000000 !important;">Online Farmers Registration</p>
-                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$onlineFarmers}}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                  </a>
-                            </div>
-
-
-
+                            
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                   <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'forwarded_to_ao']) }}">
                                 <div class="card" >
@@ -234,6 +190,56 @@
                                 </div>
                                   </a>
                             </div>
+
+
+
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'fa_farmers']) }}">
+                                <div class="card" >
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title" style="color: #000000 !important;">
+                                                    {{-- Through Mobile Application Farmers Registration --}}
+                                                    Farmers Registered By FA
+                                                </p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$userFarmers}}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  </a>
+                            </div>
+
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'online_farmers']) }}">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title" style="color: #000000 !important;">Online Farmers Registration</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$onlineFarmers}}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  </a>
+                            </div>
+
+
+
 
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="card">
