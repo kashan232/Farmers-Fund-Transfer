@@ -141,8 +141,8 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th colspan="5">
-                                <h2 class="text-white text-center">Field Officers (FA)</h2>
+                            <th colspan="5" class="text-white text-center">
+                                Field Asistants
                             </th>
                         </tr>
                         <tr>
