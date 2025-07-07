@@ -580,7 +580,7 @@ class HomeController extends Controller
                         $query->whereIn('verification_status', [
                             'verified_by_fa',
                             'verified_by_ao',
-                           
+
 
                         ]);
                     })
@@ -593,7 +593,7 @@ class HomeController extends Controller
                     ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                     ->where(function ($query) {
                         $query->whereIn('verification_status', [
-                           
+
                             'verified_by_lrd',
 
                         ]);
@@ -608,7 +608,7 @@ class HomeController extends Controller
 
 
 
-                dd($fa_list);
+                // dd($fa_list);
 
 
 
