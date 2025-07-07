@@ -527,7 +527,18 @@ class HomeController extends Controller
                     }
                 })->get();
 
-                dd( $ao_list);
+
+                $lrd_list = User::where('usertype', 'Land_Revenue_Officer')
+                ->whereIn('district', $districts)
+                ->where(function ($query) use ($tehsils) {
+                    foreach ($tehsils as $tehsil) {
+                        $query->orWhereJsonContains('tehsil', $tehsil);
+                    }
+                })->get();
+
+
+                dd($$lrd_list);
+
 
 
                 return view('dd_officer_panel.index', [
