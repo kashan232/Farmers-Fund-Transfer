@@ -513,6 +513,10 @@ class HomeController extends Controller
                 )
                 ->count();
 
+
+
+               dd($user); 
+
                 return view('dd_officer_panel.index', [
                     'agriUserfarmersCount' => $agriUserfarmersCount,
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
