@@ -112,13 +112,14 @@
                     </thead>
                     <tbody>
                         @foreach($fa_list as $index => $fa)
+                        {{dd($fa);}}
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $fa->name }}</td>
                                 <td>{{ $fa->email }}</td>
                                 <td>{{ $fa->district }}</td>
                                 <td>{{ $fa->tehsil }}</td>
-                                <td>{{ $fa->tappa }}</td>
+                                <td>{{ $fa->tappas }}</td>
                                 <td>{{ $fa->total_farmers }}</td>
                                 <td>{{ $fa->in_process }}</td>
                                 <td>{{ $fa->verified }}</td>
