@@ -116,7 +116,7 @@
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape border border-primary text-primary">
-                                                    <i class="fas fa-user-check" aria-hidden="true"></i>
+                                                    <i class="fas fa-user" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -138,7 +138,7 @@
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape " style="color: blue !important; border: 1px solid blue;">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                    <i class="fas fa-user" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -159,8 +159,8 @@
                                                 <h3 class="card-text text-amount" style="color: #000000 !important;">{{$forwarded_to_ao}}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                <div class="icon-shape " style="color: #e0b44f !important; border: 1px solid #e0b44f">
+                                                    <i class="fas fa-user" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -181,8 +181,8 @@
                                                 <h3 class="card-text text-amount" style="color: #000000 !important;">{{$forwarded_to_lrd}}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                <div class="icon-shape "  style="color: #4fe0d9 !important; border: 1px solid #4fe0d9">
+                                                    <i class="fas fa-user" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -208,7 +208,7 @@
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                    <i class="fas fa-user" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -229,7 +229,7 @@
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape green-icon-bg">
-                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                    <i class="fas fa-user" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
