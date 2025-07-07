@@ -539,6 +539,8 @@ class HomeController extends Controller
                     ->count();
 
                     $user->farmers_count = $farmerCount;
+
+                    return $user;
                 });
 
                 dd($fa_list);
