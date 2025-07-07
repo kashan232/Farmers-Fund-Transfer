@@ -514,11 +514,21 @@ class HomeController extends Controller
                 ->count();
 
 
-                $districts = json_decode($user->tappas);
-                $tehsils = json_decode($user->tappas);
+                $districts = json_decode($user->district);
+                $tehsils = json_decode($user->tehsil);
                 $tappas = json_decode($user->tappas);
 
-                dd($tappas);
+
+                $ao_list = User::where('usertype', 'Agri_Officer')
+                ->whereIn('district', $districts)
+                ->where(function ($query) use ($tehsils) {
+                    foreach ($tehsils as $tehsil) {
+                        $query->orWhereJsonContains('tehsil', $tehsil);
+                    }
+                })->get();
+
+                dd( $ao_list);
+
 
                 return view('dd_officer_panel.index', [
                     'agriUserfarmersCount' => $agriUserfarmersCount,
