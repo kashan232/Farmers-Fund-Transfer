@@ -196,10 +196,24 @@ public function excelExport(Request $request)
                 'rejected_by_dd',
                 'rejected_by_fa',
                 'verified_by_dd',
-                'verified_by_fa',
+
+             ]);
+        }
+
+        elseif($status == 'forwarded_to_lrd'){
+             $query->whereIn('verification_status', [
                 'verified_by_ao'
              ]);
         }
+
+         elseif($status == 'forwarded_to_ao'){
+             $query->whereIn('verification_status', [
+                'verified_by_fa'
+             ]);
+        }
+
+
+
         elseif($status == 'fa_farmers'){
              $query->where('user_type' ,'!=', 'Online');
         }
