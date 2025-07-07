@@ -87,8 +87,8 @@ class HomeController extends Controller
                     'rejected_by_dd',
                     'rejected_by_fa',
                     'verified_by_dd',
-                    'verified_by_fa',
-                    'verified_by_ao'
+
+
                 ])
                 ->count();
 
@@ -109,6 +109,19 @@ class HomeController extends Controller
                     'rejected_by_lrd'
                 ])
                 ->count();
+
+
+
+                 $forwarded_to_ao = LandRevenueFarmerRegistation::whereIn('verification_status', [
+                     'verified_by_fa'
+                ])
+                ->count();
+
+                 $forwarded_to_lrd = LandRevenueFarmerRegistation::whereIn('verification_status', [
+                    'verified_by_ao'
+                ])
+                ->count();
+
 
 // $total = LandRevenueFarmerRegistation::count();
 
@@ -191,7 +204,9 @@ class HomeController extends Controller
                     'verified' => $verified,
                     'unverified' => $unverified,
                     'total' => $total,
-                    'rejected_by_lrd' => $rejected_by_lrd
+                    'rejected_by_lrd' => $rejected_by_lrd,
+                    'forwarded_to_ao' => $forwarded_to_ao,
+                    'forward_to_lrd' => $forwarded_to_lrd
 
                 ]);
             }

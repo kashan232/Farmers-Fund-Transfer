@@ -37,7 +37,7 @@ public function excelExport(Request $request)
         ->when($request->filled('start_date') && $request->filled('end_date'), function ($q) use ($request) {
         $q->whereBetween('created_at', [$request->start_date, $request->end_date]);
     })->get();
-    
+
     // ->filter(function ($farmer) {
     //     // List of required fields to check for completeness
     //     $requiredFields = [

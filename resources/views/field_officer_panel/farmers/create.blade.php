@@ -371,7 +371,7 @@
                                             data-inputmask="'mask': '0399-9999999', 'greedy': false"
                                             placeholder="03XX-XXXXXXX">
 
-
+                                            
 
                                             {{-- <input type="text" id="mobile" name="mobile" class="form-control" value="{{ str_replace('-', '', $data->mobile ?? '') }}"  data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"  > --}}
                                         </div>
