@@ -101,7 +101,7 @@
                             <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
                             <th style="width: 150px">Tehsils</th>
-                            <th style="width: 150px">Tappa</th>
+                            <th style="width: 150px">Tappas</th>
                             <th style="width: 150px">Total Farmers</th>
                             <th style="width: 150px">In-Process</th>
                             <th style="width: 150px">Verified</th>
@@ -149,11 +149,11 @@
                                     @endif
                                 </td>
 
-                                <td>{{ $fa->total_farmers }}</td>
-                                <td>{{ $fa->in_process }}</td>
-                                <td>{{ $fa->verified }}</td>
-                                <td>{{ $fa->rejected }}</td>
-                                <td>{{ $fa->pending }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->total_farmers }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->in_process }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->verified }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->rejected }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->pending }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -175,6 +175,7 @@
                             <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
                             <th style="width: 150px">Tehsils</th>
+                            <th style="width: 150px">Tappas</th>
                             <th style="width: 150px">Total Farmers</th>
                             <th style="width: 150px">In-Process</th>
                             <th style="width: 150px">Verified</th>
@@ -190,11 +191,40 @@
                                 <td>{{ $ao->email }}</td>
                                 <td>{{ $ao->district }}</td>
                                 <td>{{ implode(', ', json_decode($ao->tehsil ?? '[]')) }}</td>
-                                 <td>{{ $fa->total_farmers }}</td>
-                                <td>{{ $fa->in_process }}</td>
-                                <td>{{ $fa->verified }}</td>
-                                <td>{{ $fa->rejected }}</td>
-                                <td>{{ $fa->pending }}</td>
+                                <td>
+
+                                    @php
+                                        $tappa = json_decode($fa->tappas, true);
+                                    @endphp
+
+                                    @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
+                                        <div>
+                                            @foreach($tappa as $index => $tappaItem)
+                                                <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $fa->id : '' }}">
+                                                    {{ $tappaItem }}
+                                                </span>
+                                                @if($index < 3)
+                                                    <br>
+                                                @endif
+                                            @endforeach
+
+                                            @if(count($tappa) > 4)
+                                                <a href="javascript:void(0);" id="toggle-link-{{ $fa->id }}" onclick="toggleTappas({{ $fa->id }})" class="text-primary d-block mt-1">
+                                                    +{{ count($tappa) - 4 }}
+                                                </a>
+                                            @endif
+                                        </div>
+                                    @else
+                                        <span class="badge text-bg-success text-dark font-weight-bold">
+                                            {{ $fa->tappas }}
+                                        </span>
+                                    @endif
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->total_farmers }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->in_process }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->verified }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->rejected }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->pending }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -216,6 +246,7 @@
                             <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
                             <th style="width: 150px">Tehsils</th>
+                            <th style="width: 150px">Tappas</th>
                               <th style="width: 150px">Total Farmers</th>
                             <th style="width: 150px">Verified</th>
                             <th style="width: 150px">Rejected</th>
@@ -230,10 +261,39 @@
                                 <td>{{ $lrd->email }}</td>
                                 <td>{{ $lrd->district }}</td>
                                 <td>{{ implode(', ', json_decode($lrd->tehsil ?? '[]')) }}</td>
-                                <td>{{ $fa->total_farmers }}</td>
-                                <td>{{ $fa->verified }}</td>
-                                <td>{{ $fa->rejected }}</td>
-                                <td>{{ $fa->pending }}</td>
+                                <td>
+
+                                    @php
+                                        $tappa = json_decode($fa->tappas, true);
+                                    @endphp
+
+                                    @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
+                                        <div>
+                                            @foreach($tappa as $index => $tappaItem)
+                                                <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $fa->id : '' }}">
+                                                    {{ $tappaItem }}
+                                                </span>
+                                                @if($index < 3)
+                                                    <br>
+                                                @endif
+                                            @endforeach
+
+                                            @if(count($tappa) > 4)
+                                                <a href="javascript:void(0);" id="toggle-link-{{ $fa->id }}" onclick="toggleTappas({{ $fa->id }})" class="text-primary d-block mt-1">
+                                                    +{{ count($tappa) - 4 }}
+                                                </a>
+                                            @endif
+                                        </div>
+                                    @else
+                                        <span class="badge text-bg-success text-dark font-weight-bold">
+                                            {{ $fa->tappas }}
+                                        </span>
+                                    @endif
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->total_farmers }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->verified }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->rejected }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->pending }}</td>
                             </tr>
                         @endforeach
                     </tbody>
