@@ -624,7 +624,6 @@ class HomeController extends Controller
 
                     $total_farmers = LandRevenueFarmerRegistation::where('district', $user->district)
                    ->whereIn('tehsil', $user_tehsils)
-                    ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                     ->where(function ($query) {
                         $query->whereIn('verification_status', [
                             'verified_by_fa',
@@ -650,7 +649,6 @@ class HomeController extends Controller
 
                     $rejected = LandRevenueFarmerRegistation::where('district', $user->district)
                     ->whereIn('tehsil', $user_tehsils)
-                    ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                     ->where(function ($query) {
                         $query->whereIn('verification_status', [
                             'rejected_by_ao',
@@ -662,7 +660,6 @@ class HomeController extends Controller
 
                     $pending = LandRevenueFarmerRegistation::where('district', $user->district)
                     ->whereIn('tehsil', $user_tehsils)
-                    ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                     ->where(function ($query) {
                         $query->whereIn('verification_status', [
                             'verified_by_fa',
@@ -674,7 +671,6 @@ class HomeController extends Controller
 
                      $in_process = LandRevenueFarmerRegistation::where('district', $user->district)
                     ->whereIn('tehsil', $user_tehsils)
-                    ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                     ->where(function ($query) {
                         $query->whereIn('verification_status', [
                             'verified_by_ao',
@@ -686,7 +682,6 @@ class HomeController extends Controller
 
                      $verified = LandRevenueFarmerRegistation::where('district', $user->district)
                    ->whereIn('tehsil', $user_tehsils)
-                    ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
                     ->where(function ($query) {
                         $query->whereIn('verification_status', [
                             'verified_by_lrd',
