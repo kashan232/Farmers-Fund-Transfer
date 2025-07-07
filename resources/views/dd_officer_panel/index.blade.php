@@ -100,7 +100,6 @@
                             <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
                             <th style="width: 150px">Tehsils</th>
-                            <th style="width: 150px">Tehsils</th>
                             <th style="width: 150px">Total Farmers</th>
                             <th style="width: 150px">In-Process</th>
                             <th style="width: 150px">Verified</th>
