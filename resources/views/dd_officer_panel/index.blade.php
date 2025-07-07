@@ -136,7 +136,7 @@
                 </div>
             </div>
 
-            <div class="container">
+            <div class="col-12">
                 {{-- <h2 class="mb-4">Field Officers (FA)</h2> --}}
                 <table class="table table-bordered">
                     <thead>
