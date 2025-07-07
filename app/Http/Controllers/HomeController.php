@@ -519,9 +519,31 @@ class HomeController extends Controller
                 $tappas = json_decode($user->tappas);
 
 
-                $fa_list = User::where('usertype', 'Field_Officer')
+                $fa_list = User::with('fieldOfficer')->where('usertype', 'Field_Officer')
                 ->whereIn('district', $districts)
-                   ->whereIn('tehsil', $tehsils)->get();
+                ->whereIn('tehsil', $tehsils)->get()
+                ->map(function ($user) {
+                    $farmerCount = LandRevenueFarmerRegistation::where('district', $user->district)
+                    ->where('tehsil', $user->tehsil)
+                    ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
+                    ->where(function ($query) {
+                        $query->whereIn('verification_status', [
+                            'verified_by_fa',
+                            'verified_by_ao',
+                            'verified_by_lrd',
+                            'rejected_by_fa',
+                            'rejected_by_ao',
+                            'rejected_by_lrd',
+                        ])->orWhereNull('verification_status');
+                    })
+                    ->count();
+
+                    $user->farmers_count = $farmerCount;
+                });
+
+                dd($fa_list);
+
+
 
 
 
