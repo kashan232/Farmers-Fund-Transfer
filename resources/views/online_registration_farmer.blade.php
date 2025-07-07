@@ -613,15 +613,15 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <div class="mb-6 col-md-6 mt-3">
                                                         <label class="form-label">(1) Total Landholding (Acres):  <span class="text-danger">*</span></label>
-                                                        <input type="number" name="total_landing_acre" id="total_landing_acre" value="{{$data->total_landing_acre ?? ''}}" class="form-control"   min="1" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                        <input type="text" name="total_landing_acre" id="total_landing_acre" value="{{$data->total_landing_acre ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                     </div>
                                                     <div class="mb-6 col-md-6 mt-3">
                                                         <label class="form-label">(2) Total Area with Hari(s) (Acres):</label>
-                                                        <input type="text" name="total_area_with_hari" value="{{$data->total_area_with_hari ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" >
+                                                        <input type="text" name="total_area_with_hari" value="{{$data->total_area_with_hari ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                     </div>
                                                     <div class="mt-2 col-md-6">
                                                         <label class="form-label">(3) Total self cultivated land (Acres):  <span class="text-danger">*</span></label>
-                                                        <input type="number" name="total_area_cultivated_land" id="total_area_cultivated_land" value="{{$data->total_area_cultivated_land ?? ''}}"   min="1" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                        <input type="text" name="total_area_cultivated_land" id="total_area_cultivated_land" value="{{$data->total_area_cultivated_land ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                     </div>
                                                     <div class="mt-2 col-md-6">
                                                         <label class="form-label">(4) Total fallow land (Acres):</label>
@@ -2171,6 +2171,8 @@ $('#lined_unlined').change(function() {
 
 
 
+
+
                 // if ($('#cnic_status').val() !== 'life_time') {
                 //     const expiryDate = $('#cnic_expiry_date').val();
 
@@ -2240,6 +2242,26 @@ dateFields.forEach((field) => {
                     }
 
 
+
+
+                    let totalLanding = parseInt($('#total_landing_acre').val(), 10);
+                    let totalCultivated = parseInt($('#total_area_cultivated_land').val(), 10);
+                    let surveyNo = parseInt($('#survey_no').val(), 10);
+
+
+                    if (!totalLanding || totalLanding <= 0) {
+                        errors += '- Total Landing Acre must be greater than 0\n';
+                    }
+
+                    if (!totalCultivated || totalCultivated <= 0) {
+                        errors += '- Total Area Cultivated Land must be greater than 0\n';
+
+                    }
+
+                    if (!surveyNo || surveyNo <= 0) {
+                        errors += '- Survey No must be greater than 0\n';
+
+                    }
 
 
 
