@@ -90,7 +90,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th colspan="5" class="text-white text-center" style="    font-size: 20px;">
+                            <th colspan="10" class="text-white text-center" style="    font-size: 20px;">
                                 Field Asistants
                             </th>
                         </tr>
@@ -102,10 +102,10 @@
                             <th style="width: 150px">Tehsils</th>
                             <th style="width: 150px">Tehsils</th>
                             <th style="width: 150px">Total Farmers</th>
-                            <th style="width: 150px">in_process</th>
-                            <th style="width: 150px">verified</th>
-                            <th style="width: 150px">rejected</th>
-                            <th style="width: 150px">pending</th>
+                            <th style="width: 150px">In-Process</th>
+                            <th style="width: 150px">Verified</th>
+                            <th style="width: 150px">Rejected</th>
+                            <th style="width: 150px">Pending</th>
 
                         </tr>
                     </thead>
