@@ -146,7 +146,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <th>#</th>
+                            <th style="width: 20px" >#</th>
                             <th>Name</th>
                             <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
@@ -175,7 +175,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <th>#</th>
+                            <th style="width: 20px" >#</th>
                             <th>Name</th>
                             <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
@@ -204,7 +204,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <th>#</th>
+                            <th style="width: 20px" >#</th>
                             <th>Name</th>
                             <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
