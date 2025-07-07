@@ -136,6 +136,82 @@
                 </div>
             </div>
 
+            <div class="container">
+    <h2 class="mb-4">Field Officers (FA)</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>District</th>
+                <th>Tehsils</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($fa_list as $index => $fa)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $fa->name }}</td>
+                    <td>{{ $fa->district }}</td>
+                    <td>{{ implode(', ', json_decode($fa->tehsil ?? '[]')) }}</td>
+                    <td>{{ $fa->email }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h2 class="mb-4 mt-5">Agri Officers (AO)</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>District</th>
+                <th>Tehsils</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($ao_list as $index => $ao)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $ao->name }}</td>
+                    <td>{{ $ao->district }}</td>
+                    <td>{{ implode(', ', json_decode($ao->tehsil ?? '[]')) }}</td>
+                    <td>{{ $ao->email }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h2 class="mb-4 mt-5">Land Revenue Officers (LRD)</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>District</th>
+                <th>Tehsils</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($lrd_list as $index => $lrd)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $lrd->name }}</td>
+                    <td>{{ $lrd->district }}</td>
+                    <td>{{ implode(', ', json_decode($lrd->tehsil ?? '[]')) }}</td>
+                    <td>{{ $lrd->email }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
+
+
             <!-- Farmer Registration Charts -->
             {{-- <div class="col-12 mt-3">
                 <div class="box--sec">
