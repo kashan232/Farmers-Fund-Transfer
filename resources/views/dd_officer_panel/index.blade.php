@@ -137,15 +137,20 @@
             </div>
 
             <div class="container">
-    <h2 class="mb-4">Field Officers (FA)</h2>
+    {{-- <h2 class="mb-4">Field Officers (FA)</h2> --}}
     <table class="table table-bordered">
         <thead>
+             <tr>
+                <th colspan="5">
+                    <h2 class="mb-0 mt-5">Field Officers (FA)</h2>
+                </th>
+            </tr>
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Email</th>
                 <th>District</th>
                 <th>Tehsils</th>
-                <th>Email</th>
             </tr>
         </thead>
         <tbody>
@@ -153,23 +158,28 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $fa->name }}</td>
+                    <td>{{ $fa->email }}</td>
                     <td>{{ $fa->district }}</td>
                     <td>{{ $fa->tehsil }}</td>
-                    <td>{{ $fa->email }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    <h2 class="mb-4 mt-5">Agri Officers (AO)</h2>
+    {{-- <h2 class="mb-4 mt-5">Agri Officers (AO)</h2> --}}
     <table class="table table-bordered">
         <thead>
+             <tr>
+                <th colspan="5">
+                    <h2 class="mb-0 mt-5">Agri Officers (AO)</h2>
+                </th>
+            </tr>
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Email</th>
                 <th>District</th>
                 <th>Tehsils</th>
-                <th>Email</th>
             </tr>
         </thead>
         <tbody>
@@ -177,23 +187,28 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $ao->name }}</td>
+                    <td>{{ $ao->email }}</td>
                     <td>{{ $ao->district }}</td>
                     <td>{{ implode(', ', json_decode($ao->tehsil ?? '[]')) }}</td>
-                    <td>{{ $ao->email }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    <h2 class="mb-4 mt-5">Land Revenue Officers (LRD)</h2>
+    {{-- <h2 class="mb-4 mt-5">Land Revenue Officers (LRD)</h2> --}}
     <table class="table table-bordered">
         <thead>
+             <tr>
+                <th colspan="5">
+                    <h2 class="mb-0 mt-5">Land Revenue Officers (LRD)</h2>
+                </th>
+            </tr>
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Email</th>
                 <th>District</th>
                 <th>Tehsils</th>
-                <th>Email</th>
             </tr>
         </thead>
         <tbody>
@@ -201,9 +216,9 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $lrd->name }}</td>
+                    <td>{{ $lrd->email }}</td>
                     <td>{{ $lrd->district }}</td>
                     <td>{{ implode(', ', json_decode($lrd->tehsil ?? '[]')) }}</td>
-                    <td>{{ $lrd->email }}</td>
                 </tr>
             @endforeach
         </tbody>
