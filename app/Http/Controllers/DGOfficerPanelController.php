@@ -36,11 +36,52 @@ public function excelExport(Request $request)
         ->when($request->status, fn($q) => $q->where('verification_status', $request->status))
         ->when($request->filled('start_date') && $request->filled('end_date'), function ($q) use ($request) {
         $q->whereBetween('created_at', [$request->start_date, $request->end_date]);
-    })
+    })->get()->filter(function ($farmer) {
+        // List of required fields to check for completeness
+        $requiredFields = [
+            'name',
+            'father_name',
+            'mother_maiden_name',
+            'cnic',
+            'cnic_issue_date',
+            'cnic_expiry_date',
+            'date_of_birth',
+            'district', // used as place of birth here
+            'gender',
+            'permanent_address',
+            'tehsil',
+            'district',
+            'mobile',
+            'survey_no',
+            'total_fallow_land',
+            'total_area_cultivated_land',
+            'tappa',
+            'branch_code',
+        ];
 
-        ->get();
+        foreach ($requiredFields as $field) {
+            if (empty($farmer->$field)) {
+                return false;
+            }
+        }
+          // Check land fields must be > 0
+        if (
+            $farmer->total_fallow_land <= 0 ||
+            $farmer->total_area_cultivated_land <= 0
+        ) {
+            return false;
+        }
+
+        // Also ensure related branch title exists
+        return !empty($farmer->branch) && !empty($farmer->branch->title);
+    })
+    ->values(); // Reindex after filtering
+
+
+
 
     $columns = [
+        'S_no',
         'Name as per CNIC',
         'Father / Husband Name',
         "Mother's Name",
@@ -77,9 +118,10 @@ public function excelExport(Request $request)
         }
 
         fputcsv($file, $columns);
-
+        $s_no = 1;
         foreach ($farmers as $farmer) {
             fputcsv($file, [
+                $s_no++,
                 $farmer->name ?? '',
                 $farmer->father_name ?? '',
                 $farmer->mother_maiden_name ?? '',
