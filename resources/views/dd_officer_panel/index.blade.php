@@ -141,7 +141,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th colspan="5" class="text-white text-center">
+                            <th colspan="5" class="text-white text-center" style="    font-size: 20px;">
                                 Field Asistants
                             </th>
                         </tr>
@@ -170,8 +170,8 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th colspan="5">
-                                <h2 class="text-white text-center">Agri Officers (AO)</h2>
+                            <th colspan="5" class="text-white text-center" style="    font-size: 20px;">
+                                Agri Officers
                             </th>
                         </tr>
                         <tr>
@@ -199,8 +199,8 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th colspan="5">
-                                <h2 class="text-white text-center">Land Revenue Officers (LRD)</h2>
+                            <th colspan="5"  class="text-white text-center" style="    font-size: 20px;">
+                                Land Revenue Officers
                             </th>
                         </tr>
                         <tr>
