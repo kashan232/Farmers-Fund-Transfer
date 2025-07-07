@@ -507,7 +507,7 @@ class HomeController extends Controller
                 $rejected_by_lrd = LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
 
                 ->whereIn('tehsil', json_decode($user->tehsil))
-                ->whereIn('tappa', )
+                ->whereIn('tappa',json_decode($user->tappas) )
                 ->where('verification_status',
                     'rejected_by_lrd'
                 )
