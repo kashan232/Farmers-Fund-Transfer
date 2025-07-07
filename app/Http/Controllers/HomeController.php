@@ -616,10 +616,21 @@ class HomeController extends Controller
                     foreach ($tehsils as $tehsil) {
                         $query->orWhereJsonContains('tehsil', $tehsil);
                     }
-                })->get()
-                ->map(function ($user) {
-                     $user_tehsils = json_decode($user->tehsil, true);
-                    $user_tappas = json_decode($user->tappas, true);
+                })->get();
+
+                dd(  $ao_list );
+
+
+
+                $ao_list = User::where('usertype', 'Agri_Officer')
+                ->whereIn('district', $districts)
+                ->where(function ($query) use ($tehsils) {
+                    foreach ($tehsils as $tehsil) {
+                        $query->orWhereJsonContains('tehsil', $tehsil);
+                    }
+                })->get()->map(function ($user) {
+                    
+                    $user_tehsils = json_decode($user->tehsil, true);
 
 
                     $total_farmers = LandRevenueFarmerRegistation::where('district', $user->district)
@@ -635,17 +646,6 @@ class HomeController extends Controller
                     })
                     ->count();
                     $user->total_farmers = $total_farmers;
-
-                    // $forwarded_to_ao = LandRevenueFarmerRegistation::where('district', $user->district)
-                    // ->where('tehsil', $user->tehsil)
-                    // ->whereIn('tappa', is_array($user->tappas) ? $user->tappas : json_decode($user->tappas, true))
-                    // ->where(function ($query) {
-                    //     $query->whereIn('verification_status', [
-                    //         'verified_by_fa',
-                    //     ]);
-                    // })
-                    // ->count();
-                    // $user->forwarded_to_ao = $forwarded_to_ao;
 
                     $rejected = LandRevenueFarmerRegistation::where('district', $user->district)
                     ->whereIn('tehsil', $user_tehsils)
