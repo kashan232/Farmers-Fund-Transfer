@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="dashboard">
-                    <div class="all-card">
+                    <div class="all-card" style="padding: 0px !important;">
                         <div class="row">
                             <!-- Total Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
