@@ -376,11 +376,11 @@
                                             {{-- <input type="text" id="mobile" name="mobile" class="form-control" value="{{ str_replace('-', '', $data->mobile ?? '') }}"  data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX"  > --}}
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
-                                            <label class="form-label">Q5. District</label>
+                                            <label class="form-label">Q5. District <span class="text-danger">*</span></label>
                                             <input type="text" name="district" value="{{ $district ?? $data->district }}" id="district" class="form-control" readonly>
                                         </div>
                                         <div class="mb-6 col-md-6 py-2">
-                                            <label class="form-label">Q6. Taluka: </label>
+                                            <label class="form-label">Q6. Taluka: <span class="text-danger">*</span></label>
                                             <select name="tehsil" id="tehsil" class="form-control js-example-basic-single-no-tag" >
 
                                                     <option value="{{ $tehsils }}" @if(isset($data->tehsil)) {{ ($tehsils == $data->tehsil) ? 'selected':'' }} @endif > {{ $tehsils }} </option>
@@ -398,7 +398,7 @@
 
 
                                         <div class="mb-6 col-md-6 py-2">
-                                            <label for="tappa">Q8. Tappa: </label>
+                                            <label for="tappa">Q8. Tappa: <span class="text-danger">*</span></label>
                                             <select name="tappa" id="tappa" class="form-control js-example-basic-single-no-tag">
                                                 @foreach (json_decode($tappa) as $tappa)
                                                     <option value="{{$tappa}}">{{$tappa}}</option>
@@ -543,16 +543,16 @@
                                                 <h6>Q16: Landholding:</h6>
                                             </div>
                                             <div class="mb-6 col-md-6 mt-3">
-                                                <label class="form-label">(1) Total Landholding (Acres):</label>
-                                                <input type="text" name="total_landing_acre" value="{{$data->total_landing_acre ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                <label class="form-label">(1) Total Landholding (Acres): <span class="text-danger">*</span></label>
+                                                <input type="text" name="total_landing_acre" id="total_landing_acre" value="{{$data->total_landing_acre ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
                                             <div class="mb-6 col-md-6 mt-3">
                                                 <label class="form-label">(2) Total Area with Hari(s) (Acres):</label>
                                                 <input type="text" name="total_area_with_hari" value="{{$data->total_area_with_hari ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
                                             <div class="mt-2 col-md-6">
-                                                <label class="form-label">(3) Total self cultivated land (Acres):</label>
-                                                <input type="text" name="total_area_cultivated_land" value="{{$data->total_area_cultivated_land ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                <label class="form-label">(3) Total self cultivated land (Acres): <span class="text-danger">*</span></label>
+                                                <input type="text" name="total_area_cultivated_land" id="total_area_cultivated_land" value="{{$data->total_area_cultivated_land ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                             </div>
                                             <div class="mt-2 col-md-6">
                                                 <label class="form-label">(4) Total fallow land (Acres):</label>
@@ -567,8 +567,8 @@
                                                 <input type="text" name="land_area_as_per_share" value="{{$data->land_area_as_per_share ?? ''}}" class="form-control" >
                                             </div>
                                             <div class="mt-2 col-md-4">
-                                                <label class="form-label">(7) Survey No(s):</label>
-                                                <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" >
+                                                <label class="form-label">(7) Survey No(s): <span class="text-danger">*</span></label>
+                                                <input type="text" name="survey_no" id="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control" >
                                             </div>
                                         </div>
 
@@ -2341,6 +2341,29 @@ let step1_formdata = {
         // }
 
          // Ensure CNIC does not contain '_'
+
+
+          let totalLanding = parseInt($('#total_landing_acre').val(), 10);
+                    let totalCultivated = parseInt($('#total_area_cultivated_land').val(), 10);
+                    let surveyNo = parseInt($('#survey_no').val(), 10);
+
+
+                    if (!totalLanding || totalLanding <= 0) {
+                        errors += '<b><span class="text-danger">Total Landing Acre must be greater than 0</span></b><br>';
+                    }
+
+                    if (!totalCultivated || totalCultivated <= 0) {
+                        errors += '<b><span class="text-danger">Total Area Cultivated Land must be greater than 0</span></b><br>';
+
+                    }
+
+                    if (!surveyNo || surveyNo <= 0) {
+                        errors += '<b><span class="text-danger">Survey No must be greater than 0</span></b><br>';
+
+                    }
+
+
+
 
     if(errors != '')
     {
