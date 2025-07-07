@@ -286,7 +286,23 @@
 </footer>
 
 @include('dd_officer_panel.include.footer_include')
+<script>
+    function toggleTappas(id) {
+        const extraTappas = document.querySelectorAll('.extra-tappa-' + id);
+        const toggleLink = document.getElementById('toggle-link-' + id);
+        let isHidden = extraTappas[0].classList.contains('d-none');
 
+        extraTappas.forEach(function(el) {
+            el.classList.toggle('d-none');
+        });
+
+        if (isHidden) {
+            toggleLink.textContent = 'Show Less';
+        } else {
+            toggleLink.textContent = '+' + extraTappas.length;
+        }
+    }
+</script>
 <!-- Chart Scripts -->
 <script>
     // Donut Charts Data and Configurations
