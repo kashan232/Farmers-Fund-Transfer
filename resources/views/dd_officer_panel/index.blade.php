@@ -171,7 +171,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th colspan="5"  class="text-white text-center" style="    font-size: 20px;">
+                            <th colspan="11"  class="text-white text-center" style="    font-size: 20px;">
                                 Land Revenue Officers
                             </th>
                         </tr>
