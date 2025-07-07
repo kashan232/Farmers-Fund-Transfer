@@ -181,6 +181,10 @@
                             <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
                             <th style="width: 150px">Tehsils</th>
+                              <th style="width: 150px">Total Farmers</th>
+                            <th style="width: 150px">Verified</th>
+                            <th style="width: 150px">Rejected</th>
+                            <th style="width: 150px">Pending</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -191,6 +195,10 @@
                                 <td>{{ $lrd->email }}</td>
                                 <td>{{ $lrd->district }}</td>
                                 <td>{{ implode(', ', json_decode($lrd->tehsil ?? '[]')) }}</td>
+                                <td>{{ $fa->total_farmers }}</td>
+                                <td>{{ $fa->verified }}</td>
+                                <td>{{ $fa->rejected }}</td>
+                                <td>{{ $fa->pending }}</td>
                             </tr>
                         @endforeach
                     </tbody>
