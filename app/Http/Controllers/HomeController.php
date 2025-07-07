@@ -616,25 +616,15 @@ class HomeController extends Controller
                     foreach ($tehsils as $tehsil) {
                         $query->orWhereJsonContains('tehsil', $tehsil);
                     }
-                })->get();
-
-                dd(  $ao_list );
-
-
-
-                $ao_list = User::where('usertype', 'Agri_Officer')
-                ->whereIn('district', $districts)
-                ->where(function ($query) use ($tehsils) {
-                    foreach ($tehsils as $tehsil) {
-                        $query->orWhereJsonContains('tehsil', $tehsil);
-                    }
-                })->get()->map(function ($user) {
-                    
-                    $user_tehsils = json_decode($user->tehsil, true);
+                })->get()
+                ->map(function ($user) {
+                     $user_tehsils = json_decode($user->tehsil, true);
+                    $user_tappas = json_decode($user->tappas, true);
 
 
                     $total_farmers = LandRevenueFarmerRegistation::where('district', $user->district)
                    ->whereIn('tehsil', $user_tehsils)
+                   ->whereIn('tappa', $user_tappas)
                     ->where(function ($query) {
                         $query->whereIn('verification_status', [
                             'verified_by_fa',
@@ -649,6 +639,7 @@ class HomeController extends Controller
 
                     $rejected = LandRevenueFarmerRegistation::where('district', $user->district)
                     ->whereIn('tehsil', $user_tehsils)
+                    ->whereIn('tappa', $user_tappas)
                     ->where(function ($query) {
                         $query->whereIn('verification_status', [
                             'rejected_by_ao',
@@ -660,6 +651,7 @@ class HomeController extends Controller
 
                     $pending = LandRevenueFarmerRegistation::where('district', $user->district)
                     ->whereIn('tehsil', $user_tehsils)
+                    ->whereIn('tappa', $user_tappas)
                     ->where(function ($query) {
                         $query->whereIn('verification_status', [
                             'verified_by_fa',
@@ -671,6 +663,7 @@ class HomeController extends Controller
 
                      $in_process = LandRevenueFarmerRegistation::where('district', $user->district)
                     ->whereIn('tehsil', $user_tehsils)
+                    ->whereIn('tappa', $user_tappas)
                     ->where(function ($query) {
                         $query->whereIn('verification_status', [
                             'verified_by_ao',
@@ -682,6 +675,7 @@ class HomeController extends Controller
 
                      $verified = LandRevenueFarmerRegistation::where('district', $user->district)
                    ->whereIn('tehsil', $user_tehsils)
+                   ->whereIn('tappa', $user_tappas)
                     ->where(function ($query) {
                         $query->whereIn('verification_status', [
                             'verified_by_lrd',
