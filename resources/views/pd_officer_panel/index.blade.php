@@ -46,7 +46,7 @@
                                                 <h3 class="card-text text-amount" style="color: #000000 !important;">{{$fa_total_Registered_Farmers}}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
+                                                <div class="icon-shape border border-warning text-warning">
                                                     <i class="fas fa-user" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -89,7 +89,7 @@
                                                 <h3 class="card-text text-amount" style="color: #000000 !important;">{{$rejected_by_lrd}}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape bg-danger text-danger" >
+                                                <div class="icon-shape border border-danger text-danger" >
                                                     <i class="fas fa-user-times" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -115,7 +115,7 @@
                                                 <h3 class="card-text text-amount" style="color: #000000 !important;">{{$Processfarmeragiruser}}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
+                                                <div class="icon-shape border border-primary text-primary">
                                                     <i class="fas fa-user-check" aria-hidden="true"></i>
                                                 </div>
                                             </div>
