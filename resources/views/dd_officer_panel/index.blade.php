@@ -147,10 +147,10 @@
                         </tr>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>District</th>
-                            <th>Tehsils</th>
+                            <th style="width: 300px">Name</th>
+                            <th >Email</th>
+                            <th style="width: 150px">District</th>
+                            <th style="width: 150px">Tehsils</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -176,8 +176,8 @@
                         </tr>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th style="width: 300px">Email</th>
+                            <th style="width: 300px">Name</th>
+                            <th >Email</th>
                             <th style="width: 150px">District</th>
                             <th style="width: 150px">Tehsils</th>
                         </tr>
@@ -205,10 +205,10 @@
                         </tr>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>District</th>
-                            <th>Tehsils</th>
+                            <th style="width: 300px">Name</th>
+                            <th >Email</th>
+                            <th style="width: 150px">District</th>
+                            <th style="width: 150px">Tehsils</th>
                         </tr>
                     </thead>
                     <tbody>
