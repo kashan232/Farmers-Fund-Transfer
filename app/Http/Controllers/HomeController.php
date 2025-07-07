@@ -521,11 +521,7 @@ class HomeController extends Controller
 
                 $fa_list = User::where('usertype', 'Field_Officer')
                 ->whereIn('district', $districts)
-                ->where(function ($query) use ($tehsils) {
-                    foreach ($tehsils as $tehsil) {
-                        $query->orWhereJsonContains('tehsil', $tehsil);
-                    }
-                })->get();
+                   ->whereIn('tehsils', $tehsils)->get();
 
 
 
@@ -540,8 +536,11 @@ class HomeController extends Controller
 
                 $lrd_list = User::where('usertype', 'Land_Revenue_Officer')
                 ->whereIn('district', $districts)
-                ->whereIn('tehsils', $tehsils)
-                ->get();
+                ->where(function ($query) use ($tehsils) {
+                    foreach ($tehsils as $tehsil) {
+                        $query->orWhereJsonContains('tehsil', $tehsil);
+                    }
+                })->get();
 
 
 
