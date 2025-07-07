@@ -507,15 +507,18 @@ class HomeController extends Controller
                 $rejected_by_lrd = LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
 
                 ->whereIn('tehsil', json_decode($user->tehsil))
-                ->whereIn('tappa', json_decode($user->tappas))
+                ->whereIn('tappa', )
                 ->where('verification_status',
                     'rejected_by_lrd'
                 )
                 ->count();
 
 
+                $districts = json_decode($user->tappas);
+                $tehsils = json_decode($user->tappas);
+                $tappas = json_decode($user->tappas);
 
-               dd($user); 
+                dd($tappas);
 
                 return view('dd_officer_panel.index', [
                     'agriUserfarmersCount' => $agriUserfarmersCount,
