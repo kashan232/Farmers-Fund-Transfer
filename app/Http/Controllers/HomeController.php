@@ -521,7 +521,7 @@ class HomeController extends Controller
 
                 $fa_list = User::where('usertype', 'Field_Officer')
                 ->whereIn('district', $districts)
-                   ->whereIn('tehsils', $tehsils)->get();
+                   ->whereIn('tehsil', $tehsils)->get();
 
 
 
