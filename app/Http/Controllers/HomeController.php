@@ -540,11 +540,8 @@ class HomeController extends Controller
 
                 $lrd_list = User::where('usertype', 'Land_Revenue_Officer')
                 ->whereIn('district', $districts)
-                ->where(function ($query) use ($tehsils) {
-                    foreach ($tehsils as $tehsil) {
-                        $query->orWhereJsonContains('tehsil', $tehsil);
-                    }
-                })->get();
+                ->whereIn('tehsils', $tehsils)
+                ->get();
 
 
 
