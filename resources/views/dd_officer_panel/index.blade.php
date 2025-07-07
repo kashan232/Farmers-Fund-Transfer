@@ -87,6 +87,7 @@
 
             <div class="col-12">
                 {{-- <h2 class="mb-4">Field Officers (FA)</h2> --}}
+                <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -125,6 +126,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
 
                 {{-- <h2 class="mb-4 mt-5">Agri Officers (AO)</h2> --}}
                 <table class="table table-bordered">
