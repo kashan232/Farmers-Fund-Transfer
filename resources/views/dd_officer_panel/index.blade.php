@@ -112,7 +112,7 @@
                     </thead>
                     <tbody>
                         @foreach($fa_list as $index => $fa)
-                      
+
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $fa->name }}</td>
@@ -120,10 +120,35 @@
                                 <td>{{ $fa->district }}</td>
                                 <td>{{ $fa->tehsil }}</td>
                                 <td>
-                                    @foreach(json_decode($fa->tappas, true) as $tappa)
-                                        <span class="badge bg-primary me-1">{{ $tappa }}</span>
-                                    @endforeach
+
+                                    @php
+                                        $tappa = json_decode($fa->tappas, true);
+                                    @endphp
+
+                                    @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
+                                        <div>
+                                            @foreach($tappa as $index => $tappaItem)
+                                                <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $fa->id : '' }}">
+                                                    {{ $tappaItem }}
+                                                </span>
+                                                @if($index < 3)
+                                                    <br>
+                                                @endif
+                                            @endforeach
+
+                                            @if(count($tappa) > 4)
+                                                <a href="javascript:void(0);" id="toggle-link-{{ $fa->id }}" onclick="toggleTappas({{ $fa->id }})" class="text-primary d-block mt-1">
+                                                    +{{ count($tappa) - 4 }}
+                                                </a>
+                                            @endif
+                                        </div>
+                                    @else
+                                        <span class="badge text-bg-success text-dark font-weight-bold">
+                                            {{ $fa->tappas }}
+                                        </span>
+                                    @endif
                                 </td>
+
                                 <td>{{ $fa->total_farmers }}</td>
                                 <td>{{ $fa->in_process }}</td>
                                 <td>{{ $fa->verified }}</td>
