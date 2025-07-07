@@ -154,7 +154,7 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $fa->name }}</td>
                     <td>{{ $fa->district }}</td>
-                    <td>{{ implode(', ', json_decode($fa->tehsil ?? '[]')) }}</td>
+                    <td>{{ $fa->tehsil }}</td>
                     <td>{{ $fa->email }}</td>
                 </tr>
             @endforeach
