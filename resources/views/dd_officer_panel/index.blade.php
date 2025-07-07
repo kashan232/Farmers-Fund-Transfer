@@ -194,13 +194,13 @@
                                 <td>
 
                                     @php
-                                        $tappa = json_decode($fa->tappas, true);
+                                        $tappa = json_decode($ao->tappas, true);
                                     @endphp
 
                                     @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
                                         <div>
                                             @foreach($tappa as $index => $tappaItem)
-                                                <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $fa->id : '' }}">
+                                                <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $ao->id : '' }}">
                                                     {{ $tappaItem }}
                                                 </span>
                                                 @if($index < 3)
@@ -209,14 +209,14 @@
                                             @endforeach
 
                                             @if(count($tappa) > 4)
-                                                <a href="javascript:void(0);" id="toggle-link-{{ $fa->id }}" onclick="toggleTappas({{ $fa->id }})" class="text-primary d-block mt-1">
+                                                <a href="javascript:void(0);" id="toggle-link-{{ $ao->id }}" onclick="toggleTappas({{ $ao->id }})" class="text-primary d-block mt-1">
                                                     +{{ count($tappa) - 4 }}
                                                 </a>
                                             @endif
                                         </div>
                                     @else
                                         <span class="badge text-bg-success text-dark font-weight-bold">
-                                            {{ $fa->tappas }}
+                                            {{ $ao->tappas }}
                                         </span>
                                     @endif
                                 </td>
@@ -264,13 +264,13 @@
                                 <td>
 
                                     @php
-                                        $tappa = json_decode($fa->tappas, true);
+                                        $tappa = json_decode($lrd->tappas, true);
                                     @endphp
 
                                     @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
                                         <div>
                                             @foreach($tappa as $index => $tappaItem)
-                                                <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $fa->id : '' }}">
+                                                <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $lrd->id : '' }}">
                                                     {{ $tappaItem }}
                                                 </span>
                                                 @if($index < 3)
@@ -279,14 +279,14 @@
                                             @endforeach
 
                                             @if(count($tappa) > 4)
-                                                <a href="javascript:void(0);" id="toggle-link-{{ $fa->id }}" onclick="toggleTappas({{ $fa->id }})" class="text-primary d-block mt-1">
+                                                <a href="javascript:void(0);" id="toggle-link-{{ $lrd->id }}" onclick="toggleTappas({{ $lrd->id }})" class="text-primary d-block mt-1">
                                                     +{{ count($tappa) - 4 }}
                                                 </a>
                                             @endif
                                         </div>
                                     @else
                                         <span class="badge text-bg-success text-dark font-weight-bold">
-                                            {{ $fa->tappas }}
+                                            {{ $lrd->tappas }}
                                         </span>
                                     @endif
                                 </td>
