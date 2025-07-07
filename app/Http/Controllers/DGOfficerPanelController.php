@@ -44,7 +44,6 @@ public function excelExport(Request $request)
             'mother_maiden_name',
             'cnic',
             'cnic_issue_date',
-            'cnic_expiry_date',
             'date_of_birth',
             'district', // used as place of birth here
             'gender',
