@@ -2162,9 +2162,9 @@ $('#lined_unlined').change(function() {
                     tappas: $('#tappas').val(),
                     cnic_of_next_kin: $('#cnic_of_next_kin').val(),
 
-                    total_landing_acre: $('#total_landing_acre').val(),
-                    total_area_cultivated_land: $('#total_area_cultivated_land').val(),
-                    survey_no: $('#survey_no').val(),
+                    // total_landing_acre: $('#total_landing_acre').val(),
+                    // total_area_cultivated_land: $('#total_area_cultivated_land').val(),
+                    // survey_no: $('#survey_no').val(),
 
                     // total_fallow_land: $('#total_fallow_land').val(),
                 };
@@ -2250,16 +2250,16 @@ dateFields.forEach((field) => {
 
 
                     if (!totalLanding || totalLanding <= 0) {
-                        errors += '- Total Landing Acre must be greater than 0\n';
+                        errors += '<b><span class="text-danger">Total Landing Acre must be greater than 0</span></b><br>';
                     }
 
                     if (!totalCultivated || totalCultivated <= 0) {
-                        errors += '- Total Area Cultivated Land must be greater than 0\n';
+                        errors += '<b><span class="text-danger">Total Area Cultivated Land must be greater than 0</span></b><br>';
 
                     }
 
                     if (!surveyNo || surveyNo <= 0) {
-                        errors += '- Survey No must be greater than 0\n';
+                        errors += '<b><span class="text-danger">Survey No must be greater than 0</span></b><br>';
 
                     }
 
