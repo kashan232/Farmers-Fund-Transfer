@@ -132,7 +132,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th colspan="5" class="text-white text-center" style="    font-size: 20px;">
+                            <th colspan="11" class="text-white text-center" style="    font-size: 20px;">
                                 Agri Officers
                             </th>
                         </tr>
@@ -142,6 +142,11 @@
                             <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
                             <th style="width: 150px">Tehsils</th>
+                            <th style="width: 150px">Total Farmers</th>
+                            <th style="width: 150px">In-Process</th>
+                            <th style="width: 150px">Verified</th>
+                            <th style="width: 150px">Rejected</th>
+                            <th style="width: 150px">Pending</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -152,6 +157,11 @@
                                 <td>{{ $ao->email }}</td>
                                 <td>{{ $ao->district }}</td>
                                 <td>{{ implode(', ', json_decode($ao->tehsil ?? '[]')) }}</td>
+                                 <td>{{ $fa->total_farmers }}</td>
+                                <td>{{ $fa->in_process }}</td>
+                                <td>{{ $fa->verified }}</td>
+                                <td>{{ $fa->rejected }}</td>
+                                <td>{{ $fa->pending }}</td>
                             </tr>
                         @endforeach
                     </tbody>
