@@ -440,7 +440,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 
                                                 <div class="mb-6 col-md-6 py-2">
-                                                    <label class="form-label">Q5. District</label>
+                                                    <label class="form-label">Q5. District <span class="text-danger">*</span></label>
                                                     <select name="district" id="district" class="form-control js-example-basic-single-no-tag"  >
                                                         <option value="">Select District</option>
                                                         @foreach($districts as $district)
@@ -451,7 +451,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 
                                                 <div class="mb-6 col-md-6 py-2">
-                                                    <label class="form-label">Q6. Taluka: </label>
+                                                    <label class="form-label">Q6. Taluka:  <span class="text-danger">*</span></label>
                                                     <select name="tehsil" id="tehsils" class="form-control js-example-basic-single-no-tag" >
                                                         <option value="">Select Taluka</option>
                                                         {{-- @foreach(json_decode($tehsils) as $tehsil)
@@ -471,7 +471,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 
                                                 <div class="mb-6 col-md-6 py-2">
-                                                    <label for="tappa">Q8. Tappa: </label>
+                                                    <label for="tappa">Q8. Tappa:  <span class="text-danger">*</span></label>
                                                     <select name="tappa" id="tappas" class="form-control js-example-basic-single-no-tag">
                                                         @if(isset($data->tappa) && $data->tappa != '')
                                                         <option value="{{$data->tappa}}">{{$data->tappa}}</option>
@@ -493,7 +493,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class=" col-md-4 mt-3">
                                                     <label class="form-label"><b>Q11. Gender (Tick):</b></label><br>
                                                     &nbsp;<label>
-                                                    <input type="radio" name="gender" value="male" @if(isset($data->gender)) {{ ($data->gender == 'male') ? 'checked':'' }} @endif> Male
+                                                    <input type="radio" name="gender" value="male" @if(isset($data->gender)) {{ ($data->gender == 'male') ? 'checked':'' }} @endif checked> Male
                                                     </label>
                                                     &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
                                                     <label>
@@ -612,16 +612,16 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                         <h6>Q16: Landholding:</h6>
                                                     </div>
                                                     <div class="mb-6 col-md-6 mt-3">
-                                                        <label class="form-label">(1) Total Landholding (Acres):</label>
-                                                        <input type="text" name="total_landing_acre" value="{{$data->total_landing_acre ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                        <label class="form-label">(1) Total Landholding (Acres):  <span class="text-danger">*</span></label>
+                                                        <input type="text" name="total_landing_acre" id="total_landing_acre" value="{{$data->total_landing_acre ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                     </div>
                                                     <div class="mb-6 col-md-6 mt-3">
                                                         <label class="form-label">(2) Total Area with Hari(s) (Acres):</label>
                                                         <input type="text" name="total_area_with_hari" value="{{$data->total_area_with_hari ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                     </div>
                                                     <div class="mt-2 col-md-6">
-                                                        <label class="form-label">(3) Total self cultivated land (Acres):</label>
-                                                        <input type="text" name="total_area_cultivated_land" value="{{$data->total_area_cultivated_land ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                        <label class="form-label">(3) Total self cultivated land (Acres):  <span class="text-danger">*</span></label>
+                                                        <input type="text" name="total_area_cultivated_land" id="total_area_cultivated_land" value="{{$data->total_area_cultivated_land ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
                                                     </div>
                                                     <div class="mt-2 col-md-6">
                                                         <label class="form-label">(4) Total fallow land (Acres):</label>
@@ -636,8 +636,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                         <input type="text" name="land_area_as_per_share" value="{{$data->land_area_as_per_share ?? ''}}" class="form-control" >
                                                     </div>
                                                     <div class="mt-2 col-md-4">
-                                                        <label class="form-label">(7) Survey No(s):</label>
-                                                        <input type="text" name="survey_no" value="{{$data->survey_no ?? ''}}" class="form-control">
+                                                        <label class="form-label">(7) Survey No(s):  <span class="text-danger">*</span></label>
+                                                        <input type="text" name="survey_no" id="survey_no"  value="{{$data->survey_no ?? ''}}" class="form-control">
                                                     </div>
                                                 </div>
 
@@ -2153,12 +2153,19 @@ $('#lined_unlined').change(function() {
                     father_name: $('#father_name').val(),
                     surname: $('#surname').val(),
                     cnic: $('#cnic').val(),
+                    cnic: $('#gender').val(),
+
                     cnic_issue_date: $('#cnic_issue_date').val(),
                     mobile: $('#mobile').val(),
                     district: $('#district').val(),
                     tehsils: $('#tehsils').val(),
                     tappas: $('#tappas').val(),
                     cnic_of_next_kin: $('#cnic_of_next_kin').val(),
+
+                    total_landing_acre: $('#total_landing_acre').val(),
+                    total_area_cultivated_land: $('#total_area_cultivated_land').val(),
+                    survey_no: $('#survey_no').val(),
+
                     // total_fallow_land: $('#total_fallow_land').val(),
                 };
 
