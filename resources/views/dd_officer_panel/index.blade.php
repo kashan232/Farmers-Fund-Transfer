@@ -91,7 +91,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th colspan="11" class="text-white text-center" style="    font-size: 20px;">
+                            <th colspan="12" class="text-white text-center" style="    font-size: 20px;">
                                 Field Asistants
                             </th>
                         </tr>
@@ -101,6 +101,7 @@
                             <th style="width: 500px" >Email</th>
                             <th style="width: 150px">District</th>
                             <th style="width: 150px">Tehsils</th>
+                            <th style="width: 150px">Tappa</th>
                             <th style="width: 150px">Total Farmers</th>
                             <th style="width: 150px">In-Process</th>
                             <th style="width: 150px">Verified</th>
@@ -117,6 +118,7 @@
                                 <td>{{ $fa->email }}</td>
                                 <td>{{ $fa->district }}</td>
                                 <td>{{ $fa->tehsil }}</td>
+                                <td>{{ $fa->tappa }}</td>
                                 <td>{{ $fa->total_farmers }}</td>
                                 <td>{{ $fa->in_process }}</td>
                                 <td>{{ $fa->verified }}</td>
