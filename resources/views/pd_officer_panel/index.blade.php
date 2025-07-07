@@ -137,7 +137,7 @@
                                                 <h3 class="card-text text-amount" style="color: #000000 !important;">{{$Unverifiedfarmeragiruser}}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape green-icon-bg">
+                                                <div class="icon-shape " style="color: blue !important; border: 1px solid blue;">
                                                     <i class="fas fa-user-times" aria-hidden="true"></i>
                                                 </div>
                                             </div>
