@@ -519,6 +519,16 @@ class HomeController extends Controller
                 $tappas = json_decode($user->tappas);
 
 
+                $fa_list = User::where('usertype', 'Field_Officer')
+                ->whereIn('district', $districts)
+                ->where(function ($query) use ($tehsils) {
+                    foreach ($tehsils as $tehsil) {
+                        $query->orWhereJsonContains('tehsil', $tehsil);
+                    }
+                })->get();
+
+
+
                 $ao_list = User::where('usertype', 'Agri_Officer')
                 ->whereIn('district', $districts)
                 ->where(function ($query) use ($tehsils) {
@@ -537,7 +547,7 @@ class HomeController extends Controller
                 })->get();
 
 
-                dd($lrd_list);
+
 
 
 
@@ -547,7 +557,10 @@ class HomeController extends Controller
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
                     'rejected' => $rejected,
                     'verified' => $verified,
-                    'rejected_by_lrd' => $rejected_by_lrd
+                    'rejected_by_lrd' => $rejected_by_lrd,
+                    'fa_list' => $fa_list,
+                    'ao_list'=> $ao_list,
+                    'lrd_list'=> $lrd_list
                 ]);
             } else if ($usertype == 'admin') {
                 // Fetching counts directly
