@@ -2153,7 +2153,7 @@ $('#lined_unlined').change(function() {
                     father_name: $('#father_name').val(),
                     surname: $('#surname').val(),
                     cnic: $('#cnic').val(),
-                    cnic: $('#gender').val(),
+                    gender: $('#gender').val(),
 
                     cnic_issue_date: $('#cnic_issue_date').val(),
                     mobile: $('#mobile').val(),
