@@ -629,7 +629,7 @@ class HomeController extends Controller
                         $query->whereIn('verification_status', [
                             'verified_by_fa',
                             'verified_by_ao',
-                            'verified_by_lrd',
+
                             'rejected_by_ao',
                             'rejected_by_lrd',
                         ]);
@@ -673,16 +673,16 @@ class HomeController extends Controller
                     $user->in_process = $in_process;
 
 
-                     $verified = LandRevenueFarmerRegistation::where('district', $user->district)
-                   ->whereIn('tehsil', $user_tehsils)
-                   ->whereIn('tappa', $user_tappas)
-                    ->where(function ($query) {
-                        $query->whereIn('verification_status', [
-                            'verified_by_lrd',
-                        ]);
-                    })
-                    ->count();
-                    $user->verified = $verified;
+                //      $verified = LandRevenueFarmerRegistation::where('district', $user->district)
+                //    ->whereIn('tehsil', $user_tehsils)
+                //    ->whereIn('tappa', $user_tappas)
+                //     ->where(function ($query) {
+                //         $query->whereIn('verification_status', [
+                //             // 'verified_by_lrd',
+                //         ]);
+                //     })
+                //     ->count();
+                //     $user->verified = $verified;
 
                     // dd($user);
 

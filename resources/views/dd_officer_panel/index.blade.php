@@ -178,7 +178,7 @@
                             <th style="width: 150px">Tappas</th>
                             <th style="width: 150px">Total Farmers</th>
                             <th style="width: 150px">In-Process</th>
-                            <th style="width: 150px">Verified</th>
+                            {{-- <th style="width: 150px">Verified</th> --}}
                             <th style="width: 150px">Rejected</th>
                             <th style="width: 150px">Pending</th>
                         </tr>
@@ -222,7 +222,7 @@
                                 </td>
                                 <td style="font-size: 18px;    font-weight: 600;">{{ $ao->total_farmers }}</td>
                                 <td style="font-size: 18px;    font-weight: 600;">{{ $ao->in_process }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $ao->verified }}</td>
+                                {{-- <td style="font-size: 18px;    font-weight: 600;">{{ $ao->verified }}</td> --}}
                                 <td style="font-size: 18px;    font-weight: 600;">{{ $ao->rejected }}</td>
                                 <td style="font-size: 18px;    font-weight: 600;">{{ $ao->pending }}</td>
                             </tr>
