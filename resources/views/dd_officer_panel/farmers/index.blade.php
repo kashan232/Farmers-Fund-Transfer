@@ -126,16 +126,19 @@
                                                         <td>{{ $farmer->village }}</td>
                                                         <td>
                                                             @if ($farmer->verification_status == 'rejected_by_lrd')
-                                                                <span class="badge text-bg-danger">Rejected By LRD</span>
-                                                            @elseif($farmer->verification_status == 'rejected_by_dd')
-                                                            <span class="badge text-bg-danger">Rejected</span>
-
-                                                            @elseif($farmer->verification_status == 'verified_by_dd')
-                                                                <span class="badge text-bg-primary">Forwarded to LRD</span>
+                                                            <span class="badge text-bg-danger">Rejected By LRD</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_ao')
+                                                                <span class="badge text-bg-danger">Rejected By AO</span>
+                                                            @elseif($farmer->verification_status == 'rejected_by_fa')
+                                                                <span class="badge text-bg-danger">Rejected By FA</span>
+                                                            @elseif($farmer->verification_status == 'verified_by_fa')
+                                                                <span class="badge text-bg-primary">Forwarded to AO</span>
                                                             @elseif($farmer->verification_status == 'verified_by_ao')
                                                                 <span class="badge text-bg-info">Forwarded to LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_lrd')
                                                                 <span class="badge text-bg-success">Verified</span>
+                                                            @elseif($farmer->verification_status == NULL)
+                                                                <span class="badge text-bg-primary">Pending</span>
                                                             @endif
                                                         </td>
                                                         @if ($farmer->declined_reason != null || $farmer->declined_reason != '')
@@ -155,10 +158,9 @@
                                                                 <a class="btn btn-primary" href="{{route('dd-edit-farmer',$farmer->id)}}">Edit</a> &nbsp;
                                                                 @endif --}}
                                                             {{-- <a class="btn btn-primary btn-sm" href="{{route('dd-view-farmers',$farmer->id)}}">View</a> --}}
-                                                            @if($farmer->verification_status == 'verified_by_lrd')
-                                                            @else
+
                                                             <a class="btn btn-primary btn-sm" href="{{route('view-farmers-by-field-officer',$farmer->id)}}">View</a>
-                                                            @endif
+
                                                             </div>
                                                         </td>
 
