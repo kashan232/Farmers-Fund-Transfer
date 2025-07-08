@@ -45,8 +45,7 @@ class DDOfficerPanelController extends Controller
             // $tehsils = json_decode($user->tehsil ?? '[]');
             // $tehsils = json_decode($user->tehsil ?? '[]');
             $tappas = json_decode($user->tappas ?? '[]');
-
-             $query->where('district', $user->district)
+            $query->where('district', $user->district)
             ->where('tehsil', $user->tehsil)
             ->whereIn('tappa', $tappas)
              ->where(function ($query) {
@@ -59,9 +58,71 @@ class DDOfficerPanelController extends Controller
                     'rejected_by_lrd',
                 ])->orWhereNull('verification_status');
             });
-
-
         }
+
+        if (!empty($req->user_id) && $req->fa_total_farmers == 'in_process') {
+            $user = user::find( $req->user_id);
+            // $tehsils = json_decode($user->tehsil ?? '[]');
+            // $tehsils = json_decode($user->tehsil ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
+            $query->where('district', $user->district)
+            ->where('tehsil', $user->tehsil)
+            ->whereIn('tappa', $tappas)
+             ->where(function ($query) {
+                $query->whereIn('verification_status', [
+                    'verified_by_fa',
+                    'verified_by_ao',
+                ]);
+            });
+        }
+
+        if (!empty($req->user_id) && $req->fa_total_farmers == 'rejected') {
+            $user = user::find( $req->user_id);
+            // $tehsils = json_decode($user->tehsil ?? '[]');
+            // $tehsils = json_decode($user->tehsil ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
+            $query->where('district', $user->district)
+            ->where('tehsil', $user->tehsil)
+            ->whereIn('tappa', $tappas)
+             ->where(function ($query) {
+                 $query->whereIn('verification_status', [
+                    'rejected_by_fa',
+                    'rejected_by_ao',
+                    'rejected_by_lrd',
+                ]);
+            });
+        }
+
+        if (!empty($req->user_id) && $req->fa_total_farmers == 'verified') {
+            $user = user::find( $req->user_id);
+            // $tehsils = json_decode($user->tehsil ?? '[]');
+            // $tehsils = json_decode($user->tehsil ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
+            $query->where('district', $user->district)
+            ->where('tehsil', $user->tehsil)
+            ->whereIn('tappa', $tappas)
+             ->where(function ($query) {
+                 $query->whereIn('verification_status', [
+                 
+                    'verified_by_lrd',
+                ]);
+            });
+        }
+
+        if (!empty($req->user_id) && $req->fa_total_farmers == 'pending') {
+            $user = user::find( $req->user_id);
+            // $tehsils = json_decode($user->tehsil ?? '[]');
+            // $tehsils = json_decode($user->tehsil ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
+            $query->where('district', $user->district)
+            ->where('tehsil', $user->tehsil)
+            ->whereIn('tappa', $tappas)
+            ->where(function ($query) {
+                    $query->whereNull('verification_status');
+            });
+        }
+
+
          $totalFarmers = (clone $query)->count();
         $farmers = $query->paginate(150)->appends($req->all());
         return view('dd_officer_panel.farmers.index',['farmers' => $farmers, 'totalFarmers' => $totalFarmers]);

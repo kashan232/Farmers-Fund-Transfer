@@ -159,10 +159,18 @@
                                 <td style="font-size: 18px;    font-weight: 600;">
                                 <a href="{{ route('farmers-by-dd', ['user_id' => $fa->id, 'fa_total_farmers' => 'total_farmers']) }}"> {{ $fa->total_farmers }} </a>
                                 </td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->in_process }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->verified }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->rejected }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->pending }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                <a href="{{ route('farmers-by-dd', ['user_id' => $fa->id, 'fa_in_process' => 'in_process']) }}">    {{ $fa->in_process }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $fa->id, 'fa_verified' => 'verified']) }}"> {{ $fa->verified }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $fa->id, 'fa_rejected' => 'rejected']) }}"> {{ $fa->rejected }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $fa->id, 'fa_pending' => 'pending']) }}"> {{ $fa->pending }} </a>
+                                </td>
                             </tr>
                             @php
                                 $faTotalFarmers += $fa->total_farmers;
