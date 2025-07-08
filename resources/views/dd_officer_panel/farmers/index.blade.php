@@ -168,7 +168,7 @@
                                             </table>
                                         </div>
                                         <div style="float:right; margin-top:10px">
-                                            {{-- {{ $farmers->links() }} --}}
+                                            {{ $farmers->links() }}
                                         </div>
                                     </div>
                                 </div>
@@ -199,8 +199,8 @@
     $(document).ready(function() {
 
        table =  $('#example').DataTable({
-            "pageLength": 100, // Default number of rows per page
-            "dom": 'Bfrtip', // Only include the filter (search box), table, and pagination
+            "pageLength": 5000, // Default number of rows per page
+            "dom": 'Bfrti', // Only include the filter (search box), table, and pagination
             "processing": true, // Optional: for large datasets
             "deferRender": true, // Improves performance by rendering rows only when needed
             "order": [
