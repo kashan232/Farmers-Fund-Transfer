@@ -44,6 +44,7 @@ class DDOfficerPanelController extends Controller
             $query = LandRevenueFarmerRegistation::with('user')->orderBy('tehsil', 'asc');
         }
         else{
+            $user = User::find(Auth::id());
                 $farmers =  LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
 
                         ->whereIn('tehsil', json_decode($user->tehsil))
