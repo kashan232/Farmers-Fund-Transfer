@@ -45,7 +45,7 @@ class DDOfficerPanelController extends Controller
         }
         else{
             $user = User::find(Auth::id());
-                $farmers =  LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
+                $query =  LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
 
                         ->whereIn('tehsil', json_decode($user->tehsil))
                         ->whereIn('tappa', json_decode($user->tappas))
@@ -54,7 +54,7 @@ class DDOfficerPanelController extends Controller
                             'verified_by_ao','verified_by_lrd',
                             'verified_by_dd',
                         ])
-                ->latest()->get();
+                ->latest();
         }
 
 
