@@ -49,11 +49,16 @@ class DDOfficerPanelController extends Controller
 
                         ->whereIn('tehsil', json_decode($user->tehsil))
                         ->whereIn('tappa', json_decode($user->tappas))
-                        ->whereIn('verification_status', [
-                            'rejected_by_fa','rejected_by_ao',
-                            'verified_by_ao','verified_by_lrd','verified_by_fa',
+                        ->where(function ($query) {
+                        $query->whereIn('verification_status', [
+                            'verified_by_fa',
+                            'verified_by_ao',
+                            'verified_by_lrd',
+                            'rejected_by_fa',
+                            'rejected_by_ao',
                             'rejected_by_lrd',
-                        ])->orWhereNull('verification_status')
+                        ])->orWhereNull('verification_status');
+                    })
                 ->latest();
         }
 
