@@ -211,7 +211,7 @@
 
        table =  $('#example').DataTable({
             "pageLength": 5000, // Default number of rows per page
-            "dom": 'Bfrti', // Only include the filter (search box), table, and pagination
+            "dom": 'Bfrt', // Only include the filter (search box), table, and pagination
             "processing": true, // Optional: for large datasets
             "deferRender": true, // Improves performance by rendering rows only when needed
             "order": [
