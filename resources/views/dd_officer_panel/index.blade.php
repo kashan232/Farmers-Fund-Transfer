@@ -111,6 +111,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                         @php
+                            $faTotalFarmers = 0;
+                            $faTotalInProcess = 0;
+                            $faTotalverified = 0;
+                            $faTotalRejected = 0;
+                            $faTotalPending = 0;
+                        @endphp
                         @foreach($fa_list as $index => $fa)
 
                             <tr>
@@ -155,7 +162,23 @@
                                 <td style="font-size: 18px;    font-weight: 600;">{{ $fa->rejected }}</td>
                                 <td style="font-size: 18px;    font-weight: 600;">{{ $fa->pending }}</td>
                             </tr>
-                        @endforeach
+                            @php
+                                $faTotalFarmers += $fa->total_farmers;
+                                $faTotalInProcess += $fa->in_process;
+                                $faTotalverified += $fa->verified;
+                                $faTotalRejected += $fa->rejected;
+                                $faTotalPending += $fa->pending;
+                            @endphp
+
+                            @endforeach
+                            <tr class="table-dark text-white font-weight-bold">
+                                <td colspan="6" class="text-center">Total</td>
+                                <td style="font-size: 18px;">{{ $faTotalFarmers }}</td>
+                                <td style="font-size: 18px;">{{ $faTotalInProcess }}</td>
+                                <td style="font-size: 18px;">{{ $faTotalverified }}</td>
+                                <td style="font-size: 18px;">{{ $faTotalRejected }}</td>
+                                <td style="font-size: 18px;">{{ $faTotalPending }}</td>
+                            </tr>
                     </tbody>
                 </table>
                 </div>
@@ -243,7 +266,7 @@
 
                         @endforeach
                         <tr class="table-dark text-white font-weight-bold">
-                            <td colspan="6" class="text-end">Total</td>
+                            <td colspan="6" class="text-center">Total</td>
                             <td style="font-size: 18px;">{{ $totalFarmers }}</td>
                             <td style="font-size: 18px;">{{ $totalInProcess }}</td>
                             {{-- <td style="font-size: 18px;">{{ $totalVerified }}</td> --}}
@@ -278,6 +301,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $lrdTotalFarmers = 0;
+                            $lrdTotalverified = 0;
+                            $lrdTotalRejected = 0;
+                            $lrdTotalPending = 0;
+                        @endphp
                         @foreach($lrd_list as $index => $lrd)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
@@ -319,7 +348,22 @@
                                 <td style="font-size: 18px;    font-weight: 600;">{{ $lrd->rejected }}</td>
                                 <td style="font-size: 18px;    font-weight: 600;">{{ $lrd->pending }}</td>
                             </tr>
+                            @php
+                                $lrdTotalFarmers += $lrd->total_farmers;
+                                $lrdTotalverified += $lrd->verified;
+                                $lrdTotalRejected += $lrd->rejected;
+                                $lrdTotalPending += $lrd->pending;
+                            @endphp
+
                         @endforeach
+                        <tr class="table-dark text-white font-weight-bold">
+                            <td colspan="6" class="text-center">Total</td>
+                            <td style="font-size: 18px;">{{ $lrdTotalFarmers }}</td>
+                            <td style="font-size: 18px;">{{ $lrdTotalverified }}</td>
+                            {{-- <td style="font-size: 18px;">{{ $totalVerified }}</td> --}}
+                            <td style="font-size: 18px;">{{ $lrdTotalRejected }}</td>
+                            <td style="font-size: 18px;">{{ $lrdTotalPending }}</td>
+                        </tr>
                     </tbody>
                 </table>
                 </div>
