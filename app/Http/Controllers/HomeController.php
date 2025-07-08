@@ -684,7 +684,7 @@ class HomeController extends Controller
                     ->count();
                     $user->verified = $verified;
 
-                    dd($user);
+                    // dd($user);
 
                     return $user;
                 });
