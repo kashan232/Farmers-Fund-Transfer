@@ -60,7 +60,7 @@ class DDOfficerPanelController extends Controller
             });
         }
 
-        if (!empty($req->user_id) && $req->fa_total_farmers == 'in_process') {
+        if (!empty($req->user_id) && $req->fa_in_process == 'in_process') {
             $user = user::find( $req->user_id);
             // $tehsils = json_decode($user->tehsil ?? '[]');
             // $tehsils = json_decode($user->tehsil ?? '[]');
@@ -76,7 +76,7 @@ class DDOfficerPanelController extends Controller
             });
         }
 
-        if (!empty($req->user_id) && $req->fa_total_farmers == 'rejected') {
+        if (!empty($req->user_id) && $req->fa_rejected == 'rejected') {
             $user = user::find( $req->user_id);
             // $tehsils = json_decode($user->tehsil ?? '[]');
             // $tehsils = json_decode($user->tehsil ?? '[]');
@@ -93,7 +93,7 @@ class DDOfficerPanelController extends Controller
             });
         }
 
-        if (!empty($req->user_id) && $req->fa_total_farmers == 'verified') {
+        if (!empty($req->user_id) && $req->fa_verified == 'verified') {
             $user = user::find( $req->user_id);
             // $tehsils = json_decode($user->tehsil ?? '[]');
             // $tehsils = json_decode($user->tehsil ?? '[]');
@@ -103,13 +103,13 @@ class DDOfficerPanelController extends Controller
             ->whereIn('tappa', $tappas)
              ->where(function ($query) {
                  $query->whereIn('verification_status', [
-                 
+
                     'verified_by_lrd',
                 ]);
             });
         }
 
-        if (!empty($req->user_id) && $req->fa_total_farmers == 'pending') {
+        if (!empty($req->user_id) && $req->fa_pending == 'pending') {
             $user = user::find( $req->user_id);
             // $tehsils = json_decode($user->tehsil ?? '[]');
             // $tehsils = json_decode($user->tehsil ?? '[]');
