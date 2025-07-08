@@ -38,7 +38,24 @@ class DDOfficerPanelController extends Controller
         // ->latest()->get();
         // return view('dd_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
 
-        $query = LandRevenueFarmerRegistation::with('user')->orderBy('tehsil', 'asc');
+
+
+        if (!empty($req->user_id)) {
+            $query = LandRevenueFarmerRegistation::with('user')->orderBy('tehsil', 'asc');
+        }
+        else{
+                $farmers =  LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
+
+                        ->whereIn('tehsil', json_decode($user->tehsil))
+                        ->whereIn('tappa', json_decode($user->tappas))
+                        ->whereIn('verification_status', [
+                            'rejected_by_dd','rejected_by_lrd',
+                            'verified_by_ao','verified_by_lrd',
+                            'verified_by_dd',
+                        ])
+                ->latest()->get();
+        }
+
 
         if (!empty($req->user_id) && $req->fa_total_farmers == 'total_farmers') {
             $user = user::find( $req->user_id);
@@ -123,7 +140,7 @@ class DDOfficerPanelController extends Controller
         }
 
 
-         $totalFarmers = (clone $query)->count();
+        $totalFarmers = (clone $query)->count();
         $farmers = $query->paginate(150)->appends($req->all());
         return view('dd_officer_panel.farmers.index',['farmers' => $farmers, 'totalFarmers' => $totalFarmers]);
 
