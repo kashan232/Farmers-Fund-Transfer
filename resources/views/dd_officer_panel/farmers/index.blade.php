@@ -175,8 +175,8 @@
 
                                         {{-- Totals --}}
                                         <div class="text-end">
-                                            <h6 >Total Farmers: {{ $totalFarmers }}</h6>
-                                           
+                                            <h6 >Total: {{ $totalFarmers }}</h6>
+
                                         </div>
                                     </nav>
                                     </div>
