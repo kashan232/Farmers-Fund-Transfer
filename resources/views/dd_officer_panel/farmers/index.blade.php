@@ -167,9 +167,18 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div style="float:right; margin-top:10px">
+                                        <nav class="d-flex justify-content-between align-items-center mb-3 flex-wrap mt-2">
+                                        {{-- Pagination --}}
+                                        <div>
                                             {{ $farmers->links() }}
                                         </div>
+
+                                        {{-- Totals --}}
+                                        <div class="text-end">
+                                            <h6 >Total Farmers: {{ $totalFarmers }}</h6>
+                                           
+                                        </div>
+                                    </nav>
                                     </div>
                                 </div>
                             </div>

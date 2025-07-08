@@ -59,9 +59,9 @@ class DDOfficerPanelController extends Controller
 
 
         }
-
+         $totalFarmers = (clone $query)->count();
         $farmers = $query->paginate(150)->appends($req->all());
-        return view('dd_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => 's']);
+        return view('dd_officer_panel.farmers.index',['farmers' => $farmers, 'totalFarmers' => $totalFarmers]);
 
 
 
