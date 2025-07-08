@@ -132,7 +132,7 @@
                                                             @elseif($farmer->verification_status == 'rejected_by_fa')
                                                                 <span class="badge text-bg-danger">Rejected By FA</span>
                                                             @elseif($farmer->verification_status == 'verified_by_fa')
-                                                                <span class="badge text-bg-primary">Forwarded to AO</span>
+                                                                <span class="badge text-bg-info">Forwarded to AO</span>
                                                             @elseif($farmer->verification_status == 'verified_by_ao')
                                                                 <span class="badge text-bg-info">Forwarded to LRD</span>
                                                             @elseif($farmer->verification_status == 'verified_by_lrd')
