@@ -231,10 +231,10 @@ class DDOfficerPanelController extends Controller
         if (!empty($req->user_id) && $req->lrd_total_farmers == 'total_farmers') {
             $user = user::find( $req->user_id);
             // $tehsils = json_decode($user->tehsil ?? '[]');
-            // $tehsils = json_decode($user->tehsil ?? '[]');
+            $tehsils = json_decode($user->tehsil ?? '[]');
             $tappas = json_decode($user->tappas ?? '[]');
             $query->where('district', $user->district)
-            ->where('tehsil', $user->tehsil)
+            ->whereIn('tehsil', $tehsils)
             ->whereIn('tappa', $tappas)
              ->where(function ($query) {
                  $query->whereIn('verification_status', [
@@ -249,10 +249,10 @@ class DDOfficerPanelController extends Controller
         if (!empty($req->user_id) && $req->lrd_verified == 'verified') {
             $user = user::find( $req->user_id);
             // $tehsils = json_decode($user->tehsil ?? '[]');
-            // $tehsils = json_decode($user->tehsil ?? '[]');
+            $tehsils = json_decode($user->tehsil ?? '[]');
             $tappas = json_decode($user->tappas ?? '[]');
             $query->where('district', $user->district)
-            ->where('tehsil', $user->tehsil)
+            ->whereIn('tehsil', $tehsils)
             ->whereIn('tappa', $tappas)
              ->where(function ($query) {
                 $query->whereIn('verification_status', [
@@ -265,10 +265,10 @@ class DDOfficerPanelController extends Controller
         if (!empty($req->user_id) && $req->lrd_rejected == 'rejected') {
             $user = user::find( $req->user_id);
             // $tehsils = json_decode($user->tehsil ?? '[]');
-            // $tehsils = json_decode($user->tehsil ?? '[]');
+            $tehsils = json_decode($user->tehsil ?? '[]');
             $tappas = json_decode($user->tappas ?? '[]');
             $query->where('district', $user->district)
-            ->where('tehsil', $user->tehsil)
+            ->whereIn('tehsil', $tehsils)
             ->whereIn('tappa', $tappas)
              ->where(function ($query) {
                 $query->whereIn('verification_status', [
@@ -282,10 +282,10 @@ class DDOfficerPanelController extends Controller
         if (!empty($req->user_id) && $req->lrd_pending == 'pending') {
             $user = user::find( $req->user_id);
             // $tehsils = json_decode($user->tehsil ?? '[]');
-            // $tehsils = json_decode($user->tehsil ?? '[]');
+            $tehsils = json_decode($user->tehsil ?? '[]');
             $tappas = json_decode($user->tappas ?? '[]');
             $query->where('district', $user->district)
-            ->where('tehsil', $user->tehsil)
+            ->whereIn('tehsil', $tehsils)
             ->whereIn('tappa', $tappas)
              ->where(function ($query) {
                  $query->whereIn('verification_status', [
