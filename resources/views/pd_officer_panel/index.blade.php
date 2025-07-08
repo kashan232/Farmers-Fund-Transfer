@@ -177,18 +177,20 @@
 
 
 
-                             <!-- Verified Farmers Card -->
-                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'in_process']) }}">
+
+
+                            <!-- Rejected Farmers Card -->
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => null]) }}">
                                 <div class="card" >
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title" style="color: #000000 !important;">Rejected BY FA/AO</p>
-                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$Processfarmeragiruser}}</h3>
+                                                <p class="card-title text-title" style="color: #000000 !important;">Pending Farmers by FA</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$Unverifiedfarmeragiruser}}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape border border-primary text-primary">
+                                                <div class="icon-shape " style="color: blue !important; border: 1px solid blue;">
                                                     <i class="fas fa-user" aria-hidden="true"></i>
                                                 </div>
                                             </div>
@@ -198,7 +200,7 @@
                                   </a>
                             </div>
 
-                            
+
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                   <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'forwarded_to_ao']) }}">
                                 <div class="card" >
@@ -219,20 +221,20 @@
                                   </a>
                             </div>
 
-                            
 
-                            <!-- Rejected Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => null]) }}">
+                            
+                             <!-- Verified Farmers Card -->
+                             <div class="col-lg-4 col-md-6 col-sm-6">
+                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'in_process']) }}">
                                 <div class="card" >
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title" style="color: #000000 !important;">Pending Farmers by FA</p>
-                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$Unverifiedfarmeragiruser}}</h3>
+                                                <p class="card-title text-title" style="color: #000000 !important;">Rejected BY FA/AO</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$Processfarmeragiruser}}</h3>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="icon-shape " style="color: blue !important; border: 1px solid blue;">
+                                                <div class="icon-shape border border-primary text-primary">
                                                     <i class="fas fa-user" aria-hidden="true"></i>
                                                 </div>
                                             </div>
