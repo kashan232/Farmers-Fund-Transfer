@@ -265,7 +265,7 @@
                                     <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'ao_total_farmers' => 'total_farmers']) }}"> {{ $ao->total_farmers }} </a>
                                 </td>
                                 <td style="font-size: 18px;    font-weight: 600;">
-                                    <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'ao_in_process' => 'in_process']) }}">  #{{ $ao->in_process }} </a>
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'ao_in_process' => 'in_process']) }}">  {{ $ao->in_process }} </a>
                                 </td>
                                 {{-- <td style="font-size: 18px;    font-weight: 600;">{{ $ao->verified }}</td> --}}
                                 <td style="font-size: 18px;    font-weight: 600;">
@@ -289,14 +289,14 @@
                                  {{ $totalFarmers }}
                             </td>
                             <td style="font-size: 18px;">
-                                 {{ $totalInProcess }} 
+                                 {{ $totalInProcess }}
                             </td>
                             {{-- <td style="font-size: 18px;">{{ $totalVerified }}</td> --}}
                             <td style="font-size: 18px;">
-                                 {{ $totalRejected }} 
+                                 {{ $totalRejected }}
                             </td>
                             <td style="font-size: 18px;">
-                                  {{ $totalPending }} 
+                                  {{ $totalPending }}
                             </td>
                         </tr>
 
