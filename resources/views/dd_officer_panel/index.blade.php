@@ -183,7 +183,15 @@
                             <th style="width: 150px">Pending</th>
                         </tr>
                     </thead>
+
                     <tbody>
+                        @php
+                            $totalFarmers = 0;
+                            $totalInProcess = 0;
+                            $totalRejected = 0;
+                            $totalPending = 0;
+                        @endphp
+
                         @foreach($ao_list as $index => $ao)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
@@ -226,7 +234,23 @@
                                 <td style="font-size: 18px;    font-weight: 600;">{{ $ao->rejected }}</td>
                                 <td style="font-size: 18px;    font-weight: 600;">{{ $ao->pending }}</td>
                             </tr>
+                            @php
+                                $totalFarmers += $ao->total_farmers;
+                                $totalInProcess += $ao->in_process;
+                                $totalRejected += $ao->rejected;
+                                $totalPending += $ao->pending;
+                            @endphp
+
                         @endforeach
+                        <tr class="table-dark text-white font-weight-bold">
+                            <td colspan="6" class="text-end">Total</td>
+                            <td style="font-size: 18px;">{{ $totalFarmers }}</td>
+                            <td style="font-size: 18px;">{{ $totalInProcess }}</td>
+                            {{-- <td style="font-size: 18px;">{{ $totalVerified }}</td> --}}
+                            <td style="font-size: 18px;">{{ $totalRejected }}</td>
+                            <td style="font-size: 18px;">{{ $totalPending }}</td>
+                        </tr>
+
                     </tbody>
                 </table>
                 </div>
