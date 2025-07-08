@@ -60,7 +60,7 @@ class DDOfficerPanelController extends Controller
 
         }
 
-        $farmers = $query->get()->appends($req->all());
+        $farmers = $query->paginate(150)->appends($req->all());
         return view('dd_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => 's']);
 
 
