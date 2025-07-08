@@ -156,7 +156,9 @@
                                     @endif
                                 </td>
 
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->total_farmers }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                <a href="{{ route('farmers-by-dd', ['user_id' => $fa->id, 'fa_total_farmers' => 'total_farmers']) }}"> {{ $fa->total_farmers }} </a>
+                                </td>
                                 <td style="font-size: 18px;    font-weight: 600;">{{ $fa->in_process }}</td>
                                 <td style="font-size: 18px;    font-weight: 600;">{{ $fa->verified }}</td>
                                 <td style="font-size: 18px;    font-weight: 600;">{{ $fa->rejected }}</td>

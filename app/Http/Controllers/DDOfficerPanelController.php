@@ -20,34 +20,51 @@ use Illuminate\Validation\ValidationException;
 
 class DDOfficerPanelController extends Controller
 {
-    public function farmers_index(){
-        $user = User::find(Auth::id());
-        $tehsils = Tehsil::whereIn('district', json_decode($user->district))->get();
-
-        // $farmers = LandRevenueFarmerRegistation::whereIn('district',json_decode($user->district))
-        // ->whereIn('tehsil',json_decode($user->tehsil))
-        // ->whereIn('tappa',json_decode($user->tappas))
-        // ->where(function($query) {
-        //     $query->where('verification_status', 'rejected_by_lrd')
-        //           ->orWhere('verification_status', 'verified_by_ao')
-        //           ->orWhere('verification_status', 'verified_by_dd')
-        //           ->orWhere('verification_status', 'rejected_by_dd');
-        // })
-
-        $farmers =  LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
-
-                ->whereIn('tehsil', json_decode($user->tehsil))
-                ->whereIn('tappa', json_decode($user->tappas))
-                ->whereIn('verification_status', [
-                    'rejected_by_dd','rejected_by_lrd',
-                    'verified_by_ao','verified_by_lrd',
-                    'verified_by_dd',
-                ])
-        ->latest()->get();
 
 
+    public function farmers_index(Request $req, $search = null, $status = null){
 
-        return view('dd_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
+        // $user = User::find(Auth::id());
+        // $tehsils = Tehsil::whereIn('district', json_decode($user->district))->get();
+        // $farmers =  LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
+
+        //         ->whereIn('tehsil', json_decode($user->tehsil))
+        //         ->whereIn('tappa', json_decode($user->tappas))
+        //         ->whereIn('verification_status', [
+        //             'rejected_by_dd','rejected_by_lrd',
+        //             'verified_by_ao','verified_by_lrd',
+        //             'verified_by_dd',
+        //         ])
+        // ->latest()->get();
+        // return view('dd_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
+
+        $query = LandRevenueFarmerRegistation::with('user')->orderBy('tehsil', 'asc');
+
+        if (!empty($req->user_id) && $req->fa_total_farmers == 'total_farmers') {
+            $user = user::find( $req->user_id);
+            // $tehsils = json_decode($user->tehsil ?? '[]');
+            // $tehsils = json_decode($user->tehsil ?? '[]');
+            $tappas = json_decode($user->tappas ?? '[]');
+
+             $query->where('district', $user->district)
+            ->where('tehsil', $user->tehsil)
+            ->whereIn('tappa', $tappas)
+            ->whereIn('verification_status', [
+                'verified_by_fa',
+                'verified_by_ao',
+                'verified_by_lrd',
+                'rejected_by_ao',
+                'rejected_by_lrd',
+            ]);
+
+
+        }
+
+        $farmers = $query->get()->appends($req->all());
+        return view('dd_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => 's']);
+
+
+
     }
 
     public function farmer_edit($id)
