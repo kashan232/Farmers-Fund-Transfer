@@ -667,6 +667,7 @@ class HomeController extends Controller
                     ->where(function ($query) {
                         $query->whereIn('verification_status', [
                             'verified_by_ao',
+                            'verified_by_lrd'
                         ]);
                     })
                     ->count();
