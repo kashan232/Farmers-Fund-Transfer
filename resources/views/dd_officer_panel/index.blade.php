@@ -277,11 +277,19 @@
                         @endforeach
                         <tr class="table-dark text-white font-weight-bold">
                             <td colspan="6" class="text-center">Total</td>
-                            <td style="font-size: 18px;">{{ $totalFarmers }}</td>
-                            <td style="font-size: 18px;">{{ $totalInProcess }}</td>
+                            <td style="font-size: 18px;">
+                                <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'ao_total_farmers' => 'total_farmers']) }}"> {{ $totalFarmers }} </a>
+                            </td>
+                            <td style="font-size: 18px;">
+                                <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'ao_in_process' => 'in_process']) }}">  {{ $totalInProcess }} </a>
+                            </td>
                             {{-- <td style="font-size: 18px;">{{ $totalVerified }}</td> --}}
-                            <td style="font-size: 18px;">{{ $totalRejected }}</td>
-                            <td style="font-size: 18px;">{{ $totalPending }}</td>
+                            <td style="font-size: 18px;">
+                                <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'ao_rejected' => 'rejected']) }}">  {{ $totalRejected }} </a>
+                            </td>
+                            <td style="font-size: 18px;">
+                                <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'ao_pending' => 'pending']) }}">  {{ $totalPending }} </a>
+                            </td>
                         </tr>
 
                     </tbody>
@@ -353,10 +361,18 @@
                                         </span>
                                     @endif
                                 </td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $lrd->total_farmers }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $lrd->verified }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $lrd->rejected }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $lrd->pending }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'lrd_total_farmers' => 'total_farmers']) }}"> {{ $lrd->total_farmers }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'lrd_verified' => 'verified']) }}">  {{ $lrd->verified }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'lrd_rejected' => 'rejected']) }}"> {{ $lrd->rejected }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'lrd_pending' => 'pending']) }}">  {{ $lrd->pending }} </a>
+                                </td>
                             </tr>
                             @php
                                 $lrdTotalFarmers += $lrd->total_farmers;
