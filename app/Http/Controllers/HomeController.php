@@ -629,7 +629,7 @@ class HomeController extends Controller
                         $query->whereIn('verification_status', [
                             'verified_by_fa',
                             'verified_by_ao',
-'verified_by_lrd',
+                            'verified_by_lrd',
                             'rejected_by_ao',
                             'rejected_by_lrd',
                         ]);
