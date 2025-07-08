@@ -220,11 +220,11 @@
                                         </span>
                                     @endif
                                 </td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->total_farmers }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->in_process }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->verified }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->rejected }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->pending }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $ao->total_farmers }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $ao->in_process }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $ao->verified }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $ao->rejected }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $ao->pending }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -290,10 +290,10 @@
                                         </span>
                                     @endif
                                 </td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->total_farmers }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->verified }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->rejected }}</td>
-                                <td style="font-size: 18px;    font-weight: 600;">{{ $fa->pending }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $lrd->total_farmers }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $lrd->verified }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $lrd->rejected }}</td>
+                                <td style="font-size: 18px;    font-weight: 600;">{{ $lrd->pending }}</td>
                             </tr>
                         @endforeach
                     </tbody>
