@@ -1097,9 +1097,9 @@ public function excelExport(Request $request)
 
             $district = $req->district; // e.g., "Badin"
 
-            $agriUsers = User::with('ddOfficer')->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
+            $agriUsers = User::with('adOfficer')->select('id', 'usertype', 'user_id', 'name', 'number', 'cnic', 'email', 'district', 'tehsil', 'tappas')
                 ->where('district', 'LIKE', '%"'.$district.'"%') // Search inside ["Badin"]
-                ->where('usertype', 'DD_Officer')
+                ->where('usertype', 'District_Officer')
                 ->get();
 
 
