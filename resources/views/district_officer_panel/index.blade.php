@@ -333,7 +333,7 @@
             </div>
 
 
-            
+
 {{--
             <!-- Total Farmers Card -->
             <div class="col-lg-4 col-md-6 col-sm-6">
@@ -627,7 +627,7 @@
     });
 </script>
 
-<script>
+{{-- <script>
     const ctx = document.getElementById('districtFarmersChart').getContext('2d');
 
     const chart = new Chart(ctx, {
@@ -679,7 +679,7 @@
             }
         }
     });
-</script>
+</script> --}}
 
 
 </body>
