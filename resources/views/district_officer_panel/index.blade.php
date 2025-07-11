@@ -14,6 +14,327 @@
     <div class="pc-content">
         <div class="row">
 
+             <div class="col-12">
+                {{-- <h2 class="mb-4">Field Officers (FA)</h2> --}}
+                <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th colspan="12" class="text-white text-center" style="    font-size: 20px;">
+                                Field Asistants
+                            </th>
+                        </tr>
+                        <tr>
+                            <th style="width: 20px" >#</th>
+                            <th>Name</th>
+                            <th style="width: 500px" >Email</th>
+                            <th style="width: 150px">District</th>
+                            <th style="width: 150px">Tehsils</th>
+                            <th style="width: 150px">Tappas</th>
+                            <th style="width: 150px">Total Farmers</th>
+                            <th style="width: 150px">In-Process</th>
+                            <th style="width: 150px">Verified</th>
+                            <th style="width: 150px">Rejected</th>
+                            <th style="width: 150px">Pending</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                         @php
+                            $faTotalFarmers = 0;
+                            $faTotalInProcess = 0;
+                            $faTotalverified = 0;
+                            $faTotalRejected = 0;
+                            $faTotalPending = 0;
+                        @endphp
+                        @foreach($fa_list as $index => $fa)
+
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $fa->name }}</td>
+                                <td>{{ $fa->email }}</td>
+                                <td>{{ $fa->district }}</td>
+                                <td>{{ $fa->tehsil }}</td>
+                                <td>
+
+                                    @php
+                                        $tappa = json_decode($fa->tappas, true);
+                                    @endphp
+
+                                    @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
+                                        <div>
+                                            @foreach($tappa as $index => $tappaItem)
+                                                <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $fa->id : '' }}">
+                                                    {{ $tappaItem }}
+                                                </span>
+                                                @if($index < 3)
+                                                    <br>
+                                                @endif
+                                            @endforeach
+
+                                            @if(count($tappa) > 4)
+                                                <a href="javascript:void(0);" id="toggle-link-{{ $fa->id }}" onclick="toggleTappas({{ $fa->id }})" class="text-primary d-block mt-1">
+                                                    +{{ count($tappa) - 4 }}
+                                                </a>
+                                            @endif
+                                        </div>
+                                    @else
+                                        <span class="badge text-bg-success text-dark font-weight-bold">
+                                            {{ $fa->tappas }}
+                                        </span>
+                                    @endif
+                                </td>
+
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                <a href="{{ route('farmers-by-dd', ['user_id' => $fa->id, 'fa_total_farmers' => 'total_farmers']) }}"> {{ $fa->total_farmers }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                <a href="{{ route('farmers-by-dd', ['user_id' => $fa->id, 'fa_in_process' => 'in_process']) }}">    {{ $fa->in_process }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $fa->id, 'fa_verified' => 'verified']) }}"> {{ $fa->verified }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $fa->id, 'fa_rejected' => 'rejected']) }}"> {{ $fa->rejected }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $fa->id, 'fa_pending' => 'pending']) }}"> {{ $fa->pending }} </a>
+                                </td>
+                            </tr>
+                            @php
+                                $faTotalFarmers += $fa->total_farmers;
+                                $faTotalInProcess += $fa->in_process;
+                                $faTotalverified += $fa->verified;
+                                $faTotalRejected += $fa->rejected;
+                                $faTotalPending += $fa->pending;
+                            @endphp
+
+                            @endforeach
+                            <tr class="table-dark text-white font-weight-bold">
+                                <td colspan="6" class="text-center">Total</td>
+                                <td style="font-size: 18px;">{{ $faTotalFarmers }}</td>
+                                <td style="font-size: 18px;">{{ $faTotalInProcess }}</td>
+                                <td style="font-size: 18px;">{{ $faTotalverified }}</td>
+                                <td style="font-size: 18px;">{{ $faTotalRejected }}</td>
+                                <td style="font-size: 18px;">{{ $faTotalPending }}</td>
+                            </tr>
+                    </tbody>
+                </table>
+                </div>
+
+                {{-- <h2 class="mb-4 mt-5">Agri Officers (AO)</h2> --}}
+                <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th colspan="11" class="text-white text-center" style="    font-size: 20px;">
+                                Agri Officers
+                            </th>
+                        </tr>
+                        <tr>
+                            <th style="width: 20px" >#</th>
+                            <th>Name</th>
+                            <th style="width: 500px" >Email</th>
+                            <th style="width: 150px">District</th>
+                            <th style="width: 150px">Tehsils</th>
+                            <th style="width: 150px">Tappas</th>
+                            <th style="width: 150px">Total Farmers</th>
+                            <th style="width: 150px">In-Process</th>
+                            {{-- <th style="width: 150px">Verified</th> --}}
+                            <th style="width: 150px">Rejected</th>
+                            <th style="width: 150px">Pending</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @php
+                            $totalFarmers = 0;
+                            $totalInProcess = 0;
+                            $totalRejected = 0;
+                            $totalPending = 0;
+                        @endphp
+
+                        @foreach($ao_list as $index => $ao)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $ao->name }}</td>
+                                <td>{{ $ao->email }}</td>
+                                <td>{{ $ao->district }}</td>
+                                <td>{{ implode(', ', json_decode($ao->tehsil ?? '[]')) }}</td>
+                                <td>
+
+                                    @php
+                                        $tappa = json_decode($ao->tappas, true);
+                                    @endphp
+
+                                    @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
+                                        <div>
+                                            @foreach($tappa as $index => $tappaItem)
+                                                <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $ao->id : '' }}">
+                                                    {{ $tappaItem }}
+                                                </span>
+                                                @if($index < 3)
+                                                    <br>
+                                                @endif
+                                            @endforeach
+
+                                            @if(count($tappa) > 4)
+                                                <a href="javascript:void(0);" id="toggle-link-{{ $ao->id }}" onclick="toggleTappas({{ $ao->id }})" class="text-primary d-block mt-1">
+                                                    +{{ count($tappa) - 4 }}
+                                                </a>
+                                            @endif
+                                        </div>
+                                    @else
+                                        <span class="badge text-bg-success text-dark font-weight-bold">
+                                            {{ $ao->tappas }}
+                                        </span>
+                                    @endif
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'ao_total_farmers' => 'total_farmers']) }}"> {{ $ao->total_farmers }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'ao_in_process' => 'in_process']) }}">  {{ $ao->in_process }} </a>
+                                </td>
+                                {{-- <td style="font-size: 18px;    font-weight: 600;">{{ $ao->verified }}</td> --}}
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'ao_rejected' => 'rejected']) }}">  {{ $ao->rejected }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $ao->id, 'ao_pending' => 'pending']) }}"> {{ $ao->pending }} </a>
+                                </td>
+                            </tr>
+                            @php
+                                $totalFarmers += $ao->total_farmers;
+                                $totalInProcess += $ao->in_process;
+                                $totalRejected += $ao->rejected;
+                                $totalPending += $ao->pending;
+                            @endphp
+
+                        @endforeach
+                        <tr class="table-dark text-white font-weight-bold">
+                            <td colspan="6" class="text-center">Total</td>
+                            <td style="font-size: 18px;">
+                                 {{ $totalFarmers }}
+                            </td>
+                            <td style="font-size: 18px;">
+                                 {{ $totalInProcess }}
+                            </td>
+                            {{-- <td style="font-size: 18px;">{{ $totalVerified }}</td> --}}
+                            <td style="font-size: 18px;">
+                                 {{ $totalRejected }}
+                            </td>
+                            <td style="font-size: 18px;">
+                                  {{ $totalPending }}
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                </div>
+
+                {{-- <h2 class="mb-4 mt-5">Land Revenue Officers (LRD)</h2> --}}
+                <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th colspan="11"  class="text-white text-center" style="    font-size: 20px;">
+                                Land Revenue Officers
+                            </th>
+                        </tr>
+                        <tr>
+                            <th style="width: 20px" >#</th>
+                            <th>Name</th>
+                            <th style="width: 500px" >Email</th>
+                            <th style="width: 150px">District</th>
+                            <th style="width: 150px">Tehsils</th>
+                            <th style="width: 150px">Tappas</th>
+                              <th style="width: 150px">Total Farmers</th>
+                            <th style="width: 150px">Verified</th>
+                            <th style="width: 150px">Rejected</th>
+                            <th style="width: 150px">Pending</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $lrdTotalFarmers = 0;
+                            $lrdTotalverified = 0;
+                            $lrdTotalRejected = 0;
+                            $lrdTotalPending = 0;
+                        @endphp
+                        @foreach($lrd_list as $index => $lrd)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $lrd->name }}</td>
+                                <td>{{ $lrd->email }}</td>
+                                <td>{{ $lrd->district }}</td>
+                                <td>{{ implode(', ', json_decode($lrd->tehsil ?? '[]')) }}</td>
+                                <td>
+
+                                    @php
+                                        $tappa = json_decode($lrd->tappas, true);
+                                    @endphp
+
+                                    @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
+                                        <div>
+                                            @foreach($tappa as $index => $tappaItem)
+                                                <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $lrd->id : '' }}">
+                                                    {{ $tappaItem }}
+                                                </span>
+                                                @if($index < 3)
+                                                    <br>
+                                                @endif
+                                            @endforeach
+
+                                            @if(count($tappa) > 4)
+                                                <a href="javascript:void(0);" id="toggle-link-{{ $lrd->id }}" onclick="toggleTappas({{ $lrd->id }})" class="text-primary d-block mt-1">
+                                                    +{{ count($tappa) - 4 }}
+                                                </a>
+                                            @endif
+                                        </div>
+                                    @else
+                                        <span class="badge text-bg-success text-dark font-weight-bold">
+                                            {{ $lrd->tappas }}
+                                        </span>
+                                    @endif
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $lrd->id, 'lrd_total_farmers' => 'total_farmers']) }}"> {{ $lrd->total_farmers }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $lrd->id, 'lrd_verified' => 'verified']) }}">  {{ $lrd->verified }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $lrd->id, 'lrd_rejected' => 'rejected']) }}"> {{ $lrd->rejected }} </a>
+                                </td>
+                                <td style="font-size: 18px;    font-weight: 600;">
+                                    <a href="{{ route('farmers-by-dd', ['user_id' => $lrd->id, 'lrd_pending' => 'pending']) }}">  {{ $lrd->pending }} </a>
+                                </td>
+                            </tr>
+                            @php
+                                $lrdTotalFarmers += $lrd->total_farmers;
+                                $lrdTotalverified += $lrd->verified;
+                                $lrdTotalRejected += $lrd->rejected;
+                                $lrdTotalPending += $lrd->pending;
+                            @endphp
+
+                        @endforeach
+                        <tr class="table-dark text-white font-weight-bold">
+                            <td colspan="6" class="text-center">Total</td>
+                            <td style="font-size: 18px;">{{ $lrdTotalFarmers }}</td>
+                            <td style="font-size: 18px;">{{ $lrdTotalverified }}</td>
+                            {{-- <td style="font-size: 18px;">{{ $totalVerified }}</td> --}}
+                            <td style="font-size: 18px;">{{ $lrdTotalRejected }}</td>
+                            <td style="font-size: 18px;">{{ $lrdTotalPending }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+
+
+            
+{{--
             <!-- Total Farmers Card -->
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="card">
@@ -123,7 +444,6 @@
                         <div class="row">
                             <div class="col">
                                 <p class="card-title text-title">
-                                    {{-- Through Mobile Application Farmers Registration --}}
                                     Farmers Registered By FA
                                 </p>
                                 <h3 class="card-text text-amount">{{$userFarmers}}</h3>
@@ -235,7 +555,7 @@
                     </div>
                 </div>
             </div>
-
+ --}}
 
             <!-- Farmer Registration Charts -->
             {{-- <div class="col-12 mt-3">
