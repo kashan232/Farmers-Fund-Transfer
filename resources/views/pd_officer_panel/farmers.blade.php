@@ -77,30 +77,7 @@
         <div class="col-md-2 col-sm-12">
             <button type="submit" class="btn btn-primary w-100">Search / Filter</button>
         </div>
-
-    </form>
-</div>
-
-
-
-    <div class="row mb-2 justify-content-between">
-        <div class="col-md-6">
-            <form action="{{ route('dg.farmers') }}" method="get" class="d-flex align-items-center flex-nowrap gap-2">
-                 @foreach ($filters as $key => $value)
-                    @if (!in_array($key, ['search', 'start_date', 'end_date']))
-                        <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-                    @endif
-                @endforeach
-                <input type="text" name="search" value="{{ $filters['search'] ?? '' }}" class="form-control small-placeholder me-2" placeholder="Search by Name, CNIC, District, etc.">
-                <input type="date" name="start_date" value="{{ $filters['start_date'] ?? '' }}" class="form-control me-1" placeholder="From">
-                <input type="date" name="end_date" value="{{ $filters['end_date'] ?? '' }}" class="form-control me-1" placeholder="To">
-
-                <button type="submit" class="btn btn-primary">Search/Filter</button>
-            </form>
-        </div>
-
-        {{-- Export Form --}}
-        <div class="col-md-4">
+        <div class="col-md-2 col-sm-12">
             <form action="{{ route('excelExport') }}" method="get" class="d-flex justify-content-end">
                 @foreach ($filters as $key => $value)
                     <input type="hidden" name="{{ $key }}" value="{{ $value }}">
@@ -108,7 +85,11 @@
                 <button type="submit" class="btn btn-danger">Export</button>
             </form>
         </div>
-    </div>
+
+    </form>
+</div>
+
+
 
     {{-- Dropdown Filters --}}
     <form action="{{ route('dg.farmers') }}" method="get" id="filterForm" class="row mb-2 justify-content-between">
