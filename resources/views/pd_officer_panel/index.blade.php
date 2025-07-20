@@ -104,7 +104,83 @@
                             </div>
 
 
+
+
+
+
+
+
+
+
+                            <!-- Rejected Farmers Card -->
                             <div class="col-lg-4 col-md-6 col-sm-6">
+                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => null]) }}">
+                                <div class="card" >
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title" style="color: #000000 !important;">Pending Farmers by FA</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$Unverifiedfarmeragiruser}}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape " style="color: blue !important; border: 1px solid blue;">
+                                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  </a>
+                            </div>
+
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'forwarded_to_ao']) }}">
+                                <div class="card" >
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title" style="color: #000000 !important;">Forwarded to AO</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$forwarded_to_ao}}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape " style="color: #e0b44f !important; border: 1px solid #e0b44f">
+                                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  </a>
+                            </div>
+
+
+
+                             <!-- Verified Farmers Card -->
+                             <div class="col-lg-4 col-md-6 col-sm-6">
+                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'in_process']) }}">
+                                <div class="card" >
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title" style="color: #000000 !important;">Rejected BY FA/AO</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$Processfarmeragiruser}}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape border border-primary text-primary">
+                                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  </a>
+                            </div>
+
+
+
+
+                             <div class="col-lg-4 col-md-6 col-sm-6">
                                   <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'forwarded_to_lrd']) }}">
                                 <div class="card" >
                                     <div class="card-body">
@@ -174,85 +250,12 @@
 
 
 
-
-
-
-
-
-                            <!-- Rejected Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => null]) }}">
-                                <div class="card" >
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title" style="color: #000000 !important;">Pending Farmers by FA</p>
-                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$Unverifiedfarmeragiruser}}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape " style="color: blue !important; border: 1px solid blue;">
-                                                    <i class="fas fa-user" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                  </a>
-                            </div>
-
-
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'forwarded_to_ao']) }}">
-                                <div class="card" >
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title" style="color: #000000 !important;">Forwarded to AO</p>
-                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$forwarded_to_ao}}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape " style="color: #e0b44f !important; border: 1px solid #e0b44f">
-                                                    <i class="fas fa-user" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                  </a>
-                            </div>
-
-
-                            
-                             <!-- Verified Farmers Card -->
-                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'in_process']) }}">
-                                <div class="card" >
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-title text-title" style="color: #000000 !important;">Rejected BY FA/AO</p>
-                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$Processfarmeragiruser}}</h3>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon-shape border border-primary text-primary">
-                                                    <i class="fas fa-user" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                  </a>
-                            </div>
-
-
-
-
-
-
-
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
+                                        <div id="farmersTotals" style="font-weight: bold;">
+                                            <!-- Totals will be injected here -->
+                                        </div>
                                         <canvas id="districtFarmersChart" width="1000" height="400px"></canvas>
                                     </div>
                                 </div>
@@ -401,6 +404,25 @@
 <script>
     const ctx = document.getElementById('districtFarmersChart').getContext('2d');
 
+
+
+    // Data from Laravel
+    const verified = @json($verified);
+    const unverified = @json($unverified);
+    const labels = @json($labels);
+
+    // Calculate totals
+    const totalVerified = verified.reduce((a, b) => a + b, 0);
+    const totalUnverified = unverified.reduce((a, b) => a + b, 0);
+    const totalOverall = totalVerified + totalUnverified;
+
+     // Show totals in the UI
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('farmersTotals').innerHTML = `
+            ✅ Verified: ${totalVerified} | ❌ Unverified: ${totalUnverified} | 🧮 Total: ${totalOverall}
+        `;
+    });
+
     const chart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -421,9 +443,12 @@
         options: {
             responsive: true,
             plugins: {
-                title: {
-                    display: true,
-                    text: 'District Wise Farmers (Verified vs Unverified)'
+                // title: {
+                //     display: true,
+                //     text: 'District Wise Farmers (Verified vs Unverified)'
+                // },
+                  title: {
+                    display: false // Already shown in heading
                 },
                 tooltip: {
                     mode: 'index',
