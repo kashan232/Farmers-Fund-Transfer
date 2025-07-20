@@ -43,6 +43,46 @@
 
 <div class="table-responsive">
     {{-- Search and Date Filter --}}
+
+
+    <div class="col-12">
+    <form action="{{ route('dg.farmers') }}" method="get" class="row g-2 align-items-center">
+
+        {{-- Preserve existing filters except these --}}
+        @foreach ($filters as $key => $value)
+            @if (!in_array($key, ['search', 'start_date', 'end_date']))
+                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+            @endif
+        @endforeach
+
+        {{-- Search Input --}}
+        <div class="col-md-4 col-sm-12">
+            <input type="text" name="search" value="{{ $filters['search'] ?? '' }}"
+                   class="form-control small-placeholder" placeholder="Search by Name, CNIC, District, etc.">
+        </div>
+
+        {{-- Start Date --}}
+        <div class="col-md-2 col-sm-6">
+            <input type="date" name="start_date" value="{{ $filters['start_date'] ?? '' }}"
+                   class="form-control" placeholder="From">
+        </div>
+
+        {{-- End Date --}}
+        <div class="col-md-2 col-sm-6">
+            <input type="date" name="end_date" value="{{ $filters['end_date'] ?? '' }}"
+                   class="form-control" placeholder="To">
+        </div>
+
+        {{-- Submit Button --}}
+        <div class="col-md-2 col-sm-12">
+            <button type="submit" class="btn btn-primary w-100">Search / Filter</button>
+        </div>
+
+    </form>
+</div>
+
+
+
     <div class="row mb-2 justify-content-between">
         <div class="col-md-6">
             <form action="{{ route('dg.farmers') }}" method="get" class="d-flex align-items-center flex-nowrap gap-2">
