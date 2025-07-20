@@ -253,7 +253,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div id="farmersTotals" style="font-weight: bold;">
+                                        <div id="farmersTotals" style="font-weight: bold; text-align: center;">
                                             <!-- Totals will be injected here -->
                                         </div>
                                         <canvas id="districtFarmersChart" width="1000" height="400px"></canvas>
@@ -418,9 +418,10 @@
      // Show totals in the UI
     document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('farmersTotals').innerHTML = `
-            ✅ Verified: ${totalVerified} | ❌ Unverified: ${totalUnverified} | 🧮 Total: ${totalOverall}
+            ✅ Verified: ${totalVerified} | ❌ Unverified: ${totalUnverified}
         `;
     });
+    // | 🧮 Total: ${totalOverall}
     const ctx = document.getElementById('districtFarmersChart').getContext('2d');
 
     const chart = new Chart(ctx, {
