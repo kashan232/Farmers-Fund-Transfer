@@ -28,6 +28,9 @@ public function excelExport(Request $request)
         $fileName = 'farmers_export_all.csv';
     }
 
+
+    dd($request->all());
+
     $farmers = LandRevenueFarmerRegistation::with('branch')
         ->when($request->search, fn($q) => $q->where('name', 'like', "%{$request->search}%"))
         ->when($request->district, fn($q) => $q->where('district', $request->district))
