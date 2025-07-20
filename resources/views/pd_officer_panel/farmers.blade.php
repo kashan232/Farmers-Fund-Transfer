@@ -45,7 +45,7 @@
     {{-- Search and Date Filter --}}
 
 
-    <div class="col-12">
+    <div class="col-12 mb-3">
     <form action="{{ route('dg.farmers') }}" method="get" class="row g-2 align-items-center">
 
         {{-- Preserve existing filters except these --}}
