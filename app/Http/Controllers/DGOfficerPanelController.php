@@ -28,7 +28,7 @@ public function excelExport(Request $request)
         $fileName = 'farmers_export_all.csv';
     }
 
-    dd($request->all());
+
 
     $farmers = LandRevenueFarmerRegistation::with('branch')
         ->when($request->search, fn($q) => $q->where('name', 'like', "%{$request->search}%"))
@@ -235,6 +235,13 @@ public function excelExport(Request $request)
         ($status == 'online_farmers'){
              $query->where('user_type' , 'Online');
         }
+
+        elseif
+        ($status == 'unverified'){
+             $query->whereNull('verification_status');
+        }
+
+
         else{
             $query->where('verification_status', $status);
         }
