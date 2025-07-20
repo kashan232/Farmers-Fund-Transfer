@@ -77,16 +77,20 @@
         <div class="col-md-2 col-sm-12">
             <button type="submit" class="btn btn-primary w-100">Search / Filter</button>
         </div>
-       
-    </form>
-     <div class="col-md-2 col-sm-12">
-            <form action="{{ route('excelExport') }}" method="get" class="d-flex justify-content-end">
-                @foreach ($filters as $key => $value)
-                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-                @endforeach
-                <button type="submit" class="btn btn-danger">Export</button>
-            </form>
+
+        <div class="col-md-2 col-sm-12">
+            <button type="button" class="btn btn-danger w-100" onclick="document.getElementById('excelExportForm').submit()">Export</button>
         </div>
+
+    </form>
+
+     <div class="col-md-2 col-sm-12">
+        <form action="{{ route('excelExport') }}" id="excelExportForm" method="get" class="d-flex justify-content-end">
+            @foreach ($filters as $key => $value)
+                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+            @endforeach
+        </form>
+    </div>
 
 </div>
 
