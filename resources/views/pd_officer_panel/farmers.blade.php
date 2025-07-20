@@ -44,6 +44,7 @@
 <div class="table-responsive">
     {{-- Search and Date Filter --}}
 
+    @if(!request()->has('user_id'))
 
     <div class="col-12 mb-3">
     <form action="{{ route('dg.farmers') }}" method="get" class="row g-2 align-items-center">
@@ -149,7 +150,7 @@
         </div>
     </form>
 </div>
-
+@endif
 
 
                                             <table id="example1"  style="width:100%" class="table table-bordered table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
