@@ -92,7 +92,9 @@ public function excelExport(Request $request)
     // })
     // ->values(); // Reindex after filtering
 
-
+ foreach ($farmers as $farmer) {
+    dd($farmer);
+ }
 
 
     $columns = [
@@ -136,7 +138,6 @@ public function excelExport(Request $request)
         $s_no = 1;
         foreach ($farmers as $farmer) {
 
-            dd($farmer);
             fputcsv($file, [
                 $s_no++,
                 $farmer->name ?? '',
