@@ -135,6 +135,8 @@ public function excelExport(Request $request)
         fputcsv($file, $columns);
         $s_no = 1;
         foreach ($farmers as $farmer) {
+
+            dd($farmer);
             fputcsv($file, [
                 $s_no++,
                 $farmer->name ?? '',
@@ -142,7 +144,7 @@ public function excelExport(Request $request)
                 $farmer->mother_maiden_name ?? '',
                 $farmer->cnic ?? '',
                 $farmer->cnic_issue_date ?? '',
-                $farmer->cnic_expiry_date ?? '',
+                 empty($farmer->cnic_expiry_date) ? '2099-12-31' : $farmer->cnic_expiry_date,
                 $farmer->date_of_birth ?? '',
                  $farmer->district ?? '',
                 $farmer->gender ?? '',
