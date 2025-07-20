@@ -92,9 +92,7 @@ public function excelExport(Request $request)
     // })
     // ->values(); // Reindex after filtering
 
- foreach ($farmers as $farmer) {
-    dd($farmer);
- }
+
 
 
     $columns = [
