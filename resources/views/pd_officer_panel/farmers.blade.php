@@ -31,131 +31,95 @@
                                 <div class="row mt-2 justify-content-md-center">
                                     <div class="col-12  tables">
                                         <div class="table-responsive ">
-                                            <style>
-                                                .small-placeholder::placeholder {
-                                                    font-size: 11px;
-                                                }
-                                            </style>
+                                           <style>
+    .small-placeholder::placeholder {
+        font-size: 11px;
+    }
+</style>
 
-                                            <div class="row mb-2 " style="justify-content: space-between;">
-                                                <div class="col-md-5">
-                                                    <form action="{{ route('dg.farmers') }}" method="get" class="d-flex">
-                                                        <input type="text" name="search" id="" class=" small-placeholder form-control me-2" placeholder="Search by Name, Father Name, Surname, Mobile, CNIC, District, Tehsil, Tappa, UC">
-                                                        <input type="submit" name="" id="" value="Search" class="btn btn-primary">
-                                                    </form>
-                                                </div>
+@php
+    $filters = request()->only(['search', 'district', 'taluka', 'farmer_type', 'status', 'start_date', 'end_date']);
+@endphp
 
+<div class="table-responsive">
+    {{-- Search and Date Filter --}}
+    <div class="row mb-2 justify-content-between">
+        <div class="col-md-6">
+            <form action="{{ route('dg.farmers') }}" method="get" class="d-flex flex-wrap gap-2">
+                <input type="text" name="search" value="{{ $filters['search'] ?? '' }}" class="form-control small-placeholder me-2" placeholder="Search by Name, CNIC, District, etc.">
 
-                                                <div class="col-md-5">
-                                                     {{-- Date Range --}}
-                                                    <div class="col-md-4 mb-2">
-                                                        <div class="d-flex">
-                                                    <form action="{{ route('dg.farmers') }}" method="get" class="d-flex">
+                <input type="date" name="start_date" value="{{ $filters['start_date'] ?? '' }}" class="form-control me-1" placeholder="From">
+                <input type="date" name="end_date" value="{{ $filters['end_date'] ?? '' }}" class="form-control me-1" placeholder="To">
 
-                                                            <input type="date" name="start_date" value="{{ request('start_date') }}" class="form-control me-1" placeholder="From">
-                                                            <input type="date" name="end_date" value="{{ request('end_date') }}" class="form-control me-1" placeholder="To">
-                                                            <button type="submit" class="btn btn-primary">Filter</button>
-                                                    </form>
-                                                        </div>
-                                                    </div>
+                <button type="submit" class="btn btn-primary">Search/Filter</button>
+            </form>
+        </div>
 
-                                                    <form action="{{ route('excelExport') }}"  method="get" class="d-flex" style="float: right;">
+        {{-- Export Form --}}
+        <div class="col-md-4">
+            <form action="{{ route('excelExport') }}" method="get" class="d-flex justify-content-end">
+                @foreach ($filters as $key => $value)
+                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                @endforeach
+                <button type="submit" class="btn btn-danger">Export</button>
+            </form>
+        </div>
+    </div>
 
-                                                        <input type="hidden" name="start_date" value="{{ request('start_date') }}">
-                                                        <input type="hidden" name="end_date" value="{{ request('end_date') }}">
+    {{-- Dropdown Filters --}}
+    <form action="{{ route('dg.farmers') }}" method="get" id="filterForm" class="row mb-2 justify-content-between">
+        {{-- Preserve Existing Filters --}}
+        @foreach ($filters as $key => $value)
+            @if (!in_array($key, ['district', 'taluka', 'farmer_type', 'status'])) {{-- Exclude dropdowns --}}
+                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+            @endif
+        @endforeach
 
+        <div class="col-md-3">
+            <select name="district" class="form-control" onchange="document.getElementById('filterForm').submit()">
+                <option value="">Select District</option>
+                <option value="">All</option>
+                @foreach ($districts as $district)
+                    <option value="{{ $district->district }}" {{ ($filters['district'] ?? '') == $district->district ? 'selected' : '' }}>
+                        {{ $district->district }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
 
+        <div class="col-md-3">
+            <select name="taluka" class="form-control" onchange="document.getElementById('filterForm').submit()">
+                <option value="">Select Taluka</option>
+                <option value="">All</option>
+                @foreach ($talukas as $taluka)
+                    <option value="{{ $taluka->tehsil }}" {{ ($filters['taluka'] ?? '') == $taluka->tehsil ? 'selected' : '' }}>
+                        {{ $taluka->tehsil }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
 
-                                                        <input type="hidden" name="search" value="{{ request('search') }}">
-                                                        <input type="hidden" name="district" value="{{ request('district') }}">
-                                                        <input type="hidden" name="taluka" value="{{ request('taluka') }}">
-                                                        <input type="hidden" name="farmer_type" value="{{ request('farmer_type') }}">
-                                                        <input type="hidden" name="status" value="{{ request('status') }}">
-                                                        <input type="submit" name="" id="" value="Export" class="btn btn-danger">
-                                                    </form>
+        <div class="col-md-3">
+            <select name="farmer_type" class="form-control" onchange="document.getElementById('filterForm').submit()">
+                <option value="">Select Type</option>
+                <option value="online" {{ ($filters['farmer_type'] ?? '') == 'online' ? 'selected' : '' }}>Online</option>
+                <option value="fa" {{ ($filters['farmer_type'] ?? '') == 'fa' ? 'selected' : '' }}>FA's</option>
+            </select>
+        </div>
 
-                                                </div>
+        <div class="col-md-3">
+            <select name="status" class="form-control" onchange="document.getElementById('filterForm').submit()">
+                <option value="">Select Status</option>
+                <option value="verified_by_lrd" {{ ($filters['status'] ?? '') == 'verified_by_lrd' ? 'selected' : '' }}>Verified by LRD</option>
+                <option value="rejected_by_lrd" {{ ($filters['status'] ?? '') == 'rejected_by_lrd' ? 'selected' : '' }}>Rejected by LRD</option>
+                <option value="verified_by_ao" {{ ($filters['status'] ?? '') == 'verified_by_ao' ? 'selected' : '' }}>Verified by AO</option>
+                <option value="rejected_by_ao" {{ ($filters['status'] ?? '') == 'rejected_by_ao' ? 'selected' : '' }}>Rejected by AO</option>
+                <option value="" {{ ($filters['status'] ?? '') === '' ? 'selected' : '' }}>Unverified</option>
+            </select>
+        </div>
+    </form>
+</div>
 
-
-
-                                            </div>
-
-                                            <div  class="row mb-2 " style="justify-content: space-between;">
-                                                <div class="col-md-3">
-                                                    <form action="{{ route('dg.farmers') }}" id="filter_form" method="get" class="d-flex">
-                                                          <input type="hidden" name="search" value="{{ request('search') }}">
-                                                            <input type="hidden" name="status" value="{{ request('status') }}">
-                                                             <input type="hidden" name="taluka" value="{{ request('taluka') }}">
-                                                                <input type="hidden" name="farmer_type" value="{{ request('farmer_type') }}">
-                                                        <select name="district" id="" class="form-control" onchange="document.getElementById('filter_form').submit()">
-                                                            <option value="">Select District</option>
-                                                            <option value="">All</option>
-                                                            @foreach ($districts as $district)
-                                                                <option value="{{$district->district}}" {{ request('district') == $district->district ? 'selected' : '' }} >{{$district->district}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </form>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <form action="{{ route('dg.farmers') }}" id="filter_form2" method="get" class="d-flex">
-                                                        <input type="hidden" name="search" value="{{ request('search') }}">
-                                                        <input type="hidden" name="status" value="{{ request('status') }}">
-                                                        <input type="hidden" name="district" value="{{ request('district') }}">
-
-                                                                <input type="hidden" name="farmer_type" value="{{ request('farmer_type') }}">
-
-                                                        <select name="taluka" id="taluka" class="form-control" onchange="document.getElementById('filter_form2').submit()">
-                                                            <option value="">Select Taluka</option>
-                                                            <option value="">All</option>
-                                                            @foreach ($talukas as $taluka)
-                                                                <option value="{{$taluka->tehsil}}" {{ request('taluka') == $taluka->tehsil ? 'selected' : '' }}>{{$taluka->tehsil}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </form>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <form action="{{ route('dg.farmers') }}" id="filter_form3" method="get" class="d-flex">
-                                                        <input type="hidden" name="search" value="{{ request('search') }}">
-                                                        <input type="hidden" name="status" value="{{ request('status') }}">
-                                                        <input type="hidden" name="district" value="{{ request('district') }}">
-                                                        <input type="hidden" name="taluka" value="{{ request('taluka') }}">
-                                                        <select name="farmer_type" id="farmer_type" class="form-control" onchange="document.getElementById('filter_form3').submit()">
-                                                            <option value="">Select Type</option>
-                                                            <option value="online">Online</option>
-                                                            <option value="fa">FA's</option>
-                                                        </select>
-                                                    </form>
-                                                </div>
-
-
-
-
-
-                                                <div class="col-md-3">
-                                                    <form action="{{ route('dg.farmers') }}" id="status_form" method="get" class="d-flex">
-                                                        <input type="hidden" name="search" value="{{ request('search') }}">
-                                                              <input type="hidden" name="district" value="{{ request('district') }}">
-                                                                <input type="hidden" name="taluka" value="{{ request('taluka') }}">
-                                                                <input type="hidden" name="farmer_type" value="{{ request('farmer_type') }}">
-<input type="hidden" name="start_date" value="{{ request('start_date') }}">
-                                                        <input type="hidden" name="end_date" value="{{ request('end_date') }}">
-
-                                                        <select name="status" id="" class="form-control" onchange="document.getElementById('status_form').submit()">
-
-                                                            <option value="">Select Status</option>
-                                                            <option value="verified_by_lrd">Verified by LRD</option>
-                                                            <option value="rejected_by_lrd">Rejected by LRD</option>
-
-                                                            <option value="verified_by_ao">Verified by AO</option>
-                                                            <option value="rejected_by_ao">Rejected by AO</option>
-
-                                                            <option value="">UnVerified</option>
-                                                        </select>
-                                                    </form>
-                                                </div>
-                                            </div>
 
 
                                             <table id="example1"  style="width:100%" class="table table-bordered table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
