@@ -34,9 +34,15 @@ public function excelExport(Request $request)
         ->when($request->search, fn($q) => $q->where('name', 'like', "%{$request->search}%"))
         ->when($request->district, fn($q) => $q->where('district', $request->district))
         ->when($request->taluka, fn($q) => $q->where('tehsil', $request->taluka))
-        ->when($request->status, fn($q) => $q->where('verification_status', $request->status))
         ->when($request->filled('start_date') && $request->filled('end_date'), function ($q) use ($request) {
         $q->whereBetween('created_at', [$request->start_date, $request->end_date]);
+    })
+    ->when($request->status, function ($q) use ($request) {
+        if ($request->status === 'unverified') {
+            $q->whereNull('verification_status');
+        } else {
+            $q->where('verification_status', $request->status);
+        }
     })
      ->when($request->farmer_type === 'fa', function ($q) {
         $q->where('user_type', '!=', 'Online');

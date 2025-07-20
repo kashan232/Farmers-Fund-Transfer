@@ -144,7 +144,7 @@
                 <option value="rejected_by_lrd" {{ ($filters['status'] ?? '') == 'rejected_by_lrd' ? 'selected' : '' }}>Rejected by LRD</option>
                 <option value="verified_by_ao" {{ ($filters['status'] ?? '') == 'verified_by_ao' ? 'selected' : '' }}>Verified by AO</option>
                 <option value="rejected_by_ao" {{ ($filters['status'] ?? '') == 'rejected_by_ao' ? 'selected' : '' }}>Rejected by AO</option>
-                <option value="" {{ ($filters['status'] ?? '') === '' ? 'selected' : '' }}>Unverified</option>
+                <option value="unverified" {{ ($filters['status'] ?? '') == 'unverified' ? 'selected' : '' }}>Unverified</option>
             </select>
         </div>
     </form>
