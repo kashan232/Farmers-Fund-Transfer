@@ -77,7 +77,9 @@
         <div class="col-md-2 col-sm-12">
             <button type="submit" class="btn btn-primary w-100">Search / Filter</button>
         </div>
-        <div class="col-md-2 col-sm-12">
+       
+    </form>
+     <div class="col-md-2 col-sm-12">
             <form action="{{ route('excelExport') }}" method="get" class="d-flex justify-content-end">
                 @foreach ($filters as $key => $value)
                     <input type="hidden" name="{{ $key }}" value="{{ $value }}">
@@ -86,7 +88,6 @@
             </form>
         </div>
 
-    </form>
 </div>
 
 
