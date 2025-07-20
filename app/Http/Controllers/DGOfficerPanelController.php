@@ -152,7 +152,7 @@ public function excelExport(Request $request)
                 $farmer->district ?? '',
                 $farmer->mobile ?? '',
                 $farmer->survey_no ?? '',
-                $farmer->total_fallow_land ?? '',
+                $farmer->total_landing_acre ?? '',
                 $farmer->total_area_cultivated_land ?? '',
                 $farmer->tappa ?? '',
                 $farmer->tehsil ?? '',
