@@ -29,7 +29,6 @@ public function excelExport(Request $request)
     }
 
 
-    dd($request->all());
 
     $farmers = LandRevenueFarmerRegistation::with('branch')
         ->when($request->search, fn($q) => $q->where('name', 'like', "%{$request->search}%"))
@@ -39,7 +38,14 @@ public function excelExport(Request $request)
         ->when($request->status, fn($q) => $q->where('verification_status', $request->status))
         ->when($request->filled('start_date') && $request->filled('end_date'), function ($q) use ($request) {
         $q->whereBetween('created_at', [$request->start_date, $request->end_date]);
-    })->get();
+    })
+     ->when($request->farmer_type === 'fa', function ($q) {
+        $q->where('user_type', '!=', 'Online');
+    })
+    ->when($request->farmer_type === 'online', function ($q) {
+        $q->where('user_type', 'Online');
+    })
+    ->get();
 
     // ->filter(function ($farmer) {
     //     // List of required fields to check for completeness
