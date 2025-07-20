@@ -402,14 +402,13 @@
 </script>
 
 <script>
-    const ctx = document.getElementById('districtFarmersChart').getContext('2d');
 
 
 
     // Data from Laravel
     const verified = @json($verified);
     const unverified = @json($unverified);
-    const labels = @json($labels);
+    // const labels = @json($labels);
 
     // Calculate totals
     const totalVerified = verified.reduce((a, b) => a + b, 0);
@@ -422,6 +421,7 @@
             ✅ Verified: ${totalVerified} | ❌ Unverified: ${totalUnverified} | 🧮 Total: ${totalOverall}
         `;
     });
+    const ctx = document.getElementById('districtFarmersChart').getContext('2d');
 
     const chart = new Chart(ctx, {
         type: 'bar',
