@@ -45,7 +45,7 @@
     {{-- Search and Date Filter --}}
     <div class="row mb-2 justify-content-between">
         <div class="col-md-6">
-            <form action="{{ route('dg.farmers') }}" method="get" class="d-flex flex-wrap gap-2">
+            <form action="{{ route('dg.farmers') }}" method="get" class="d-flex align-items-center flex-nowrap gap-2">
                  @foreach ($filters as $key => $value)
                     @if (!in_array($key, ['search', 'start_date', 'end_date']))
                         <input type="hidden" name="{{ $key }}" value="{{ $value }}">
