@@ -46,8 +46,10 @@
     <div class="row mb-2 justify-content-between">
         <div class="col-md-6">
             <form action="{{ route('dg.farmers') }}" method="get" class="d-flex flex-wrap gap-2">
+                @foreach ($filters as $key => $value)
+                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                @endforeach
                 <input type="text" name="search" value="{{ $filters['search'] ?? '' }}" class="form-control small-placeholder me-2" placeholder="Search by Name, CNIC, District, etc.">
-
                 <input type="date" name="start_date" value="{{ $filters['start_date'] ?? '' }}" class="form-control me-1" placeholder="From">
                 <input type="date" name="end_date" value="{{ $filters['end_date'] ?? '' }}" class="form-control me-1" placeholder="To">
 
