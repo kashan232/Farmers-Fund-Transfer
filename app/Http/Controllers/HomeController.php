@@ -144,7 +144,9 @@ class HomeController extends Controller
                 SUM(CASE WHEN user_type = "Field_officer" THEN 1 ELSE 0 END) as field_officer_farmers')
                 ->groupBy('district')
                 ->get();
+                
 
+                dd( $farmersByDistrict);
 
                 $userTypes = [
                     'Field_Officer',
