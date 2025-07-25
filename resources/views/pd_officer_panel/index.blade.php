@@ -367,7 +367,7 @@
                                                             <tr>
                                                                 <td>{{ $data->district }}</td>
                                                                 <td>{{ $data->total_farmers }}</td>
-                                                                <td>{{ $data->verified_by_ao }}</td>
+                                                                <td>{{ ($data->verified_by_ao+$data->verified_by_lrd) }}</td>
                                                                 <td>{{ $data->verified_by_lrd }}</td>
                                                             </tr>
                                                         @endforeach
