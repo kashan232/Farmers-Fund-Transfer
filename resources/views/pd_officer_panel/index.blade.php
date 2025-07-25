@@ -333,7 +333,7 @@
                             </div>
 
 
-                            {{-- <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <h3>District Wise Farmers</h3>
@@ -365,7 +365,7 @@
 
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
 
                         </div>
                     </div>

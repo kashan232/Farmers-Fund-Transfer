@@ -139,11 +139,11 @@ class HomeController extends Controller
                 // ->groupBy('district')
                 // ->get(); // Paginate with 10 results per page
 
-                // $farmersByDistrict = LandRevenueFarmerRegistation::selectRaw('district,
-                // SUM(CASE WHEN user_type = "Online" THEN 1 ELSE 0 END) as online_farmers,
-                // SUM(CASE WHEN user_type = "Field_officer" THEN 1 ELSE 0 END) as field_officer_farmers')
-                // ->groupBy('district')
-                // ->get();
+                $farmersByDistrict = LandRevenueFarmerRegistation::selectRaw('district,
+                SUM(CASE WHEN user_type = "Online" THEN 1 ELSE 0 END) as online_farmers,
+                SUM(CASE WHEN user_type = "Field_officer" THEN 1 ELSE 0 END) as field_officer_farmers')
+                ->groupBy('district')
+                ->get();
 
 
                 $userTypes = [
@@ -195,7 +195,7 @@ class HomeController extends Controller
                     'Unverifiedfarmeragiruser' => $Unverifiedfarmeragiruser,
                     'Verifiedfarmeragiruser' => $Verifiedfarmeragiruser,
                     // 'usersByDistrict' => $usersByDistrict,
-                    // 'farmersByDistrict' => $farmersByDistrict,
+                    'farmersByDistrict' => $farmersByDistrict,
                     'Processfarmeragiruser' => $Processfarmeragiruser,
                     'userFarmers' => $userFarmers,
                     'onlineFarmers' => $onlineFarmers,
