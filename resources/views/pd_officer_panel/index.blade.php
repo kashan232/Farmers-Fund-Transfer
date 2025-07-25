@@ -341,11 +341,17 @@
                                             <div class="table-responsive">
                                                 <table class="table table-bordered example" id="example">
                                                     <thead>
-                                                        <tr>
+                                                        {{-- <tr>
                                                             <th>District</th>
                                                             <th>Online Farmers</th>
                                                             <th>Field Officer Farmers</th>
                                                             <th>Total Farmers</th>
+                                                        </tr> --}}
+                                                        <tr>
+                                                            <th>District</th>
+                                                            <th>Forms Filled by F.A</th>
+                                                            <th>Forms Submitted to LRD</th>
+                                                            <th>Forms Verified By LRD</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -357,6 +363,12 @@
                                                                 <td>{{ ($data->field_officer_farmers+$data->online_farmers) }}</td>
                                                             </tr>
                                                         @endforeach --}}
+                                                            <tr>
+                                                                <td>{{ $data->district }}</td>
+                                                                <td>{{ $data->total_farmers }}</td>
+                                                                <td>{{ $data->verified_by_ao }}</td>
+                                                                <td>{{ $data->verified_by_lrd }}</td>
+                                                            </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
