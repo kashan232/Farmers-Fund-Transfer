@@ -336,7 +336,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h3>District Wise Farmers</h3>
+                                        <h3>District Wise Farmers Statistics</h3>
                                         <div class="row tables">
                                             <div class="table-responsive">
                                                 <table class="table table-bordered example" id="example">
