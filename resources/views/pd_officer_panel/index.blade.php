@@ -349,14 +349,14 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($farmersByDistrict as $data)
+                                                        {{-- @foreach ($farmersByDistrict as $data)
                                                             <tr>
                                                                 <td>{{ $data->district }}</td>
                                                                 <td>{{ $data->online_farmers }}</td>
                                                                 <td>{{ $data->field_officer_farmers }}</td>
                                                                 <td>{{ ($data->field_officer_farmers+$data->online_farmers) }}</td>
                                                             </tr>
-                                                        @endforeach
+                                                        @endforeach --}}
                                                     </tbody>
                                                 </table>
                                             </div>

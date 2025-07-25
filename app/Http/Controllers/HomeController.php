@@ -156,7 +156,7 @@ class HomeController extends Controller
 
 
 
-                dd( $farmersByDistrict);
+                // dd( $farmersByDistrict);
 
                 $userTypes = [
                     'Field_Officer',
