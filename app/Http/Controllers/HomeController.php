@@ -152,6 +152,13 @@ class HomeController extends Controller
                     SUM(CASE WHEN user_type != "Online" THEN 1 ELSE 0 END) as fa_farmers,
 
 
+                    SUM(CASE WHEN verification_status = "rejected_by_fa" THEN 1 ELSE 0 END) as rejected_by_fa,
+                    SUM(CASE WHEN verification_status = "rejected_by_ao" THEN 1 ELSE 0 END) as rejected_by_ao,
+                    SUM(CASE WHEN verification_status = "rejected_by_lrd" THEN 1 ELSE 0 END) as rejected_by_lrd,
+
+
+
+
                     SUM(CASE WHEN verification_status IS NULL THEN 1 ELSE 0 END) as pending_by_fa,
 
 
