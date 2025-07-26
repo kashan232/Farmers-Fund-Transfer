@@ -159,8 +159,6 @@ class HomeController extends Controller
                     SUM(CASE WHEN verification_status = "verified_by_lrd" AND user_type = "Online" THEN 1 ELSE 0 END) as verified_by_lrd_online,
                     SUM(CASE WHEN verification_status = "verified_by_lrd" AND user_type != "Online" THEN 1 ELSE 0 END) as verified_by_lrd_fa
 
-                    SUM(CASE WHEN verification_status = "verified_by_ao" THEN 1 ELSE 0 END) as verified_by_ao,
-
                 ')
                 ->groupBy('district')
                 ->get();
