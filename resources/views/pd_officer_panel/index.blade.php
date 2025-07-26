@@ -364,17 +364,26 @@
                                                             </tr>
                                                         @endforeach --}}
                                                        @foreach ($farmersByDistrict as $data)
-    <tr>
-        <td>{{ $data->district }}</td>
-        <td>
-            {{ $data->total_farmers }} 
-            | Online = {{ $data->online_farmers }} 
-            & FA = {{ $data->fa_farmers }}
-        </td>
-        <td>{{ ($data->verified_by_ao + $data->verified_by_lrd) }}</td>
-        <td>{{ $data->verified_by_lrd }}</td>
-    </tr>
-@endforeach
+                                                            <tr>
+                                                                <td>{{ $data->district }}</td>
+                                                                <td>
+                                                                    {{ $data->total_farmers }}
+                                                                    | Online = {{ $data->online_farmers }}
+                                                                    & FA = {{ $data->fa_farmers }}
+                                                                </td>
+                                                                <td>
+                                                                    {{ ($data->verified_by_ao + $data->verified_by_lrd) }}
+                                                                    | Online = {{ ($data->verified_by_ao_online + $data->verified_by_lrd_online) }}
+                                                                    & FA = {{ ($data->verified_by_ao_fa + $data->verified_by_lrd_fa) }}
+                                                                </td>
+                                                                <td>
+                                                                    {{ $data->verified_by_lrd }}
+                                                                    | Online = {{ $data->verified_by_lrd_online }}
+                                                                    & FA = {{ $data->verified_by_lrd_fa }}
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+
 
                                                     </tbody>
                                                 </table>
