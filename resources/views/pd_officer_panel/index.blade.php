@@ -368,18 +368,18 @@
                                                                 <td>{{ $data->district }}</td>
                                                                 <td>
                                                                     {{ $data->total_farmers }}
-                                                                    | Online = {{ $data->online_farmers }}
-                                                                    & FA = {{ $data->fa_farmers }}
+                                                                    | <b>Online = </b> {{ $data->online_farmers }}
+                                                                    <b>& FA = {{ $data->fa_farmers }}</b>
                                                                 </td>
                                                                 <td>
                                                                     {{ ($data->verified_by_ao + $data->verified_by_lrd) }}
-                                                                    | Online = {{ ($data->verified_by_ao_online + $data->verified_by_lrd_online) }}
-                                                                    & FA = {{ ($data->verified_by_ao_fa + $data->verified_by_lrd_fa) }}
+                                                                    | <b>Online = </b>{{ ($data->verified_by_ao_online + $data->verified_by_lrd_online) }}
+                                                                    <b>& FA = {{ ($data->verified_by_ao_fa + $data->verified_by_lrd_fa) }}</b>
                                                                 </td>
                                                                 <td>
                                                                     {{ $data->verified_by_lrd }}
-                                                                    | Online = {{ $data->verified_by_lrd_online }}
-                                                                    & FA = {{ $data->verified_by_lrd_fa }}
+                                                                    | <b>Online = </b>{{ $data->verified_by_lrd_online }}
+                                                                   <b> & FA = {{ $data->verified_by_lrd_fa }}</b>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
