@@ -398,6 +398,13 @@
                                                                 <td>
                                                                     {{ $data->verified_by_ao }}
                                                                 </td>
+
+
+
+                                                                <td>{{$data->rejected_by_fa}}</td>
+                                                                <td>{{$data->rejected_by_ao}}</td>
+                                                                <td>{{$data->rejected_by_lrd}}</td>
+
                                                             </tr>
                                                         @endforeach
 
