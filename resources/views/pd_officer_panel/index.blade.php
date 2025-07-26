@@ -363,14 +363,19 @@
                                                                 <td>{{ ($data->field_officer_farmers+$data->online_farmers) }}</td>
                                                             </tr>
                                                         @endforeach --}}
-                                                        @foreach ($farmersByDistrict as $data)
-                                                            <tr>
-                                                                <td>{{ $data->district }}</td>
-                                                                <td>{{ $data->total_farmers }}</td>
-                                                                <td>{{ ($data->verified_by_ao+$data->verified_by_lrd) }}</td>
-                                                                <td>{{ $data->verified_by_lrd }}</td>
-                                                            </tr>
-                                                        @endforeach
+                                                       @foreach ($farmersByDistrict as $data)
+    <tr>
+        <td>{{ $data->district }}</td>
+        <td>
+            {{ $data->total_farmers }} 
+            | Online = {{ $data->online_farmers }} 
+            & FA = {{ $data->fa_farmers }}
+        </td>
+        <td>{{ ($data->verified_by_ao + $data->verified_by_lrd) }}</td>
+        <td>{{ $data->verified_by_lrd }}</td>
+    </tr>
+@endforeach
+
                                                     </tbody>
                                                 </table>
                                             </div>

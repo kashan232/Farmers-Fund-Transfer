@@ -145,14 +145,16 @@ class HomeController extends Controller
                 // ->groupBy('district')
                 // ->get();
 
-                $farmersByDistrict = LandRevenueFarmerRegistation::selectRaw('
-                    district,
-                    COUNT(*) as total_farmers,
-                    SUM(CASE WHEN verification_status = "verified_by_ao" THEN 1 ELSE 0 END) as verified_by_ao,
-                    SUM(CASE WHEN verification_status = "verified_by_lrd" THEN 1 ELSE 0 END) as verified_by_lrd
-                ')
-                ->groupBy('district')
-                ->get();
+              $farmersByDistrict = LandRevenueFarmerRegistation::selectRaw('
+        district,
+        COUNT(*) as total_farmers,
+        SUM(CASE WHEN user_type = "Online" THEN 1 ELSE 0 END) as online_farmers,
+        SUM(CASE WHEN user_type != "Online" THEN 1 ELSE 0 END) as fa_farmers,
+        SUM(CASE WHEN verification_status = "verified_by_ao" THEN 1 ELSE 0 END) as verified_by_ao,
+        SUM(CASE WHEN verification_status = "verified_by_lrd" THEN 1 ELSE 0 END) as verified_by_lrd
+    ')
+    ->groupBy('district')
+    ->get();
 
 
 
