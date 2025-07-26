@@ -151,6 +151,8 @@ class HomeController extends Controller
                     SUM(CASE WHEN user_type = "Online" THEN 1 ELSE 0 END) as online_farmers,
                     SUM(CASE WHEN user_type != "Online" THEN 1 ELSE 0 END) as fa_farmers,
 
+                    SUM(CASE WHEN verification_status = "verified_by_fa" THEN 1 ELSE 0 END) as verified_by_fa,
+
                     SUM(CASE WHEN verification_status = "verified_by_ao" THEN 1 ELSE 0 END) as verified_by_ao,
                     SUM(CASE WHEN verification_status = "verified_by_ao" AND user_type = "Online" THEN 1 ELSE 0 END) as verified_by_ao_online,
                     SUM(CASE WHEN verification_status = "verified_by_ao" AND user_type != "Online" THEN 1 ELSE 0 END) as verified_by_ao_fa,

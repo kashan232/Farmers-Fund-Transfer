@@ -350,6 +350,8 @@
                                                         <tr>
                                                             <th>District</th>
                                                             <th>Forms Filled by F.A</th>
+                                                            <th>Pending for Verification By AO</th>
+
                                                             <th>Forms Submitted to LRD</th>
                                                             <th>Forms Verified By LRD</th>
                                                             <th>Pending for Verification By LRD</th>
@@ -372,6 +374,7 @@
                                                                     | <b>Online = </b> {{ $data->online_farmers }}
                                                                     <b>& FA = {{ $data->fa_farmers }}</b>
                                                                 </td>
+                                                                <td>{{ $data->verified_by_fa }}</td>
                                                                 <td>
                                                                     {{ ($data->verified_by_ao + $data->verified_by_lrd) }}
                                                                     {{-- | <b>Online = </b>{{ ($data->verified_by_ao_online + $data->verified_by_lrd_online) }}
