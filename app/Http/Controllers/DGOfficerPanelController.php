@@ -204,11 +204,12 @@ public function excelExport(Request $request)
 //     fn($q) => $q->whereBetween('created_at', [$req->start_date, $req->end_date])
 // );
 
+
 $query->when(
     $req->filled('start_date') && $req->filled('end_date'),
     function ($q) use ($req) {
-        $start = Carbon::parse($req->start_date)->startOfDay(); // 00:00:00
-        $end = Carbon::parse($req->end_date)->endOfDay();       // 23:59:59
+        $start = Carbon::parse($req->start_date)->startOfDay();
+        $end = Carbon::parse($req->end_date)->endOfDay();
 
         $q->where(function ($innerQuery) use ($start, $end) {
             $innerQuery->where(function ($subQuery) use ($start, $end) {
@@ -225,7 +226,6 @@ $query->when(
         });
     }
 );
-
 
 
     if (!empty($status)) {
