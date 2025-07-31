@@ -210,15 +210,15 @@ $query->when(
     function ($q) use ($req) {
         $q->where(function ($innerQuery) use ($req) {
             $innerQuery->where(function ($subQuery) use ($req) {
-                $subQuery->whereNull('verification_status')
+                $subQuery->where(function ($cond) {
+                    $cond->whereNull('verification_status')
                          ->orWhere('verification_status', 'verified_by_fa');
-            })
-            ->whereBetween('created_at', [$req->start_date, $req->end_date]);
-
-            $innerQuery->orWhere(function ($subQuery) use ($req) {
-                $subQuery->whereNotNull('verification_status')
-                         ->where('verification_status', '!=', 'verified_by_fa')
-                         ->whereBetween('updated_at', [$req->start_date, $req->end_date]);
+                })->whereBetween('created_at', [$req->start_date, $req->end_date]);
+            })->orWhere(function ($subQuery) use ($req) {
+                $subQuery->where(function ($cond) {
+                    $cond->whereNotNull('verification_status')
+                         ->where('verification_status', '!=', 'verified_by_fa');
+                })->whereBetween('updated_at', [$req->start_date, $req->end_date]);
             });
         });
     }
