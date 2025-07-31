@@ -199,33 +199,33 @@ public function excelExport(Request $request)
     }
 
 
-//     $query->when(
-//     $req->filled('start_date') && $req->filled('end_date'),
-//     fn($q) => $q->whereBetween('created_at', [$req->start_date, $req->end_date])
-// );
-
-
-$query->when(
+    $query->when(
     $req->filled('start_date') && $req->filled('end_date'),
-    function ($q) use ($req) {
-        $start = Carbon::parse($req->start_date)->startOfDay();
-        $end = Carbon::parse($req->end_date)->endOfDay();
-
-        $q->where(function ($innerQuery) use ($start, $end) {
-            $innerQuery->where(function ($subQuery) use ($start, $end) {
-                $subQuery->where(function ($cond) {
-                    $cond->whereNull('verification_status')
-                         ->orWhere('verification_status', 'verified_by_fa');
-                })->whereBetween('created_at', [$start, $end]);
-            })->orWhere(function ($subQuery) use ($start, $end) {
-                $subQuery->where(function ($cond) {
-                    $cond->whereNotNull('verification_status')
-                         ->where('verification_status', '!=', 'verified_by_fa');
-                })->whereBetween('updated_at', [$start, $end]);
-            });
-        });
-    }
+    fn($q) => $q->whereBetween('created_at', [$req->start_date, $req->end_date])
 );
+
+
+// $query->when(
+//     $req->filled('start_date') && $req->filled('end_date'),
+//     function ($q) use ($req) {
+//         $start = Carbon::parse($req->start_date)->startOfDay();
+//         $end = Carbon::parse($req->end_date)->endOfDay();
+
+//         $q->where(function ($innerQuery) use ($start, $end) {
+//             $innerQuery->where(function ($subQuery) use ($start, $end) {
+//                 $subQuery->where(function ($cond) {
+//                     $cond->whereNull('verification_status')
+//                          ->orWhere('verification_status', 'verified_by_fa');
+//                 })->whereBetween('created_at', [$start, $end]);
+//             })->orWhere(function ($subQuery) use ($start, $end) {
+//                 $subQuery->where(function ($cond) {
+//                     $cond->whereNotNull('verification_status')
+//                          ->where('verification_status', '!=', 'verified_by_fa');
+//                 })->whereBetween('updated_at', [$start, $end]);
+//             });
+//         });
+//     }
+// );
 
 
     if (!empty($status)) {
