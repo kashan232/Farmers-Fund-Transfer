@@ -198,20 +198,22 @@ public function excelExport(Request $request)
         });
     }
 
-    if($status == 'verified_by_lrd')
-    {
-         $query->when(
+    $checkList = [
+        'rejected_by_ao', 'rejected_by_fa', 'rejected_by_lrd',
+        'verified_by_lrd', 'verified_by_ao'
+    ];
+
+    if (in_array($status, $checkList)) {
+        $query->when(
             $req->filled('start_date') && $req->filled('end_date'),
             fn($q) => $q->whereBetween('updated_at', [$req->start_date, $req->end_date])
         );
-
-    }else{
-         $query->when(
+    } else {
+        $query->when(
             $req->filled('start_date') && $req->filled('end_date'),
             fn($q) => $q->whereBetween('created_at', [$req->start_date, $req->end_date])
         );
     }
-
 
 
 
