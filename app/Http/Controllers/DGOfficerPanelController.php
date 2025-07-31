@@ -199,10 +199,31 @@ public function excelExport(Request $request)
     }
 
 
-    $query->when(
+//     $query->when(
+//     $req->filled('start_date') && $req->filled('end_date'),
+//     fn($q) => $q->whereBetween('created_at', [$req->start_date, $req->end_date])
+// );
+
+
+$query->when(
     $req->filled('start_date') && $req->filled('end_date'),
-    fn($q) => $q->whereBetween('created_at', [$req->start_date, $req->end_date])
+    function ($q) use ($req) {
+        $q->where(function ($innerQuery) use ($req) {
+            $innerQuery->where(function ($subQuery) use ($req) {
+                $subQuery->whereNull('verification_status')
+                         ->orWhere('verification_status', 'verified_by_fa')
+                         ->whereBetween('created_at', [$req->start_date, $req->end_date]);
+            })->orWhere(function ($subQuery) use ($req) {
+                $subQuery->whereNotNull('verification_status')
+                         ->where('verification_status', '!=', 'verified_by_fa')
+                         ->whereBetween('updated_at', [$req->start_date, $req->end_date]);
+            });
+        });
+    }
 );
+
+
+
 
     if (!empty($status)) {
         if($status == 'in_process'){
