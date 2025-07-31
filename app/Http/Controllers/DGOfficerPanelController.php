@@ -198,11 +198,22 @@ public function excelExport(Request $request)
         });
     }
 
+    if($status == 'verified_by_lrd')
+    {
+         $query->when(
+            $req->filled('start_date') && $req->filled('end_date'),
+            fn($q) => $q->whereBetween('updated_at', [$req->start_date, $req->end_date])
+        );
 
-    $query->when(
-    $req->filled('start_date') && $req->filled('end_date'),
-    fn($q) => $q->whereBetween('created_at', [$req->start_date, $req->end_date])
-);
+    }else{
+         $query->when(
+            $req->filled('start_date') && $req->filled('end_date'),
+            fn($q) => $q->whereBetween('created_at', [$req->start_date, $req->end_date])
+        );
+    }
+
+
+
 
 
 // $query->when(
