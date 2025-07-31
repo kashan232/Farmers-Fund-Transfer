@@ -204,26 +204,27 @@ public function excelExport(Request $request)
 //     fn($q) => $q->whereBetween('created_at', [$req->start_date, $req->end_date])
 // );
 
-
 $query->when(
     $req->filled('start_date') && $req->filled('end_date'),
     function ($q) use ($req) {
-        $q->where(function ($innerQuery) use ($req) {
-            $innerQuery->where(function ($subQuery) use ($req) {
+        $start = Carbon::parse($req->start_date)->startOfDay(); // 00:00:00
+        $end = Carbon::parse($req->end_date)->endOfDay();       // 23:59:59
+
+        $q->where(function ($innerQuery) use ($start, $end) {
+            $innerQuery->where(function ($subQuery) use ($start, $end) {
                 $subQuery->where(function ($cond) {
                     $cond->whereNull('verification_status')
                          ->orWhere('verification_status', 'verified_by_fa');
-                })->whereBetween('created_at', [$req->start_date, $req->end_date]);
-            })->orWhere(function ($subQuery) use ($req) {
+                })->whereBetween('created_at', [$start, $end]);
+            })->orWhere(function ($subQuery) use ($start, $end) {
                 $subQuery->where(function ($cond) {
                     $cond->whereNotNull('verification_status')
                          ->where('verification_status', '!=', 'verified_by_fa');
-                })->whereBetween('updated_at', [$req->start_date, $req->end_date]);
+                })->whereBetween('updated_at', [$start, $end]);
             });
         });
     }
 );
-
 
 
 
