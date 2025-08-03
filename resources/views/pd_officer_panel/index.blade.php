@@ -391,7 +391,7 @@
                                                                 <td>{{$data->rejected_by_ao}}</td>
 
 
-                                                                
+
                                                                 <td>
                                                                     {{ ($data->verified_by_ao + $data->verified_by_lrd) }}
                                                                     {{-- | <b>Online = </b>{{ ($data->verified_by_ao_online + $data->verified_by_lrd_online) }}

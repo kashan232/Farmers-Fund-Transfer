@@ -544,7 +544,7 @@
                                             </div>
                                             <div class="mb-6 col-md-6 mt-3">
                                                 <label class="form-label">(1) Total Landholding (Acres): <span class="text-danger">*</span></label>
-                                                <input type="text" name="total_landing_acre" id="total_landing_acre" value="{{$data->total_landing_acre ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
+                                                <input type="text" name="total_landing_acre" id="total_landing_acre" value="{{$data->total_landing_acre ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').slice(0, 13)">
                                             </div>
                                             <div class="mb-6 col-md-6 mt-3">
                                                 <label class="form-label">(2) Total Area with Hari(s) (Acres):</label>
