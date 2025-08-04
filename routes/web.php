@@ -599,6 +599,8 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/change/password', function(){
+    return back()->with('success', 'Not Allowed');
+
     return view('passwordChange');
 })->name('passwordChange');
 
@@ -611,6 +613,7 @@ Route::post('/update/password', function(Request $request) {
         'password' => 'required|min:6|confirmed', // `confirmed` checks against `password_confirmation`
     ]);
 
+    return back()->with('success', 'Not Allowed');
 
 
     $user = Auth::user(); // Get logged-in user
