@@ -30,6 +30,9 @@ class HomeController extends Controller
             $usertype = Auth()->user()->usertype;
 
 
+            if ($usertype == 'backend_data_uploader') {
+                return view('backend_registration_form');
+            }
 
             // if ($usertype == 'online_user') {
             //     return view('dashboard');

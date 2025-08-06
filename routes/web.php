@@ -56,6 +56,17 @@ use Twilio\Rest\Client;
 use App\Http\Controllers\SmsTwilioController;
 
 
+
+
+Route::post('/backend_registration_form',[FieldOfficerPanelController::class,'backend_registration_form'])->name('backend_registration_form');
+
+
+
+
+
+
+
+
 Route::get('/dup/tappas', function () {
     $users = User::select('id', 'tehsil','district', 'email' ,'name', 'tappas')->where('usertype','Field_Officer')->get();
 

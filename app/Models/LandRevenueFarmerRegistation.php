@@ -100,6 +100,7 @@ class LandRevenueFarmerRegistation extends Model
         'mother_maiden_name',
         'correspondence_address',
         'permanent_address',
+        'uploaded_from'
 
     ];
 
