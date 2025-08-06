@@ -531,7 +531,7 @@ class FieldOfficerPanelController extends Controller
 
 
 
-    public function store(Request $request)
+    public function backend_registration_form(Request $request)
     {
 
         $rules = [
