@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Models\City;
 
 
 
@@ -31,7 +32,13 @@ class HomeController extends Controller
 
 
             if ($usertype == 'backend_data_uploader') {
-                return view('backend_registration_form');
+                $districts = District::orderBy('district', 'asc')->get(); // Assuming you want to sort by name
+                $cities = City::all();
+
+                return view('backend_registration_form',[
+                     'districts' => $districts,
+                    'cities' => $cities
+                ]);
             }
 
             // if ($usertype == 'online_user') {
