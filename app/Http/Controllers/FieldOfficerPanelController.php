@@ -596,18 +596,14 @@ class FieldOfficerPanelController extends Controller
             $data = $request->except(['_token', 'edit_id', 'old_front_id_card','old_back_id_card','old_form_seven_pic','old_upload_land_proof','old_upload_farmer_pic','old_upload_other_attach','old_no_objection_affidavit_pic']);
 
 
-            $data['user_type'] = $request->user_type;
-            if( $data['user_type'] != 'Online'){
-                $data['verification_status'] = 'verified_by_fa';
-                $data['user_id'] = Auth::id();
-                // $data['land_emp_id'] = Auth()->user()->user_id;
+            $data['user_type'] = 'Field_Officer';
 
-                // $data['land_emp_name'] = Auth()->user()->name;
-            }
 
-            else{
-                 $data['verification_status'] = null;
-            }
+            $data['verification_status'] = 'verified_by_lrd';
+            $data['user_id'] = Auth::id();
+
+
+
 
 
             $data['cnic_issue_date'] = Carbon::createFromFormat('d-m-Y', $request->cnic_issue_date)->format('Y-m-d');
