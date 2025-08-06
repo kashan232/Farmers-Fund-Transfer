@@ -32,11 +32,11 @@ class HomeController extends Controller
 
 
             if ($usertype == 'backend_data_uploader') {
-                $districts = District::orderBy('district', 'asc')->get(); // Assuming you want to sort by name
+                $district = Auth()->user()->district;
                 $cities = City::all();
 
                 return view('backend_registration_form',[
-                     'districts' => $districts,
+                     'districts' => $district,
                     'cities' => $cities
                 ]);
             }

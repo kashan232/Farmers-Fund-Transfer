@@ -443,9 +443,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <label class="form-label">Q5. District <span class="text-danger">*</span></label>
                                                     <select name="district" id="district" class="form-control js-example-basic-single-no-tag"  >
                                                         <option value="">Select District</option>
-                                                        @foreach($districts as $district)
+                                                        <option value="{{$district}}">{{$district}}</option>
+                                                        {{-- @foreach($districts as $district)
                                                             <option value="{{ $district->district }}" > {{ ucwords(strtolower($district->district)) }} </option>
-                                                        @endforeach
+                                                        @endforeach --}}
                                                     </select>
                                                 </div>
 
