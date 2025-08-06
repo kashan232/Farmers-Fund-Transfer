@@ -309,23 +309,24 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 <body style="background-color: white;">
 
+    <div style="float: right">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="btn btn-primary">
+
+                  Logout
+
+            </a>
+        </form>
+    </div>
+
     <div class="container-fluid">
         <div class="wrapper d-flex align-items-stretch col-lg-11 m-auto">
 
             <div class="row">
                 <div class="div ">
 
-                    <div>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item">
-                                <span class="d-flex align-items-center">
-                                    <i class="ph-duotone ph-power"></i>
-                                    <span>Logout</span>
-                                </span>
-                            </a>
-                        </form>
-                    </div>
+
 
 
 
@@ -338,7 +339,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                         {{-- <p>Please provide the following information to register for the Benazir Hari Card</p> --}}
                     </div>
                     <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
-                        <div class="button-back-line"></div>
+                        {{-- <div class="button-back-line"></div> --}}
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active step-indicator  step-indicator-1"  onclick="showStep(1)">Personal Information</button>
                         </li>
