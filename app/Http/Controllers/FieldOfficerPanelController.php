@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use function PHPUnit\Framework\returnSelf;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+            use Carbon\Exceptions\InvalidFormatException;
 
 class FieldOfficerPanelController extends Controller
 {
@@ -606,16 +607,44 @@ class FieldOfficerPanelController extends Controller
 
 
 
-            $data['cnic_issue_date'] = Carbon::createFromFormat('d-m-Y', $request->cnic_issue_date)->format('Y-m-d');
+            // $data['cnic_issue_date'] = Carbon::createFromFormat('d-m-Y', $request->cnic_issue_date)->format('Y-m-d');
 
-            if($request->cnic_expiry_date && $request->cnic_expiry_date != '')
-            {
 
-                $data['cnic_expiry_date'] = Carbon::createFromFormat('d-m-Y', $request->cnic_expiry_date)->format('Y-m-d');
+            if ($request->cnic_issue_date && $request->cnic_issue_date != '') {
+                try {
+                    $data['cnic_issue_date'] = Carbon::createFromFormat('d-m-Y', $request->cnic_issue_date)->format('Y-m-d');
+                } catch (InvalidFormatException $e) {
+                    $data['cnic_issue_date'] = '--';
+                }
+            } else {
+                $data['cnic_issue_date'] = '--';
             }
 
 
-            $data['date_of_birth'] = Carbon::createFromFormat('d-m-Y', $request->date_of_birth)->format('Y-m-d');
+            if ($request->cnic_expiry_date && $request->cnic_expiry_date != '') {
+                try {
+                    $data['cnic_expiry_date'] = Carbon::createFromFormat('d-m-Y', $request->cnic_expiry_date)->format('Y-m-d');
+                } catch (InvalidFormatException $e) {
+                    $data['cnic_expiry_date'] = '--';
+                }
+            } else {
+                $data['cnic_expiry_date'] = '--';
+            }
+
+
+            if ($request->date_of_birth && $request->date_of_birth != '') {
+                try {
+                    $data['date_of_birth'] = Carbon::createFromFormat('d-m-Y', $request->date_of_birth)->format('Y-m-d');
+                } catch (InvalidFormatException $e) {
+                    $data['date_of_birth'] = '--';
+                }
+            } else {
+                $data['date_of_birth'] = '--';
+            }
+
+
+
+            // $data['date_of_birth'] = Carbon::createFromFormat('d-m-Y', $request->date_of_birth)->format('Y-m-d');
 
 
 
