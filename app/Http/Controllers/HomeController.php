@@ -36,7 +36,7 @@ class HomeController extends Controller
                 $cities = City::all();
 
                 return view('backend_registration_form',[
-                     'districts' => $district,
+                     'district' => $district,
                     'cities' => $cities
                 ]);
             }
