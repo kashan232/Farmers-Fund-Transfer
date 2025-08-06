@@ -314,12 +314,28 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
             <div class="row">
                 <div class="div ">
+
+                    <div>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item">
+                                <span class="d-flex align-items-center">
+                                    <i class="ph-duotone ph-power"></i>
+                                    <span>Logout</span>
+                                </span>
+                            </a>
+                        </form>
+                    </div>
+
+
+
+
                     <div class="logo-container ">
                         <img src="{{asset('')}}/assets/images/Sindh_Hari_Card.png" alt="logo image" class="#logo-lg" style="max-width:120px;" />
 
                         <h4 class="mt-2 font-weight-bold">Benazir Hari Card</h4>
-                        <h5 class="mt-2 font-weight-bold">Registration Form</h5>
-                        <p>Please provide the following information to register for the Benazir Hari Card</p>
+                        <h5 class="mt-2 font-weight-bold">Hard Copy Registration Form</h5>
+                        {{-- <p>Please provide the following information to register for the Benazir Hari Card</p> --}}
                     </div>
                     <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
                         <div class="button-back-line"></div>
