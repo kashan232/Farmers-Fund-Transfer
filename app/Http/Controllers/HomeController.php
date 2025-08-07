@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\City;
+use App\Models\HardCopyFarmer;
 
 
 
@@ -35,9 +36,22 @@ class HomeController extends Controller
                 $district = Auth()->user()->district;
                 $cities = City::all();
 
+                $dailyCount = HardCopyFarmer::whereDate('created_at', today())->count();
+
+                $lastWeekCount = HardCopyFarmer::whereBetween('created_at', [
+                    now()->subWeek()->startOfDay(),
+                    now()->endOfDay()
+                ])->count();
+
+                $overallCount = HardCopyFarmer::count();
+
                 return view('backend_registration_form',[
                      'district' => $district,
-                    'cities' => $cities
+                    'cities' => $cities,
+                    'dailyCount' => $dailyCount, 
+                    'lastWeekCount' => $lastWeekCount, 
+                    'overallCount' => $lastWeekCount
+
                 ]);
             }
 

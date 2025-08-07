@@ -309,13 +309,44 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 <body style="background-color: white;">
 
+    <div class="row">
+    <!-- Daily Count -->
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header">Daily Farmers</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ $dailyCount }}</h5>
+            </div>
+        </div>
+    </div>
+
+    <!-- Last Week Count -->
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">Last Week Farmers</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ $lastWeekCount }}</h5>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overall Count -->
+    <div class="col-md-4">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-header">Total Farmers</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ $overallCount }}</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <div style="float: right; margin-right: 10%; margin-top: 1%;">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="btn btn-primary">
-
                   Logout
-
             </a>
         </form>
     </div>
