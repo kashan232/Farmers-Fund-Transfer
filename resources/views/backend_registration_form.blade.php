@@ -1804,6 +1804,7 @@ $(document).ready(function () {
             $('#cnic_status').on('change', function(event) {
                if($(this).val() == 'life_time'){
                     $('.cnic_expiry_date_div').css('display','none');
+                    $('#cnic_expiry_date').val('');
                }else{
                     $('.cnic_expiry_date_div').css('display','unset');
                }
