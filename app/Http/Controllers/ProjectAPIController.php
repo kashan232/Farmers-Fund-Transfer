@@ -299,7 +299,19 @@ class ProjectAPIController extends Controller
 
         $farmersWithUsers = $farmers->map(function ($farmer) {
             // Get all users whose tappas (JSON) include this farmer's tappa
-            $matchedUsers = User::select(['usertype','name'])->whereJsonContains('tappas', $farmer->tappa)->get();
+
+
+
+            // $matchedUsers = User::select(['usertype','name'])
+            // ->whereJsonContains('tappas', $farmer->tappa)->get();
+
+$matchedUsers = User::select(['usertype', 'name'])
+    ->whereNotNull('tappas')
+    ->where('tappas', '!=', '')
+    ->whereJsonContains('tappas', $farmer->tappa)
+    ->get();
+
+
 
             // Attach all matched users to the farmer
             $farmer->users = $matchedUsers;
