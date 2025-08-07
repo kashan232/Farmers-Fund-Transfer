@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LandRevenueDepartment;
 use Illuminate\Http\Request;
 use App\Models\LandRevenueFarmerRegistation;
+use App\Models\HardCopyFarmer;
 use App\Models\User;
 use App\Models\City;
 use App\Models\Tehsil;
@@ -13,7 +14,7 @@ use Carbon\Carbon;
 use function PHPUnit\Framework\returnSelf;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
-            use Carbon\Exceptions\InvalidFormatException;
+use Carbon\Exceptions\InvalidFormatException;
 
 class FieldOfficerPanelController extends Controller
 {
@@ -755,11 +756,11 @@ class FieldOfficerPanelController extends Controller
             // dd($data);
 
             if ($request->edit_id && $request->edit_id != '') {
-                LandRevenueFarmerRegistation::where('id', $request->edit_id)->update($data);
+                HardCopyFarmer::where('id', $request->edit_id)->update($data);
                 // return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Updated');
                 return ['success' => 'Farmer Data Updated Succesfully..!'];
             } else {
-                LandRevenueFarmerRegistation::create($data);
+                HardCopyFarmer::create($data);
                 // return redirect()->back()->with('farmers-registered', 'Your Farmers Is Successfully Registered');
                 return ['success' => 'Farmer Data Submitted Succesfully..!'];
             }
