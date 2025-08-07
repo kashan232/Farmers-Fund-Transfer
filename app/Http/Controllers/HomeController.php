@@ -36,20 +36,20 @@ class HomeController extends Controller
                 $district = Auth()->user()->district;
                 $cities = City::all();
 
-                $dailyCount = HardCopyFarmer::whereDate('created_at', today())->count();
+                $dailyCount = HardCopyFarmer::where('district',$district)->whereDate('created_at', today())->count();
 
-                $lastWeekCount = HardCopyFarmer::whereBetween('created_at', [
+                $lastWeekCount = HardCopyFarmer::where('district',$district)->whereBetween('created_at', [
                     now()->subWeek()->startOfDay(),
                     now()->endOfDay()
                 ])->count();
 
-                $overallCount = HardCopyFarmer::count();
+                $overallCount = HardCopyFarmer::where('district',$district)->count();
 
                 return view('backend_registration_form',[
                      'district' => $district,
                     'cities' => $cities,
-                    'dailyCount' => $dailyCount, 
-                    'lastWeekCount' => $lastWeekCount, 
+                    'dailyCount' => $dailyCount,
+                    'lastWeekCount' => $lastWeekCount,
                     'overallCount' => $lastWeekCount
 
                 ]);
