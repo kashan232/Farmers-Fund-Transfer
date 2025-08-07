@@ -38,10 +38,9 @@ class HomeController extends Controller
 
                 $dailyCount = HardCopyFarmer::where('district',$district)->whereDate('created_at', today())->count();
 
-                $lastWeekCount = HardCopyFarmer::where('district',$district)->whereBetween('created_at', [
-                    now()->subWeek()->startOfDay(),
-                    now()->endOfDay()
-                ])->count();
+                $lastWeekCount = HardCopyFarmer::where('district',$district)
+                ->where('created_at', '>=', now()->subDays(6)->startOfDay())
+                ->count();
 
                 $overallCount = HardCopyFarmer::where('district',$district)->count();
 
