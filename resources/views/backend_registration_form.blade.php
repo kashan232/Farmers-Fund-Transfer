@@ -315,7 +315,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <div class="card text-white bg-primary mb-3">
             <div class="card-header">Daily Farmers</div>
             <div class="card-body">
-                <h5 class="card-title">{{ $dailyCount }}</h5>
+                <h4 class="card-title text-white ">{{ $dailyCount }}</h4>
             </div>
         </div>
     </div>
@@ -325,7 +325,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <div class="card text-white bg-success mb-3">
             <div class="card-header">Last Week Farmers</div>
             <div class="card-body">
-                <h5 class="card-title">{{ $lastWeekCount }}</h5>
+                <h4 class="card-title text-white ">{{ $lastWeekCount }}</h4>
             </div>
         </div>
     </div>
@@ -335,7 +335,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <div class="card text-white bg-dark mb-3">
             <div class="card-header">Total Farmers</div>
             <div class="card-body">
-                <h5 class="card-title">{{ $overallCount }}</h5>
+                <h4 class="card-title text-white ">{{ $overallCount }}</h4>
             </div>
         </div>
     </div>
@@ -354,7 +354,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
     <div class="container-fluid">
         <div class="wrapper d-flex align-items-stretch col-lg-11 m-auto">
 
-            
+
 
 
 
