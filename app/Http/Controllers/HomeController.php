@@ -33,6 +33,10 @@ class HomeController extends Controller
 
 
             if ($usertype == 'backend_data_uploader') {
+
+
+                $farmers = HardCopyFarmer::paginate(100);
+
                 $district = Auth()->user()->district;
                 $cities = City::all();
 
@@ -49,7 +53,8 @@ class HomeController extends Controller
                     'cities' => $cities,
                     'dailyCount' => $dailyCount,
                     'lastWeekCount' => $lastWeekCount,
-                    'overallCount' => $lastWeekCount
+                    'overallCount' => $lastWeekCount,
+                    'farmers' => $farmers
 
                 ]);
             }
