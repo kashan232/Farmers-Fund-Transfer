@@ -309,7 +309,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 <body style="background-color: white;">
 
-    <div class="row">
+    <div class="row" style=" width: 82%; /* margin-top: 5%; */ margin: auto; margin-top: 2%; justify-content: center;">
     <!-- Daily Count -->
     <div class="col-md-4">
         <div class="card text-white bg-primary mb-3">
