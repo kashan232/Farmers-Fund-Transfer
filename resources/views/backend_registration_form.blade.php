@@ -1470,6 +1470,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 <script>
 
+    
+$(document).ready(function () {
+    $(":input").inputmask(); // only once
+});
+
+
 //     document.querySelectorAll('.nav-link').forEach(el => {
 //     el.addEventListener('click', function(e) {
 //         if (/* your condition */) {
