@@ -2290,18 +2290,18 @@ updateProgressIndicator(step);
     function showStep(step) {
 
 
-        errors = '';
+    errors = '';
 
-let step1_formdata = {
-    name: $('#name').val(),
-    father_name: $('#father_name').val(),
-    surname: $('#surname').val(),
-    cnic: $('#cnic').val(),
-    cnic_issue_date: $('#cnic_issue_date').val(),
-    cnic_expiry_date: $('#cnic_expiry_date').val(),
-    mobile: $('#mobile').val(),
-    cnic_of_next_kin: $('#cnic_of_next_kin').val(),
-};
+    let step1_formdata = {
+        name: $('#name').val(),
+        father_name: $('#father_name').val(),
+        surname: $('#surname').val(),
+        cnic: $('#cnic').val(),
+        cnic_issue_date: $('#cnic_issue_date').val(),
+        cnic_expiry_date: $('#cnic_expiry_date').val(),
+        mobile: $('#mobile').val(),
+        cnic_of_next_kin: $('#cnic_of_next_kin').val(),
+    };
 
 
 
@@ -2343,24 +2343,24 @@ let step1_formdata = {
          // Ensure CNIC does not contain '_'
 
 
-          let totalLanding = parseInt($('#total_landing_acre').val(), 10);
-                    let totalCultivated = parseInt($('#total_area_cultivated_land').val(), 10);
-                    let surveyNo = parseInt($('#survey_no').val(), 10);
+        let totalLanding = parseInt($('#total_landing_acre').val(), 10);
+        let totalCultivated = parseInt($('#total_area_cultivated_land').val(), 10);
+        let surveyNo = parseInt($('#survey_no').val(), 10);
 
 
-                    if (!totalLanding || totalLanding <= 0) {
-                        errors += '<b><span class="text-danger">Total Landing Acre must be greater than 0</span></b><br>';
-                    }
+        if (!totalLanding || totalLanding <= 0) {
+            errors += '<b><span class="text-danger">Total Landing Acre must be greater than 0</span></b><br>';
+        }
 
-                    if (!totalCultivated || totalCultivated <= 0) {
-                        errors += '<b><span class="text-danger">Total Area Cultivated Land must be greater than 0</span></b><br>';
+        if (!totalCultivated || totalCultivated <= 0) {
+            errors += '<b><span class="text-danger">Total Area Cultivated Land must be greater than 0</span></b><br>';
 
-                    }
+        }
 
-                    if (!surveyNo || surveyNo <= 0) {
-                        errors += '<b><span class="text-danger">Survey No must be greater than 0</span></b><br>';
+        if (!surveyNo || surveyNo <= 0) {
+            errors += '<b><span class="text-danger">Survey No must be greater than 0</span></b><br>';
 
-                    }
+        }
 
 
 

@@ -517,7 +517,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
-                                                    <input type="text" id="cnic" name="cnic" class="form-control" value="{{$data->cnic ?? ''}}"   data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"   >
+                                                    <input type="text" id="cnic" name="cnic" class="form-control" value="{{$data->cnic ?? ''}}"      >
                                                 </div>
 
                                                 <div class="mb-6 col-md-2 py-2">
@@ -550,8 +550,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <label class="form-label" >Q4. Mobile No.: <span class="text-danger">*</span></label>
                                                 <input type="text" id="mobile" name="mobile" class="form-control"
                                                 value="{{ $data->mobile ?? '' }}"
-                                                data-inputmask="'mask': '0399-9999999', 'greedy': false"
-                                                placeholder="03XX-XXXXXXX">
+                                                >
                                                 </div>
 
 
@@ -697,11 +696,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <div class="mb-4 col-md-4 ">
                                                         <label class="form-label">CNIC NO: <span class="text-danger">*</span></label>
-                                                        <input type="text" name="cnic_of_next_kin" id="cnic_of_next_kin" class="form-control" value="{{$data->cnic_of_next_kin ?? ''}}" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X" >
+                                                        <input type="text" name="cnic_of_next_kin" id="cnic_of_next_kin" class="form-control" value="{{$data->cnic_of_next_kin ?? ''}}"  >
                                                     </div>
                                                     <div class="mb-4 col-md-4 ">
                                                         <label class="form-label">Mobile No:</label>
-                                                        <input type="text" name="mobile_of_next_kin" class="form-control" value="{{$data->mobile_of_next_kin ?? ''}}" data-inputmask="'mask': '0399-9999999'" >
+                                                        <input type="text" name="mobile_of_next_kin" class="form-control" value="{{$data->mobile_of_next_kin ?? ''}}"  >
                                                     </div>
                                                 </div>
 
@@ -781,8 +780,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                                     <td><input type="text" name="title_name[]" value="{{$title_name}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
                                                                     <td><input type="text" name="title_father_name[]"  value="{{json_decode($data->title_father_name)[$index]}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
 
-                                                                    <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
-                                                                    <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXX" value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
+                                                                    <td><input type="text" name="title_cnic[]"  value="{{json_decode($data->title_cnic)[$index]}}" class="form-control"></td>
+                                                                    <td><input type="text" name="title_number[]"  value="{{json_decode($data->title_number)[$index]}}" class="form-control"></td>
                                                                     <td><input type="text" name="title_area[]" value="{{json_decode($data->title_area)[$index]}}" class="form-control"></td>
                                                                     <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
                                                                 </tr>
@@ -795,10 +794,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                                     <td><input type="text" name="title_father_name[]"  value="" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
 
                                                                     <td>
-                                                                        <input type="text" name="title_cnic[]" value="" class="form-control" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  >
+                                                                        <input type="text" name="title_cnic[]" value="" class="form-control"   >
                                                                     </td>
                                                                     <td>
-                                                                        <input type="text" name="title_number[]" value="" class="form-control" data-inputmask="'mask': '0399-9999999'" placeholder="XXXX-XXXXXXX" >
+                                                                        <input type="text" name="title_number[]" value="" class="form-control" >
                                                                     </td>
                                                                     <td>
                                                                         <input type="text" name="title_area[]" value="" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)">
@@ -1138,7 +1137,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-4 mt-2">
                                                     <label class="form-label">Date of Birth (D-M-Y) <span class="text-danger">*</span></label>
-                                                    <input type="text" name="date_of_birth" data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY" id="date_of_birth" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                                    <input type="text" name="date_of_birth" data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY" id="date_of_birth" class="form-control" value="@if(isset($data) && isValidDate($data->date_of_birth)) {{ $data->date_of_birth ? \Carbon\Carbon::parse($data->date_of_birth)->format('d-m-Y') : '' }} @endif" >
                                                 </div>
 
                                                 <div class="mb-6 col-md-4 mt-2">
@@ -1152,18 +1151,18 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-4 mt-2">
                                                     <label class="form-label">Mother's Name <span class="text-danger">*</span></label>
-                                                    <input type="text" name="mother_maiden_name" id="mother_maiden_name" class="form-control" value="{{$data->account_title ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"  >
+                                                    <input type="text" name="mother_maiden_name" id="mother_maiden_name" class="form-control" value="{{$data->mother_maiden_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"  >
                                                 </div>
 
                                                 <div class="mb-6 col-md-6 mt-2">
                                                     <label class="form-label">Correspondence Address <span class="text-danger">*</span></label>
-                                                    <input type="text" name="correspondence_address" id="correspondence_address" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                                    <input type="text" name="correspondence_address" id="correspondence_address" class="form-control" value="{{$data->correspondence_address ?? ''}}" >
                                                 </div>
 
 
                                                 <div class="mb-6 col-md-6 mt-2">
                                                     <label class="form-label">Permanent Address <span class="text-danger">*</span></label>
-                                                    <input type="text" name="permanent_address" id="permanent_address" class="form-control" value="{{$data->account_title ?? ''}}" >
+                                                    <input type="text" name="permanent_address" id="permanent_address" class="form-control" value="{{$data->permanent_address ?? ''}}" >
                                                 </div>
 
 
@@ -1436,62 +1435,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
-                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
-                                                      <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">Others <p style="color: #ff4949; margin:0; margin-top: 5px;  font-size: small;">Image size must be <span>500KB</span></h6>
-                                                          @if(isset($data) && $data->upload_other_attach != null) <input type="hidden"  class="old_image " name="old_upload_other_attach" value="1" > @endif
-                                                          <input type="file"  class="image-input" name="upload_other_attach" accept="image/*" hidden>
-                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_other_attach != null) style="display: none " @endif   >
-                                                              <i class='bx bxs-cloud-upload icon' ></i>
-                                                          </div>
-                                                          <img class="preview" src=" @if(isset($data) && $data->upload_other_attach != null) {{asset('').'fa_farmers/upload_other_attach/'.$data->upload_other_attach}} @endif"  @if(isset($data) && $data->upload_other_attach != null) style="display: unset " @endif>
-                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_other_attach != null) style="display: none " @endif>Upload</button>
-                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->upload_other_attach != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
-                                                      </div>
-                                                    </div>
-                                                </div> --}}
-
-
-                                                {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
-                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
-                                                      <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">No Objection Affidavit in case of joint ownership / khata </h6>
-                                                          @if(isset($data) && $data->no_objection_affidavit_pic != null) <input type="hidden"  class="old_image " name="old_no_objection_affidavit_pic" value="1" > @endif
-                                                          <input type="file"  class="image-input" name="no_objection_affidavit_pic" accept="image/*" hidden>
-                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: none " @endif   >
-                                                              <i class='bx bxs-cloud-upload icon' ></i>
-
-                                                          </div>
-                                                          <img class="preview" src=" @if(isset($data) && $data->no_objection_affidavit_pic != null) {{asset('').'fa_farmers/no_objection_affidavit_pic/'.$data->no_objection_affidavit_pic}} @endif"  @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: unset " @endif>
-                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: none " @endif>Upload</button>
-                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->no_objection_affidavit_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
-                                                      </div>
-                                                    </div>
-                                                </div> --}}
-
-                                                {{--
-                                                <div class="mb-6 col-md-6 mt-3">
-                                                    <label class="form-label">Upload Cheque Picture Img <br><span class="text-danger" style="font-size: smaller">"jpg/png/jpeg"</span> </label>
-                                                    <input type="file" name="upload_cheque_pic" class="form-control">
-                                                </div>
-                                                --}}
                                             </div>
                                             <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
                                             <button type="submit" class="btn btn-primary mt-5" id="submitbtn" disabled >Submit</button>
@@ -1647,10 +1590,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <script>
 
 
-$(document).ready(function () {
-    $(":input").inputmask(); // only once
-});
-
 
 $('#cnic_issue_date, #cnic_expiry_date ,#date_of_birth').on('blur', function () {
     let val = $(this).val();
@@ -1780,17 +1719,17 @@ $('#cnic_issue_date, #cnic_expiry_date ,#date_of_birth').on('blur', function () 
        <script>
 
 
-$(document).ready(function () {
-    $("input").inputmask(); // Apply mask only to input fields
+// $(document).ready(function () {
+//     $("input").inputmask(); // Apply mask only to input fields
 
 
-    $(":input").inputmask({
-    inputEventOnly: true  // Forces Inputmask to work on mobile
-});
+//     $(":input").inputmask({
+//     inputEventOnly: true  // Forces Inputmask to work on mobile
+// });
 
 
 
-});
+// });
 
 
 
@@ -2012,8 +1951,8 @@ $(document).ready(function () {
             <tr>
                 <td><input type="text" name="title_name[]" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
                 <td><input type="text" name="title_father_name[]"  value="" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"></td>
-                <td><input type="text" name="title_cnic[]" data-inputmask="'mask': '99999-9999999-9'"  placeholder="XXXXX-XXXXXXX-X"  class="form-control"></td>
-                <td><input type="text" name="title_number[]" data-inputmask="'mask': '0399-99999999'" maxlength="12" class="form-control"></td>
+                <td><input type="text" name="title_cnic[]"  class="form-control"></td>
+                <td><input type="text" name="title_number[]" maxlength="12" class="form-control"></td>
                 <td><input type="text" name="title_area[]" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)"></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
             </tr>
