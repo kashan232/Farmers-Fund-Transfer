@@ -315,7 +315,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <div class="card text-white bg-primary mb-3">
             <div class="card-header">Daily Farmers</div>
             <div class="card-body">
-                <h4 class="card-title text-white ">{{ $dailyCount }}</h4>
+                <h4 class="card-title text-white ">{{ $dailyCount ?? '' }}</h4>
             </div>
         </div>
     </div>
@@ -325,7 +325,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <div class="card text-white bg-success mb-3">
             <div class="card-header">Last Week Farmers</div>
             <div class="card-body">
-                <h4 class="card-title text-white ">{{ $lastWeekCount }}</h4>
+                <h4 class="card-title text-white ">{{ $lastWeekCount ?? '' }}</h4>
             </div>
         </div>
     </div>
@@ -335,7 +335,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <div class="card text-white bg-dark mb-3">
             <div class="card-header">Total Farmers</div>
             <div class="card-body">
-                <h4 class="card-title text-white ">{{ $overallCount }}</h4>
+                <h4 class="card-title text-white ">{{ $overallCount ?? '' }}</h4>
             </div>
         </div>
     </div>
@@ -361,7 +361,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
             <div class="row">
                 <div class="div ">
 
-
+                    @if(isset($farmers))
                     <table id="example1" class="display" style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
                                                     <tr>
@@ -447,7 +447,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </tbody>
                                             </table>
 
-
+@endif
 
                     <div class="logo-container ">
                         <img src="{{asset('')}}/assets/images/Sindh_Hari_Card.png" alt="logo image" class="#logo-lg" style="max-width:120px;" />
