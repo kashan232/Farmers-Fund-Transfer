@@ -2184,7 +2184,6 @@ $('#lined_unlined').change(function() {
                 if (formstep == 1) {
 
 
-
     const dateFields = ['cnic_expiry_date', 'cnic_issue_date', 'date_of_birth'];
 const dateRegex = /^(\d{2})-(\d{2})-(\d{4})$/; // DD-MM-YYYY
 
@@ -2263,6 +2262,15 @@ dateFields.forEach((field) => {
                         errors += '<b><span class="text-danger">Survey No must be greater than 0</span></b><br>';
 
                     }
+
+
+
+                    if ($('#cnic_of_next_kin').val() == $('#cnic').val()) {
+                        errors += '<b><span class="text-danger">CNIC must not be the same as the next of kin\'s CNIC</span></b><br>';
+
+                    }
+
+
 
 
 
