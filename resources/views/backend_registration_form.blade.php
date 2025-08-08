@@ -355,7 +355,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
     <div class="container-fluid">
         <div class="wrapper d-flex align-items-stretch col-lg-11 m-auto">
-
+    <div class="row">
             <div class="table-responsive">
                     @if(isset($farmers))
                     <table  class="display table table-bordered" style="width:100%">
@@ -396,9 +396,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 
 
-            <div class="row">
+        
                 <div class="div ">
-                    
+
 
                     <div class="logo-container ">
                         <img src="{{asset('')}}/assets/images/Sindh_Hari_Card.png" alt="logo image" class="#logo-lg" style="max-width:120px;" />
