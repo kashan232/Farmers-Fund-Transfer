@@ -34,7 +34,7 @@ class HomeController extends Controller
 
             if ($usertype == 'backend_data_uploader') {
 
-                $farmers = HardCopyFarmer::paginate(50);
+                $farmers = HardCopyFarmer::paginate(20);
 
                 $district = Auth()->user()->district;
                 $cities = City::all();

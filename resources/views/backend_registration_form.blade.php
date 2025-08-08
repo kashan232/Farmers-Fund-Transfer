@@ -365,8 +365,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <div class="wrapper d-flex align-items-stretch col-lg-11 m-auto">
     <div class="row">
             <div class="table-responsive">
-                    <form action="">
-                        <input type="text" class="form-control" name="search" id="search">
+                    <form action="" class="d-flex col-3" style="    margin-left: 4%;">
+                        <input type="text" class="form-control" style="margin-right: 2%" name="search" id="search">
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                     @if(isset($farmers))
