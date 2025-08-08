@@ -358,7 +358,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
     <div class="row">
             <div class="table-responsive">
                     @if(isset($farmers))
-                    <table  class="display table table-bordered" style="width:100%">
+                    <table  class="display table table-bordered" style="    width: 90%;    margin: auto;    margin-top: 1%;">
                         <thead>
                             <tr>
                                 <th>Sno</th>
@@ -396,7 +396,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 
 
-        
+
                 <div class="div ">
 
 
