@@ -502,6 +502,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                         @csrf
 
                                         <input type="hidden" value="{{ $data->user_type ?? 'Online' }}" name="user_type">
+
+                                        <input type="hidden" value="{{ $data->id ?? '' }}" name="edit_id">
+
+
+
                                         <div class="step step-1">
                                             <div class="row mt-2">
                                                 <div class="mb-6 col-md-12">
@@ -1322,7 +1327,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                 </div>
 
-                                               
+
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
