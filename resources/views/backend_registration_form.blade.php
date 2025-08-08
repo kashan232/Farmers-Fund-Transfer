@@ -320,6 +320,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 <body style="background-color: white;">
 
     <div class="row" style=" width: 82%; /* margin-top: 5%; */ margin: auto; margin-top: 2%; justify-content: center;">
+    
+    
+    @if(isset($dailyCount))
     <!-- Daily Count -->
     <div class="col-md-4">
         <div class="card text-white bg-primary mb-3">
@@ -329,7 +332,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
             </div>
         </div>
     </div>
+    @endif
 
+    @if(isset($dailyCount))
     <!-- Last Week Count -->
     <div class="col-md-4">
         <div class="card text-white bg-success mb-3">
@@ -339,7 +344,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
             </div>
         </div>
     </div>
+    @endif
 
+    @if(isset($dailyCount))
     <!-- Overall Count -->
     <div class="col-md-4">
         <div class="card text-white bg-dark mb-3">
@@ -349,6 +356,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
             </div>
         </div>
     </div>
+    @endif
+    
 </div>
 
 
@@ -370,7 +379,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                         <input type="text" class="form-control" style="margin-right: 2%" name="cnic" id="cnic" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" placeholder="CNIC">
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
-                  
+
                     <table  class="display table table-bordered" style="    width: 90%;    margin: auto;    margin-top: 1%;">
                         <thead>
                             <tr>
