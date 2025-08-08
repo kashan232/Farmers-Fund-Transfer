@@ -243,9 +243,13 @@ Route::get('/all/farmers-list', [DGOfficerPanelController::class, 'index'])->nam
 Route::get('/hardcopy-farmer-edit/{id}',function($id){
 
     $data = HardCopyFarmer::find($id);
+    $district = Auth()->user()->district;
+    $cities = City::all();
 
     return view('backend_registration_form' ,[
         'data' => $data,
+        'district' => $district,
+        'cities' => $cities
     ]);
 
 
