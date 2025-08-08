@@ -296,7 +296,9 @@
 .leaflet-marker-shadow {
     cursor: default !important;
 }
-
+.dataTables_wrapper {
+        width: 100%;
+    }
     </style>
 </head>
 
@@ -360,9 +362,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
             <div class="row">
                 <div class="div ">
-                    <div>
+                    <div class="table-responsive">
                     @if(isset($farmers))
-                    <table id="example19" class="display" style="width:100%" class="table table-bordered " >
+                    <table  class="display table table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Sno</th>
