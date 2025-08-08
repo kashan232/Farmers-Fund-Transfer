@@ -516,7 +516,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
                                                 <div class="mb-6 col-md-4">
                                                     <label class="form-label">Q2.(B) Surname: <span class="text-danger">*</span></label>
-                                                    <input type="text" name="surname" id="surname" class="form-control" value="{{$data->father_name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
+                                                    <input type="text" name="surname" id="surname" class="form-control" value="{{$data->surname ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
@@ -527,7 +527,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <label class="form-label">CNIC Status: <span class="text-danger">*</span></label>
                                                     <select name="cnic_status" id="cnic_status" class="form-control">
                                                         <option value="valid_till" selected>Valid Till</option>
-                                                        <option value="life_time">Life Time</option>
+                                                        <option value="life_time" @if(isset($data) && $data->cnic_expiry_date == '')  selected @endif>Life Time</option>
                                                     </select>
                                                 </div>
 
@@ -538,13 +538,19 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     }
                                                 @endphp
 
-                                                <div class="mb-6 col-md-2 py-2 cnic_issue_date_div">
-                                                    <label class="form-label">CNIC Issue Date: <span class="text-danger">*</span></label>
-                                                    <input type="text" id="cnic_issue_date" name="cnic_issue_date" class="form-control" value="@if(isset($data) && isValidDate($data->cnic_issue_date)) {{ \Carbon\Carbon::parse($data->cnic_issue_date)->format('d-m-Y') }} @endif"   data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY"  >
+                                                <div class="mb-6 col-md-2 py-2">
+                                                    <label class="form-label">CNIC Issue Date.: <span class="text-danger">*</span></label>
+                                                    <input type="text" id="cnic_issue_date" name="cnic_issue_date" class="form-control"
+                                                        value="@if(isset($data) && isValidDate($data->cnic_issue_date)) {{ \Carbon\Carbon::parse($data->cnic_issue_date)->format('d-m-Y') }} @endif"
+                                                        data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY">
                                                 </div>
-                                                <div class="mb-6 col-md-2 py-2 cnic_expiry_date_div">
-                                                    <label class="form-label">CNIC Expiry Date: <span class="text-danger">*</span></label>
-                                                    <input type="text" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control" value="@if(isset($data) && isValidDate($data->cnic_expiry_date)) {{ \Carbon\Carbon::parse($data->cnic_expiry_date)->format('d-m-Y') }} @endif"    data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY" >
+
+                                                <div class="mb-6 col-md-2 py-2 cnic_expiry_date_div"
+                                                    style="@if(isset($data) && $data->cnic_expiry_date == '') display:none; @endif">
+                                                    <label class="form-label">CNIC Expiry Date.: <span class="text-danger">*</span></label>
+                                                    <input type="text" id="cnic_expiry_date" name="cnic_expiry_date" class="form-control"
+                                                        value="@if(isset($data) && isValidDate($data->cnic_expiry_date)) {{ \Carbon\Carbon::parse($data->cnic_expiry_date)->format('d-m-Y') }} @endif"
+                                                        data-inputmask="'mask': '99-99-9999'" placeholder="DD-MM-YYYY">
                                                 </div>
 
 
@@ -1169,30 +1175,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 </div>
 
 
-                                                {{-- <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Q23: Title of Account</label>
-                                                    <input type="text" name="account_title" class="form-control" value="{{$data->account_title ?? ''}}" >
-                                                </div>
-                                                <div class="mb-6 col-md-6">
-                                                    <label class="form-label">Q24: Account No</label>
-                                                    <input type="text" name="account_no" class="form-control" value="{{$data->account_no ?? ''}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16)">
-                                                </div>
-                                                <div class="mb-6 col-md-6 mt-2">
-                                                    <label class="form-label">Q25: Bank Name</label>
-                                                    <input type="text" name="bank_name"  class="form-control" value=" {{$data->bank_name ?? ''}}">
-                                                </div>
-                                                <div class="mb-6 col-md-6 mt-2">
-                                                    <label class="form-label">Q26: Branch Name</label>
-                                                    <input type="text" name="branch_name" value="{{$data->branch_name ?? ''}}" class="form-control">
-                                                </div>
-                                                <div class="mb-6 col-md-6 mt-2">
-                                                    <label class="form-label">Q27: IBAN</label>
-                                                    <input type="text" name="IBAN_number" value="{{$data->IBAN_number ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').slice(0, 24)" >
-                                                </div>
-                                                <div class="mb-6 col-md-6 mt-2">
-                                                    <label class="form-label">Q28: Branch Code</label>
-                                                    <input type="text" name="branch_code" value="{{$data->branch_code ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4)">
-                                                </div> --}}
                                             </div>
                                             <div class="row mt-3">
                                                 {{-- <div class="mb-12 col-md-12">
@@ -1210,26 +1192,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <input type="hidden" name="GpsCordinates" id="GpsCordinates">
                                                 </div>
-                                                {{-- <div class="mb-6 col-md-6">
-                                                    <!-- Button trigger modal --><h6>Geo Fencing <span class="text-danger">*</span></h6>
-                                                    <label class="form-label">Geo Fencing of Agriculture land</label><br>
 
-                                                    <div class="d-flex"  style="justify-content: space-between; ">
-                                                        <input type="hidden" name="FancingCoordinates" id="FancingCoordinates">
-                                                        <button type="button" class="btn btn-primary mr-2" id="abc" data-toggle="modal" data-target="#exampleModal">
-                                                            Click
-                                                        </button>
-
-                                                        <input type="hidden" name="sq_meters_hidden" id="sq_meters_hidden">
-                                                        <input type="hidden" name="sq_yards_hidden" id="sq_yards_hidden">
-                                                        <input type="hidden" name="acres_hidden" id="acres_hidden">
-
-
-                                                        <input type="readonly" id="FancingCoordinatesLocationInput"  class="form-control">
-                                                    </div>
-
-
-                                                </div> --}}
                                                 <style>
                                                     #map {
                                                         height: 500px;
@@ -1359,38 +1322,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                 </div>
 
-                                                {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
-                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
-                                                      <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">Form VII <span class="text-danger" > *</span><p style="    text-transform: uppercase; font-size: 12px; margin-top: 5px;">jpg, png, jpeg, pdf</p></p></h6><br>
-                                                          @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
-                                                          <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
-                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
-                                                              <i class='bx bxs-cloud-upload icon' ></i>
-                                                          </div>
-                                                          <img class="preview" src=" @if(isset($data) && $data->form_seven_pic != null) {{asset('').'fa_farmers/form_seven_pic/'.$data->form_seven_pic}} @endif"  @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @endif>
-                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->form_seven_pic != null) style="display: none ; " @endif>Upload</button>
-                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
-                                                      </div>
-                                                    </div>
-                                                </div> --}}
-
-                                                {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
-                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
-                                                      <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">Forms VIII A/ Affidavit/ Heirship (Land Documents)  </h6>
-                                                          @if(isset($data) && $data->upload_land_proof != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_land_proof" name="old_upload_land_proof" value="1" > @endif
-                                                          <input type="file"  class="image-input  checkfile_upload_land_proof" name="upload_land_proof" id="upload_land_proof" accept="image/*" hidden>
-                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif   >
-                                                              <i class='bx bxs-cloud-upload icon' ></i>
-                                                          </div>
-                                                          <img class="preview" src=" @if(isset($data) && $data->upload_land_proof != null) {{asset('').'fa_farmers/upload_land_proof/'.$data->upload_land_proof}} @endif"  @if(isset($data) && $data->upload_land_proof != null) style="display: unset " @endif>
-                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif>Upload</button>
-                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->upload_land_proof != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
-                                                      </div>
-                                                    </div>
-                                                </div> --}}
-
+                                               
                                                 <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                                     <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
                                                       <div class="text-center image-upload-card">
@@ -1470,7 +1402,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 <script>
 
-    
+
 $(document).ready(function () {
     $(":input").inputmask(); // only once
 });
