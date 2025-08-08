@@ -299,6 +299,14 @@
 .dataTables_wrapper {
         width: 100%;
     }
+
+
+
+    .table-responsive nav{
+        float: right;
+    margin-right: 5%;
+    margin-top: 1%;
+    }
     </style>
 </head>
 
