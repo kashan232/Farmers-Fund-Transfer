@@ -43,7 +43,7 @@ class HomeController extends Controller
                     })
                     ->paginate(20);
 
-                    
+
 
                 $district = Auth()->user()->district;
                 $cities = City::all();
