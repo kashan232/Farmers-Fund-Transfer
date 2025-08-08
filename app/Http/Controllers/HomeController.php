@@ -34,18 +34,23 @@ class HomeController extends Controller
 
             if ($usertype == 'backend_data_uploader') {
 
+
+
+                $district = Auth()->user()->district;
+
+
+                
                 // Check if 'search' parameter exists in the URL
                 $searchCNIC = request()->query('cnic');
 
                 // Query with optional CNIC filter
-                $farmers = HardCopyFarmer::when($searchCNIC, function ($query) use ($searchCNIC) {
+                $farmers = HardCopyFarmer::where('district',$district)->when($searchCNIC, function ($query) use ($searchCNIC) {
                         return $query->where('cnic', $searchCNIC);
                     })
                     ->paginate(20);
 
 
 
-                $district = Auth()->user()->district;
                 $cities = City::all();
 
                 $dailyCount = HardCopyFarmer::where('district',$district)->whereDate('created_at', today())->count();
