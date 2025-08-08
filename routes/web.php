@@ -52,10 +52,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\HardCopyFarmer;
 
-
+use App\Imports\FarmersImport;
 use Twilio\Rest\Client;
 use App\Http\Controllers\SmsTwilioController;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 
 
@@ -65,6 +65,23 @@ Route::post('/backend_registration_form',[FieldOfficerPanelController::class,'ba
 
 
 
+Route::get('/farmers/import', function(){
+     return view('farmersimport');
+})->name('farmers.import.form');
+
+
+Route::post('/farmers/import', function (Request $request){
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        try {
+            Excel::import(new FarmersImport, $request->file('file'));
+            return back()->with('success', 'Farmers imported successfully.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Import failed: ' . $e->getMessage());
+        }
+})->name('farmers.import');
 
 
 

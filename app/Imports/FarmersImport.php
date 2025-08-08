@@ -43,22 +43,22 @@ class FarmersImport implements ToModel, WithStartRow
 
 
                 // Example usage
-                $cnic_expiry_date = $row[5];
+                $cnic_expiry_date = $row[6];
                 if (is_numeric($cnic_expiry_date)) {
                     $cnic_expiry_date = $this->excelDateToDate($cnic_expiry_date);
                 }
                 else{
-                    $cnic_expiry_date = $row[5];
+                    $cnic_expiry_date = $row[6];
                 }
 
 
                 // Example usage
-                $date_of_birth = $row[5];
+                $date_of_birth = $row[7];
                 if (is_numeric($date_of_birth)) {
                     $date_of_birth = $this->excelDateToDate($date_of_birth);
                 }
                 else{
-                    $date_of_birth = $row[5];
+                    $date_of_birth = $row[7];
                 }
 
                 return new HardCopyFarmer([
