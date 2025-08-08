@@ -1151,38 +1151,7 @@
                                             </div>
                                         </div>
 
-                                        {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
-                                            <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
-                                              <div class="text-center image-upload-card">
-                                                  <h6 class="mb-4" style="height: 50px;">Form VII<span class="text-danger" > *</span><p style="    text-transform: uppercase; font-size: 12px; font-weight: 500;">jpg, png, jpeg, pdf</p></h6>
-                                                  @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
-                                                  <input type="file"  class="image-input checkfiles checkfile_form_seven_pic" name="form_seven_pic" id="form_seven_pic" accept="image/*,application/pdf"  hidden >
-                                                  <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
-                                                      <i class='bx bxs-cloud-upload icon' ></i>
-
-                                                  </div>
-                                                  <img class="preview" src=" @if(isset($data) && $data->form_seven_pic != null) {{asset('').'fa_farmers/form_seven_pic/'.$data->form_seven_pic}} @endif"  @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @endif>
-                                                  <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif>Upload</button>
-                                                  <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
-                                              </div>
-                                            </div>
-                                        </div> --}}
-
-                                        {{-- <div class="card mb-4 col_img" style="margin: 1%; width:30%">
-                                            <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
-                                              <div class="text-center image-upload-card">
-                                                  <h6 class="mb-4" style="height: 50px;">Forms VIII A/ Affidavit/ Heirship (Land Documents)  </h6>
-                                                  @if(isset($data) && $data->upload_land_proof != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_land_proof" name="old_upload_land_proof" value="1" > @endif
-                                                  <input type="file"  class="image-input  checkfile_upload_land_proof" name="upload_land_proof" id="upload_land_proof" accept="image/*" hidden>
-                                                  <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif   >
-                                                      <i class='bx bxs-cloud-upload icon' ></i>
-                                                  </div>
-                                                  <img class="preview" src=" @if(isset($data) && $data->upload_land_proof != null) {{asset('').'fa_farmers/upload_land_proof/'.$data->upload_land_proof}} @endif"  @if(isset($data) && $data->upload_land_proof != null) style="display: unset " @endif>
-                                                  <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_land_proof != null) style="display: none " @endif>Upload</button>
-                                                  <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->upload_land_proof != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
-                                              </div>
-                                            </div>
-                                        </div> --}}
+                                       
 
                                         <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                             <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">

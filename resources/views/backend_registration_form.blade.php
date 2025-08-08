@@ -1307,58 +1307,58 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                         <div class="step step-5" style="display: none;">
                                             <div class="row mt-2">
-                                                <div class="card mb-4 col_img" style="margin: 1%; width:30%">
-                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
-                                                      <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">CNIC FRONT <span class="text-danger" > *</span>  </h6>
-                                                          @if(isset($data) && $data->front_id_card != null) <input type="hidden"  class="old_image  old_checkfiles old_checkfile_front_id_card" name="old_front_id_card" value="1" > @endif
-                                                          <input type="file"  class="image-input checkfiles checkfile_front_id_card" name="front_id_card" id="front_id_card"  accept="image/*" hidden>
-                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->front_id_card != null) style="display: none " @endif   >
-                                                              <i class='bx bxs-cloud-upload icon' ></i>
-                                                              {{-- <p>Image size must be <span>500KB</span></p> --}}
-                                                          </div>
-                                                          <img class="preview" src=" @if(isset($data) && $data->front_id_card != null) {{asset('').'fa_farmers/front_id_card/'.$data->front_id_card}} @endif"  @if(isset($data) && $data->front_id_card != null) style="display: unset " @endif>
-                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->front_id_card != null) style="display: none " @endif>Upload</button>
-                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->front_id_card != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
-                                                      </div>
-                                                    </div>
-                                                </div>
+                                                  <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                            <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
+                                              <div class="text-center image-upload-card">
+                                                  <h6 class="mb-4" style="height: 50px;">CNIC FRONT <span class="text-danger" > *</span>  </h6>
+                                                  @if(isset($data) && $data->front_id_card != null) <input type="hidden"  class="old_image  old_checkfiles old_checkfile_front_id_card" name="old_front_id_card" value="1" > @endif
+                                                  <input type="file"  class="image-input checkf4iles checkfile_front_id_card" name="front_id_card" id="front_id_card"  accept="image/*" hidden >
+                                                  <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->front_id_card != null) style="display: none " @endif   >
+                                                      <i class='bx bxs-cloud-upload icon' ></i>
+                                                      {{-- <p>Image size must be <span>500KB</span></p> --}}
+                                                  </div>
+                                                  <img class="preview" src=" @if(isset($data) && $data->front_id_card != null) {{asset('').'fa_farmers/front_id_card/'.$data->front_id_card}} @endif"  @if(isset($data) && $data->front_id_card != null) style="display: unset " @endif>
+                                                  <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->front_id_card != null) style="display: none " @endif>Upload</button>
+                                                  <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->front_id_card != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
+                                              </div>
+                                            </div>
+                                        </div>
 
-                                                <div class="card mb-4 col_img " style="margin: 1%; width:30%">
-                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
-                                                      <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">CNIC BACK <span class="text-danger" > *</span></h6>
-                                                          @if(isset($data) && $data->back_id_card != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_back_id_card" name="old_back_id_card" value="1" > @endif
-                                                          <input type="file"  class="image-input checkfiles checkfile_back_id_card" name="back_id_card" id="back_id_card" accept="image/*" hidden>
-                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->back_id_card != null) style="display: none " @endif   >
-                                                              <i class='bx bxs-cloud-upload icon' ></i>
-                                                              {{-- <p>Image size must be <span>500KB</span></p> --}}
-                                                          </div>
-                                                          <img class="preview" src=" @if(isset($data) && $data->back_id_card != null) {{asset('').'fa_farmers/back_id_card/'.$data->back_id_card}} @endif"  @if(isset($data) && $data->back_id_card != null) style="display: unset " @endif>
-                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->back_id_card != null) style="display: none " @endif>Upload</button>
-                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->back_id_card != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
-                                                      </div>
-                                                    </div>
-                                                </div>
+                                        <div class="card mb-4 col_img " style="margin: 1%; width:30%">
+                                            <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
+                                              <div class="text-center image-upload-card">
+                                                  <h6 class="mb-4" style="height: 50px;">CNIC BACK <span class="text-danger" > *</span></h6>
+                                                  @if(isset($data) && $data->back_id_card != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_back_id_card" name="old_back_id_card" value="1" > @endif
+                                                  <input type="file"  class="image-input chec4kfiles checkfile_back_id_card" name="back_id_card" id="back_id_card" accept="image/*" hidden >
+                                                  <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->back_id_card != null) style="display: none " @endif   >
+                                                      <i class='bx bxs-cloud-upload icon' ></i>
+                                                      {{-- <p>Image size must be <span>500KB</span></p> --}}
+                                                  </div>
+                                                  <img class="preview" src=" @if(isset($data) && $data->back_id_card != null) {{asset('').'fa_farmers/back_id_card/'.$data->back_id_card}} @endif"  @if(isset($data) && $data->back_id_card != null) style="display: unset " @endif>
+                                                  <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->back_id_card != null) style="display: none " @endif>Upload</button>
+                                                  <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->back_id_card != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
+                                              </div>
+                                            </div>
+                                        </div>
 
 
-                                                <div class="card mb-4 col_img" style="margin: 1%; width:30%">
-                                                    <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
-                                                      <div class="text-center image-upload-card">
-                                                          <h6 class="mb-4" style="height: 50px;">Photo <span class="text-danger" > *</span> </h6>
-                                                          @if(isset($data) && $data->upload_farmer_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_farmer_pic" name="old_upload_farmer_pic" value="1" > @endif
-                                                          <input type="file"  class="image-input checkfiles checkfile_upload_farmer_pic" name="upload_farmer_pic" id="upload_farmer_pic" accept="image/*" hidden>
-                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_farmer_pic != null) style="display: none " @endif   >
-                                                              <i class='bx bxs-cloud-upload icon' ></i>
-                                                              {{-- <p>Image size must be <span>500KB</span></p> --}}
-                                                          </div>
-                                                          <img class="preview" src=" @if(isset($data) && $data->upload_farmer_pic != null) {{asset('').'fa_farmers/upload_farmer_pic/'.$data->upload_farmer_pic}} @endif"  @if(isset($data) && $data->upload_farmer_pic != null) style="display: unset " @endif>
-                                                          <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_farmer_pic != null) style="display: none " @endif>Upload</button>
-                                                          <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->upload_farmer_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
-                                                      </div>
-                                                    </div>
-                                                </div>
 
+                                        <div class="card mb-4 col_img" style="margin: 1%; width:30%">
+                                            <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
+                                              <div class="text-center image-upload-card">
+                                                  <h6 class="mb-4" style="height: 50px;">Photo <span class="text-danger" > *</span> </h6>
+                                                  @if(isset($data) && $data->upload_farmer_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_upload_farmer_pic" name="old_upload_farmer_pic" value="1" > @endif
+                                                  <input type="file"  class="image-input checkf4iles checkfile_upload_farmer_pic" name="upload_farmer_pic" id="upload_farmer_pic" accept="image/*" hidden >
+                                                  <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->upload_farmer_pic != null) style="display: none " @endif   >
+                                                      <i class='bx bxs-cloud-upload icon' ></i>
+                                                      {{-- <p>Image size must be <span>500KB</span></p> --}}
+                                                  </div>
+                                                  <img class="preview" src=" @if(isset($data) && $data->upload_farmer_pic != null) {{asset('').'fa_farmers/upload_farmer_pic/'.$data->upload_farmer_pic}} @endif"  @if(isset($data) && $data->upload_farmer_pic != null) style="display: unset " @endif>
+                                                  <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn" @if(isset($data) && $data->upload_farmer_pic != null) style="display: none " @endif>Upload</button>
+                                                  <button type="button" class="btn btn-outline-danger w-100 remove-button" @if(isset($data) && $data->upload_farmer_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
+                                              </div>
+                                            </div>
+                                        </div>
 
 
 
