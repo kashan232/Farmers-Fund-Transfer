@@ -50,6 +50,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\HardCopyFarmer;
 
 
 use Twilio\Rest\Client;
@@ -235,6 +236,21 @@ Route::get('/all/fa-lists-/{district}/{usertype}', [DGOfficerPanelController::cl
 
 
 Route::get('/all/farmers-list', [DGOfficerPanelController::class, 'index'])->name('dg.farmers');
+
+
+
+
+Route::get('/hardcopy-farmer-edit/{id}',function($id){
+
+    $data = HardCopyFarmer::find($id);
+
+    return view('backend_registration_form' ,[
+        'data' => $data,
+    ]);
+
+
+
+})->name('hardcopy_farmer_edit');
 
 
 
