@@ -238,6 +238,16 @@ Route::get('/all/fa-lists-/{district}/{usertype}', [DGOfficerPanelController::cl
 Route::get('/all/farmers-list', [DGOfficerPanelController::class, 'index'])->name('dg.farmers');
 
 
+Route::get('/view/hardcopy/farmer/{id}', function($id){
+    $data = HardCopyFarmer::with('cityDetail')->where('id', '=', $id)->first();
+    return view('field_officer_panel.lrd_farmers.view', [
+        'data' => $data,
+    ]);
+
+})->name('hardcopy_farmer_view');
+
+
+
 
 
 Route::get('/hardcopy-farmer-edit/{id}',function($id){
