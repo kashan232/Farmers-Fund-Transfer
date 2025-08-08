@@ -375,8 +375,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
     <div class="row">
           @if(isset($farmers))
             <div class="table-responsive">
-                    <form action="" class="d-flex col-3" style="    margin-left: 4%;">
-                        <input type="text" class="form-control" style="margin-right: 2%" name="cnic" id="cnic" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" placeholder="CNIC">
+                    @php
+                        $filters = request()->only(['cnic']);
+                    @endphp
+                    <form action="" class="d-flex col-3" style="margin-left: 4%;">
+                        <input type="text" value="{{ $filters['cnic'] ?? '' }}" class="form-control" style="margin-right: 2%" name="cnic" id="cnic" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" placeholder="CNIC">
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
 
