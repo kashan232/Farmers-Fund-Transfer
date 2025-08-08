@@ -528,7 +528,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </select>
                                                 </div>
 
-
+                                                 @php
+                                                    function isValidDate($date, $format = 'Y-m-d') {
+                                                        $d = DateTime::createFromFormat($format, $date);
+                                                        return $d && $d->format($format) === $date;
+                                                    }
+                                                @endphp
 
                                                 <div class="mb-6 col-md-2 py-2 cnic_issue_date_div">
                                                     <label class="form-label">CNIC Issue Date: <span class="text-danger">*</span></label>
