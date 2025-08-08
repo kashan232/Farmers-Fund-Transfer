@@ -320,8 +320,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 <body style="background-color: white;">
 
     <div class="row" style=" width: 82%; /* margin-top: 5%; */ margin: auto; margin-top: 2%; justify-content: center;">
-    
-    
+
+
     @if(isset($dailyCount))
     <!-- Daily Count -->
     <div class="col-md-4">
@@ -334,7 +334,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
     </div>
     @endif
 
-    @if(isset($dailyCount))
+    @if(isset($lastWeekCount))
     <!-- Last Week Count -->
     <div class="col-md-4">
         <div class="card text-white bg-success mb-3">
@@ -346,7 +346,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
     </div>
     @endif
 
-    @if(isset($dailyCount))
+    @if(isset($overallCount))
     <!-- Overall Count -->
     <div class="col-md-4">
         <div class="card text-white bg-dark mb-3">
@@ -357,7 +357,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         </div>
     </div>
     @endif
-    
+
 </div>
 
 
