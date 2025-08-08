@@ -6,6 +6,7 @@ use App\Models\HardCopyFarmer;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\WithStartRow;
+use Carbon\Carbon;
 class FarmersImport implements ToModel, WithStartRow
 {
     private $rowNumber = 0;
@@ -32,34 +33,40 @@ class FarmersImport implements ToModel, WithStartRow
 
 
 
-                // Example usage
-                $cnic_issue_date = $row[5];
-                if (is_numeric($cnic_issue_date)) {
-                    $cnic_issue_date = $this->excelDateToDate($cnic_issue_date);
-                }
-                else{
-                    $cnic_issue_date = $row[5];
-                }
+                // // Example usage
+                // $cnic_issue_date = $row[5];
+                // if (is_numeric($cnic_issue_date)) {
+                //     $cnic_issue_date = $this->excelDateToDate($cnic_issue_date);
+                // }
+                // else{
+                //     $cnic_issue_date = $row[5];
+                // }
 
 
-                // Example usage
-                $cnic_expiry_date = $row[6];
-                if (is_numeric($cnic_expiry_date)) {
-                    $cnic_expiry_date = $this->excelDateToDate($cnic_expiry_date);
-                }
-                else{
-                    $cnic_expiry_date = $row[6];
-                }
+                // // Example usage
+                // $cnic_expiry_date = $row[6];
+                // if (is_numeric($cnic_expiry_date)) {
+                //     $cnic_expiry_date = $this->excelDateToDate($cnic_expiry_date);
+                // }
+                // else{
+                //     $cnic_expiry_date = $row[6];
+                // }
 
 
-                // Example usage
-                $date_of_birth = $row[7];
-                if (is_numeric($date_of_birth)) {
-                    $date_of_birth = $this->excelDateToDate($date_of_birth);
-                }
-                else{
-                    $date_of_birth = $row[7];
-                }
+                // // Example usage
+                // $date_of_birth = $row[7];
+                // if (is_numeric($date_of_birth)) {
+                //     $date_of_birth = $this->excelDateToDate($date_of_birth);
+                // }
+                // else{
+                //     $date_of_birth = $row[7];
+                // }
+
+
+                $cnic_issue_date = $this->formatDate($row[5]);
+                $cnic_expiry_date = $this->formatDate($row[6]);
+                $date_of_birth = $this->formatDate($row[7]);
+
 
                 return new HardCopyFarmer([
 
@@ -82,6 +89,9 @@ class FarmersImport implements ToModel, WithStartRow
                     'survey_no' => $row[15],
                     'total_landing_acre' => $row[16],
                     'total_area_cultivated_land' => $row[17],
+                    'user_type' => 'Field_Officer',
+                    'verification_status' => 'verified_by_lrd',
+                    'uploaded_from' => 'excel'
                 ]);
                 $rowNumber++;
                // dd($this->StringToJson($row[28]));
@@ -94,6 +104,25 @@ class FarmersImport implements ToModel, WithStartRow
 
 
     }
+
+
+    
+private function formatDate($value)
+{
+    if (is_numeric($value)) {
+        // Excel serial number to date
+        return Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value))
+            ->format('Y-m-d');
+    }
+
+    // Try parsing normal date string
+    $timestamp = strtotime($value);
+    if ($timestamp) {
+        return date('Y-m-d', $timestamp);
+    }
+
+    return null; // Invalid date
+}
 
 
      function excelDateToDate($serial) {
