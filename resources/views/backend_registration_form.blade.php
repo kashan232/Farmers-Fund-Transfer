@@ -334,7 +334,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
     </div>
     @endif
 
-    @if(isset($lastWeekCount))
+    {{-- @if(isset($lastWeekCount))
     <!-- Last Week Count -->
     <div class="col-md-4">
         <div class="card text-white bg-success mb-3">
@@ -344,7 +344,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
             </div>
         </div>
     </div>
-    @endif
+    @endif --}}
 
     @if(isset($overallCount))
     <!-- Overall Count -->
@@ -357,6 +357,20 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         </div>
     </div>
     @endif
+
+    @if(isset($pendingCount))
+    <div class="col-md-4">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-header">Pending</div>
+            <div class="card-body">
+                <h4 class="card-title text-white ">{{ $pendingCount ?? '' }}</h4>
+            </div>
+        </div>
+    </div>
+    @endif
+
+
+
 
 </div>
 

@@ -39,7 +39,7 @@ class HomeController extends Controller
                 $district = Auth()->user()->district;
 
 
-                
+
                 // Check if 'search' parameter exists in the URL
                 $searchCNIC = request()->query('cnic');
 
@@ -53,13 +53,17 @@ class HomeController extends Controller
 
                 $cities = City::all();
 
-                $dailyCount = HardCopyFarmer::where('district',$district)->whereDate('created_at', today())->count();
+                $dailyCount = HardCopyFarmer::where('verification_status','verified_by_lrd')->where('district',$district)->whereDate('created_at', today())->count();
 
-                $lastWeekCount = HardCopyFarmer::where('district',$district)
+                $lastWeekCount = HardCopyFarmer::where('verification_status','verified_by_lrd')->where('district',$district)
                 ->where('created_at', '>=', now()->subDays(6)->startOfDay())
                 ->count();
 
-                $overallCount = HardCopyFarmer::where('district',$district)->count();
+                $overallCount = HardCopyFarmer::where('verification_status','verified_by_lrd')->where('district',$district)->count();
+
+
+                $pendingCount = HardCopyFarmer::whereNull('verification_status')->where('district',$district)->count();
+
 
                 return view('backend_registration_form',[
                      'district' => $district,
@@ -67,7 +71,8 @@ class HomeController extends Controller
                     'dailyCount' => $dailyCount,
                     'lastWeekCount' => $lastWeekCount,
                     'overallCount' => $lastWeekCount,
-                    'farmers' => $farmers
+                    'farmers' => $farmers,
+                    'pendingCount' => $pendingCount
 
                 ]);
             }
