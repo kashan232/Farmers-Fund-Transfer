@@ -364,12 +364,13 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
     <div class="container-fluid">
         <div class="wrapper d-flex align-items-stretch col-lg-11 m-auto">
     <div class="row">
+          @if(isset($farmers))
             <div class="table-responsive">
                     <form action="" class="d-flex col-3" style="    margin-left: 4%;">
                         <input type="text" class="form-control" style="margin-right: 2%" name="cnic" id="cnic" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" placeholder="CNIC">
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
-                    @if(isset($farmers))
+                  
                     <table  class="display table table-bordered" style="    width: 90%;    margin: auto;    margin-top: 1%;">
                         <thead>
                             <tr>
@@ -419,7 +420,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                         <h5 class="mt-2 font-weight-bold">Hard Copy Registration Form</h5>
                         {{-- <p>Please provide the following information to register for the Benazir Hari Card</p> --}}
                     </div>
-                    <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
+                    <ul class="nav nav-pills mb-3 mt-3 justify-content-center" id="pills-tab" role="tablist">
                         {{-- <div class="button-back-line"></div> --}}
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active step-indicator  step-indicator-1"  onclick="showStep(1)">Personal Information</button>
