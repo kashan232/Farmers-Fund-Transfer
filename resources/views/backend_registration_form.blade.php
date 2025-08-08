@@ -1369,16 +1369,29 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                           <h6 class="mb-4" style="height: 50px;">Form VII <span class="text-danger" > *</span><p style="    text-transform: uppercase; font-size: 12px; margin-top: 5px;">jpg, png, jpeg, Multiple Images</p></p></h6><br>
                                                           @if(isset($data) && $data->form_seven_pic != null) <input type="hidden"  class="old_image old_checkfiles old_checkfile_form_seven_pic" name="old_form_seven_pic" value="1" > @endif
 
-                                                          <input type="file"  class="image-inputs checkfiless checkfile_form_seven_pics"  multiple name="form_seven_pic[]" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
+                                                          <input type="file"  class="image-inputs checkfi4les checkfile_form_seven_pics"  multiple name="form_seven_pic[]" id="form_seven_pic" accept="image/*,application/pdf"  hidden>
 
-                                                          <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
+                                                          {{-- <div class="img-area upload-image" id="img-area" @if(isset($data) && $data->form_seven_pic != null) style="display: none " @endif   >
                                                               <i class='bx bxs-cloud-upload icon' ></i>
-                                                          </div>
+                                                          </div> --}}
 
-                                                          <div id="preview-area">
+                                                          <div id="preview-area" style="display: flex">
+                                                                @if(isset($data->form_seven_pic))
+                                                                    @php
+                                                                        $images = json_decode($data->form_seven_pic, true);
+                                                                    @endphp
 
-                                                          </div>
-                                                          <img class="preview" src=" @if(isset($data) && $data->form_seven_pic != null) {{asset('').'fa_farmers/form_seven_pic/'.$data->form_seven_pic}} @endif"  @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @endif>
+                                                                    @if(is_array($images))
+                                                                        @foreach($images as $image)
+                                                                            <img class="preiew" style="width: 100px; height: 100px;" src="{{ asset('fa_farmers/form_seven_pic/' . $image) }}" alt="Preview Image">
+                                                                        @endforeach
+                                                                    @else
+                                                                        <img class="prevew" style="width: 100px; height: 100px;" src="{{ asset('fa_farmers/form_seven_pic/' . $data->form_seven_pic) }}" alt="Preview Image">
+                                                                    @endif
+                                                                @endif
+                                                            </div>
+
+
                                                           <button type="button"   class="btn btn-outline-primary w-100 upload-image upload-image-btn-mlti" @if(isset($data) && $data->form_seven_pic != null) style="display: none ; " @endif>Upload</button>
                                                           <button type="button" class="btn btn-outline-danger w-100 rm-btn-images" @if(isset($data) && $data->form_seven_pic != null) style="display: unset " @else style="display: none;margin-top:20px" @endif  >Remove</button>
                                                       </div>

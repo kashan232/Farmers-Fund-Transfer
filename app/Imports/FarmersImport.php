@@ -90,7 +90,7 @@ class FarmersImport implements ToModel, WithStartRow
                     'total_landing_acre' => $row[16],
                     'total_area_cultivated_land' => $row[17],
                     'user_type' => 'Field_Officer',
-                    'verification_status' => 'verified_by_lrd',
+                    // 'verification_status' => 'verified_by_lrd',
                     'uploaded_from' => 'excel'
                 ]);
                 $rowNumber++;
@@ -106,7 +106,7 @@ class FarmersImport implements ToModel, WithStartRow
     }
 
 
-    
+
 private function formatDate($value)
 {
     if (is_numeric($value)) {
