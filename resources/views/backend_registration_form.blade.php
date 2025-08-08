@@ -1404,7 +1404,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                             </div>
                                             <button type="button" class="btn btn-secondary mt-5" onclick="prevStep(4)">Previous</button>
-                                            <button type="submit" class="btn btn-primary mt-5" id="submitbtn" disabled >Submit</button>
+                                            <button type="submit" class="btn btn-primary mt-5" id="submitbtn"  >Submit</button>
 
                                         </div>
                                     </form>
