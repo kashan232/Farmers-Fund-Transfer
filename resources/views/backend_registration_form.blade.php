@@ -365,6 +365,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <div class="wrapper d-flex align-items-stretch col-lg-11 m-auto">
     <div class="row">
             <div class="table-responsive">
+                    <form action="">
+                        <input type="text" class="form-control" name="search" id="search">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
                     @if(isset($farmers))
                     <table  class="display table table-bordered" style="    width: 90%;    margin: auto;    margin-top: 1%;">
                         <thead>
@@ -382,7 +386,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                         <tbody>
                             @foreach($farmers as $farmer)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ ($farmers->currentPage() - 1) * $farmers->perPage() + $loop->iteration }}</td>
                                 <td>{{ $farmer->name }}</td>
                                 <td>{{ $farmer->cnic }}</td>
                                 <td>{{ $farmer->mobile }}</td>
