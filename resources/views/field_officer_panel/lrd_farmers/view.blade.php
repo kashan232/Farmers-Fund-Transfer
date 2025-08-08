@@ -526,7 +526,7 @@
                                         <div class="col-lg-5 border text-center p-2">
                                             {{ $data->male_children_under16 }}</div>
                                         <div class="col-lg-5 border text-center p-2">
-                                            {{ $data->male_children_under16 }}</div>
+                                            {{ $data->male_Adults_above16 }}</div>
                                     </div>
                                 </td>
                             </tr>
