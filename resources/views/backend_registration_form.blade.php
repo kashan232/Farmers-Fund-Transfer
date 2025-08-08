@@ -360,7 +360,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
             <div class="row">
                 <div class="div ">
-
+                    <div>
                     @if(isset($farmers))
                     <table id="example19" class="display" style="width:100%" class="table table-bordered " >
                         <thead>
@@ -393,8 +393,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                             </tr>
                             @endforeach
                         </tbody>
-                        {{ $farmers->links() }}
                     </table>
+                    {{ $farmers->links() }}
+                    </div>
                     @endif
 
                     <div class="logo-container ">
