@@ -1160,7 +1160,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <label class="form-label">Preferred Branch Name <span class="text-danger">*</span></label>
                                                     <select name="branch_name" id="branch_name" class="form-control js-example-basic-single-no-tag">
                                                         <option value="">Select City First</option>
-                                                        <option value="{{$data->branch_name ?? ''}}" >{{$data->branch->title ?? 'Select City First'}} </option>
+                                                        <option value="{{$data->branch_name ?? ''}}" selected>{{$data->branch->title ?? 'Select City First'}} </option>
 
 
                                                     </select>
