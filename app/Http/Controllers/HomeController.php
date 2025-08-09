@@ -41,7 +41,7 @@ class HomeController extends Controller
 
 
                 // Check if 'search' parameter exists in the URL
-                $searchCNIC = request()->query('cnic');
+                $searchCNIC = request()->query('search');
 
                 // Query with optional CNIC filter
                 $farmers = HardCopyFarmer::where('district',$district)->when($searchCNIC, function ($query) use ($searchCNIC) {

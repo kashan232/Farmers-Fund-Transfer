@@ -1151,7 +1151,7 @@
                                             </div>
                                         </div>
 
-                                       
+
 
                                         <div class="card mb-4 col_img" style="margin: 1%; width:30%">
                                             <div class="card-body" style="max-width: 400px;width: 100%;background: #fff;padding: 30px;border-radius: 30px; margin: auto;">
