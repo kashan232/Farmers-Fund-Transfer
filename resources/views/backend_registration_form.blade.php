@@ -586,7 +586,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <label class="form-label">Q5. District <span class="text-danger">*</span></label>
                                                     <select name="district" id="district" class="form-control js-example-basic-single-no-tag"  >
                                                         <option value="">Select District</option>
+                                                        @if(!isset($data))
                                                         <option value="{{$district}}">{{$district}}</option>
+                                                        @else
+                                                        <option value="{{$data->district}}">{{$data->district}}</option>
+                                                        @endif
                                                         {{-- @foreach($districts as $district)
                                                             <option value="{{ $district->district }}" > {{ ucwords(strtolower($district->district)) }} </option>
                                                         @endforeach --}}
@@ -598,6 +602,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <label class="form-label">Q6. Taluka:  <span class="text-danger">*</span></label>
                                                     <select name="tehsil" id="tehsils" class="form-control js-example-basic-single-no-tag" >
                                                         <option value="">Select Taluka</option>
+                                                       @if(isset($data)) <option value="{{$data->tehsil}}" selected>{{$data->tehsil}}</option>@endif
                                                         {{-- @foreach(json_decode($tehsils) as $tehsil)
                                                             <option value="{{ $tehsil }}" @if(isset($data->tehsil)) {{ ($tehsil == $data->tehsil) ? 'selected':'' }} @endif > {{ $tehsil }} </option>
                                                         @endforeach --}}
@@ -617,6 +622,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="mb-6 col-md-6 py-2">
                                                     <label for="tappa">Q8. Tappa:  <span class="text-danger">*</span></label>
                                                     <select name="tappa" id="tappas" class="form-control js-example-basic-single-no-tag">
+                                                       @if(isset($data)) <option value="{{$data->tappa}}" selected>{{$data->tappa}}</option>@endif
 
                                                     </select>
                                                 </div>
@@ -1145,7 +1151,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <select name="city" id="city" class="form-control js-example-basic-single-no-tag">
                                                         <option value="">Select City</option>
                                                         @foreach ($cities as $city)
-                                                            <option value="{{$city->id}}">{{$city->title}}</option>
+                                                            <option value="{{$city->id}}" {{ ($data->city == $city->id) ? 'selected':'' }}>{{$city->title}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -1154,6 +1160,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <label class="form-label">Preferred Branch Name <span class="text-danger">*</span></label>
                                                     <select name="branch_name" id="branch_name" class="form-control js-example-basic-single-no-tag">
                                                         <option value="">Select City First</option>
+                                                        <option value="{{$data->branch_name ?? ''}}" >{{$data->branch->title ?? 'Select City First'}} </option>
+
+                                                        
                                                     </select>
                                                 </div>
 
@@ -1172,8 +1181,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <label class="form-label">Marital status <span class="text-danger">*</span></label>
                                                     <select name="marital_status" id="marital_status" class="form-control">
                                                         <option value="">Select Marital status</option>
-                                                        <option value="Married">Married</option>
-                                                        <option value="Single">Single</option>
+                                                        <option value="Married" @if(isset($data)) {{($data->marital_status == 'Married') ? 'selected':''}} @endif>Married</option>
+                                                        <option value="Single" @if(isset($data)) {{($data->marital_status == 'Single') ? 'selected':''}} @endif>Single</option>
                                                     </select>
                                                 </div>
 
