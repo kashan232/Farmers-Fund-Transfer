@@ -1149,11 +1149,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                 <div class="mb-6 col-md-4 mt-2">
                                                     <label class="form-label">City <span class="text-danger">*</span></label>
                                                     <select name="city" id="city" class="form-control js-example-basic-single-no-tag">
-                                                        <option value="">Select City</option>
-                                                        @foreach ($cities as $city)
-                                                            <option value="{{$city->id}}" {{ ($data->city == $city->id) ? 'selected':'' }}>{{$city->title}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <option value="">Select City</option>
+                                                @foreach ($cities as $city)
+                                                    <option value="{{$city->id}}" @if(isset($data)) {{($data->city == $city->id) ? 'selected':''}} @endif>{{$city->title}}</option>
+                                                @endforeach
+                                            </select>
                                                 </div>
 
                                                 <div class="mb-6 col-md-4 mt-2">
@@ -1162,7 +1162,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                         <option value="">Select City First</option>
                                                         <option value="{{$data->branch_name ?? ''}}" >{{$data->branch->title ?? 'Select City First'}} </option>
 
-                                                        
+
                                                     </select>
                                                 </div>
 
