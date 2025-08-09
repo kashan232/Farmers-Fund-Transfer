@@ -45,7 +45,8 @@ class HomeController extends Controller
 
                 // Query with optional CNIC filter
                 $farmers = HardCopyFarmer::where('district',$district)->when($searchCNIC, function ($query) use ($searchCNIC) {
-                        return $query->where('cnic', $searchCNIC);
+                        return $query->where('cnic', $searchCNIC)
+                        ->orWhere('mobile', $searchCNIC);
                     })
                     ->paginate(20);
 
