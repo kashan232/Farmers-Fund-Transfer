@@ -156,7 +156,27 @@
 <body style="position: relative;">
 
 
-    @if($data->verification_status == 'verified_by_lrd')
+   
+
+@if(isset($data->uploaded_from))
+    @if ($data->uploaded_from == 'hardcopy' && $data->verification_status == 'verified_by_lrd')
+            <img src="{{ asset('hardcopystamp.png') }}" alt=""
+         style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+            z-index: 0;
+            width: 400px; /* optional: adjust size */
+         ">
+
+    @endif
+    
+    @else
+
+
+     @if($data->verification_status == 'verified_by_lrd')
 
     <img src="{{ asset('vstamp.png') }}" alt=""
          style="
@@ -169,6 +189,9 @@
             width: 400px; /* optional: adjust size */
          ">
 
+    @endif
+
+    
     @endif
 
     @if($data->verification_status == 'rejected_by_lrd')

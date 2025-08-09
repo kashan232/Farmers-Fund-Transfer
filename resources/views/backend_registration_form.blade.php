@@ -777,11 +777,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     </div>
                                                     <div class="mt-2 col-md-4">
                                                         <label class="form-label">(5) Share:</label>
-                                                        <input type="text" name="land_share" value="{{$data->land_share ?? ''}}" class="form-control" >
+                                                        <input type="text" name="land_share" value="{{$data->land_share ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').slice(0, 13)">
                                                     </div>
                                                     <div class="mt-2 col-md-4">
                                                         <label class="form-label">(6) Area as per share:</label>
-                                                        <input type="text" name="land_area_as_per_share" value="{{$data->land_area_as_per_share ?? ''}}" class="form-control" >
+                                                        <input type="text" name="land_area_as_per_share" value="{{$data->land_area_as_per_share ?? ''}}" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').slice(0, 13)">
                                                     </div>
                                                     <div class="mt-2 col-md-4">
                                                         <label class="form-label">(7) Survey No(s):  <span class="text-danger">*</span></label>
