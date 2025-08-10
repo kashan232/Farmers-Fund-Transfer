@@ -589,7 +589,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                         @if(!isset($data))
                                                         <option value="{{$district}}">{{$district}}</option>
                                                         @else
-                                                        <option value="{{$data->district}}" selected>{{$data->district}}</option>
+                                                        <option value="{{$data->district}}" >{{$data->district}}</option>
                                                         @endif
                                                         {{-- @foreach($districts as $district)
                                                             <option value="{{ $district->district }}" > {{ ucwords(strtolower($district->district)) }} </option>
