@@ -107,23 +107,53 @@ class FarmersImport implements ToModel, WithStartRow
 
 
 
+// private function formatDate($value)
+// {
+//     if (is_numeric($value)) {
+//         // Excel serial number to date
+//         return Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value))
+//             ->format('Y-m-d');
+//     }
+
+//     // Try parsing normal date string
+//     $timestamp = strtotime($value);
+//     if ($timestamp) {
+//         return date('Y-m-d', $timestamp);
+//     }
+
+//     return null; // Invalid date
+// }
+
 private function formatDate($value)
 {
-    if (is_numeric($value)) {
-        // Excel serial number to date
-        return Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value))
-            ->format('Y-m-d');
+    try {
+        if (empty($value)) {
+            return null; // No value, return null
+        }
+
+        if (is_numeric($value)) {
+            // Check if Excel date is in a reasonable range
+            if ($value > 0 && $value < 60000) { 
+                return Carbon::instance(
+                    \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value)
+                )->format('Y-m-d');
+            }
+            return null;
+        }
+
+        // Try parsing normal date string safely
+        $date = date_create($value);
+        if ($date && checkdate($date->format('m'), $date->format('d'), $date->format('Y'))) {
+            return $date->format('Y-m-d');
+        }
+
+    } catch (\Exception $e) {
+        // Ignore invalid date formats
+        return null;
     }
 
-    // Try parsing normal date string
-    $timestamp = strtotime($value);
-    if ($timestamp) {
-        return date('Y-m-d', $timestamp);
-    }
-
-    return null; // Invalid date
+    return null; // Invalid or unrecognized date
 }
-
 
      function excelDateToDate($serial) {
         $unixDate = ($serial - 25569) * 86400; // Convert Excel serial date to Unix timestamp
