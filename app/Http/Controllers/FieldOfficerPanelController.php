@@ -647,9 +647,12 @@ class FieldOfficerPanelController extends Controller
 
             // $data['date_of_birth'] = Carbon::createFromFormat('d-m-Y', $request->date_of_birth)->format('Y-m-d');
 
+            if ($request->edit_id && $request->edit_id != '') {
+            }
+            else{
+                $data['uploaded_from'] = 'new';
+            }
 
-
-            $data['uploaded_from'] = 'hardcopy';
 
 
             $data['title_name'] = json_encode($request->title_name);

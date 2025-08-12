@@ -133,7 +133,7 @@ private function formatDate($value)
 
         if (is_numeric($value)) {
             // Check if Excel date is in a reasonable range
-            if ($value > 0 && $value < 60000) { 
+            if ($value > 0 && $value < 60000) {
                 return Carbon::instance(
                     \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value)
                 )->format('Y-m-d');
