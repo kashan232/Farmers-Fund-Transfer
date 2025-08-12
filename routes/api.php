@@ -40,29 +40,29 @@ Route::middleware('auth:sanctum')->post('/update-password', function(Request $re
 
 
 
-Route::post('/demo/data', function(Request $request) {
-    $reports = [];
+// Route::post('/demo/data', function(Request $request) {
+//     $reports = [];
 
-    for ($i = 1; $i <= 12; $i++) {
-        $images = [];
-        for ($j = 1; $j <= 12; $j++) {
-            $images["image_$j"] = asset("https://cms.benazirharicard.gos.pk/demo/{$j}.jpg");
-        }
+//     for ($i = 1; $i <= 12; $i++) {
+//         $images = [];
+//         for ($j = 1; $j <= 12; $j++) {
+//             $images["image_$j"] = asset("https://cms.benazirharicard.gos.pk/demo/{$j}.jpg");
+//         }
 
-        $reports[] = [
-            'report_id' => $i,
-            'title' => "Sample Demo Report $i",
-            'description' => "This is demo report #$i for Flutter team",
-            'created_at' => now()->toDateTimeString(),
-            'images' => $images,
-        ];
-    }
+//         $reports[] = [
+//             'report_id' => $i,
+//             'title' => "Sample Demo Report $i",
+//             'description' => "This is demo report #$i for Flutter team",
+//             'created_at' => now()->toDateTimeString(),
+//             'images' => $images,
+//         ];
+//     }
 
-    return response()->json([
-        'success' => true,
-        'data' => $reports,
-    ]);
-});
+//     return response()->json([
+//         'success' => true,
+//         'data' => $reports,
+//     ]);
+// });
 
 
 
