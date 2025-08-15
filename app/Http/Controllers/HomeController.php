@@ -46,7 +46,7 @@ class HomeController extends Controller
                 $data = request()->query('data');
 
                 if($data == 'daily'){
-
+dd('sd');
                  // Daily wali query (sirf aaj ke records)
                     $farmers = HardCopyFarmer::where('verification_status','verified_by_lrd')->where('district', $district)
                         ->whereDate('created_at', today())
