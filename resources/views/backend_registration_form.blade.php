@@ -326,9 +326,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
     <!-- Daily Count -->
     <div class="col-md-4">
         <div class="card text-white bg-primary mb-3">
-            <form action="">
+            <form action="" id="formcard">
                 <input type="hidden" name="data" value="daily" id="">
-                <div class="card-header">Daily Farmers</div>
+                <div onclick="document.getElementById('formcard').submit()" class="card-header">Daily Farmers</div>
             </form>
             <div class="card-body">
                 <h4 class="card-title text-white ">{{ $dailyCount ?? '' }}</h4>
