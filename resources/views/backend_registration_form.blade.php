@@ -326,7 +326,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
     <!-- Daily Count -->
     <div class="col-md-4">
         <div class="card text-white bg-primary mb-3">
-            <div class="card-header">Daily Farmers</div>
+            <form action="">
+                <input type="hidden" name="data" value="daily" id="">
+                <div class="card-header">Daily Farmers</div>
+            </form>
             <div class="card-body">
                 <h4 class="card-title text-white ">{{ $dailyCount ?? '' }}</h4>
             </div>
@@ -1168,7 +1171,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
                                                 <div class="mb-6 col-md-4 mt-2">
                                                     <label class="form-label">Title of Account <span class="text-danger">*</span></label>
-                                                    <input type="text" name="account_title" id="account_title" class="form-control" value="{{$data->account_title ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"  >
+                                                    <input type="text" name="account_title" id="account_title" class="form-control" value="{{$data->name ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)"  >
                                                 </div>
 
 
