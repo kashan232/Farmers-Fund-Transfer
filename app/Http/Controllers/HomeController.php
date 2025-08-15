@@ -46,7 +46,7 @@ class HomeController extends Controller
                 $data = request()->query('data');
 
                 if($data == 'daily'){
-dd('sd');
+
                  // Daily wali query (sirf aaj ke records)
                     $farmers = HardCopyFarmer::where('verification_status','verified_by_lrd')->where('district', $district)
                         ->whereDate('created_at', today())
@@ -56,13 +56,15 @@ dd('sd');
                         })
                         ->paginate(20);
                 }
+                else{
+                     // Query with optional CNIC filter
+                    $farmers = HardCopyFarmer::where('district',$district)->when($searchCNIC, function ($query) use ($searchCNIC) {
+                            return $query->where('cnic', $searchCNIC)
+                            ->orWhere('mobile', $searchCNIC);
+                        })
+                        ->paginate(20);
+                }
 
-                // Query with optional CNIC filter
-                $farmers = HardCopyFarmer::where('district',$district)->when($searchCNIC, function ($query) use ($searchCNIC) {
-                        return $query->where('cnic', $searchCNIC)
-                        ->orWhere('mobile', $searchCNIC);
-                    })
-                    ->paginate(20);
 
 
 
