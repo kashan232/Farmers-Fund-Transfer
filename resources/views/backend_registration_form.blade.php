@@ -353,7 +353,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
     <!-- Overall Count -->
     <div class="col-md-4">
         <div class="card text-white bg-dark mb-3">
-            <div class="card-header">Total Farmers</div>
+            <form action="" id="formcard2">
+                <input type="hidden" name="data" value="total" id="">
+                <div onclick="document.getElementById('formcard2').submit()" class="card-header">Total Farmers</div>
+            </form>
             <div class="card-body">
                 <h4 class="card-title text-white ">{{ $overallCount ?? '' }}</h4>
             </div>
@@ -364,7 +367,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
     @if(isset($pendingCount))
     <div class="col-md-4">
         <div class="card text-white bg-danger mb-3">
-            <div class="card-header">Pending</div>
+            <form action="" id="formcard3">
+                <input type="hidden" name="data" value="pending" id="">
+                <div onclick="document.getElementById('formcard3').submit()" class="card-header">Pending</div>
+            </form>
             <div class="card-body">
                 <h4 class="card-title text-white ">{{ $pendingCount ?? '' }}</h4>
             </div>
