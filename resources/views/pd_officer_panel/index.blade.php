@@ -420,25 +420,25 @@
                             </div>
 
                             @php
-    use App\Models\HardCopyFarmer;
+                            use App\Models\HardCopyFarmer;
 
-    $districts = HardCopyFarmer::select('district')
-        ->distinct()
-        ->pluck('district'); // sirf names ki list mil jaegi
+                            $districts = HardCopyFarmer::select('district')
+                                ->distinct()
+                                ->pluck('district'); // sirf names ki list mil jaegi
 
-    $summary = $districts->map(function ($districtName) {
-        return [
-            'district' => $districtName,
-            'daily'    => HardCopyFarmer::where('district', $districtName)
-                            ->whereDate('created_at', today())
-                            ->count(),
-            'total'    => HardCopyFarmer::where('district', $districtName)->count(),
-            'pending'  => HardCopyFarmer::where('district', $districtName)
-                            ->where('verification_status', 'pending')
-                            ->count(),
-        ];
-    });
-@endphp
+                            $summary = $districts->map(function ($districtName) {
+                                return [
+                                    'district' => $districtName,
+                                    'daily'    => HardCopyFarmer::where('verification_status','verified_by_lrd')->where('district', $districtName)
+                                                    ->whereDate('created_at', today())
+                                                    ->count(),
+                                    'total'    => HardCopyFarmer::where('verification_status','verified_by_lrd')->where('district', $districtName)->count(),
+                                    'pending'  => HardCopyFarmer::whereNull('verification_status')->where('district', $districtName)
+                                                   
+                                                    ->count(),
+                                ];
+                            });
+                        @endphp
 
                              <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="card">
