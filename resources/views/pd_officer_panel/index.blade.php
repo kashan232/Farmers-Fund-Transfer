@@ -419,6 +419,63 @@
                                 </div>
                             </div>
 
+                            @php
+    use App\Models\HardCopyFarmer;
+
+    $districts = HardCopyFarmer::select('district')
+        ->distinct()
+        ->pluck('district'); // sirf names ki list mil jaegi
+
+    $summary = $districts->map(function ($districtName) {
+        return [
+            'district' => $districtName,
+            'daily'    => HardCopyFarmer::where('district', $districtName)
+                            ->whereDate('created_at', today())
+                            ->count(),
+            'total'    => HardCopyFarmer::where('district', $districtName)->count(),
+            'pending'  => HardCopyFarmer::where('district', $districtName)
+                            ->where('verification_status', 'pending')
+                            ->count(),
+        ];
+    });
+@endphp
+
+                             <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3>District-Wise HardCopy Registration Statistics</h3>
+                                        <div class="row tables">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>District Name</th>
+                                                            <th>Daily</th>
+                                                            <th>Total</th>
+                                                            <th>Pending</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($summary as $row)
+                                                            <tr>
+                                                                <td>{{ $row['district'] }}</td>
+                                                                <td>{{ $row['daily'] }}</td>
+                                                                <td>{{ $row['total'] }}</td>
+                                                                <td>{{ $row['pending'] }}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
                         </div>
                     </div>
                 </div>
