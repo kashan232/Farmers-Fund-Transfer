@@ -328,7 +328,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <div class="card text-white bg-primary mb-3">
             <form action="" id="formcard">
                 <input type="hidden" name="data" value="daily" id="">
-                <div onclick="document.getElementById('formcard').submit()" class="card-header">Daily Farmers</div>
+                <div  style="cursor: pointer;" onclick="document.getElementById('formcard').submit()" class="card-header">Daily Farmers</div>
             </form>
             <div class="card-body">
                 <h4 class="card-title text-white ">{{ $dailyCount ?? '' }}</h4>
@@ -355,7 +355,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <div class="card text-white bg-dark mb-3">
             <form action="" id="formcard2">
                 <input type="hidden" name="data" value="total" id="">
-                <div onclick="document.getElementById('formcard2').submit()" class="card-header">Total Farmers</div>
+                <div style="cursor: pointer;" onclick="document.getElementById('formcard2').submit()" class="card-header">Total Farmers</div>
             </form>
             <div class="card-body">
                 <h4 class="card-title text-white ">{{ $overallCount ?? '' }}</h4>
@@ -369,7 +369,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         <div class="card text-white bg-danger mb-3">
             <form action="" id="formcard3">
                 <input type="hidden" name="data" value="pending" id="">
-                <div onclick="document.getElementById('formcard3').submit()" class="card-header">Pending</div>
+                <div style="cursor: pointer;" onclick="document.getElementById('formcard3').submit()" class="card-header">Pending</div>
             </form>
             <div class="card-body">
                 <h4 class="card-title text-white ">{{ $pendingCount ?? '' }}</h4>
