@@ -69,7 +69,7 @@ class HomeController extends Controller
                 elseif($data == 'pending'){
                     // Daily wali query (sirf aaj ke records)
                     $farmers = HardCopyFarmer::whereNull('verification_status')->where('district', $district)
-                        
+
                         ->when($searchCNIC, function ($query) use ($searchCNIC) {
                             return $query->where('cnic', $searchCNIC)
                                         ->orWhere('mobile', $searchCNIC);

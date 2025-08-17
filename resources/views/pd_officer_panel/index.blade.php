@@ -434,7 +434,7 @@
                                                     ->count(),
                                     'total'    => HardCopyFarmer::where('verification_status','verified_by_lrd')->where('district', $districtName)->count(),
                                     'pending'  => HardCopyFarmer::whereNull('verification_status')->where('district', $districtName)
-                                                   
+
                                                     ->count(),
                                 ];
                             });

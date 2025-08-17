@@ -232,6 +232,8 @@
 
 
 
+
+
                 @if(!empty($groupedData_total))
 
                 @if($users[0]->usertype == 'Field_Officer')
@@ -417,6 +419,131 @@
                     </table>
                 </div>
                 @endif --}}
+
+
+
+                @if($users[0]->usertype == 'Field_Officer')
+                <div class="col-sm-12">
+                    <table id="example1" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+
+                                <th>District</th>
+                                <th>Tehsils</th>
+                                <th>Tappas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $user)
+                            @if($user->self == 0)
+
+                              <tr>
+                                                            <td>{{ $user->name }}</td>
+                                                            <td>{{ $user->email }}</td>
+                                                            <td>
+
+                                                                @php
+                                                                    $tappa = json_decode($user->district, true);
+                                                                @endphp
+
+                                                                @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
+                                                                    <div>
+                                                                        @foreach($tappa as $index => $tappaItem)
+                                                                            <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $user->id : '' }}">
+                                                                                {{ $tappaItem }}
+                                                                            </span>
+                                                                            @if($index < 3)
+                                                                                <br>
+                                                                            @endif
+                                                                        @endforeach
+
+                                                                        @if(count($tappa) > 4)
+                                                                            <a href="javascript:void(0);" id="toggle-link-{{ $user->id }}" onclick="toggleTappas({{ $user->id }})" class="text-primary d-block mt-1">
+                                                                                +{{ count($tappa) - 4 }}
+                                                                            </a>
+                                                                        @endif
+                                                                    </div>
+                                                                @else
+                                                                    <span class="badge text-bg-success text-dark font-weight-bold">
+                                                                        {{ $user->district }}
+                                                                    </span>
+                                                                @endif
+                                                            </td>
+
+
+
+                                                            <td>
+
+                                                                @php
+                                                                    $tappa = json_decode($user->tehsil, true);
+                                                                @endphp
+
+                                                                @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
+                                                                    <div>
+                                                                        @foreach($tappa as $index => $tappaItem)
+                                                                            <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $user->id : '' }}">
+                                                                                {{ $tappaItem }}
+                                                                            </span>
+                                                                            @if($index < 3)
+                                                                                <br>
+                                                                            @endif
+                                                                        @endforeach
+
+                                                                        @if(count($tappa) > 4)
+                                                                            <a href="javascript:void(0);" id="toggle-link-{{ $user->id }}" onclick="toggleTappas({{ $user->id }})" class="text-primary d-block mt-1">
+                                                                                +{{ count($tappa) - 4 }}
+                                                                            </a>
+                                                                        @endif
+                                                                    </div>
+                                                                @else
+                                                                    <span class="badge text-bg-success text-dark font-weight-bold">
+                                                                        {{ $user->tehsil }}
+                                                                    </span>
+                                                                @endif
+                                                            </td>
+
+
+
+                                                            <td>
+
+                                                                @php
+                                                                    $tappa = json_decode($user->tappas, true);
+                                                                @endphp
+
+                                                                @if (json_last_error() === JSON_ERROR_NONE && is_array($tappa))
+                                                                    <div>
+                                                                        @foreach($tappa as $index => $tappaItem)
+                                                                            <span class="badge text-bg-success text-dark font-weight-bold tappa-badge {{ $index >= 4 ? 'd-none extra-tappa-' . $user->id : '' }}">
+                                                                                {{ $tappaItem }}
+                                                                            </span>
+                                                                            @if($index < 3)
+                                                                                <br>
+                                                                            @endif
+                                                                        @endforeach
+
+                                                                        @if(count($tappa) > 4)
+                                                                            <a href="javascript:void(0);" id="toggle-link-{{ $user->id }}" onclick="toggleTappas({{ $user->id }})" class="text-primary d-block mt-1">
+                                                                                +{{ count($tappa) - 4 }}
+                                                                            </a>
+                                                                        @endif
+                                                                    </div>
+                                                                @else
+                                                                    <span class="badge text-bg-success text-dark font-weight-bold">
+                                                                        {{ $user->tappas }}
+                                                                    </span>
+                                                                @endif
+                                                            </td>
+                                                            @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+
+                @endif
+
 
 
 
