@@ -396,8 +396,10 @@
                 <div class="card-body">
                     <button class="btn btn-primary btn-sm" onclick="history.back()">Back</button>
                     {{-- <button class="btn btn-success btn-sm" onclick="downloadPDF()">Download PDF</button> --}}
+                    
+                    @if(!isset($pdf_hide))
                     <a  class="btn btn-success btn-sm" href="{{route('pdf.report',$data->id)}}">Download PDF</a>
-
+                    @endif
 
                     @if (Auth::user()->usertype == 'Field_Officer')
                         @if ( $data->usertype != 'Online')

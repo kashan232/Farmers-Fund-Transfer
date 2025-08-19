@@ -257,8 +257,10 @@ Route::get('/all/farmers-list', [DGOfficerPanelController::class, 'index'])->nam
 
 Route::get('/view/hardcopy/farmer/{id}', function($id){
     $data = HardCopyFarmer::with('cityDetail')->where('id', '=', $id)->first();
+
     return view('field_officer_panel.lrd_farmers.view', [
         'data' => $data,
+        'pdf_hide' => 1
     ]);
 
 })->name('hardcopy_farmer_view');
