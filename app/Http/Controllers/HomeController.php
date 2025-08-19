@@ -107,7 +107,7 @@ class HomeController extends Controller
                     'cities' => $cities,
                     'dailyCount' => $dailyCount,
                     'lastWeekCount' => $lastWeekCount,
-                    'overallCount' => $lastWeekCount,
+                    'overallCount' => $overallCount,
                     'farmers' => $farmers,
                     'pendingCount' => $pendingCount
 
