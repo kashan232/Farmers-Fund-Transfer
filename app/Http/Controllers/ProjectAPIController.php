@@ -305,7 +305,7 @@ class ProjectAPIController extends Controller
             // $matchedUsers = User::select(['usertype','name'])
             // ->whereJsonContains('tappas', $farmer->tappa)->get();
 
-$matchedUsers = User::select(['usertype', 'name'])
+$matchedUsers = User::select(['usertype', 'name','number'])
     ->whereNotNull('tappas')
     ->where('tappas', '!=', '')
     ->whereJsonContains('tappas', $farmer->tappa)
