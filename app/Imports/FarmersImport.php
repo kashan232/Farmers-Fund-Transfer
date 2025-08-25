@@ -84,7 +84,7 @@ class FarmersImport implements ToModel, WithStartRow
                     'gender' => $row[9],
                     'correspondence_address' => $row[11],
                     'permanent_address' => $row[11],
-                    'district' => $row[13],
+                    'district' => $row[20],
                     'mobile' => $row[14],
                     'survey_no' => $row[15],
                     'total_landing_acre' => $row[16],
