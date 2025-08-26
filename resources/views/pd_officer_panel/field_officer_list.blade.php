@@ -422,7 +422,7 @@
 
 
 
-                @if($users[0]->usertype == 'Field_Officer')
+                {{-- @if($users[0]->usertype == 'Field_Officer')
                 <div class="col-sm-12">
                     <table id="example1" class="table table-bordered">
                         <thead>
@@ -542,7 +542,7 @@
                 </div>
 
 
-                @endif
+                @endif --}}
 
 
 
