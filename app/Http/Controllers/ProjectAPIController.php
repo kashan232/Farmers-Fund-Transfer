@@ -307,7 +307,7 @@ class ProjectAPIController extends Controller
 
 $matchedUsers = User::with(['fieldOfficer', 'agriOfficer',
         'ddOfficer',
-        'lrdOfficer'])->select(['id','usertype', 'name'])
+        'lrdOfficer'])->select(['id','user_id','usertype', 'name'])
     ->whereNotNull('tappas')
     ->where('tappas', '!=', '')
     ->whereJsonContains('tappas', $farmer->tappa)
