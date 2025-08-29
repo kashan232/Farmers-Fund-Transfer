@@ -432,7 +432,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                 <td>{{ $farmer->tappa }}</td>
                                 <td>
                                     @if(!empty($farmer->front_id_card))
-                                        <span class="badge text-bg-success text-dark font-weight-bold">Already Filled</span>
+                                        <span style="background: #20b020; padding: 10%; padding-left: 20px; border-radius: 20px; color: white; font-size: 12px; padding-right: 20px;">Already Filled</span>
                                     @endif
 
                                 </td>
