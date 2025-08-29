@@ -363,7 +363,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         </div>
     </div>
     @endif
-
+{{--
     @if(isset($pendingCount))
     <div class="col-md-4">
         <div class="card text-white bg-danger mb-3">
@@ -376,7 +376,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
             </div>
         </div>
     </div>
-    @endif
+    @endif --}}
 
 
 
@@ -416,6 +416,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                 <th>District</th>
                                 <th>Taluka</th>
                                 <th>Tappa</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -429,6 +430,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                 <td>{{ $farmer->district }}</td>
                                 <td>{{ $farmer->tehsil }}</td>
                                 <td>{{ $farmer->tappa }}</td>
+                                <td>
+                                    @if(!empty($farmer->front_id_card))
+                                        <span class="badge text-bg-success text-dark font-weight-bold">Already Filled</span>
+                                    @endif
+
+                                </td>
 
                                 <td>
                                     <a href="{{ route('hardcopy_farmer_edit', ['id' => $farmer->id]) }}" class="btn  btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>&nbsp;

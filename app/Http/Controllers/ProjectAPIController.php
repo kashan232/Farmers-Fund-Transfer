@@ -9,6 +9,8 @@ use App\Models\Tehsil;
 use App\Models\LandRevenueFarmerRegistation;
 use App\Models\UC;
 use App\Models\User;
+use App\Models\HardCopyFarmer;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -291,30 +293,34 @@ class ProjectAPIController extends Controller
     }
     public function get_farmer_data($cnic)
     {
-        $farmers = LandRevenueFarmerRegistation::where('cnic', $cnic)->get();
+
+        $cleanCnic = str_replace('-', '', $cnic);
+
+        $hardCopyFarmers = HardCopyFarmer::where('cnic', $cleanCnic)->get();
+
+
+        $landRevenueFarmers = LandRevenueFarmerRegistation::where('cnic', $cnic)->get();
+
+    // Dono ko merge kar do
+        $farmers = $hardCopyFarmers->merge($landRevenueFarmers);
+
+
 
         if ($farmers->isEmpty()) {
             return response()->json(['message' => 'No farmer data found.'], 404);
         }
 
+
+
         $farmersWithUsers = $farmers->map(function ($farmer) {
-            // Get all users whose tappas (JSON) include this farmer's tappa
 
-
-
-            // $matchedUsers = User::select(['usertype','name'])
-            // ->whereJsonContains('tappas', $farmer->tappa)->get();
-
-$matchedUsers = User::with(['fieldOfficer', 'agriOfficer',
-        'ddOfficer',
-        'lrdOfficer'])->select(['id','user_id','usertype', 'name'])
-    ->whereNotNull('tappas')
-    ->where('tappas', '!=', '')
-    ->whereJsonContains('tappas', $farmer->tappa)
-    ->get();
-
-
-
+        $matchedUsers = User::with(['fieldOfficer', 'agriOfficer',
+                'ddOfficer',
+                'lrdOfficer'])->select(['id','user_id','usertype', 'name'])
+            ->whereNotNull('tappas')
+            ->where('tappas', '!=', '')
+            ->whereJsonContains('tappas', $farmer->tappa)
+            ->get();
             // Attach all matched users to the farmer
             $farmer->users = $matchedUsers;
 
