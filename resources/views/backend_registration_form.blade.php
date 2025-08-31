@@ -554,7 +554,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <input type="text" name="surname" id="surname" class="form-control" value="{{$data->surname ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
-                                                    <label class="form-label">Q3. CNIC No.: <span class="text-danger">*</span></label>
+                                                    <label class="form-label">Q3. CNIC No.: <span class="text-danger">* (Enter CNIC without dashes)</span></label>
                                                     <input type="text" id="cnic" name="cnic" class="form-control" value="{{$data->cnic ?? ''}}"      >
                                                 </div>
 
