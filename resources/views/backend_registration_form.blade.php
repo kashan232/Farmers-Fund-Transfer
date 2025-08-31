@@ -402,7 +402,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                         $filters = request()->only(['search']);
                     @endphp
                     <form action="" class="d-flex col-4" style="margin-left: 4%;">
-                        <input type="text" value="{{ $filters['search'] ?? '' }}" class="form-control" style="margin-right: 2%" name="search" id="search" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" placeholder="Enter CNIC without hyphen/dashes">
+                        <input type="text" value="{{ $filters['search'] ?? '' }}" class="form-control" style="margin-right: 2%" name="search" id="search"  placeholder="Enter CNIC without hyphen/dashes">
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
 
