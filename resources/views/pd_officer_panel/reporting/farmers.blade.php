@@ -152,6 +152,13 @@
     {!! str_replace('<a', '<a class="pagination-link page-link" ', $farmers->links()) !!}
 </div>
 
+{{-- Totals --}}
+                                        <div class="text-end">
+                                            <h6 >Total Farmers: {{ $totalFarmers }}</h6>
+                                            <h6>Online Farmers: {{ $onlineFarmers }}</h6>
+                                            <h6>Self Registered (Field Assistant): {{ $selfFarmers }}</h6>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
