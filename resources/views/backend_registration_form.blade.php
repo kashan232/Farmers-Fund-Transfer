@@ -384,7 +384,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 </div>
 
 
-    <div style="float: right; margin-right: 10%; margin-top: 1%;">
+    <div style="float: right; margin-right: 10%; margin-top: 33px; right: 0; position: absolute;">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="btn btn-primary">
