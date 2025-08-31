@@ -690,14 +690,14 @@ public function excelExport(Request $request)
         // Paginate results and keep query parameters
         $farmers = $query->paginate(10)->appends($req->all());
 
-        
+
 
         $totalFarmers = (clone $query)->count();
 
         $onlineFarmers = (clone $query)->where('user_type', 'Online')->count();
         $selfFarmers = $totalFarmers - $onlineFarmers;
-        
 
+        $totalAcres = (clone $query)->sum('total_landing_acre');
 
         return view('pd_officer_panel.reporting.farmers',[
             'farmers' => $farmers,
@@ -705,6 +705,7 @@ public function excelExport(Request $request)
             'totalFarmers' => $totalFarmers,
             'onlineFarmers' => $onlineFarmers,
             'selfFarmers' => $selfFarmers,
+            'totalAcres' => $totalAcres
          ]);
     }
 
