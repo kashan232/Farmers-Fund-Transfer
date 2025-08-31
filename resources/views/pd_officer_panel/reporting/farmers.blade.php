@@ -146,11 +146,12 @@
                         </form>
 
 
-
+<nav class="d-flex justify-content-between align-items-center mb-3 flex-wrap mt-2">
 {{-- Modify Pagination Links to Use JavaScript --}}
-<div class="pagination" style="display: flex ; justify-content: right; margin-top: 1%;">
-    {!! str_replace('<a', '<a class="pagination-link page-link" ', $farmers->links()) !!}
-</div>
+<div>
+                                            {{ $farmers->links() }}
+                                        </div>
+
 
 {{-- Totals --}}
                                         <div class="text-end">
@@ -158,6 +159,8 @@
                                             <h6>Online Farmers: {{ $onlineFarmers }}</h6>
                                             <h6>Self Registered (Field Assistant): {{ $selfFarmers }}</h6>
                                         </div>
+
+</nav>
 
                                     </div>
                                 </div>
