@@ -432,7 +432,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                 <td>{{ $farmer->tappa }}</td>
                                 <td style="vertical-align: middle !important;">
                                     @if(!empty($farmer->front_id_card))
-                                        <span style="background: #20b020; padding: 10%; padding-left: 20px; border-radius: 20px; color: white; font-size: 12px; padding-right: 20px;">Already Filled</span>
+                                        <span style=" padding: 10%; padding-left: 20px; border-radius: 20px; color: red; font-size: 12px; padding-right: 20px;">Already Filled</span>
                                     @endif
 
                                 </td>
@@ -554,7 +554,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                                                     <input type="text" name="surname" id="surname" class="form-control" value="{{$data->surname ?? ''}}" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').slice(0, 30)" >
                                                 </div>
                                                 <div class="mb-6 col-md-6 py-2">
-                                                    <label class="form-label">Q3. CNIC No.: <span class="text-danger">* (Enter CNIC without dashes)</span></label>
+                                                    <label class="form-label">Q3. CNIC No.: <span class="text-danger">* (Enter CNIC without hyphen/dashes)</span></label>
                                                     <input type="text" id="cnic" name="cnic" class="form-control" value="{{$data->cnic ?? ''}}"      >
                                                 </div>
 
