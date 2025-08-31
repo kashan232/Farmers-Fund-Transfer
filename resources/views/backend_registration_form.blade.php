@@ -401,7 +401,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                     @php
                         $filters = request()->only(['search']);
                     @endphp
-                    <label for="">Enter CNIC without hyphen/dashes</label>
+                    <label for="" style="    margin-left: 5%;">Enter CNIC without hyphen/dashes</label>
                     <form action="" class="d-flex col-3" style="margin-left: 4%;">
                         <input type="text" value="{{ $filters['search'] ?? '' }}" class="form-control" style="margin-right: 2%" name="search" id="search" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13)" placeholder="CNIC">
                         <button type="submit" class="btn btn-primary">Search</button>
