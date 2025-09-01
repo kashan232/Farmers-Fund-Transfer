@@ -34,7 +34,7 @@
                                     <div class="col-12  tables">
                                         <div class="row mb-2">
                                             <div class="col-md-5">
-                                                <form action="{{ route('dg.farmers.reporting') }}" method="post" class="d-flex">
+                                                <form action="{{ route('dg.farmers.reporting.fetch') }}" method="post" class="d-flex">
                                                     @csrf
                                                      {{-- Preserve Existing Filters --}}
                                                     @foreach (request()->except('page') as $key => $value)
