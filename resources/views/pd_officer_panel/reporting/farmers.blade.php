@@ -157,8 +157,8 @@
 @php
     $current = $farmers->currentPage();
     $last = $farmers->lastPage();
-    $start = max(1, $current - 2);
-    $end = min($last, $current + 2);
+    $start = max(1, $current - 5);
+    $end = min($last, $current + 5);
 @endphp
 
 {{-- Always show first page --}}
