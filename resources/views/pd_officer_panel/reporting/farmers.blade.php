@@ -153,28 +153,39 @@
 
                                             <div>
     <ul class="pagination">
-        {{-- Previous --}}
-        @if ($farmers->onFirstPage())
-            <li class="page-item disabled"><span class="page-link">«</span></li>
-        @else
-            <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $farmers->currentPage() - 1 }})">«</a></li>
-        @endif
+        {{-- Page Numbers (short style like 1,2,3,4,5...500) --}}
+@php
+    $current = $farmers->currentPage();
+    $last = $farmers->lastPage();
+    $start = max(1, $current - 2);
+    $end = min($last, $current + 2);
+@endphp
 
-        {{-- Page Numbers --}}
-        @foreach ($farmers->getUrlRange(1, $farmers->lastPage()) as $page => $url)
-            @if ($page == $farmers->currentPage())
-                <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
-            @else
-                <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $page }})">{{ $page }}</a></li>
-            @endif
-        @endforeach
+{{-- Always show first page --}}
+@if ($start > 1)
+    <li class="page-item"><a href="#" class="page-link" onclick="submitPage(1)">1</a></li>
+    @if ($start > 2)
+        <li class="page-item disabled"><span class="page-link">...</span></li>
+    @endif
+@endif
 
-        {{-- Next --}}
-        @if ($farmers->hasMorePages())
-            <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $farmers->currentPage() + 1 }})">»</a></li>
-        @else
-            <li class="page-item disabled"><span class="page-link">»</span></li>
-        @endif
+{{-- Loop visible range --}}
+@for ($i = $start; $i <= $end; $i++)
+    @if ($i == $current)
+        <li class="page-item active"><span class="page-link">{{ $i }}</span></li>
+    @else
+        <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $i }})">{{ $i }}</a></li>
+    @endif
+@endfor
+
+{{-- Always show last page --}}
+@if ($end < $last)
+    @if ($end < $last - 1)
+        <li class="page-item disabled"><span class="page-link">...</span></li>
+    @endif
+    <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $last }})">{{ $last }}</a></li>
+@endif
+
     </ul>
 </div>
 
