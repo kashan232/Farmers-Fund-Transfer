@@ -153,40 +153,56 @@
 
                                             <div>
     <ul class="pagination">
-        {{-- Page Numbers (short style like 1,2,3,4,5...500) --}}
-@php
-    $current = $farmers->currentPage();
-    $last = $farmers->lastPage();
-    $start = max(1, $current - 5);
-    $end = min($last, $current + 5);
-@endphp
 
-{{-- Always show first page --}}
-@if ($start > 1)
-    <li class="page-item"><a href="#" class="page-link" onclick="submitPage(1)">1</a></li>
-    @if ($start > 2)
-        <li class="page-item disabled"><span class="page-link">...</span></li>
-    @endif
-@endif
-
-{{-- Loop visible range --}}
-@for ($i = $start; $i <= $end; $i++)
-    @if ($i == $current)
-        <li class="page-item active"><span class="page-link">{{ $i }}</span></li>
+    {{-- Previous Button --}}
+    @if ($farmers->onFirstPage())
+        <li class="page-item disabled"><span class="page-link">« Prev</span></li>
     @else
-        <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $i }})">{{ $i }}</a></li>
+        <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $farmers->currentPage() - 1 }})">« Prev</a></li>
     @endif
-@endfor
 
-{{-- Always show last page --}}
-@if ($end < $last)
-    @if ($end < $last - 1)
-        <li class="page-item disabled"><span class="page-link">...</span></li>
+    {{-- Page Numbers with Dots --}}
+    @php
+        $current = $farmers->currentPage();
+        $last = $farmers->lastPage();
+        $start = max(1, $current - 5);   // Show 4 pages before current
+        $end = min($last, $current + 5); // Show 4 pages after current
+    @endphp
+
+    {{-- First Page --}}
+    @if ($start > 1)
+        <li class="page-item"><a href="#" class="page-link" onclick="submitPage(1)">1</a></li>
+        @if ($start > 2)
+            <li class="page-item disabled"><span class="page-link">...</span></li>
+        @endif
     @endif
-    <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $last }})">{{ $last }}</a></li>
-@endif
 
-    </ul>
+    {{-- Loop Visible Pages --}}
+    @for ($i = $start; $i <= $end; $i++)
+        @if ($i == $current)
+            <li class="page-item active"><span class="page-link">{{ $i }}</span></li>
+        @else
+            <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $i }})">{{ $i }}</a></li>
+        @endif
+    @endfor
+
+    {{-- Last Page --}}
+    @if ($end < $last)
+        @if ($end < $last - 1)
+            <li class="page-item disabled"><span class="page-link">...</span></li>
+        @endif
+        <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $last }})">{{ $last }}</a></li>
+    @endif
+
+    {{-- Next Button --}}
+    @if ($farmers->hasMorePages())
+        <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $farmers->currentPage() + 1 }})">Next »</a></li>
+    @else
+        <li class="page-item disabled"><span class="page-link">Next »</span></li>
+    @endif
+
+</ul>
+
 </div>
 
                                         </div>
