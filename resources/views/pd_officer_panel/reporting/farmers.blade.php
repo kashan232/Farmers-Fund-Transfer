@@ -149,7 +149,7 @@
 <nav class="d-flex justify-content-between align-items-center mb-3 flex-wrap mt-2">
 {{-- Modify Pagination Links to Use JavaScript --}}
 <div>
-                                            {{ $farmers->links() }}
+                                            {{-- {{ $farmers->links() }} --}}
                                         </div>
 
 
