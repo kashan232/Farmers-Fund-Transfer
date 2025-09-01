@@ -213,7 +213,12 @@
 @include('pd_officer_panel.include.footer_include')
 
 <!-- Chart Scripts -->
-
+<script>
+function submitPage(page) {
+    document.getElementById('pageInput').value = page;
+    document.getElementById('paginationForm').submit();
+}
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll(".pagination-link").forEach(function(link) {
