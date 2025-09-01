@@ -150,6 +150,34 @@
 {{-- Modify Pagination Links to Use JavaScript --}}
 <div>
                                             {{-- {{ $farmers->links() }} --}}
+
+                                            <div>
+    <ul class="pagination">
+        {{-- Previous --}}
+        @if ($farmers->onFirstPage())
+            <li class="page-item disabled"><span class="page-link">«</span></li>
+        @else
+            <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $farmers->currentPage() - 1 }})">«</a></li>
+        @endif
+
+        {{-- Page Numbers --}}
+        @foreach ($farmers->getUrlRange(1, $farmers->lastPage()) as $page => $url)
+            @if ($page == $farmers->currentPage())
+                <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
+            @else
+                <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $page }})">{{ $page }}</a></li>
+            @endif
+        @endforeach
+
+        {{-- Next --}}
+        @if ($farmers->hasMorePages())
+            <li class="page-item"><a href="#" class="page-link" onclick="submitPage({{ $farmers->currentPage() + 1 }})">»</a></li>
+        @else
+            <li class="page-item disabled"><span class="page-link">»</span></li>
+        @endif
+    </ul>
+</div>
+
                                         </div>
 
 
