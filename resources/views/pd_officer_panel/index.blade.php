@@ -187,7 +187,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title" style="color: #000000 !important;">Forwarded to LRD</p>
-                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{($forwarded_to_lrd+$Verifiedfarmeragiruser)}}</h3>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{($forwarded_to_lrd+$Verifiedfarmeragiruser+$rejected_by_lrd)}}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape "  style="color: #4fe0d9 !important; border: 1px solid #4fe0d9">
@@ -228,7 +228,7 @@
 
 
                              <!-- Verified Farmers Card -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-4 col-md-3 col-sm-6">
                                   <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'rejected_by_lrd']) }}">
                                 <div class="card" >
                                     <div class="card-body">
@@ -248,6 +248,30 @@
                                   </a>
                             </div>
 
+
+                             <!-- Verified Farmers Card -->
+                            <div class="col-lg-4 col-md-3 col-sm-6">
+                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'rejected_by_lrd']) }}">
+                                <div class="card" >
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title" style="color: #000000 !important;">Rejected BY LRD</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$rejected_by_lrd}}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape border border-danger text-danger" >
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  </a>
+                            </div>
+
+
+                            
 
 
                         {{-- HARD COPY CARD --}}
