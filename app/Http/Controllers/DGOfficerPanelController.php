@@ -708,8 +708,8 @@ $totalFarmers = (clone $query)->count();
         $onlineFarmers = (clone $query)->where('user_type', 'Online')->count();
         $selfFarmers = $totalFarmers - $onlineFarmers;
 
-        $totalAcres = (clone $query)->sum('total_landing_acre');
-
+        // $totalAcres = (clone $query)->sum('total_landing_acre');
+$totalAcres = 0;
 
         // Paginate results and keep query parameters
         $farmers = $query->paginate(10)->appends($req->all());
