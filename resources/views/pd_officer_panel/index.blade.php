@@ -456,16 +456,16 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                         @php
-                                                            $totalForms += ($row['total'] + $row['pending']);
-                                                            $totalFilledForms += $row['total'];
-                                                            $pendingForms += $row['pending'];
+                                                        @php
+                                                        $totalForms = 0;
+                                                        $totalFilledForms = 0;
+                                                        $pendingForms = 0;
                                                         @endphp
                                                         @foreach($summary as $row)
-                                                            @php
-                                                                ($totalForms + ($row['total']+$row['pending']));
-                                                                ($totalFilledForms + $row['total']);
-                                                                ($pendingForms+$row['pending']);
+                                                             @php
+                                                                $totalForms += ($row['total'] + $row['pending']);
+                                                                $totalFilledForms += $row['total'];
+                                                                $pendingForms += $row['pending'];
                                                             @endphp
                                                             <tr>
                                                                 <td>{{ $row['district'] }}</td>
