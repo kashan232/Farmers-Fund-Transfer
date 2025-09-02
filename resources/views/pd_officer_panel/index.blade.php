@@ -228,7 +228,7 @@
 
 
                              <!-- Verified Farmers Card -->
-                            <div class="col-lg-4 col-md-3 col-sm-6">
+                            <div class="col-lg-2 col-md-3 col-sm-6">
                                   <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'rejected_by_lrd']) }}">
                                 <div class="card" >
                                     <div class="card-body">
@@ -250,7 +250,7 @@
 
 
                              <!-- Verified Farmers Card -->
-                            <div class="col-lg-4 col-md-3 col-sm-6">
+                            <div class="col-lg-2 col-md-3 col-sm-6">
                                   <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'rejected_by_lrd']) }}">
                                 <div class="card" >
                                     <div class="card-body">
@@ -271,7 +271,7 @@
                             </div>
 
 
-                            
+
 
 
                         {{-- HARD COPY CARD --}}
