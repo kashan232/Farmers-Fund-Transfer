@@ -651,7 +651,6 @@ public function excelExport(Request $request)
             }
 
 
-            dd($query->get());
 
             // Apply filters only if they are not empty
             if (!empty($req->tehsil) && $req->tehsil[0] !== null) {
@@ -694,6 +693,7 @@ public function excelExport(Request $request)
                 });
             }
 
+            dd($query->get());
 
 $totalFarmers = (clone $query)->count();
 
