@@ -697,7 +697,7 @@ $totalFarmers = (clone $query)->count();
 
 
 
-        
+
 
         return view('pd_officer_panel.reporting.farmers',[
             'farmers' => $farmers,

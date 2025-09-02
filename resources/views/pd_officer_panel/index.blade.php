@@ -450,16 +450,16 @@
                                                     <thead>
                                                         <tr>
                                                             <th>District Name</th>
-                                                            <th>Daily</th>
-                                                            <th>Total</th>
-                                                            <th>Pending</th>
+                                                            <th>Total Forms</th>
+                                                            <th>Total Filled Forms</th>
+                                                            <th>Pending Forms</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         @foreach($summary as $row)
                                                             <tr>
                                                                 <td>{{ $row['district'] }}</td>
-                                                                <td>{{ $row['daily'] }}</td>
+                                                                <td>{{ ($row['total']+$row['pending'])}}</td>
                                                                 <td>{{ $row['total'] }}</td>
                                                                 <td>{{ $row['pending'] }}</td>
                                                             </tr>
