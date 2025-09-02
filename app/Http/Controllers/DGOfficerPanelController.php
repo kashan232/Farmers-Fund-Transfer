@@ -705,7 +705,7 @@ $selectColumns = [
         'no_objection_affidavit_pic',
         'cnic_status',
         'city',
-        'branch_name',
+
         'account_title',
         'date_of_birth',
         'marital_status',
