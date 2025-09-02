@@ -229,12 +229,12 @@
 
                              <!-- Verified Farmers Card -->
                             <div class="col-lg-2 col-md-3 col-sm-6">
-                                  <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'rejected_by_lrd']) }}">
+                                  {{-- <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'rejected_by_lrd']) }}"> --}}
                                 <div class="card" >
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title" style="color: #000000 !important;">Rejected BY LRD</p>
+                                                <p class="card-title text-title" style="color: #000000 !important;">Pending BY LRD</p>
                                                 <h3 class="card-text text-amount" style="color: #000000 !important;">{{$forwarded_to_lrd}}</h3>
                                             </div>
                                             <div class="col-auto">
@@ -245,7 +245,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                  </a>
+                                  {{-- </a> --}}
                             </div>
 
 
@@ -256,7 +256,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title" style="color: #000000 !important;">Pending BY LRD</p>
+                                                <p class="card-title text-title" style="color: #000000 !important;">Rejected BY LRD</p>
                                                 <h3 class="card-text text-amount" style="color: #000000 !important;">{{$rejected_by_lrd}}</h3>
                                             </div>
                                             <div class="col-auto">
