@@ -626,11 +626,10 @@ public function excelExport(Request $request)
     public function reporting_fetch(request $req){
 
 $selectColumns = [
-        'admin_or_user_id',
+
         'user_id',
         'user_type',
-        'land_emp_id',
-        'land_emp_name',
+      
         'name',
         'father_name',
         'cnic',
@@ -712,7 +711,7 @@ $selectColumns = [
         'mother_maiden_name',
         'correspondence_address',
         'permanent_address',
-        
+
 ];
 
         if($req->farmer_type == 'HardCopy'){
