@@ -673,11 +673,11 @@ public function excelExport(Request $request)
             if (!empty($req->farmer_type) && $req->farmer_type !== null) {
                 $query->where('user_type', $req->farmer_type);
             }
+            dd($query->get());
 
             if (!empty($req->verification_status) && $req->verification_status !== null) {
                 $query->where('verification_status', $req->verification_status);
             }
-            dd($query->get());
 
 
             if (!empty($req->search) && $req->search !== null) {
