@@ -7,7 +7,7 @@ use App\Models\LandRevenueFarmerRegistation;
 use App\Models\District;
 use App\Models\Tappa;
 use App\Models\Tehsil;
-use App\Models\HardCopy;
+use App\Models\HardCopyFarmer;
 
 use App\Models\UC;
 use Carbon\Carbon;
@@ -627,7 +627,7 @@ public function excelExport(Request $request)
 
 
         if($req->farmer_type == 'HardCopy'){
-            $query = HardCopy::query();
+            $query = HardCopyFarmer::query();
         }else{
             $query = LandRevenueFarmerRegistation::query();
         }
