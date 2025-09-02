@@ -235,7 +235,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title" style="color: #000000 !important;">Rejected BY LRD</p>
-                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$rejected_by_lrd}}</h3>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$forwarded_to_lrd}}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape border border-danger text-danger" >
@@ -256,7 +256,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title" style="color: #000000 !important;">Rejected BY LRD</p>
+                                                <p class="card-title text-title" style="color: #000000 !important;">Pending BY LRD</p>
                                                 <h3 class="card-text text-amount" style="color: #000000 !important;">{{$rejected_by_lrd}}</h3>
                                             </div>
                                             <div class="col-auto">
@@ -309,7 +309,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="card-title text-title" style="color: #000000 !important;">Total HardCopy Filled Forms</p>
+                                                <p class="card-title text-title" style="color: #000000 !important;">HardCopy Filled Forms</p>
                                                 <h3 class="card-text text-amount" style="color: #000000 !important;">{{$TotalHardCopyFilledForms}}</h3>
                                             </div>
                                             <div class="col-auto">
