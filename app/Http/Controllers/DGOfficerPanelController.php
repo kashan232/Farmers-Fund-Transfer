@@ -677,6 +677,7 @@ public function excelExport(Request $request)
             if (!empty($req->verification_status) && $req->verification_status !== null) {
                 $query->where('verification_status', $req->verification_status);
             }
+            dd($query->get());
 
 
             if (!empty($req->search) && $req->search !== null) {
@@ -693,7 +694,6 @@ public function excelExport(Request $request)
                 });
             }
 
-            dd($query->get());
 
 $totalFarmers = (clone $query)->count();
 
