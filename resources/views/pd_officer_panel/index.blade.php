@@ -187,7 +187,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title" style="color: #000000 !important;">Forwarded to LRD</p>
-                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$forwarded_to_lrd}}</h3>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{($forwarded_to_lrd+$Verifiedfarmeragiruser)}}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape "  style="color: #4fe0d9 !important; border: 1px solid #4fe0d9">
