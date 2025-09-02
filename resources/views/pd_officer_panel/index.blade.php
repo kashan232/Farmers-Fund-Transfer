@@ -456,7 +456,17 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @php
+                                                        $totalForms = 0;
+                                                        $totalFilledForms = 0;
+                                                        $pendingForms = 0;
+                                                        @endphp
                                                         @foreach($summary as $row)
+                                                            @php
+                                                                $totalForms++;
+                                                                $totalFilledForms++;
+                                                                $pendingForms++;
+                                                            @endphp
                                                             <tr>
                                                                 <td>{{ $row['district'] }}</td>
                                                                 <td>{{ ($row['total']+$row['pending'])}}</td>
@@ -464,6 +474,12 @@
                                                                 <td>{{ $row['pending'] }}</td>
                                                             </tr>
                                                         @endforeach
+                                                        <tr>
+                                                            <td>{{ Grand Total }}</td>
+                                                            <td>{{ $totalForms }}</td>
+                                                            <td>{{ $totalFilledForms }}</td>
+                                                            <td>{{ $pendingForms }}</td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
