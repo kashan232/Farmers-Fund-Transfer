@@ -213,7 +213,7 @@
                                             <h6 >Total Farmers: {{ $totalFarmers }}</h6>
                                             <h6>Online Farmers: {{ $onlineFarmers }}</h6>
                                             <h6>Self Registered (Field Assistant): {{ $selfFarmers }}</h6>
-                                            <h6>Total Acres : {{ $totalAcres }}</h6>
+                                            <h6>Total Acres : {{ (int) $totalAcres }}</h6>
 
                                         </div>
 
