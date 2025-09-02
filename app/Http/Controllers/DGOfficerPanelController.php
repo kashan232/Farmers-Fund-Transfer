@@ -624,10 +624,12 @@ public function excelExport(Request $request)
 
 
     public function reporting_fetch(request $req){
-        dd($req->all());
+        
 
         if($req->farmer_type == 'HardCopy'){
             $query = HardCopyFarmer::query();
+
+            dd($query->get());
         }else{
             $query = LandRevenueFarmerRegistation::query();
         }
