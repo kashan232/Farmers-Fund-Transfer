@@ -670,10 +670,9 @@ public function excelExport(Request $request)
 
             }
 
-            if (!empty($req->farmer_type) && $req->farmer_type !== null) {
+            if (!empty($req->farmer_type) && $req->farmer_type !== null && $req->farmer_type !== 'HardCopy') {
                 $query->where('user_type', $req->farmer_type);
             }
-            dd($query->get());
 
             if (!empty($req->verification_status) && $req->verification_status !== null) {
                 $query->where('verification_status', $req->verification_status);
