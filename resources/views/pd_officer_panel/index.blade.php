@@ -463,9 +463,9 @@
                                                         @endphp
                                                         @foreach($summary as $row)
                                                             @php
-                                                                $totalForms++;
-                                                                $totalFilledForms++;
-                                                                $pendingForms++;
+                                                                ($totalForms + ($row['total']+$row['pending']));
+                                                                ($totalFilledForms + $row['total']);
+                                                                ($pendingForms+$row['pending']);
                                                             @endphp
                                                             <tr>
                                                                 <td>{{ $row['district'] }}</td>
