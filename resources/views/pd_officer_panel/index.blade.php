@@ -250,6 +250,82 @@
 
 
 
+                        {{-- HARD COPY CARD --}}
+
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                  {{-- <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'forwarded_to_lrd']) }}"> --}}
+                                <div class="card" >
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title" style="color: #000000 !important;">Total HardCopy Forms</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{($TotalHardCopyFilledForms+$PendingHardCopyForms)}}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape "  style="color: #4fe0d9 !important; border: 1px solid #4fe0d9">
+                                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  {{-- </a> --}}
+                            </div>
+
+
+
+
+
+
+                             <!-- Verified Farmers Card -->
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                {{-- <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'verified_by_lrd']) }}"> --}}
+                                <div class="card" >
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title" style="color: #000000 !important;">Total HardCopy Filled Forms</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$TotalHardCopyFilledForms}}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape green-icon-bg">
+                                                    <i class="fas fa-user-check" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- </a> --}}
+                            </div>
+
+
+                             <!-- Verified Farmers Card -->
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                  {{-- <a href="{{ route('dg.farmers', ['search' => null, 'status' => 'rejected_by_lrd']) }}"> --}}
+                                <div class="card" >
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-title text-title" style="color: #000000 !important;">Pending HardCopy Forms</p>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$PendingHardCopyForms}}</h3>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon-shape border border-danger text-danger" >
+                                                    <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  {{-- </a> --}}
+                            </div>
+
+
+
+
+
+
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="card">
                                     <div class="card-body">

@@ -307,6 +307,13 @@ class HomeController extends Controller
 
 
 
+                $TotalHardCopyFilledForms = HardCopyFarmer::where('verification_status','verified_by_lrd')->count();
+                $PendingHardCopyForms = HardCopyFarmer::whereNull('verification_status')->count();
+
+
+
+
+
 
                 return view('pd_officer_panel.index',[
                     'fa_total_Registered_Farmers' => $fa_total_Registered_Farmers,
@@ -324,7 +331,9 @@ class HomeController extends Controller
                     'total' => $total,
                     'rejected_by_lrd' => $rejected_by_lrd,
                     'forwarded_to_ao' => $forwarded_to_ao,
-                    'forwarded_to_lrd' => $forwarded_to_lrd
+                    'forwarded_to_lrd' => $forwarded_to_lrd,
+                    'TotalHardCopyFilledForms' => $TotalHardCopyFilledForms,
+                    'PendingHardCopyForms' => $PendingHardCopyForms
 
                 ]);
             }
