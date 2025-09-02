@@ -476,9 +476,9 @@
                                                         @endforeach
                                                         <tr>
                                                             <td><b>Grand Total </b></td>
-                                                            <td>{{ $totalForms }}</td>
-                                                            <td>{{ $totalFilledForms }}</td>
-                                                            <td>{{ $pendingForms }}</td>
+                                                            <td><b> {{ $totalForms }} </b></td>
+                                                            <td><b> {{ $totalFilledForms }} </b></td>
+                                                            <td><b> {{ $pendingForms }} </b></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
