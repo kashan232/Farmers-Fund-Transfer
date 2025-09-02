@@ -628,10 +628,19 @@ public function excelExport(Request $request)
 
         if($req->farmer_type == 'HardCopy'){
             $query = HardCopyFarmer::query();
-
         }else{
+
             $query = LandRevenueFarmerRegistation::query();
+            if(empty($req->farmer_type) && $req->farmer_type == null){
+                $query2 = HardCopyFarmer::query();
+                $query->union($query2);
+            }
+
         }
+
+
+
+
 
 
             // Check if district is set and not null, otherwise, fetch all
