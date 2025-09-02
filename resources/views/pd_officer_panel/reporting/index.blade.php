@@ -107,18 +107,18 @@
                                                 <label class="form-label" style="font-weight: 600;">Verification Status</label>
                                                 <select name="verification_status" id="" class="form-control">
                                                     <option value="">Select Verification Status</option>
-
+{{-- 
                                                     <option value="rejected_by_fa">REJECTED BY FA OFFICER</option>
                                                     <option value="verified_by_fa">VERIFIED BY FA OFFICER</option>
 
                                                     <option value="rejected_by_ao">REJECTED BY AO OFFICER</option>
-                                                    <option value="verified_by_ao">VERIFIED BY AO OFFICER</option>
+                                                    <option value="verified_by_ao">VERIFIED BY AO OFFICER</option> --}}
 
                                                     {{-- <option value="rejected_by_dd">REJECTED BY DD OFFICER</option>
                                                     <option value="verified_by_dd">VERIFIED BY DD OFFICER</option> --}}
 
-                                                    <option value="rejected_by_lrd">REJECTED LRD OFFICER</option>
-                                                    <option value="verified_by_lrd">VERIFIED LRD OFFICER</option>
+                                                    {{-- <option value="rejected_by_lrd">REJECTED LRD OFFICER</option> --}}
+                                                    <option value="verified_by_lrd" selected>VERIFIED LRD OFFICER</option>
 
                                                 </select>
                                             </div>
