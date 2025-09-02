@@ -706,12 +706,7 @@ $selectColumns = [
         'cnic_status',
         'city',
 
-        'account_title',
-        'date_of_birth',
-        'marital_status',
-        'mother_maiden_name',
-        'correspondence_address',
-        'permanent_address',
+      
 
 ];
 
