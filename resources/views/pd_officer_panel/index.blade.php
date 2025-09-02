@@ -456,10 +456,10 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @php
-                                                        $totalForms = 0;
-                                                        $totalFilledForms = 0;
-                                                        $pendingForms = 0;
+                                                         @php
+                                                            $totalForms += ($row['total'] + $row['pending']);
+                                                            $totalFilledForms += $row['total'];
+                                                            $pendingForms += $row['pending'];
                                                         @endphp
                                                         @foreach($summary as $row)
                                                             @php
@@ -475,7 +475,7 @@
                                                             </tr>
                                                         @endforeach
                                                         <tr>
-                                                            <td>Grand Total </td>
+                                                            <td><b>Grand Total </b></td>
                                                             <td>{{ $totalForms }}</td>
                                                             <td>{{ $totalFilledForms }}</td>
                                                             <td>{{ $pendingForms }}</td>
