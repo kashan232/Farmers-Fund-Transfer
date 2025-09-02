@@ -633,6 +633,78 @@ public function excelExport(Request $request)
             $query = LandRevenueFarmerRegistation::query();
             if(empty($req->farmer_type) && $req->farmer_type == null){
                 $query2 = HardCopyFarmer::query();
+
+
+                // Check if district is set and not null, otherwise, fetch all
+                if (!empty($req->district) && $req->district[0] !== null) {
+                    $query2->whereIn('district', $req->district);
+                }
+
+                $acreFrom = $req->input('acre_from');
+                $acreTo = $req->input('acre_to');
+
+                if ($acreFrom !== null) {
+                    $query2->where('total_landing_acre', '>=', $acreFrom);
+                }
+
+                if ($acreTo !== null) {
+                    $query2->where('total_landing_acre', '<=', $acreTo);
+                }
+
+
+
+                // Apply filters only if they are not empty
+                if (!empty($req->tehsil) && $req->tehsil[0] !== null) {
+                    $query2->whereIn('tehsil', $req->tehsil);
+                }
+
+                if (!empty($req->tappa) && $req->tappa[0] !== null) {
+                    $query2->whereIn('tappa', $req->tappa);
+                }
+
+                if (!empty($req->start_date) && $req->start_date == $req->end_date) {
+                    $query2->whereDate('created_at', $req->start_date);
+                } else {
+                    if(!empty($req->start_date)){
+                        $query2->whereBetween('created_at', [$req->start_date, $req->end_date]);
+                    }
+
+                }
+
+                if (!empty($req->farmer_type) && $req->farmer_type !== null && $req->farmer_type !== 'HardCopy') {
+                    $query2->where('user_type', $req->farmer_type);
+                }
+
+                if (!empty($req->verification_status) && $req->verification_status !== null) {
+                    $query2->where('verification_status', $req->verification_status);
+                }
+
+
+                if (!empty($req->search) && $req->search !== null) {
+                    $query2->where(function ($q) use ($req) {
+                        $q->where('name', 'LIKE', "%{$req->search}%")
+                        ->orWhere('father_name', 'LIKE', "%{$req->search}%")
+                        ->orWhere('surname', 'LIKE', "%{$req->search}%")
+                        ->orWhere('mobile', 'LIKE', "%{$req->search}%")
+                        ->orWhere('cnic', 'LIKE', "%{$req->search}%")
+                        ->orWhere('district', 'LIKE', "%{$req->search}%")
+                        ->orWhere('tehsil', 'LIKE', "%{$req->search}%")
+                        ->orWhere('tappa', 'LIKE', "%{$req->search}%")
+                        ->orWhere('uc', 'LIKE', "%{$req->search}%"); // Add more columns as needed
+                    });
+                }
+
+
+
+
+
+
+
+
+
+
+
+
                 $query->union($query2);
             }
 
@@ -708,8 +780,8 @@ $totalFarmers = (clone $query)->count();
         $onlineFarmers = (clone $query)->where('user_type', 'Online')->count();
         $selfFarmers = $totalFarmers - $onlineFarmers;
 
-        // $totalAcres = (clone $query)->sum('total_landing_acre');
-$totalAcres = 0;
+        $totalAcres = (clone $query)->sum('total_landing_acre');
+// $totalAcres = 0;
 
         // Paginate results and keep query parameters
         $farmers = $query->paginate(10)->appends($req->all());
