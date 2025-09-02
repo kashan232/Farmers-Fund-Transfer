@@ -624,12 +624,11 @@ public function excelExport(Request $request)
 
 
     public function reporting_fetch(request $req){
-        
+
 
         if($req->farmer_type == 'HardCopy'){
             $query = HardCopyFarmer::query();
 
-            dd($query->get());
         }else{
             $query = LandRevenueFarmerRegistation::query();
         }
@@ -652,6 +651,7 @@ public function excelExport(Request $request)
             }
 
 
+            dd($query->get());
 
             // Apply filters only if they are not empty
             if (!empty($req->tehsil) && $req->tehsil[0] !== null) {
