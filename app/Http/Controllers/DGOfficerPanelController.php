@@ -660,7 +660,58 @@ $selectColumns = [
         'land_share',
         'land_area_as_per_share',
         'survey_no',
-     
+        'title_name',
+        'title_father_name',
+        'title_cnic',
+        'title_number',
+        'title_area',
+        'crop_season',
+        'crops',
+        'crops_orchard',
+        'crop_area',
+        'crop_average_yeild',
+        'physical_asset_item',
+        'animal_name',
+        'animal_qty',
+        'source_of_irrigation',
+        'source_of_irrigation_engery',
+        'area_length',
+        'line_status',
+        'lined_length',
+        'total_command_area',
+        'account_title',
+        'account_no',
+        'bank_name',
+        'branch_name',
+        'IBAN_number',
+        'branch_code',
+        'front_id_card',
+        'back_id_card',
+        'upload_land_proof',
+        'upload_other_attach',
+        'upload_farmer_pic',
+        'upload_cheque_pic',
+        'form_seven_pic',
+        'verification_status',
+        'declined_reason',
+        'verification_by',
+        'GpsCordinates',
+        'FancingCoordinates',
+        'sq_meters',
+        'sq_yards',
+        'acres',
+        'partially_line',
+
+        'no_objection_affidavit_pic',
+        'cnic_status',
+        'city',
+        'branch_name',
+        'account_title',
+        'date_of_birth',
+        'marital_status',
+        'mother_maiden_name',
+        'correspondence_address',
+        'permanent_address',
 
 ];
 
@@ -670,7 +721,7 @@ $selectColumns = [
 
             $query = LandRevenueFarmerRegistation::select($selectColumns);
             if(empty($req->farmer_type) && $req->farmer_type == null){
-                $query2 = HardCopyFarmer::query();
+                $query2 = HardCopyFarmer::select($selectColumns);
 
 
                 // Check if district is set and not null, otherwise, fetch all
