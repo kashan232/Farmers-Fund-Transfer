@@ -7,6 +7,8 @@ use App\Models\LandRevenueFarmerRegistation;
 use App\Models\District;
 use App\Models\Tappa;
 use App\Models\Tehsil;
+use App\Models\HardCopy;
+
 use App\Models\UC;
 use Carbon\Carbon;
 use App\Models\User;
@@ -622,7 +624,14 @@ public function excelExport(Request $request)
 
 
     public function reporting_fetch(request $req){
-        $query = LandRevenueFarmerRegistation::query();
+
+
+        if($req->farmer_type == 'HardCopy'){
+            $query = HardCopy::query();
+        }else{
+            $query = LandRevenueFarmerRegistation::query();
+        }
+
 
             // Check if district is set and not null, otherwise, fetch all
             if (!empty($req->district) && $req->district[0] !== null) {

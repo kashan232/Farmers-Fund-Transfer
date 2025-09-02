@@ -97,6 +97,8 @@
                                                     <option value="">Select Farmer Type</option>
                                                     <option value="Online">Online</option>
                                                     <option value="Field_Officer">Field Officer</option>
+                                                    <option value="HardCopy">Hard Copy</option>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -107,7 +109,7 @@
                                                 <label class="form-label" style="font-weight: 600;">Verification Status</label>
                                                 <select name="verification_status" id="" class="form-control">
                                                     <option value="">Select Verification Status</option>
-{{-- 
+{{--
                                                     <option value="rejected_by_fa">REJECTED BY FA OFFICER</option>
                                                     <option value="verified_by_fa">VERIFIED BY FA OFFICER</option>
 
