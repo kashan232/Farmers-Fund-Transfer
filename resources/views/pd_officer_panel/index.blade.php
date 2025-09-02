@@ -475,7 +475,7 @@
                                                             </tr>
                                                         @endforeach
                                                         <tr>
-                                                            <td>{{ Grand Total }}</td>
+                                                            <td>{{ $Grand Total }}</td>
                                                             <td>{{ $totalForms }}</td>
                                                             <td>{{ $totalFilledForms }}</td>
                                                             <td>{{ $pendingForms }}</td>
