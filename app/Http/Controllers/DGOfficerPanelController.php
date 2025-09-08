@@ -706,7 +706,7 @@ $selectColumns = [
         'cnic_status',
         'city',
 
-      
+
 
 ];
 

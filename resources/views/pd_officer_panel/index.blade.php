@@ -284,7 +284,12 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title" style="color: #000000 !important;">Total HardCopy Forms</p>
-                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{($TotalHardCopyFilledForms+$PendingHardCopyForms)}}</h3>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">
+                                                    @php
+                                                        $tt = 95788;
+                                                    @endphp
+                                                    {{$tt}}
+                                                </h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape "  style="color: #4fe0d9 !important; border: 1px solid #4fe0d9">
@@ -332,7 +337,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="card-title text-title" style="color: #000000 !important;">Pending HardCopy Forms</p>
-                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{$PendingHardCopyForms}}</h3>
+                                                <h3 class="card-text text-amount" style="color: #000000 !important;">{{($tt-$TotalHardCopyFilledForms)}}</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon-shape border border-danger text-danger" >
