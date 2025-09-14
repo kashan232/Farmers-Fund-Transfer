@@ -209,10 +209,12 @@ Route::post('/check/cnic/duplicate', function(Request $request) {
      $request->validate([
         'cnic' => 'required|string',
         'tappa' => 'required|string',
+        'district' => 'required|string',
+
     ]);
 
     $query = LandRevenueFarmerRegistation::where('cnic', $request->cnic)
-            ->where('tappa', $request->tappa);
+            ->where('tappa', $request->tappa)->where('district', $request->district);
 
     // Ignore current record if editing
     if ($request->filled('edit_id')) {
