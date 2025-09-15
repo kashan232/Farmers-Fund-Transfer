@@ -2345,6 +2345,7 @@ dateFields.forEach((field) => {
                         method: 'POST',
                         data: {
                             cnic: step1_formdata.cnic,
+                            district: step1_formdata.district,
                             tappa: step1_formdata.tappas,
                              _token: $('meta[name="csrf-token"]').attr('content')
                         },
