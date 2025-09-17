@@ -88,7 +88,7 @@
                                 <div class="row justify-content-md-center">
                                     <div class="col-12 ">
                                         <div class="table-responsive">
-                                            <table id="example" class="display" style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
+                                            <table id="exdample" class="display" style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
                                                 <thead>
                                                     <tr>
                                                         <th>Register By</th>
