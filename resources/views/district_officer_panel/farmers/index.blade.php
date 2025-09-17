@@ -82,8 +82,8 @@
                 <div class="card">
                     <div class="card-body">
                         <form method="GET" action="{{ route('field-farmers') }}">
-                            <input type="text" name="search" placeholder="Search Farmers" value="{{ request('search') }}">
-                            <button type="submit">Search</button>
+                            <input type="text" name="search" placeholder="Search Farmers" value="{{ request('search') }}" class="form-control">
+                            <button type="submit" class="btn btn-primary">Search</button>
                         </form>
 
                         <div class="dt-responsive">

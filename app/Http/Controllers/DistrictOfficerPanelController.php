@@ -280,8 +280,14 @@ class DistrictOfficerPanelController extends Controller
             $searchTerm = $request->search;
             $farmersQuery->where(function($query) use ($searchTerm) {
                 // Add the search condition(s) here, for example:
-                $query->where('farmer_name', 'like', "%$searchTerm%")
-                    ->orWhere('farmer_id', 'like', "%$searchTerm%");  // You can adjust the columns
+                $query->where('cnin', 'like', "%$searchTerm%")
+                    ->orWhere('mobile', 'like', "%$searchTerm%")  // You can adjust the columns
+                    ->orWhere('name', 'like', "%$searchTerm%")  // You can adjust the columns
+                    ->orWhere('father_name', 'like', "%$searchTerm%")  // You can adjust the columns
+                    ->orWhere('tehsil', 'like', "%$searchTerm%")  // You can adjust the columns
+                    ->orWhere('tappa', 'like', "%$searchTerm%");  // You can adjust the columns
+
+
             });
         }
         // Paginate the results
