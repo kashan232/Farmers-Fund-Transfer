@@ -9,10 +9,6 @@
 <!-- [ Header ] end -->
 
 <style>
-    .table-responsive{
-        position: relative !important;
-        padding-top: 5% !important;
-    }
 
 
 </style>
@@ -82,14 +78,14 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form method="GET" action="{{ route('field-farmers') }}" class="col-4">
-                            <input type="text" name="search" placeholder="Search Farmers" value="{{ request('search') }}" class="form-control">
+                        <form method="GET" action="{{ route('field-farmers') }}" class="col-4" style="display: flex">
+                            <input style="margin-right: 2%;" type="text" name="search" placeholder="Search Farmers" value="{{ request('search') }}" class="form-control">
                             <button type="submit" class="btn btn-primary">Search</button>
                         </form>
 
                         <div class="dt-responsive">
                             <div id="dom-jqry_wrapper" class="dt-container dt-bootstrap5">
-                                <div class="row mt-2 justify-content-md-center">
+                                <div class="row justify-content-md-center">
                                     <div class="col-12 ">
                                         <div class="table-responsive">
                                             <table id="example" class="display" style="width:100%" class="table table-striped table-bordered nowrap dataTable" aria-describedby="dom-jqry_info">
