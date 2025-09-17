@@ -267,18 +267,27 @@ class DistrictOfficerPanelController extends Controller
 
 
 
-    public function fields_farmers(){
+    public function fields_farmers(Request $request){
         $user = User::find(Auth::id());
         $tehsils = Tehsil::where('district', '=', $user->district)->get();
-        // $farmers = LandRevenueFarmerRegistation::where('district', '=', $user->district)->where('user_type','Field_Officer')->where('verification_status','verified_by_lo')->orWhere('verification_status','verified_by_do')->paginate(5);
-        $farmers = LandRevenueFarmerRegistation::whereIn('district',json_decode($user->district))
-         // Match the user_type
-        ->where(function($query) {
-            $query->where('verification_status', 'verified_by_lrd');
-                //   ->orWhere('verification_status', 'verified_by_do')
-                //   ->orWhere('verification_status', 'rejected_by_do');
-        })
-        ->paginate(5);
+
+        // Default query for farmers
+        $farmersQuery = LandRevenueFarmerRegistation::whereIn('district', json_decode($user->district))
+            ->where('verification_status', 'verified_by_lrd');
+
+        // Check if there's a search term
+        if ($request->has('search') && $request->search != '') {
+            $searchTerm = $request->search;
+            $farmersQuery->where(function($query) use ($searchTerm) {
+                // Add the search condition(s) here, for example:
+                $query->where('farmer_name', 'like', "%$searchTerm%")
+                    ->orWhere('farmer_id', 'like', "%$searchTerm%");  // You can adjust the columns
+            });
+        }
+        // Paginate the results
+        $farmers = $farmersQuery->paginate(20);
+
+
         return view('district_officer_panel.farmers.index',['farmers' => $farmers, 'tehsils' => $tehsils]);
     }
 

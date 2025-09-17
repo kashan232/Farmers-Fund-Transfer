@@ -16,7 +16,7 @@
 
 
 </style>
-
+{{--
 <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -54,7 +54,7 @@
         </div>
     </div>
 </div>
-
+ --}}
 
 
 
@@ -81,6 +81,11 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
+                        <form method="GET" action="{{ route('field-farmers') }}">
+                            <input type="text" name="search" placeholder="Search Farmers" value="{{ request('search') }}">
+                            <button type="submit">Search</button>
+                        </form>
+
                         <div class="dt-responsive">
                             <div id="dom-jqry_wrapper" class="dt-container dt-bootstrap5">
                                 <div class="row mt-2 justify-content-md-center">
