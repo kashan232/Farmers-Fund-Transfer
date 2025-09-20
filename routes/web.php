@@ -65,7 +65,7 @@ Route::post('/backend_registration_form',[FieldOfficerPanelController::class,'ba
 
 
 
-Route::get('/farmers/import', function(){
+Route::get('/farmers/import/azhar', function(){
      return view('farmersimport');
 })->name('farmers.import.form');
 
