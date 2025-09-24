@@ -527,22 +527,31 @@
                             @php
                             use App\Models\HardCopyFarmer;
 
-                            $districts = HardCopyFarmer::selectRaw('LOWER(TRIM(district)) as district')
-                                ->distinct()
-                                ->pluck('district'); // sirf names ki list mil jaegi
+                            // $districts = HardCopyFarmer::selectRaw('LOWER(TRIM(district)) as district')
+                            //     ->distinct()
+                            //     ->pluck('district'); // sirf names ki list mil jaegi
 
-                            $summary = $districts->map(function ($districtName) {
-                                return [
-                                    'district' => ucfirst($districtName), // optional: format back
-                                    'daily'    => HardCopyFarmer::where('verification_status','verified_by_lrd')->where('district', $districtName)
-                                                    ->whereDate('created_at', today())
-                                                    ->count(),
-                                    'total'    => HardCopyFarmer::where('verification_status','verified_by_lrd')->where('district', $districtName)->count(),
-                                    'pending'  => HardCopyFarmer::whereNull('verification_status')->where('district', $districtName)
+                            // $summary = $districts->map(function ($districtName) {
+                            //     return [
+                            //         'district' => ucfirst($districtName), // optional: format back
+                            //         'daily'    => HardCopyFarmer::where('verification_status','verified_by_lrd')->where('district', $districtName)
+                            //                         ->whereDate('created_at', today())
+                            //                         ->count(),
+                            //         'total'    => HardCopyFarmer::where('verification_status','verified_by_lrd')->where('district', $districtName)->count(),
+                            //         'pending'  => HardCopyFarmer::whereNull('verification_status')->where('district', $districtName)
 
-                                                    ->count(),
-                                ];
-                            });
+                            //                         ->count(),
+                            //     ];
+                            // });
+
+                            $summary = HardCopyFarmer::selectRaw("
+        LOWER(TRIM(district)) as district,
+        SUM(CASE WHEN verification_status = 'verified_by_lrd' THEN 1 ELSE 0 END) as total,
+        SUM(CASE WHEN verification_status IS NULL THEN 1 ELSE 0 END) as pending,
+        SUM(CASE WHEN verification_status = 'verified_by_lrd' AND DATE(created_at) = CURDATE() THEN 1 ELSE 0 END) as daily
+    ")
+    ->groupBy('district')
+    ->get();
                         @endphp
 
                              <div class="col-lg-12 col-md-12 col-sm-12">
