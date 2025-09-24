@@ -527,13 +527,13 @@
                             @php
                             use App\Models\HardCopyFarmer;
 
-                            $districts = HardCopyFarmer::select('district')
+                            $districts = HardCopyFarmer::selectRaw('LOWER(TRIM(district)) as district')
                                 ->distinct()
                                 ->pluck('district'); // sirf names ki list mil jaegi
 
                             $summary = $districts->map(function ($districtName) {
                                 return [
-                                    'district' => $districtName,
+                                    'district' => ucfirst($districtName), // optional: format back
                                     'daily'    => HardCopyFarmer::where('verification_status','verified_by_lrd')->where('district', $districtName)
                                                     ->whereDate('created_at', today())
                                                     ->count(),
