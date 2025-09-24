@@ -592,7 +592,7 @@
                                                             <td><b>Grand Total </b></td>
                                                             <td><b> {{ $tt }} </b></td>
                                                             <td><b> {{ $totalFilledForms }} </b></td>
-                                                            <td><b> {{ $pendingForms }} </b></td>
+                                                            <td><b> {{ ($tt-$pendingForms) }} </b></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
