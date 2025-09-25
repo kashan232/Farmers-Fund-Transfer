@@ -576,6 +576,8 @@
                                                         $pendingForms = 0;
                                                         @endphp
                                                         @foreach($summary as $row)
+
+                                                        @if($row['district'] != '' && $row['district'] != NULL)
                                                              @php
                                                                 $totalForms += ($row['total'] + $row['pending']);
                                                                 $totalFilledForms += $row['total'];
@@ -587,6 +589,7 @@
                                                                 <td>{{ $row['total'] }}</td>
                                                                 <td>{{ $row['pending'] }}</td>
                                                             </tr>
+                                                        @endif
                                                         @endforeach
                                                         <tr>
                                                             <td><b>Grand Total </b></td>
