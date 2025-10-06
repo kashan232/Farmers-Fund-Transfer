@@ -389,11 +389,13 @@
 
                                         <div class="mb-6 col-md-6 py-2">
                                             <label for="uc">Q7. Union Council: </label>
-                                            <select name="uc" id="uc" class="form-control js-example-basic-single">
+                                                    <input type="text"  name="uc" value="{{ $data->uc ?? ''}} " class="form-control">
+
+                                            {{-- <select name="uc" id="uc" class="form-control js-example-basic-single">
                                                 @if(isset($data->uc) && $data->uc != '')
                                                 <option value="{{$data->uc}}">{{$data->uc}}</option>
                                                 @endif
-                                            </select>
+                                            </select> --}}
                                         </div>
 
 
