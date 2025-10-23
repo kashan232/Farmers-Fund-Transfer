@@ -52,6 +52,26 @@ public function excelExport(Request $request)
     ->when($request->farmer_type === 'online', function ($q) {
         $q->where('user_type', 'Online');
     })
+
+    ->whereNotNull('name')
+    ->whereNotNull('father_name')
+    ->whereNotNull('mother_maiden_name')
+    ->whereNotNull('cnic')
+    ->whereNotNull('cnic_issue_date')
+    ->whereNotNull('date_of_birth')
+    ->whereNotNull('district')
+    ->whereNotNull('gender')
+    ->whereNotNull('permanent_address')
+    ->whereNotNull('tehsil')
+    ->whereNotNull('mobile')
+    ->whereNotNull('survey_no')
+    ->whereNotNull('total_landing_acre')
+    ->whereNotNull('total_area_cultivated_land')
+    ->whereNotNull('branch_code')
+    // Ensure related branch title is NOT NULL
+    ->whereHas('branch', function($q) {
+        $q->whereNotNull('title');
+    })
     ->get();
 
     // ->filter(function ($farmer) {
