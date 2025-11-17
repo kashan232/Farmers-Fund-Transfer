@@ -70,7 +70,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/login-api', [ProjectAPIController::class, 'login_api'])->name('login-api');
+Route::post('/login-api', [ProjectAPIController::class, 'loginapi'])->name('login-api');
 
 
 Route::get('/get-districts', [ProjectAPIController::class, 'get_districts'])->name('get-districts');
