@@ -20,10 +20,7 @@ class ProjectAPIController extends Controller
 
     public function login_api(Request $request)
     {
-        // $request->validate([
-        //     'email' => 'required|email',
-        //     'password' => 'required',
-        // ]);
+      
 
         $credentials = $request->only('email', 'password');
 
@@ -43,6 +40,9 @@ class ProjectAPIController extends Controller
 
         // Fetch user by email
         $user = User::where('email', $email)->first();
+
+           \Log::info($user );
+
 
         // $ucs =  UC::where('tehsil',$user->tehsil)->pluck('uc');
 
@@ -380,7 +380,7 @@ class ProjectAPIController extends Controller
 
     public function store_farmer(Request $request)
     {
-           \Log::info($request->all());
+        //    \Log::info($request->all());
 
 
         $rules = [
