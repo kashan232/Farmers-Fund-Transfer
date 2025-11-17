@@ -20,14 +20,15 @@ class ProjectAPIController extends Controller
 
     public function login_api(Request $request)
     {
-      
+
 
         $credentials = $request->only('email', 'password');
 
         //valid credential
         $validator = Validator::make($credentials, [
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
+            'sa' => 'required',
         ]);
 
         //Send failed response if request is not valid
