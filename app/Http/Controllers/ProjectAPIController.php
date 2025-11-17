@@ -62,7 +62,7 @@ class ProjectAPIController extends Controller
             return response()->json([
                 'logged_user_data' => $user,
 
-                'ucs' => $ucs,
+                // 'ucs' => $ucs,
                 'token' => $token,
                 'message' => 'User Login Successfully',
                 'status' => 'Success'
