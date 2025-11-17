@@ -28,7 +28,7 @@ class ProjectAPIController extends Controller
         $validator = Validator::make($credentials, [
             'email' => 'required|email',
             'password' => 'required',
-            'sa' => 'required',
+            // 'sa' => 'required',
         ]);
 
         //Send failed response if request is not valid
